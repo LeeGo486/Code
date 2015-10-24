@@ -1,0 +1,56 @@
+﻿正在安装程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+正在安装服务 ServiceSendMsg...
+已成功安装服务 ServiceSendMsg。
+正在日志 Application 中创建 EventLog 源 ServiceSendMsg...
+正在提交程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+正在卸载程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+正在移除 EventLog 源 ServiceSendMsg。
+正在从系统中移除服务 ServiceSendMsg...
+已成功地从系统中移除服务 ServiceSendMsg。
+正在卸载程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+正在移除 EventLog 源 ServiceSendMsg。
+警告: 源 ServiceSendMsg 未在本地计算机上注册。
+正在从系统中移除服务 ServiceSendMsg...
+已成功地从系统中移除服务 ServiceSendMsg。
+正在安装程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+没有 RunInstallerAttribute.Yes 的公共安装程序。在 E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe 程序集中可能可以找到“Yes”属性。
+正在提交程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+没有 RunInstallerAttribute.Yes 的公共安装程序。在 E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe 程序集中可能可以找到“Yes”属性。
+没有安装程序，因此移除 InstallState 文件。
+正在安装程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+没有 RunInstallerAttribute.Yes 的公共安装程序。在 E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe 程序集中可能可以找到“Yes”属性。
+正在提交程序集“E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+   logfile = E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.InstallLog
+没有 RunInstallerAttribute.Yes 的公共安装程序。在 E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe 程序集中可能可以找到“Yes”属性。
+没有安装程序，因此移除 InstallState 文件。

@@ -1,0 +1,64 @@
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Company.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.EditAccount.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form2.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.TestMsg.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\SMTSendMessage.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\bin\Debug\WindowsFormsApplication1.exe.config
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.exe
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.pdb
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\bin\Debug\WindowsFormsApplication1.exe
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\bin\Debug\WindowsFormsApplication1.pdb
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\SMTSendMessage.csprojResolveAssemblyReference.cache
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.Company.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.EditAccount.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.Form1.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.Form2.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\WindowsFormsApplication1.TestMsg.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SMTSendMessage\obj\Debug\SMTSendMessage.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.csprojResolveAssemblyReference.cache
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.exe.config
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.exe
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.pdb
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Company.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.EditAccount.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.MainForm.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Account.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Properties.Resources.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.TestMsg.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.exe
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.pdb
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.exe.config
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.exe
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.pdb
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.exe
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.pdb
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Company.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.EditAccount.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.MainForm.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Account.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Properties.Resources.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.TestMsg.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.csproj.GenerateResource.Cache
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.exe.config
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.exe
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.pdb
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.exe
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\bin\Debug\SMTSendMessage.pdb
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.csprojResolveAssemblyReference.cache
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Company.resources
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.EditAccount.resources
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.MainForm.resources
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Account.resources
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.Properties.Resources.resources
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.TestMsg.resources
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Debug\SMTSendMessage.csprojResolveAssemblyReference.cache

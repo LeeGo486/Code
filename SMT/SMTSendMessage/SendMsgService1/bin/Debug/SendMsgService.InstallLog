@@ -1,0 +1,47 @@
+﻿正在安装程序集“E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe
+   logfile = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.InstallLog
+正在安装服务 SMTSendMessage...
+正在日志 Application 中创建 EventLog 源 SMTSendMessage...
+正在回滚程序集“E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe
+   logfile = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.InstallLog
+正在将事件日志还原到源 SMTSendMessage 的前一状态。
+正在卸载程序集“E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe
+   logfile = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.InstallLog
+正在移除 EventLog 源 SMTSendMessage。
+正在从系统中移除服务 SMTSendMessage...
+已成功地从系统中移除服务 SMTSendMessage。
+正在安装程序集“E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe
+   logfile = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.InstallLog
+正在安装服务 SMTSendMessage...
+已成功安装服务 SMTSendMessage。
+正在日志 Application 中创建 EventLog 源 SMTSendMessage...
+正在提交程序集“E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe
+   logfile = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.InstallLog
+正在安装程序集“E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe
+   logfile = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.InstallLog
+正在安装服务 SMTSendMessage...
+已成功安装服务 SMTSendMessage。
+正在日志 Application 中创建 EventLog 源 SMTSendMessage...
+正在提交程序集“E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.exe
+   logfile = E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService.InstallLog

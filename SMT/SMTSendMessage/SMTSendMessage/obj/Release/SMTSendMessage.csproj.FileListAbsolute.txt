@@ -1,0 +1,29 @@
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.exe.config
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.Properties.Resources.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.TestMsg.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.EditAccount.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.Company.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.MainForm.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.exe
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.XmlSerializers.dll
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.pdb
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.exe
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.pdb
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.XmlSerializers.dll
+E:\Work\OtherDoc\Test1\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.Account.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.exe.config
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.exe
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.pdb
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.exe
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.pdb
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.Company.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.EditAccount.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.MainForm.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.Account.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.Properties.Resources.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.TestMsg.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.csproj.GenerateResource.Cache
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.exe.config
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.exe
+E:\Work\Other Doc\SMT\SMTSendMessage\SMTSendMessage\obj\Release\SMTSendMessage.pdb

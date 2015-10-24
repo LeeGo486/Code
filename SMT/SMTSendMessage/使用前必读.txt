@@ -1,0 +1,55 @@
+
+                ╭═══════════════╮
+                ║     短信发送接口程序         ║
+  ╭══════┤    	开发者：LeeGo           ├══════╮
+  ║            ║                              ║            ║
+  ║            ╰═══════════════╯            ║
+  ║    ╭───────────────────────╮    ║
+  ╰══┤                                              ├══╯
+        ╰───────────────────────╯
+==================================================================
+【通用说明】安装使用如有问题，请联系信息管理部LeeGo。
+
+
+
+
+【文件位置】
+
+1.主程序位置：      X:\..\SMT\SMTSendMessage\SMTSendMessage\bin\Release\SMTSendMessage.exe
+2.win服务位置：     X:\..\SMT\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService1.exe
+3.服务的批处理程序：X:\..\SMT\SMTSendMessage\SendMsgService1\bin\Debug\Install.bat (安装)
+		    X:\..\SMT\SMTSendMessage\SendMsgService1\bin\Debug\Uninstall.bat (卸载)
+4.主程序快捷图标：  X:\..\SMT\SMTSendMessage
+
+==================================================================
+
+【数据库配置位置】
+
+1.配置文件名为App.config，需要修改两个地方的文件：一个是主程序，一个是服务。
+
+2.key="RDSMS",这个标识请不要修改，仅修改后面的帐号、密码、以及数据库名。
+
+
+例如：
+
+<appSettings>
+        <add key="RDSMS" value="server=172.16.205.206;uid=ylcg;pwd=e9CwRrxWAr;database=RDSMS"/>
+<appSettings>
+
+==================================================================
+
+【数据表解释】
+
+1.新增表（dbo.CFG_Company，dbo.CFG_Account）。CFG_Company用于存放公司数据，CFG_Account用于存放帐号数据
+2.修改表（dbo.MobileSend），增加了一个字段MCom，用于存放公司编号。
+
+3.表字段请看附件。
+
+
+
+【重要信息】
+ ══════════════════════
+║					   ║
+║ 请先将数据库中的表建立完整，在运行程序。║
+║					   ║	
+║═════════════════════

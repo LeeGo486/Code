@@ -1,0 +1,15 @@
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Release\SendMsgService.exe.config
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Release\SendMsgService.exe
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Release\SendMsgService.pdb
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService1.ProjectInstaller.resources
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService.exe
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService.pdb
+E:\Work\Other Doc\SMT\SMTSendMessage\SendMsgService1\bin\Release\SendMsgService.exe.config
+E:\Work\Other Doc\SMT\SMTSendMessage\SendMsgService1\bin\Release\SendMsgService.exe
+E:\Work\Other Doc\SMT\SMTSendMessage\SendMsgService1\bin\Release\SendMsgService.pdb
+E:\Work\Other Doc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService1.ProjectInstaller.resources
+E:\Work\Other Doc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService.csproj.GenerateResource.Cache
+E:\Work\Other Doc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService.exe
+E:\Work\Other Doc\SMT\SMTSendMessage\SendMsgService1\obj\Release\SendMsgService.pdb
+E:\Work\OtherDoc\SMT\SMTSendMessage\SendMsgService1\bin\Release\log4net.dll

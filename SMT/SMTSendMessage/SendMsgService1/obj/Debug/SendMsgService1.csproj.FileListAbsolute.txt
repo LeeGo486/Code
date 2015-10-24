@@ -1,0 +1,15 @@
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SendMsgService1\bin\Debug\SendMsgService1.exe.config
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SendMsgService1\bin\Debug\SendMsgService1.exe
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SendMsgService1\bin\Debug\SendMsgService1.pdb
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SendMsgService1\obj\Debug\SendMsgService1.exe
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SendMsgService1\obj\Debug\SendMsgService1.pdb
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SendMsgService1\obj\Debug\SendMsgService1.ProjectInstaller.resources
+E:\Work\OtherDoc\Test1\WindowsFormsApplication1\SendMsgService1\obj\Debug\SendMsgService1.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService1.exe.config
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\obj\Debug\SendMsgService1.exe
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\obj\Debug\SendMsgService1.pdb
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService1.exe
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\bin\Debug\SendMsgService1.pdb
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\obj\Debug\SendMsgService1.ProjectInstaller.resources
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\obj\Debug\SendMsgService1.csproj.GenerateResource.Cache
+E:\Work\OtherDoc\Test1\SMTSendMessage\SendMsgService1\obj\Debug\SendMsgService1.csprojResolveAssemblyReference.cache
