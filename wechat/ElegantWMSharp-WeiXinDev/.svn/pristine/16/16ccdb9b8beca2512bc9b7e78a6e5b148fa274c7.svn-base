@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "满意度问题";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <script src="~/Application/HRQuestion/app.js"></script>
+}

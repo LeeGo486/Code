@@ -1,0 +1,335 @@
+﻿@{
+    ViewBag.Title = "事件分析";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //工程师满意度对比 
+        function showEventMonth(id, ths, type) {
+            var m1 = Msg.show("请稍候...", 3);
+            if (ths != -1) {
+                $(ths).parent().children().removeClass("captionHS");
+                $(ths).addClass("captionHS");
+            }
+            $.post("/IT/SM/RptData?type=" + type + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (record) {
+                var xdata = [], ydata1 = [];
+                var xdata = [];
+                var series = [];
+                $.each(record, function (index, value) {
+                    if ($.inArray(value.Y2, xdata) === -1) {
+                        xdata.push(value.Y2);
+                    }
+                    if ($.inArray(value.X, series) === -1) {
+                        series.push(value.X);
+                    }
+                });
+                xdata.sort();
+                series.sort();
+                var sss = [];
+                $.each(series, function (index, t) {
+                    var data = [];
+                    var flag = false;
+                    $.each(xdata, function (index, m) {
+                        $.each(record, function (index, value) {
+                            if (value.Y2 == m && value.X == t) {
+                                data.push(value.Y1);
+                                flag = true;
+                            }
+                        });
+                        if (flag == false) {
+                            data.push(0);
+                        }
+                    });
+                    sss.push({ name: t, data: data });
+                });
+                $('#' + id).highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        height: 300,
+                        backgroundColor: null
+                    },
+                    title: {
+                        text: null
+                    },
+                    xAxis: {
+                        categories: xdata
+                    },
+                    yAxis: [{
+                        title: {
+                            text: null
+                        }
+                    }],
+                    credits: {
+                        enabled: false
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                    },
+                    series: sss
+                });
+                m1.hide();
+            });
+        }
+
+        //分类事件汇总
+        function showEventCategoryRpt(id, ths, type) {
+            var m2 = Msg.show("请稍候...", 3);
+            $(ths).parent().children().removeClass("captionHS");
+            $(ths).addClass("captionHS");
+            $.post("/IT/SM/RptData?type=" + type + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (record) {
+                var xdata = [], ydata1 = [];
+                $.each(record, function (index, value) {
+                    xdata.push(value.X);
+                    ydata1.push({ name: value.X, y: value.Y1 });
+                });
+                $('#' + id).highcharts({
+                    chart: {
+                        type: 'column',
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        height: 250,
+                        backgroundColor: null
+                    },
+                    xAxis: {
+                        categories: xdata
+                    },
+                    yAxis: [{
+                        title: {
+                            text: null
+                        }
+                    }],
+                    title: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        column: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'column',
+                        name: '总件数',
+                        data: ydata1
+                    }]
+                });
+                m2.hide();
+            });
+        }
+
+        //周趋势分析 
+        function showEventDateRpt(id, ths, type) {
+            var m3 = Msg.show("请稍候...", 3);
+            $(ths).parent().children().removeClass("captionHS");
+            $(ths).addClass("captionHS");
+            //周事件
+            $.post("/IT/SM/RptData?type=" + type + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (record) {
+                var xdata = [], ydata1 = [], ydata2 = [];
+                $.each(record, function (index, value) {
+                    xdata.push(value.X);
+                    ydata1.push(value.Y1);
+                    ydata2.push(value.Y2);
+                });
+                $('#chartEventDate').highcharts({
+                    chart: {
+                        type: 'column',
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        height: 250,
+                        backgroundColor: null
+                    },
+                    title: {
+                        text: null
+                    },
+                    xAxis: {
+                        categories: xdata
+                    },
+                    yAxis: [{
+                        title: {
+                            text: null
+                        }
+                    }, { // Secondary yAxis
+                        title: {
+                            text: null
+                        },
+                        opposite: true
+                    }],
+                    tooltip: {
+                        shared: true
+                    },
+                    plotOptions: {
+                        column: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [
+                        {
+                            name: '事件量',
+                            type: 'column',
+                            data: ydata1,
+                            tooltip: {
+                                valueSuffix: '件'
+                            }
+                        }, {
+                            name: '满意度',
+                            type: 'spline',
+                            yAxis: 1,
+                            data: ydata2,
+                            tooltip: {
+                                valueSuffix: '分'
+                            }
+                        }
+                    ]
+                });
+                m3.hide();
+            });
+
+        }
+
+
+        $(function () {
+            showEventCategoryRpt('chartEventCount', this, 301);
+            showEventCategoryRpt('chartEventElv', this, 401);
+            showEventDateRpt('chartEventDate', this, 203);
+            showEventMonth('chartEventMonth', -1, 601);
+            showEventMonth('chartEventSvrMonth', -1, 501);
+        });
+    </script>
+}
+<div class="ht">
+    <i class="icon-globe"></i>&nbsp;&nbsp;OverView
+</div>
+<ul class="list-group">
+    <li class="list-group-item">
+        <i class="icon-list-ol"></i>&nbsp;&nbsp;累计受理<span class="badge pull-right hs">@ViewBag.OverView.Rows[0]["TotalEvent"] 件</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-star-empty"></i>&nbsp;&nbsp;平均满意度<span class="badge pull-right ls">@ViewBag.OverView.Rows[0]["AvgElv"]</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-thumbs-up"></i>&nbsp;&nbsp;主动评价率<span class="badge pull-right ys">@ViewBag.OverView.Rows[0]["RespElv"]%</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-thumbs-down"></i>&nbsp;&nbsp;差评数<span class="badge pull-right">@ViewBag.OverView.Rows[0]["BadElv"]</span>
+    </li>
+</ul>
+<div class="ht">
+    <i class="icon-trophy"></i>&nbsp;&nbsp;年度模范
+</div>
+<div class="mainArea clearfix" style="min-height: 0px">
+    <div class="egrArea" style="float: left; width: 80px;">
+        <img src="/Areas/IT/Resources/images/EgrHead/@(ViewBag.OverView.Rows[0]["YL"]).jpg" /><br />
+        劳模：@(ViewBag.OverView.Rows[0]["YL"])
+    </div>
+    <div class="egrArea" style="float: left; width: 80px;">
+        <img src="/Areas/IT/Resources/images/EgrHead/@(ViewBag.OverView.Rows[0]["YX"]).jpg" /><br />
+        星模：@(ViewBag.OverView.Rows[0]["YX"])
+    </div>
+</div>
+<div class="ht">
+    <i class="icon-trophy"></i>&nbsp;&nbsp;月度模范
+</div>
+<div class="mainArea clearfix" style="min-height: 0px">
+    <div class="egrArea" style="float: left; width: 80px;">
+        <img src="/Areas/IT/Resources/images/EgrHead/@(ViewBag.OverView.Rows[0]["ML"]).jpg" /><br />
+        劳模：@(ViewBag.OverView.Rows[0]["ML"])
+    </div>
+    <div class="egrArea" style="float: left; width: 80px;">
+        <img src="/Areas/IT/Resources/images/EgrHead/@(ViewBag.OverView.Rows[0]["MX"]).jpg" /><br />
+        星模：@(ViewBag.OverView.Rows[0]["MX"])
+    </div>
+</div>
+
+<div class="ht">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;分类对比（数量）
+</div>
+<div class="mainArea">
+    <div id="chartEventCount"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventCount',this,'305');">工程师</div>
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventCount',this,'304');" style="border-right: 1px solid #ccc;">应用</div>
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventCount',this,'303');" style="border-right: 1px solid #ccc;">设备</div>
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventCount',this,'302');" style="border-right: 1px solid #ccc;">地点</div>
+        <div class="btnOpt captionHS" onclick="showEventCategoryRpt('chartEventCount',this,'301');" style="border-right: 1px solid #ccc;">公司</div>
+    </div>
+</div>
+
+<div class="ht">
+    <i class="icon-thumbs-up"></i>&nbsp;&nbsp;分类对比（满意度）
+</div>
+<div class="mainArea">
+    <div id="chartEventElv"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventElv',this,'405');">工程师</div>
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventElv',this,'404');" style="border-right: 1px solid #ccc;">应用</div>
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventElv',this,'403');" style="border-right: 1px solid #ccc;">设备</div>
+        <div class="btnOpt" onclick="showEventCategoryRpt('chartEventElv',this,'402');" style="border-right: 1px solid #ccc;">地点</div>
+        <div class="btnOpt captionHS" onclick="showEventCategoryRpt('chartEventElv',this,'401');" style="border-right: 1px solid #ccc;">公司</div>
+    </div>
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;整体走势
+</div>
+<div class="mainArea">
+    <div id="chartEventDate"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="showEventDateRpt('chartEventElv',this,'202');">本周天</div>
+        <div class="btnOpt" onclick="showEventDateRpt('chartEventElv',this,'201');" style="border-right: 1px solid #ccc;">周次</div>
+        <div class="btnOpt captionHS" onclick="showEventDateRpt('chartEventElv',this,'203');" style="border-right: 1px solid #ccc;">月份</div>
+    </div>
+</div>
+
+<div class="ht">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;数量分类走势（月度）
+</div>
+<div class="mainArea">
+    <div id="chartEventMonth"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="showEventMonth('chartEventMonth',this,'605');">工程师</div>
+        <div class="btnOpt" onclick="showEventMonth('chartEventMonth',this,'604');" style="border-right: 1px solid #ccc;">应用</div>
+        <div class="btnOpt" onclick="showEventMonth('chartEventMonth',this,'603');" style="border-right: 1px solid #ccc;">设备</div>
+        <div class="btnOpt" onclick="showEventMonth('chartEventMonth',this,'602');" style="border-right: 1px solid #ccc;">地点</div>
+        <div class="btnOpt captionHS" onclick="showEventMonth('chartEventMonth',this,'601');" style="border-right: 1px solid #ccc;">公司</div>
+    </div>
+</div>
+
+
+<div class="ht">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;满意度分类走势（月度）
+</div>
+<div class="mainArea">
+    <div id="chartEventSvrMonth"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="showEventMonth('chartEventSvrMonth',this,'505');">工程师</div>
+        <div class="btnOpt" onclick="showEventMonth('chartEventSvrMonth',this,'504');" style="border-right: 1px solid #ccc;">应用</div>
+        <div class="btnOpt" onclick="showEventMonth('chartEventSvrMonth',this,'503');" style="border-right: 1px solid #ccc;">设备</div>
+        <div class="btnOpt" onclick="showEventMonth('chartEventSvrMonth',this,'502');" style="border-right: 1px solid #ccc;">地点</div>
+        <div class="btnOpt captionHS" onclick="showEventMonth('chartEventSvrMonth',this,'501');" style="border-right: 1px solid #ccc;">公司</div>
+    </div>
+</div>

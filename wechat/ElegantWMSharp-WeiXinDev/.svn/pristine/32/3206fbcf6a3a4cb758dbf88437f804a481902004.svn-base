@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "雅斓名店GraceLand 2015A/W New Arrival";
+    Layout = "~/Areas/Game/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section script{
+    
+    }

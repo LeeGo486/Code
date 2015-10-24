@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "行动计划新增";
+    Layout = "~/Views/Shared/_HRPromiseWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+
+            //申请注册
+            $("#btnSubmit").click(function () {
+
+                if ($("#txtActionPlan1").val() == "" && $("#txtActionPlan2").val() == "" && $("#txtActionPlan3").val() == "") {
+                    Msg.show("行动计划必须填写一个！", 1);
+                    $("#txtActionPlan1").focus();
+                    return;
+                }
+
+                var data = {
+                    ActionPlan1: $("#txtActionPlan1").val(),
+                    ActionPlan2: $("#txtActionPlan2").val(),
+                    ActionPlan3: $("#txtActionPlan3").val()
+                };
+                Msg.show("提交中请稍后...", 3);
+                $.post("/HR/EHRManagement/PromiseEdit", data, function (rst) {
+                    Msg.hide();
+                    if (rst.result == 0) {
+                        Msg.show(rst.msg, rst.result);
+                        setTimeout("window.location.href = '/HR/EHRManagement/PromiseIndex'", 1000);
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                    $("#btnSubmit").button("reset");
+                });
+            });
+        });
+    </script>
+}
+<div class="mainArea">
+    <h4><span><i class="icon-user"></i>&nbsp;&nbsp;员工信息：</span></h4>
+    <div style="line-height: 10px">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <i class="icon-credit-card"></i>&nbsp;&nbsp;工号：@ViewBag.c_code
+            </li>
+            <li class="list-group-item">
+                <i class="icon-user"></i>&nbsp;&nbsp;姓名：@ViewBag.UserNameC
+            </li>
+            <li class="list-group-item">
+                <i class="icon-laptop"></i>&nbsp;&nbsp;部门：@ViewBag.c_unitname
+            </li>
+            <li class="list-group-item">
+                <i class="icon-rss"></i>&nbsp;&nbsp;岗位：@ViewBag.c_jobname
+            </li>
+        </ul>
+    </div>
+    <h4 style="margin-top: -10px"><span><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;我的行动计划</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">行动计划</span>
+        <textarea id="txtActionPlan1" maxlength="400" placeholder="请输入行动计划" class="form-control">@ViewBag.ActionPlan1</textarea>
+    </div>
+    <div class="input-group" style="margin-top: 5px">
+        <span class="input-group-addon">行动计划</span>
+        <textarea id="txtActionPlan2" maxlength="400" placeholder="请输入行动计划" class="form-control">@ViewBag.ActionPlan2</textarea>
+    </div>
+    <div class="input-group" style="margin-top: 5px">
+        <span class="input-group-addon">行动计划</span>
+        <textarea id="txtActionPlan3" maxlength="400" placeholder="请输入行动计划" class="form-control">@ViewBag.ActionPlan3</textarea>
+    </div>
+    <button id="btnSubmit" type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="请稍后...">提交</button>
+</div>

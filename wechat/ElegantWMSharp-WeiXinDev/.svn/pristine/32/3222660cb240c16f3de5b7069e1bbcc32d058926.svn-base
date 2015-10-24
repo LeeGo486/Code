@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "主页面";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v6" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+
+            //$("#dpay").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dav").css("background-color", "#2c3e50").css("border-bottom", "");
+            var nowDate = new Date();
+            var m_Nowyear = nowDate.getFullYear();
+            var m_Lastyeay = nowDate.getFullYear() - 1;
+            var m_Nextyeay = nowDate.getFullYear() + 1;
+
+            var selyearObj = $("#year");
+            selyearObj.append("<option >" + m_Lastyeay + "</option>");
+            selyearObj.append("<option >" + m_Nowyear + "</option>");
+            selyearObj.append("<option >" + m_Nextyeay + "</option>");
+            //var date = nowDate.getMonth();
+            //$("#month").val(date);
+            $("#year").val( @ViewBag.PayInfo.Rows[0]["年份"]);
+            load();
+        });
+        function load() {
+            var data = {
+                year: $("#year").val(),
+                month: $("#month").val()
+            };
+            Msg.show("加载中...", 3);
+            $.post("/HR/EHRManagement/PayInfoSalary", data, function (rst) {
+                Msg.hide();
+                $("#payInfo").html(rst);
+            });
+        }
+    </script>
+}
+
+<div class="ht">
+    <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;员工个人信息：
+</div>
+@foreach (System.Data.DataRow dr in ViewBag.PayInfo.Rows)
+{
+    <ul class="list-group">
+        <li class="list-group-item">
+            <i class="icon-user"></i>&nbsp;&nbsp;姓名：@ViewBag.PayInfo.Rows[0]["姓名"]&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="icon-credit-card"></i>&nbsp;&nbsp;工号：@dr["员工号"]
+        </li>
+        <li class="list-group-item">
+            <i class="icon-home"></i>&nbsp;&nbsp;部门：@dr["部门"]
+        </li>
+        <li class="list-group-item">
+            <i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;岗位：@dr["岗位"]
+        </li>
+        <li class="list-group-item">
+            <i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;职级：@dr["职级"]
+        </li>
+         <li class="list-group-item">
+            <i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;银行：@dr["银行"]
+        </li>
+         <li class="list-group-item">
+            <i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;银行卡号：@dr["银行卡号"]
+        </li>
+    </ul>
+
+    <div class="ht">
+        <i class="icon-building"></i>&nbsp;&nbsp;工资信息：
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">年</span>
+        <select id="year" class="form-control" onchange="load()">
+        </select>
+        <span class="input-group-addon">月</span>
+
+        <select id="month" class="form-control" onchange="load()">
+            @for (int i = 1; i <= 12; i++)
+            {
+                <option value='@i' @(dr["月份"].ToString() == i.ToString() ? "selected" : "") >@(i)月</option>
+            }
+        </select>
+    </div>
+    
+    <br />
+    
+    <div class="dataDetail" id="payInfo">
+    </div>
+}

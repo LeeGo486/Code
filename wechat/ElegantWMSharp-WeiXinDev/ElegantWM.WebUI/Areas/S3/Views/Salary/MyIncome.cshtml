@@ -1,0 +1,77 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $('#income').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '收入走势图',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击节点显示明细'
+            },
+            xAxis: [{
+                categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }],
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            plotOptions: {
+                series: {
+                    cursor: 'pointer',
+                    events: {
+                        click: function (event) {
+                            if (this.name == '工资') {
+                                loadMySalary();
+                            } else if (this.name == '佣金') {
+                                loadPerformance();
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '佣金',
+                color: '#B22222',
+                type: 'line',
+                data: [300, 350, 320, 400, 350, 380, 400, 450, 320, 360, 450, 320],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: '工资',
+                color: '#9F79EE',
+                type: 'line',
+                data: [3000, 3500, 3200, 4000, 3500, 3800, 4000, 4500, 3200, 3600, 4500, 3200],
+                tooltip: {
+                    valueSuffix: null
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    });
+</script>
+<div class="ht" id="smyincome">
+    <i class="glyphicon icon-money"></i>&nbsp;&nbsp;收入走势图
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="income" style="margin:30px 0px 0px 0px;"></div>
+</div>

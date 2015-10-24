@@ -1,0 +1,114 @@
+.ProgressIndicator
+{
+    opacity:.85;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);
+	height:25px;
+	width:90px;
+	background-image: url(progressbg.gif);
+	background-repeat:repeat-x;
+	background-position:-5px 0px;
+	color:#555555;
+	font:tahoma;
+	font-size:xx-small;
+	padding-top:5px;
+	padding-bottom:5px;
+	text-align:center;
+	font-weight:bold;
+	border: solid 1px silver;
+}
+.ProgressIndicator_tab
+{
+	padding-top:2px;
+	padding-bottom:2px;
+	height:19px;	
+}
+.CustomerSearch
+{
+	text-align:right;
+	font-size:xx-small;
+	font-family:Tahoma;
+	color:#F1D1D1;
+	height:16px;
+	width:120px;
+}
+.CustomerSearch IMG
+{
+	display:none;
+}
+
+.CustomerInfo
+{
+	position:relative;
+	width:280px;
+	text-align:left;
+}
+.CustomerInfo INPUT
+{
+	border:solid 1px silver;
+	background-color:#f1f1f1;
+	color:Blue;
+	font-size:xx-small;
+	font-family:Tahoma;
+	width:150px;
+	position:absolute;
+	right:0px;
+}
+.CustomerInfo SPAN
+{
+	color:blue;
+	font-size:x-small;
+	font-family:Verdana;
+}
+
+.FilterList{
+    padding: 10px 3px 10px 3px;
+    width:150px;
+    height:280px;
+    color:black;
+    background-image:url(options.png);
+    background-color:F1F1F1;
+    font-family:verdana;
+    font-size:9pt;
+    opacity:.95;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=95);
+    background-position:fixed;
+    overflow:auto;
+}
+.FilterList TABLE
+{
+    width:182px;            
+}
+.FilterList TD
+{
+    padding:2px 5px 2px 5px;
+  /*  border-bottom: solid 1px #4141ff; */
+    text-align:left;
+}
+.FilterHighlight
+{
+	color:White;
+    cursor:default;
+    border:solid 1px black;
+    background-color:#3C7FB1;
+    /*font-size:small;*/
+    font-weight:bold;
+}
+.SuggestList 
+{
+	BORDER: silver 1px solid; 
+	PADDING: 4px; 
+	FONT-FAMILY: tahoma; 
+	BACKGROUND-COLOR: #f3f3f3 
+}
+.SuggestRow 
+{
+	PADDING: 2px; 
+	FONT-SIZE: xx-small;
+	COLOR: dimgray;
+	FONT-FAMILY: tahoma 
+}
+.SuggestRowSel 
+{
+	CURSOR: default; 
+	COLOR: black 
+}

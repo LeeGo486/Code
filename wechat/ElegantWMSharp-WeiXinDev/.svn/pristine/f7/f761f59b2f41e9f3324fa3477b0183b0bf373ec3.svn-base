@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "我正在参加2015EP雅莹“莹彩风尚”少儿模特大赛，请为我投票！";
+    Layout = "~/Areas/Game/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section script{
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/LittleModel.css" />
+    
+    }
+
+<div class="container">
+
+    <img class="characters" src="~/Areas/Game/Resources/images/LittleModel/characters.png" alt="characters"/>
+
+    
+    <!--characters-->
+    <div class="row">
+        <div class="col-xs-12">
+            <p>@ViewBag.VoteResult</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <a class="btn btn-link" href="/Game/LittleModel/Index?sid=@ViewBag.sid&wxid=@ViewBag.oid">继续投票</a>
+        </div>
+    </div>
+        <div class="row">
+        <p style="text-align:left;">
+            <a class="btn btn-link" href="http://mp.weixin.qq.com/s?__biz=MzA5MTk5ODgzOA==&mid=206553735&idx=2&sn=e03062011fa2e186c2f9a0da2eceef45#rd">《辣妈时代｜醒醒吧，当妈的这样穿才时髦!》</a>
+        </p>
+            
+
+    </div>
+    
+    
+    
+    
+</div>

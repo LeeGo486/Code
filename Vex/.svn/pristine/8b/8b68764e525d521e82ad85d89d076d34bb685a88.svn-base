@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    	<link id="Link1" href="../../jquery-easyui-1.4.3/themes/bootstrap/easyui.css"
+        	rel="stylesheet" type="text/css" />
+    	<link href="../../jquery-easyui-1.4.3/themes/icon.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/SPWX_Examine.css" rel="stylesheet" type="text/css" />
+
+	    <script src="../../jquery-easyui-1.4.3/jquery.min.js" type="text/javascript"></script>
+	    <script src="../../jquery-easyui-1.4.3/jquery.cookie.js" type="text/javascript"></script>
+	    <script src="../../jquery-easyui-1.4.3/jquery.easyui.min.js" type="text/javascript"></script>
+	    <script src="../../jquery-easyui-1.4.3/changeEasyuiTheme.js" type="text/javascript"></script>
+	    
+	    <script src="../../jquery-easyui-1.4.3/js_hzycfg.js" type="text/javascript"></script>
+	    <script src="../../jquery-easyui-1.4.3/js_hzyCommon.js" type="text/javascript"></script>
+	    <script src="../../JS/SPWX/SPWX_WXAgain.js?Date=20150905" type="text/javascript"></script>
+	    <style>
+	    	body{
+	            background-color:#fff;
+	            font-size:12px;
+	            color:#5A5A5A;
+	            font-family: "Helvetica","Tahoma","Arial",
+	            "PingFang SC","Microsoft JhengHei","SimSun","sans-serif";
+        	}
+        	.title{
+        		font-size:1.3em;
+        		margin-top:10px;
+        	}
+        	.area{
+	            margin-top:10px;
+	            margin-left: 20px;
+        	}
+        	.borderDiv{
+        		/*border-top:1px solid #000;border-bottom:1px solid #000*/
+        		width:95%;
+        		margin-top:10px;
+        		margin-left:20px;
+	    		border-left:2px dashed #f2f2f2;
+	    		border-right:2px dashed #f2f2f2;
+	    		background-color: #f2f2f2;
+	    		padding-top:10px;
+	    		padding-bottom: 10px;
+	    		font-size:1.2em;
+        	}
+        	.emphasize{
+	        	color:#CC0033;
+	        	font-weight:bold;
+	        	font-size:1.2em;
+	        }
+	        table{
+	        	margin-left:30px;
+	        }
+	        th{
+	        	text-align: left;
+	        	font-weight:normal;
+	        	padding-right: 10px;
+	        }
+	        td{
+	        	text-align: left;
+	        	line-height: 25px;
+				padding-right: 20px;
+	        }
+	    </style>
+	    
+	</head>
+	<body>
+		<div class="title">基础信息</div>
+		<div class="borderDiv">
+			<div class="area">
+				<span>维修单信息</span>
+				<table>
+					<tr>
+					<th>维修单号:</th>
+					<td id="wxno"></td>
+					<th>紧急程度:</th>
+					<td id="urgentlevel"></td>
+					<th>维修仓:</th>
+					<td id="warehouse"></td>
+					<th>维修性质:</th>
+					<td id="nature"></td>
+					<th>维修单状态:</th>
+					<td class="emphasize" id="status"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="area">
+				<span>款式信息</span>
+				<table>
+				<tr>
+					<th>款号:</th>
+					<td id="sku"></td>
+					<th>颜色:</th>
+					<td id="color"></td>
+					<th>尺码:</th>
+					<td id="size"></td>
+				</tr>
+				<tr>
+					<th>问题描述:</th>
+					<td colspan="6" id="question"></td>
+				</tr>
+				<tr>
+					<th>店铺备注:</th>
+					<td colspan="6" id="remark"></td>
+				</tr>
+				</table>
+			</div>
+			<div class="area">
+				<span class="name">判定信息</span>
+				<table>
+					<tr>
+						<th>责任部门:</th>
+						<td id="dmname"></td>
+						<th>判定结果:</th>
+						<td id="drname"></td>
+						<th>其他信息:</th>
+						<td id="other"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="area" id="finDiv">
+				<span class="name">完成信息</span>
+				<table>
+					<tr>
+						<th>是否完成:</th>
+						<td id="isFin"></td>
+						<th>维修点:</th>
+						<td id="finPnt"></td>
+						<th>维修人:</th>
+						<td id="finMan"></td>
+						<th>维修日期:</th>
+						<td id="finDate"></td>
+						<th>维修金额:</th>
+						<td id="finMon"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="area">
+				<span>店铺信息</span>
+				<table>
+					<tr>
+						<th>店铺名称:</th>
+						<td id="dpname"></td>
+						<th>店长:</th>
+						<td id="staff"></td>
+						<th>导购:</th>
+						<td id="resp"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="area">
+				<span>顾客信息</span>
+				<table>
+					<tr>
+						<th>顾客姓名:</th>
+						<td id="vipname"></td>
+						<th>顾客电话:</th>
+						<td id="vipphone"></td>
+						<th>购买日期:</th>
+						<td id="celldate"></td>
+						<th>付费意愿:</th>
+						<td id="cost"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="title">
+			<span>维修再判定</span>
+ 			<form id="formMainQst">
+            <table cellpadding="5px;" class="top left lineH">
+                <tr>
+                    <td colspan="2" class="padd3">主要问题</td>
+                </tr>
+                <tr>
+                    <td class="padd6">原因：</td>
+                    <td id="mainQuestion" >
+                        <a id="main0" class="marginR30 nature ">顾客原因</a>
+                        <a id="main1" class="marginR30 nature ">外部原因</a>
+                        <a id="main2" class="marginR30 nature ">内部原因</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="padd6">问题：</td>
+                    <td>
+                    <input id="qstComb" type="text" 
+                    class="easyui-combobox left" data-options="required:true">
+                    <span class="padd3">现象：</span>
+                    <input id="phenomenon" type="text" class="easyui-combobox left" >
+                    <input id="otherInfo" type="text" class="easyui-textbox left" >
+                    <span class="padd3">供应商：</span>
+                    <input id="supplier" type="text" class="easyui-combobox left" >
+                    </td>
+                </tr>
+                <tr>
+                    <td class="padd6" style="vertical-align:top">初步判定：</td>
+                    <td><input id="describe" type="text"></td>
+                </tr>
+                <tr>
+                    <td class="padd6" style="vertical-align:top">备注1：</td>
+                    <td><input id="describe1" type="text"></td>
+                </tr>
+                <tr>
+                    <td class="padd6" style="vertical-align:top">备注2：</td>
+                    <td><input id="describe2" type="text"></td>
+                </tr>
+            </table>
+            </form>
+            <form id="formSecQst">
+            <table id="secondary" cellpadding="5px;" class="top left lineH">
+                <tr>
+                    <td colspan="2" class="padd3">次要问题</td>
+                </tr>
+                 <tr>
+                    <td class="padd6">原因：</td>
+                    <td id="secQuestion" class="padd3">
+                        <a id="secon0" class=" marginR30 nature">顾客原因</a>
+                        <a id="secon1" class=" marginR30 nature">外部原因</a>
+                        <a id="secon2" class=" marginR30 nature">内部原因</a>
+                
+                   </td>
+                </tr>
+                <tr>
+                    <td class="padd6">问题：</td>
+                    <td class="padd3">
+                    	<input id="secqstComb" type="text" class="easyui-combobox left" />
+                    	<span class="padd6">现象：</span>
+                    	<input id="secphenomenon" type="text" class="easyui-combobox left" />
+                    	<input id="secOtherInfo" type="text" class="easyui-textbox left" >
+                    </td>
+                </tr>
+            </table>
+            </form>
+		</div>
+
+		<div style="position:fixed;top:500px;left:850px;">
+			<a id="submit"></a>
+		</div>
+	</body>
+</html>

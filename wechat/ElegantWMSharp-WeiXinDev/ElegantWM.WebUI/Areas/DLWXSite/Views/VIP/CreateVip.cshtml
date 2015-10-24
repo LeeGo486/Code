@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "会员注册";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+}
+<script type="text/javascript">
+    function updateTimeLabel(time) {
+        var btn = $("#getAuthCode");
+        btn.fadeIn(1000);
+        //  $("#getAuthCode")[0].innerHTML
+        btn[0].innerHTML = (time <= 0 ? "获取验证码" : ((time) + "秒后重试"));
+        var hander = setInterval(function () {
+            if (time <= 0) {
+                clearInterval(hander);
+                btn[0].innerHTML = ("获取验证码");
+                btn.attr("disabled", false);
+
+            }
+            else {
+                btn[0].innerHTML = ((time--) + "秒后重试"); btn
+                btn.attr("disabled", true);
+            }
+        }, 1000);
+    }
+
+
+    /**********校验表单信息***********/
+    $(function () {
+        /***********发送验证短信************/
+        $("#getAuthCode").click(function () {
+            var strMobileNumber = $("#VipTel").val();
+            if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                $("#VipTel").focus();
+                Msg.show('手机号码无效', 1);
+                return;
+            }
+            $("#txtAuthenticode").focus();
+            //按钮倒计时
+            updateTimeLabel(60);
+            Msg.show("短信发送中...", 3);
+            var url = "/DLWXSite/VIP/SendSms?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&tel=" + strMobileNumber;
+            $.post(url, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+            });
+        });
+
+        //申请注册
+        $("#btnSubmit").click(function () {
+            var strMobileNumber = $("#VipTel").val();
+            if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                $("#VipTel").focus();
+                Msg.show('手机号码无效!', 1);
+                return;
+            }
+            if ($.trim($("#txtAuthenticode").val()).length <= 0) {
+                $("#txtAuthenticode").focus();
+                Msg.show('请输入验证码!', 1);
+                return;
+            }
+
+            if ($.trim($("#VipName").val()).length <= 0) {
+                $("#VipName").focus();
+                Msg.show('请输入姓名!', 1);
+                return;
+            }
+
+            if ($.trim($("#VipBirthday").val()).length <= 0) {
+                $("#VipBirthday").focus();
+                Msg.show('请选择生日!', 1);
+                return;
+            }
+
+            //验证手机验证码是否正确
+            var url = "/DLWXSite/VIP/CheckAuthCode?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") +
+                        "&VipTel=" + $("#VipTel").val() + "&AuthCode=" + $("#txtAuthenticode").val();
+            $(this).button("loading");
+            Msg.show("注册中...", 3);
+            var flag = false;
+            $.ajax({
+                url: url,
+                method: "POST",
+                async: false,
+                success: function (rst) {
+                    if (rst.result == 1) {
+                        Msg.hide();
+                        $("#btnSubmit").button("reset");
+                        Msg.show(rst.msg, rst.result);
+                        flag = true;
+                        return;
+                    }
+                },
+                failure: function (rst) {
+                    Msg.hide();
+                    $("#btnSubmit").button("reset");
+                    Msg.show("网络异常！", 1);
+                },
+                error: function () {
+                    Msg.hide();
+                    $("#btnSubmit").button("reset");
+                    Msg.show("请求异常！", 1);
+                }
+            });
+            if (flag) return;
+
+            var data = {
+                VipTel: $("#VipTel").val(),
+                VipSex: $("#VipSex").val(),
+                VipName: $("#VipName").val(),
+                VipBirthday: $("#VipBirthday").val()
+            };
+
+            $.post("/DLWXSite/VIP/DRPCheckPhone?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), data, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+                if (rst.result == 0) {
+                    setTimeout(window.location.href = "/DLWXSite/VIP/VIPInformation/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), 1000);
+                }
+                $("#btnSubmit").button("reset");
+            });
+        });
+    });
+
+</script>
+
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/createvip.jpg" />
+    </li>
+</ul>
+
+
+<div style="margin: 20px">
+
+    <div class="input-group">
+        <span class="input-group-addon" style="background-color: #ffcbe2">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/name.png" height="20"></span>
+        <input id="VipName" name="VipName" class="form-control" style="border: 1px 0px 0px 0px; border-radius: 0px 5px 5px 0px; width: 100%; height: 40px; padding-left: 20px;" maxlength="11" placeholder="请输入姓名">
+    </div>
+
+
+
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/tel.png" height="20"></span>
+        <input id="VipTel" name="VipTel" type="number" class="form-control" style="border: 1px 0px 0px 0px; border-radius: 0px 5px 5px 0px; width: 100%; height: 40px; padding-left: 20px;"
+            placeholder="请填写手机号码">
+    </div>
+
+
+    <div class="input-group" style="margin-top: 10px">
+        <input id="txtAuthenticode" name="txtAuthenticode" type="number" class="form-control" maxlength="4" placeholder="填写验证码" style="height: 40px;">
+        <span class="input-group-btn">
+            <button id="getAuthCode" class="btn" type="button" style="background-color: #000000; height: 40px; color: #f9b2d1">获取验证码</button>
+        </span>
+    </div>
+
+
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2;">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/sex.png" height="20"></span>
+        <select id="VipSex" class="form-control" style="height: 40px;">
+            <option>男</option>
+            <option selected>女</option>
+        </select>
+    </div>
+
+
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/birthday.png" height="20"></span>
+        <input type='date' id="VipBirthday" class="form-control" style="border: 1px 0px 0px 0px; font-size: 14px; border-radius: 0px 5px 5px 0px; line-height: 40px; width: 100%; height: 40px; padding-left: 20px;">
+    </div>
+    <br />
+    <table>
+        <tr>
+            <td>
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/js.png" width="100%">
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <span id="btnSubmit">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/ljbutton.png" height="40" width="100%">
+    </span>
+
+
+</div>

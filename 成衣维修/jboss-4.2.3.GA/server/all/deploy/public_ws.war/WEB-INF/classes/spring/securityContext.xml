@@ -1,0 +1,82 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security = "http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 	
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/security
+ http://www.springframework.org/schema/security/spring-security-3.1.xsd 
+ http://www.springframework.org/schema/aop 
+ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+ http://www.springframework.org/schema/tx
+ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+ <!--  
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+-->
+	<http access-denied-page="/accessDeniedpage.html">
+		<intercept-url pattern="/exceptions" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<!-- <intercept-url pattern="/login.htm" access="IS_AUTHENTICATED_ANONYMOUSLY"/> 
+			<intercept-url pattern="/**" access="ROLE_user" /> -->
+		<logout invalidate-session="true" logout-url="/j_spring_security_logout" />
+		<!-- <form-login login-page="/login.html" default-target-url="/resteasy/webservice-restful/adminUser/currLogined" 
+			authentication-failure-url="/ExceptionHandler" /> -->
+		<form-login
+			always-use-default-target="true"
+			login-page="http://localhost:8080/dmp/j_spring_security_check/"
+			default-target-url="/resteasy/entity/userAccount/currLogined"
+			authentication-failure-url="/ExceptionHandler" />
+	</http>
+	
+	<authentication-manager>
+		<authentication-provider ref="daoAuthenticationProvider" >
+			<!-- <password-encoder hash="md5" /> -->
+		</authentication-provider>
+	</authentication-manager>
+	
+	<beans:bean id="daoAuthenticationProvider"
+		class="org.hy.dmp.security.common.MyDaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="securityServiceImpl" />
+	</beans:bean>
+	
+	<beans:bean id="md5PasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+
+	<!-- this voter will have the default attributes -->
+	<beans:bean id="authenticatedVoter"
+		class="org.springframework.security.access.vote.AuthenticatedVoter" />
+
+	<beans:bean id="roleVoter"
+		class="org.hy.dmp.security.common.MyRoleVote">
+		<beans:property name="rolePrefix" value="" />
+	</beans:bean>
+
+	<beans:bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<beans:property name="decisionVoters">
+			<beans:list>
+				<beans:ref bean="roleVoter" />
+				<beans:ref bean="authenticatedVoter" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- secured-annotations="disabled" 关闭了 @Secured({"Admin"}) 注解 -->
+	
+	<global-method-security access-decision-manager-ref="accessDecisionManager" secured-annotations="disabled" >
+		
+		<protect-pointcut expression="execution(* org.hy.dmp.restful.impl.TestEntityDaoResource.newEntity(..))" access="Admin,TestEntity|New" />
+		<!--  
+		<protect-pointcut expression="execution(* org.hy.itdc.business.service.imp.Secured*.updateEntity(..))" access="Admin" />
+		<protect-pointcut expression="execution(* org.hy.itdc.business.service.imp.Secured*.deleteEntityById(..))" access="Admin" />
+	-->
+	</global-method-security>
+
+</beans:beans>

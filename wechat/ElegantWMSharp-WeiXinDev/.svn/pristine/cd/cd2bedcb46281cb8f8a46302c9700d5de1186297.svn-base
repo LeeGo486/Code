@@ -1,0 +1,47 @@
+﻿<div class="ht" id="sskclist">
+    <i class="icon-tags"></i>&nbsp;&nbsp;商品列表
+    <span onclick="$('#sskclistarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <table class="dataTable skclist">
+        <tr>
+            <td style="text-align:left">款图</td>
+            <td style="text-align:left">款号</td>
+            <td style="text-align:right">销量</td>
+            <td style="text-align:right">库存</td>
+        </tr>
+        <tr onclick="loadSkcInfo();">
+            <td style="text-align:left"><img src="/Areas/S3/Resources/images/u90.png" style="width: 40px;height: 40px;"></td>
+            <td style="text-align:left">E12IDY006aG</td>
+            <td style="text-align:right">2</td>
+            <td style="text-align:right">10</td>
+        </tr>
+        <tr onclick="loadSkcInfo();">
+            <td style="text-align:left"><img src="/Areas/S3/Resources/images/u107.png" style="width: 40px;height: 40px;"></td>
+            <td style="text-align:left">E13AH1012aB</td>
+            <td style="text-align:right">1</td>
+            <td style="text-align:right">9</td>
+        </tr>
+        <tr onclick="loadSkcInfo();">
+            <td style="text-align:left"><img src="/Areas/S3/Resources/images/u116.png" style="width: 40px;height: 40px;"></td>
+            <td style="text-align:left">E13AH1012aB</td>
+            <td style="text-align:right">1</td>
+            <td style="text-align:right">9</td>
+        </tr>
+        <tr onclick="loadSkcInfo();">
+            <td style="text-align:left"><img src="/Areas/S3/Resources/images/u125.png" style="width: 40px;height: 40px;"></td>
+            <td style="text-align:left">E13EH9538aG</td>
+            <td style="text-align:right">1</td>
+            <td style="text-align:right">9</td>
+        </tr>
+    </table>
+</div>

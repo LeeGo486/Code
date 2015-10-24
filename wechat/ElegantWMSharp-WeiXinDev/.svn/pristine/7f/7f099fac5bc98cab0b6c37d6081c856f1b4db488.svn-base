@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "注册通行证";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <style type="text/css">
+        .mainArea h4{
+            font-size:14px;
+            margin:0px 0px 8px 0px;
+            font-weight:normal;
+            color:#444;
+            border-bottom:1px solid #ddd;
+            padding:0px 0px 8px 0px;
+        }
+        .mainArea h4 span{
+            padding:7px 0px 7px 0px;
+            border-bottom:2px solid #CC3333;
+        }
+    </style>
+    <script type="text/javascript">
+        var isReged = false;
+        function updateTimeLabel(time) {
+            var btn = $("#getAuthCode");
+            btn.fadeIn(500);
+            btn[0].innerHTML = (time <= 0 ? "获取验证码" : ((time) + "秒后重试"));
+            var hander = setInterval(function () {
+                if (time <= 0) {
+                    clearInterval(hander);
+                    btn[0].innerHTML = ("获取验证码");
+                    btn.attr("disabled", false);
+                }
+                else {
+                    btn[0].innerHTML = ((time--) + "秒后重试"); btn
+                    btn.attr("disabled", true);
+                }
+            }, 1000);
+        }
+        $(function () {
+            //宽度控制4Ipad
+            if ($(window).width() >= 1000) {
+                $(".mainArea").css("margin", "auto");
+                $(".mainArea").width("30%");
+            }
+            /***********发送验证短信************/
+            $("#getAuthCode").click(function () {
+                var strMobileNumber = $("#txtPhone").val();
+                if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                    $("#txtPhone").focus();
+                    Msg.show('手机号码无效', 1);
+                    return;
+                }
+                $("#txtAuthenticode").focus();
+                
+                Msg.show("短信发送中...", 3);
+                var url = "/Matrix/AMLogin/SendSms?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&tel=" + $("#txtPhone").val();
+                $.post(url, function (rst) {
+                    Msg.hide();
+                    if (rst.result == 0) {
+                        //按钮倒计时
+                        updateTimeLabel(60);
+                        Msg.show(rst.msg, rst.result);
+                    } else if (rst.msg.indexOf("该手机号已注册，请使用找回密码功能") > 0) {
+                        //标记该用户已经注册
+                        isReged = true;
+                        $("#txtAuthenticode").parent().hide();
+                        $("#txtConfirmPwd").parent().hide();
+                        $("#brTemp").hide();
+                        $("#markTxt").html("您的手机号已注册，请直接绑定小翅膀账户<br /><br />");
+                        $("#btnSubmit").val("绑定小翅膀");
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                });
+            });
+
+            //申请注册
+            $("#btnSubmit").click(function () {
+                var LoginUser = $("#txtPhone").val();
+                if (!/^1[34587]\d{9}$/.test(LoginUser)) {
+                    $("#txtPhone").focus();
+                    Msg.show('手机号码无效', 1);
+                    return;
+                }
+                var AuthCode = $("#txtAuthenticode").val();
+                if ($.trim(AuthCode).length <= 0 && !isReged) {
+                    $("#txtAuthenticode").focus();
+                    Msg.show('请输入短信验证码', 1);
+                    return;
+                }
+                var PassWord = $("#txtPwd").val();
+                if ((PassWord.length < 6) || !/^(?=.*\d.*)(?=.*[a-zA-Z_].*).{5,15}$/.test(PassWord)) {
+                    $("#txtPwd").focus();
+                    Msg.show('密码强度不够', 1);
+                    return;
+                }
+                var cfPassWord = $("#txtConfirmPwd").val();
+                if (cfPassWord != PassWord && !isReged) {
+                    $("#txtConfirmPwd").focus();
+                    Msg.show('两次密码不一致', 1);
+                    return;
+                }
+                var amuser = $("#txtamId").val();
+                if ($.trim(amuser).length <= 0) {
+                    $("#txtamId").focus();
+                    Msg.show('请输入小翅膀登录名', 1);
+                    return;
+                }
+                var ampwd = $("#txtamPwd").val();
+                if ($.trim(ampwd).length <= 0) {
+                    $("#txtamPwd").focus();
+                    Msg.show('请输入小翅膀登录密码', 1);
+                    return;
+                }
+
+                var postData = {
+                    tel: LoginUser,
+                    pwd: PassWord,
+                    code: AuthCode,
+                    amuser: amuser,
+                    ampwd: ampwd,
+                    reged: isReged
+                };
+                Msg.show("请稍候...", 3);
+                $(this).button('loading');
+                var url = "/Matrix/AMLogin/VexSSOBind?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                $.post(url, postData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        if (Url.get("ReturnUrl") != "") {
+                            window.location.href = Url.get("ReturnUrl");
+                        }
+                    } else {
+                        $("#btnSubmit").button("reset");
+                    }
+                });
+
+            });
+
+            $("#getAuthCode").attr("disabled", false);
+        });
+    </script>
+}
+
+<div class="mainArea">
+    <div id="markTxt" style="color:red">
+        为提高信息系统的安全性，自10.1起本系统采用手机号作为唯一的通行证，请及时注册您的手机号，并用<b>“手机号”</b>和<b>“新密码”</b>登录系统。谢谢您的配合！
+        <br /><br />
+    </div>
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;注册通行证</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">手机号码</span>
+        <input id="txtPhone" name="txtPhone" type="number" class="form-control" maxlength="11" placeholder="请填写手机号码">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">验&ensp;证&ensp;码</span>
+        <input id="txtAuthenticode" name="txtAuthenticode" type="number" class="form-control" maxlength="4" placeholder="请查收短信验证码">
+        <span class="input-group-btn">
+            <button id="getAuthCode" class="btn btn-default" type="button">获取验证码</button>
+        </span>
+    </div>
+    <br id="brTemp" />
+    <div class="input-group">
+        <span class="input-group-addon">密&emsp;&emsp;码</span>
+        <input id="txtPwd" name="txtPwd" type="password" class="form-control" maxlength="16" placeholder="6~16个字符，包含字母和数字">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">确认密码</span>
+        <input id="txtConfirmPwd" name="txtConfirmPwd" type="password" class="form-control" maxlength="16" placeholder="请再次填写密码">
+    </div>
+    <br />
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;绑定小翅膀账号</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">账&emsp;&emsp;号</span>
+        <input id="txtamId" name="txtamId" type="text" placeholder="小翅膀登录名" class="form-control" maxlength="8">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">密&emsp;&emsp;码</span>
+        <input id="txtamPwd" name="txtamPwd" type="password" placeholder="小翅膀登录密码" class="form-control" maxlength="16">
+    </div>
+    <input id="btnSubmit" type="button" value="注册通行证" class="btn btn-success" data-loading-text="请稍后..." style="width: 100%; margin-top: 30px;" />
+</div>
+

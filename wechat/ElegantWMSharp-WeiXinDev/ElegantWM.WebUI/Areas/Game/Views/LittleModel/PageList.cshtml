@@ -1,0 +1,78 @@
+﻿@if(ViewBag.Count>0){
+    int ParityCheck = ViewBag.Count%2;
+    if(ParityCheck == 0){
+        ViewBag.Page = ViewBag.Count / 10;
+    }else{
+        ViewBag.Page = (ViewBag.Count / 10) + 1;
+    }
+    <nav id="page">
+        <ul class="pagination font-color">
+            <li>
+                <a id="pageLeft" onclick="changePageList('Min',@ViewBag.Group,@ViewBag.Page,'@ViewBag.wxid')" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = ViewBag.BeginPage; i <= ViewBag.Page; i++)
+            {
+                if (i == 1) { 
+                    <li id="page1"class="active"><a onclick="changeClick(1,1,@ViewBag.Group,'@ViewBag.wxid')">1</a></li>
+                }else{
+                    <li id="page@(i)"><a onclick="changeClick(@ViewBag.BeginPage,@i,@ViewBag.Group,'@ViewBag.wxid')">@i</a></li>
+                    if (i == ViewBag.BeginPage+4)
+                    {
+                        break;//默认显示5页
+                    };
+                }
+            }
+            <li>
+                <a id="pageRight" onclick="changePageList('Max',@ViewBag.Group,@ViewBag.Page,'@ViewBag.wxid')" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+
+<script>
+    function changeClick(beginNo,pageNo, group,wxid) {
+        $.post("/Game/LittleModel/LittleModelPic?iBeginPage=" + beginNo + "&iPage=" + pageNo + "&iGroup=" + group + "&sid=a2cf00a8-4c8c-4853-b9fd-63fc4b406c38&wxid=" + wxid, function (data) {
+            $("#Pic").html("").html(data);
+                
+            $("#page li").removeAttr("class")
+            var activePage = "page" + pageNo;
+            $("#" + activePage).attr("class", "active");
+            scrollTo($("#Pic")); //定位
+        });
+    }
+
+    function changePageList(Type,group,MaxRow,wxid) {
+        var list = $('#page li[id^="page"]');
+        var leg = list.length;
+        var bgNum;
+        if (leg > 0) {
+            if (Type == "Min") {
+                bgNum = list[0].innerText;
+                if (bgNum == 1) {
+                    return;//if bgNum is 1,return
+                } else {
+                    bgNum = bgNum - 5;
+                    if (bgNum <= 0) {
+                        bgNum = 1;
+                    };
+                };
+            } else {
+                bgNum = list[leg-1].innerText;
+                if (bgNum >= MaxRow) {
+                    return; //if bgNum is Lats ,return;
+                } else {
+                    bgNum = +bgNum + 1;
+                };
+                
+            };
+            $.get("/Game/LittleModel/PageList?iBeginPage=" + bgNum + "&iGroup=" + group + "&sid=a2cf00a8-4c8c-4853-b9fd-63fc4b406c38&wxid=" + wxid, function (data) {
+                $("#pagePosition").html("").html(data);
+                scrollTo($("#page")); //定位
+            });
+        };
+    }
+</script>

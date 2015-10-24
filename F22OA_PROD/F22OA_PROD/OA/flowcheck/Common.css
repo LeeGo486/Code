@@ -1,0 +1,497 @@
+a{text-decoration: none; color: #003366;cursor:pointer;}
+A:hover{TEXT-DECORATION:underline;}
+body,TD{FONT-SIZE:9pt;word-break:break-all;}	/* 字体大小 */
+body{BACKGROUND: #004cab;MARGIN-TOP:10px; }/* 背景颜色 */
+table{text-align:left;}	/* 表格对齐方式 */
+
+.FrameLeftMenu {background-color: #4287ef;} /*框架左部份背景颜色*/
+
+/* 页眉 */
+#CommonHeader{width:100%;}
+
+/* 顶部 CSS 设置 START */
+#CommonTop {
+	background:#FFFFFF;
+	background:url('header.gif') repeat-x bottom; 
+	HEIGHT:110px;
+	POSITION:relative;
+	COLOR: #ffffff;
+	
+	
+}
+#CommonTop a{color: #ffffff;}
+
+#CommonTopLogo {
+	TOP:0;
+	LEFT:0;
+	PADDING-TOP: 5px;
+	PADDING-LEFT: 10px;	
+	POSITION: absolute;
+}
+
+#CommonTopBanner {
+	TOP:0;
+	RIGHT:0;
+	PADDING-TOP: 5px;
+	PADDING-RIGHT: 5px;
+	POSITION:absolute;
+}
+
+
+#CommonTopFrameText {
+	BOTTOM:0;
+	LEFT:0;
+	PADDING-LEFT: 10px;
+	PADDING-BOTTOM: 3px;
+	POSITION:absolute;
+}
+
+#CommonTopMenuText {
+	BOTTOM:0;
+	RIGHT:0;
+	PADDING-RIGHT: 10px;
+	PADDING-BOTTOM: 3px;
+	POSITION:absolute;
+}
+
+/* 顶部 CSS 设置 END */
+
+
+/* 内容区设置 */
+#CommonBody {
+	BACKGROUND-COLOR: #ffffff;
+	PADDING-TOP: 10px; 
+	PADDING-BOTTOM: 20px; 
+	PADDING-LEFT: 10px; 
+	PADDING-RIGHT: 10px;
+	text-align:center;
+}
+
+/* 导航条设置 */
+#CommonBreadCrumbArea {
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	HEIGHT: 20px;
+}
+
+/* 列表TABLE */
+#CommonListArea{BACKGROUND-COLOR: #bfd7fa;MARGIN-TOP: 5px;border: 1px solid #4287ef;}
+#CommonListAreaSer{BACKGROUND-COLOR: #f7d1a4;MARGIN-TOP: 5px;border: 1px solid #efa44c;}
+#CommonListAreaDev{BACKGROUND-COLOR: #76daef;MARGIN-TOP: 5px;border: 1px solid #49c8e2;}
+
+#CommonListArea .CommonListTi{ background:#ebf6ff; text-align:center; font-weight:bold;}
+#CommonListAreaSer .CommonListTi{ background:#fffff6; text-align:center; font-weight:bold;}
+#CommonListAreaDev .CommonListTi{ background:#f6ffff; text-align:center; font-weight:bold;}
+
+#CommonListArea .CommonListRe{ margin:20px 30px;background:#ebf6ff;padding:10px}
+#CommonListAreaSer .CommonListRe{ margin:20px 30px;background:#fffff6;padding:10px}
+#CommonListAreaDev .CommonListRe{ margin:20px 30px;background:#f6ffff;padding:10px}
+
+#CommonListArea .CommonListRe strong{ color:#red; line-height:25px;}
+#CommonListAreaSer .CommonListRe strong{ color:red; line-height:25px;}
+#CommonListAreaDev .CommonListRe strong{ color:red; line-height:25px;}
+
+
+.QuestionDiv{margin:20px 10px; width:760px; overflow:auto;}
+.ConfigDiv{margin:10px 10px;padding:5px 10px ;border-top:dashed 1px #aaa; width:400px;}
+
+.ReConBtn,.editConBtn,.SmtReBtn,.SuperReBtn{border:none; padding-left:20px; text-align:left; font-size:12px; line-height:20px;}
+.ReConBtn{ background:url(/images/reContent.gif) no-repeat;}
+.editConBtn{ background:url(/images/editThis.gif) no-repeat;}
+.SmtReBtn{ background:url(/images/ReSubmit.gif) no-repeat;}
+.SuperReBtn{ background:url(/images/SuperRe.gif) no-repeat;}
+
+
+/* 列表标题 */
+#CommonListTitle{
+background:url('img/Titlebg.gif') repeat-x top; 
+COLOR:#FFFFFF;FONT-WEIGHT:bold;
+}
+#CommonListTitleSer{
+background:url('img/TitlebgPurple.gif') repeat-x top; 
+COLOR:#FFFFFF;FONT-WEIGHT:bold;
+}
+#CommonListTitleDev{
+background:url('img/TitlebgGreen.gif') repeat-x top; 
+COLOR:#FFFFFF;FONT-WEIGHT:bold;
+}
+#CommonListTitle a{COLOR:#FFFFFF;}
+
+/* 列表页眉 */
+#CommonListHeader{BACKGROUND-COLOR: #EFEFEF;}
+
+/* 列表单元格 */
+#CommonListCell{BACKGROUND-COLOR: #FFFFFF;}
+
+
+/* 底部设置 */
+#CommonFooter
+{
+	PADDING-TOP: 10px;
+	background-color: #9EB6D8;
+	text-align:center;
+	color:#000000;
+}
+#CommonFooter a{color:#000000;}
+
+
+/* ShowPost.asp 单元格*/
+.ForumPostBorderRight{
+	border-right: #bfd7fa 1px solid;
+}
+.ForumPostBodyArea {
+	PADDING-TOP: 10px; 
+	PADDING-BOTTOM: 10px; 
+	PADDING-LEFT: 10px; 
+	PADDING-RIGHT: 10px;
+}
+.ForumPostContentText {
+	WIDTH:100%;
+	OVERFLOW:auto;
+}
+.ForumPostSignature {
+	BORDER-TOP: #ddd 1px solid;
+	MARGIN: 1em;
+	PADDING-TOP: 1em;
+	FONT-SIZE: 90%;  
+}
+
+
+/* 菜单样式 */
+.menuskin {
+	BORDER-RIGHT: #0A2999 1px solid ;
+	BORDER-TOP: #0A2999 1px solid;
+	BORDER-LEFT: #0A2999 1px solid;
+	BORDER-BOTTOM: #0A2999 1px solid;
+	BACKGROUND-IMAGE: url(menubg.gif);
+	POSITION: absolute;
+	VISIBILITY: hidden;
+	z-index:2;
+}
+.menuitems {
+	PADDING-RIGHT: 1px;
+	PADDING-TOP: 1px;
+	PADDING-LEFT: 1px;
+	PADDING-BOTTOM: 1px;
+	MARGIN: 2px;
+	font-size:9pt;
+	line-height:14pt;
+}
+#mouseoverstyle {
+	PADDING-RIGHT: 0px;
+	PADDING-TOP: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	BORDER-RIGHT: #0B008B 1px solid;
+	BORDER-TOP: #0B008B 1px solid;
+	BORDER-LEFT: #0B008B 1px solid;
+	BORDER-BOTTOM: #0B008B 1px solid;
+	BACKGROUND-COLOR: #FFEEC2 
+}
+.menuskin A {PADDING-RIGHT:10px;PADDING-LEFT:30px;}
+
+/* YBB代码引用样式 */
+BLOCKQUOTE {
+	BORDER-RIGHT: #cccccc 1px dotted; PADDING-RIGHT: 4px; BORDER-TOP: #cccccc 1px dotted; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; MARGIN: 16px; BORDER-LEFT: #cccccc 1px dotted; PADDING-TOP: 4px; BORDER-BOTTOM: #cccccc 1px dotted
+}
+
+/*Pannel Style*/
+.PannelBody {
+	BORDER:1px #bfd7fa solid;
+	BORDER-TOP:none;
+	BACKGROUND-COLOR: #FFFFFF;
+}
+.PannelBody td{
+	PADDING-TOP: 5px;
+	PADDING-RIGHT: 0px;
+	PADDING-BOTTOM: 5px;
+	PADDING-LEFT: 20px;
+	color:#333333;
+}
+.PannelOff{
+	cursor:pointer;
+	BACKGROUND-COLOR: #4287ef;
+	COLOR:#FFF;
+	border-left:1px #bfd7fa solid;
+	border-top:1px #bfd7fa solid;
+}
+.PannelOn{
+	cursor:pointer;
+	BACKGROUND-COLOR: #FFFFFF;
+	FONT-WEIGHT:bold;
+	border-left:1px #bfd7fa solid;
+	border-top:1px #bfd7fa solid;
+}
+.TableRight {
+	border-top:0px;
+	border-left:1px #bfd7fa solid;
+	border-bottom:1px #bfd7fa solid;
+}
+
+/*Text Button*/
+.CommonImageTextButton {
+	display: inline-table;
+	display: -moz-inline-box;
+	display: inline-block;
+	padding: 4px;
+	margin: 1px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999999;
+	border-top-color: #cccccc;
+	border-left-color: #cccccc;
+	background-color: #eeeeee;
+	color: #333333;
+	font-family: Tahoma, Arial, Helvetica;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-position: 1px 1px;
+	padding-left: 22px;
+	line-height: normal;
+	white-space: nowrap;
+}
+
+.CommonButton{
+    border-style: solid;
+	border-width: 1px;
+    background-color:#DDDDDD;
+}
+
+.CommonImageTextButton:LINK {
+	text-decoration: none;
+	color: #333333;
+	margin: 1px;
+}
+
+.CommonImageTextButton:VISITED {
+	text-decoration: none;
+	color: #333333;
+}
+
+.CommonImageTextButton:ACTIVE {
+	text-decoration: none;
+	color: #333333;
+}
+.CommonImageTextButton:HOVER {
+	text-decoration: none;
+	color: #333333;
+	background-color: #dddddd;
+
+}
+.CommonTextButton {
+	display: inline-table;
+	display: -moz-inline-box;
+	display: inline-block;
+	background-color: #eeeeee;
+	border-style: solid;
+	border-color: #999999;
+	border-width: 1px;
+	cursor: pointer;
+	position: relative;
+	top: 2px;
+	padding: 5px;
+	margin: 1px;
+	margin-bottom: 0px;
+	font-family: Tahoma, Arial, Helvetica;
+	font-weight: bold;
+}
+
+.CommonTextButton:LINK {
+	text-decoration: none;
+	color: #333333;
+	margin: 1px;
+}
+.CommonTextButton:VISITED {
+	text-decoration: none;
+	color: #333333;
+}
+.CommonTextButton:ACTIVE {
+	text-decoration: none;
+	color: #333333;
+}
+.CommonTextButton:HOVER {
+	text-decoration: underline;
+	color: #333333;
+	background-color: #dddddd;
+}
+
+
+/*弹出菜单DIV样式*/
+.PopupMenu {
+	BORDER: #999 1px solid;
+	POSITION: absolute;
+	BACKGROUND: #FFF;
+
+}
+.PopupMenu A {
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 25px;
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	DISPLAY: block;
+	background-repeat: no-repeat;
+	background-position: 1px;
+	color: #333
+}
+.PopupMenu A:hover {
+	BACKGROUND: #bfd7fa;
+	color:#000;
+	background-repeat: no-repeat;
+	background-position: 1px;
+}
+
+
+/* Modal Styles */
+.CommonModalMask {
+	opacity: .4;
+	filter: alpha(opacity=40);
+	background-color: #333333;
+	z-index: 200;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color:transparent !important;
+	background-image: url("../../images/maskBG.png") !important; // For browsers Moz, Opera, etc.
+	background-image:none;
+	background-repeat: repeat;
+	display:none;
+}
+.CommonModal {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #888888;
+	border-right-width: 3px;
+	border-right-color: #888888;
+	border-bottom-width: 3px;
+	border-bottom-color: #888888;
+	background-color: #eeeeee;
+}
+.CommonModalTitle {
+	background-color: #4287ef;
+	padding: 4px;
+	border-style: solid;
+	border-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #6e90bd;
+	color: #ffffff;
+	font-family: Arial, Helvetica;
+	font-size: 110%;
+	font-weight: bold;
+	margin: 0px;
+	height: 1.3em;
+	position: relative;
+	z-index: 203;
+	cursor: move
+}
+.CommonModalClose {
+	width: 33px;
+	height: 12px;
+	background-image: url(../../images/close.gif);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	cursor: pointer;
+	float: right;
+}
+.CommonModalContent {
+	background-color: #ffffff;
+}
+.CommonModalFooter
+{
+	border-style: solid;
+	border-width: 0px;
+	border-top-width: 1px;
+	border-color: #cccccc;
+	background-color: #eeeeee;
+	padding: 2px;
+}
+.CommonModalResize {
+	width: 14px;
+	height: 14px;
+	background-image: url(../../images/resize.gif);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	float: right;
+	cursor: se-resize;
+}
+
+/* Help Icon */
+.helpicon {
+	line-height: normal;
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+.helpicon img {
+	height: 20px;
+	width: 16px;
+	PADDING:0px 5px 0px 0px;
+	vertical-align: middle;
+	margin:0px;
+}
+a.helpicon{
+	background-image: url(../../images/help_out.gif);
+}
+a.helpicon:hover, a.helpicon:active {
+	background-image:url(../../images/help_hover.gif);
+	cursor:help;
+}
+
+/*多页 换页样式*/
+.PageInation {
+	margin: 1px 0px;
+	clear: both;
+}
+.PageInation a {
+	float: left;
+	padding: 4px 5px 3px 5px;
+	text-decoration: none;
+	cursor:default;
+}
+.MultiPages {
+	background-color: #F5FBFF;
+	border: 1px solid #4287ef;
+	margin-right:2px;
+	font-weight: bold;
+}
+.PageNum {
+	background-color: #FFFFFF;
+	border: 1px solid #bfd7fa;
+	margin-right:2px;
+}
+a.PageNum:hover {
+	background-color: #C7D6E9;
+	border: 1px solid #4287ef;
+	text-decoration: none;
+	cursor:pointer;
+}
+.CurrentPage {
+	margin-right:2px;
+	border: 1px solid #4287ef;
+	background-color: #C7D6E9;
+	font-weight: bold;
+	vertical-align: middle;
+}
+.PageInput {
+	margin-bottom:0px;
+	border: 1px solid #4287ef;
+	padding: 2px 0px 0px 1px;
+	width: 40px;
+	height: 18px !important;
+	height: 16px;
+	margin: 0px;
+	background: #FFFFFF;
+}
+
+
+
+
+/*比例条码*/
+.percent {
+	border: 1px solid #9EB6D8;
+	width:99%;
+}
+.percent div {
+	background: #4287ef;
+	height: 10px;
+}

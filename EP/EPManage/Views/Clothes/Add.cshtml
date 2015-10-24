@@ -1,0 +1,84 @@
+﻿@model EPManageWeb.Entities.Models.Clothes
+@{
+    Layout = "~/Views/Shared/_AjaxLayout.cshtml";
+}
+@section Css
+{
+    <link href="@Styles.Url("~/Content/addClothes.css")" rel="stylesheet"/>
+}
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ajaxupload.3.6.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/uploadpics.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothesSize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/addClothes.js")"></script>
+}
+<div class="addClothes">
+    <table class="addClothes table  table-striped table-bordered table-hover">
+        <tr>
+            <th class="width20">基本信息</th>
+            <td>
+                <div>@Html.LabelFor(t => t.SampleNO) @Html.TextBoxFor(t => t.SampleNO)</div>
+                <div>@Html.LabelFor(t => t.ProductNO) @Html.TextBoxFor(t => t.ProductNO)</div>
+                <div>@Html.LabelFor(t => t.StylePics)
+                    <div data="StylePics" type="StylePic" class="uploadbutton btn btn-info">上传</div>
+                    <div>已上传:@Html.HiddenFor(t => t.StylePics)</div>
+                    <ul class="thumbnails" id="images_StylePics"></ul>
+                </div>
+                <div>@Html.LabelFor(t => t.ClothesPics)
+                    <div data="ClothesPics" type="ClothesPic" class="uploadbutton btn btn-info">上传</div>
+                    <div>已上传:@Html.HiddenFor(t => t.ClothesPics)</div>
+                    <ul class="thumbnails" id="images_ClothesPics"></ul>
+                </div>
+                <div>@Html.LabelFor(t => t.ModelVersionPics)
+                    <div data="ModelVersionPics" type="ModelVersionPic" class="uploadbutton btn btn-info">上传</div>
+                    <div>已上传:@Html.HiddenFor(t => t.ModelVersionPics)</div>
+                    <ul class="thumbnails" id="images_ModelVersionPics"></ul>
+                </div>
+            </td>
+            <td>
+                <div>尺寸表</div>
+                <table id="clothSizeTable" class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>部位</th>
+                        <th>尺寸</th>
+                    </tr>
+                </table>
+                <button id="addClothesSize" class="btn btn-info">添加</button>
+                <table>
+                    <tr>
+                        <th>@Html.LabelFor(t => t.ProductedCount)</th>
+                        <td>@Html.TextBoxFor(t => t.ProductedCount, new { @class = "input-small" })</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.LabelFor(t => t.SaledCount)</th>
+                        <td>@Html.TextBoxFor(t => t.SaledCount, new { @class = "input-small" })</td>
+                    </tr>
+                </table>
+            </td>
+            <th class="width20">工艺要求
+            </th>
+            <td>
+                <div>@Html.LabelFor(t => t.Comment)</div>
+                <div>@Html.TextAreaFor(t => t.Comment)</div>
+                <div>@Html.LabelFor(t => t.TechnologyFile)
+                    <div data="TechnologyFile" type="TechnologyFile" class="uploadbutton btn btn-info">上传</div>
+                    <div id="file_TechnologyFile"></div>
+                    <div>@Html.HiddenFor(t => t.TechnologyFile)</div>
+                </div>
+                <div>@Html.LabelFor(t => t.AssessoriesFile)
+                    <div data="AssessoriesFileIds" type="AssessoriesFile" class="uploadbutton btn btn-info">上传</div>
+                    <div id="file_AssessoriesFile"></div>
+                    <div>@Html.HiddenFor(t => t.AssessoriesFile)</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">上传样板文件: 添加文件：
+        <div data="TechnologyFileIds" type="SampleFile" class="uploadbutton btn btn-info">上传</div>
+                <div id="file_SampleFile"></div>
+                <div>@Html.HiddenFor(t => t.SampleFile)</div>
+            </td>
+        </tr>
+    </table>
+</div>

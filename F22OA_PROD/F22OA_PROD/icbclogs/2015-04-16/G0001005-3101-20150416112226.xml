@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150416112226</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=245700", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-16 11:53:44:1710 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150416112226</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=245700", "", "", "", "120400010000")</instr>
+    <recodes>005201521343492519   2015041611541100000500000015041610036992000000000024570012045691094210273145800S广东发展银行                           银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):广东发展银行
+总计(TOTAL):RMB 2457.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-16 11:54:11:1906 </crdate>
+  </log>
+</logs>

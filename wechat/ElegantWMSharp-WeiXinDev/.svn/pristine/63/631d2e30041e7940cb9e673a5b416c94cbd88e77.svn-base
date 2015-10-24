@@ -1,0 +1,30 @@
+﻿<script type="text/javascript">
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+</script>
+
+<div class="dataDetail">
+    <table class="dataTable dotrain">
+        <tr>
+            <td>
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">培训时间</span>
+                    <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="input-group ">
+                    <span class="input-group-addon">培训内容</span>
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submitTrain();">提交</button>
+</div>

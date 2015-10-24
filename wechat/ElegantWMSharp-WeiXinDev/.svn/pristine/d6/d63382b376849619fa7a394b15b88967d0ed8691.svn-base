@@ -1,0 +1,49 @@
+﻿@model System.Data.DataTable
+@{
+    int i = 0;
+}
+<style type="text/css">
+    .record {
+        background-color: #f9f9f9;
+        margin-bottom: 30px;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #eee;
+        line-height:180%;
+    }
+	.record b{
+		color:Blue;
+	}
+</style>
+@foreach (System.Data.DataRow dr in Model.Rows)
+{
+    <div class="record">
+        店铺：@dr["DepotName"]<br />
+        款号：@dr["SKC"] &nbsp;&nbsp;&nbsp;&nbsp;系列：@dr["Series"]<br />
+        反馈：<b>@dr["Remark"]</b><br />
+        <table id="td@(i++)" style="width: 100%;margin-top:8px;color:#AAA;">
+            <tr>
+                <th>分公司</th>
+                <th>客户经理</th>
+                <th>顾客姓名</th>
+                <th>年龄</th>
+                <th>手机</th>
+                <th>职业</th>
+                <th>身高</th>
+                <th>体型</th>
+                <th>12月内消费</th>
+            </tr>
+            <tr>
+                <td style="color:#AAA;">@dr["Branch"]</td>
+                <td style="color:#AAA;">@dr["CusManager"]</td>
+                <td style="color:#AAA;">@dr["CusName"]</td>
+                <td style="color:#AAA;">@dr["Age"]</td>
+                <td style="color:#AAA;">@dr["Mobile"]</td>
+                <td style="color:#AAA;">@dr["Prf"]</td>
+                <td style="color:#AAA;">@dr["Height"]</td>
+                <td style="color:#AAA;">@dr["Figure"]</td>
+                <td style="text-align: right;color:#AAA;">@dr["Last12MonthAmount"]</td>
+            </tr>
+        </table>
+    </div>
+}

@@ -1,0 +1,5 @@
+D:\Document\Work\Code\Vex\HZY.COM.WS.DataSets\bin\Debug\HZY.COM.WS.DataSets.dll.config
+D:\Document\Work\Code\Vex\HZY.COM.WS.DataSets\bin\Debug\HZY.COM.WS.DataSets.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.DataSets\bin\Debug\HZY.COM.WS.DataSets.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.DataSets\obj\Debug\HZY.COM.WS.DataSets.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.DataSets\obj\Debug\HZY.COM.WS.DataSets.pdb

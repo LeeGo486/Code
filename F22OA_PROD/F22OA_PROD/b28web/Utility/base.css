@@ -1,0 +1,407 @@
+body, html
+{
+	padding: 0;
+	margin: 0;
+	overflow:hidden;
+}
+body, p, td, input, textarea
+{
+	font-size: 12px;
+	font-family: Arial;
+	color: #3a3a3a;
+}
+a
+{
+	text-decoration: none;
+	color: #023c61;
+}
+a:hover
+{
+	text-decoration: underline;
+	color: #6c9b3a;
+}
+h1
+{
+	margin: 10px 0;
+	padding: 0;
+	font-size: 24px;
+}
+h2
+{
+	margin: 5px 0;
+	padding: 0;
+	font-size: 20px;
+}
+h3
+{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+h4
+{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+.x-clear
+{
+	clear: both;
+	height: 1px;
+	overflow: hidden;
+}
+.clear
+{
+	clear: both;
+	height: 1px;
+	overflow: hidden;
+	display:none;
+}
+/* form
+----------------------------------------------*/
+/* container*/
+.container
+{
+	width: 910px;
+	overflow: hidden;
+	clear: both;
+}
+.container2
+{
+	width: 620px;
+	overflow: hidden;
+	clear: both;
+}
+.float
+{
+	float: left;
+	width: 200px;
+	padding-left: 100px;
+	padding: 2px 0 2px 100px;
+	overflow: hidden;
+	line-height: 22px;
+}
+.small
+{
+	width: 60px;
+}
+.middle
+{
+	width: 200px;
+}
+.float span
+{
+	padding: 0 5px;
+}
+.medium
+{
+	width: 150px;
+}
+.min
+{
+	width: 80px;
+}
+.big
+{
+	width: 501px;
+}
+input.big
+{
+	width: 90%;
+}
+
+.widthA
+{
+	width: 60px;
+}
+.widthB
+{
+	width: 80px;
+}
+.widthC
+{
+	width: 100px;
+}
+.widthD
+{
+	width: 120px;
+}
+
+.widthE
+{
+	width: 150px;
+}
+.widthF
+{
+	width: 200px;
+}
+.widthG
+{
+	width: 250px;
+}
+
+.caption
+{
+	float: left;
+	margin-left: -100px;
+	text-align: right;
+	width: 100px;
+}
+.textInput
+{
+	border: solid 1px #afafaf;
+	margin: 1px;
+	background: #fff url(../images/input-background.gif);
+	padding: 2px 5px;
+	color: #333;
+}
+.textInput:hover
+{
+	margin: 0px;
+	border: #9C0 solid 2px;
+}
+.selectInput
+{
+	/*clear: both;*/
+}
+.float em
+{
+	color: Red;
+}
+.float button
+{
+	line-height: 18px;
+	padding: 0 5px;
+	margin: 0px;
+	border: solid 1px;
+	border-color: #ddd #5d5d5d #5d5d5d #ddd;
+	color: #333;
+}
+.textInput, .textarea
+{
+	padding: auto 2px;
+}
+.textarea
+{
+	height: 12em;
+}
+
+.x-icon
+{
+	background-repeat: no-repeat;
+	background-position: 5px;
+	padding: 2px 0 1px 22px;
+}
+
+/* icons 
+---------------------------------------------- */
+.icon-start
+{
+	background-image: url('../icons/bullet_start.png');
+}
+.icon-magnify
+{
+	background-image: url('../icons/magnify.png');
+}
+.icon-accept
+{
+	background-image: url('../icons/accept.png');
+}
+.icon-add
+{
+	background-image: url('../icons/add.png');
+}
+.icon-cross
+{
+	background-image: url('../icons/cross.png');
+}
+.icon-decline
+{
+	background-image: url('../icons/decline.png');
+}
+.icon-delete
+{
+	background-image: url('../icons/delete.png');
+}
+.icon-disk
+{
+	background-image: url('../icons/disk.png');
+}
+.icon-find
+{
+	background-image: url('../icons/find.png');
+}
+.icon-pencil
+{
+	background-image: url('../icons/pencil.png');
+}
+.icon-tick
+{
+	background-image: url('../icons/tick.png');
+}
+.icon-tag
+{
+	background-image: url('../icons/tag.png');
+}
+.icon-info
+{
+	background-image: url('../icons/information.png');
+}
+.icon-detail
+{
+	background-image: url('../icons/detail.png');
+}
+.icon-keyboard
+{
+	background-image: url('../icons/keyboard.png');
+}
+.icon-checkbox
+{
+	background-image: url('../icons/checkbox.gif');
+}
+.icon-checkbox-checked
+{
+	background-image: url('../icons/checkbox-checked.gif');
+}
+.icon-loading
+{
+	background-image: url('../icons/loading.gif');
+}
+.icon-print
+{
+	background-image: url('../icons/printer_start.png');
+}
+.icon-preview
+{
+	background-image: url('../icons/printer_go.png');
+}
+.icon-export
+{
+	background-image: url('../icons/page_white_excel.png');
+}
+.icon-refresh
+{
+	background-image: url('../icons/arrow_refresh.png');
+}
+.icon-msg
+{
+	background-image: url('../icons/msg.png');
+}
+.icon-email
+{
+	background-image: url('../icons/email.png');
+}
+.icon-copy
+{
+	background-image: url('../icons/copy.png');
+}
+
+
+/* middle icon (24x24) */
+.b-icon
+{
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 24px;
+	height: 24px;
+}
+.nav-drp
+{
+	background-image: url('../icons/24x24/nav-drp.png');
+}
+.nav-oa
+{
+	background-image: url('../icons/24x24/nav-oa.png');
+}
+.nav-users
+{
+	background-image: url('../icons/24x24/nav-users.png');
+}
+.nav-mrp
+{
+	background-image: url('../icons/24x24/nav-mrp.png');
+}
+.nav-admin
+{
+	background-image: url('../icons/24x24/nav-admin.png');
+}
+
+/* Panel Style*/
+
+.greenpanel
+{
+	margin: 5px;
+	padding: 3px 5px;
+	color: #090;
+	background-color: #c8ffbf;
+	border: solid 1px #a2ef95;
+}
+.redpanel
+{
+	margin: 5px;
+	padding: 3px 5px;
+	color: #900;
+	background-color: #ffdfdf;
+	border: solid 1px #f3afb5;
+}
+.bluepanel
+{
+	margin: 5px;
+	padding: 3px 5px;
+	color: #036;
+	border: 1px solid #BFD1EB;
+	background-color: #F3FAFF;
+}
+.button-blue
+{
+	background-color: #F3FAFF;
+	border: #8496CE 0px solid;
+	color: #5A6DA5;
+	height: 23px;
+	width: 100px;
+	cursor: hand;
+	text-align: center;
+	border: solid 1px #9FD6FF;
+	margin: 2px;
+}
+/* font color*/
+.font-red
+{
+	color: Red !important;
+}
+.font-green
+{
+	color: Green !important;
+}
+.font-blue
+{
+	color: Blue !important;
+}
+.font-gray
+{
+	color: Gray !important;
+}
+.bold
+{
+	font-weight: bold;
+}
+.icon-del
+{
+    background-image: url('../icons/cross.png');
+    background-repeat: no-repeat;
+    background-position: 2px;
+    padding-left: 22px;
+    line-height: 16px;
+    cursor:pointer;
+}
+.btndpt
+{
+	margin:0;
+    background-repeat: no-repeat;
+    background-position: 2px;
+    padding-left: 3px;
+    line-height: 16px;
+    cursor:pointer;	
+    height:18px;
+    vertical-align:-3px;
+}

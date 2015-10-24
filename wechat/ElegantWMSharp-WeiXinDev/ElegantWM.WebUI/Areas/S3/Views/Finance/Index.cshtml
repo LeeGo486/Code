@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "财务管理";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            $("#sgocost").click(function () {
+                scrollTo("#scost");
+            });
+            $("#sgoasset").click(function () {
+                scrollTo("#sasset");
+            });
+        });
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+
+        //显示报销单详细资料
+        function showReiInfo(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                return;
+            }
+            Msg.show("加载中...", 3);
+            $(".cusHideReiArea").html("");
+            $(".cusHideReiArea").hide();
+            $.post("/S3/Finance/ReimbursementDetail", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+    </script>
+}
+@Html.Action("Income")
+@Html.Action("Cost")
+@Html.Action("Profit")
+@Html.Action("Asset")
+@Html.Action("Reimbursement")
+<div class="s3overlay">
+    <i id="stop" class="icon-arrow-up icon-2x"></i>
+    <hr />
+    <i id="sgocost" class="icon-calendar icon-2x"></i>
+    <hr />
+    <i id="sgoasset" class="icon-money icon-2x"></i>
+    <hr />
+    <i id="ssearch" class="icon-search icon-2x"></i>
+</div>

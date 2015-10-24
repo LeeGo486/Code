@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "用户绑定";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            //单击按钮的时候
+            $("#btnLogin").click(function () {
+                $(this).button('loading');
+                if ($.trim($("#TxtName").val()).length <= 0) {
+                    Msg.show("姓名不能为空", 1);
+                    $("#TxtName").focus();
+                    $(this).button("reset");
+                    return;
+                } else if ($.trim($("#TxtPwd").val()).length <= 0) {
+                    Msg.show("密码不能为空", 1);
+                    $("#TxtPwd").focus();
+                    $(this).button("reset");
+                    return;
+                }
+                //到服务器验证
+                Msg.show("登录中...", 3);
+                $.post("/Matrix/S3Login/Binding?pwd=" + escape($.trim($("#TxtPwd").val())) + "&name=" + $.trim($("#TxtName").val() + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid")), function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0 && Url.get("ReturnUrl") != null) {
+                        //跳转回去
+                        window.location.href = Url.get("ReturnUrl");
+                    } else if (rst.result == 0) {
+                        //绑定成功
+                        window.location.href = "/Matrix/AMLogin/WarningMsg/98";
+                    } else {
+                        Msg.hide();
+                        Msg.show(rst.msg, rst.result);
+                        $("#btnLogin").button("reset");
+                    }
+                });
+            });
+        });
+    </script>
+}
+<div style="text-align:center;margin:30px 0px 30px 0px;">
+    <img src="/Areas/Matrix/Resources/images/3s.png" width="200px" />
+</div>
+<div class="input-group">
+    <span class="input-group-addon">姓名：</span>
+    <input id="TxtName" class="form-control" placeholder="小翅膀用户名" value="@(ViewBag.User!=null?ViewBag.User.UserName:"")" />
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">密码：</span>
+    <input id="TxtPwd" type="password" class="form-control" placeholder="小翅膀密码" />
+</div>
+<br />
+<button id="btnLogin" type="button" class="btn btn-danger" style="width: 100%;margin-top:0px;" data-loading-text="请稍后...">登录</button>

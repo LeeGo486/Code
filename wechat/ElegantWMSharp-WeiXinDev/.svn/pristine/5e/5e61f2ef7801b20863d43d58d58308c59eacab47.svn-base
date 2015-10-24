@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "GameInfo";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+
+            var flag = false;
+            $(".Button1").click(function () {
+                if (flag) {
+                    return;
+                } else {
+                    flag = true;
+                    $.post("/Game/GLAllTheChips/addMoney?lid=" + Url.get("lid") + "&sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid"), function (rst) {
+                        if (rst.result == 0) {
+                            Msg.show(rst.msg, 0);
+                            $(".Button1").hide();
+                            $(".Button2").show();
+                            window.location.reload();
+                        } else {
+                            Msg.show(rst.msg, 1);
+                            flag = false;
+                        }
+                    });
+                }
+            })
+
+            $(".Button2").click(function () {
+                window.location.href = "/Game/GLAllTheChips/index?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid");
+            })
+        });
+
+    </script>
+    <style type="text/css">
+        .bg {
+            background: url(/Areas/Game/Resources/images/GLAllTheChips/bg.jpg) top center no-repeat;
+            background-size: 100%;
+            font-family: 'Microsoft YaHei',Arial;
+            margin: 0px;
+            background-attachment: scroll;
+        }
+
+        .Button1 {
+            margin-top: 25px;
+        }
+
+        .Button2 {
+            margin-top: 25px;
+        }
+
+        .Button3 {
+            margin-top: 25px;
+        }
+
+        .Raise {
+            margin-top: 25px;
+        }
+
+            .Raise table {
+                width: 100%;
+                font-size: 16px;
+                vertical-align: middle;
+            }
+
+        .Good {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            margin-top: 25px;
+        }
+
+            .Good table {
+                width: 100%;
+                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+            }
+    </style>
+}
+<div class="bg">
+    <img class="" src="~/Areas/Game/Resources/images/GLAllTheChips/GameInfo1.jpg" alt="head" style="width: 100%" />
+
+    @if (ViewBag.TYPE == 2)
+    {
+        if (ViewBag.BTN == 1)
+        {
+        <img class="Button1" src="~/Areas/Game/Resources/images/GLAllTheChips/Button1.png" alt="head" style="width: 100%" />
+        <img class="Button2" src="~/Areas/Game/Resources/images/GLAllTheChips/Button2.png" alt="head" style="width: 100%" />
+        }
+        else
+        {
+        <img class="Button2" src="~/Areas/Game/Resources/images/GLAllTheChips/Button2.png" alt="head" style="width: 100%" />
+        }
+    }
+    else
+    {
+        <img class="Button3" src="~/Areas/Game/Resources/images/GLAllTheChips/share.png" alt="head" style="width: 100%" />
+    }
+    <div class="Raise">
+        <table>
+            <tr>
+                <td style="text-align: right; width: 50%">
+                    <img src="~/Areas/Game/Resources/images/GLAllTheChips/mubiaojine.png" alt="head" style="width: 50%" />
+                </td>
+                <td style="text-align: left; width: 50%">1000
+                    <img src="~/Areas/Game/Resources/images/GLAllTheChips/yuan.png" alt="head" style="width: 13%" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    <img src="~/Areas/Game/Resources/images/GLAllTheChips/yijingzanjine.png" alt="head" style="width: 50%" />
+                </td>
+                <td style="text-align: left;">@ViewBag.MONEY
+                    <img src="~/Areas/Game/Resources/images/GLAllTheChips/yuan.png" alt="head" style="width: 13%" />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">
+                    <img src="~/Areas/Game/Resources/images/GLAllTheChips/liwanchengjine.png" alt="head" style="width: 60%" />
+                </td>
+                <td style="text-align: left;">@ViewBag.RemainMONEY
+                     <img src="~/Areas/Game/Resources/images/GLAllTheChips/yuan.png" alt="head" style="width: 13%" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="Good">
+        <table>
+            <tr>
+                <td>好心人列表</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table style="width: 100%; margin-top: 20px; font-size: 16px">
+            @foreach (ElegantWM.EntityModel.Game_Link gl in @ViewBag.LIST)
+            {
+                <tr style="height: 5px;"></tr>
+                <tr>
+                    <td style="width: 40%; text-align: right;">@gl.NickName</td>
+                    <td style="width: 40%; text-align: left;">&nbsp;&nbsp;&nbsp;+@gl.Oper 元</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

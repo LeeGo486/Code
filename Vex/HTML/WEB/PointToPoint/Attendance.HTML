@@ -1,0 +1,1033 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--STATUS OK-->
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Cache-control" content="no-cache" />
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <title>我的考勤</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+ 
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default_EHRForSalary/easyui.css?v=4" rel="stylesheet" type="text/css" />
+    <link id="easyuiTheme1" href="../../jquery-easyui-1.3.4/themes/default_EHRForSalary/Mobile.css?v=4" rel="stylesheet" type="text/css" />
+    <!--<script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>-->
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../JS/PointToPoint/Attendance.js?Date=20131229" type="text/javascript"></script>
+
+    <script src="../../jquery-easyui-1.3.4/mobileJS/jquery-1.11.0.min.js"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.core.js"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.scroller.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.android.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.android-holo.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.ios.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.ios7.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.jqm.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.sense-ui.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobiscroll.widget.wp.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.de.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.es.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.fr.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.hu.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.it.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.no.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.pt-BR.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/mobileJS/i18n/mobiscroll.i18n.zh.js" type="text/javascript"></script>
+
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.icons.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.android.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.android-holo.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.ios.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.ios7.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.jqm.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.sense-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.widget.wp.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.android.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.android-holo.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.ios.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.ios7.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.jqm.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.sense-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.scroller.wp.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/mobileCSS/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/mobileJS/mobileDateTime.js"></script>
+
+       <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <style>
+        .tbPayRoll {
+            width: 98%;
+        }
+
+            .tbPayRoll th, .tbPayRoll td {
+                border-bottom: 1px dashed #CCCCCC;
+            }
+
+            .tbPayRoll td {
+                background-color: #fff;
+                padding: 4px 10px;
+                text-align: left;
+            }
+
+            .tbPayRoll thead tr {
+                background-color: #F0F0F0;
+            }
+
+        .td.selected {
+            background-color: #E49B1A;
+        }
+
+        .input {
+            border: 0px;
+        }
+
+        .required {
+            color: red;
+            text-align: center;
+        }
+
+        .textarea {
+            border: 0px;
+        }
+
+        .addimg {
+            background: url(../../jquery-easyui-1.3.4/themes/default_EHRForSalary/images/add_icon.gif) right center no-repeat;
+            /*width: 1px;
+            height: 1px;*/
+            position: relative;
+            margin: 0px 40px 0px 0px;
+        }
+
+
+        /*.com_firstToolbar {
+            color: #FFF;
+            height: 40px;
+            background-color: #2f6eaa;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+        }*/
+    </style>
+
+</head>
+
+<body style="width: 100%; height: 530px">
+
+    <div id="ipad">
+        <center>
+        <div class="com_toolbar">
+            <button class="com_btn" onclick="btnClickMenu('TopOvertimeWork');" style="margin-top: 4px; padding: 6px 4px">加班信息</button>
+            <button class="com_btn" onclick="btnClickMenu('TopHoliday');" style="margin-top: 4px; padding: 6px 4px">休假信息</button>
+            <button class="com_btn" onclick="btnClickMenu('TopBusiness');" style="margin-top: 4px; padding: 6px 4px">公出信息</button>
+            <button class="com_btn" onclick="btnClickMenu('TopAttendance');" style="margin-top: 4px; padding: 6px 4px">个人考勤</button>
+            <br />
+            <div id="ipadTopOvertimeWork" style="display:none;margin-top:6px;padding-bottom:4px">
+                <span class="com_spn" onclick="btnChange('OvertimeWork','Apply')" style="padding: 6px 4px">加班申请</span>
+                <span class="com_spn" onclick="btnChange('OvertimeWork','Approve')" style="padding: 6px 4px">审批加班</span>
+                <span class="com_spn" onclick="btnChange('OvertimeWork','List')" style="padding: 6px 4px">加班记录</span>
+            </div>
+
+            <div id="ipadTopHoliday" style="display:none;margin-top:6px;padding-bottom:4px">
+                <span class="com_spn" onclick="btnChange('Holiday','Apply');" style="margin-top: 2px;padding: 6px 4px">休假申请</span>
+                <span class="com_spn" onclick="btnChange('Holiday','Approve');" style="margin-top: 2px;padding: 6px 4px">审批休假</span>
+                <span class="com_spn" onclick="btnChange('Holiday','List');" style="margin-top: 2px;padding: 6px 4px">休假记录</span>
+            </div>
+
+            <div id="ipadTopBusiness" style="display:none;margin-top:6px;padding-bottom:4px">
+                <span class="com_spn" onclick="btnChange('Business','Apply');" style="margin-top: 2px;padding: 6px 4px">公出申请</span>
+                <span class="com_spn" onclick="btnChange('Business','Aprove');" style="margin-top: 2px;padding: 6px 4px">审批公出</span>
+                <span class="com_spn" onclick="btnChange('Business','List');" style="margin-top: 2px;padding: 6px 4px">公出记录</span>
+            </div>
+
+            <div id="ipadTopAttendance" style="display:none; margin-top:6px;padding-bottom:4px">
+                <span class="com_spn" onclick="btnChange('Attendance','searchList');" style="margin-top: 2px;padding: 6px 4px">打卡记录</span>
+                <span class="com_spn" onclick="btnChange('Attendance','add');" style="margin-top: 2px;padding: 6px 4px">补签申请</span>
+                <span class="com_spn" onclick="btnChange('Attendance','approve');" style="margin-top: 2px;padding: 6px 4px">审批补签</span>
+                <span class="com_spn" onclick="btnChange('Attendance','searchFill');" style="margin-top: 2px;padding: 6px 4px">补签记录</span>
+            </div>
+
+        </div>
+        
+        <div id="ipadOvertimeWork" style="margin-top:30px;display:none">
+            <div id="ipadOvertimeWorkApply" style="display: none; background-color: #fff; margin-top:2px">
+                <table id="tipadOvertimeWorkApply" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll">
+                    <thead><tr><td colspan="2" style="text-align:center;">加班申请单</td></tr></thead>
+                    <tbody>
+                        <tr>
+                            <th style="width: 200px">加班类型<span class="required">*</span>:</th>
+                            <td>
+                                <select id="ipadOvertimeWorkApplyType" style="width: 200px">
+                                    <option value="0">--------</option>
+                                    <option value="3847483">工作日加班</option>
+                                    <option value="3847485">休息日加班</option>
+                                    <option value="107872343">公休日加班</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>加班原因:</th>
+                            <td>
+                                <select id="ipadOvertimeWorkApplyReason" style="width: 200px">
+                                    <option value="">------</option>
+                                    <option value="1">根据生产计划加班</option>
+                                    <option value="2">临时加班</option>
+                                    <option value="3">其它原因</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一级审批人<span class="required">*</span>:</th>
+                            <td>
+                                <select id="ipadOvertimeWorkApplyApproveType1" onchange="changeAP('OvertimeWorkApplyApproveType1','OvertimeWorkApplyApproveName1')" style="width: 100px">
+                                    <option value="0">-----</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="ipadOvertimeWorkApplyApproveName1" style="width: 100px">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">加班时段<span style="color:red">*</span>:</th>
+                            <td>
+                                从:
+                                <input id="ipadOvertimeWorkApplyBeginDate" class="demo-test-date" style="width:110px" onblur="autocalCulate('OvertimeWorkApply')" />
+                                <input id="ipadOvertimeWorkApplyBeginTime" class="demo-test-time" style="width:100px" onblur="autocalCulate('OvertimeWorkApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                到:
+                                <input id="ipadOvertimeWorkApplyEndDate" class="demo-test-date" style="width:110px" onblur="autocalCulate('OvertimeWorkApply')" />
+                                <input id="ipadOvertimeWorkApplyEndTime" class="demo-test-time" style="width:100px" onblur="autocalCulate('OvertimeWorkApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                 加班时长:
+                                <input id="ipadOvertimeWorkApplyHours" type="text" class="easyui-numberbox" style="width:80px" readonly="readonly" value="0"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td>
+                                <textarea id="ipadOvertimeWorkApplyRemark" cols="80" rows="6"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button id="btnOvertimeWorkApplySave" onclick="btnovertimeWorkApply()" class="com_btn">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="ipadOvertimeWorkApprove" style="display: none; background-color: #fff; margin-top:10px">
+                <button onclick="btnovertimeWorkApprove(1)" class="com_btn">批量审批</button>
+                <button onclick="btnovertimeWorkApprove(2)" class="com_btn">批量驳回</button>
+                <table id="ipadOvertimeWorkApproveList" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+            <div id="ipadOvertimeWorkList" style="display: none; background-color: #fff; margin-top:2px">
+                <table>
+                    <tr>
+                        <th>加班时段:</th>
+                        <td>
+                            <select id="ipadOvertimeWorkListyear" class="com_select"></select>年
+                        </td>
+                        <td>
+                            <select id="ipadOvertimeWorkListmonth" class="com_select"></select>月
+                        </td>
+                        <td>
+                            <button id="btnOvertimeWorkListSearch" onclick="btnovertimeWorkList()" class="com_btn">查询</button>
+                        </td>
+                    </tr>
+                </table>
+                <table id="ipadOvertimeWorkListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+        </div>
+            
+        <div id="ipadHoliday" style="display:none;margin-top:30px">
+            <div id="ipadHolidayApply" style="display: none; background-color: #fff; margin-top:2px">
+                <table id="tipadHolidayApply" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll">
+                    <thead>
+                        <tr>
+                            <td colspan="2" style="text-align:center">休假申请单</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:200px">考勤项目<span style="color:red">*</span></th>
+                            <td>
+                                <select id="ipadHolidayApplyType" style="width:200px">
+                                    <option selected value="0">--------</option>
+                                    <option value="3179486">事假</option>
+                                    <option value="3179488">产假</option>
+                                    <option value="3179492">病假</option>
+                                    <option value="3179493">婚假</option>
+                                    <option value="3179494">工伤</option>
+                                    <option value="3179495">年假</option>
+                                    <option value="3179496">丧假</option>
+                                    <option value="6194015">休息日加班调休</option>
+                                    <option value="7573280">夜加班转调休</option>
+                                    <option value="80791688">陪护假</option>
+                                    <option value="147128181">流产假</option>
+                                </select>
+                            </td>   
+                        </tr>
+                        <tr>
+                            <th>年<span style="color:red">*</span>:</th>
+                            <td>
+                                <input id="ipadHolidayApplyYear" type="text" class="easyui-numberbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">时间<span style="color:red">*</span>:</th>
+                            <td>开始时间:
+                                <input id="ipadHolidayApplyBeginDate" class="demo-test-date" style="width:110px" onblur="autocalCulate('HolidayApply')" />
+                                <input id="ipadHolidayApplyBeginTime" class="demo-test-time" style="width:100px" onblur="autocalCulate('HolidayApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>结束时间:
+                                <input id="ipadHolidayApplyEndDate" class="demo-test-date" style="width:110px" onblur="autocalCulate('HolidayApply')" />
+                                <input id="ipadHolidayApplyEndTime" class="demo-test-time" style="width:100px" onblur="autocalCulate('HolidayApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>休假时长:
+                                <input id="ipadHolidayApplyHours" type="text" readonly="readonly" class="easyui-numberbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一级审批人<span style="color:red">*</span>:</th>
+                            <td>
+                                <select id="ipadHolidayApplyApproveType1" onchange="changeAP('HolidayApplyApproveType1','HolidayApplyApproveName1')">
+                                    <option value="0">-----</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="ipadHolidayApplyApproveName1" style="width:67px"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>休假原因:</th>
+                            <td><input id="ipadHolidayApplyReason" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <th>临时负责人:</th>
+                            <td><input id="ipadHolidayApplyTmpName" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <th>紧急联系人及电话:</th>
+                            <td><input id="ipadHolidayApplyEmergency" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td><textarea id="ipadHolidayApplyRemark" cols="80" rows="6"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button id="btnipadHolidayApplySave" onclick="btnHolidayApply()" class="com_btn">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="ipadHolidayApprove" style="display: none; background-color: #fff; margin-top:2px">
+                <button id="btnipadHolidayApprove" onclick="btnHolidayApprove(1)" class="com_btn">批量审批</button>
+                <button id="btnipadHolidayApproveBak" onclick="btnHolidayApprove(2)" class="com_btn">批量驳回</button>
+                <table id="ipadHolidayApproveList" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+            <div id="ipadHolidayList" style="display: none; background-color: #fff; margin-top:2px">
+                请选择:
+                <select id="ipadHolidayListyear" class="com_select"></select>年
+                <select id="ipadHolidayListmonth" class="com_select"></select>月
+                <button id="btnipadHolidayList" onclick="btnHolidayList()" class="com_btn">查询</button>
+                <table id="ipadHolidayListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px">
+                </table>
+            </div>
+        </div>
+
+        <div id="ipadBusiness" style="display:none;margin-top:30px">
+            <div id="ipadBusinessApply" style="display: none; background-color: #fff; margin-top:2px">
+                <table id="tipadBusinessApply" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll">
+                    <thead><tr><td colspan="2" style="text-align:center">公出申请单</td></tr></thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:200px">公出项目<span style="color:red">*</span>:</th>
+                            <td>
+                                <select id="ipadBusinessApplyType" style="width:200px">
+                                    <option value="0">------</option>
+                                    <option value="3179482">出差</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一级审批人<span style="color:red">*</span>:</th>
+                            <td>
+                                <select id="ipadBusinessApplyType1" onchange="changeAP('BusinessApplyType1','BusinessApplyName1')" style="width:100px">
+                                    <option value="0">-----</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="ipadBusinessApplyName1" style="width:100px"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">公出时段<span style="color:red">*</span>:</th>
+                            <td>
+                                从:
+                                <input id="ipadBusinessApplyBeginDate" class="demo-test-date" style="width: 110px" onblur="autocalCulate('BusinessApply')"  />
+                                <input id="ipadBusinessApplyBeginTime" class="demo-test-time" style="width:100px" onblur="autocalCulate('BusinessApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                到:
+                                <input id="ipadBusinessApplyEndDate" class="demo-test-date" style="width: 110px" onblur="autocalCulate('BusinessApply')" />
+                                <input id="ipadBusinessApplyEndTime" class="demo-test-time" style="width:100px"  onblur="autocalCulate('BusinessApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                公出时长:
+                                <input id="ipadBusinessApplyHours" type="text" class="easyui-number" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>出差地点:</th>
+                            <td>
+                                <input id="ipadBusinessApplyAddress" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>出差事由:</th>
+                            <td>
+                                <input id="ipadBusinessApplyReason" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>单位名称:</th>
+                            <td>
+                                <input id="ipadBusinessApplyDestname" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>单位地址:</th>
+                            <td>
+                                <input id="ipadBusinessApplyDestaddress" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>联系人:</th>
+                            <td>
+                                <input id="ipadBusinessApplyContactPerson" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>联系电话:</th>
+                            <td>
+                                <input id="ipadBusinessApplyContactPhone" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>交通工具:</th>
+                            <td>
+                                <input id="ipadBusinessApplyVehicle" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td>
+                                <textarea id="ipadBusinessApplyRemark" cols="80" rows="6"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button id="btnipadBusinessApplySave" onclick="btnBusinessApply()" class="com_btn">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="ipadBusinessAprove" style="display: none; background-color: #fff; margin-top:2px">
+                <button id="btnipadBusinessApprove" onclick="btnBusinessApprove(1)" class="com_btn">批量审批</button>
+                <button id="btnipadBusinessApproveBak" onclick="btnBusinessApprove(2)" class="com_btn">批量驳回</button>
+                <table id="ipadBusinessApproveList" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+            <div id="ipadBusinessList" style="display: none; background-color: #fff; margin-top:2px">
+                请选择:
+                <select id="ipadBusinessListyear" class="com_select"></select>年
+                <select id="ipadBusinessListmonth" class="com_select"></select>月
+                <button id="btnipadBusinessList" onclick="btnBusinessList()" class="com_btn">查询</button>
+                <table id="ipadBusinessListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+        </div>
+
+        <div id="ipadAttendance" style="margin-top:30px;display:none">
+            <div id="ipadAttendancesearchList" style="display: none; background-color: #fff; margin-top:2px">
+                <select id="ipadAttendancesearchListyear" name="ipadsearchListyear" class="com_select">
+                </select>
+                年
+                <select id="ipadAttendancesearchListmonth" name="ipadsearchListmonth" class="com_select">
+                </select>
+                月
+           
+                <button class="com_btn" onclick="btnSearchList('AttendancesearchList');">查询</button>
+
+                <table id="ipadAttendancesearchListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px">
+                </table>
+            </div>
+
+            <div id="ipadAttendanceapprove" style="display: none;background-color: #fff; margin-top:2px">
+                <button class="com_btn" onclick="btnBatAPP(1);">批量审批</button>
+                <button class="com_btn" onclick="btnBatAPP(2);">批量驳回</button>
+                <table id="ipadapprovelist" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+            <div id="ipadAttendancesearchFill" style="display: none; background-color: #fff; margin-top:2px">
+
+                <select id="ipadAttendancesearchFillyear" name="ipadsearchFillyear" class="com_select">
+                </select>
+                年
+                <select id="ipadAttendancesearchFillmonth" name="ipadsearchFillmonth" class="com_select">
+                </select>
+                月
+                <button class="com_btn" onclick="btnSearchFill('AttendancesearchFill');">查询</button>
+
+                <table id="ipadAttendancesearchFillTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px">
+                </table>
+
+            </div>
+
+            <div id="ipadAttendanceadd" style="display: none;background-color: #fff; margin-top:2px">
+                <table id="tipadadd" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 2px">
+                    <thead>
+                        <tr><td colspan="2" style="text-align:center">补签考勤申请单</td></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width: 200px" >补签考勤时间<span class="required">*</span>:</th>
+                            <td>
+                                <input class="demo-test-date" id="ipadaddDate" name="ipadaddDate" style="width: 200px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>具体时间<span class="required">*(格式00:00:00)</span>:</th>
+                            <td>
+                                <input class="demo-test-time" id="ipadaddDate1" style="width:95px" >
+                                <input class="demo-test-time" id="ipadaddDate2" style="width:95px" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>补签考勤原因<span class="required">*</span>:</th>
+                            <td>
+                                <input type="text" id="ipadaddcause" style="width: 200px">
+                            </td>
+                        </tr>
+                        <tr >
+                            <th>一级审批人<span class="required">*</span>:</th>
+                            <td>
+                                <select id="ipadchangeAP1"  onchange="changeAP('changeAP1','addapprove1')">
+                                    <option value="0">- - - -</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="ipadaddapprove1"style="width: 100px" >
+                                </select>
+                            </td>
+                        </tr>
+                        <tr >
+                            <th>二级审批人<span class="required">*</span>:</th>
+                            <td colspan="1" id="ipadchangeAP2"  onchange="changeAP('changeAP2','addapprove2')">
+                                <select>
+                                    <option value="0">- - - -</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="ipadaddapprove2" style="width: 100px">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td>
+                                <textarea id="ipadaddremarks" cols="80" rows="6"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button class="com_btn" onclick="btnAdd();">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            
+        </div>
+        </center>
+    </div>
+
+    <div id="iphone">
+        <center>
+        <div class="com_toolbariphone">
+            <button class="com_btniphone" onclick="btnClickMenu('TopOvertimeWork');" style="margin-top: 4px;padding: 6px 4px">加班信息</button>
+            <button class="com_btniphone" onclick="btnClickMenu('TopHoliday');" style="margin-top: 4px; padding: 6px 4px">休假信息</button>
+            <button class="com_btniphone" onclick="btnClickMenu('TopBusiness');" style="margin-top: 4px; padding: 6px 4px">公出信息</button>
+            <button class="com_btniphone" onclick="btnClickMenu('TopAttendance');" style="margin-top: 4px; padding: 6px 4px">个人考勤</button>
+            <br />
+            <div id="iphoneTopOvertimeWork" class="com_toolbariphone" style="display:none;padding-bottom:8px">
+                <span class="com_spniphone" onclick="btnChange('OvertimeWork','Apply')">加班申请</span>
+                <span class="com_spniphone" onclick="btnChange('OvertimeWork','Approve')">加班审批</span>
+                <span class="com_spniphone" onclick="btnChange('OvertimeWork','List')">加班记录</span>
+            </div>
+
+            <div id="iphoneTopHoliday" class="com_toolbariphone" style="display:none;padding-bottom:8px">
+                <span class="com_spniphone" onclick="btnChange('Holiday','Apply');">休假申请</span>
+                <span class="com_spniphone" onclick="btnChange('Holiday','Approve');">休假审批</span>
+                <span class="com_spniphone" onclick="btnChange('Holiday','List');">休假记录</span>
+            </div>
+
+            <div id="iphoneTopBusiness" class="com_toolbariphone" style="display:none;padding-bottom:8px">
+                <span class="com_spniphone" onclick="btnChange('Business','Apply');">公出申请</span>
+                <span class="com_spniphone" onclick="btnChange('Business','Approve');">公出审批</span>
+                <span class="com_spniphone" onclick="btnChange('Business','List');">公出记录</span>
+            </div>
+
+            <div id="iphoneTopAttendance" class="com_toolbariphone" style="display:none;padding-bottom:8px">
+                <span class="com_spniphone" onclick="btnChange('Attendance','searchList');">打卡记录</span>
+                <span class="com_spniphone" onclick="btnChange('Attendance','add');">补签申请</span>
+                <span class="com_spniphone" onclick="btnChange('Attendance','approve');">补签审批</span>
+                <span class="com_spniphone" onclick="btnChange('Attendance','searchFill');">补签记录</span>
+            </div>
+        </div>
+
+        <div id="iphoneOvertimeWork" style="margin-top:20px;display:none">
+            <div id="iphoneOvertimeWorkApply" style="display: none; background-color: #fff; margin-top:2px">
+                <table cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 2px;">
+                    <thead><tr><td colspan="2" style="text-align:center">加班申请单</td></tr></thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:27%">加班类型<span style="color:red">*</span>:</th>
+                            <td style="width:68%">
+                                <select id="iphoneOvertimeWorkApplyType" class="com_selectiphone" style="width:120px">
+                                    <option value="0">------</option>
+                                    <option value="3847483">工作日加班</option>
+                                    <option value="3847485">休息日加班</option>
+                                    <option value="107872343">公休日加班</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>加班原因:</th>
+                            <td>
+                                <select id="iphoneOvertimeWorkApplyReason" class="com_selectiphone" style="width:140px">
+                                    <option value="0">------</option>
+                                    <option value="1">根据生产计划加班</option>
+                                    <option value="2">临时加班</option>
+                                    <option value="3">其它原因</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一级审批人<span style="color:red">*</span>:</th>
+                            <td>
+                                <select id="iphoneOvertimeWorkApplyApproveType1" style="width:85px" onchange="changeAP('OvertimeWorkApplyApproveType1','OvertimeWorkApplyApproveName1')" class="com_selectiphone">
+                                    <option value="0">-----</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="iphoneOvertimeWorkApplyApproveName1" class="com_selectiphone" style="width:80px">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">加班时段<span style="color:red">*</span>:</th>
+                            <td>
+                                从
+                                <input id="iphoneOvertimeWorkApplyBeginDate" style="width:70px" class="demo-test-date" onblur="autocalCulate('OvertimeWorkApply')" />
+                                <input id="iphoneOvertimeWorkApplyBeginTime" style="width:40px" class="demo-test-time" onblur="autocalCulate('OvertimeWorkApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                到
+                                <input id="iphoneOvertimeWorkApplyEndDate" style="width:70px" class="demo-test-date"  onblur="autocalCulate('OvertimeWorkApply')" />
+                                <input id="iphoneOvertimeWorkApplyEndTime" style="width:40px"  class="demo-test-time"  onblur="autocalCulate('OvertimeWorkApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                 加班时长:
+                                <input id="iphoneOvertimeWorkApplyHours" type="text" style="width:40px" readonly="readonly" required="required"/>小时
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td>
+                                <textarea id="iphoneOvertimeWorkApplyRemark" cols="25" rows="3"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button id="btnOvertimeWorkApplySave1" onclick="btnovertimeWorkApply()" class="com_btniphone">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="iphoneOvertimeWorkApprove" style="display: none; background-color: #fff; margin-top:2px">
+                <button onclick="btnovertimeWorkApprove(1)" class="com_btniphone">批量审批</button>
+                <button onclick="btnovertimeWorkApprove(2)" class="com_btniphone">批量驳回</button>
+                <table id="iphoneOvertimeWorkApproveList" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+            <div id="iphoneOvertimeWorkList" style="display: none; background-color: #fff; margin-top:2px">
+                <table>
+                    <tr>
+                        <th>加班时段:</th>
+                        <td>
+                            <select id="iphoneOvertimeWorkListyear" class="com_selectiphone"></select>
+                        </td>
+                        <td>
+                            <select id="iphoneOvertimeWorkListmonth" class="com_selectiphone"></select>
+                        </td>
+                        <td>
+                            <button id="iphoneOvertimeWorkListSearch" onclick="btnovertimeWorkList()" class="com_btniphone">查询</button>
+                        </td>
+                    </tr>
+                </table>
+                <table id="iphoneOvertimeWorkListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+        </div>
+        
+        <div id="iphoneHoliday" style="display:none;margin-top:20px">
+            <div id="iphoneHolidayApply" style="display: none; background-color: #fff; margin-top:2px">
+                <table id="tiphoneHolidayApply" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll">
+                    <thead>
+                          <tr>
+                              <td colspan="2" style="text-align:center">休假申请单</td>
+                          </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:27%">考勤项目<span style="color:red">*</span></th>
+                            <td style="width:68%">
+                                <select id="iphoneHolidayApplyType" class="com_selectiphone" style="width:150px">
+                                    <option selected value="0">--------</option>
+                                    <option value="3179486">事假</option>
+                                    <option value="3179488">产假</option>
+                                    <option value="3179492">病假</option>
+                                    <option value="3179493">婚假</option>
+                                    <option value="3179494">工伤</option>
+                                    <option value="3179495">年假</option>
+                                    <option value="3179496">丧假</option>
+                                    <option value="6194015">休息日加班调休</option>
+                                    <option value="7573280">夜加班转调休</option>
+                                    <option value="80791688">陪护假</option>
+                                    <option value="147128181">流产假</option>
+                                </select>
+                            </td>   
+                        </tr>
+                        <tr>
+                            <th>年 份<span style="color:red">*</span>:</th>
+                            <td>
+                                <input id="iphoneHolidayApplyYear" type="text" class="easyui-numberbox" style="width:150px" required="required" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">休假时间<span style="color:red">*</span>:</th>
+                            <td>从
+                                <input id="iphoneHolidayApplyBeginDate" class="demo-test-date" style="width:70px" onblur="autocalCulate('HolidayApply')"/>
+                                <input id="iphoneHolidayApplyBeginTime" class="demo-test-time" style="width:40px" onblur="autocalCulate('HolidayApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>到
+                                <input id="iphoneHolidayApplyEndDate" class="demo-test-date" style="width:70px" onblur="autocalCulate('HolidayApply')" />
+                                <input id="iphoneHolidayApplyEndTime" class="demo-test-time" style="width:40px" nblur="autocalCulate('HolidayApply')" />
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td>休假时长:
+                                <input id="iphoneHolidayApplyHours" type="text" class="easyui-numberbox" style="width:40px" required="required" readonly="readonly" />小时
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一级审批人<span style="color:red">*</span>:</th>
+                            <td>
+                                <select id="iphoneHolidayApplyApproveType1" style="width:85px" onchange="changeAP('HolidayApplyApproveType1','HolidayApplyApproveName1')" class="com_selectiphone">
+                                    <option value="0">-----</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="iphoneHolidayApplyApproveName1" style="width:80px" class="com_selectiphone"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>休假原因:</th>
+                            <td><input id="iphoneHolidayApplyReason" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <th>临时负责人:</th>
+                            <td><input id="iphoneHolidayApplyTmpName" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <th>紧急联系人及电话:</th>
+                            <td><input id="iphoneHolidayApplyEmergency" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td><textarea id="iphoneHolidayApplyRemark"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button id="btnHolidayApplySave1" onclick="btnHolidayApply()" class="com_btniphone">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="iphoneHolidayApprove" style="display: none; background-color: #fff; margin-top:2px">
+                <button id="btniphoneHolidayApprove" onclick="btnHolidayApprove('1')" class="com_btniphone">批量审批</button>
+                <button id="btniphoneHolidayApproveBak" onclick="btnHolidayApprove('2')" class="com_btniphone">批量驳回</button>
+                <table id="iphoneHolidayApproveList" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+            <div id="iphoneHolidayList" style="display: none; background-color: #fff; margin-top:2px">
+                请选择:
+                <select id="iphoneHolidayListyear" class="com_selectiphone"></select>年
+                <select id="iphoneHolidayListmonth" class="com_selectiphone"></select>月
+                <button id="btniphoneHolidayList" onclick="btnHolidayList()" class="com_btniphone">查询</button>
+                <table id="iphoneHolidayListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px;width:90%">
+                </table>
+            </div>
+        </div>
+
+        <div id="iphoneBusiness" style="display:none;margin-top:20px">
+            <div id="iphoneBusinessApply" style="display: none; background-color: #fff; margin-top:2px">
+                <table id="tiphoneBusinessApply" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll">
+                    <thead><tr><td colspan="2" style="text-align:center">公出申请单</td></tr></thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:28%">公出项目<span style="color:red">*</span>:</th>
+                            <td style="width:62%">
+                                <select id="iphoneBusinessApplyType" class="com_selectiphone" style="width:100px">
+                                    <option value="0">------</option>
+                                    <option value="3179482">出差</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>一级审批人<span style="color:red">*</span>:</th>
+                            <td>
+                                <select id="iphoneBusinessApplyType1" style="width:85px" onchange="changeAP('BusinessApplyType1','BusinessApplyName1')" class="com_selectiphone">
+                                    <option value="0">-----</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="iphoneBusinessApplyName1" class="com_selectiphone" style="width:80px"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">公出时段<span style="color:red">*</span>:</th>
+                            <td>
+                                从:
+                                <input id="iphoneBusinessApplyBeginDate" class="demo-test-date" style="width:70px" onblur="autocalCulate('BusinessApply')" />
+                                <input id="iphoneBusinessApplyBeginTime" class="demo-test-time" style="width:40px" onblur="autocalCulate('BusinessApply')"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                到:
+                                <input id="iphoneBusinessApplyEndDate" class="demo-test-date" style="width:70px" onblur="autocalCulate('BusinessApply')" />
+                                <input id="iphoneBusinessApplyEndTime" class="demo-test-time" style="width:40px" onblur="autocalCulate('BusinessApply')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                公出时长:
+                                <input id="iphoneBusinessApplyHours" type="text" class="easyui-number" required="required" style="width:40px" readonly="readonly" />小时
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>出差地点:</th>
+                            <td>
+                                <input id="iphoneBusinessApplyAddress" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>出差事由:</th>
+                            <td>
+                                <input id="iphoneBusinessApplyReason" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>单位名称:</th>
+                            <td>
+                                <input id="iphoneBusinessApplyDestname" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>单位地址:</th>
+                            <td>
+                                <input id="iphoneBusinessApplyDestaddress" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>联系人:</th>
+                            <td>
+                                <input id="iphoneBusinessApplyContactPerson" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>联系电话:</th>
+                            <td>
+                                <input id="iphoneBusinessApplyContactPhone" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>交通工具:</th>
+                            <td>
+                                <input id="iphoneBusinessApplyVehicle" type="text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td>
+                                <textarea id="iphoneBusinessApplyRemark"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button id="btniphoneBusinessApplySave" onclick="btnBusinessApply()" class="com_btniphone">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="iphoneBusinessApprove" style="display: none; background-color: #fff; margin-top:2px">
+                <button id="btniphoneBusinessApprove" onclick="btnBusinessApprove(1)" class="com_btniphone">批量审批</button>
+                <button id="btniphoneBusinessApproveBak" onclick="btnBusinessApprove(2)" class="com_btniphone">批量驳回</button>
+                <table id="iphoneBusinessApproveList" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+            <div id="iphoneBusinessList" style="display: none; background-color: #fff; margin-top:2px">
+                请选择:
+                <select id="iphoneBusinessListyear" class="com_selectiphone"></select>年
+                <select id="iphoneBusinessListmonth" class="com_selectiphone"></select>月
+                <button id="btniphoneBusinessList" onclick="btnBusinessList()" class="com_btniphone">查询</button>
+                <table id="iphoneBusinessListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px"></table>
+            </div>
+        </div>
+
+        <div id="iphoneAttendance" style="margin-top:20px;display:none">
+            <div id="iphoneAttendancesearchList" style="display: none; background-color: #fff; margin-top:2px">
+
+                <select id="iphoneAttendancesearchListyear" name="iphonesearchListyear" class="com_selectiphone">
+                </select>
+                年
+                <select id="iphoneAttendancesearchListmonth" name="iphonesearchListmonth" class="com_selectiphone">
+                </select>
+                月
+           
+                <button class="com_btniphone" onclick="btnSearchList('AttendancesearchList');">查询</button>
+
+                <table id="iphoneAttendancesearchListTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px">
+                </table>
+            </div>
+
+            <div id="iphoneAttendancesearchFill" style="display: none; background-color: #fff; margin-top:2px">
+
+                <select id="iphoneAttendancesearchFillyear" name="iphonesearchFillyear" class="com_selectiphone">
+                </select>
+                年
+                <select id="iphoneAttendancesearchFillmonth" name="iphonesearchFillmonth" class="com_selectiphone">
+                </select>
+                月
+                <button class="com_btniphone" onclick="btnSearchFill('AttendancesearchFill');">查询</button>
+
+                <table id="iphoneAttendancesearchFillTable" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px">
+                </table>
+
+            </div>
+
+            <div id="iphoneAttendanceadd" style="display: none; margin-top:2px">
+                <table id="tiphoneadd" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 2px">
+                    <thead><tr><td colspan="2" style="text-align:center">补签考勤申请单</td></tr></thead>
+                    <tbody>
+                        <tr>
+                            <th style="width: 200px" >补签时间<span class="required">*</span></th>
+                            <td>
+                                <input class="demo-test-date" id="iphoneaddDate" name="iphoneaddDate" style="width: 200px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>具体时间<span class="required">*</span></th>
+                            <td>
+                                <input class="demo-test-time" id="iphoneaddDate1" style="width:40px" >
+                                <input class="demo-test-time" id="iphoneaddDate2" style="width:40px" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>补签原因<span class="required">*</span>:</th>
+                            <td>
+                                <input type="text" id="iphoneaddcause" style="width: 95%" required="required">
+                            </td>
+                        </tr>
+                        <tr >
+                            <th>一级审批人<span class="required">*</span></th>
+                            <td colspan="1" >
+                                <select id="iphonechangeAP1" class="com_selectiphone" onchange="changeAP('changeAP1','addapprove1')">
+                                    <option value="0">- - - -</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="iphoneaddapprove1" class="com_selectiphone" style="width: 100px" >
+                                </select>
+                            </td>
+                        </tr>
+                        <tr >
+                            <th>二级审批人<span class="required">*</span></th>
+                            <td>
+                                <select id="iphonechangeAP2" class="com_selectiphone" onchange="changeAP('changeAP2','addapprove2')">
+                                    <option value="0">- - - -</option>
+                                    <option value="1">直接上级</option>
+                                    <option value="2">间接上级</option>
+                                </select>
+                                <select id="iphoneaddapprove2" class="com_selectiphone" style="width: 100px">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注:</th>
+                            <td>
+                                <textarea id="iphoneaddremarks"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <button class="com_btniphone" onclick="btnAdd();">保存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="iphoneAttendanceapprove" style="display: none; margin-top:2px">
+                <button class="com_btniphone" onclick="btnBatAPP(1);" style="margin-top: 4px; padding: 6px 4px">批量审批</button>
+                <button class="com_btniphone" onclick="btnBatAPP(2);" style="margin-top: 4px; padding: 6px 4px">批量驳回</button>
+                <table id="iphoneapprovelist" cellspacing="0" cellpadding="0" border="1" class="tbPayRoll" style="margin-top: 10px">
+                </table>
+            </div>
+        </div>    
+        </center>
+    </div>
+
+</body>
+</html>

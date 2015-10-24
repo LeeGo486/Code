@@ -1,0 +1,378 @@
+﻿//任务中心
+//开发者：LeeGo
+//WSID：57a51159-4710-42cd-bca3-32fdaeacc616
+
+
+$(document).ready(function () {
+    //获取下拉框数据
+    var taskTypeData = sumbit(GetGetJson([], "TaskType"));
+    var taskRulesData = sumbit(GetGetJson([], "DeliverType"));
+
+    formatDate();
+
+    initPlugin(taskTypeData.rows, taskRulesData.rows);
+
+    initGrid(GetGetJson([], 'GetTaskData'));
+
+    upFiles();
+
+    controlButton();
+    
+});
+//基础
+function initPlugin() {
+    //main
+    $("#StartDate").datebox({ editable: false});
+    $("#EndDate").datebox({ editable: false });
+    $("#TaskSearch").linkbutton({ iconCls: 'icon-search', plain: true });
+    $("#InitScreening").linkbutton({ iconCls: 'icon-undo', plain: true });
+
+    $("#NewTask").linkbutton({ iconCls: 'icon-add', plain: true });
+    $("#DistributeTask").linkbutton({ iconCls: 'icon-ok', plain: true });
+    $("#StopTask").linkbutton({ iconCls: 'icon-stop', plain: true });
+
+    //windown
+    $('#TaskWin').window({
+        title: '新建任务',
+        top: 100,
+        width: 600,
+        height: 450,
+        closable: false,
+        minimizable: false,
+        maximizable: false,
+        collapsible: false,
+        draggable: false,
+        resizable: false,
+        modal: true
+    }).window("close");
+
+    $("#newTaskName").validatebox({ required: true });
+
+    $("#newTaskType").combobox({
+        data:arguments[0],
+        required: true,
+        width: 130,
+        editable: false,
+        valueField: 'id',
+        panelHeight: 'auto',
+        textField: 'name'
+    });
+    $("#newTaskRules").combobox({
+        data: arguments[1],
+        required: true,
+        width: 130,
+        editable: false,
+        panelHeight: 'auto',
+        valueField: 'id',
+        textField: 'name'
+    });
+
+    $("#newUpResult").attr("readonly", true);
+
+    $("#newBeginDate").datebox({ required: true, editable: false, width: 130 });
+    $("#newEndDate").datebox({ required: true, editable: false, width: 130 });
+
+    $("#newTaskSubmit").linkbutton({ iconCls: 'icon-save', plain: true });
+    $("#newWindowClose").linkbutton({ iconCls: 'icon-undo', plain: true });
+}
+
+function initGrid(_XMLData) {
+    $("#TaskList").datagrid({
+        url: GetWSRRURL('57a51159-4710-42cd-bca3-32fdaeacc616'),
+        queryParams: { "XML": _XMLData },
+        singleSelect: true,
+        width: '90%',
+        fit: true,
+        sortName: 'rgdt',
+        sortOrder: 'desc',
+        striped: true,
+        columns: [[
+            { field: 'tasktype', title: '任务类型', width: 75 },
+            { field: 'jobname', title: '任务名称', width: 200 },
+            { field: 'customernum', title: '预约人数', width: 70, align: 'right', formatter: Formater.Num },
+            { field: 'bespeaknum', title: '已预约人数', width: 70, align: 'right', formatter: Formater.Num },
+            { field: 'validatefrom', title: '开始时间', width: 80 },
+            { field: 'validateto', title: '结束时间', width: 80 },
+            { field: 'validatestate', title: '状态', width: 60 },
+            { field: 'desp', title: '任务描述', width: 450 },
+            { field: 'rguser', title: '创建人', width: 60 },
+            { field: 'rgdt', title: '创建时间', width: 80 }
+        ]],
+        pagination: true,
+        pageNumber: 1,
+        pageSize: 20,
+        onClickRow: function (rowIndex, rowData) {
+            var status = rowData.validatestate; //状态
+            if (status == "未审核") {
+                controlButton("main", "DistBtnActive");
+                controlButton("main", "StopBtnInvalid");
+            }
+            else if (status == "进行中") {
+                controlButton("main", "DistBtnInvalid");
+                controlButton("main", "StopBtnActive");
+            }
+        }
+    });
+}
+
+function formatDate() {
+    $.fn.datebox.defaults.formatter = function (date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        return y + '-' + m + '-' + d;
+    };
+}
+
+function upFiles() {
+    //文件上传相关-----------------
+    var btnUpExcel = $('#getExcle'), interval;
+
+    new AjaxUpload(btnUpExcel, {
+        action: '/Handler_Joreal_CMT.ashx?filePath=Joreal_CMT&ExcelImport=true',
+        data: { "WSID": "57a51159-4710-42cd-bca3-32fdaeacc616", "XML": GetGetJson('', 'Excel') },
+        name: 'myfile',
+        onSubmit: function (file, ext) {
+            $.messager.progress({ title: '请稍后', msg: '上传中' });
+            if (!(ext && /^(xls|xlsx)$/.test(ext))) {
+                alert('文件格式不正确,请选择 xls,xlsx 格式的文件!', '系统提示');
+                return false;
+            }
+
+            // change button text, when user selects file
+            btnUpExcel.text('浏览');
+
+            // If you want to allow uploading only 1 file at time,
+            // you can disable upload button
+            this.disable();
+
+            // Uploding -> Uploading. -> Uploading...
+            interval1 = window.setInterval(function () {
+                var text = btnUpExcel.text();
+                if (text.length < 1) {
+                    btnUpExcel.text(text + '.');
+                } else {
+                    btnUpExcel.text('浏览');
+                }
+            }, 200);
+        },
+        onComplete: function (file, response) {
+            //file 本地文件名称，response 服务器端传回的信息
+            btnUpExcel.text('浏览');
+
+            window.clearInterval(interval1);
+
+            // enable upload button
+            this.enable();
+            //var k = response.replace("<pre>", "").replace("</pre>", "");
+            var k = response.replace("<pre>", "").replace("</pre>", "").replace("<PRE>", "").replace("</PRE>", "");
+
+            try {
+                var result = eval("[" + k + "]");
+                if (result[0].Error) {
+                    $.messager.progress('close');
+
+                    $.messager.alert("系统错误", result[0].Error, 'error');
+                }
+                else if (result[0].rows[0].result == "False") {
+                    var errormessage = result[0].rows[1].message;
+
+                    $.messager.progress('close');
+
+                    alert(result[0].rows[0].message + '\r' + errormessage);
+
+                }
+                else {
+                    $.messager.progress('close');
+                    $("#newUpResult").val(result[0].rows[1].message);
+
+                }
+            } catch (ex) {
+                $.messager.progress('close');
+
+                $.messager.alert("提示", ex, 'error');
+            }
+
+        }
+    });
+    //文件上传相关-----------------
+}
+
+function sumbit(_XML) {
+    var ReturnData = "";
+    $.ajax({
+        url: GetWSRRURL('57a51159-4710-42cd-bca3-32fdaeacc616'),
+        type: 'post',
+        async: false,   //false is synchronization.
+        data: { "XML": _XML },
+        success: function (result) {
+            var rltLength = result.length;
+            if (rltLength > 0) {
+                ReturnData = $.parseJSON(result);
+            };
+        }
+    });
+    return ReturnData;
+}
+
+function controlButton(_area,_signal) {
+    //keep activation state button.
+    $("#TaskSearch").unbind("click").click(searchTask);
+    $("#InitScreening").unbind("click").click(cleanScreen);
+    $("#NewTask").unbind("click").click(openWin);
+
+    if (_area === "window") {
+
+        if (_signal === "activation") {
+            $("#newTaskSubmit").unbind("click").click(sumbTask);
+            $("#newWindowClose").unbind("click").click(closeWin);
+        }
+        else if (_signal === "invalid") {
+            $("#newTaskSubmit").unbind("click");
+            $("#newWindowClose").unbind("click");
+        };
+
+    }
+    else if (_area === "main") {
+
+        switch (_signal) {
+            case "DistBtnActive": $("#DistributeTask").linkbutton({ "enable": true }).click(distributeTask);    break;
+            case "DistBtnInvalid": $("#DistributeTask").linkbutton({"disable":true}).unbind("click");           break;
+
+            case "StopBtnActive": $("#StopTask").linkbutton({ "enable": true }).click(stopTask);                break;
+            case "StopBtnInvalid": $("#StopTask").linkbutton({ "disable": true }).unbind("click");              break;
+        };
+
+    };
+}
+
+
+//方法
+function searchTask() {
+    var searchData = $("#search").serializeArray(),
+        XMLData = GetFormJson(searchData, "Search");
+            
+        ClearGrid("#TaskList");
+
+        initGrid(XMLData);
+}
+
+function cleanScreen() {
+    $("#search input").val("");
+}
+
+function distributeTask() {
+
+    var rowData = $('#TaskList').datagrid('getSelected'),
+        taskCode = rowData.code,
+        data = [{ "name": "txtCode", "value": taskCode }],
+        XMLData = GetFormJson(data, 'DistTask'),
+        result = sumbit(XMLData);   //sumbit
+
+    try {
+        if (result.rows[0].result == "False") {
+            $.messager.progress('close');
+
+            $.messager.alert("提示", result[0].rows[0].message, 'error');
+        }
+        else {
+            ClearGrid("#TaskList");
+            $('#TaskList').datagrid('reload');
+
+            $.messager.alert("提示", "发布成功", 'ok'); //提示信息
+        }
+    } catch (ex) {
+        $.messager.progress('close');
+        $.messager.alert("提示", ex.message, 'error');
+    };
+
+}
+
+function stopTask() {
+    var rowData = $('#TaskList').datagrid('getSelected'),
+        taskCode = rowData.code,
+        data = [{ "name": "txtCode", "value": taskCode }],
+        XMLData = GetFormJson(data, 'StopTask'),
+        result = sumbit(XMLData);   //sumbit
+
+    try {
+        if (result.rows[0].result == "False") {
+            $.messager.progress('close');
+
+            $.messager.alert("提示", result[0].rows[0].message, 'error');
+        }
+        else {
+            ClearGrid("#TaskList");
+            $('#TaskList').datagrid('reload');
+
+            $.messager.alert("提示", "终止成功", 'ok'); //提示信息
+        }
+    } catch (ex) {
+        $.messager.progress('close');
+        $.messager.alert("提示", ex.message, 'error');
+    };
+}
+
+function sumbTask() {
+    var isResult = $("#NewTaskForm").form('validate'),
+        sumbTaskXML = "";
+
+    if (isResult) {
+        var taskData = $("#NewTaskForm").serializeArray();
+
+        var UpExcelResult = taskData[5].value,
+            firstChar = UpExcelResult.substr(0, 1);
+
+        if (firstChar == "J") {
+            sumbTaskXML = GetFormJson(taskData, "SaveTask");
+            controlButton("invalid");
+
+            $.messager.progress({ title: '请稍后', msg: '保存中' });
+            //提交
+            var result = sumbit(sumbTaskXML);
+
+            try {
+                if (result.rows[0].result == "False") {
+                    var errormessage = result[0].rows[1].message;
+
+                    $.messager.progress('close');
+
+                    alert(result[0].rows[0].message + '\r' + errormessage);
+
+                }
+                else {
+                    $.messager.progress('close');
+                    $.messager.alert("成功", "保存成功", "ok");
+                    closeWin();
+                }
+            } catch (ex) {
+                $.messager.progress('close');
+
+                $.messager.alert("提示", ex.message, 'error');
+            };
+        }
+        else {
+            $.messager.alert("警告", "未上传人员名单", "warning");
+        };
+    };
+}
+
+function closeWin() {
+    $("#newTaskType").combobox("setValue", "");
+    $("#newTaskRules").combobox("setValue", "");
+    $("#newBeginDate").datebox("setValue", "");
+    $("#newEndDate").datebox("setValue", "");
+    $("#NewTaskForm input").val("");
+    $("#NewTaskForm textarea").val("");
+
+    controlButton("window", "invalid");
+
+    $("#TaskWin").window("close");
+}
+function openWin() {
+    controlButton("window", "activation");
+
+    $("#TaskWin").window("open");
+
+    $("#newTaskName").focus();
+}

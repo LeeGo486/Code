@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150411192925</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=139400", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-11 19:53:31:4619 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150411192925</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=139400", "", "", "", "120400010000")</instr>
+    <recodes>F5读卡失败                                                                                            </recodes>
+    <info>刷卡失败，错误信息为：读卡失败                                                                                            </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-11 19:53:46:7268 </crdate>
+  </log>
+</logs>

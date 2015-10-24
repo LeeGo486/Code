@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "圣诞小游戏";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/NpaiaChristmas.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#bg").load(function () {
+                $("#btn").css("top", $("#bg").height() * 0.7);
+            })
+        })
+
+        WeixinApi.ready(function (Api) {
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/NpaiaChristmas/icon.png',
+                "link": 'http://it.hwafashion.com/Game/NpaiaChristmas/?sid=FF25138F-08F0-49C8-8768-83EFADDB2618',
+                "desc": $(".desc").html(),
+                "title": "恩派雅-就是如此任性"
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+        });
+    </script>
+}
+<img id="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/sharebg.png"/>
+<img id="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/shareButton.png" style="width:40%;position:absolute;left:30%;"/>
+<div class="desc" style="display:none;">哇~太幸运了！快看圣诞老人送了你什么？</div>
+
+<script type="text/javascript">
+    $("img#btn").click(function () {
+        WeixinApi.shareTip();
+    })
+</script>
+

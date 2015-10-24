@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150417184554</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=514400", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-17 19:38:30:3058 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150417184554</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=514400", "", "", "", "120400010000")</instr>
+    <recodes>004580650128001858   2015041719390000001500000015041710037238170200000051440012045691094210200000000S牡丹准贷记卡                           银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):中国工商银行
+总计(TOTAL):RMB 5144.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-17 19:38:56:7234 </crdate>
+  </log>
+</logs>

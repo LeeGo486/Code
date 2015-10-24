@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>出勤</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css?v3"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.datagrid_groupview.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/JS_PrintArea.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/PLMAS/TheNumberOfMonthlyScoringSystemBoardSystemBoard.js?Date=20140240" type="text/javascript"></script>
+    <style>
+        .com_btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            -webkit-appearance: none;
+            border-radius: 4px;
+            border: 1px solid #bbb;
+        }
+    </style>
+
+</head>
+
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+    <div class="easyui-tabs" data-options="fit:true,border:true,plain:true">
+        <div title="实绩汇总" data-options="split:false,border:true">
+
+            <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+                <div region="north" style="height: 50px">
+                    <div style="padding-top: 10px; width: 100%;">
+                        品牌：<input id="txtsjbrand" name="txtsjbrand" style="width: 100px">
+                        &nbsp;&nbsp;
+                                年份：<input id="txtsjyear" name="txtsjyear" style="width: 100px">
+                        <a href="#" id="A3" iconcls="icon-search" onclick="sjsearchClick()" class="easyui-linkbutton"
+                            data-options="plain:true">搜索</a>
+                    </div>
+                </div>
+                <div region="center" split="true" id="Div4">
+                    <table id="sjList">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div title="绩效汇总" data-options="split:false,border:true">
+            <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+                <div region="north" style="height: 50px">
+                    <div style="padding-top: 10px; width: 100%;">
+                        品牌：<input id="txtjxbrand" name="txtjxbrand" style="width: 100px">
+                        &nbsp;&nbsp;
+                                年份：<input id="txtjxyear" name="txtjxyear" style="width: 100px">
+                        <a href="#" id="A2" iconcls="icon-search" onclick="jxsearchClick()" class="easyui-linkbutton"
+                            data-options="plain:true">搜索</a>
+                    </div>
+                </div>
+                <div region="center" split="true" id="Div3">
+                    <table id="jxList">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div title="系数维护" data-options="split:false,border:true">
+            <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+                <div region="north" style="height: 50px">
+                    <div style="padding-top: 10px; width: 100%;">
+                        品牌：<input id="txtxsbrand" name="txtxsbrand" style="width: 100px" >
+                        &nbsp;&nbsp;
+                                年份：<input id="txtxsyear" name="txtxsyear" style="width: 100px" disabled="disabled">
+                        <a href="#" id="A1" iconcls="icon-search" onclick="xssearchClick()" class="easyui-linkbutton"
+                            data-options="plain:true">搜索</a>
+                    </div>
+                </div>
+                <div region="center" split="true" id="Div2">
+                    <table id="xsList">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div title="天数维护" data-options="split:false,border:true">
+            <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+                <div region="north" style="height: 50px">
+                    <div style="padding-top: 10px; width: 100%;">
+                        品牌：<input id="txtdaybrand" name="txtdaybrand" style="width: 100px">
+                        &nbsp;&nbsp;
+                                年份：<input id="txtdayyear" name="txtdayyear" style="width: 100px">
+                        <a href="#" id="btn_Search" iconcls="icon-search" onclick="searchClick()" class="easyui-linkbutton"
+                            data-options="plain:true">搜索</a>
+                    </div>
+                </div>
+                <div region="center" split="true" id="Div1">
+                    <table id="dayList">
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div title="" id="divsj" class="easyui-window" style="padding: 5px;" split="true" data-options="closed:true">
+        <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+            <div region="north" style="height: 40px">
+            <center>
+            <div>
+             <button class="com_btn" onclick="cancel();">返回</button>
+            </div>
+            </center>
+            </div>
+
+            <div region="center" split="true" id="Div5">
+                <table id="sjClickList">
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

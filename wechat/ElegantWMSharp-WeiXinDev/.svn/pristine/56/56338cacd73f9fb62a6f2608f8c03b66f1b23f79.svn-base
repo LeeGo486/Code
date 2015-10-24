@@ -1,0 +1,111 @@
+﻿<div class="ht" id="sdoturnin">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;库存分布
+    <span onclick="$('#sdoturninarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail fuelux">
+    <div>款号：E12IDY006aG</div>
+    <br />
+    <input type="search" class="form-control" id="searchTurnin" placeholder="指定店铺">
+    <br />
+    <table class="dataTable turnin">
+        <tr>
+            <td style="text-align:left">店铺名称</td>
+            <td style="text-align:right">销量</td>
+            <td style="text-align:right">库存</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">武汉东湖万达百货</td>
+            <td style="text-align:right">3</td>
+            <td style="text-align:right">10</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">西安解放路生活馆</td>
+            <td style="text-align:right">2</td>
+            <td style="text-align:right">9</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">杭州西湖银泰</td>
+            <td style="text-align:right">3</td>
+            <td style="text-align:right">8</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">上海百联世茂MALL</td>
+            <td style="text-align:right">3</td>
+            <td style="text-align:right">7</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">深圳深国投广场MALL</td>
+            <td style="text-align:right">19</td>
+            <td style="text-align:right">6</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="text-align:right"><a href="javascript:void(0);">加载更多<i class="icon-double-angle-down"></i></a></td>
+        </tr>
+    </table>
+
+    <table class="dataTable turnin">
+        <tr>
+            <td style="text-align:center;width:30%;">尺码</td>
+            <td style="text-align:center;width:30%;">库存数量</td>
+            <td style="text-align:center">调入数量</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">2码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">3码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">4码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">5码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">6码</td>
+            <td style="text-align:center">1件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="doTurnin();">调入确认</button>
+</div>

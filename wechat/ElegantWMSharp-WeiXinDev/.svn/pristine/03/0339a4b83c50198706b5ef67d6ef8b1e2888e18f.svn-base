@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "顾客反馈";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var subCategory = '@(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.SubCategory))';
+        subCategory = eval(subCategory.replace(/&quot;/g, "'"));
+        var isTelChange = "";
+        $(function () {
+            $("#backToIndex").click(function () {
+                window.location.href = "/S3/FeedBack/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            });
+            //如果不是主项目不是商品，需要隐藏一些字段
+            $("#fbType").change(function () {
+                loadSubCategory($("#fbType").val());
+                if ($("#fbType option:selected").text() != "商品") {
+                    $("#optArea").fadeOut(300);
+                } else {
+                    $("#optArea").fadeIn(300);
+                }
+            });
+            loadSubCategory($("#fbType").val());
+            $("#txtTel").focus(function () {
+                isTelChange = $("#txtTel").val();
+            });
+            $("#txtTel").focusout(function () {
+                if ($.trim($("#txtTel").val()).length == 11) {
+                    if (isTelChange == $("#txtTel").val()) return;
+                    Msg.show("正在获取客户资料", 3);
+                    $.post("/S3/FeedBack/GetVipInfo?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), "tel=" + $("#txtTel").val(), function (data) {
+
+                        Msg.hide();
+                        var rst = eval("(" + data + ")");
+                        $("#txtCusName").val(rst[0].account_name);
+                        $("#txtAge").val(rst[0].acct_dec01);
+                        $("#txtMoney").val(rst[0].acct_dec32);
+
+                    });
+                }
+            });
+            //提交数据
+            $("#btnSubmit").click(function () {
+                //验证
+                //if ($.trim($("#txtTel").val()).length <= 0) {
+                //    Msg.show("手机不能为空", 1);
+                //    $("#txtTel").focus();
+                //    return;
+                //}
+                if ($.trim($("#txtCusName").val()).length <= 0) {
+                    Msg.show("客户姓名不能为空", 1);
+                    $("#txtCusName").focus();
+                    return;
+                }
+                if ($.trim($("#txtAge").val()).length <= 0) {
+                    Msg.show("年龄不能为空", 1);
+                    $("#txtAge").focus();
+                    return;
+                }
+                if ($.trim($("#txtContent").val()).length <= 0) {
+                    Msg.show("反馈描述不能为空", 1);
+                    $("#txtContent").focus();
+                    return;
+                }
+                //submit
+
+                var feedback = {
+                    TypeId: $("#fbType").val(),
+                    SubTypeId: $("#fbSubType").val(),
+                    Mobile: $("#txtTel").val(),
+                    CusName: $("#txtCusName").val(),
+                    Age: $("#txtAge").val(),
+                    Last12MonthAmount: $("#txtMoney").val(),
+                    Remark: $("#txtContent").val()
+                };
+
+                if ($("#fbType option:selected").text() == "商品") {
+                    feedback["ProfessionId"] = $("#sltPfs").val();
+                    feedback["HeightId"] = $("#sltHeight").val();
+                    feedback["FigureId"] = $("#sltFigure").val();
+                    feedback["SKC"] = $("#txtSKC").val();
+                }
+
+                Msg.show("提交中...", 3);
+                $(this).button('loading');
+                $.post("/S3/FeedBack/Submit?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), feedback, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    $("#btnSubmit").button('reset');
+                    if (rst.result == 0) {
+                        //提交成功，重置文本框
+                        resetField();
+                        //$("#btnSubmit").hide();
+                    }
+                });
+            });
+        });
+        function resetField() {
+            $("#txtTel").val("");
+            $("#txtCusName").val("");
+            $("#txtMoney").val(0);
+            $("#txtSKC").val("");
+            $("#txtContent").val("");
+            $("#txtAge").val("");
+        }
+        function loadSubCategory(type) {
+            $("#fbSubType option").remove();
+            $.each(subCategory, function (index, item) {
+                if (item.FatherId == type) {
+                    $("#fbSubType").append("<option value='" + item.Id + "'>" + item.Name + "</option>");
+                }
+            });
+        }
+    </script>
+}
+<div class="dataDetail">
+    <h4><span><i class="icon-comment-alt"></i>&nbsp;&nbsp;反馈类型 </span></h4>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">主类</span>
+        <select id="fbType" class="form-control">
+            @foreach (ElegantWM.EntityModel.S3_Dictionary dict in ViewBag.Category)
+            {
+                <option value="@dict.Id">@dict.Name</option>
+            }
+        </select>
+    </div>
+    <br />
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">细类</span>
+        <select id="fbSubType" class="form-control">
+        </select>
+    </div>
+    <br />
+    <h4><span><i class="icon-user"></i>&nbsp;&nbsp;客户资料 </span></h4>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">手机</span>
+        <input class="form-control" type="number" id="txtTel" />
+    </div>
+    <br />
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">姓名</span>
+        <input class="form-control" id="txtCusName" />
+        <input type="hidden" id="txtMoney" value="0" />
+    </div>
+    <br />
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">年龄</span>
+        <input class="form-control" type="number" id="txtAge" />
+    </div>
+    <br />
+    <div id="optArea">
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">职业</span>
+            <select id="sltPfs" class="form-control">
+                @foreach (ElegantWM.EntityModel.S3_Dictionary dict in ViewBag.Profs)
+                {
+                    <option value="@dict.Id">@dict.Name</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">身高</span>
+            <select id="sltHeight" class="form-control">
+                @foreach (ElegantWM.EntityModel.S3_Dictionary dict in ViewBag.Height)
+                {
+                    <option value="@dict.Id">@dict.Name</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">体型</span>
+            <select id="sltFigure" class="form-control">
+                @foreach (ElegantWM.EntityModel.S3_Dictionary dict in ViewBag.Figure)
+                {
+                    <option value="@dict.Id">@dict.Name</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">款号</span>
+            <input class="form-control" id="txtSKC" placeholder="包括颜色尺码的完整款号" />
+        </div>
+        <br />
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">反馈</span>
+        <textarea id="txtContent" maxlength="400" placeholder="请输入客户需求，不能为空" class="form-control"></textarea>
+    </div>
+</div>
+<button id="btnSubmit" type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="提交中...">提交反馈 </button>
+
+<div class="s3overlay" style="padding:8px;">
+    <i id="backToIndex" class="icon-reply icon-2x"></i>
+</div>

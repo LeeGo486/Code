@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "果汁吧微信活动";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+<h2 style="text-align:center;">@ViewBag.Msg</h2>

@@ -1,0 +1,41 @@
+<html>
+	
+	<script language='javascript'>
+
+		//消费
+	function f_consume(){
+	 	var ret = Trans1.OnTrans("PCA101102            0000000000006225885710673906=00001011113911553111996225885710673906=1561560500050000000015553111214000000000=5710673906=000000000=05000000571000000000000");
+	 	alert(ret);
+	}
+		
+	//撤销
+	function f_unconsume(){
+	 	var ret = Trans1.OnTrans("PRA101102000000000011      0000006225885710673906=00001011113911553111996225885710673906=1561560500050000000015553111214000000000=5710673906=000000000=05000000571000000000000");
+	 	alert(ret);
+	}	
+	
+	//签到
+	function f_qd(){
+	 	var ret = Trans1.OnTrans("OPN000000");
+	 	alert(ret);
+	}
+	function f_query(){
+	 	var ret = Trans1.doquery("000000","6222021202899998315=06121208669991085","996222021202899998315=156000000000000000000386699921600000612000000000000000000000=000000000000=00000000");
+	 	alert(ret);
+	}
+	查询	
+	
+ </script>
+	  				<OBJECT ID="Trans1" WIDTH=0 HEIGHT=0
+ 					   CLASSID="CLSID:E2EEEA3B-34C4-43B7-B7AC-CB12DCA6FBBE">
+	    			<PARAM NAME="_Version" VALUE="1.0">
+    				<PARAM NAME="_ExtentX" VALUE="13229">
+    				<PARAM NAME="_ExtentY" VALUE="13229">
+    				<PARAM NAME="_StockProps" VALUE="0">
+				    </OBJECT>	
+
+<input type="button" value="查询" name="button5" onclick="f_query();">  
+<input type="button" value="消费" name="button2" onclick="f_consume();">  
+<input type="button" value="撤消" name="button3" onclick="f_unconsume();">
+<input type="button" value="签到" name="button4" onclick="f_qd();">    
+</html>

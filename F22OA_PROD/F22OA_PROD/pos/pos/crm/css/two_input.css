@@ -1,0 +1,54 @@
+body {
+	margin:2px;
+}
+form {
+	margin:0px;
+	padding:0px;
+}
+
+#left {
+	font-size:12px;
+}
+
+#leftcontent {
+	overflow:auto;
+	font-size:12px;
+}
+#left table {
+	border-top: 1px #B7A29E solid;
+	border-left: 1px #B7A29E solid;
+}
+#left td {
+	padding-left:2px;
+	padding-bottom:0px;
+	padding-top:0px;
+	padding-right:0px;
+	cursor:default;
+	border-right: 1px #B7A29E solid;
+	border-bottom: 1px #B7A29E solid;
+}
+#left th {
+	padding:0px;
+	background-color:#FFEFEF;
+	font-weight:normal;
+	border-right: 1px #B7A29E solid;
+	border-bottom: 1px #B7A29E solid;
+}
+#leftcontent input {
+	height:13px;
+	margin:0px;
+	padding:0px;
+	border:0px;
+	/*border:1px #B7A29E solid;*/
+}
+iframe {
+	margin:0px;
+	padding:0px;
+}
+.input {
+	height:13px;
+	margin:0px;
+	padding:0px;
+	border:0px;
+	/*border:1px #B7A29E solid;*/
+}

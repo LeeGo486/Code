@@ -1,0 +1,16 @@
+.btn_common { width:60px; 
+			height:23px;
+			border:1px solid #8DB2E3;
+			/*background:url(images/girddel.gif) 0 2 no-repeat ;*/ background-color:#E0ECFF;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_common_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			/*background:url(images/girddel.gif) 0 2 no-repeat ;*/ background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.td_field_thin{background-color:white;
+		  	   font-size: 11;
+		  	   font-weight: 500;
+		  	   border:1px solid black;
+		 	  }
+.table_thin{border-collapse:collapse;border-spacing: 0px;border:1px solid black;}

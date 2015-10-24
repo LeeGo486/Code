@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150418202033</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=935800", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-18 20:23:34:3773 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150418202033</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=935800", "", "", "", "120400010000")</instr>
+    <recodes>005316930002800668   2015041820240600002100000015041810037467170600000093580012045691094210203199600S中国建设银行                           银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):中国建设银行
+总计(TOTAL):RMB 9358.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-18 20:23:59:7198 </crdate>
+  </log>
+</logs>

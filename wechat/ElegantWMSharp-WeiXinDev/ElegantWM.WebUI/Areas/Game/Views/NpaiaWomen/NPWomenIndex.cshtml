@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "恩派雅-集红包送美衣";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            $(".bg").load(function () {
+                var width = $(".bg").width();
+                var height = $(".bg").height();
+
+                $("#doSel").height(height * 0.7);
+                $("#doSel").css("top",height * 0.3);
+            });
+        })
+    </script>
+}
+<div id="selArea" style="width:100%;">
+    <img class="bg" src="~/Areas/Game/Resources/images/NpaiaWomen/clothSelagain.jpg" style="width:100%"/>
+    <div id="doSel" style="width:100%;position:absolute;left:0;">
+        <div id="sel1" style="width:25%;height:100%;float:left;"></div>
+        <div id="sel2" style="width:25%;height:100%;float:left;"></div>
+        <div id="sel3" style="width:25%;height:100%;float:left;"></div>
+        <div id="sel4" style="width:25%;height:100%;float:left;"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#sel1").click(function () {
+        window.location.href = "/Game/NpaiaWomen/ClothInfo?id=3&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#sel2").click(function () {
+        window.location.href = "/Game/NpaiaWomen/ClothInfo?id=4&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#sel3").click(function () {
+        window.location.href = "/Game/NpaiaWomen/ClothInfo?id=2&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#sel4").click(function () {
+        window.location.href = "/Game/NpaiaWomen/ClothInfo?id=1&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+</script>
+
+

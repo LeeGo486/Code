@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "圣诞小游戏";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/NpaiaChristmas.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#bg").load(function () {
+                var height = $("#bg").height();
+                $("#btn1").css("top", height * 0.1);
+                $("#btn2").css("top", height * 0.1);
+                $("#btn3").css("top", height * 0.105);
+                $("#btn4").css("top", height * 0.1);
+                $("#btn5").css("top", height * 0.11);
+                $("#btn6").css("top", height * 0.11);
+                $("#btn7").css("top", height * 0.11);
+                $("#btn8").css("top", height * 0.105);
+                $("#btn9").css("top", height * 0.1);
+                $("#dest").css("top", height * 0.47);
+                $("#dest").height(height * 0.5);
+                $("#low").css("top", height * 0.6);
+                $("#high").css("top", height * 0.6);
+            })
+
+            fire();
+        })
+
+        function fire() {
+            if ($("#bg:visible").size() == 0) {
+                $("#bg").show();
+                $("#lowbg").hide();
+            }
+            else {
+                $("#bg").hide();
+                $("#lowbg").show();
+            }
+       
+            setTimeout("fire()", 200);
+        }
+    </script>
+}
+<img id="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/stockingbg.png"/>
+<img id="lowbg" src="~/Areas/Game/Resources/images/NpaiaChristmas/stockinglowbg.png"/>
+<div>
+    <img id="btn1" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking1.png" draggble="true" ondragstart="drag(event);" style="width:8%;position:absolute;left:7%;"/>
+</div>
+<div>
+    <img id="btn2" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking2.png" draggble="true" ondragstart="drag(event);" style="width:8%;position:absolute;left:13%;"/>
+</div>
+<div>
+    <img id="btn3" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking3.png" draggble="true" ondragstart="drag(event);" style="width:9%;position:absolute;left:25%;"/>
+</div>
+<div>
+    <img id="btn4" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking4.png" draggble="true" ondragstart="drag(event);" style="width:10%;position:absolute;left:34%;"/>
+</div>
+<div>
+    <img id="btn5" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking5.png" draggble="true" ondragstart="drag(event);" style="width:8%;position:absolute;left:44%;"/>
+</div>
+<div>
+    <img id="btn6" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking6.png" draggble="true" ondragstart="drag(event);" style="width:10%;position:absolute;left:54%;"/>
+</div>
+<div>
+    <img id="btn7" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking7.png" draggble="true" ondragstart="drag(event);" style="width:8%;position:absolute;left:66%;"/>
+</div>
+<div>
+    <img id="btn8" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking8.png" draggble="true" ondragstart="drag(event);" style="width:8%;position:absolute;left:75%;"/>
+</div>
+<div>
+    <img id="btn9" class="move" src="~/Areas/Game/Resources/images/NpaiaChristmas/stocking9.png" draggble="true" ondragstart="drag(event);" style="width:14%;position:absolute;left:83%;"/>
+</div>
+<div id="dest" style="width:70%;position:absolute;left:15%;" ondrop="drop(event)" ondragover="allowDrop(event);"></div>
+<script type="text/javascript">
+    var dest = document.getElementById("dest");
+
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        var ele = document.getElementById(data);
+        ele.style.width = "15%";
+        ele.style.left = "35%";
+        ele.style.top = "10%";
+        ev.target.appendChild(ele);
+
+        window.location.href = "/Game/NpaiaChristmas/CountDown?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    }
+
+    document.ondragover = function (evt) {
+        // 取消事件的默认行为
+        return false;
+    }
+
+    document.ondragleave = function (evt) {
+        //取消被拖动的元素离开本元素时触发该事件
+        return false;
+
+    }
+
+    document.ondrop = function (evt) {
+        // 取消事件的默认行为
+        return false;
+    }
+
+    var startX, startY, touchX, touchY;;
+
+    function touchStart(event) {
+        event.preventDefault();
+        if (!event.touches.length || (event.touches.length > 1))
+            return;
+        var touch = event.touches[0];
+        startX = event.target.offsetLeft;
+        startY = event.target.offsetTop;
+        touchX = touch.pageX;
+        touchY = touch.pageY;
+    }
+    document.getElementById("btn1").addEventListener("touchstart", touchStart);
+    document.getElementById("btn2").addEventListener("touchstart", touchStart);
+    document.getElementById("btn3").addEventListener("touchstart", touchStart);
+    document.getElementById("btn4").addEventListener("touchstart", touchStart);
+    document.getElementById("btn5").addEventListener("touchstart", touchStart);
+    document.getElementById("btn6").addEventListener("touchstart", touchStart);
+    document.getElementById("btn7").addEventListener("touchstart", touchStart);
+    document.getElementById("btn8").addEventListener("touchstart", touchStart);
+    document.getElementById("btn9").addEventListener("touchstart", touchStart);
+
+    function touchMove(event) {
+        event.preventDefault();
+        if (!event.touches.length || (event.touches.length > 1))
+            return;
+        var touch = event.touches[0];
+
+        event.target.style.left = (touch.pageX - (touchX - startX)) + "px";
+        event.target.style.top = (touch.pageY - (touchY - startY)) + "px";
+    }
+    document.getElementById("btn1").addEventListener("touchmove", touchMove);
+    document.getElementById("btn2").addEventListener("touchmove", touchMove);
+    document.getElementById("btn3").addEventListener("touchmove", touchMove);
+    document.getElementById("btn4").addEventListener("touchmove", touchMove);
+    document.getElementById("btn5").addEventListener("touchmove", touchMove);
+    document.getElementById("btn6").addEventListener("touchmove", touchMove);
+    document.getElementById("btn7").addEventListener("touchmove", touchMove);
+    document.getElementById("btn8").addEventListener("touchmove", touchMove);
+    document.getElementById("btn9").addEventListener("touchmove", touchMove);
+
+    function touchEnd(event) {
+        if ((event.target.offsetLeft > $("#dest").position().left)
+            && (event.target.offsetLeft < ($("#dest").position().left + $("#dest").width()))
+            && (event.target.offsetTop > $("#dest").position().top)
+            && (event.target.offsetTop < ($("#dest").position().top + $("#dest").height()))) {
+            event.target.style.top = ($("#bg").height() * 0.5) + "px";
+            event.target.style.left = "40%";
+            setTimeout("goToCountDown()", 2000);
+        }
+        else {
+            event.target.style.left = startX + "px";
+            event.target.style.top = startY + "px";
+        }
+    }
+    document.getElementById("btn1").addEventListener("touchend", touchEnd);
+    document.getElementById("btn2").addEventListener("touchend", touchEnd);
+    document.getElementById("btn3").addEventListener("touchend", touchEnd);
+    document.getElementById("btn4").addEventListener("touchend", touchEnd);
+    document.getElementById("btn5").addEventListener("touchend", touchEnd);
+    document.getElementById("btn6").addEventListener("touchend", touchEnd);
+    document.getElementById("btn7").addEventListener("touchend", touchEnd);
+    document.getElementById("btn8").addEventListener("touchend", touchEnd);
+    document.getElementById("btn9").addEventListener("touchend", touchEnd);
+
+    function goToCountDown() {
+        window.location.href = "/Game/NpaiaChristmas/CountDown?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    }
+</script>

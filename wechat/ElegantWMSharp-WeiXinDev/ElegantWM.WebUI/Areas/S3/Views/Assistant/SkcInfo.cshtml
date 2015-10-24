@@ -1,0 +1,366 @@
+﻿<script type="text/javascript">
+    //加载故事建议
+    function loadAddStory() {
+        Msg.show("故事建议加载中...", 3);
+        $.get("/S3/Assistant/AddStory", function (htmldata) {
+            Msg.hide();
+            showAddStory(htmldata);
+        });
+    }
+
+    //显示故事建议
+    function showAddStory(data) {
+        $("#saddstoryarea").html(data);
+        scrollTo("#saddstoryarea");
+    }
+
+    //显示故事建议详细资料
+    function showStoryInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideStoryArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+
+    //提交故事建议
+    function addStory(id) {
+        Msg.show("提交成功", 0);
+    }
+
+    //加载卖点补充
+    function loadAddDesign() {
+        Msg.show("卖点补充加载中...", 3);
+        $.get("/S3/Assistant/AddDesign", function (htmldata) {
+            Msg.hide();
+            showAddDesign(htmldata);
+        });
+    }
+
+    //显示卖点补充
+    function showAddDesign(data) {
+        $("#sadddesignarea").html(data);
+        scrollTo("#sadddesignarea");
+    }
+
+    //显示卖点补充详细资料
+    function showDesignInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideDesignArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+
+    //提交卖点补充
+    function addDesign(id) {
+        Msg.show("提交成功", 0);
+    }
+
+    //加载保养建议
+    function loadAddWashing() {
+        Msg.show("保养建议加载中...", 3);
+        $.get("/S3/Assistant/AddWashing", function (htmldata) {
+            Msg.hide();
+            showAddWashing(htmldata);
+        });
+    }
+
+    //显示保养建议
+    function showAddWashing(data) {
+        $("#saddwashingarea").html(data);
+        scrollTo("#saddwashingarea");
+    }
+
+    //显示保养建议详细资料
+    function showWashingInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideWashingArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+
+    //提交保养建议
+    function addWashing(id) {
+        Msg.show("提交成功", 0);
+    }
+
+    //加载销售技巧建议
+    function loadAddSkill() {
+        Msg.show("销售技巧建议加载中...", 3);
+        $.get("/S3/Assistant/AddSkill", function (htmldata) {
+            Msg.hide();
+            showAddSkill(htmldata);
+        });
+    }
+
+    //显示销售技巧建议
+    function showAddSkill(data) {
+        $("#saddskillarea").html(data);
+        scrollTo("#saddskillarea");
+    }
+
+    //显示销售技巧建议详细资料
+    function showSkillInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideSkillArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+
+    //提交销售技巧建议
+    function addSkill(id) {
+        Msg.show("提交成功", 0);
+    }
+
+    //加载搭配建议
+    function loadAddMatch() {
+        Msg.show("搭配建议加载中...", 3);
+        $.get("/S3/Assistant/AddMatch", function (htmldata) {
+            Msg.hide();
+            showAddMatch(htmldata);
+        });
+    }
+
+    //显示搭配建议
+    function showAddMatch(data) {
+        $("#saddmatcharea").html(data);
+        scrollTo("#saddmatcharea");
+    }
+
+    //显示搭配建议详细资料
+    function showMatchInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideMatchArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+
+    //提交搭配建议
+    function addMatch(id) {
+        Msg.show("提交成功", 0);
+    }
+
+    //加载客户效果
+    function loadAddCustomerMatch() {
+        Msg.show("客户效果加载中...", 3);
+        $.get("/S3/Assistant/AddCustomerMatch", function (htmldata) {
+            Msg.hide();
+            showAddCustomerMatch(htmldata);
+        });
+    }
+
+    //显示客户效果
+    function showAddCustomerMatch(data) {
+        $("#saddcustomermatcharea").html(data);
+        scrollTo("#saddcustomermatcharea");
+    }
+
+    //显示客户效果详细资料
+    function showCustomerMatchInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideCustomerMatchArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+
+    //提交客户效果
+    function addCustomerMatch(id) {
+        Msg.show("提交成功", 0);
+    }
+</script>
+
+<div class="ht" id="sskcinfo">
+    <i class="icon-tags"></i>&nbsp;&nbsp;商品信息
+    <span onclick="$('#sskcinfoarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <h4><span><i class="icon-tags"></i> 基本信息 </span></h4>
+    <table class="dataTable skcinfo">
+        <tr>
+            <td rowspan="9"><img src="/Areas/S3/Resources/images/u90.png" style="width: 50px;height: 60px;"></td>
+            <td>品牌：</td>
+            <td>EP</td>
+        </tr>
+        <tr>
+            <td>款号：</td>
+            <td>E12IDY006aG</td>
+        </tr>
+        <tr>
+            <td>波段：</td>
+            <td>07月06日</td>
+        </tr>
+        <tr>
+            <td>计划下架：</td>
+            <td>10月05日</td>
+        </tr>
+        <tr>
+            <td>风格系列：</td>
+            <td>日常装</td>
+        </tr>
+        <tr>
+            <td>小系列：</td>
+            <td>系列12</td>
+        </tr>
+        <tr>
+            <td>价格：</td>
+            <td>2999元</td>
+        </tr>
+        <tr>
+            <td>商品分类：</td>
+            <td>主推款</td>
+        </tr>
+        <tr>
+            <td>面料成份：</td>
+            <td>100%桑蚕丝</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span><i class="icon-tags"></i> 销售信息 </span></h4>
+    <table class="dataTable saleinfo">
+        <tr>
+            <td colspan="4">销售分类：滞销款</td>
+        </tr>
+        <tr>
+            <td colspan="4"><h5><span> 本店销售情况 </span></h5></td>
+        </tr>
+        <tr>
+            <td>总销量：</td>
+            <td>2</td>
+            <td>库存：</td>
+            <td><a href="javascript:void(0);" onclick="loadDoTurnin();">10</a></td>
+        </tr>
+        <tr>
+            <td>产销率：</td>
+            <td>16%</td>
+            <td>平均销售折扣：</td>
+            <td>9.2折</td>
+        </tr>
+        <tr>
+            <td colspan="4"><h5><span> 全国整体销售情况 </span></h5></td>
+        </tr>
+        <tr>
+            <td>总销量：</td>
+            <td>82</td>
+            <td>库存：</td>
+            <td><a href="javascript:void(0);" onclick="loadDoTurnin();">40</a></td>
+        </tr>
+        <tr>
+            <td>产销率：</td>
+            <td>67%</td>
+            <td>平均销售折扣：</td>
+            <td>9.0折</td>
+        </tr>
+        <tr>
+            <td colspan="4"><h5><span> 参加活动 </span></h5></td>
+        </tr>
+        <tr>
+            <td colspan="4">满2件送100元电子券</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span><i class="icon-tags"></i> 系列故事 </span></h4>
+    <div>主题故事：甜蜜生活</div>
+    <div>意大利时尚之都米兰，代表了经典高贵和优雅精致，美丽的关键色、花卉图案和清新的冰冻果汁色调总是展现出满满的女性化浪漫魅力。表达出对女性气质的骄傲，并把富有魅力的女性置于聚光灯之下</div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" style="border-right:1px solid #ccc;"><a href="tel:13888888888" style="color:#CC3333;"><i class="glyphicon glyphicon-earphone"></i> 系列主设</a></span>
+        <span class="btnarea" onclick="loadAddStory();" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(2)</span>
+        <span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span>
+    </div>
+    <div id="saddstoryarea">
+    </div>
+    <br />
+    <h4><span><i class="icon-tags"></i> 设计卖点 </span></h4>
+    <div>系列诠释</div>
+    <div>1、色彩风格：以绿色和粉色为主</div>
+    <div>2、面料：以真丝面料、异色真丝双宫面料为主</div>
+    <div>3、设计亮点：花型以绿粉渐变的牡丹花海为主</div>
+    <div>4、工艺：设计手法上采用了压褶、荷叶边等元素</div>
+    <div>5、适用人群：30-40岁体型丰满</div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" style="border-right:1px solid #ccc;"><a href="tel:13888888888" style="color:#CC3333;"><i class="glyphicon glyphicon-earphone"></i> 设计师</a></span>
+        <span class="btnarea" onclick="loadAddDesign();" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(2)</span>
+        <span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span>
+    </div>
+    <div id="sadddesignarea">
+    </div>
+    <br />
+    <h4><span><i class="icon-tags"></i> 洗涤保养 </span></h4>
+    <div>1、将不同色系的衣物分开轻柔洗涤，请勿浸泡</div>
+    <div>2、真丝用专业洗涤剂洗</div>
+    <div>3、不可在阳光下直接晾晒，面料小心钩丝</div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" style="border-right:1px solid #ccc;"><a href="tel:13888888888" style="color:#CC3333;"><i class="glyphicon glyphicon-earphone"></i> 品质人员</a></span>
+        <span class="btnarea" onclick="loadAddWashing();" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(2)</span>
+        <span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span>
+    </div>
+    <div id="saddwashingarea">
+    </div>
+    <br />
+    <h4><span><i class="icon-tags"></i> 搭配指南 </span></h4>
+    <div class="cusFit clearfix">
+        <img src="/Areas/S3/Resources/images/u280.png" onclick="showCustomerFittingImg('u280.png');" />
+        <img src="/Areas/S3/Resources/images/u282.png" onclick="showCustomerFittingImg('u282.png');" />
+        <img src="/Areas/S3/Resources/images/u284.png" onclick="showCustomerFittingImg('u284.png');" />
+    </div>
+    <br />
+    <div>本款衣服可以与外套，长衫搭配效果更佳</div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" style="border-right:1px solid #ccc;"><a href="tel:13888888888" style="color:#CC3333;"><i class="glyphicon glyphicon-earphone"></i> 搭配师</a></span>
+        <span class="btnarea" onclick="loadAddMatch();" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(2)</span>
+        <span class="btnarea" onclick="loadAddCustomerMatch();" style="border-right:1px solid #ccc;"><i class="icon-user-md"></i> 客户效果(1)</span>
+        <span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span>
+    </div>
+    <div id="saddmatcharea">
+    </div>
+    <div id="saddcustomermatcharea">
+    </div>
+    <br />
+    <h4><span><i class="icon-tags"></i> 销售技巧 </span></h4>
+    <div>衣服尽量向身材丰满的女性推荐。面料具有弹性，能够很好地塑造体形。</div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="loadAddSkill();" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(2)</span>
+        <span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span>
+    </div>
+    <div id="saddskillarea">
+    </div>
+    <br />
+    <h4><span><i class="icon-tags"></i> 更多操作 </span></h4>
+    <button type="button" class="btn btn-success" style="width: 30%; margin: 10px 1%;" data-loading-text="loading..." onclick="loadCustomerEvaluate();">客户评价</button>
+    <button type="button" class="btn btn-success" style="width: 30%; margin: 10px 1%;" data-loading-text="loading..." onclick="loadFeedback();">问题反馈</button>
+    <button type="button" class="btn btn-success" style="width: 30%; margin: 10px 1%;" data-loading-text="loading..." onclick="loadCustomers();">匹配客户</button>
+    <button type="button" class="btn btn-success" style="width: 30%; margin: 10px 1%;" data-loading-text="loading..." onclick="loadDoTurnout();">申请调出</button>
+    <button type="button" class="btn btn-success" style="width: 30%; margin: 10px 1%;" data-loading-text="loading..." onclick="loadDoRecall();">申请召回</button>
+    <button type="button" class="btn btn-success" style="width: 30%; margin: 10px 1%;" data-loading-text="loading..." onclick="loadDoPromotion();">申请促销</button>
+</div>

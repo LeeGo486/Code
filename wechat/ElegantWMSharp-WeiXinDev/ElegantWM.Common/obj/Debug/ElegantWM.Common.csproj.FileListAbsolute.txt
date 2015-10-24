@@ -1,0 +1,11 @@
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\obj\Debug\ElegantWM.Common.csprojResolveAssemblyReference.cache
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\ElegantWM.Common.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\ElegantWM.Common.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\ElegantWM.DTO.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\ElegantWM.Tools.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\LitJSON.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\ThoughtWorks.QRCode.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\ElegantWM.DTO.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\bin\Debug\ElegantWM.Tools.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\obj\Debug\ElegantWM.Common.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Common\obj\Debug\ElegantWM.Common.pdb

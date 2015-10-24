@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	<!--  
+	<aop:config>
+        <aop:aspect id="userOperationLogAspect" ref="userOperationLogService">
+        
+        
+            <aop:pointcut id="bus" expression="execution(* org.hy.itdc.business.service.imp.*.*(..))" />
+            <aop:after-returning pointcut-ref="bus" method="newUserOperationLogOnSuccess"/>
+            <aop:after-throwing pointcut-ref="bus" method="newUserOperationLogOnError" throwing="ex"/> 
+             
+            <aop:pointcut id="crudableRestful" expression="execution(* org.hy.itdc.common.ws.restful.*.*(..))" />
+            <aop:after-returning pointcut-ref="crudableRestful" method="newUserOperationLogOnSuccess"/>
+            <aop:after-throwing pointcut-ref="crudableRestful" method="newUserOperationLogOnError" throwing="ex"/>
+            
+            <aop:pointcut id="authentication" expression="execution(* org.hy.itdc.security.common.ItdcDaoAuthenticationProvider.authenticate(..))" />
+            <aop:after-returning pointcut-ref="authentication" method="newUserOperationLogOnAuthenticateSuccess"/>
+            <aop:after-throwing pointcut-ref="authentication" method="newUserOperationLogOnAuthenticateError" throwing="ex"/>
+        </aop:aspect>
+	</aop:config>
+-->
+</beans>

@@ -1,0 +1,208 @@
+﻿@{
+    ViewBag.Title = "全部订单";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var data1 = [];
+        var count = 1;
+        $(function () {
+            $("td button").click(function () {
+                Msg.show("取消中...", 3);
+                var id = $(this).attr("id");
+                $.post("/DLWXSite/DLGoods/DLDelCustomerOrder?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&id=" + id, function (data) {
+                    Msg.hide();
+                    var rst = eval("(" + data + ")");
+                    if (rst[0].Result == "True") {
+                        $("." + id).remove();
+                        Msg.show(rst[0].Message, 0);
+                    }
+                    else {
+                        Msg.show(rst[0].Message, 1);
+                    }
+                });
+            })
+        })
+
+    </script>
+    <style type="text/css">
+      
+    </style>
+}
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active" style="width: 50%;"><a href="#fetch" role="tab" data-toggle="tab">待确定</a></li>
+    <li style="width: 50%;"><a href="#over" role="tab" data-toggle="tab">已结束</a></li>
+</ul>
+<div class="tab-content">
+
+    <div class="tab-pane active" id="fetch">
+        <ul style="padding: 0; margin-bottom: 52px">
+            @foreach (System.Data.DataRow dr in ViewBag.NeedTitle)
+            {
+                if (dr["ID"] != "")
+                {
+                <li class="@dr["ID"]";style="border: 1px solid #e8e1e1; padding: 5px; margin-top: 5px">
+
+                    <div>
+                        <span style="font-weight: bold; font-size: 14px; font-family: 'Microsoft YaHei'">订单号:@dr["Code"]</span><br />
+                        <span>取货店铺:@dr["DEPT_Name"]</span><br />
+                        <span>取货时间:@dr["DeliveryDate"]</span>
+                    </div>
+
+                    <div class="split"></div>
+                    <ul style="padding: 0;">
+                        @foreach (System.Data.DataRow dr2 in ViewBag.Need)
+                        {
+                            if (dr2["ID"].ToString() == dr["ID"].ToString())
+                            {
+                            <li>
+                                <table class="cart">
+                                    <tr>
+                                        <td class="smallImg" rowspan="3">
+                                            <img style="width: 100%" src="http://122.225.19.188:8090@{@dr2["STYL_PicturePath"].ToString().Split(',')[0].ToString()}" onerror="this.src='/Areas/NPaia/Resources/images/Goods/error.gif';"/>
+                                        </td>
+                                        <td>
+                                            <span class="sku" style="display: none;">@dr2["STL2_ID"]</span>
+                                            <span>@dr2["STYL_Name"]</span>|<span>@dr2["STYL_Code"]</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>@float.Parse(dr2["Number"].ToString()).ToString("0") 件</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>@dr2["STL2_Color"]</span>|<span>@dr2["STL2_Size"]</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span style="color: red;" class="sellprice">@float.Parse(dr2["SellPrice"].ToString()).ToString("0.00")</span>/<span style="text-decoration: line-through;" class="price">@float.Parse(dr2["Price"].ToString()).ToString("0.00")</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="count" colspan="2" style="text-align: right;">
+                                            <span>共 <span class="number">@float.Parse(dr2["Number"].ToString()).ToString("0")</span> 件 小计 <span class="amount">@dr2["subAmount"]</span></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                            }
+                        }
+                    </ul>
+                    <div class="split"></div>
+                    <div style="text-align: right; padding: 10px 20px;">
+                        合计：@dr["Amount"]
+                    </div>
+                    <div class="split"></div>
+
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <button id="@dr["ID"]" type="button" class="btn btn-default" style="width: 100%;">取消订单</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <div class="tab-pane" id="over">
+        <ul style="padding: 0;">
+            @foreach (System.Data.DataRow dr in ViewBag.Over)
+            {
+                if (dr["ID"] != "")
+                {
+                <li>
+                    <div class="input-group ">
+                        <span class="input-group-addon">订单号</span>
+                        <input type="text" class="form-control" value="@dr["Code"]" readonly="">
+                    </div>
+                    <br />
+                    <div class="input-group ">
+                        <span class="input-group-addon">取货店铺</span>
+                        <input type="text" class="form-control" value="@dr["DEPT_Name"]" readonly="">
+                        <span class="input-group-addon" onclick="showDepotDetail(this,'@dr["ID"]')"><i class="depot icon-double-angle-down"></i></span>
+                    </div>
+                    <div style="display:none;text-align: left;padding: 10px 10px 0px;" id="@dr["ID"]" class="cusHideDepotArea">
+                        <div><i class="icon-home"></i>@dr["DEPT_Address"]</div>
+                        <div><i class="icon-phone"></i><a href="tel:@dr["DEPT_Phone"]">@dr["DEPT_Phone"]</a>(店铺)</div>
+                        <div><i class="icon-phone-sign"></i><a href="tel:4008881273">4008881273</a>(投诉)</div>
+                    </div>
+                    <br />
+                    <div class="input-group ">
+                        <span class="input-group-addon">取货时间</span>
+                        <input type="text" class="form-control" value="@dr["DeliveryDate"]" readonly="">
+                    </div>
+                    <div class="split"></div>
+                    <ul style="padding: 0;">
+                        @foreach (System.Data.DataRow dr2 in ViewBag.Over)
+                        {
+                            if (dr2["ID"].ToString() == dr["ID"].ToString())
+                            {
+                            <li>
+                                <table class="cart">
+                                    <tr>
+                                        <td class="smallImg" rowspan="3">
+                                            <img style="width: 100%" src="http://122.225.19.188:8090@{@dr2["STYL_PicturePath"].ToString().Split(',')[0].ToString()}" onerror="this.src='/Areas/NPaia/Resources/images/Goods/error.gif';"/>
+                                        </td>
+                                        <td>
+                                            <span class="sku" style="display: none;">@dr2["STL2_ID"]</span>
+                                            <span>@dr2["STYL_Name"]</span>|<span>@dr2["STYL_Code"]</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>@float.Parse(dr2["Number"].ToString()).ToString("0") 件</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>@dr2["STL2_Color"]</span>|<span>@dr2["STL2_Size"]</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span style="color: red;" class="sellprice">@float.Parse(dr2["SellPrice"].ToString()).ToString("0.00")</span>/<span style="text-decoration: line-through;" class="price">@float.Parse(dr2["Price"].ToString()).ToString("0.00")</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="count" colspan="2" style="text-align: right;">
+                                            <span>共 <span class="number">@float.Parse(dr2["Number"].ToString()).ToString("0")</span> 件 小计 <span class="amount">@dr2["subAmount"]</span></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                            }
+                        }
+                    </ul>
+                    <div class="split"></div>
+                    <div style="text-align: right; padding: 10px 20px;">
+                        合计：@dr["Amount"]
+                    </div>
+                    <div class="split"></div>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    //显示店铺信息
+    function showDepotDetail(ths, id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            $(ths).children().removeClass("icon-double-angle-up");
+            $(ths).children().addClass("icon-double-angle-down");
+            return;
+        }
+
+        $(".cusHideDepotArea").hide();
+        $(".depot").removeClass("icon-double-angle-up");
+        $(".depot").addClass("icon-double-angle-down");
+
+        $(ths).children().removeClass("icon-double-angle-down");
+        $(ths).children().addClass("icon-double-angle-up");
+
+        $("#" + id).show();
+    }
+
+</script>

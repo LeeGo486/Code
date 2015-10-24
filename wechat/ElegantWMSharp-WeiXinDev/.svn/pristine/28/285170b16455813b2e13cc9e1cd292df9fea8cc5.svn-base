@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "用户领奖界面";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            $("#Bg img").load(function () {
+                var bgHeight = $("#Bg").height();
+                $("#btn").css("top", bgHeight * 0.9);
+            });
+
+            $("#btnSubmit").click(function () {
+                window.location.href = "/Game/PachiraMacrocarpa/psInfo?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            });
+        })
+
+    </script>
+    <style type="text/css">
+        #Bg img {
+            width: 100%;
+        }
+
+        #btn {
+            position: absolute;
+            left: 36%;
+            z-index: 1;
+        }
+    </style>
+}
+
+@*<div style="margin-bottom: 0px;position:static">
+    <button id="btnSubmit" type="button" class="btn btn-primary" style="width: 50%; height: 30px; " data-loading-text="请稍后...">登录</button>
+</div>*@
+
+<div id="Bg">
+    <img src="/Areas/Game/Resources/images/PachiraMacrocarpa/@ViewBag.Info[0].AwardName" />
+</div>
+
+<div id="btn">
+    <button id="btnSubmit" type="button" class="btn btn-primary" style="width: 100%; height: 30px; text-align: center">填写联系方式</button>
+</div>

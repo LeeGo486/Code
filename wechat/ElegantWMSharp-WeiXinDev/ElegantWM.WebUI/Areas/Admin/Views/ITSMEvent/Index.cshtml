@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "事件管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <script src="~/Scripts/SoundManager/soundmanager2-jsmin.js"></script>
+    <script type="text/javascript">
+        soundManager.setup({
+            url: '/Scripts/SoundManager/swf/',
+            debugMode: false,
+            useConsole: false,
+            onready: function () {
+                var mySound = soundManager.createSound({
+                    id: 'newmsg',
+                    url: '/Scripts/SoundManager/videos/msg.wav',
+                    autoPlay: false
+                });
+            }
+        });
+        var intervalCount = 0;
+        var runnerTask;
+        var reqManStatic = "";
+    </script>
+    <script src="~/Application/ITSMEvent/app.js"></script>
+}

@@ -1,0 +1,93 @@
+body{
+	scrollbar-face-color:#FFEFEF;
+	scrollbar-shadow-color:#FFFFFF;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-3dlight-color:#E2E2E2;
+	scrollbar-darkshadow-color:#EEEDED;
+	scrollbar-track-color:#F0F0F0;
+	scrollbar-arrow-color:#4B4B4B;
+	overflow:auto;
+	/*background-color:#DECBBD;*/
+}
+form{
+    margin:0;
+	padding:0;
+} 
+a:link {color: #000000;text-decoration: none;}
+a:visited {color: #000000;text-decoration: none;}
+a:hover {color: #ff0000;text-decoration: none;}
+
+/*index_top*/
+.index_top{font-size: 12px;
+           color: #373737;
+		   font-family: Tahoma;}
+/*Tindex_head*/		 
+.index_head{font-size: 12px;
+           color: #373737;
+		   font-family: Tahoma;}
+/*mainleft*/
+.mainleftf1{font-size: 12px;
+           color: #373737;
+		   font-family: Tahoma;}	
+.tbmainleft1{border-top:1pt solid #000000;border-bottom:1pt solid #000000;}
+
+.tcontent{
+	font-size: 16px;
+	border: 1px solid #CECECE;
+	background-color: #D6CBBD;
+}
+.tbg{
+	font-size: 16px;
+	background-color: #DECBBD;
+}
+.tbgbklight{
+	font-size: 12px;
+	background-color: #F7F3E7;
+	border: 1px solid #9C8E84;
+}
+
+.editbox{
+    BACKGROUND-COLOR: #FFFFFF; 
+    BORDER-BOTTOM: 1px solid; 
+    BORDER-LEFT: 1px solid; 
+	BORDER-RIGHT: 1px solid; 
+	BORDER-TOP: 1px solid; 
+	FONT-SIZE: 9pt;
+}
+
+.login{
+	width:500px;
+    height:;
+    MARGIN-RIGHT: auto;
+    MARGIN-LEFT: auto;
+}
+
+b.rtop, b.rbottom{display:block;background: #4A4139;}
+b.rtop b, b.rbottom b{display:block;height: 1px;
+    overflow: hidden; background: #DECBBD;}
+b.r1{margin: 0 5px}
+b.r2{margin: 0 3px}
+b.r3{margin: 0 2px}
+b.rtop b.r4, b.rbottom b.r4{margin: 0 1px;height: 2px}
+.button {
+	font-family: "ºÚÌå";
+	font-size: 16px;
+	color: #5A4D42;
+	width:100px;
+	height:30px;
+	background-color: #EFDFCE;
+	border: 2px solid #94827B;
+	cursor:hand;
+	font-weight: lighter;
+}
+.button1 {
+	font-family: "ºÚÌå";
+	font-size: 16px;
+	color: #5A4D42;
+	width:100px;
+	height:30px;
+	background-color: #F7F3E7;
+	border: 1px solid #94827B;
+	cursor:hand;
+	font-weight: lighter;
+}

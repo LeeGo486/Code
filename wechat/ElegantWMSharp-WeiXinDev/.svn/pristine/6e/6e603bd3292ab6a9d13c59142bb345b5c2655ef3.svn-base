@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "同意交付";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/Rating/bootstrap-rating-input.min.js"></script>
+    <script src="~/Areas/IT/Resources/jquery.ajaxupload.js"></script>
+    <script>
+        
+        $(function () {
+            $(".rating-input").addClass("input-group-addon").attr("style", "border-left:1px solid #ccc;width:100%");
+
+            var orderCode = Url.get("orderCode");
+            if (orderCode == undefined || orderCode == "" ) {
+                Msg.show("非法请求", 1)
+                return;
+            }
+            
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题,890】【订单号," + orderCode
+                + "】【用户,@ViewBag.UserName】");
+            Msg.show("请稍候...", 3);
+            $.post(url, function (data) {
+                Msg.hide();
+                $("#rstRequestMsg p").append("<br />" + data);
+                if (data.indexOf("错误") > -1) {
+                    $("#rstRequestMsg p").attr("style", "text-align:center;color:#F00");
+                }
+                else {
+                    $("#rstRequestMsg p").attr("style", "text-align:center;color:#66CC33;");
+                }
+            })
+        }); 
+
+    </script>
+
+}
+
+<div id="rstRequestMsg" class="mainArea" style="min-height:0px;">
+    <p><i class="icon-info-sign icon-4x"></i></p>
+    <br />
+    非常感谢您进行需求交付，在您测试完成以后，您可以进入<a href="/IT/DC/MyStaff?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->我的评价”</a>中进行评价。
+    <br />
+    也可以进入<a href="/IT/DC/MyRequest?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->我的请求”</a>，查看与您相关的请求。
+    <br />
+    有任何问题，请联系我们的销售经理 <a href="tel:18905736555"><i class="glyphicon glyphicon-earphone"></i>宋凯</a>。
+
+</div>

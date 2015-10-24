@@ -1,0 +1,47 @@
+谢晔( 2015-03-19 09:40:11 )：
+xm1P5ZNcTs
+谢晔( 2015-03-19 09:40:23 )：
+192.168.0.11
+
+
+
+SELECT * FROM [B02_BILL].[PO1_PODeposit]  
+WHERE po1_puno='2111254' and PO1_PNLI=50 and PO1_PNLS=0 and po1_itno='G14IMS251OB'
+
+SELECT * FROM M02_BPM.FC0_FlowControl where FC0_FlowID='FBI_002'
+
+EXEC [API_FBI].[GetFlowControl] 'AML','DB','RS','【操作类型,GET】【实体,上一流程节点】【返回内容,必填】【《W》集团,100】【《W》流程编号,FBI_002】【《W》流程节点编号,32】'
+
+
+
+外网接口域名
+http://wsrr.hwayifashiongroup.com:9090
+122.225.19.188:9090
+
+短信接口
+发送手机验证码
+<Interface WSID="5a7b9005-f3a3-4543-b7b2-3adb705220d2" App="COMMONINTERFACE"  SessionID="">
+<XML><ROOT><OPTYPE>GetAuthCode</OPTYPE><LIST><ROW>
+<AuthType>signup</AuthType>
+<Phone>13736814324</Phone>
+<System>POS</System>
+<Com>1</Com>
+</ROW></LIST></ROOT></XML></Interface>
+
+验证手机验证码			 
+<Interface WSID="5a7b9005-f3a3-4543-b7b2-3adb705220d2" App="COMMONINTERFACE"  SessionID="">
+<XML><ROOT><OPTYPE>CheckAuthCode</OPTYPE><LIST><ROW>
+<Phone>13736814324</Phone>
+<AuthCode>8827</AuthCode>
+</ROW></LIST></ROOT></XML></Interface>
+
+小翅膀发送接口
+<Interface WSID="5a7b9005-f3a3-4543-b7b2-3adb705220d2" App="COMMONINTERFACE"  SessionID="">
+<XML><ROOT><OPTYPE>SendAM</OPTYPE><LIST><ROW>
+<System>System</System>
+<Receiver>郭琦琦</Receiver>
+<Sender>信息部服务中心</Sender>
+<Content>gqqtest</Content>
+<Com>1</Com>
+</ROW></LIST></ROOT></XML></Interface>
+

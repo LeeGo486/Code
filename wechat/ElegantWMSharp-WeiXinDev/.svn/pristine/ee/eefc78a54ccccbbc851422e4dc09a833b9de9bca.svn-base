@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.NpaiaBrandInformation>
+
+@{
+    ViewBag.Title = "NewActivities";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+<div id="NewActivitiesList" class="mainArea">
+    <ul class="list-group">
+        @foreach (ElegantWM.EntityModel.NpaiaBrandInformation sss in Model)
+        {
+            <li class="list-group-item">@sss.Content </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,74 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //目标比比看
+        $('#allgoal').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '目标比比看',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['徐艳琼', '陈慧珊', '黄秋娜', '陈小芳'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '1月份目标',
+                color: '#4F94CD',
+                data: [5500, 5300, 5000, 4800]
+            }]
+        });
+    });
+</script>
+
+<div class="ht" id="sallgoal">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;目标比比看
+    <span onclick="$('#sallgoalarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="allgoal" style="margin:30px 0px 36px 0px;"></div>
+</div>

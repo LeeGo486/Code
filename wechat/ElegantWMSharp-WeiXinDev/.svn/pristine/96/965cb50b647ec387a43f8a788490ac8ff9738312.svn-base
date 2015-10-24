@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "工程师排班";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+
+}
+<div id="optArea" class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-search"></i>&nbsp;排班查询 </span></h4>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">指定日期</span>
+        <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" placeholder="点击选择日期" readonly="true" id="txtOrderRespDate">
+    </div>
+    <h4><span><i class="glyphicon glyphicon-calendar"></i>&nbsp;当天工程师排班 </span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">事件经理<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;蒋国贤</span></li>
+        <li class="list-group-item">华之毅园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;祝加中</span></li>
+        <li class="list-group-item">雅莹商业园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;王樑</span></li>
+        <li class="list-group-item">时尚园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;严伟</span></li>
+        <li class="list-group-item">终端店铺<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;邱益汇</span><span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;孙玉龙</span></li>
+    </ul>
+    <h4><span><i class="glyphicon glyphicon-calendar"></i>&nbsp;当周工程师排班 </span></h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">&nbsp;&nbsp;<i class="glyphicon glyphicon-pushpin"></i>&nbsp;星期一</div>
+        <ul class="list-group">
+            <li class="list-group-item">事件经理<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;蒋国贤</span></li>
+            <li class="list-group-item">华之毅园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;祝加中</span></li>
+            <li class="list-group-item">雅莹商业园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;王樑</span></li>
+            <li class="list-group-item">时尚园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;严伟</span></li>
+            <li class="list-group-item">终端店铺<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;邱益汇</span><span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;孙玉龙</span></li>
+        </ul>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">&nbsp;&nbsp;<i class="glyphicon glyphicon-pushpin"></i>&nbsp;星期二</div>
+        <ul class="list-group">
+            <li class="list-group-item">事件经理<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;蒋国贤</span></li>
+            <li class="list-group-item">华之毅园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;祝加中</span></li>
+            <li class="list-group-item">雅莹商业园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;王樑</span></li>
+            <li class="list-group-item">时尚园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;严伟</span></li>
+            <li class="list-group-item">终端店铺<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;邱益汇</span><span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;孙玉龙</span></li>
+        </ul>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">&nbsp;&nbsp;<i class="glyphicon glyphicon-pushpin"></i>&nbsp;星期三</div>
+        <ul class="list-group">
+            <li class="list-group-item">事件经理<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;蒋国贤</span></li>
+            <li class="list-group-item">华之毅园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;祝加中</span></li>
+            <li class="list-group-item">雅莹商业园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;王樑</span></li>
+            <li class="list-group-item">时尚园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;严伟</span></li>
+            <li class="list-group-item">终端店铺<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;邱益汇</span><span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;孙玉龙</span></li>
+        </ul>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">&nbsp;&nbsp;<i class="glyphicon glyphicon-pushpin"></i>&nbsp;星期四</div>
+        <ul class="list-group">
+            <li class="list-group-item">事件经理<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;蒋国贤</span></li>
+            <li class="list-group-item">华之毅园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;祝加中</span></li>
+            <li class="list-group-item">雅莹商业园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;王樑</span></li>
+            <li class="list-group-item">时尚园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;严伟</span></li>
+            <li class="list-group-item">终端店铺<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;邱益汇</span><span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;孙玉龙</span></li>
+        </ul>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">&nbsp;&nbsp;<i class="glyphicon glyphicon-pushpin"></i>&nbsp;星期五</div>
+        <ul class="list-group">
+            <li class="list-group-item">事件经理<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;蒋国贤</span></li>
+            <li class="list-group-item">华之毅园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;祝加中</span></li>
+            <li class="list-group-item">雅莹商业园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;王樑</span></li>
+            <li class="list-group-item">时尚园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;严伟</span></li>
+            <li class="list-group-item">终端店铺<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;邱益汇</span><span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;孙玉龙</span></li>
+        </ul>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">&nbsp;&nbsp;<i class="glyphicon glyphicon-pushpin"></i>&nbsp;星期六</div>
+        <ul class="list-group">
+            <li class="list-group-item">事件经理<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;蒋国贤</span></li>
+            <li class="list-group-item">华之毅园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;祝加中</span></li>
+            <li class="list-group-item">雅莹商业园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;王樑</span></li>
+            <li class="list-group-item">时尚园区<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;严伟</span></li>
+            <li class="list-group-item">终端店铺<span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;邱益汇</span><span class="badge pull-right ls"><i class="glyphicon glyphicon-earphone"></i>&nbsp;孙玉龙</span></li>
+        </ul>
+    </div>
+</div>

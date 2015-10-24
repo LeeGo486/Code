@@ -1,0 +1,619 @@
+﻿
+<script type="text/javascript">
+    var GV = {
+        Detail: null,
+        Fruit: null, //下拉结果
+        Type: null,
+        Role: null,  //角色
+        Depotid: null,
+        UserID: null,
+        Date: null
+    };
+    $(function () {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'today month,basicWeek'
+            },
+            monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+            dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+            today: ["今天"],
+            firstDay: 1,
+            buttonText: {
+                today: '今天',
+                month: '月',
+                week: '周',
+                //day: '日'
+            },
+            titleFormat: {
+                month: 'MMMM',
+                week: "MMMM",
+                //day: 'MMMM'
+            },
+            weekMode: "liquid",
+            //-----
+            events: function (start, end, timezone, callback) {
+                Msg.show("玩命加载中", 3);
+                $.ajax({
+                    url: "/S3/CMTFeedBack/Get?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&start=" + start.format("YYYY-MM-DD") + "&end=" + end.format("YYYY-MM-DD") + "&strRole=" + Url.get("role"),
+                    type: "post",
+
+                    success: function (data) {
+                        Msg.hide();
+
+                        var doc = eval('(' + data + ')');
+                        //角色
+                        GV.Role = doc.Role;
+                        //店铺ID
+                        GV.Depotid = doc.DepotID;
+                        //用户ID
+                        GV.UserID = doc.UserID;
+
+                        //任务事件
+                        var events = [];
+                 
+                        for (i = 0; i < doc.data.length; i++) {
+                            
+                            var date = new Date(doc.data[i].DATES);
+                           
+                            //计划
+                            events.push({
+                                //title: 'Plan',
+                                planNums: doc.data[i].PlanNums,
+                                realPlanNums: doc.data[i].RealReservationNums,
+                                start: doc.data[i].DATES, // will be parsed
+                                Type: 'Plan'
+                            });
+                            
+                            //到店
+                            events.push({
+                                //title: 'Arrive',
+                                arriveNums: doc.data[i].ArriveNums,
+                                realArriveNums: doc.data[i].RealArriveNums,
+                                start: doc.data[i].DATES, // will be parsed
+                                Type: 'Arrive'
+                            });
+                        };
+                        
+                        callback(events);
+                    }
+                });
+            },
+           
+            dayClick: function (date, allDay, jsEvent, view) {
+                return;
+                $.post("/S3/CMTFeedBack/TaskDeail", function (data) {
+                    $("#TaskDetail").append(data);
+                    scrollTo($("#TaskDetail")); //定位
+                });
+                //loadDetail(date.format("YYYY-MM-DD"));
+            },
+            eventClick: function (event) {
+                var date = event.start.format("YYYY-MM-DD");
+                var data = null;
+                if (event.Type == "Plan") { //计划
+                    data = { "type": "Plan", "nums": event.planNums, "date": date };
+                    GV.Type = null;
+                }
+                else {                    //到店
+                    data = { "type": "Arrive", "nums": event.arriveNums, "date": date };
+                    GV.Type = event.Type;
+                };
+                showDetail(data);
+              
+            },
+            loading: function (bool) {
+                if (bool) $('#loading').show();
+                else $('#loading').hide();
+            },
+            eventMouseover: function (calEvent, jsEvent, view) {
+                $(this).attr('title', calEvent.EventDay);
+                $(this).css('font-weight', 'normal');
+                $(this).tooltip({
+                    effect: 'toggle',
+                    cancelDefault: true
+                });
+            },
+            eventMouseout: function (calEvent, jsEvent, view) {
+                $(this).css('font-weight', 'normal');
+            },
+            eventAfterRender: function (event, element, view) {
+                
+                var confbg = '';
+                var confbg = confbg + '<span class="fc-event-bg"></span>';
+                var titlebg = '<span class="fc-event-conf"></span>';
+
+                if (view.name == "month") {
+                    var evtcontent = '';
+                    if (event.Type == "Plan") {
+                        evtcontent = '<div class="fc-event-vert" style="background: #D96B27;padding:2px;">';
+                    }
+                    else {
+                        evtcontent = '<div class="fc-event-vert" style="background: #4181BB;padding:2px;">';
+                    }
+                    evtcontent = evtcontent + confbg;
+                    if (event.Type == "Plan") {
+                        evtcontent = evtcontent + '<span style="color:#fff;">' + event.planNums + '/' + event.realPlanNums + '</span>';
+                    }
+                    else {
+                        evtcontent = evtcontent + '<span style="color:#fff; ">' + event.arriveNums +'/'+ event.realArriveNums + '</span>';
+                    };
+                    evtcontent = evtcontent + '<div class="ui-resizable-handle ui-resizable-e"></div></div>';
+                    element.html(evtcontent);
+                    
+                } else if (view.name == "basicWeek") {
+                    var evtcontent = '';
+                    if (event.Type == "Plan") {
+                        evtcontent = '<div class="fc-event-vert" style="background: #D96B27;">';
+                    }
+                    else {
+                        evtcontent = '<div class="fc-event-vert" style="background: #4181BB;">';
+                    }
+                    evtcontent = evtcontent + confbg;
+                    if (event.Type == "Plan") {
+                        evtcontent = evtcontent + '<span><span style="color:#FFF;">预约:' + event.planNums + '</span></span></br>';
+                        evtcontent = evtcontent + '<span><span style="color:#FFF;">答复:' + event.realPlanNums + '</span></span>';
+                    }
+                    else {
+                        evtcontent = evtcontent + '<span><span style="color:#FFF;">应邀:' + event.arriveNums + '</span></span><br />';
+                        evtcontent = evtcontent + '<span><span style="color:#FFF;">到店:' + event.realArriveNums + '</span></span>';
+                    }
+                    evtcontent = evtcontent + '<div class="ui-resizable-handle ui-resizable-e"></div></div>';
+                    element.html(evtcontent);
+                    if (event.Type == "Plan") {
+                        element.css("top", "41px");
+                    } else {
+                        element.css("top", "81px");
+                    }
+                } else if (view.name == "basicDay") {
+                    //var evtcontent = '<div class="fc-event-vert">';
+                    //evtcontent = evtcontent + confbg;
+                    //evtcontent = evtcontent + '<span class="fc-event-titlebg">' + titlebg + '</span></br></br>';
+                    //evtcontent = evtcontent + '<span>目标: ' + event.global + '</span></br>';
+                    //evtcontent = evtcontent + '<span>预约: <span style="color:#4181BB;">' + event.plan + '</span></span></br>';
+                    //evtcontent = evtcontent + '<span>应邀: <span style="color:#D96B27;">' + event.respond + '</span></span></br>';
+                    //evtcontent = evtcontent + '<span>到店: <span style="color:#7030A0;">' + event.fact + '</span></span></br>';
+                    //evtcontent = evtcontent + '<span>购买: <span style="color:#00A44A;">' + event.buy + '</span></br>';
+                    //evtcontent = evtcontent + '<span>金额: ' + event.price + '</span></br>';
+                    //evtcontent = evtcontent + '<div class="ui-resizable-handle ui-resizable-e"></div></div>';
+                    //element.html(evtcontent);
+                }
+            
+            }
+        });
+        //开启后默认按周显示，关闭默认按月显示
+        $('#calendar').fullCalendar('changeView', "basicWeek");
+    });
+
+    //任务明细
+    function showDetail(data) {
+        
+        var nums = data.nums;
+        GV.Type = data.type;
+        GV.Date = data.date;
+
+        //数量为0，返回
+        if (nums == "0") return;
+
+        var para = {};
+
+        //（计划or到店）
+        para.Type = GV.Type;
+        //点击的日期
+        para.Date = GV.Date;
+        //(导购or店长)
+        para.Role = GV.Role;
+        //用户ID
+        para.UserID = GV.UserID;
+
+
+        //判断用户角色
+        if (GV.Role != null && GV.Role == "店长") {
+            para.DepotID = GV.Depotid;
+            Msg.show("玩命加载中...", 3);
+            $.post("/S3/CMTFeedBack/SellerList", para, function (data) {
+                Msg.hide();
+                
+                data = eval('(' + data + ')');
+
+                var list = "<br /><div id = \"seller\" class=\"input-group\">";
+                list += "<span class=\"input-group-addon\" style=\"background-color:#fff\">导购</span>";
+                list += "<select class=\"form-control\" id=\"sellerSelect\" onchange=change(this.value)>";
+                list += "<option value=\"\" selected = \"selected\" ></option>";
+                list += "<option value=\"" + para.DepotID + "\">全部</option>";
+                
+
+                for (i=0;i<data.length;i++){
+                    list += "<option value=\"" + data[i].employeeid + "\">" + data[i].names + "</option>";
+                };
+                list +="</select></div><br /><div id=\"bbb\"></div>";
+                $("#TaskDetail").html(list);
+                scrollTo($("#TaskDetail")); //定位
+            });
+        }
+        else if (GV.Role != null && GV.Role == "导购") {
+            //导购无需店铺ID
+            para.DepotID = "";
+
+            Msg.show("玩命加载中...", 3);
+            $.post("/S3/CMTFeedBack/GetTaskDetail", para, function (data) {
+
+                Msg.hide();
+                data = eval('(' + data + ')');
+                GV.Detail = data.Detail;
+                var ulHtml = "";
+                //表头循环
+                for (i = 0; i < data.ThemeName.length; i++) {
+
+                    var ulHead = data.ThemeName[i].ThemeName;
+                    var liHtml = "";
+
+                    //预约状态
+                    var status = "";
+
+                    //是否到店
+                    var IsArrival = "";
+
+                    //预约结果
+                    var appointmentResult = "";
+                       
+
+                    //明细循环
+                    for (j = 0; j < data.Detail.length; j++) {
+
+                        var ulDeail = data.Detail[j].ThemeName;
+                        if (ulHead == ulDeail) {
+
+                            status = data.Detail[j].Status;
+                            IsArrival = data.Detail[j].IsArrival;
+                            appointmentResult =  data.Detail[j].AppointmentResult;
+
+                            liHtml += "<li class=\"list-group-item\">";
+                            liHtml += "<span class=\"icon-user\">&nbsp;&nbsp;" + data.Detail[j].CUSNAME + "</span>&nbsp;&nbsp;&nbsp;&nbsp;";
+                            //电话
+                            liHtml += "<span><a href=\"tel:" + data.Detail[j].MobileNum + "\"><i class=\"icon-phone\"></i></a></span>&nbsp;&nbsp;&nbsp;&nbsp;";
+                            //短信
+                            liHtml += "<span><a href=\"sms:" + data.Detail[j].MobileNum + "\"><i class=\"icon-envelope\"></i></a></span>";
+                            //状态
+                            liHtml += "<span id=\"zt" + data.Detail[j].CUSID + "\" class=\"badge pull-right ls\">" + status + "</span>";
+
+                            if (data.Detail[j].IsArrival != "NULL") {
+                                liHtml += "<span id=\"dd" + data.Detail[j].CUSID + "\" class=\"badge pull-right hs\">已到店</span></br>";
+                            } else {
+                                liHtml += "<span id=\"dd" + data.Detail[j].CUSID + "\" class=\"badge pull-right hs\">未到店</span></br>";
+                            };
+
+                            //客户经理
+                            liHtml += "<span>客户经理:" + data.Detail[j].CustomerManager + "</span></br>";
+
+                            //预约结果
+                            if (appointmentResult == "NULL") {
+                                //liHtml += "<div class=\"optarea\" style=\"margin-top:4px;\"><span class=\"btnarea\" onclick=\"cusinfo('" + data.Detail[j].CUSID + "')\"></div>";
+                                //liHtml += "</li>";
+                                //liHtml += "<div id = \"show" + data.Detail[j].CUSID + "\" class=\"cusHideCdArea\" style=\"display:none\"></div>";
+                                //continue;
+                            }
+                            else {
+                                liHtml += "<span>预约结果:" + appointmentResult + "</span></br>";
+                            };
+
+                            //应邀时间
+                            if (data.Detail[j].InvitationDate != "NULL") {
+                                liHtml += "<span>应邀日期:" + data.Detail[j].InvitationDate + "</span></br>";
+                            };
+                            //是否有价值
+                            if (data.Detail[j].ValueInformation != "NULL") {
+                                liHtml += "<span>是否有价值:" + data.Detail[j].ValueInformation + "</span></br>";
+                            };
+                            //价值信息
+                            if (data.Detail[j].Feedback != "NULL") {
+                                liHtml += "<span>价值信息:" + data.Detail[j].Feedback + "</span></br>";
+                            };
+                            //拒绝原因
+                            if (data.Detail[j].RefuseReason != "NULL") {
+                                liHtml += "<span>拒绝原因:" + data.Detail[j].RefuseReason + "</span></br>";
+                            };
+                            //再次预约时间
+                            if ((data.Detail[j].ReservationDateAgain != "NULL") && (data.Detail[j].ReservationDateAgain != "1900-01-01")) {
+                                liHtml += "<span>再约日期:" + data.Detail[j].ReservationDateAgain + "</span>";
+                            };
+                            //是否到店
+                            if (data.Detail[j].IsArrival != "NULL") {
+                                liHtml += "<span>是否到店:" + data.Detail[j].IsArrival + "</span><br />";
+                            };
+                            //到店日期
+                            if (data.Detail[j].ArrivalDate != "NULL") {
+                                liHtml += "<span>到店时间:" + data.Detail[j].ArrivalDate + "</span><br />";
+                            };
+                            //是否购买
+                            if (data.Detail[j].IsBuy != "NULL") {
+                                liHtml += "<span>是否购买:" + data.Detail[j].IsBuy + "</span><br />";
+                            };
+                            //备注信息
+                            if (data.Detail[j].Remark != "NULL") {
+                                liHtml += "<span>备注:" + data.Detail[j].Remark + "</span><br />";
+                            };
+
+                            liHtml += "<div class=\"optarea\" style=\"margin-top:4px;\"><span class=\"btnarea\" onclick=\"cusinfo('" + data.Detail[j].CUSID + "')\"><i class=\"icon-user\"></i>&nbsp;&nbsp;客户信息</span>&nbsp;&nbsp";
+                            if (status == "未预约") {
+                                liHtml += "<span id=\"taskFB" + data.Detail[j].CUSID + "\" class=\"btnarea\" onclick=\"taskFB('" + data.Detail[j].CUSID + "')\"><i class=\"icon-pencil\"></i>&nbsp;&nbsp;预约汇报</span></div>"
+                            };
+                            //GV.Type 事件类型
+                            if (GV.Type != null && status == "已预约" && IsArrival == "NULL" && appointmentResult != "拒绝") {
+                                liHtml += "<span id=\"taskArrival" + data.Detail[j].CUSID + "\" class=\"btnarea\" onclick=\"taskArrival('" + data.Detail[j].CUSID + "')\"><i class=\"icon-pencil\"></i>&nbsp;&nbsp;到店汇报</span></div>"
+                            };
+                            liHtml += "</li>";
+                            liHtml += "<div id = \"show" + data.Detail[j].CUSID + "\" class=\"cusHideCdArea\" style=\"display:none\"></div>";
+                        } else if (ulHead != ulDeail) {
+                            continue;//跳过一个迭代
+                        };
+                    };
+                    ulHtml += "<ul class=\"dataDetail\"><h4 style=\"color:#FFCC66\">" + ulHead + "</h4>" + liHtml + "</ul>";
+                };
+
+                $("#TaskDetail").html(ulHtml);
+                scrollTo($("#TaskDetail")); //定位
+            });
+        };
+    }
+
+    //取客户信息
+    function cusinfo(id) {
+        Msg.show("玩命加载中", 3);
+        $.post("/S3/CMTFeedBack/CustomerInfo?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&CusID=" + id, function (data) {
+            Msg.hide();
+            var $div_display = $("#show" + id);
+            //所有div隐藏
+            $("ul div[class=\"cusHideCdArea\"]").attr("style", "display:none");
+            $div_display.attr("style", "display:visible");
+            $div_display.html(data);
+            scrollTo($div_display);//定位
+            $(".icon-double-angle-up").click(function () {
+                $div_display.attr("style", "display:none");
+            });
+        });
+    }
+
+    //任务反馈
+    function taskFB(id) {
+
+        //取该任务下所有相关信息
+        var data = GV.Detail;
+        
+        //预约结果&ID
+        var FBType,TaskID
+
+        for (i = 0; i < data.length; i++) {
+            if (data[i].CUSID == id) {
+                FBType = data[i].TaskTypeName;
+                TaskID = data[i].ID;
+                break;
+            };
+        };
+
+        //转换反馈类型
+        if (FBType == "销售预约" || FBType == "活动预约" || FBType == "生日预约")
+        {
+            FBType = "销售反馈";
+        } else if (FBType == "客户关怀") {
+            FBType = "关怀反馈";
+        };
+
+        //判断预约类型
+        if (typeof FBType == undefined) {
+            return;
+        };
+        Msg.show("玩命加载中", 3);
+        $.post("/S3/CMTFeedBack/TaskFeedBack?where=" + FBType + "&taskID=" + TaskID + "&CUSID=" + id, function (data) {
+            Msg.hide();
+            var $Task_show = $("#show" + id);
+            $("ul div[class=\"cusHideCdArea\"]").attr("style", "display:none");
+            $Task_show.attr("style", "display:visible");
+            $Task_show.html(data);
+            scrollTo($Task_show);//定位
+            //alert(data);
+            //GV.Fruit = data;
+            //post("/S3/CMTFeedBack/TaskFeedBack?strComb="+ data, function (data) {
+
+            //})
+        });
+        
+    }
+
+    //到店反馈
+    function taskArrival(id) {
+        //取该任务下所有相关信息
+        var data = GV.Detail;
+
+        //预约结果&ID
+        var TaskID;
+
+        for (i = 0; i < data.length; i++) {
+            if (data[i].CUSID == id) {
+                TaskID = data[i].ID;
+                break;
+            };
+        };
+        Msg.show("玩命加载中", 3);
+        $.post("/S3/CMTFeedBack/TaksFeedArrival?taskID=" + TaskID + "&CUSID=" + id, function (data) {
+            Msg.hide();
+            var $Task_show = $("#show" + id);
+            $("ul div[class=\"cusHideCdArea\"]").attr("style", "display:none");
+            $Task_show.attr("style", "display:visible");
+            $Task_show.html(data);
+            scrollTo($Task_show);//定位
+        });
+    }
+
+    //下拉选择
+    function change(v) {
+
+        var checkText = $("#sellerSelect").find("option:selected").text();
+        var checkValue = $("#sellerSelect").val();
+        var para = {};
+
+        //（计划or到店）
+        para.Type = GV.Type;
+        //点击的日期
+        para.Date = GV.Date;
+         
+
+        if (checkText == "全部") {
+            para.Role = "店长";
+            para.DepotID = v;
+            para.UserID = GV.UserID;
+        }
+        else {
+            para.Role = "导购";
+            para.DepotID = "";
+            para.UserID = v;
+        };
+
+        Msg.show("玩命加载中...", 3);
+        $.post("/S3/CMTFeedBack/GetTaskDetail", para, function (data) {
+            Msg.hide();
+            var ulHtml = ""; 
+            
+            data = eval('(' + data + ')');
+            if ($.isEmptyObject(data)) {
+                ulHtml = "<ul class=\"dataDetail\"><h4 style=\"color:#FFCC66\"><h4>无任务</h4></ul>";
+                $("#bbb").html(ulHtml);
+                scrollTo($("#bbb")); //定位
+                return;
+            };
+            GV.Detail = data.Detail;
+            
+            //表头循环
+            for (i = 0; i < data.ThemeName.length; i++) {
+
+                var ulHead = data.ThemeName[i].ThemeName;
+                var liHtml = "";
+
+                //预约状态
+                var status = "";
+
+                //是否到店
+                var IsArrival = "";
+
+                //明细循环
+                for (j = 0; j < data.Detail.length; j++) {
+                    var ulDeail = data.Detail[j].ThemeName;
+                    if (ulHead == ulDeail) {
+
+                        status = data.Detail[j].Status;
+                        IsArrival = data.Detail[j].IsArrival;
+
+                        liHtml += "<li class=\"list-group-item\">";
+                        liHtml += "<span class=\"icon-user\">&nbsp;&nbsp;" + data.Detail[j].CUSNAME + "</span>&nbsp;&nbsp;&nbsp;&nbsp;";
+                        
+                        //店长只联系自己的客户
+                        if (checkText != "全部" && checkValue == GV.UserID) {
+                            //电话
+                            liHtml += "<span><a href=\"tel:" + data.Detail[j].MobileNum + "\"><i class=\"icon-phone\"></i></a></span>&nbsp;&nbsp;&nbsp;&nbsp;";
+                            //短信
+                            liHtml += "<span><a href=\"sms:" + data.Detail[j].MobileNum + "\"><i class=\"icon-envelope\"></i></a></span>";
+                        };
+
+                        //状态
+                        liHtml += "<span id=\"zt" + data.Detail[j].CUSID + "\" class=\"badge pull-right ls\">" + status + "</span>";
+
+                        if (data.Detail[j].IsArrival != "NULL") {
+                            liHtml += "<span id=\"dd" + data.Detail[j].CUSID + "\" class=\"badge pull-right hs\">已到店</span></br>";
+                        } else {
+                            liHtml += "<span id=\"dd" + data.Detail[j].CUSID + "\" class=\"badge pull-right hs\">未到店</span></br>";
+                        };
+
+                        //客户经理
+                        liHtml += "<span>客户经理:" + data.Detail[j].CustomerManager + "</span></br>";
+
+                        //预约结果
+                        if (data.Detail[j].AppointmentResult == "NULL") {
+                            //liHtml += "<div class=\"optarea\" style=\"margin-top:4px;\"><span class=\"btnarea\" onclick=\"cusinfo('" + data.Detail[j].CUSID + "')\"></div>";
+                            //liHtml += "</li>";
+                            //liHtml += "<div id = \"show" + data.Detail[j].CUSID + "\" class=\"cusHideCdArea\" style=\"display:none\"></div>";
+                            //continue;
+                        }
+                        else {
+                            liHtml += "<span>预约结果:" + data.Detail[j].AppointmentResult + "</span></br>";
+                        };
+
+                        //应邀时间
+                        if (data.Detail[j].InvitationDate != "NULL") {
+                            liHtml += "<span>应邀日期:" + data.Detail[j].InvitationDate + "</span></br>";
+                        };
+                        //是否有价值
+                        if (data.Detail[j].ValueInformation != "NULL") {
+                            liHtml += "<span>是否有价值:" + data.Detail[j].ValueInformation + "</span></br>";
+                        };
+                        //价值信息
+                        if (data.Detail[j].Feedback != "NULL") {
+                            liHtml += "<span>价值信息:" + data.Detail[j].Feedback + "</span></br>";
+                        };
+                        //拒绝原因
+                        if (data.Detail[j].RefuseReason != "NULL") {
+                            liHtml += "<span>拒绝原因:" + data.Detail[j].RefuseReason + "</span></br>";
+                        };
+                        //再次预约时间
+                        if ((data.Detail[j].ReservationDateAgain != "NULL") && (data.Detail[j].ReservationDateAgain != "1900-01-01")) {
+                            liHtml += "<span>再约日期:" + data.Detail[j].ReservationDateAgain + "</span>";
+                        };
+                        //是否到店
+                        if (data.Detail[j].IsArrival != "NULL") {
+                            liHtml += "<span>是否到店:" + data.Detail[j].IsArrival + "</span><br />";
+                        };
+                        //到店日期
+                        if (data.Detail[j].ArrivalDate != "NULL") {
+                            liHtml += "<span>到店时间:" + data.Detail[j].ArrivalDate + "</span><br />";
+                        };
+                        //是否购买
+                        if (data.Detail[j].IsBuy != "NULL") {
+                            liHtml += "<span>是否购买:" + data.Detail[j].IsBuy + "</span><br />";
+                        };
+                        //备注信息
+                        if (data.Detail[j].Remark != "NULL") {
+                            liHtml += "<span>备注:" + data.Detail[j].Remark + "</span><br />";
+                        };
+                        //店长只联系自己的客户
+                        if (checkText != "全部" && checkValue == GV.UserID) {
+                            liHtml += "<div class=\"optarea\" style=\"margin-top:4px;\"><span class=\"btnarea\" onclick=\"cusinfo('" + data.Detail[j].CUSID + "')\"><i class=\"icon-user\"></i>&nbsp;&nbsp;客户信息</span>&nbsp;&nbsp";
+                            if (status == "未预约") {
+                                liHtml += "<span id=\"taskFB" + data.Detail[j].CUSID + "\" class=\"btnarea\" onclick=\"taskFB('" + data.Detail[j].CUSID + "')\"><i class=\"icon-pencil\"></i>&nbsp;&nbsp;预约汇报</span></div>"
+                            };
+                            //GV.Type 事件类型
+                            if (GV.Type != null && status == "已预约" && IsArrival == "NULL") {
+                                liHtml += "<span id=\"taskArrival" + data.Detail[j].CUSID + "\" class=\"btnarea\" onclick=\"taskArrival('" + data.Detail[j].CUSID + "')\"><i class=\"icon-pencil\"></i>&nbsp;&nbsp;到店汇报</span></div>"
+                            };
+                        };
+                        liHtml += "</li>";
+                        liHtml += "<div id = \"show" + data.Detail[j].CUSID + "\" class=\"cusHideCdArea\" style=\"display:none\"></div>";
+                    } else if (ulHead != ulDeail) {
+                        continue;//跳过一个迭代
+                    };
+                };
+                ulHtml += "<ul class=\"dataDetail\"><h4 style=\"color:#FFCC66\">" + ulHead + "</h4>" + liHtml + "</ul>";
+            };
+
+            $("#bbb").html(ulHtml);
+            scrollTo($("#bbb")); //定位
+        })
+    
+    }
+</script>
+<div class="dataDetail">
+    <div id="calendar"></div> 
+    <div style="margin-top:10px;">
+        <span>
+            <span style="background-color:#D96B27;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>预约人数</span>
+        </span>
+        <span>
+            <span style="background-color:#4181BB;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            到店人数
+        </span>
+    </div>
+</div>
+
+<div id="TaskDetail"></div>

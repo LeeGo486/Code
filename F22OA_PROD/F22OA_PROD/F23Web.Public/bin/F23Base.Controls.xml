@@ -1,0 +1,926 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>F23Base.Controls</name>
+    </assembly>
+    <members>
+        <member name="T:F23Base.Controls.TextBoxSelector">
+            <summary>
+            文本框选择器，用于选店铺
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.TextBoxSelector.DefaultValue">
+            <summary>
+            默认值
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.StateSelector">
+            <summary>
+            状态选择器
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.StateSelector.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.StateSelector.DefaultValue">
+            <summary>
+            默认状态
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.StateSelector.Callback">
+            <summary>
+            默认状态
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.EditorTypeEntity">
+            <summary>
+            编辑器枚举
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.EditorTypeEntity.None">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.EditorTypeEntity.Numeric">
+            <summary>
+            数值
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.EditorTypeEntity.Integer">
+            <summary>
+            整数
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.EditorTypeEntity.Text">
+            <summary>
+            文本
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.EditorTypeEntity.Select">
+            <summary>
+            多选
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.EditorTypeEntity.Textarea">
+            <summary>
+            文本块
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.EditorTypeEntity.Date">
+            <summary>
+            日期
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.SortTypeEntity">
+            <summary>
+            字段类型枚举 
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.SortTypeEntity.String">
+            <summary>
+            字符型
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.SortTypeEntity.Date">
+            <summary>
+            日期型
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.SortTypeEntity.Numeric">
+            <summary>
+            数值型
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.GridControlColumnEditor">
+            <summary>
+            Button Editor
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumnEditor.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumnEditor.CanSelectMultipleInstances">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumnEditor.CreateNewItemTypes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumnEditor.CreateInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:F23Base.Controls.DatePicker">
+            <summary>
+            日期控件
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.DatePicker.OnLoad(System.EventArgs)">
+            <summary>
+            控件加载
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:F23Base.Controls.DatePicker.RegisterScripts">
+            <summary>
+            注册JS脚本到页面
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.DatePicker.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:F23Base.Controls.DatePicker.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.Width">
+            <summary>
+            宽度
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.Value">
+            <summary>
+            默认开始日期
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.Enabled">
+            <summary>
+            是否可用
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.AddDays">
+            <summary>
+            在“Value”的基础上增加的天数，可以为负数
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.TEXT_PREV_YEAR">
+            <summary>
+            上一年
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.TEXT_PREV_MONTH">
+            <summary>
+            上个月
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.TEXT_NEXT_YEAR">
+            <summary>
+            下一年
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.TEXT_NEXT_MONTH">
+            <summary>
+            下个月
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.TEXT_CLOSE">
+            <summary>
+            关闭
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.TEXT_CHOOSE_DATE">
+            <summary>
+            选择日期
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.DateFormat">
+            <summary>
+            下个月
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.StartDate">
+            <summary>
+            开始日期
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.EndDate">
+            <summary>
+            结束日期
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.DateChanged">
+            <summary>
+            日期更改后
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.DateSelected">
+            <summary>
+            日期选中后
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.DatePicker.inline">
+            <summary>
+            默认显示
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.AjaxTreeView">
+            <summary>
+            树型
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeView.url">
+            <summary>
+            Url for child nodes retrieving.
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeView.cbiconpath">
+            <summary>
+            Checkbox image path
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeView.data">
+            <summary>
+            init data
+            http://www.web-delicious.com/jquery-plugins-demo/wdTree/docs/index.htm
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeView.showcheck">
+            <summary>
+            Whether to show check box or not. 
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeView.onnodeclick">
+            <summary>
+            onnodeclick(  tree,  item)
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeView.oncheckboxclick">
+            <summary>
+            oncheckboxclick(tree,  item,  status)
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeView.theme">
+            <summary>
+            Tree theme. Three themes provided. 'bbit-tree-lines' ,'bbit-tree-no-lines' and 'bbit-tree-arrows'.
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.AjaxTreeView.OnLoad(System.EventArgs)">
+            <summary>
+            onload
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:F23Base.Controls.AjaxTreeView.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            RenderBeginTag
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:F23Base.Controls.AjaxTreeView.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            RenderEndTag
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:F23Base.Controls.AjaxTreeView.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            输出HTML
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="P:F23Base.Controls.AjaxTreeView.clicktoggle">
+            <summary>
+            Whether to toggle node when node clicked.
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.AjaxTreeView.cascadecheck">
+            <summary>
+            Whether node being seleted leads to parent/sub node being selected
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.AjaxTreeViewTheme">
+            <summary>
+            形式样式主题 
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeViewTheme.Lines">
+            <summary>
+            线条
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeViewTheme.NoLines">
+            <summary>
+            无线条
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.AjaxTreeViewTheme.Arrows">
+            <summary>
+            箭头
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.MultiSelector.url">
+            <summary>
+            AJAX数据源
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.MultiSelector.data">
+            <summary>
+            传入参数
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.MultiSelector.callback">
+            <summary>
+            提交事件
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.MultiSelector.OnLoad(System.EventArgs)">
+            <summary>
+            onload
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:F23Base.Controls.MultiSelector.iRowHeight">
+            <summary>
+            行高
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.MultiSelector.iDisplayLength">
+            <summary>
+            可视范围行数
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.GridControlRowStateEditor">
+            <summary>
+            Button Editor
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControlRowStateEditor.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:F23Base.Controls.GridControlRowStateEditor.CanSelectMultipleInstances">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.GridControlRowStateEditor.CreateNewItemTypes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.GridControlRowStateEditor.CreateInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:F23Base.Controls.SelectItemEditor">
+            <summary>
+            Button Editor
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.SelectItemEditor.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:F23Base.Controls.SelectItemEditor.CanSelectMultipleInstances">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.SelectItemEditor.CreateNewItemTypes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.SelectItemEditor.CreateInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="F:F23Base.Controls.RowSelectTypeEntity.None">
+            <summary>
+            不使用行选择
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.RowSelectTypeEntity.Single">
+            <summary>
+            单选
+            </summary>
+        </member>
+        <member name="F:F23Base.Controls.RowSelectTypeEntity.Multiple">
+            <summary>
+            多选
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.ButtonItemEditor">
+            <summary>
+            Button Editor
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.ButtonItemEditor.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:F23Base.Controls.ButtonItemEditor.CanSelectMultipleInstances">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.ButtonItemEditor.CreateNewItemTypes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.ButtonItemEditor.CreateInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:F23Base.Controls.GridControlRowStateCollection">
+            <summary>
+            Row Status
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.GridControlColumn">
+            <summary>
+            Column
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumn.#ctor">
+            <summary>
+            重构
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumn.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            重构
+            </summary>
+            <param name="ColumnName"></param>
+            <param name="Caption"></param>
+            <param name="_width"></param>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.SummaryType">
+            <summary>
+            合计方式
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.SummaryFormatter">
+            <summary>
+            合计行单元格显示格式
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.ColumnName">
+            <summary>
+            列字段名
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.Caption">
+            <summary>
+            列名
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.Width">
+            <summary>
+            列宽度
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.Visibled">
+            <summary>
+            是否可见
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.Searchable">
+            <summary>
+            可用于全局查找
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.Sortable">
+            <summary>
+            允许排序
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.CssClass">
+            <summary>
+            列样式
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.Render">
+            <summary>
+            渲染器
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.GroupName">
+            <summary>
+            多抬头组名，多级的按“,”号分开。\n多抬头不能是单独一列（已知BUG）
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.EditorType">
+            <summary>
+            编辑器
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.Validator">
+            <summary>
+            格式化
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControlColumn.SortType">
+            <summary>
+            列数据排序类型
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.SelectBox.DefaultValue">
+            <summary>
+            默认状态
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumnCollection.Add(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ColumnName"></param>
+            <param name="Caption"></param>
+            <param name="Width"></param>
+            <param name="GroupName">多抬头名称，以逗号隔开</param>
+        </member>
+        <member name="M:F23Base.Controls.GridControlColumnCollection.IndexOf(System.String)">
+            <summary>
+            取列的序号(index)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.ButtonItem.AddClass(System.String)">
+            <summary>
+            添加样式 
+            </summary>
+            <param name="CssClass"></param>
+        </member>
+        <member name="T:F23Base.Controls.AjaxRepeater">
+            <summary>
+            指定URL，将返回数据根据ItemTemplete模板输出内容;
+            具体模板转换的功能可以参见 http://wiki.github.com/nje/jquery-tmpl/simple-examples;
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.AjaxRepeater.OnInit(System.EventArgs)">
+            <summary>
+            OnInit
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:F23Base.Controls.AjaxRepeater.OnLoad(System.EventArgs)">
+            <summary>
+            onload
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:F23Base.Controls.AjaxRepeater.RegisterJavascript">
+            <summary>
+            注册JS脚本
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.AjaxRepeater.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            RenderBeginTag
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:F23Base.Controls.AjaxRepeater.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            RenderEndTag
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:F23Base.Controls.AjaxRepeater.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="P:F23Base.Controls.AjaxRepeater.AjaxSource">
+            <summary>
+            AJAX's URL
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.AjaxRepeater.AjaxParams">
+            <summary>
+            AJAX's POST Data
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.AjaxRepeater.contentType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.AjaxRepeater.Callback">
+            <summary>
+            AJAX's Callback Event(function)
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.AjaxRepeater.Template">
+            <summary>
+            Item Template
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.ControlHelper.RegisterCssFile(System.Type,System.String,System.String)">
+            <summary>
+            注册CSS文件 
+            </summary>
+            <param name="key"></param>
+            <param name="url"></param>
+        </member>
+        <member name="M:F23Base.Controls.ControlHelper.RegisterJavaScript(System.Type,System.String,System.String)">
+            <summary>
+            注册JS脚本
+            </summary>
+            <param name="key"></param>
+            <param name="url"></param>
+        </member>
+        <member name="M:F23Base.Controls.ControlHelper.RegisterJSFile(System.Type,System.String,System.String)">
+            <summary>
+            注册JS文件 
+            </summary>
+            <param name="type"></param>
+            <param name="key"></param>
+            <param name="url"></param>
+        </member>
+        <member name="M:F23Base.Controls.ControlHelper.GetWebResourceUrl(System.Type,System.String)">
+            <summary>
+            取得资源文件URL
+            </summary>
+            <param name="type"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.ControlHelper.GetAbsolutePath(System.String)">
+            <summary>
+            获取URL的绝对路径
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="T:F23Base.Controls.StateItemEditor">
+            <summary>
+            Button Editor
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.StateItemEditor.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:F23Base.Controls.StateItemEditor.CanSelectMultipleInstances">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.StateItemEditor.CreateNewItemTypes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Controls.StateItemEditor.CreateInstance(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:F23Base.Controls.GridControl">
+            <summary>
+            GridControl
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControl.DataBind">
+            <summary>
+            数据绑定
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControl.RegisterScripts">
+            <summary>
+            注册JS脚本
+            </summary>
+        </member>
+        <member name="M:F23Base.Controls.GridControl.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            渲染表格内容
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:F23Base.Controls.GridControl.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            渲染结束 
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AjaxSource">
+            <summary>
+            AJAX源
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AjaxParams">
+            <summary>
+            AJAX参数
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AjaxComplete">
+            <summary>
+            AJAX加载完毕
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.ServerData">
+            <summary>
+            AJAX数据源
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AutoLoad">
+            <summary>
+            是否自动加载
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.DrawCallback">
+            <summary>
+            Grid绘制结束
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.InitComplete">
+            <summary>
+            初始化结束
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.Toolbar">
+            <summary>
+            内嵌工具栏ClientID
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.DataSource">
+            <summary>
+            指定DataSource
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.BottomHeight">
+            <summary>
+            底部的高度，通常需要在grid下面放置其它元素时设置
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.IsBaseTable">
+            <summary>
+            注：此项用于仅需要显示表格内容的页面，如打印格式等
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.ServerSide">
+            <summary>
+            AJAX服务端操作
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.ShowFooter">
+            <summary>
+            显示合计行
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.StateSave">
+            <summary>
+            记住排序状态等
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.DisplayLength">
+            <summary>
+            每页显示记录数
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.HightLight">
+            <summary>
+            行移入移出时高光显示
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AllowFilter">
+            <summary>
+            是否显示过滤器
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AllowPaginate">
+            <summary>
+            是否显示分页
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AllowLengthChange">
+            <summary>
+            是否允许更改页码
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AllowSort">
+            <summary>
+            是否排序
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.DisplayInfo">
+            <summary>
+            是否显示记录信息
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.AllowEdit">
+            <summary>
+            是否允许编辑，此处设置将影响所有列的编辑权
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.RowSelectType">
+            <summary>
+            行的选择方式：单选或多选
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.OnRowSelected">
+            <summary>
+            行选中后执行的事件! 当行选中时触发.
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.OnRowDoubleClick">
+            <summary>
+            行双击事件!
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.ColumnDefs">
+            <summary>
+            行默认设置(数组)
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.SortingFixed">
+            <summary>
+            固定排序(数组)
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.Sorting">
+            <summary>
+            默认排序(数组)
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.columns">
+            <summary>
+            列集合
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.states">
+            <summary>
+            行状态
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.rows">
+            <summary>
+            行
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.CssClass">
+            <summary>
+            样式 
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.InnerWidth">
+            <summary>
+            内宽
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.Height">
+            <summary>
+            表格高度
+            </summary>
+        </member>
+        <member name="P:F23Base.Controls.GridControl.Width">
+            <summary>
+            表格宽度
+            </summary>
+        </member>
+        <member name="T:F23Base.Controls.GridControlRowState">
+            <summary>
+            Row Status
+            </summary>
+        </member>
+    </members>
+</doc>

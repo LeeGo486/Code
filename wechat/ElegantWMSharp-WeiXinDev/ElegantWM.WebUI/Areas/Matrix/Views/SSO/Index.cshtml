@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript">
+        function stringFormat() {
+            if (arguments.length == 0)
+                return null;
+            var str = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+                str = str.replace(re, arguments[i]);
+            }
+            return str;
+        }
+
+        $(function () {
+            /**********校验表单信息***********/
+            $("#signupForm").validate({
+                rules: {
+                    "txtPhone": {
+                        required: true,
+                        isMobile: true,
+                        rangelength: [11, 11]
+                    },
+                    "txtPwd": {
+                        required: true,
+                        rangelength: [6, 16]
+                    },
+                },
+                messages: {
+                    "txtPhone": {
+                        required: "请输入电话号码",
+                        rangelength: "请输入11位电话号码"
+                    },
+                    "txtPwd": {
+                        required: "请输入密码",
+                        rangelength: "请输入6-16位密码"
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent().next());
+                }
+            });
+
+            // 手机号码验证       
+            jQuery.validator.addMethod("isMobile", function (value, element) {
+                var length = value.length;
+                var mobile = /^1[34587]\d{9}$/;
+                return this.optional(element) || (length == 11 && mobile.test(value));
+            }, "请填写正确的手机号码");
+
+            /**********注册***********/
+            $("#btnRegister").click(function () {
+                window.location.href = "/Matrix/SSO/Register";
+            });
+
+            /**********登录***********/
+            $("#btnLogin").click(function () {
+                if (!$("#signupForm").valid()) {
+                    Msg.show("请按要求填写信息", 1);
+                    return;
+                }
+
+                var LoginUser = $("#txtPhone").val();
+                var Pwd = $("#txtPwd").val();
+            });
+
+        });
+
+    </script>
+}
+
+<div id="optArea" class="mainArea">
+    <form id="signupForm">
+
+        <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;登录 </span></h4>
+
+        <div class="input-group" style="margin-bottom: 10px;">
+            <span class="input-group-addon">手机号码</span>
+            <input id="txtPhone" name="txtPhone" type="text" class="form-control" style="ime-mode: disabled" autocomplete="off" maxlength="11" placeholder="请填写手机号码。">
+        </div>
+        <div style="color: red;"></div>
+
+        <div class="input-group" style="margin-bottom: 10px;">
+            <span class="input-group-addon">密&emsp;&emsp;码</span>
+            <input id="txtPwd" name="txtPwd" type="password" class="form-control" maxlength="16" placeholder="6~16个字符，包含字母和数字。">
+        </div>
+        <div style="color: red;"></div>
+
+        <div style="text-align: right;">
+            <span style="text-align: right;"><a style="text-decoration:none" href="/Matrix/SSO/RetakePassword">忘记密码了，通过手机自助找回密码?</a></span>
+        </div>
+
+        <div id="opt">
+
+            <button id="btnLogin" type="button" class="btn btn-success" style="width: 49%; margin-top: 20px;" data-loading-text="请稍候...">登录</button>
+            <button id="btnRegister" type="button" class="btn btn-default" style="width: 49%; margin-top: 20px;" data-loading-text="请稍候...">注册</button>
+
+        </div>
+    </form>
+
+</div>
+
+<div id="rstMsg" class="mainArea" style="min-height: 0px; display: none;">
+    <p style="text-align: center; color: #66CC33;"><i class="icon-info-sign icon-4x"></i></p>
+    <br />
+    SSO账号登录成功。
+</div>
+
+
+
+

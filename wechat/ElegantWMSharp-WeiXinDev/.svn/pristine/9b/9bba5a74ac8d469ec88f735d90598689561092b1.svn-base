@@ -1,0 +1,143 @@
+﻿<script src="~/Scripts/Rating/bootstrap-rating-input.min.js"></script>
+<script>
+    var m_UserName = "";
+    var orderCode = "";
+    $(function () {
+        $(".rating-input").addClass("input-group-addon").attr("style", "border-left:1px solid #ccc;width:100%");
+
+        orderCode = '@Request["OrderCode"]';
+        //console.log(Url.get("orderCode"));
+        if (orderCode == undefined || orderCode == "") {
+            Msg.show("orderCode非法请求", 1)
+            return;
+        }
+
+        $.post("/IT/Request/GetUserName?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+            m_UserName = data;
+        });
+
+    });
+
+    function calcAvgScore() {
+        var rat1 = parseInt($("#txtRat1").val()) + 6;
+        var rat2 = parseInt($("#txtRat2").val()) + 6;
+        var rat3 = parseInt($("#txtRat3").val()) + 6;
+        var rat4 = parseInt($("#txtRat4").val()) + 6;
+        var avgRat = 0;
+
+        if (isNaN(rat1) || isNaN(rat2) || isNaN(rat3)) { return; }
+
+        if ('@Request["SurveyType"]' == "Customer") {
+            if (isNaN(rat4)) { return; }
+            else {
+                avgRat = ((rat1 + rat2 + rat3 + rat4) / 4).toFixed(1);
+            }
+        }
+        else {
+            avgRat = ((rat1 + rat2 + rat3) / 3).toFixed(1);
+        }
+        // alert(avgRat);
+        $("#txtRatAvg")[0].innerHTML =avgRat + "分" ;
+
+    }
+</script>
+
+
+@{
+    string rat1 = "", rat2 = "", rat3 = "", rat4 = "", strSurveyType = "";
+    string surveyType = Request["surveyType"];
+    switch (surveyType)
+    {
+        case "Customer":   //客户评价
+            strSurveyType = "客户评价";
+            rat1 = "及时交付";
+            rat2 = "功能达成";
+            rat3 = "用户体验";
+            rat4 = "服务态度";
+            break;
+        case "AgreeDelivery":
+            strSurveyType = "同意交付";
+            break;
+        case "Project":   //项目评价
+            strSurveyType = "项目评价";
+            rat1 = "执行评分";
+            rat2 = "计划评分";
+            rat3 = "目标评分";
+            break;
+        case "Sales":   //销售评价
+            strSurveyType = "销售评价";
+            rat1 = "用户反馈";
+            rat2 = "报价合理";
+            rat3 = "成本合理";
+            break;
+        case "PM":   //PM评价
+            strSurveyType = "PM评价";
+            rat1 = "符合方案";
+            rat2 = "技术可靠";
+            rat3 = "运行效率";
+            break;
+        case "Specs":   //规范评价
+            strSurveyType = "规范评价";
+            rat1 = "代码规范";
+            rat2 = "文档规范";
+            rat3 = "代码结构";
+            break;
+        case "Operation":   //运维评价
+            strSurveyType = "运维评价";
+            rat1 = "部署文档";
+            rat2 = "可配置性";
+            rat3 = "上线培训";
+            break;
+        case "Technology":   //技术评价
+            strSurveyType = "技术评价";
+            rat1 = "代码质量";
+            rat2 = "运行效率";
+            rat3 = "稳&nbsp;&nbsp;健&nbsp;&nbsp;度";
+            break;
+    }
+}
+
+<div class="mainArea" style="min-height: 0px;" id="divInput">
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">@(new HtmlString(rat1))</span>
+        <input type="number" id="txtRat1" class="rating" data-max="4" style="" onchange="calcAvgScore()" />
+    </div>
+
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">@(new HtmlString(rat2))</span>
+        <input type="number" id="txtRat2" class="rating" data-max="4" style="" onchange="calcAvgScore()" />
+    </div>
+
+
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">@(new HtmlString(rat3))</span>
+        <input type="number" id="txtRat3" class="rating" data-max="4" style="" onchange="calcAvgScore()" />
+    </div>
+
+    @if (surveyType == "Customer")
+    {
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">@(new HtmlString(rat4))</span>
+            <input type="number" id="txtRat4" class="rating" data-max="4" style="" onchange="calcAvgScore();" />
+        </div>
+    }
+
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">评价内容</span>
+        <textarea id="txtOrderDesc" class="form-control" placeholder="请输入@(strSurveyType)信息..." style="height: 120px"></textarea>
+
+    </div>
+
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">评价得分</span>
+        <span class="form-control" id="txtRatAvg" style="color:red"> </span>
+    </div>
+
+    <button type="button" class="btn btn-success" style="width: 49%; margin-top: 30px;" data-loading-text="提交评价"
+        id="btnSubmit" onclick="submit('@strSurveyType')">
+        提交评价</button>
+
+    <button type="button" class="btn btn-default" style="width: 49%; margin-top: 30px;" data-loading-text="下次评价"
+        id="btnNextSubmit" onclick="noSubmitStaff();">
+        下次评价</button>
+</div>

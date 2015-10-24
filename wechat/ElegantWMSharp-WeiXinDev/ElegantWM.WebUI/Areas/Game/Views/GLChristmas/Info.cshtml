@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "雅斓魔法圣诞季";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        document.getElementById("audio").play();
+    })
+
+    WeixinApi.ready(function (Api) {
+        // 微信分享的数据
+        var url = "http://it.hwafashion.com/Game/GLChristmas/Share?sid=FF25138F-08F0-49C8-8768-83EFADDB2618&lid=" + Url.get("oid");
+
+        var wxData = {
+            "appId": "", // 服务号可以填写appId
+            "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/GLChristmas/icon.png',
+            "link": url,
+            "desc": "开启属于我的雅斓魔法圣诞寻宝之旅",
+            "title": "雅斓魔法圣诞季"
+        };
+
+        // 分享的回调
+        var wxCallbacks = {
+
+        };
+
+        // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+        Api.shareToFriend(wxData, wxCallbacks);
+
+        // 点击分享到朋友圈，会执行下面这个代码
+        Api.shareToTimeline(wxData, wxCallbacks);
+    });
+</script>
+
+<audio id="audio" autoplay="" loop="" src="~/Areas/Game/Resources/MP3/JingleBellRock.mp3"></audio>
+<img id="pause" src="~/Areas/Game/Resources/images/GLChristmas/pause.png" style="width:10%;position:fixed;left:85%;display:none;z-index: 9;top: 5%;"/>
+<img id="play" src="~/Areas/Game/Resources/images/GLChristmas/play.png" style="width:10%;position:fixed;left:85%;z-index: 9;top: 5%;"/>
+<div class="section" style="width:100%;position:relative;">
+    <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/bg1.jpg" style="width:100%;"/>
+    <img src="~/Areas/Game/Resources/images/GLChristmas/name.png" style="position:absolute;top: 15%;width:20%;left:10%;"/>
+    <div class="input-group" style="position:absolute;width:80%;left:10%;top:25%;">
+      <input type="text" id="username" class="form-control" value="@ViewBag.Name" style="border-radius: 4px;text-align:center;">
+    </div>
+    <img src="~/Areas/Game/Resources/images/GLChristmas/tel.png" style="position:absolute;top: 35%;width:20%;left:10%;"/>
+    <div class="input-group" style="position:absolute;width:80%;left:10%;top:45%;">
+      <input type="text" id="tel" class="form-control" value="@ViewBag.Tel" style="border-radius: 4px;text-align:center;">
+    </div>
+    <img src="~/Areas/Game/Resources/images/GLChristmas/address.png" style="position:absolute;top: 55%;width:20%;left:10%;"/>
+    <div class="input-group" style="position:absolute;width:80%;left:10%;top:65%;">
+        <textarea class="form-control" id="address" style="border-radius: 4px;"></textarea>
+    </div>
+    <img id="submit" src="~/Areas/Game/Resources/images/GLChristmas/submit.png" style="position:absolute;top: 80%;width:20%;left:40%;"/>
+</div>
+<script type="text/javascript">
+    var flag = false;
+    $("#submit").click(function () {
+        if ($("#username").val() == "") {
+            Msg.show("请输入姓名", 1);
+            return;
+        }
+        if ($("#tel").val() == "") {
+            Msg.show("请输入手机号", 1);
+            return;
+        }
+        if ($("#address").val() == "") {
+            Msg.show("请输入收货地址", 1);
+            return;
+        }
+
+        //构造提交json的格式
+        var paramData = {
+            Oid: Url.get("oid"),
+            Name: $("#username").val(),
+            Tel: $("#tel").val(),
+            Address: $("#address").val()
+        };
+
+        if (flag)
+        {
+            return;
+        } 
+        else {
+            flag = true;
+            Msg.show("提交中...", 3);
+            $.post("/Game/GLChristmas/Submit?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+                
+                if (rst.result == 0) {
+                    setTimeout("goToWinning()", 1000);
+                } else {
+                    flag = false;
+                }
+            });
+        }
+    })
+
+    function goToWinning() {
+        window.location.href = "/Game/GLChristmas/Winning?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    }
+
+    $("#pause").click(function () {
+        document.getElementById("audio").play();
+        $(this).hide()
+        $("#play").show();
+    })
+
+    $("#play").click(function () {
+        document.getElementById("audio").pause();
+        $(this).hide()
+        $("#pause").show();
+    })
+</script>

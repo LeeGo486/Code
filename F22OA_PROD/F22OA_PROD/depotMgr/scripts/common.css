@@ -1,0 +1,68 @@
+﻿body
+{
+	font-size:12px;margin:20px 0;
+}
+#depotinfomenu{
+/*background:url(images/d_labelbackground.gif) repeat-x;*/
+height:30px;
+overflow:hidden;
+border:none;
+border-bottom:solid 1px #15428b;
+}
+#depotinfomenu ul{
+margin:0;padding:0;
+list-style:none;
+height:30px;
+}
+#depotinfomenu ul li{
+margin:0 0 0 5px;padding:0;
+list-style:none;
+height:30px;
+width:95px;
+overflow:hidden;
+clear:right;
+float:left;
+text-align:center;
+}
+#depotinfomenu ul li a{
+display:block;
+line-height:34px;
+height:30px;
+font-weight:bold;
+text-decoration:none;
+color:#000;
+background:#f3f3f3;
+}
+#depotinfomenu ul li a:hover{
+color:#15428b;
+}
+#depotinfomenu ul li a.mthis{
+/*background:url(images/d_label.gif) no-repeat;*/
+width:95px;
+background:#15428b;
+color:#fff;
+}
+dt{
+margin:10px 20px;
+font-weight:bold;
+font-size:14px;
+color:#15428b
+}
+td{
+line-height:20px;
+font-family:arial;
+}
+h2{
+font-family:'宋体'}
+a{ text-decoration:none;color:#1e4176;font-size:12px;}
+a:hover{ text-decoration:underline;}
+.datalist
+{
+}
+.datalist div
+{
+	clear:right;float:left;
+	overflow:hidden;
+	height:20px;
+	text-align:center;
+}

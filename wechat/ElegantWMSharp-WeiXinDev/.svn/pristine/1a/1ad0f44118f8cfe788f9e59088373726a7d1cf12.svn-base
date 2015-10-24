@@ -1,0 +1,22 @@
+﻿<div class="dataDetail">
+    <div class="input-group ">
+        <span class="input-group-addon">徐艳琼</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">陈慧珊</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">黄秋娜</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">陈小芳</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="doPerformance();">分配</button>
+</div>

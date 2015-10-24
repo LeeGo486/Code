@@ -1,0 +1,228 @@
+<HTML>
+<HEAD>
+<TITLE>插入附件</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<link href="images/css.css" rel="stylesheet" type="text/css">
+<SCRIPT language=JavaScript>
+<!--
+function returnvar ()
+{
+    var image = '';
+    var picture_v = insertpic.uploadpic.name.value;
+    var alt_v = alt.value;
+    var arrange_v = arrange.value;
+    var border_v = border.value;
+    var link_v=link.value;
+    if (border_v == '')
+    {
+        border_v = '0';
+    }
+    var width_v;
+    if (width.value!='')
+    {
+        width_v = '' width=''+width.value;
+    }
+    else
+    {
+        width_v = '';
+    }
+    var height_v;
+    if (height.value!='')
+    {
+        height_v = '' height=''+height.value;
+    }
+    else
+    {
+        height_v = '';
+    }
+    if(picture_v != '')
+    {
+        if (pictype.value == 'pic')
+        {
+            var image = "<img alt=\""+alt_v+"\"  src=\""+picture_v+"\" border="+border_v+" align="+arrange_v+width_v+height_v+">";
+            var link_v = link.value;
+            if (link_v != '' && link_v != 'http:\/\/')
+            {
+                image = "<a href="+link_v+" target=_blank>"+image+"</a>";
+            }
+        }
+        if (pictype.value == 'flash')
+        {
+            var image= '<embed src=''+picture_v+'' loop=false menu=false quality=high '+width_v+''+height_v+' type='application/x-shockwave-flash'></embed>';
+        }
+        if (pictype.value == 'file')
+        {
+            var image = '附件： <a href='+picture_v+'>'+alt_v+'</a>';
+            if(alt.value == "")
+            {
+                alert("\替换文字不可为空!!");
+                return false;
+            }
+        }
+    }
+    else
+    {
+        if(pictype.value == 'video')
+        {
+            if(link.value == 'http://')
+            {
+                alert("\链接地址不可为空!!");
+                return false;
+            }
+            var image='<center><OBJECT ID=video1 CLASSID="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" HEIGHT=288 WIDTH=352><PARAM NAME="controls" VALUE="ImageWindow"><PARAM NAME="console" VALUE="Clip1"><PARAM NAME="autostart" VALUE="true"><PARAM NAME="src" VALUE="'+link_v+'"><EMBED SRC="'+link_v+'" type="audio/x-pn-realaudio-plugin" CONSOLE="Clip1" CONTROLS="ImageWindow" HEIGHT=288 WIDTH=352 AUTOSTART=true></OBJECT><br><OBJECT ID=video1 CLASSID="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" HEIGHT=100 WIDTH=352><PARAM NAME="controls" VALUE="All"><PARAM NAME="console" VALUE="Clip1"><EMBED type="audio/x-pn-realaudio-plugin" CONSOLE="Clip1" CONTROLS="All" HEIGHT=100 WIDTH=352 AUTOSTART=true></OBJECT><p><font size="-1">本网站视频部分需要realoneplayer 播放 若本机上无此软件<a href="ftp://202.204.59.204:2021/incoming/newsoft/__多媒体工具/realoneG/RealOnePlayerV2GOLD.exe">请点击此处下载 </a> </font></p></center>';
+        }
+        else
+        {
+            image = '';
+        }
+    }
+    window.returnValue = image;
+    window.close();
+}
+function ChangePicType (obj)
+{
+    if (obj.options[obj.selectedIndex].value == 'file')
+    {
+        color = '#CCCCCC';
+        insertpic.document.all.upload.disabled = false;
+        insertpic.document.all.preview.disabled = true;
+        insertpic.document.all.upfile.disabled  = false;
+        document.all.alt.disabled     = false;
+        document.all.width.disabled   = true;
+        document.all.height.disabled  = true;
+        document.all.link.disabled    =
+        document.all.arrange.disabled =
+        document.all.border.disabled  = true;
+        document.all.alt.style.backgroundColor     ='#FFFFFF'
+        document.all.link.style.backgroundColor    =
+		document.all.arrange.style.backgroundColor =
+        document.all.border.style.backgroundColor  = color;
+    }
+    else if (obj.options[obj.selectedIndex].value == 'video')
+    {
+        color = '#CCCCCC';
+        insertpic.document.all.upload.disabled  = true;
+        insertpic.document.all.preview.disabled = true;
+        insertpic.document.all.upfile.disabled  = true;
+        document.all.alt.disabled     = true;
+        document.all.link.disabled    = false;
+        document.all.width.disabled   = true;
+        document.all.height.disabled  =
+        document.all.arrange.disabled =
+        document.all.border.disabled  = true;
+        document.all.link.style.backgroundColor    ='#FFFFFF'
+        document.all.alt.style.backgroundColor     =
+        document.all.arrange.style.backgroundColor =
+        document.all.border.style.backgroundColor  = color;
+    }
+    else if (obj.options[obj.selectedIndex].value == 'pic')
+    {
+        color = '#FFFFFF';
+        insertpic.document.all.upload.disabled = false;
+        insertpic.document.all.preview.disabled= false;
+        insertpic.document.all.upfile.disabled = false;
+        document.all.width.disabled   = false;
+		document.all.height.disabled  = false;
+        document.all.alt.disabled     =
+        document.all.link.disabled    = false;
+        document.all.arrange.disabled =
+        document.all.border.disabled  = false;
+        document.all.alt.style.backgroundColor     =
+        document.all.link.style.backgroundColor    =
+        document.all.arrange.style.backgroundColor =
+        document.all.border.style.backgroundColor  = color;
+    }
+    else if (obj.options[obj.selectedIndex].value == 'flash')
+    {
+        color1 = '#cccccc';
+        color2 = '#ffffff'
+        insertpic.document.all.upload.disabled = false
+        insertpic.document.all.preview.disabled = false;
+        insertpic.document.all.upfile.disabled = false;
+        document.all.width.disabled   = false;
+		document.all.height.disabled  = false;
+        document.all.alt.disabled     = true;
+        document.all.link.disabled    = false;
+        document.all.arrange.disabled =
+        document.all.border.disabled  = true;
+        document.all.alt.style.backgroundColor     = color1;
+        document.all.link.style.backgroundColor    = color2;
+        document.all.arrange.style.backgroundColor = color2;
+        document.all.border.style.backgroundColor  = color1;
+    }
+}
+-->
+</SCRIPT>
+<body bgcolor=#f8f8f8 leftmargin=2 topmargin=12 marginheight="2" marginwidth="2">
+<center>
+  <table cellspacing=6 cellpadding=0 width="100%" border=0>
+    <tbody>
+      <tr>
+        <td valign='top'>图片来源:</td>
+        <td colspan="2"><iframe border="0" frameborder="0" framespacing="0" height="55" width="100%" marginheight="0" marginwidth="0" name="insertpic" noresize scrolling="no" src="addpic.aspx" vspale="0"></iframe></td>
+      </tr>
+      <tr>
+        <td>替换文字:</td>
+        <td><input onfocus="this.select();" tabindex=2 size=40 name=alt class="box2"> </td>
+        <td valign=top align=middle rowspan=4> <p>
+            <button onclick="returnvar();" tabindex=6 type=submit  class="btn">确 定</button>
+          </p>
+          <p>
+            <button onclick="window.close();" tabindex=7  class="btn">取 消</button>
+          </p></td>
+      </tr>
+      <tr>
+        <td>链接地址:</td>
+        <td><input onfocus="this.select();" tabindex=3 size=40 value=http:// name=link  class="box2">
+        </td>
+      </tr>
+      <tr>
+        <td>对齐方式:</td>
+        <td> <table cellspacing=0 cellpadding=0 width="100%" border=0>
+            <tbody>
+              <tr>
+                <td width=110><select style="width: 80px" tabindex=4 name=arrange  class="box2">
+                    <option value="">不设置</option>
+                    <option value=left>左齐</option>
+                    <option value=right>右齐</option>
+                    <option value=texttop>文本上方</option>
+                    <option value=absmiddle>正中央</option>
+                    <option value=baseline selected>基线</option>
+                    <option value=absbottom>正下方</option>
+                    <option value=bottom>下方</option>
+                    <option value=middle>中央</option>
+                    <option value=top>上方</option>
+                  </select> </td>
+                <td>类型:
+                  <select tabindex=5 onChange=ChangePicType(this) name=pictype  class="box2">
+                    <option value=pic selected>插入普通图片</option>
+                    <option value=flash>插入flash动画</option>
+                    <option value=file>插入附件</option>
+                    <option value=video>插入视频/音频</option>
+                  </select> </td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td>边框宽度:</td>
+        <td> <table cellspacing=0 cellpadding=0 width="100%" border=0>
+            <tbody>
+              <tr>
+                <td><input style="width: 80px" onfocus=this.select() tabindex=6 value=0 name=border  class="box2">
+                </td>
+                <td>宽度:
+                  <input onfocus=this.select() tabindex=7 size=4 name=width  class="box2">
+                </td>
+                <td>高度:
+                  <input onfocus=this.select() tabindex=7 size=4 name=height  class="box2">
+                </td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+</body>
+</html>

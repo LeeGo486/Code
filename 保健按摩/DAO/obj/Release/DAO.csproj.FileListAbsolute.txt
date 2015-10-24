@@ -1,0 +1,8 @@
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\bin\Release\DAO.dll
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\bin\Release\DAO.pdb
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\bin\Release\EPReper.DBUtility.dll
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\bin\Release\EPReper.Config.dll
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\bin\Release\EPReper.Config.pdb
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\obj\Release\DAO.csprojResolveAssemblyReference.cache
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\obj\Release\DAO.dll
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\DAO\obj\Release\DAO.pdb

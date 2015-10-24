@@ -1,0 +1,23 @@
+﻿@model EPManageWeb.Entities.Models.ClothesPartType
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+@if (Model.Children != null && Model.Children.Count > 0)
+{
+    Model.Children = Model.Children.OrderBy(t => t.Order).ToList();
+    <ul class="nav items sortable">
+        @foreach (var t in Model.Children)
+        {
+            <li data="@t.Id" class="ui-state-default">@t.Name
+                <button data="@t.Id" class="close btnDelClothesPartTypeChild">&times;</button></li>
+        }
+    </ul>
+}
+else
+{
+    <div class="alert">暂时还没有记录</div>
+}
+<input id="newClothesPartType" type="text" class="input-medium search-query">
+<input type="hidden" id="clothesPartTypeId" value="@Model.Id" />
+<button id="btnAddNewClothesPartType" class="btn">添加</button>

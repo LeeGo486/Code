@@ -1,0 +1,31 @@
+\ecside\WebContent\WEB-INF\lib
+
+avalon-framework-4.0.jar		      59,487 
+batik-1.5-fop-0.20-5.jar		   2,111,580 
+commons-beanutils-bean-collections.jar	      25,637 
+commons-beanutils-core.jar		     168,760 
+commons-beanutils.jar			     188,671 
+commons-codec-1.3.jar			      46,725 
+commons-collections-3.2.jar		     571,259 
+commons-digester-1.8.jar		     143,602 
+commons-fileupload-1.2.jar		      53,082 
+commons-lang-2.3.jar			     245,274 
+commons-logging-1.1.jar			      52,915 
+commons-validator-1.3.1.jar		     138,956 
+dom4j-1.6.1.jar				     313,898 
+fop-0.20.5.jar				   1,519,742 
+h2.jar					     999,847
+js.jar					     708,951  
+jstl.jar				      20,682 
+jxl.jar					     704,543 
+simhei.ttf				  10,044,356 
+simhei.xml				     316,522 
+simsun.ttc				  10,500,792 
+simsun.xml				     318,971 
+sitemesh-2.2.1.jar			     133,585 
+spring.jar				   2,680,934 
+standard.jar				     393,259 
+struts.jar				     543,706 
+xalan-2.5.1.jar				   2,907,319 
+xercesImpl-2.6.1.jar			     959,368 
+xml-apis-2.0.2.jar			     109,318 

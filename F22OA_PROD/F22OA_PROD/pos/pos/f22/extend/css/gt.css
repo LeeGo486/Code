@@ -1,0 +1,288 @@
+*{
+	/*
+	font:9pt Verdana,宋体;
+	*/
+	font:9pt 宋体;
+}
+BODY {
+	color:black;
+	background:white;
+	/*
+	scrollbar-face-color:#CCCCCC;
+	scrollbar-shadow-color:#FFFFFF;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-3dlight-color:#6B7A92;
+	scrollbar-darkshadow-color:#6B7A92; 
+	scrollbar-track-color:#E2E2E2;
+	scrollbar-arrow-color:#6B7A92;
+	*/
+	scrollbar-face-color:#E2E2E2;
+	scrollbar-shadow-color:#FFFFFF;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-3dlight-color:#CCCCCC;
+	scrollbar-darkshadow-color:#6B7A92; 
+	scrollbar-track-color:#F0F0F0;
+	scrollbar-arrow-color:#6B7A92;
+	margin:0px;
+	overflow: auto;
+}
+LABEL{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+FORM{
+	margin:0px;
+	display:inline;
+}
+H4{
+	font: 10pt 宋体;
+	color: black;
+	margin:0px;
+	font-weight:bold;
+}
+H3{
+	font: 12pt 宋体;
+	color: black;
+	margin:0px;
+	font-weight:bold;
+}
+H2{
+	font: 14pt 宋体;
+	color: black;
+	margin:0px;
+	font-weight:bold;
+}
+H1{
+	font: 16pt 宋体;
+	color: black;
+	margin:0px;
+	font-weight:bold;
+}
+
+BUTTON{
+	background: #336699;
+	color: white;
+}
+
+.table{
+	border-collapse:collapse; 
+}
+
+.shadow{
+	filter: Shadow(Color=#808080, Direction=135);
+	padding:10px;
+	width:10px;height:10px;
+}
+
+.dialog-body{
+	color:#000000;
+	background: url(/power/img/tc-bg.jpg) repeat;
+}
+
+.select-button{
+	width: 15px;
+	background: url(/power/img/arrow.down.gif) fixed center no-repeat ThreeDFace;
+}
+
+.line-input,.line-input{
+	border: 0px;
+	width: 100%;
+	border-bottom: 1px solid green;
+	background:;
+}
+
+.underline {
+	border: 0px;
+	border-bottom: 1px solid blue;
+	background:;
+}
+
+.line-input1{
+	text-align: center;
+}
+
+.none{
+	display: none;
+}
+
+/************************************
+*                                   *
+* grid table css define             *
+*                                   *
+*************************************/
+.grid-content{
+	position: absolute;
+	overflow: hidden;
+	background:;overflow: auto;
+	/*border-right-width:1px;
+	border-right-color:#333333;*/
+}
+.grid-area{
+	position: absolute;
+	overflow: hidden;
+	background:;
+}
+.grid-table{
+	position: absolute;
+}
+.grid-inner{
+	position: absolute;
+	overflow: hidden;
+	border: gray outset 1px;
+}
+.grid-label{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 14px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.grid-input{
+	position: relative;
+	top: -2px;
+	border: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+.grid-choice-input{
+	position: relative;
+	top: -2px;
+	border: 0px;
+	margin: 0px;
+}
+.grid-choice-button{
+	FONT-SIZE: 1px; 
+	LEFT: 40px; 
+	WIDTH: 16px; 
+	WHITE-SPACE: nowrap; 
+	TOP: 0px; 
+	HEIGHT: 20px;
+}
+.grid-choice-img{
+	VERTICAL-ALIGN: middle; 
+	WIDTH: 7px; 
+	MARGIN-RIGHT: 0px; 
+	HEIGHT: 4px;
+}
+.grid-select{
+	position: relative;
+	top: -2px;
+	border: 0px;
+	margin: 0px;
+}
+.grid-no{
+	position: absolute;
+//	background-color: ThreeDFace;
+	background-color: #FFEFEF;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.grid-top-background{
+}
+.grid-left-background{
+	border: 1px solid;
+	border-width: 0px 1px 0px 0px;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	background-color: #FFEFEF;
+}
+.grid-title{
+//	background-color: ThreeDFace;
+	background-color: #FFEFEF;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 15px;
+	width: 100%;
+}
+.grid-total{
+	background-color: white;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 15px;
+	width: 100%;
+}
+.grid-space{
+	-moz-box-sizing: border-box;
+//	background-color: ThreeDFace;
+	background-color: #FFEFEF;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 15px;
+	width: 100%;
+	/*padding: 1px 4px;*/
+	cursor: default;
+}
+
+.grid-line{
+	position: absolute;
+	white-space: nowrap;
+	background: ;
+	border-right:1px solid #ACA899;
+	border-bottom:1px solid #ACA899;
+}
+
+.grid-field{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-left: 2px;
+	padding-right: 2px;
+	line-height: 16px;
+	border-right:1px solid #ACA899;/*
+	border-bottom:1px solid #ACA899;*/
+}
+/************************************
+*                                   *
+* tabpane                           *
+*                                   *
+*************************************/
+.tabpane-frame{
+	width: 100%;
+	height: 100%;
+	border: 1px outset black;
+	overflow: hidden;
+}
+.tabpane-selected,.tabpane-unselected{
+	position: relative;
+	border: 1px solid gray;
+	background: #F6F6F6;	
+	white-space: nowrap;
+	vertical-align:bottom;	
+}
+.tabpane-selected{
+	top: 1px;
+	color: black;
+	border-bottom: 0px;
+	padding: 1px 3px 0px 3px;
+	font-weight: 700;
+	height: 19px;
+}
+.tabpane-unselected{
+	top: 0px;
+	color: black;
+	padding: 1px 3px 0px 3px;
+}
+.tabpane-pane0{
+	font-size:1px;
+	background: #F6F6F6;
+	overflow: hidden;
+}
+.tabpane-pane{
+	font-size:1px;
+	background: gray;
+	overflow: hidden;
+}	

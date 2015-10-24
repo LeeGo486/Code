@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "雅莹招聘";
+    Layout = "~/Views/Shared/_WeiXinBaseLayoutYes.cshtml";
+}
+@section script{
+    @*<link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />*@
+    <script type="text/javascript">
+        function showJob(ths, id) {
+            window.location.href = "/HR/HRJob/Detail/" + id;
+        }
+    </script>
+
+    <style>
+        .courseList {
+            border-bottom: 1px solid #e5e5e5;
+            background-color: #fff;
+            padding: 10px 10px 14px 10px;
+            margin-bottom: 12px;
+            border-radius: 3px;
+        }
+
+            .courseList:hover {
+                /*background-color: #fafafa;*/
+            }
+
+        .courseListSld {
+            background-color: #efefef;
+        }
+
+        .courseList h3 {
+            font-size: 16px;
+            margin: 6px 0px 16px 0px;
+            font-weight: bold;
+            color: #636363;
+        }
+    </style>
+}
+<body style="background-color: #f8f8f8">
+    <h4 style="text-align: center; font-family: SimHei">招聘岗位</h4>
+    <div style="margin: 0px; background-color: #fff; border-top: 1px solid #c8c8c8">
+        <div style="border: 1px; background-color: #fff; margin: 5px">
+            <div style="margin: 5px; border: 1px solid #d8d8d8">
+                <div style="margin: 5px">@*border: 1px solid #d8d8d8;*@
+                    @foreach (ElegantWM.EntityModel.HR_Jobs Job in ViewBag.Job)
+                    {
+                        <div  class="courseList" onclick="showJob(this,'@Job.Id')">
+                            <span class="badge pull-right bm" style="background-color: #b79647">招聘人数：@Job.NeedNum</span>
+                            <h3>
+                                @Job.JobName
+                            </h3>
+                            <span class="marker">发布时间：@Job.CreateTime.ToShortDateString()</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "提示";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            if ('@ViewBag.Msg' != '用户绑定成功，您可继续操作！' && '@ViewBag.Msg' != '恭喜您，注册成功！' && '@ViewBag.Msg' != '微信登录授权成功！') {
+                return;
+            }
+            setTimeout(function () {
+                WeixinJSBridge.call('closeWindow');
+            }, 3000);
+        });
+    </script>
+}
+<div class="mainArea" style="text-align: center; padding-top: 70px;">
+    @if (ViewBag.Msg == "用户绑定成功，您可继续操作！" || ViewBag.Msg == "恭喜您，注册成功！" || ViewBag.Msg == "微信登录授权成功！")
+    {
+        <i class="icon-ok-circle icon-4x"></i> 
+    }
+    else
+    {
+        <i class="icon-exclamation-sign icon-4x"></i> 
+    }
+    <br />
+    <br />
+    <p style="font-size: 16px;">@ViewBag.Msg</p>
+</div>

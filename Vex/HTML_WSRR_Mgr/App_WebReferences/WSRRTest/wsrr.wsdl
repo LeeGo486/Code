@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CallByXMLContainBigData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XmlInput" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsExcel">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CallByXMLContainBigDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CallByXMLContainBigDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HZYmessage" type="tns:HZYmessage" />
+      <s:complexType name="HZYmessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VexSSONewID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="User_ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="User_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="User_Name_CN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginEnv_ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginEnv_SN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company_SN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company_ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Env_ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Env_SN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Session_ID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Debug" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DebugClientID" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="CallByXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XmlInput" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CallByXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CallByXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CallByXMLContainBigDataSoapIn">
+    <wsdl:part name="parameters" element="tns:CallByXMLContainBigData" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLContainBigDataSoapOut">
+    <wsdl:part name="parameters" element="tns:CallByXMLContainBigDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLContainBigDataHZYmessage">
+    <wsdl:part name="HZYmessage" element="tns:HZYmessage" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:CallByXML" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:CallByXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLHZYmessage">
+    <wsdl:part name="HZYmessage" element="tns:HZYmessage" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLHttpGetIn">
+    <wsdl:part name="XmlInput" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLHttpPostIn">
+    <wsdl:part name="XmlInput" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CallByXMLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="WSRRSoap">
+    <wsdl:operation name="CallByXMLContainBigData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">浙江华之毅投资有限公司_高级接口,主要用于EXCEL导入操作,VEX专用接口，其他类型的WS均不支持</wsdl:documentation>
+      <wsdl:input message="tns:CallByXMLContainBigDataSoapIn" />
+      <wsdl:output message="tns:CallByXMLContainBigDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CallByXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">浙江华之毅投资有限公司_基础接口</wsdl:documentation>
+      <wsdl:input message="tns:CallByXMLSoapIn" />
+      <wsdl:output message="tns:CallByXMLSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSRRHttpGet">
+    <wsdl:operation name="CallByXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">浙江华之毅投资有限公司_基础接口</wsdl:documentation>
+      <wsdl:input message="tns:CallByXMLHttpGetIn" />
+      <wsdl:output message="tns:CallByXMLHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSRRHttpPost">
+    <wsdl:operation name="CallByXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">浙江华之毅投资有限公司_基础接口</wsdl:documentation>
+      <wsdl:input message="tns:CallByXMLHttpPostIn" />
+      <wsdl:output message="tns:CallByXMLHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSRRSoap" type="tns:WSRRSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CallByXMLContainBigData">
+      <soap:operation soapAction="http://tempuri.org/CallByXMLContainBigData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CallByXMLContainBigDataHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:CallByXMLContainBigDataHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CallByXML">
+      <soap:operation soapAction="http://tempuri.org/CallByXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CallByXMLHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:CallByXMLHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSRRSoap12" type="tns:WSRRSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CallByXMLContainBigData">
+      <soap12:operation soapAction="http://tempuri.org/CallByXMLContainBigData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CallByXMLContainBigDataHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CallByXMLContainBigDataHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CallByXML">
+      <soap12:operation soapAction="http://tempuri.org/CallByXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CallByXMLHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CallByXMLHZYmessage" part="HZYmessage" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSRRHttpGet" type="tns:WSRRHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CallByXML">
+      <http:operation location="/CallByXML" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSRRHttpPost" type="tns:WSRRHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CallByXML">
+      <http:operation location="/CallByXML" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSRR">
+    <wsdl:port name="WSRRSoap" binding="tns:WSRRSoap">
+      <soap:address location="http://localhost:8083/wsrr.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSRRSoap12" binding="tns:WSRRSoap12">
+      <soap12:address location="http://localhost:8083/wsrr.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSRRHttpGet" binding="tns:WSRRHttpGet">
+      <http:address location="http://localhost:8083/wsrr.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSRRHttpPost" binding="tns:WSRRHttpPost">
+      <http:address location="http://localhost:8083/wsrr.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

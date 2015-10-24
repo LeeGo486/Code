@@ -1,0 +1,48 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="branch_MasterPages_DetailEdit, App_Web_detailedit.master.7fa581f8" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>明细编辑</title>
+
+    <script src="../Utility/jquery.keyfilter-1.7.min.js" type="text/javascript"></script>
+    <script src="../Utility/splitter-1.5.1/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../Utility/splitter-1.5.1/splitter.js" type="text/javascript"></script>
+    <link href="../Utility/splitter-1.5.1/splitter.css" rel="stylesheet" type="text/css" />
+    <script src="../../b28web/Utility/dateChooser.js" type="text/javascript"></script>
+    <link href="../../b28web/Utility/dateChooser.css" rel="stylesheet" type="text/css" />
+    <link href="../Utility/grid/jquery.fixedgrid.css" rel="stylesheet" type="text/css" />
+    <script src="../Utility/grid/jquery.fixedgrid.js" type="text/javascript"></script>
+
+    <link href="../Utility/grid/jquery.tablesorter.css" rel="stylesheet" type="text/css" />
+    <script src="../Utility/grid/jquery.metadata.js" type="text/javascript"></script>
+    <script src="../Utility/grid/jquery.tablesorter.min.js" type="text/javascript"></script>
+
+    <script src="../Scripts/detailedit.js" type="text/javascript"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div class="x-toolbar">
+        <button class="icon icon-add selendabled" type="button" id="btnadd">新增 </button>
+        <button class="icon icon-delete selendabled" type="button" id="btndelete">删除 </button>
+        </div>
+        <div id="MySplitter" class="vsplitter">
+            <div id="LeftPane" style="overflow:hidden;">
+                <div id="queryTable">
+                </div>
+            </div>
+            <div id="RightPane">
+                <div id="detailTable">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

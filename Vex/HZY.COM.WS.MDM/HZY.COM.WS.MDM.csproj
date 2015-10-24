@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2F709AAF-6EDA-48B9-A630-133F4262BEFA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZY.COM.MDM</RootNamespace>
+    <AssemblyName>HZY.COM.MDM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HZY.COM.Common, Version=1.3.2014.715, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\00最新\HZY.COM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.Base, Version=1.1.2014.718, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\00最新\HZY.COM.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.DBAccess.DBConn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\00最新\HZY.COM.Common.DBAccess.DBConn.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MDM_App_Data_GetList.cs" />
+    <Compile Include="MDM_Entity_Edit.cs" />
+    <Compile Include="MDM_Entity_EditByAreaMarket.cs" />
+    <Compile Include="MDM_Entity_EditByBrandMarket.cs" />
+    <Compile Include="MDM_Entity_EditByContinentMarket.cs" />
+    <Compile Include="MDM_Entity_EditByMerchantMarket.cs" />
+    <Compile Include="MDM_Entity_EditBySaleAreaMarket.cs" />
+    <Compile Include="MDM_Entity_EditByStoreForFMMarket.cs" />
+    <Compile Include="MDM_Entity_EditByStoreMarket.cs" />
+    <Compile Include="MDM_Entity_Market_PropertyList.cs" />
+    <Compile Include="MDM_GetEntityDataByEntity.cs" />
+    <Compile Include="MDM_GetEntityDataFromSP.cs" />
+    <Compile Include="MDM_GetEntityList.cs" />
+    <Compile Include="MDM_GetEntityPropertyList.cs" />
+    <Compile Include="MDM_GetMarketDataByTableName.cs" />
+    <Compile Include="MDM_GetMarketDataByTableNameMKT.cs" />
+    <Compile Include="MDM_Lib_AUZ_Body_GetListByAUZ.cs" />
+    <Compile Include="MDM_Lib_AUZ_Body_GetListBySessionID.cs" />
+    <Compile Include="MDM_Lib_AUZ_Filter_GetListByAUZ.cs" />
+    <Compile Include="MDM_Lib_AUZ_Property_GetListBySessionID.cs" />
+    <Compile Include="MDM_Lib_AUZ_Property_GetListBySessionIDForStoreFM.cs" />
+    <Compile Include="MDM_Lib_ExdPropertyList_GetListByEnitity.cs" />
+    <Compile Include="MDM_Market_MKT_Org_CN_For_HZY_F222_GetList.cs" />
+    <Compile Include="MDM_Market_User_For_HZY_F22_Edit.cs" />
+    <Compile Include="MDM_Market_User_For_HZY_F22_GetList.cs" />
+    <Compile Include="MDM_Store_App_From_F22_GetList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{C12F1233-F7C6-45F7-8F22-8BAC49FCBE62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.ST1005A\HZY.COM.WS.ST1005A.csproj">
+      <Project>{34406428-5A4B-417B-BFF1-60A7B5EA1493}</Project>
+      <Name>HZY.COM.WS.ST1005A</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS\HZY.COM.WS.CommonWS.csproj">
+      <Project>{600CA99D-8D55-4181-8164-18FCB9270A42}</Project>
+      <Name>HZY.COM.WS.CommonWS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

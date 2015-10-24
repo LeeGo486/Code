@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "课程列表";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function showCourse(ths, cid) {
+            $(".courseList").each(function () {
+                $(this).removeClass("courseListSld");
+            });
+            $(ths).addClass("courseListSld");
+            window.location.href = "/HR/Course/Detail/" + cid;
+        }
+    </script>
+}
+@foreach(ElegantWM.EntityModel.HR_Course course in  ViewBag.Courses){
+    
+    <div class="courseList" onclick="showCourse(this,'@course.Id');">
+        @if(course.StartDate>DateTime.Now.Date){
+            <span class="badge pull-right bm">报名中</span>
+        }
+        else if (course.StartDate <= DateTime.Now.Date && course.EndDate >= DateTime.Now.Date)
+        {
+             <span class="badge pull-right kkz">已开课</span>
+        }
+        else if (course.EndDate < DateTime.Now.Date)
+        {
+             <span class="badge pull-right">已结束</span>
+        }
+        <h3>
+            <a href="/HR/Course/Detail/@course.Id">@course.CourseName</a>
+        </h3>
+        <span class="marker">开课日：@course.StartDate.ToShortDateString()</span>
+        <span class="marker">By @course.OrgName</span>
+    </div>
+}

@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "会员信息";
+    Layout = "~/Views/Shared/_DLLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DL/Resources/DL.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+
+        })
+    </script>
+}
+<body>
+    <div class="mainArea">
+        <h1>DoubleLove</h1>
+        <h2>欢迎加入DL会员俱乐部</h2>
+        <div class="vipbg">
+        </div>
+    </div>
+
+
+
+    <div>
+        huihauhdud
+    </div>
+</body>

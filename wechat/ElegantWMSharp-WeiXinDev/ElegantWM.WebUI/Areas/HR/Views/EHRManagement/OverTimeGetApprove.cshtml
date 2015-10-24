@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "获取加班审批数据";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+            //$("#dav").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dpay").css("background-color", "#2c3e50").css("border-bottom", "")
+        });
+        //确定提交
+        function OverTimeApproveSubmit(c_oid_overtimeapply, c_empoid, c_renewremark, c_approveflowid, c_remark, strtype) {
+            var dataApproveSubmit = {
+                c_oid_overtimeapply: c_oid_overtimeapply,
+                applec_oid: c_empoid,
+                c_renewremark: c_renewremark,
+                c_approveflowid: c_approveflowid,
+                c_remark: c_remark,
+                strtype: strtype
+            };
+            Msg.show("提交中请稍后...", 3);
+            $.post("/HR/EHRManagement/OverTimeApproveSubmit", dataApproveSubmit, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+                window.location.reload();
+            });
+        }
+    </script>
+}
+
+<div class="ht">
+    <i class="icon-wrench"></i>&nbsp;&nbsp;需要我审批的加班单据
+</div>
+
+
+@if (@ViewBag.OverTimeGetApprove.Rows[0]["c_approveflowid"] == "")
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，目前没有需要您审批的单据。<br />
+        <br />
+    </div>
+}
+else
+{
+    foreach (System.Data.DataRow dr in ViewBag.OverTimeGetApprove.Rows)
+    {
+    <div class="eventSch clearfix">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span style="color: #969696">姓名：</span>
+                <span style="color: #969696">@dr["c_name"] </span>
+                <br />
+                <span style="color: #969696">开始时间：</span>
+                <span style="color: #969696">@dr["c_begindate"] </span>
+                <span style="color: #969696">结束时间：</span>
+                <span style="color: #969696">@dr["c_enddate"] </span>
+            </li>
+            <li class="list-group-item"><span style="color: #969696">原因：</span>@dr["C_REASON"]
+            </li>
+        </ul>
+        
+        <div class="operate">
+            <div class="btnOpt" onclick="OverTimeApproveSubmit(@dr["c_oid_overtimeapply"],@dr["c_empoid"],'@dr["c_remark"]','@dr["c_approveflowid"]','无',1);">
+                <i class="icon-signout"></i>&nbsp;审批通过
+            </div>
+            <div class="btnOpt" onclick="OverTimeApproveSubmit(@dr["c_oid_overtimeapply"],@dr["c_empoid"],'@dr["c_remark"]','@dr["c_approveflowid"]','无',2);"  
+                style="border-right: 1px solid #ccc;">
+                <i class="icon-ok"></i>&nbsp;审批驳回
+            </div>
+        </div>
+    </div>
+    }
+}

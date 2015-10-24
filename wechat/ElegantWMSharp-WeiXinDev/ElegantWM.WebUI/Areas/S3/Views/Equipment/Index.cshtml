@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "设施维护";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+    </script>
+}
+@Html.Action("MyTasks")

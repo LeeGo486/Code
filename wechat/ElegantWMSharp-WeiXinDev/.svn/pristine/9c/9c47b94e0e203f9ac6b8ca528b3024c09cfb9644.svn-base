@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "GetNoticInfo";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+
+    });
+    function noticeDetail(title, content) {
+        bootbox.alert(title + "<hr />" + "<div style='text-align:left;'>" + content + "</div>" +
+       "");
+    }
+</script>
+
+<style>
+    .noticList {
+        border: 1px solid #e5e5e5;
+        background-color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        margin: 20px;
+    }
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/noticebg.jpg" />
+    </li>
+</ul>
+
+<div style="border-bottom: 2px solid #808080; margin: 20px;">
+    <span>最近更新</span>
+</div>
+
+<div style="margin-bottom:56px">
+    @foreach (System.Data.DataRow dr in ViewBag.Notice.Rows)
+    {
+        <div class="noticList" onclick="noticeDetail('@dr["noticetitle"]','@dr["noticecontent"]')">
+            <h4>
+                <a>@dr["noticetitle"]</a>
+            </h4>
+            <span class="marker">@dr["creatrdate"]</span>
+        </div>
+    }
+</div>
+

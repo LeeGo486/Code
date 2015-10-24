@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "查看别人的行动计划";
+    Layout = "~/Views/Shared/_HRPromiseWeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+
+        })
+    </script>
+}
+
+<div class="mainArea">
+    <h4><span><i class="icon-user"></i>&nbsp;&nbsp;员工信息：</span></h4>
+    <div style="line-height: 10px">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <i class="icon-credit-card"></i>&nbsp;&nbsp;工号：@ViewBag.dtpResult.Rows[0]["c_code"]
+            </li>
+            <li class="list-group-item">
+                <i class="icon-user"></i>&nbsp;&nbsp;姓名：@ViewBag.dtpResult.Rows[0]["UserNameC"]
+            </li>
+            <li class="list-group-item">
+                <i class="icon-laptop"></i>&nbsp;&nbsp;部门：@ViewBag.dtpResult.Rows[0]["c_unitname"]
+            </li>
+            <li class="list-group-item">
+                <i class="icon-rss"></i>&nbsp;&nbsp;岗位：@ViewBag.dtpResult.Rows[0]["c_jobname"]
+            </li>
+        </ul>
+    </div>
+    <h4 style="margin-top: -10px"><span><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;行动计划</span></h4>
+
+
+    <div style="line-height: 10px">
+        <ul class="list-group">
+            <li class="list-group-item">&nbsp;&nbsp;行动计划1：@ViewBag.dtpResult.Rows[0]["ActionPlan1"]
+            </li>
+            <li class="list-group-item">&nbsp;&nbsp;行动计划2：@ViewBag.dtpResult.Rows[0]["ActionPlan2"]
+            </li>
+            <li class="list-group-item">&nbsp;&nbsp;行动计划3：@ViewBag.dtpResult.Rows[0]["ActionPlan3"]
+            </li>
+        </ul>
+    </div>
+
+</div>

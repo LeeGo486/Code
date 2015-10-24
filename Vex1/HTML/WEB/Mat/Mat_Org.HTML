@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>施工单位档案</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/Mat/Mat_Org.js?date=20130202" type="text/javascript"></script>
+</head>
+<body>
+    <div id ="divCreatOrg" class="easyui-window" data-options="closed:true,width:500,height:400,modal: true">
+        <form id = "formCreate" name = "formCreate" >
+            <table id = "createorg">
+                <tr>
+                    <td>施工单位：</td>
+                    <td><input id = "txtname" name = "txtname" value = "" style = "width:300px"
+                        required="true" class="easyui-validatebox" maxlength="30" missingmessage="必须填写，字符不能超过30" /></td>
+                </tr>
+                <tr>
+                    <td>助记码：</td>
+                    <td><input id = "txtassitenid" name = "txtassitenid" value = "" style = "width:300px"/></td>
+                </tr>
+                <tr>
+                    <td>联系人：</td>
+                    <td><input id = "txtlinkman" name = "txtlinkman" value = "" style = "width:300px"/></td>
+                </tr>
+                <tr>
+                    <td>联系方式：</td>
+                    <td><input id = "txttel" name = "txttel" value = "" style = "width:300px"/></td>
+                </tr>
+                <tr>
+                    <td>验证码：</td>
+                    <td><input id = "txtvericode" name = "txtvericode" value = "" style = "width:300px"/></td>
+                </tr>
+                <tr>
+                    <td>备注：</td>
+                    <td><textarea id = "txtcomment" name = "txtcomment" value = "" style = "width:300px;height:100px"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td align="center">
+                    <a href="#" id="btn_Create_Submit" iconcls="icon-save" class="easyui-linkbutton" 
+                    onclick="Create_Submnit(true)" data-options="plain:true">保存</a>
+                    <a href="#" id="btn_CreateCancle_Submit" iconcls="icon-undo" onclick="Edit_Cancel(true)" 
+                    class="easyui-linkbutton" data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div id = "divEditOrg"  class="easyui-window" data-options="closed:true,width:500,height:400,modal: true">
+        <form id = "formEdit" name = "formEdit" method="post">
+            <table id = "editorg">
+                <tr>
+                    <td>编号：</td>
+                    <td><input id = "txtorgid" name = "txtorgid" value = "" style = "width:100px;background:#fafafa" disabled = "true" /></td>
+                    <td>施工单位:</td>
+                    <td><input id = "txtname" name = "txtname" value = "" style = "width:140px;background:#fafafa" disabled = "true"/></td>
+                </tr>
+                <tr>
+                    <td>创建人：</td>
+                    <td><input id = "txtcrname" name = "txtcrname" value = "" style = "width:100px;background:#fafafa" disabled = "true" /></td>
+                    <td>创建时间:</td>
+                    <td><input id = "txtcreatetime" name = "txtcreatename" value = "" style = "width:140px;background:#fafafa" disabled = "true"</td>
+                </tr>
+                <tr>
+                    <td>助记码：</td>
+                    <td colspan="3"><input id = "txtassitenid" name = "txtassitenid" value = "" style = "width:320px" /></td>
+                    
+                </tr>
+                <tr>
+                    <td>联系人：</td>
+                    <td colspan="3"><input id = "txtlinkman" name = "txtlinkman" value = "" style = "width:320px" /></td>
+                </tr>
+                <tr>
+                    <td>联系方式：</td>
+                    <td colspan="3"><input id = "txttel" name = "txttel" value = "" style = "width:320px" /></td>
+                </tr>
+                <tr>
+                    <td>验证码：</td>
+                    <td colspan="3"><input id = "txtvericode" name = "txtvericode" value = "" style = "width:320px" /></td>
+                </tr>
+                <tr>
+                    <td>备注：</td>
+                    <td colspan="3"><textarea id = "txtcomment" name = "txtcomment" value = "" style = "width:320px;height:100px"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Edit_Submnit" iconcls="icon-save" class="easyui-linkbutton" 
+                        onclick="Create_Submnit(false)" data-options="plain:true">保存</a>
+                    </td>
+
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_EditCancel_Submnit" iconcls="icon-undo" class="easyui-linkbutton" 
+                        onclick="Edit_Cancel(false)" data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <table id = "tab_list"></table>
+
+</body>
+</html>

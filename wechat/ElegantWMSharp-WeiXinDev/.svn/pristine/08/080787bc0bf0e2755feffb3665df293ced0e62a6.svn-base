@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "我的请求";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/UiStep/step.css" rel="stylesheet" />
+    <script src="~/Scripts/Rating/bootstrap-rating-input.min.js"></script>
+    <script type="text/javascript">
+        //取消事件
+        function CancelEvent(id) {
+            $.post("/IT/SM/CheckIsCancel/" + id + "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                if (rst.result != 0) {
+                    Msg.show("非提报状态，无法取消", 1); 
+                }
+                else {
+                    bootbox.confirm("您确定要取消该事件吗？", function (result) {
+                        if (result) {
+                            Msg.show("取消中...", 3);
+                            $.post("/IT/SM/CancelEvent/" + id + "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                                Msg.hide();
+                                if (rst.result == 0) {
+                                    $("#E_" + id).fadeOut(1000);
+                                    $("#E_" + id).remove();
+                                }
+                                Msg.show(rst.msg, rst.result);
+                            });
+                        }
+                    });
+                }
+            });
+        }
+        //评价事件
+        function EvlEvent(id) {
+            Msg.show("请稍后...", 3);
+            $.post("/IT/SM/CheckIsEvl/" + id + "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                Msg.hide();
+                if (rst.result == 0) {
+                    window.location.href = "/IT/SM/Survey/" + id + "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                } else
+                    Msg.show(rst.msg, rst.result);
+            });
+        }
+    </script>
+}
+@Html.Action("MyEventList", "SM", new { state = Request["state"] })
+@Html.Action("MyReqList", "Request")

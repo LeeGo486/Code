@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "陈列";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script src="~/Scripts/IosSlider/jquery.iosslider.min.js"></script>
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+        //显示详细和报修
+        function ShowExhibit(type, theme, event, cc) {
+
+            if (type == 0) {
+                Msg.show("请稍后...", 3);
+                $.post("/S3/Exhibit/Detail", function (htmldata) {
+                    Msg.hide();
+                    $("#editArea").html(htmldata);
+                    $("#btnAction").show();
+                    $("#cl_theme")[0].innerHTML = "<i class='icon-comments-alt'></i>&nbsp;&nbsp;[" + theme + "] " + event;
+                    $("#dn_cl").hide();
+                    if (cc == 0) {//橱窗
+                        $("#item2 img").attr("src","/Areas/S3/Resources/images/Exhibit/2.jpg");
+                        $("#item3 img").attr("src", "/Areas/S3/Resources/images/Exhibit/4.jpg");
+                    }
+                    else {//店内
+                        $("#item2 img").attr("src", "/Areas/S3/Resources/images/Exhibit/5.jpg");
+                        $("#item3 img").attr("src", "/Areas/S3/Resources/images/Exhibit/6.jpg");
+                    }
+                    scrollTo($("#editArea"));
+                });
+            } else if (type == 1) {
+                Msg.show("请稍后...", 3);
+                $.post("/S3/Exhibit/Detail", function (htmldata) {
+                    Msg.hide();
+                    $("#editArea").html(htmldata);
+                    $("#btnAction").hide();
+                    $("#dn_cl").hide();
+                    $("#cl_theme")[0].innerHTML = "<i class='icon-comments-alt'></i>&nbsp;&nbsp;[" + theme + "] " + event;
+                    if (cc == 0) {//橱窗
+                        $("#item2 img").attr("src", "/Areas/S3/Resources/images/Exhibit/2.jpg");
+                        $("#item3 img").attr("src", "/Areas/S3/Resources/images/Exhibit/4.jpg");
+                    }
+                    else {//店内
+                        $("#item2 img").attr("src", "/Areas/S3/Resources/images/Exhibit/5.jpg");
+                        $("#item3 img").attr("src", "/Areas/S3/Resources/images/Exhibit/6.jpg");
+                    }
+                    scrollTo($("#editArea"));
+                });
+            } else if (type == 2) {
+                Msg.show("请稍后...", 3);
+                $.post("/S3/Exhibit/Detail", function (htmldata) {
+                    Msg.hide();
+                    $("#editArea").html(htmldata);
+                    $("#btnAction").hide();
+                    $("#dn_cl").show();
+                    $("#cl_theme")[0].innerHTML = "<i class='icon-comments-alt'></i>&nbsp;&nbsp;[" + theme + "] " + event;
+                    if (cc == 0) {//橱窗
+                        $("#item2 img").attr("src", "/Areas/S3/Resources/images/Exhibit/2.jpg");
+                        $("#item3 img").attr("src", "/Areas/S3/Resources/images/Exhibit/4.jpg");
+                    }
+                    else {//店内
+                        $("#item2 img").attr("src", "/Areas/S3/Resources/images/Exhibit/5.jpg");
+                        $("#item3 img").attr("src", "/Areas/S3/Resources/images/Exhibit/6.jpg");
+                    }
+                    scrollTo($("#editArea"));
+                });
+            } else if (type == 3) {
+                Msg.show("请稍后...", 3);
+                $.post("/S3/Exhibit/MyExhibit", function (htmldata) {
+                    Msg.hide();
+                    $("#editArea").html(htmldata);
+                    $("#wdcl_theme")[0].innerHTML = "<i class='icon-comments-alt'></i>&nbsp;&nbsp;[" + theme + "] " + event;
+                    if (theme == "我的橱窗陈列") {
+                        $("#dn_cl").hide();
+                        $("#wdcl_img")[0].src = "/Areas/S3/Resources/images/Exhibit/2.jpg";
+                    }
+                    else {
+                        $("#dn_cl").show();
+                        $("#wdcl_img")[0].src = "/Areas/S3/Resources/images/Exhibit/5.jpg";
+                    }
+
+                    scrollTo($("#editArea"));
+                });
+            }
+        }
+        function EditMyExhibit() {
+            Msg.show("请稍后...", 3);
+            $.post("/S3/Exhibit/EditMyExhibit", function (htmldata) {
+                Msg.hide();
+                $("#editArea").html(htmldata);
+                scrollTo($("#editArea"));
+            });
+        }
+        $(function () {
+            $("li").click(function () {
+                $("li").removeClass("dataListSld");
+                $(this).addClass("dataListSld");
+            });
+        });
+    </script>
+    <style type="text/css">
+        p {
+            padding-left: 18px;
+        }
+    </style>
+}
+<div class="ht">
+    <i class="icon-picture"></i>&nbsp;&nbsp;橱窗陈列
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <h4 style="border-bottom:0px;"><span>总部指南</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(0,'橱窗指南','东方精致生活',0);">[07-16] 东方精致生活</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+            <span class="badge pull-right ls"><i class="icon-bolt"></i>&nbsp;8</span>
+        </li>
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(0,'橱窗指南','阅读悦幸福',0);">[06-16] 阅读悦幸福</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;2</span>
+            <span class="badge pull-right ls"><i class="icon-bolt"></i>&nbsp;7</span>
+        </li>
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(0,'橱窗指南','平衡爱幸福',0);">[05-16] 平衡爱幸福</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+            <span class="badge pull-right ls"><i class="icon-bolt"></i>&nbsp;5</span>
+        </li>
+    </ul>
+    <br />
+    <h4 style="border-bottom:0px;"><span>&nbsp;&nbsp;陈列分享</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(1,'橱窗分享','北京华贸甜蜜生活',0);">[07-07] 北京华贸甜蜜生活</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+        </li>
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(1,'橱窗分享','嘉兴生活馆甜蜜生活',0);">[06-03] 嘉兴生活馆甜蜜生活</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;6</span>
+        </li>
+    </ul>
+</div>
+<div class="ht">
+    <i class="icon-home"></i>&nbsp;&nbsp;店内陈列
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <h4 style="border-bottom:0px;"><span>总部指南</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(0,'店内陈列指南','饰品出样',1);">[07-03] 饰品出样</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+            <span class="badge pull-right ls"><i class="icon-bolt"></i>&nbsp;8</span>
+        </li>
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(0,'店内陈列指南','波段出样',1);">[06-22] 波段出样</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+            <span class="badge pull-right ls"><i class="icon-bolt"></i>&nbsp;8</span>
+        </li>
+    </ul>
+    <br />
+    <h4 style="border-bottom:0px;"><span>陈列分享</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(2,'店内陈列分享','北京华贸二楼大厅',1);">[07-10] 北京华贸二楼大厅</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+        </li>
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(2,'店内陈列分享','嘉兴生活馆饰品区',1);">[06-03] 嘉兴生活馆饰品区</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;6</span>
+        </li>
+    </ul>
+</div>
+
+<div class="ht">
+    <i class="icon-user"></i>&nbsp;&nbsp;我的动态陈列
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+    <span onclick="EditMyExhibit();">
+        <i class="icon-plus icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <h4 style="border-bottom:0px;"><span>橱窗</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(3,'我的橱窗陈列','一楼正门左侧',0);">[07-10] 一楼正门左侧</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+        </li>
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(3,'我的橱窗陈列','一楼正门右侧',0);">[06-03] 一楼正门右侧</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;6</span>
+        </li>
+    </ul>
+    <br />
+    <h4 style="border-bottom:0px;"><span>店内</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(3,'我的店内陈列','二楼饰品区',1);">[07-10] 二楼饰品区</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;9</span>
+        </li>
+        <li class="list-group-item">
+            <a href="javascript:ShowExhibit(3,'我的店内陈列','二楼丝巾区',1);">[06-03] 二楼丝巾区</a>
+            <span class="badge pull-right ys"><i class="icon-comment-alt"></i>&nbsp;1</span>
+            <span class="badge pull-right hs"><i class="icon-thumbs-up"></i>&nbsp;6</span>
+        </li>
+    </ul>
+</div>
+<div id="editArea">
+</div>

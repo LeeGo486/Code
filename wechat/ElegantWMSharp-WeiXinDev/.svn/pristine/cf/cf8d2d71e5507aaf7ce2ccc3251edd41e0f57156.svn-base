@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "休假申请";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v6" rel="stylesheet" />
+    <script type="text/javascript">
+        var data1 = [];
+        $(function () {
+            //$("#dav").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dpay").css("background-color", "#2c3e50").css("border-bottom", "");
+            var nowDate = new Date();
+            var year = nowDate.getFullYear();
+            $("#VacationYear").val(year);
+
+            var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+                hydp.hide();
+            }).data('datepicker');
+
+            $.post("/HR/EHRManagement/ApplyInfo", function (rst) {
+                if (rst.result == 0) {
+                    data1 = eval(rst.msg);
+                } else {
+                    Msg.show(rst.msg, rst.result);
+                }
+            });
+        });
+
+        //变更审批人
+        function changeAP(approve, name) {
+            var $st1 = $("#" + approve);
+            var $st1add = $("#" + name);
+
+            var text1 = $st1.find("option:selected").val();   //获取Select选中项的Text一级审批人
+            $st1add.empty();
+
+            if (text1 == "0") {
+                return;
+            } else if (text1 == "1") {
+                for (var i = 0; i < data1.length; i++) {
+                    if (data1[i].type == text1) {
+                        $st1add.append("<option value='" + data1[i].sjC_OID + "'>" + data1[i].sjC_NAME + "</option>");
+                    }
+                }
+            } else if (text1 == "2") {
+                for (var i = 0; i < data1.length; i++) {
+                    if (data1[i].type == text1) {
+                        $st1add.append("<option value='" + data1[i].sjC_OID + "'>" + data1[i].sjC_NAME + "</option>");
+                    }
+                }
+            }
+        }
+        //确定提交
+        function btnSubmit() {
+
+            var VacationApplyType = $("#VacationApplyType").val();//休假类型
+            var VacationYear = $("#VacationYear").val();//年度
+            var VacationApplyBeginDate = $("#VacationApplyBeginDate").val();//开始日期
+            var VacationApplyEndDate = $("#VacationApplyEndDate").val();//结束日期
+            var VacationApplyBeginTime = $("#VacationApplyBeginTime").val();//开始时间
+            var VacationApplyEndTime = $("#VacationApplyEndTime").val();//结束时间
+            var VacationApplyBeginDateTime = VacationApplyBeginDate + " " + VacationApplyBeginTime;//开始日期时间
+            var VacationApplyEndDateTime = VacationApplyEndDate + " " + VacationApplyEndTime;//结束日期时间
+            var VacationApplyHours = $("#VacationApplyHours").val();//休假时长
+            var addchangeAP1 = $("#addapprove1").val();//一级审批
+            var addchangeAP2 = $("#addapprove2").val();//二级审批
+            if (addchangeAP1 == null) { addchangeAP1 = ""; }
+            if (addchangeAP2 == null) { addchangeAP2 = ""; }
+            var VacationApplyReason = $("#VacationApplyReason").val();//原因
+            var VacationApplyRemark = $("#VacationApplyRemark").val();//备注
+            var VacationApplyTmpName = $("#VacationApplyTmpName").val();//临时人
+            var VacationApplyEmergency = $("#VacationApplyEmergency").val();//临时联系方式
+
+            if ($.trim($("#VacationApplyType").val()).length <= 0) { $("#VacationApplyType").focus(); Msg.show('请选择休假类型!', 1); return; }
+            if ($.trim($("#VacationApplyBeginDate").val()).length <= 0) { $("#VacationApplyBeginDate").focus(); Msg.show('请选择开始日期!', 1); return; }
+            if ($.trim($("#VacationApplyEndDate").val()).length <= 0) { $("#VacationApplyEndDate").focus(); Msg.show('请选择结束日期!', 1); return; }
+            if ($.trim($("#VacationApplyBeginTime").val()).length <= 0) { $("#VacationApplyBeginTime").focus(); Msg.show('请选择开始时间!', 1); return; }
+            if ($.trim($("#VacationApplyEndTime").val()).length <= 0) { $("#VacationApplyEndTime").focus(); Msg.show('请选择结束时间!', 1); return; }
+            if ($.trim($("#VacationApplyHours").val()).length <= 0) { $("#VacationApplyHours").focus(); Msg.show('请填写休假时长!', 1); return; }
+            if (addchangeAP2 == "" && addchangeAP1 == "") { Msg.show("请选择审批人!", 1); return; }
+            if ($.trim($("#VacationApplyReason").val()).length <= 0) { $("#VacationApplyReason").focus(); Msg.show('请填写原因!', 1); return; }
+            if ($.trim($("#VacationApplyRemark").val()).length <= 0) { $("#VacationApplyRemark").focus(); Msg.show('请填写备注!', 1); return; }
+            if ($.trim($("#VacationApplyTmpName").val()).length <= 0) { $("#VacationApplyTmpName").focus(); Msg.show('请填写临时人!', 1); return; }
+            if ($.trim($("#VacationApplyEmergency").val()).length <= 0) { $("#VacationApplyEmergency").focus(); Msg.show('请填写临时联系方式!', 1); return; }
+
+            var dataCheckVacation = {
+                c_begintime: VacationApplyBeginDateTime,
+                c_endtime: VacationApplyEndDateTime
+            };
+
+            var dataVacation = {
+                sp1: addchangeAP1,
+                c_attitemoid: VacationApplyType,
+                c_year: VacationYear,
+                begindate: VacationApplyBeginDateTime,
+                enddate: VacationApplyEndDateTime,
+                c_value: VacationApplyHours,
+                c_reason: VacationApplyReason,
+                c_principal: VacationApplyEmergency,
+                c_linkman: VacationApplyTmpName,
+                c_remark: VacationApplyRemark,
+            };
+
+            Msg.show("提交中请稍后...", 3);
+            $.post("/HR/EHRManagement/CheckVacation", dataCheckVacation, function (rst) {
+                Msg.hide();
+                if (rst.result == 0) {
+                    data2 = eval(rst.msg);
+                    if (data2[0].count != "0") {
+                        Msg.show('已经存在该时间段休假!', 1);
+                        return;
+                    }
+                    else {
+                        $.post("/HR/EHRManagement/VacationApplySubmit", dataVacation, function (rst) {
+                            if (rst.result == 0) {
+                                Msg.show(rst.msg, rst.result);
+                                window.location.href = '/HR/EHRManagement/AvInfo'
+                            } else {
+                                Msg.show(rst.msg, rst.result);
+                            }
+                        });
+                    }
+                }
+                $("#btnSubmit").button("reset");
+            });
+
+        }
+
+    </script>
+}
+<div class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;休假申请</span></h4>
+
+    <div class="input-group">
+        <span class="input-group-addon">休假类型</span>
+        <select id="VacationApplyType" class="form-control">
+            <option selected value="">--------</option>
+            <option value="3179486">事假</option>
+            <option value="3179488">产假</option>
+            <option value="3179492">病假</option>
+            <option value="3179493">婚假</option>
+            <option value="3179494">工伤</option>
+            <option value="3179495">年假</option>
+            <option value="3179496">丧假</option>
+            <option value="6194015">休息日加班调休</option>
+            <option value="7573280">夜加班转调休</option>
+            <option value="80791688">陪护假</option>
+            <option value="147128181">流产假</option>
+        </select>
+    </div>
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度</span>
+        <input type="text" id="VacationYear" name="VacationYear" class="form-control" placeholder="" readonly="">
+    </div>
+
+    <br />
+
+    <div class="input-group date form_date">
+        <span class="input-group-addon">开始时间</span>
+        <input class="form-control hzyDp" id="VacationApplyBeginDate" name="VacationApplyBeginDate" type="text" style="width: 105px" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"></span>
+        <input type="time" id="VacationApplyBeginTime" name="VacationApplyBeginTime" class="form-control" placeholder="08:00:00">
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">结束时间</span>
+        <input class="form-control hzyDp" id="VacationApplyEndDate" name="VacationApplyEndDate" type="text" style="width: 105px" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"></span>
+        <input type="time" id="VacationApplyEndTime" name="VacationApplyEndTime" class="form-control" placeholder="08:00:00">
+    </div>
+
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">休假时长</span>
+        <input type="number" id="VacationApplyHours" name="VacationApplyHours" class="form-control" placeholder="休假时长">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">审批人(1)</span>
+        <select id="changeAP1" class="form-control" onchange="changeAP('changeAP1','addapprove1')">
+            <option value="">- - - -</option>
+            <option value="1">一级审批人</option>
+            <option value="2">二级审批人</option>
+        </select>
+        <select id="addapprove1" class="form-control">
+        </select>
+    </div>
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;不需要2个审批人不用填写</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">审批人(2)</span>
+        <select id="changeAP2" class="form-control" onchange="changeAP('changeAP2','addapprove2')">
+            <option value="">- - - -</option>
+            <option value="1">一级审批人</option>
+            <option value="2">二级审批人</option>
+        </select>
+        <select id="addapprove2" class="form-control">
+        </select>
+    </div>
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">休假原因</span>
+        <input type="text" id="VacationApplyReason" name="VacationApplyReason" class="form-control" placeholder="休假原因">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+        <input type="text" id="VacationApplyRemark" name="VacationApplyRemark" class="form-control" placeholder="备注">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">临&nbsp;&nbsp;时&nbsp;&nbsp;&nbsp;负&nbsp;&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
+        <input type="text" id="VacationApplyTmpName" name="VacationApplyTmpName" class="form-control" placeholder="临时负责人">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">紧急联系人及电话</span>
+        <input type="text" id="VacationApplyEmergency" name="VacationApplyEmergency" class="form-control" placeholder="紧急联系人及电话">
+    </div>
+    <input id="btnSubmit" type="button" value="申请确定" class="btn btn-success" style="width: 100%; margin-top: 30px;" onclick="btnSubmit()" />
+</div>

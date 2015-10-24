@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section script{
+    <style>
+        #shareBg img {
+            width:100%;
+        }
+        #goIndex {
+            position: absolute; 
+            left: 33%;
+            z-index:1;
+        }
+        #wish {
+            position: absolute;
+            left: 23.5%;
+            z-index: 1;
+        }
+
+            #wish textarea {
+                width:190px;
+                height:100px;
+
+                overflow: hidden;
+                background: transparent;
+                border-style: none;
+                font-size: 18px;
+                color: #fad582;
+                background-color: transparent;
+                font-family: 'Adobe Arabic';
+                border: 1px solid dashed;
+
+                text-align:center;
+                /*text-justify:distribute;*/
+
+                outline: none;
+
+                font-family:华文行楷;
+                font-size:16px;
+
+                letter-spacing:2px;
+                line-height:inherit;
+            }
+    </style>
+    <script>
+        $(function () {
+            $("#goIndex img").load(function () {
+                var bgHeight = $("#shareBg").height();
+                $("#goIndex").css("top", bgHeight * 0.8);
+                $("#wish").css("top", bgHeight * 0.52);
+
+                $("#goIndexPage").click(function () {
+                    window.location.href = "Index";
+                });
+            });
+        });
+      
+    </script>
+}
+<div id="shareBg">
+    <img alt="shareBgImg" src="/Areas/Game/Resources/images/OneOneWish/resultBg.png"/>
+</div>
+
+<div id="wish">
+    <textarea rows="3" cols="35" maxlength="40" readonly="readonly">@ViewBag.result</textarea>
+</div>
+
+<div id="goIndex">
+    <a id="goIndexPage">
+        <img alt="shareBgImg" src="/Areas/Game/Resources/images/OneOneWish/goIndex.png"/>
+    </a>
+</div>

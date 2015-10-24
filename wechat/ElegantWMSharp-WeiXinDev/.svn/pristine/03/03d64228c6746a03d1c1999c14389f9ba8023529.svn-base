@@ -1,0 +1,217 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //年费用预算
+        $('#cost1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '年费用预算',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示明细数据'
+            },
+            xAxis: [{
+                categories: ['12年', '13年', '14年']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    enableMouseTracking: false
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            showCostsub();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '预算',
+                color: '#4F94CD',
+                type: 'column',
+                yAxis: 0,
+                data: [403, 433, 488],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: '实际',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [387, 455, 478],
+                tooltip: {
+                    valueSuffix: null
+                }
+            }, {
+                name: '使用率',
+                color: '#9BCD9B',
+                type: 'line',
+                yAxis: 1,
+                data: [96, 105, 98],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    });
+
+    function showCostsub() {
+        $('#cost2').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 450,
+                backgroundColor: null
+            },
+            title: {
+                text: '14年费用预算执行情况',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['房屋租赁费', '办公费用', '电话宽带费', '发布会及推广费', '印刷品', '媒体宣传费', '形象品费 ', '汽车费用', '差旅费'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '预算',
+                color: '#B22222',
+                data: [80, 67, 63, 59, 56, 52, 51, 45, 34]
+            }, {
+                name: '实际',
+                color: '#4F94CD',
+                data: [55, 58, 47, 47, 35, 32, 34, 31, 27]
+            }]
+        });
+
+        //费用结构分析
+        $('#cost3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250
+            },
+            title: {
+                text: '费用结构分析',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            tooltip: {
+                pointFormat: '占比：{point.percentage:.1f}%'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: false,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        distance: -30,
+                        format: '{point.name}{point.y}',
+                        style: {
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '费用结构分析',
+                data: [
+                    ['房屋租赁费', 80],
+                    ['办公费用', 67],
+                    ['电话宽带费', 63],
+                    ['发布会及推广费', 59],
+                    ['印刷品', 56],
+                    ['媒体宣传费', 52],
+                    ['形象品费', 51],
+                    ['汽车费用', 45],
+                    ['差旅费', 34]
+                ]
+            }]
+        });
+    }
+</script>
+
+<div class="ht" id="scost">
+    <i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;费用分析
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="cost1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="cost2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="cost3"></div>
+</div>

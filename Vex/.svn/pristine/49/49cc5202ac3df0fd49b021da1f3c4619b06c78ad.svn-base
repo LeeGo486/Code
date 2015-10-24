@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MDM属性管理</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/WSRR/WSRR.js?Date=20131203" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+
+    <div iconcls="icon-save" title="编辑WS参数信息" id="divEditWSParam" style="width: 600px;">
+        <form id="form_ParamEdit" name="form_ParamEdit" method="post">
+        <table style="font-size: 9pt" cellpadding="5px">
+            <tr>
+                <td>
+                    参数编号：
+                </td>
+                <td>
+                    <input id="txtParam_ID_Show" name="txtParam_ID_Show" value="" disabled="true" style="width: 300px" />
+                    <input id="txtParam_ID" name="txtParam_ID" value="" type="hidden" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    参数序号：
+                </td>
+                <td>
+                    <input id="txtParam_Index" name="txtParam_Index" style="width: 50px" class="easyui-validatebox"required="required"  missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    说明：
+                </td>
+                <td>
+                    <input id="txtParam_Content" name="txtParam_Content" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    参数名：
+                </td>
+                <td>
+                    <input id="txtParam_Name" name="txtParam_Name" style="width: 150px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    参数类型：
+                </td>
+                <td>
+                    <input id="txtParam_Type" name="txtParam_Type" style="width: 350px" data-options="valueField:'id',textField:'text'">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    必须值：
+                </td>
+                <td>
+                    <input id="txtParam_Must_Flag" name="txtParam_Must_Flag" style="width: 350px">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    默认值：
+                </td>
+                <td>
+                    <input id="txtDefault_Value" name="txtDefault_Value" style="width: 350px">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="#" id="btn_Param_Submit" iconcls="icon-save" onclick="Edit_ParamSubmit()" class="easyui-linkbutton" data-options="plain:true">提交</a> 
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+
+    <div iconcls="icon-save" title="编辑WS信息" id="divEditWSRR" style="width: 600px;">
+        <form id="form_Edit" name="form_Edit" method="post">
+        <table style="font-size: 9pt" cellpadding="5px">
+            <tr>
+                <td>
+                    WS编号：
+                </td>
+                <td>
+                    <input id="txtWS_ID_Show" name="txtWS_ID_Show" value="" disabled="true" style="width: 300px" />
+                    <input id="txtWS_IDSrc" name="txtWS_IDSrc" value="" type="hidden" />
+                    <input id="txtWS_ID" name="txtWS_ID" value="" type="hidden" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    WS名称：
+                </td>
+                <td>
+                    <input id="txtWS_Name" name="txtWS_Name" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    类型：
+                </td>
+                <td>
+                    <input id="txtWS_Type" name="txtWS_Type" style="width: 250px">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    说明：
+                </td>
+                <td>
+                    <input id="txtWS_Help" name="txtWS_Help" style="width: 250px" class="easyui-validatebox"  required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    正式库服务器：
+                </td>
+                <td>
+                    <input id="txtWS_Host_Prod" name="txtWS_Host_Prod" style="width: 350px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    测试库服务器：
+                </td>
+                <td>
+                    <input id="txtWS_Host_Test" name="txtWS_Host_Test" style="width: 350px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    访问地址：
+                </td>
+                <td>
+                    <input id="txtWS_URL" name="txtWS_URL" style="width: 350px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    状态：
+                </td>
+                <td>
+                    <input id="txtWS_State" name="txtWS_State" style="width: 250px">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    版本：
+                </td>
+                <td>
+                    <input id="txtWS_Vision" name="txtWS_Vision" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    函数或方法：
+                </td>
+                <td>
+                    <input id="txtWS_Method" name="txtWS_Method" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    是否需要登录：
+                </td>
+                <td>
+                    <input id="txtNeed_Login" name="txtNeed_Login" style="width: 250px">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    编码：
+                </td>
+                <td>
+                    <input id="txtWS_Unicode" name="txtWS_Unicode" style="width: 250px">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    分类：
+                </td>
+                <td>
+                    <input id="txtClass_ID" name="txtClass_ID" style="width: 250px">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="#" id="btn_Submit" iconcls="icon-save" onclick="Edit_Submit()" class="easyui-linkbutton" data-options="plain:true">提交</a>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+
+    <div region="east" id="east"  style="width: 400px;" style="background: #eee; overflow-y: hidden;">
+        <div id="mainTabs" class="easyui-tabs" fit="true" border="false" style="width: 600px;">
+            <div title="参数信息">
+                <table id="divParamInfo" style="width: 100%; height: 98%">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div region="center" split="true" style="width: 100%;" id="mainPanle">
+        <table id="tab_list" style="width: 100%; height: 98%">
+        </table>
+    </div>
+</body>
+</html>

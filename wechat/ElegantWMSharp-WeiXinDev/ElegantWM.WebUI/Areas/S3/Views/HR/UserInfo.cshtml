@@ -1,0 +1,238 @@
+﻿<div class="ht" id="suserinfo">
+    <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;员工基本信息
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <table class="dataTable userInfo">
+        <tr>
+            <td rowspan ="7" colspan="2">
+                <div class="headimg">
+                    <img src="/Areas/S3/Resources/images/hr01.png"/>
+                </div>
+            </td>
+            <td>姓名：</td>
+            <td>徐艳琼</td>
+        </tr>
+        <tr>
+            <td>工号：</td>
+            <td>0740382</td>
+        </tr>
+        <tr>
+            <td>入职时间：</td>
+            <td>2005-08-02</td>
+        </tr>
+        <tr>
+            <td>年龄：</td>
+            <td>37</td>
+        </tr>
+        <tr>
+            <td>岗位：</td>
+            <td>店长</td>
+        </tr>
+        <tr>
+            <td>上月薪资：</td>
+            <td>8765</td>
+        </tr>
+        <tr>
+            <td>联系方式：</td>
+            <td><a href="tel:15988381281"> 15988381281</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">拥有客户数：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadCustomers();">32</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">能力评价：</td>
+            <td colspan="2"><a href="javascript:void(0);"  onclick="loadDoAbility('a1');">★★★★★</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">培训履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadTrainList('l1');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">就业履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadWorkList('w1');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="loadDoCheck('c1');">考勤</a></td>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="Msg.show('关注成功',0);">关注</a></td>
+        </tr>
+    </table>
+    <div id="a1" class="cusHideAbilityArea" style="display:none;"></div>
+    <div id="l1" class="cusHideTrainListArea" style="display:none;"></div>
+    <div id="w1" class="cusHideWorkListArea" style="display:none;"></div>
+    <div id="c1" class="cusHideCheckArea" style="display:none;"></div>
+    <br />
+    <table class="dataTable userInfo">
+        <tr>
+            <td rowspan ="7" colspan="2"><img src="/Areas/S3/Resources/images/hr02.png" style="width:100px;height:120px;"/></td>
+            <td>姓名：</td>
+            <td>黄秋娜</td>
+        </tr>
+        <tr>
+            <td>工号：</td>
+            <td>1305018</td>
+        </tr>
+        <tr>
+            <td>入职时间：</td>
+            <td>2013-04-25</td>
+        </tr>
+        <tr>
+            <td>年龄：</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>岗位：</td>
+            <td>导购</td>
+        </tr>
+        <tr>
+            <td>上月薪资：</td>
+            <td>3245</td>
+        </tr>
+        <tr>
+            <td>联系方式：</td>
+            <td><a href="tel:15888386728"> 15888386728</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">拥有客户数：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadCustomers();">8</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">能力评价：</td>
+            <td colspan="2"><a href="javascript:void(0);"  onclick="loadDoAbility('a2');">★★★</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">培训履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadTrainList('l2');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">就业履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadWorkList('w2');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="loadDoCheck('c2');">考勤</a></td>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="Msg.show('关注成功',0);">关注</a></td>
+        </tr>
+    </table>
+    <div id="a2" class="cusHideAbilityArea" style="display:none;"></div>
+    <div id="l2" class="cusHideTrainListArea" style="display:none;"></div>
+    <div id="w2" class="cusHideWorkListArea" style="display:none;"></div>
+    <div id="c2" class="cusHideCheckArea" style="display:none;"></div>
+    <br />
+    <table class="dataTable userInfo">
+        <tr>
+            <td rowspan ="7" colspan="2"><img src="/Areas/S3/Resources/images/hr03.png" style="width:100px;height:120px;"/></td>
+            <td>姓名：</td>
+            <td>陈小芳</td>
+        </tr>
+        <tr>
+            <td>工号：</td>
+            <td>1403443</td>
+        </tr>
+        <tr>
+            <td>入职时间：</td>
+            <td>2014-03-05</td>
+        </tr>
+        <tr>
+            <td>年龄：</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>岗位：</td>
+            <td>陈列</td>
+        </tr>
+        <tr>
+            <td>上月薪资：</td>
+            <td>2776</td>
+        </tr>
+        <tr>
+            <td>联系方式：</td>
+            <td><a href="tel:13356748725"> 13356748725</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">拥有客户数：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadCustomers();">6</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">能力评价：</td>
+            <td colspan="2"><a href="javascript:void(0);"  onclick="loadDoAbility('a3');">★★★</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">培训履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadTrainList('l3');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">就业履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadWorkList('w3');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="loadDoCheck('c3');">考勤</a></td>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="Msg.show('关注成功',0);">关注</a></td>
+        </tr>
+    </table>
+    <div id="a3" class="cusHideAbilityArea" style="display:none;"></div>
+    <div id="l3" class="cusHideTrainListArea" style="display:none;"></div>
+    <div id="w3" class="cusHideWorkListArea" style="display:none;"></div>
+    <div id="c3" class="cusHideCheckArea" style="display:none;"></div>
+    <br />
+    <table class="dataTable userInfo">
+        <tr>
+            <td rowspan ="7" colspan="2"><img src="/Areas/S3/Resources/images/hr04.png" style="width:100px;height:120px;"/></td>
+            <td>姓名：</td>
+            <td>陈慧珊</td>
+        </tr>
+        <tr>
+            <td>工号：</td>
+            <td>1111332</td>
+        </tr>
+        <tr>
+            <td>入职时间：</td>
+            <td>2011-10-27</td>
+        </tr>
+        <tr>
+            <td>年龄：</td>
+            <td>28</td>
+        </tr>
+        <tr>
+            <td>岗位：</td>
+            <td>迎宾</td>
+        </tr>
+        <tr>
+            <td>上月薪资：</td>
+            <td>5585</td>
+        </tr>
+        <tr>
+            <td>联系方式：</td>
+            <td><a href="tel:13756263490"> 13756263490</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">拥有客户数：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadCustomers();">19</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">能力评价：</td>
+            <td colspan="2"><a href="javascript:void(0);"  onclick="loadDoAbility('a4');">★★★★</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">培训履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadTrainList('l4');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan="2">就业履历：</td>
+            <td colspan="2"><a href="javascript:void(0);" onclick="loadWorkList('w4');">点击查看</a></td>
+        </tr>
+        <tr>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="loadDoCheck('c4');">考勤</a></td>
+            <td colspan ="2"><a href="javascript:void(0);" onclick="Msg.show('关注成功',0);">关注</a></td>
+        </tr>
+    </table>
+    <div id="a4" class="cusHideAbilityArea" style="display:none;"></div>
+    <div id="l4" class="cusHideTrainListArea" style="display:none;"></div>
+    <div id="w4" class="cusHideWorkListArea" style="display:none;"></div>
+    <div id="c4" class="cusHideCheckArea" style="display:none;"></div>
+</div>

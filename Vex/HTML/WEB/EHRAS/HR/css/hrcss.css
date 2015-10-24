@@ -1,0 +1,38 @@
+﻿#header {left:0; top:0; width:100%; position:fixed; padding:0px; background:#f8f9f9; z-index:9997;}  
+#mybody {margin:0px; width:100%; font-family: Arial, Helvetica; font-size:12px;}  
+
+.a3 {   
+    font-size:15px; 
+    font-weight:600;
+    padding:8px 8px 4px 8px; 
+    background:none;
+    color:#b0a8a8;  
+    border-radius: 0px; /*按钮圆角*/   
+    -webkit-border-radius:0px;
+    border: 0px solid #808080;
+    text-decoration: none; 
+}
+
+.a3:hover,
+.a3:active { 
+     color:#636161;
+     background-color: #eaf2ff;   
+}
+
+.div1 {
+    height:22px;
+    background-color:#eaf2ff;
+    color:#534c4c; /*按钮圆角*/  
+    font-size:12px;
+    font-weight:500;
+    padding-top:3px; 
+    border:1px solid #b5c6e2;
+}
+
+
+.required1 {
+    color:#f00;
+}
+
+/********************************************************************************************/
+ 

@@ -1,0 +1,77 @@
+﻿<script type="text/javascript">
+
+    $(function () {
+        //日历
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+</script>
+
+<div id="FeedBackAll@(ViewBag.CUSID)">
+<div class="ht" style="background-color:#EEEEEE">
+    <i class="glyphicon icon-pencil"></i>&nbsp;&nbsp;我的任务反馈
+    <span onclick="$('#FeedBackAll@(ViewBag.CUSID)').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail" id="myFeedBack">
+
+        <div class="input-group" id ="comFruit">
+            <span class="input-group-addon">是否到店</span>
+            <select class="form-control" id="IsArrival">
+                <option value="是" selected="selected">是</option>
+                <option  value = "否">否</option>
+            </select>
+        </div>
+
+        <div class="input-group date form_date" style="margin-top: 15px;">
+            <span class="input-group-addon">到店时间</span>
+            <input class="form-control hzyDp" id="ArrivalDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
+        
+        <div class="input-group" style="margin-top: 15px;">
+            <span class="input-group-addon">是否购买</span>
+            <select class="form-control" id="IsBuy">
+                <option  value = '购买' selected="selected">购买</option>
+                <option  value = '没购买'>没购买</option>
+                <option  value = '退换货'>退换货</option>
+            </select>
+        </div>
+
+        <div id="button">
+            <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submit()">提交反馈</button>
+        </div>
+        
+        <script>
+            //保存
+            function submit() {
+                //是否到店
+                var IsArrival = $("#IsArrival").val();
+                //到店时间
+                var ArrivalDate = $("#ArrivalDate").val();
+                //是否购买
+                var IsBuy = $("#IsBuy").val();
+                //提交数据
+                var data = {};
+                data.where = "<ID>@ViewBag.ID</ID><IsArrival>" + IsArrival + "</IsArrival><ArrivalDate>" + ArrivalDate + "</ArrivalDate><IsBuy>" + IsBuy + "</IsBuy>";
+
+                $.post("/S3/CMTFeedBack/FeedBackSumbitArrival", data, function (data) {
+                    data = eval('(' + data + ')')[0];
+                    //debugger;
+                    var message = data.Message;
+                    $('#FeedBackAll').fadeOut(500);
+                    //$("#zt" + ViewBag.CusInfo).val("已预约");
+                    //$("#TaskDetail div:visible").attr("style","display:none");
+                    $("#taskArrival"+'@ViewBag.CUSID').hide();
+                    Msg.show(message, 0);
+
+                });
+            };
+        </script>
+        
+</div>
+
+</div>

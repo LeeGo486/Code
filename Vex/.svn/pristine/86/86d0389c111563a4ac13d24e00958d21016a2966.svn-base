@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>BOMTool</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.datagrid_groupview.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/JS_PrintArea.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/PLMAS/BOMTool.js?Date=20140719" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+    <div region="north" style="height: 60px" data-options="split:false,border:false">
+        <div style="padding-top: 10px; width: 100%;">
+            <form id="frmSeach">
+                <table border="0">
+                    <tr>
+                        <td>品牌：<input id="txtcmbBrand" name="txtcmbBrand" style="width: 100px">
+                            查询方式：<input id="cmbSelectType" name="cmbSelectType" style="width: 100px">
+                        </td>
+                        <td>
+                            <div id="date" style="display: inline-block; *zoom: 1; *display: inline;">
+                                开始时间：<input class="easyui-datebox" id="txtBeginDate" name="txtBeginDate" data-options="formatter:Formater.Date" style="width: 100px" />
+                                结束时间：<input class="easyui-datebox" id="txtEndDate" name="txtEndDate" data-options="formatter:Formater.Date" style="width: 100px" />
+                            </div>
+
+                            <div id="orderPlacing" style="display: none;">订货会季节：<input id="txtcmbdhhjj" name="txtcmbdhhjj" style="width: 200px" data-options="valueField:'id',textField:'text'"></div>
+                            <div id="design" style="display: none;">编号：<input id="txtDesignerId" name="txtDesignerId" class="easyui-validatebox" data-options="required:true" /></div>
+                        </td>
+                        <td>
+                            <a href="#" id="btn_Search" iconcls="icon-search" onclick="SearchClick()" class="easyui-linkbutton"
+                                data-options="plain:true">搜索</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <div region="center" split="true" id="mainPanle">
+        <table id="tabList">
+        </table>
+    </div>
+
+    <div id="mm" class="easyui-menu" style="width: 120px;">
+        <div onclick="addwl()" data-options="iconCls:'icon-add'">新增物料</div>
+        <div onclick="addgx()" data-options="iconCls:'icon-add'">新增工序</div>
+        <div class="menu-sep"></div>
+        <div onclick="del()" data-options="iconCls:'icon-remove'">删除</div>
+    </div>
+
+    <div title="查看BOM" id="divsearch" style="padding: 5px">
+        <div class="easyui-tabs" data-options="fit:true,border:true,plain:true">
+            <div title="BOM信息" data-options="split:false,border:true">
+                <table id="searchbomlist">
+                </table>
+            </div>
+            <div title="成衣信息" data-options="split:false,border:true">
+                <table id="samplelist">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="DivGX">
+        <form id="formGX" title="新建工序" name="formGX" method="post">
+            <table style="font-size: 9pt;" cellpadding="2px;">
+                <tr>
+                    <td>工序编号：
+                    </td>
+                    <td>
+                        <input id="txtmtno" name="txtmtno" style="width: 100px">
+                    </td>
+                    <td>描述：
+                    </td>
+                    <td>
+                        <input id="txtitds" name="txtitds" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center">
+                        <a href="#" id="A2" iconcls="icon-ok" data-options="plain:true" onclick="saveGX()" class="easyui-linkbutton">确认</a>
+                        <a href="#" id="A4" iconcls="icon-undo" onclick="calcelBOM('新建工序')" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div title="限定" id="divlimited" style="padding: 5px">
+        <div class="easyui-tabs" data-options="fit:true,border:true,plain:true">
+            <div title="限定" data-options="split:false,border:true">
+                <table id="limitedlist">
+                </table>
+            </div>
+            <div title="成衣信息" data-options="split:false,border:true">
+                <table id="threesamplelist">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div title="替代" id="divReplace" style="padding: 5px">
+        <div class="easyui-tabs" data-options="fit:true,border:true,plain:true">
+            <div title="替代" data-options="split:false,border:true">
+                <table id="replacelist">
+                </table>
+            </div>
+            <div title="成衣信息" data-options="split:false,border:true">
+                <table id="threesample_replacelist">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="DivAddLimited">
+        <form id="formAddLimited" title="新建限定" name="formAddLimited" method="post">
+            <table style="font-size: 9pt;" cellpadding="2px;">
+                <tr>
+                    <td>序号：
+                    </td>
+                    <td>
+                        <input id="txtmseq" name="txtmseq" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>材料M3编号：
+                    </td>
+                    <td>
+                        <input id="txtmtnolimited" name="txtmtnolimited" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>选择型：
+                    </td>
+                    <td>
+                        <input id="txtopty" name="txtopty" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td>特性组：
+                    </td>
+                    <td>
+                        <input id="txtftid" name="txtftid" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>样衣编号：
+                    </td>
+                    <td>
+                        <input id="txtmeasurementsid" name="txtmeasurementsid" style="width: 100px">
+                    </td>
+                    <td>特性选项：
+                    </td>
+                    <td>
+                        <input id="txtoptn" name="txtoptn" style="width: 100px" disabled="disabled">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>包含：
+                    </td>
+                    <td>
+                        <input id="txtince" name="txtince" style="width: 100px">
+                    </td>
+                    <td>最后保存时间：
+                    </td>
+                    <td>
+                        <input id="txtlmdt" name="txtlmdt" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>最后保存人：
+                    </td>
+                    <td>
+                        <input id="txtlmuser" name="txtlmuser" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center">
+                        <a href="#" id="A1" iconcls="icon-ok" data-options="plain:true" onclick="addSaveLimited()" class="easyui-linkbutton">确认</a>
+                        <a href="#" id="A3" iconcls="icon-undo" onclick="calcelBOM('限定新增')" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div id="DivAddReplace">
+        <form id="formAddReplace" title="新建替代" name="formAddReplace" method="post">
+            <table style="font-size: 9pt;" cellpadding="2px;">
+                <tr>
+                    <td>序号：
+                    </td>
+                    <td>
+                        <input id="txthp_mseq" name="txthp_mseq" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>成衣特性：
+                    </td>
+                    <td>
+                        <input id="txthp_pfti" name="txthp_pfti" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td>物料特性：
+                    </td>
+                    <td>
+                        <input id="txthp_mfti" name="txthp_mfti" style="width: 100px">
+                    </td>
+                    <td>替代类型：
+                    </td>
+                    <td>
+                        <input id="txthp_xsbt" name="txthp_xsbt" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td>最后保存时间：
+                    </td>
+                    <td>
+                        <input id="txthp_lmdt" name="txthp_lmdt" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>最后保存人：
+                    </td>
+                    <td>
+                        <input id="txthp_lmuser" name="txthp_lmuser" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center">
+                        <a href="#" id="A5" iconcls="icon-ok" data-options="plain:true" onclick="addSaveReplace()" class="easyui-linkbutton">确认</a>
+                        <a href="#" id="A6" iconcls="icon-undo" onclick="calcelBOM('替代新增')" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div title="替代子表" id="divReplaceSub" style="padding: 5px">
+        <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+            <div region="north" style="height: 50px">
+                <div style="padding-top: 10px; width: 100%;">
+                    <form id="formReplaceSub" title="替代子表" name="formReplaceSub" method="post">
+                        <table style="font-size: 9pt;" cellpadding="2px;">
+                            <tr>
+                                <td>样板号：
+                                </td>
+                                <td>
+                                    <input id="txtreplacemeasurementsid" name="txtreplacemeasurementsid" style="width: 100px" disabled="disabled">
+                                </td>
+                                <td>物料号：
+                                </td>
+                                <td>
+                                    <input id="txtreplacemtno" name="txtreplacemtno" style="width: 100px" disabled="disabled">
+                                </td>
+                                <td>物料特性：
+                                </td>
+                                <td>
+                                    <input id="txtreplacewltx" name="txtreplacewltx" style="width: 100px" disabled="disabled">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div region="center" split="true" id="Div1">
+                <table id="replaceSubList">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="DivAddReplaceSub">
+        <form id="formAddReplaceSub" title="新建替代子" name="formAddReplaceSub" method="post">
+            <table style="font-size: 9pt;" cellpadding="2px;">
+                <tr>
+                    <td>序号：
+                    </td>
+                    <td>
+                        <input id="txthm1_mseq" name="txthm1_mseq" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>成衣特性：
+                    </td>
+                    <td>
+                        <input id="txthm1_popt" name="txthm1_popt" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>物料特性：
+                    </td>
+                    <td>
+                        <input id="txthm1_mopt" name="txthm1_mopt" style="width: 100px">
+                    </td>
+                </tr>
+                <tr>
+                    <td>对应样衣号：
+                    </td>
+                    <td>
+                        <input id="txthm1_yyno" name="txthm1_yyno" style="width: 100px">
+                    </td>
+                    <td>最后保存时间：
+                    </td>
+                    <td>
+                        <input id="txthm1_lmdt" name="txthm1_lmdt" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>最后保存人：
+                    </td>
+                    <td>
+                        <input id="txthm1_lmuser" name="txthm1_lmuser" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center">
+                        <a href="#" id="A7" iconcls="icon-ok" data-options="plain:true" onclick="addSaveReplaceSub()" class="easyui-linkbutton">确认</a>
+                        <a href="#" id="A8" iconcls="icon-undo" onclick="calcelBOM('替代子表新增')" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div title="样衣价格" id="divSamplePrice" style="padding: 5px">
+        <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+            <div region="center" split="true" id="Div3">
+                <table id="samplepricelist">
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div title="选择BOM" id="divselectbombasic" style="padding: 5px">
+        <div class="easyui-layout" data-options="fit:true,border:true,plain:true">
+
+            <div region="center" split="true" id="Div4">
+                <table id="selectbombasiclist">
+                </table>
+            </div>
+
+            <div region="south" style="height: 50px">
+                <div style="padding-top: 10px; width: 100%;">
+                    <table style="font-size: 9pt;" cellpadding="2px;">
+                        <tr>
+                            <td colspan="6" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#" id="A9" iconcls="icon-ok" data-options="plain:true" onclick="selectBOMbasic()" class="easyui-linkbutton">确认</a>
+                                <a href="#" id="A10" iconcls="icon-undo" onclick="calcelBOM('选择BOM基础')" data-options="plain:true"
+                                    class="easyui-linkbutton">取消</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

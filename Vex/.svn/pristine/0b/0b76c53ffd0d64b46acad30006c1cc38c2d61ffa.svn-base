@@ -1,0 +1,364 @@
+
+var m_finJson = null;
+
+$(document).ready(function(){
+	//初始化插件
+	initPlugins();
+});
+
+function initPlugins(){
+
+	//查询
+	initSearch();
+	//按钮
+	initLinkBtn();
+	//窗口
+	initWin();
+	//下拉日期
+	initComboboxDatebox();
+	//列表
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+		+ "&XML=" + GetGetJson([], 'getWXList');
+	initDataGrid(url);
+}
+
+function initSearch(){
+    $("#search").textbox({
+		width:400,
+		prompt:'请输入：维修单号或店铺名称',
+		type:'text',
+		buttonIcon:'icon-search',
+		buttonText:'搜索',
+		onClickButton:function(){search()}
+    }).textbox('setValue',"");
+
+    // when press ENTER key, accept the inputed value.
+	$("#search").textbox('textbox')
+		.bind('keydown', function(e){
+			if (e.keyCode == 13){ 
+			    search();
+			};
+	});
+}
+
+function initWin(){
+	$("#finishWin").window({
+		title:'维修完成确认',
+		width:350,
+    	height:400,
+    	modal:true,
+    	collapsible:false,
+    	minimizable:false,
+    	maximizable:false,
+    	closable:false,
+    	shadow:true,
+    	closed:true,
+    	draggable:false
+	});
+}
+
+function initDataGrid(url){
+	$("#tab_list").datagrid({
+		url:url,
+        singleSelect: true,
+        selectOnCheck: false,
+        checkOnSelect: true,
+        fit:false,
+        striped:true,
+        columns: [[
+        	{ field: 'ck',checkbox:true},
+            { field: 'wxno', title: '维修单号', width: 100 },
+            { field: 'wxstname', title: '维修单类型', width: 70 },
+            { field: 'sku', title: '维修款号', width: 100 },
+            { field: 'statusname', title: '维修单状态', width: 75 },
+			{ field: 'drname', title: '处理结果', width: 70 },
+			{ field: 'question', title: '问题描述', width: 300 },
+            { field: 'backdate', title: '退回日期', width: 100 },
+            { field: 'respname', title: '店长姓名', width: 70 },
+            { field: 'respphone', title: '店长电话', width: 100 },
+            { field: 'staffname', title: '受理导购', width: 70 },
+            { field: 'staffphone', title: '导购电话', width: 100 },
+        ]],
+        onClickRow:function(index,row){
+        	//control button is enable or disable.
+        	var rowStatus = row.status;
+        	var rowRst = row.deciderst;
+        	checkStatusAndRst(rowStatus,rowRst,index);
+
+        },
+        onDblClickRow:function(index,row){
+        	// open tabs to fix detail info.
+        	var wxno = row.wxno;
+        	linkNewPage(wxno,"info");
+        },
+        onCheck:function(index,row){
+        	//check row result and status.
+        	var rowStatus = row.status;
+        	var rowRst = row.deciderst;
+        	checkStatusAndRst(rowStatus,rowRst,index);
+        },
+        pagination: true, //是否开启分页
+        pageNumber: 1, //默认索引页
+        pageSize: 20, //默认一页数据条数
+	});
+}
+
+function initLinkBtn(){
+
+	$("#again").linkbutton({
+		iconCls:'icon-edit',
+		plain:true,
+		onClick:function(){
+			var data = $("#tab_list").datagrid('getSelected');
+			if(data != null)
+			{
+				linkNewPage(data.wxno,"again");
+			};
+		}
+	});
+	$("#accomplish").linkbutton({
+		iconCls:'icon-ok',
+		plain:true,
+		onClick:function(){
+			var rowdata 
+				= $("#tab_list").datagrid('getSelected');
+			if (rowdata != null){
+				$("#finishWin").panel('open');
+			}
+			else{
+				$.messager.alert('warning','请选择一行数据.','warning');
+			}
+			
+		}
+	});             
+    $("#back").linkbutton({
+    	iconCls:'icon-undo',
+		plain:true,
+		onClick:function(){
+			alert("back");
+		}
+    });
+
+    $("#finSave").linkbutton({
+    	iconCls:'icon-save',
+		plain:true,
+		onClick:function(){
+			saveFinRst();
+		}
+    });
+    $("#finClose").linkbutton({
+    	iconCls:'icon-undo',
+		plain:true,
+		onClick:function(){
+			closeWin();
+		}
+    });
+}
+
+function initComboboxDatebox(){
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([], 'getFinInfo') + "&MultiTable=true";
+     $.post(url, function (data) {
+      	
+	      	var json = eval ("("+data+")");
+			
+			m_finJson = json;
+
+			if(m_finJson != null && m_finJson.length == 3){
+	    	//是否完成
+			$("#isFinish").combobox({
+				width:150,
+				data: m_finJson[0].rows,
+		        valueField: 'value',
+		        textField:'name',
+		        editable:false,
+		        panelHeight:"auto",
+			}).combobox('setValue', m_finJson[0].rows[1].value);
+			//维修人
+			$("#FinishMan").combobox({
+				width:150,
+				data: m_finJson[1].rows,
+				required:true,
+				editable:false,
+		        valueField: 'value',
+		        textField:'name',
+		        panelHeight:"220",
+			});
+			//最终维修点
+			$("#FinishPoint").combobox({
+				width:150,
+				data: m_finJson[2].rows,
+				required:true,
+				editable:false,
+		        valueField: 'point',
+		        textField:'pointname',
+		        panelHeight:"220",
+		        onSelect:function(record){
+		        	for(var i=0;i<m_finJson[2].rows.length;i++){
+		        		if(record.point == m_finJson[2].rows[i].point){
+		        			$("#money").empty()
+		        				.append(m_finJson[2].rows[i].moneyname);
+		        			break;
+		        		};
+		        	};
+		        }
+			});
+    	};
+	});
+	$("#FinDate").datebox({
+		editable:false,
+		required:true,
+		width:150,
+		formatter: function(date){ return formatter(date);},
+    	parser: function(s){ return parser(s);}
+	})
+}
+
+function search(){
+	
+	var wxno = $("#search").textbox('getValue');
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750');
+	if(wxno.length == 0){
+		url += "&XML=" + GetGetJson([], 'getWXList');
+	}
+	else{
+		var isNum = isNaN(wxno);
+		if(isNum){
+			wxno = escape(wxno);
+			url += "&XML=" + GetFormJson([{"name":"txtDepotName","value":wxno}], 'getWXList');
+		}
+		else{
+			url += "&XML=" + GetFormJson([{"name":"txtWxno","value":wxno}], 'getWXList');
+		};
+		
+	};
+
+    initDataGrid(url);
+}
+
+function checkStatusAndRst(rowStatus,rowRst,rowindex){
+	if(rowStatus == 60){
+		$("#again").linkbutton('disable');
+		$("#accomplish").linkbutton('disable');
+		$("#tab_list").datagrid('uncheckRow',rowindex);
+	}
+	else if(rowStatus >= 45){
+		$("#again").linkbutton('enable');
+		$("#accomplish").linkbutton('disable');
+		$("#tab_list").datagrid('uncheckRow',rowindex);
+	}
+	else if(rowStatus >= 40){
+		$("#again").linkbutton('enable');
+		$("#accomplish").linkbutton('disable');
+	}
+	else if(rowStatus <= 25){
+		$("#tab_list").datagrid('uncheckRow',rowindex);
+		$("#accomplish").linkbutton('enable');
+		$("#again").linkbutton('enable');
+	}
+	else{
+		$("#again").linkbutton('enable');
+		$("#accomplish").linkbutton('enable');
+	};
+
+	if(rowRst =="rst0"){
+		$("#tab_list").datagrid('uncheckRow',rowindex);
+	};
+}
+
+function linkNewPage(wxno,type){
+	if(type == "info"){
+		var url = "../../WEB/SPWX/SPWX_WXDetailInfo.html?wxno="+wxno;
+
+		var content = "<iframe id=\"newWx\" scrolling=\"auto\" frameborder=\"0\" src=\""+url+"\"";
+		content += " style=\"width:100%;height:95%\"></iframe>";
+
+		window.parent.$("#mainTabs").tabs('add',{
+       	title: '维修单明细信息',
+        content: content,
+        iconCls: 'icon-search',
+        closable: true
+    	});
+	}
+	else if(type == "again"){
+		var url = "../../WEB/SPWX/SPWX_WXAgain.html?wxno="+wxno;
+		var content = "<iframe id=\"newAgain\" scrolling=\"auto\" frameborder=\"0\" src=\""+url+"\"";
+		content += " style=\"width:100%;height:95%\"></iframe>";
+
+		window.parent.$("#mainTabs").tabs('add',{
+       	title: '维修单再判定',
+        content: content,
+        iconCls: 'icon-edit',
+        closable: true
+    	});
+	};
+}
+
+function closeWin(){
+	$("#isFinish").combobox('setValue', m_finJson[0].rows[1].value);
+	$("#FinishMan").combobox('setValue','');
+	$("#FinishPoint").combobox('setValue','');
+	$("#FinDate").datebox('setValue','');
+	$("#money").empty();
+
+	$("#finishWin").window('close');
+}
+
+function saveFinRst(){
+
+	var isValid = $("#finForm").form('validate');
+		if(!isValid){
+			return;
+		};
+
+	var data = $("#finForm").serializeArray();
+
+	data.push(
+        { "name": "txtFinishMoney", "value": $("#money").text() }
+        );
+	data.push(
+		{ "name": "txtWxno", "value":$("#tab_list").datagrid('getSelected').wxno }
+		);
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+		+ "&XML=" + escape(GetFormJson(data, 'saveFin'));
+	
+	$.messager.confirm('提示框', '确认提交吗？', function (r) {
+		if(r){
+			$.messager.progress({ title: '请稍后', msg: '提交中' });
+			$.post(url,function(data){
+			    $.messager.progress('close');
+			    var rst = eval("(" + data + ")");
+
+			    if (rst.rows[0].result == "False") {
+			        $.messager.alert("error", rst.rows[0].message, "error");
+			        return;
+			    }
+			    else if (rst.rows[0].result == "True") {
+			        $.messager.alert("ok", rst.rows[0].message, "ok");
+					$("tab_list").datagrid('reload');
+					closeWin();
+			    };
+			});
+		};
+	});
+}
+
+function formatter(date){
+	var y = date.getFullYear();
+	var m = date.getMonth()+1;
+	var d = date.getDate();
+	return y+'-'+m+'-'+d;
+}
+
+function parser(s){
+	var t = Date.parse(s);
+	if (!isNaN(t)){
+		return new Date(t);
+	} else {
+		return new Date();
+	};
+}
+

@@ -1,0 +1,58 @@
+﻿ body
+        {
+        	margin:0px;
+        	font-size:14px;
+        }
+        #main
+        {
+        	margin-top:2px;
+        	width:100%;
+        }
+        #main .top
+        {
+        	width:100%;
+        	height:35px;
+        	border-bottom:solid 1px black;
+        } 
+        #main .content
+        { 
+        	font-size:0.8em;
+        	overflow:scroll;
+        	width:100%;
+        	height:420px;
+        }
+        .txtSty
+        {
+        	border:solid 1px #3A69A5;
+        	width:80px;
+        }
+       .FixedTitleRow   
+        {   
+            position: relative;    
+            table-layout:fixed;
+            top: expression(this.offsetParent.scrollTop-2);
+            background-color:White;   
+        }   
+
+        .FixedTitleRow th
+        {
+            overflow:hidden;
+            white-space:inherit;
+        }
+           
+        .FixedTitleColumn   
+        {   
+            position: relative;    
+            left: expression(this.parentElement.offsetParent.scrollLeft-2);   
+        }   
+           
+        .FixedDataColumn   
+        {   
+            position: relative;   
+            left: expression(this.parentElement.offsetParent.offsetParent.scrollLeft-2);   
+        }
+        .gridviewSty
+        {
+        	font-size:1.0em;
+            white-space:normal;
+        }

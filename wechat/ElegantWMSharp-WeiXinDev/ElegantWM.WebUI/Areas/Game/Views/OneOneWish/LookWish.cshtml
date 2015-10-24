@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "LookWish";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+<style>
+    #resultBg img {
+        width: 100%;
+    }
+
+    #wish {
+        position: absolute;
+        left: 23.5%;
+        z-index: 1;
+    }
+
+        #wish textarea {
+            width: 190px;
+            height: 100px;
+            overflow: hidden;
+            background: transparent;
+            border-style: none;
+            font-size: 18px;
+            color: #fad582;
+            background-color: transparent;
+            font-family: 'Adobe Arabic';
+            border: 1px solid dashed;
+            text-align: center;
+            /*text-justify:distribute;*/
+            outline: none;
+            font-family: 华文行楷;
+            font-size: 16px;
+            letter-spacing: 2px;
+            line-height: inherit;
+        }
+</style>
+<script type="text/javascript">
+
+    $(function () {
+        var Wish = '@ViewBag.result';
+        //提交心愿
+
+
+        var data = {
+            VtName: "1",
+            VtPhone: "1",
+            VtAddress: Wish,
+            VtReason: "1",
+            Oid: ""
+        };
+
+        //$.post("/Game/OneOneWish/SubmitWish", data, function (rst) {
+        //    alert(rst.msg);
+
+        $("#resultBg img").load(function () {
+            var bgHeight = $("#resultBg").height();
+            $("#wish").css("top", bgHeight * 0.52);
+        });
+
+        var share = "<div style=\"position:absolute;top:0px;left:0px;z-index:2;\"><img style=\"width:100%;height:100%;\" src=\"/Areas/Game/Resources/images/OneOneWish/share.png\" \></div>";
+        setTimeout(function () { $("#resultBg").append(share); }, 3000);
+    });
+
+    // 需要分享的内容，请放到ready里
+    WeixinApi.ready(function (Api) {
+        // 微信分享的数据
+        var wxData = {
+            "appId": "", // 服务号可以填写appId
+            "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/OneOneWish/smallShare.jpg',
+            "link": 'http://it.hwafashion.com/Game/OneOneWish/SharePage?wish=' + $("#wish textarea").val(),
+            "title": "2015新年愿望",
+            "desc": "我的新年愿望:" + $("#wish textarea").val()
+        };
+
+        //Api.hideOptionMenu();
+        //Api.hideToolbar();
+        // 分享的回调
+        var wxCallbacks = {
+        };
+        // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+        Api.shareToFriend(wxData, wxCallbacks);
+        // 点击分享到朋友圈，会执行下面这个代码
+        Api.shareToTimeline(wxData, wxCallbacks);
+    });
+
+</script>
+
+
+<div id="resultBg">
+    <img alt="bg" src="/Areas/Game/Resources/images/OneOneWish/resultBg.png" />
+</div>
+
+<div id="wish">
+    <textarea rows="3" cols="35" maxlength="40" readonly="readonly">@ViewBag.result</textarea>
+</div>

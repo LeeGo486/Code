@@ -1,0 +1,111 @@
+﻿<script type="text/javascript">
+    function showSvrSptDetail(ths, id) {
+        if ($("#" + id).is(":visible")) {
+            $(ths).children().removeClass("icon-chevron-up icon-large");
+            $(ths).children().addClass("icon-chevron-down icon-large");
+            $("#" + id).fadeOut(100);
+        } else {
+            $(ths).children().removeClass("icon-chevron-down icon-large");
+            $(ths).children().addClass("icon-chevron-up icon-large");
+            $("#" + id).fadeIn(400);
+        }
+    }
+</script>
+<div class="dataDetail">
+    <span class="badge pull-right ls"><a href="tel:13888888888" style="color:#fff;"><i class="glyphicon glyphicon-earphone"></i> 周琳</a></span>
+    到店时间：2014-07-15<br /><br />
+    预约备注：该客户会带5岁的女儿一同驱车来店<br /><br />
+    服务支持：<br />
+    <input type="checkbox"  checked id="spt11" /><label for="spt11">停车位</label>
+    <input type="checkbox" checked id="spt15" /><label for="spt15">饮品</label>
+    <input type="checkbox" checked id="spt111" /><label for="spt111">物品寄存</label>
+    <input type="checkbox" checked id="spt112" /><label for="spt112">上门服务</label>
+    <span class="badge pull-right ys" onclick="showSvrSptDetail(this,'ssh0');"><i class="icon-chevron-down icon-large"></i></span>
+    <br />
+    <div id="ssh0" style="display:none;">
+        <table class="table">
+            <tr><th>支持</th><th>负责人</th><th>完成时间</th></tr>
+            <tr class="warning">
+                <td>停车位</td>
+                <td>戴斌</td>
+                <td>2014-07-10</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <b>要求：</b>07-10上午十点门口11号停车位
+                </td>
+            </tr>
+            <tr class="warning">
+                <td>VIPROOM</td>
+                <td>李雪</td>
+                <td>2014-07-10</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <b>要求：</b>07-10上午10点到12点，请准备3楼2号包间
+                    <br />
+                    <b>补充：</b>当天上午该时段已被预留给其他客户，建议预约下午或者改用1楼小包间
+                </td>
+            </tr>
+            <tr class="warning">
+                <td>饮品</td>
+                <td></td>
+                <td><span class="badge hs">未完成</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="optarea">
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();">新增支持</span>
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceAllot();">支持请求</span>
+        <span class="btnarea" onclick="ShopServiceCustomerFeedBack();">客户反馈</span>
+    </div>
+</div>
+<div class="dataDetail" style="margin-top:12px;">
+    <span class="badge pull-right ls"><a href="tel:13888888888" style="color:#fff;"><i class="glyphicon glyphicon-earphone"></i> 吴莹莹</a></span>
+    到店时间：2014-07-14<br /><br />
+    预约备注：该客户从医院回来路上顺便来店看看，最近失眠<br /><br />
+    服务支持：<br />
+    <input type="checkbox"  checked id="spt1" /><label for="spt1">停车位</label>
+    <input type="checkbox" checked id="spt5" /><label for="spt5">饮品</label>
+    <input type="checkbox" checked id="spt1122" /><label for="spt1122">物品寄存</label>
+    <input type="checkbox" checked id="spt12" /><label for="spt12">上门服务</label>
+    <span class="badge pull-right ys" onclick="showSvrSptDetail(this,'ssh1');"><i class="icon-chevron-down icon-large"></i></span>
+    <br />
+    <div id="ssh1" style="display:none;">
+         <table class="table">
+            <tr><th>支持</th><th>负责人</th><th>完成时间</th></tr>
+            <tr class="warning">
+                <td>停车位</td>
+                <td>戴斌</td>
+                <td>2014-07-10</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <b>要求：</b>07-10上午十点门口11号停车位
+                </td>
+            </tr>
+            <tr class="warning">
+                <td>VIPROOM</td>
+                <td>李雪</td>
+                <td>2014-07-10</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <b>要求：</b>07-10上午10点到12点，请准备3楼2号包间
+                    <br />
+                    <b>补充：</b>当天上午该时段已被预留给其他客户，建议预约下午或者改用1楼小包间
+                </td>
+            </tr>
+            <tr class="warning">
+                <td>饮品</td>
+                <td></td>
+                <td><span class="badge hs">未完成</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="optarea">
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();">新增支持</span>
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceAllot();">支持请求</span>
+        <span class="btnarea" onclick="ShopServiceCustomerFeedBack();">客户反馈</span>
+    </div>
+</div>

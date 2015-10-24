@@ -1,0 +1,33 @@
+<HTML>
+	<HEAD>
+		<TITLE>插入画中画广告</TITLE>
+		<link rel="stylesheet" type="text/css" href="site.css">
+			<SCRIPT event="onclick" for="Ok" language="JavaScript">
+  window.returnValue = a.value
+  window.close();
+			</SCRIPT>
+			<script>
+function IsDigit()
+{
+  return ((event.keyCode >= 48) && (event.keyCode <= 57));
+}
+			</script>
+			<BODY bgColor="menu" topmargin="15" leftmargin="15">
+				<br>
+				<DIV align="center">
+					<table width="100%" ID="Table1">
+						<tr>
+							<td>
+								<FIELDSET align="left">
+									<LEGEND align="left">输入画中画广告的地址</LEGEND>
+									<table align="center" ID="Table2">
+										<tr>
+											<td>画中画地址：<input id="a" value='http://www.273c.com/ad/page_pic.js' size="35" NAME="a"></td>
+										</tr>
+									</table>
+								</FIELDSET></td>
+							<td width="80" align="center"><input type="submit" value='   确定   ' id="Ok" NAME="Ok"><br>
+								<br>
+								<input type="button" value='   取消   ' onclick="window.close();" ID="Button1" NAME="Button1"></td>
+						</tr>
+					</table>

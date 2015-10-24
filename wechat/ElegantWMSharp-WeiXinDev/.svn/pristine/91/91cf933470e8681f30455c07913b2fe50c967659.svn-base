@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "会员中心";
+    Layout = "~/Views/Shared/_DLLayout.cshtml";
+}
+<div class="mainArea" style="text-align:center;padding-top:70px;color:#f66;">
+    <i class="icon-ok-circle icon-5x"></i> 
+    <br /><br />
+    <p style="font-size:16px;"><b>@ViewBag.UserInfo</b><br />您已经是我们的会员了！</p>
+</div>

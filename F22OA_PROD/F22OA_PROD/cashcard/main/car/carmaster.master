@@ -1,0 +1,42 @@
+<%@ master language="C#" autoeventwireup="true" inherits="ucarmaster, App_Web_carmaster.master.f3086b61" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>无标题页</title>   
+	<%--<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> --%>
+    <link href="../car/car_default.css" rel="stylesheet" type="text/css" />
+    <script>
+//    function()
+//    {    
+//        var form = Sys.WebForms.PageRequestManager.getInstance()._form;    
+//        form._initialAction = form.action = window.location.href;
+//    }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server" >
+    <div>
+        <table style="table-layout: fixed; width: 100%; border-collapse: collapse; border-bottom: #ccccff 1px solid;">
+            <tr>
+                <td align="left" style="width: 50%" valign="middle">
+                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+                    </asp:ScriptManager>
+                    <asp:Label id="lbltitle" runat="server" Width="345px" Font-Bold="True" Font-Names="宋体" Font-Size="12pt"></asp:Label></td>
+                <td align="right" style="width: 50%" valign="middle">
+                    <asp:HyperLink ID="hlkhelp" runat="server" Target="_blank" Font-Bold="True" Font-Names="宋体" Font-Size="9pt"></asp:HyperLink></td>
+            </tr>
+        </table>
+        <asp:contentplaceholder id="ctplhder" runat="server">
+        </asp:contentplaceholder>
+    </div>
+    </form>
+    <%--<script>
+        Sys.Application.add_load(
+          function()
+          {
+            var form = Sys.WebForms.PageRequestManager.getInstance()._form;
+            form._initialAction = form.action = window.location.href;
+          });
+    </script> --%>
+</body>
+</html>

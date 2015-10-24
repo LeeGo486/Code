@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>设备种类</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/Mat/Mat_Type.js?date=20130202" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+
+        <div data-options="region:'center'">
+            <table id = "tab_list"></table>
+        </div>
+        <div data-options="region:'east',title:'设备品类',split:true" style="width:460px;">
+            <table id="divParamInfo" style="width: 100%; height: 98%">
+            </table>
+        </div>
+
+    <div id="AddCenter" class="easyui-window" data-options="closed:true,width:430,height:300,modal: true">
+        <form id = "formCenterAdd" method="post">
+            <table id="tab_center_add">
+                <tr>
+                    <td>种类名称：</td>
+                    <td><input id="Bigtypename" name="Bigtypename" value="" style="width:250px" 
+                        required="true" class="easyui-validatebox" maxlength="30" missingmessage="必须填写，字符不能超过30"/></td>
+                </tr>
+                <tr>
+                    <td>备注信息：</td>
+                    <td>
+                    <textarea id="Bigcomment" name="Bigcomment" style="width:250px;height:160px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td colspan="2" align="center">
+                        <a href="#" id="cen_Submit" iconcls="icon-save" class="easyui-linkbutton" 
+                        data-options="plain:true" onclick="Edit_Submnit(true)">保存</a>
+                        <a href="#" id="A4" iconcls="icon-undo" class="easyui-linkbutton" 
+                        data-options="plain:true" onclick="Edit_Cancel('A4')">取消</a>
+                    </td>
+                </tr>
+            </table>  
+        </form>
+    </div>
+    <div id="AddEast" class="easyui-window" data-options="closed:true,width:430,height:300,modal: true">
+        <form id = "formEastadd" method="post">
+            <table id="tab_east_add">
+                <tr>
+                    <td>种类名称：</td>
+                    <td><input id="txtSmaType_Name_Show" name="txtSType_Name_Show" value="" disabled="true" style="width:250px" /></td>
+                </tr>
+                <tr style="display:none">
+                     <td > <input id="Bigparentid" name="Bigparentid" value=""/></td>
+                </tr>
+                <tr>
+                    <td>品类名称：</td>
+                    <td><input id="Smatypename" name="Smatypename" style="width:250px" value=""
+                        required="true" class="easyui-validatebox" maxlength="30" missingmessage="必须填写，字符不能超过30"/></td>
+                </tr>
+                <tr>
+                    <td>备注信息：</td>
+                    <td><textarea id="Smacomment" name="Smacomment" style="width:250px;height:140px"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td colspan="2" align="center">
+                        <a href="#" id="east_Submit" iconcls="icon-save" class="easyui-linkbutton" 
+                        data-options="plain:true" onclick="Edit_Submnit(false)">保存</a>
+                        <a href="#" id="A3" iconcls="icon-undo" class="easyui-linkbutton" 
+                        data-options="plain:true" onclick="Edit_Cancel('A3')">取消</a>
+                    </td>
+                </tr>
+            </table>   
+        </form>
+    </div>
+
+    <div id="EditEast" class="easyui-window" data-options="closed:true,width:430,height:320,modal: true">
+        <form id = "formEastEdit" method="post">
+            <table id="Table1">
+                <tr>
+                    <td>种类名称：</td>
+                    <td><input id="eettypename" name="eettypename" value="" disabled="true" style="width:250px" /></td>
+                </tr>
+                <tr style="display:none">
+                     <td > <input id="eetparentid" name="eetparentid" value=""/></td>
+                </tr>
+                <tr>
+                    <td>品类名称：</td>
+                    <td><input id="eestypename" name="eettypename" style="width:250px" value=""
+                        required="true" class="easyui-validatebox" maxlength="30" missingmessage="必须填写，字节不能超过30"/></td>
+                </tr>
+                <tr>
+                    <td>备注信息：</td>
+                    <td><textarea id="eetcomment" name="eetcomment" style="width:250px;height:140px"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td align="center">
+                        <a href="#" id="A1" iconcls="icon-save" class="easyui-linkbutton" 
+                        data-options="plain:true" onclick="Update_Row()">保存</a>
+                        <a href="#" id="A2" iconcls="icon-undo" class="easyui-linkbutton" 
+                        data-options="plain:true" onclick="Edit_Cancel('A2')">取消</a>
+                    </td>
+                </tr>
+            </table>   
+        </form>
+    </div>
+</body>
+</html>

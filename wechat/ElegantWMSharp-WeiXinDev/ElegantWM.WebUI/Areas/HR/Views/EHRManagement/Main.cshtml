@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "主页面";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v4" rel="stylesheet" />
+    <script src="~/Scripts/cookieHelper.js"></script>
+    <script type="text/javascript">
+        //function noticDetail(title, content, imagepath) {
+        //    if (imagepath == "") {
+        //        bootbox.alert(title + "<hr />" + "<div style='text-align:left;'>" + content + "</div>");
+        //    } else {
+        //        bootbox.alert(title + "<hr />" + "<div style='text-align:left;'>" + content + "</div>" +
+        //            "<hr/> <span style='text-align:left'>附件：</span><a href='" + imagepath + "' target='_blank' >" + imagepath.substring(43) + "</a>");
+        //    }
+        //}
+        function noticDetail(title, content, imagepath) {
+            if (imagepath == "") {
+                bootbox.alert(title + "<hr />" + "<div style='text-align:left;'>" + content + "</div>");
+            } else {
+
+                var strimagepath = new Array(); //定义一数组 
+
+                if (imagepath.indexOf(",") > 0) {
+                    strimagepath = imagepath.split(","); //字符分割 
+                    var noticeinfo = "<hr />" + "<div style='text-align:left;'>" + content + "</div>" + "<span style='text-align:left'></span><hr />";
+                    for (var i = 0; i < strimagepath.length; i++) {
+                        noticeinfo += "<a onclick=\"btnnotic('" + strimagepath[i] + "')\">" + strimagepath[i].substring(43) + "</a> <span style='text-align:left'></span><br/>"
+                    }
+                    bootbox.alert(title + noticeinfo);
+                    // bootbox.alert(title + "<hr />" + "<div style='text-align:left;'>" + content + "</div>" +
+                    //"<hr/> <span style='text-align:left'></span><a onclick=\"btnnotic('" + strimagepath[0] + "')\">" + strimagepath[0].substring(43) +
+                    //"</a><hr/> <span style='text-align:left'></span><a onclick=\"btnnotic('" + strimagepath[1] + "')\">" + strimagepath[1].substring(43) + "</a>");
+
+                } else {
+                    bootbox.alert(title + "<hr />" + "<div style='text-align:left;'>" + content + "</div>" +
+                   "<hr/> <span style='text-align:left'></span><a onclick=\"btnnotic('" + imagepath + "')\">" + imagepath.substring(43) + "</a>");
+                }
+
+            }
+        }
+        function btnnotic(imagepath) {
+            window.location.href = "/HR/EHRManagement/noticinfo?imagepath=" + imagepath;
+        }
+
+    </script>
+}
+
+<div class="noticDetail">
+    <h4><span><i class="glyphicon glyphicon-time"></i>公告 </span></h4>
+</div>
+
+@foreach (System.Data.DataRow dr in ViewBag.NoticInfo.Rows)
+{
+    <div class="noticList" onclick="noticDetail('@dr["notictitle"]','@dr["noticcontent"]','@dr["imagepath"]')">
+        <h3>
+            <a>@dr["notictitle"]</a>
+        </h3>
+        <span class="marker">创建时间：@dr["creatrdate"]</span>
+        <span class="marker">By @dr["createname"]</span>
+    </div>
+}
+
+
+
+
+

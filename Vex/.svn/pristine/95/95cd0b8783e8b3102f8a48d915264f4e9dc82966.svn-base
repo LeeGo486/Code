@@ -1,0 +1,92 @@
+
+$(document).ready(function(){
+	initSearch();
+	initLinkBtn();
+	initDataGrid();
+});
+
+
+
+function initSearch(){
+    $("#search").textbox({
+		width:200,
+		prompt:'请输入维修单号',
+		type:'text',
+		buttonIcon:'icon-search',
+		buttonText:'搜索',
+		onClickButton:function(){ search()}
+    }).textbox('setValue',"");
+
+    // when press ENTER key, accept the inputed value.
+	$("#search").textbox('textbox')
+		.bind('keydown', function(e){
+			if (e.keyCode == 13){ 
+			    search();
+			};
+		});
+	
+}
+
+function search(){
+	
+	var wxno 
+		= $("#search").textbox('getValue');
+
+	if(wxno.length == 0){
+	    $.messager.alert('Warning', '请输入维修单号', 'warning');
+        $("#search").focus();
+		return;
+	};
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([{"name":"txtWxno","value":wxno}], 'getWXList');
+
+    $.post(url,function(data){
+
+    });
+}
+
+function initDataGrid(){
+	$("#tab_list").datagrid({
+		url:GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750'),
+	    queryParams: { "XML": GetGetJson([], 'getWXList') },
+        singleSelect: true,
+        fit:false,
+        columns: [[
+            { field: 'wxno', title: '维修单号', width: 100 },
+            { field: 'wxstname', title: '维修单类型', width: 70 },
+            { field: 'respname', title: '店长姓名', width: 70 },
+            { field: 'respphone', title: '店长电话', width: 100 },
+            { field: 'staffname', title: '受理导购', width: 70 },
+            { field: 'staffphone', title: '导购电话', width: 100 },
+            { field: 'sku', title: '维修款号', width: 100 },
+            { field: 'backdate', title: '退回日期', width: 100 },
+            { field: 'question', title: '问题描述', width: 300 },
+            { field: 'statusname', title: '维修单状态', width: 75 }
+		
+        ]],
+        pagination: true, //是否开启分页
+        pageNumber: 1, //默认索引页
+        pageSize: 20, //默认一页数据条数
+	});
+
+}
+
+function initLinkBtn(){
+
+	$("#again").linkbutton({
+		iconCls:'icon-edit',
+		plain:true,
+		onClick:function(){}
+	});
+	$("#accomplish").linkbutton({
+		iconCls:'icon-ok',
+		plain:true,
+		onClick:function(){}
+	});             
+    $("#back").linkbutton({
+    	iconCls:'icon-undo',
+		plain:true,
+		onClick:function(){}
+    })
+}

@@ -1,0 +1,138 @@
+﻿﻿@model EPManageWeb.Entities.Models.ClothesType
+<div class="searchbox">
+    @foreach (var type in Model.ClothesParts)
+    {
+        if (type.Children != null && type.Children.Count > 0)
+        {
+            type.Children[0].PartTypes = type.Children[0].PartTypes.OrderBy(t => t.Order).ToList();
+        <table>
+            <tr>
+                <th rowspan="@type.Children.Count" class="title">@type.Name</th>
+                <td class="subTitle">@type.Children[0].Name</td>
+                <td colspan="3">
+                    <ul class="nav width130">
+                        @foreach (var t in type.Children[0].PartTypes)
+                        {
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="@t.Name" partId="@type.Children[0].Id" />
+                                    @t.Name</label>
+                                @if (t.Children != null && t.Children.Count > 0)
+                                {
+                                    <select class="dropdown-select">
+                                        <option value="0">请选择</option>
+                                        @foreach (var t1 in t.Children)
+                                        {
+                                            <option value="@t1.Name">@t1.Name</option>
+                                        }
+                                    </select>
+                                }
+
+                            </li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+            @for (var i = 1; i < type.Children.Count; i++)
+            {
+                type.Children[i].PartTypes = type.Children[i].PartTypes.OrderBy(t => t.Order).ToList();
+                <tr>
+                    <td class="subTitle">@type.Children[i].Name</td>
+                    <td colspan="3">
+                        <ul class="nav width210" @Html.Raw((type.Children[i].Name == "造型特征") ? "multiple=\"true\"" : "")>
+                            @foreach (var t in type.Children[i].PartTypes)
+                            {
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="@t.Name"  partId="@type.Children[i].Id" />
+                                        @t.Name</label>
+                                    @if (t.Children != null && t.Children.Count > 0)
+                                    {
+                                        <select class="dropdown-select">
+                                            <option value="0">请选择</option>
+                                            @foreach (var t1 in t.Children)
+                                            {
+                                                <option value="@t1.Name">@t1.Name</option>
+                                            }
+                                        </select>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </table>
+        }
+        else
+        {
+            type.PartTypes = type.PartTypes.OrderBy(t => t.Order).ToList();
+        <table>
+            <tr>
+                <th>@type.Name</th>
+                <td>
+                    <ul class="nav width130">
+                        @foreach (var t in type.PartTypes)
+                        {
+                            t.Children = t.Children.OrderBy(t1 => t1.Order).ToList();
+                            <li>
+                                <label>
+                                    <input type="checkbox" name="@t.Name" partId="@type.Id" />
+                                    @t.Name</label>
+                                @if (t.Children != null && t.Children.Count > 0)
+                                {
+                                    <select class="dropdown-select">
+                                        <option value="0">请选择</option>
+                                        @foreach (var t1 in t.Children)
+                                        {
+                                            <option value="@t1.Name">@t1.Name</option>
+                                        }
+                                    </select>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        }
+        <div class="split"></div>
+    }
+    <table class="lastTable">
+        <tr>
+            <th>经典款</th>
+            <td class="width40">系列
+            </td>
+            <td>
+                <select class="dropdown-select">
+                    <option value="0">请选择</option>
+                    @foreach (var t in ViewBag.ClassicStyles as IList<EPManageWeb.Entities.Models.Tag>)
+                    {
+                        <option value="@t.Value">@t.Value</option>
+                    }
+                </select>
+            </td>
+            <th class="left">历年畅销款</th>
+            <td class="width40">年份</td>
+            <td class="right">
+                <select class="dropdown-select">
+                    <option value="0">请选择</option>
+                    @foreach (var t in ViewBag.BestSellingStyles as IList<EPManageWeb.Entities.Models.Tag>)
+                    {
+                        <option value="@t.Value">@t.Value</option>
+                    }
+                </select>
+            </td>
+            <th class="tdOrder">排序方式</th>
+            <td class="tdOrder">
+                <select class="dropdown-select">
+                    <option value="0">请选择</option>
+                    <option value="年份">按年份</option>
+                    <option value="使用频率">使用频率</option>
+                    <option value="销量">销量</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+

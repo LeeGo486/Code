@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>F23Web.Controls</name>
+    </assembly>
+    <members>
+        <member name="F:F23Web.Controls.SheetEditControl._MenuPower">
+            <summary>
+            菜单权
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.BranchDepotSelector.DepotNameField">
+            <summary>
+            仓店名称字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.BranchDepotSelector.ID">
+            <summary>
+            仓店编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.BranchDepotSelector.Enabled">
+            <summary>
+            仓店编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.BranchDepotSelector.MerchantIDField">
+            <summary>
+            加盟商编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.BranchDepotSelector.ParentIDField">
+            <summary>
+            父级编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.BranchDepotSelector.M_TypeIDField">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.DictionarySelector.DicionaryID">
+            <summary>
+            数据字典编号（即lookupid）
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.DictionarySelector.DefaultValue">
+            <summary>
+            默认值
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.CustSelector.CustNameField">
+            <summary>
+            名称字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.CustSelector.ID">
+            <summary>
+            编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.CustSelector.Enabled">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.CustSelector.TelField">
+            <summary>
+            电话字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.CustSelector.SumsField">
+            <summary>
+            余额字段
+            </summary>
+        </member>
+        <member name="F:F23Web.Controls.SheetModifyControl._MenuPower">
+            <summary>
+            菜单权
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MainDepotSelector.DepotNameField">
+            <summary>
+            仓店名称字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MainDepotSelector.ID">
+            <summary>
+            仓店编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MainDepotSelector.Enabled">
+            <summary>
+            仓店编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MainDepotSelector.MerchantIDField">
+            <summary>
+            加盟商编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MainDepotSelector.ParentIDField">
+            <summary>
+            父级编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MainDepotSelector.M_TypeIDField">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.PaymentSelector.DefaultValue">
+            <summary>
+            默认值
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MerchantSelector.ShutNameField">
+            <summary>
+            加盟商名称字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.MerchantSelector.ID">
+            <summary>
+            加盟商编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.SheetQueryControl.AllowSelectSetDepot">
+            <summary>
+            允许选择发货地
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.SheetQueryControl.AllowSelectGetDepot">
+            <summary>
+            允许选择收货地
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.SheetQueryControl.AllowSelectStyle">
+            <summary>
+            允许选择款
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.SheetQueryControl.AllowSelectMerchant">
+            <summary>
+            允许选择加盟商
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.SheetQueryControl.AllowSelectDepot">
+            <summary>
+            允许选择仓店（取收货地权力）
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.SheetQueryControl.ShowToolbar">
+            <summary>
+            显示Toolbar
+            </summary>
+        </member>
+        <member name="T:F23Web.Controls.ReportToolbar">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:F23Web.Controls.ReportToolbar.OnInit(System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:F23Web.Controls.ReportToolbar.OnLoad(System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:F23Web.Controls.ReportToolbar.ToolbarButtons">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.ReportToolbar.MenuPower">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.ReportToolbar.AllowSelectDepot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.ReportToolbar.AllowSelectStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.ReportToolbar.AllowSelectMerchant">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.PricisSelector.DefaultValue">
+            <summary>
+            默认值
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.POSDepotSelector.DepotNameField">
+            <summary>
+            仓店名称字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.POSDepotSelector.ID">
+            <summary>
+            仓店编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.POSDepotSelector.Enabled">
+            <summary>
+            仓店编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.POSDepotSelector.MerchantIDField">
+            <summary>
+            加盟商编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.POSDepotSelector.ParentIDField">
+            <summary>
+            父级编号字段
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.POSDepotSelector.MTypeField">
+            <summary>
+            仓店类型
+            </summary>
+        </member>
+        <member name="P:F23Web.Controls.BHTypeSelector.TypeID">
+            <summary>
+            0，新建补货；1，新建退货
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,268 @@
+[DEBUG] 2012-11-02 11:09:55,288 org.springframework.orm.hibernate3.support.OpenSessionInViewFilter - Using SessionFactory 'sessionFactory' for OpenSessionInViewFilter
+[DEBUG] 2012-11-02 11:09:55,288 org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'sessionFactory'
+[DEBUG] 2012-11-02 11:09:55,288 org.springframework.orm.hibernate3.SessionFactoryUtils - Initializing deferred close of Hibernate Sessions
+[DEBUG] 2012-11-02 11:09:55,290 org.jboss.resteasy.core.SynchronousDispatcher - PathInfo: /rest/checkKh/qwqw
+[DEBUG] 2012-11-02 11:09:55,290 org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'maintainRegisterList'
+[DEBUG] 2012-11-02 11:09:58,573 org.springframework.orm.hibernate3.HibernateTransactionManager - Creating new transaction with name [org.hy.service.IMaintainRegisterService.checkKh]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+=========sessionFactoryName:null
+[DEBUG] 2012-11-02 11:10:02,148 org.hibernate.impl.SessionImpl - opened session at timestamp: 13518258021
+[DEBUG] 2012-11-02 11:10:02,148 org.springframework.orm.hibernate3.HibernateTransactionManager - Opened new Session [org.hibernate.impl.SessionImpl@7f4bce] for Hibernate transaction
+[DEBUG] 2012-11-02 11:10:02,148 org.springframework.orm.hibernate3.HibernateTransactionManager - Preparing JDBC Connection of Hibernate Session [org.hibernate.impl.SessionImpl@7f4bce]
+[DEBUG] 2012-11-02 11:10:02,148 org.hibernate.jdbc.ConnectionManager - opening JDBC connection
+[DEBUG] 2012-11-02 11:10:02,149 org.logicalcobwebs.proxool.X6DB - 000009 (03/07/00) - Connection #1 served
+[DEBUG] 2012-11-02 11:10:02,150 org.springframework.jdbc.datasource.DataSourceUtils - Setting JDBC Connection [21623257(com.microsoft.sqlserver.jdbc.SQLServerConnection@ff0b72)] read-only
+[DEBUG] 2012-11-02 11:10:02,150 org.hibernate.transaction.JDBCTransaction - begin
+[DEBUG] 2012-11-02 11:10:02,150 org.hibernate.transaction.JDBCTransaction - current autocommit status: true
+[DEBUG] 2012-11-02 11:10:02,150 org.hibernate.transaction.JDBCTransaction - disabling autocommit
+[DEBUG] 2012-11-02 11:10:02,155 org.springframework.orm.hibernate3.HibernateTransactionManager - Exposing Hibernate transaction as JDBC transaction [21623257(com.microsoft.sqlserver.jdbc.SQLServerConnection@ff0b72)]
+=========sessionFactoryName:null
+[DEBUG] 2012-11-02 11:10:06,573 org.hibernate.impl.SessionImpl - opened session at timestamp: 13518258065
+[DEBUG] 2012-11-02 11:10:06,793 org.hibernate.jdbc.AbstractBatcher - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+[DEBUG] 2012-11-02 11:10:06,793 org.hibernate.jdbc.ConnectionManager - opening JDBC connection
+[DEBUG] 2012-11-02 11:10:06,793 org.logicalcobwebs.proxool.X6DB - 000010 (04/07/00) - Connection #3 served
+[DEBUG] 2012-11-02 11:10:06,794 org.hibernate.SQL - 
+    select
+        clothingid 
+    from
+        J_CLOTHING  
+    where
+        clothingid = 'qwqw'
+Hibernate: 
+    select
+        clothingid 
+    from
+        J_CLOTHING  
+    where
+        clothingid = 'qwqw'
+[DEBUG] 2012-11-02 11:10:06,801 org.logicalcobwebs.proxool.X6DB -  select clothingid from J_CLOTHING  where clothingid = 'qwqw';  (6 milliseconds, threw a com.microsoft.sqlserver.jdbc.SQLServerException: 对象名  'J_CLOTHING' 无效。)
+[DEBUG] 2012-11-02 11:10:06,801 org.hibernate.jdbc.AbstractBatcher - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+[DEBUG] 2012-11-02 11:10:06,801 org.hibernate.util.JDBCExceptionReporter - could not execute query [ select clothingid from J_CLOTHING  where clothingid = 'qwqw']
+com.microsoft.sqlserver.jdbc.SQLServerException: 对象名  'J_CLOTHING' 无效。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.logicalcobwebs.proxool.ProxyStatement.invoke(ProxyStatement.java:100)
+	at org.logicalcobwebs.proxool.ProxyStatement.intercept(ProxyStatement.java:57)
+	at $java.sql.Wrapper$$EnhancerByProxool$$6c8782af.executeQuery(<generated>)
+	at org.hibernate.jdbc.AbstractBatcher.getResultSet(AbstractBatcher.java:208)
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:1812)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:697)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:259)
+	at org.hibernate.loader.Loader.doList(Loader.java:2232)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2129)
+	at org.hibernate.loader.Loader.list(Loader.java:2124)
+	at org.hibernate.loader.custom.CustomLoader.list(CustomLoader.java:312)
+	at org.hibernate.impl.SessionImpl.listCustomQuery(SessionImpl.java:1723)
+	at org.hibernate.impl.AbstractSessionImpl.list(AbstractSessionImpl.java:165)
+	at org.hibernate.impl.SQLQueryImpl.list(SQLQueryImpl.java:175)
+	at org.hy.dao.impl.JdepotDaoImpl.checkKh(JdepotDaoImpl.java:101)
+	at org.hy.service.impl.MaintainRegisterServiceImpl.checkKh(MaintainRegisterServiceImpl.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:307)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:108)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:89)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:202)
+	at $Proxy40.checkKh(Unknown Source)
+	at org.hy.resteasyservice.MaintainRegisterList.checkKh(MaintainRegisterList.java:615)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.jboss.resteasy.core.MethodInjectorImpl.invoke(MethodInjectorImpl.java:140)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:255)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:220)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:209)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:519)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:496)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:119)
+	at org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher.service(ServletContainerDispatcher.java:208)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:55)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:50)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.orm.hibernate3.support.OpenSessionInViewFilter.doFilterInternal(OpenSessionInViewFilter.java:198)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.hy.filter.LoginCheckFilter.doFilter(LoginCheckFilter.java:26)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.hy.filter.LoginCheckFilter.doFilter(LoginCheckFilter.java:26)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:859)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:619)
+[WARN] 2012-11-02 11:10:06,802 org.hibernate.util.JDBCExceptionReporter - SQL Error: 208, SQLState: S0002
+[ERROR] 2012-11-02 11:10:06,802 org.hibernate.util.JDBCExceptionReporter - 对象名  'J_CLOTHING' 无效。
+[DEBUG] 2012-11-02 11:10:06,802 org.springframework.orm.hibernate3.HibernateTransactionManager - Initiating transaction commit
+[DEBUG] 2012-11-02 11:10:06,802 org.springframework.orm.hibernate3.HibernateTransactionManager - Committing Hibernate transaction on Session [org.hibernate.impl.SessionImpl@7f4bce]
+[DEBUG] 2012-11-02 11:10:06,802 org.hibernate.transaction.JDBCTransaction - commit
+[DEBUG] 2012-11-02 11:10:06,804 org.hibernate.transaction.JDBCTransaction - re-enabling autocommit
+[DEBUG] 2012-11-02 11:10:06,805 org.hibernate.transaction.JDBCTransaction - committed JDBC Connection
+[DEBUG] 2012-11-02 11:10:06,805 org.hibernate.jdbc.ConnectionManager - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+[DEBUG] 2012-11-02 11:10:06,805 org.springframework.orm.hibernate3.HibernateTransactionManager - Closing Hibernate Session [org.hibernate.impl.SessionImpl@7f4bce] after transaction
+[DEBUG] 2012-11-02 11:10:06,805 org.springframework.orm.hibernate3.SessionFactoryUtils - Registering Hibernate Session for deferred close
+[DEBUG] 2012-11-02 11:10:06,805 org.springframework.orm.hibernate3.HibernateTransactionManager - Creating new transaction with name [org.hy.service.IMaintainRegisterService.checkKh]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+=========sessionFactoryName:null
+[DEBUG] 2012-11-02 11:10:09,174 org.hibernate.impl.SessionImpl - opened session at timestamp: 13518258091
+[DEBUG] 2012-11-02 11:10:09,174 org.springframework.orm.hibernate3.HibernateTransactionManager - Opened new Session [org.hibernate.impl.SessionImpl@6a9993] for Hibernate transaction
+[DEBUG] 2012-11-02 11:10:09,174 org.springframework.orm.hibernate3.HibernateTransactionManager - Preparing JDBC Connection of Hibernate Session [org.hibernate.impl.SessionImpl@6a9993]
+[DEBUG] 2012-11-02 11:10:09,174 org.hibernate.jdbc.ConnectionManager - opening JDBC connection
+[DEBUG] 2012-11-02 11:10:09,174 org.logicalcobwebs.proxool.X6DB - 000011 (05/07/00) - Connection #5 served
+[DEBUG] 2012-11-02 11:10:09,184 org.springframework.jdbc.datasource.DataSourceUtils - Setting JDBC Connection [138042(com.microsoft.sqlserver.jdbc.SQLServerConnection@119e04f)] read-only
+[DEBUG] 2012-11-02 11:10:09,184 org.hibernate.transaction.JDBCTransaction - begin
+[DEBUG] 2012-11-02 11:10:09,184 org.hibernate.transaction.JDBCTransaction - current autocommit status: true
+[DEBUG] 2012-11-02 11:10:09,184 org.hibernate.transaction.JDBCTransaction - disabling autocommit
+[DEBUG] 2012-11-02 11:10:09,184 org.springframework.orm.hibernate3.HibernateTransactionManager - Exposing Hibernate transaction as JDBC transaction [138042(com.microsoft.sqlserver.jdbc.SQLServerConnection@119e04f)]
+=========sessionFactoryName:null
+[DEBUG] 2012-11-02 11:10:11,211 org.hibernate.impl.SessionImpl - opened session at timestamp: 13518258112
+[DEBUG] 2012-11-02 11:10:11,212 org.hibernate.jdbc.AbstractBatcher - about to open PreparedStatement (open PreparedStatements: 0, globally: 0)
+[DEBUG] 2012-11-02 11:10:11,212 org.hibernate.jdbc.ConnectionManager - opening JDBC connection
+[DEBUG] 2012-11-02 11:10:11,212 org.logicalcobwebs.proxool.X6DB - 000012 (06/07/00) - Connection #6 served
+[DEBUG] 2012-11-02 11:10:11,215 org.hibernate.SQL - 
+    select
+        clothingid 
+    from
+        J_CLOTHING  
+    where
+        oldclothingid = 'qwqw'
+Hibernate: 
+    select
+        clothingid 
+    from
+        J_CLOTHING  
+    where
+        oldclothingid = 'qwqw'
+[DEBUG] 2012-11-02 11:10:11,223 org.logicalcobwebs.proxool.X6DB -  select clothingid from J_CLOTHING  where oldclothingid = 'qwqw';  (7 milliseconds, threw a com.microsoft.sqlserver.jdbc.SQLServerException: 对象名  'J_CLOTHING' 无效。)
+[DEBUG] 2012-11-02 11:10:11,223 org.hibernate.jdbc.AbstractBatcher - about to close PreparedStatement (open PreparedStatements: 1, globally: 1)
+[DEBUG] 2012-11-02 11:10:11,224 org.hibernate.util.JDBCExceptionReporter - could not execute query [ select clothingid from J_CLOTHING  where oldclothingid = 'qwqw']
+com.microsoft.sqlserver.jdbc.SQLServerException: 对象名  'J_CLOTHING' 无效。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.logicalcobwebs.proxool.ProxyStatement.invoke(ProxyStatement.java:100)
+	at org.logicalcobwebs.proxool.ProxyStatement.intercept(ProxyStatement.java:57)
+	at $java.sql.Wrapper$$EnhancerByProxool$$6c8782af.executeQuery(<generated>)
+	at org.hibernate.jdbc.AbstractBatcher.getResultSet(AbstractBatcher.java:208)
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:1812)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:697)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:259)
+	at org.hibernate.loader.Loader.doList(Loader.java:2232)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2129)
+	at org.hibernate.loader.Loader.list(Loader.java:2124)
+	at org.hibernate.loader.custom.CustomLoader.list(CustomLoader.java:312)
+	at org.hibernate.impl.SessionImpl.listCustomQuery(SessionImpl.java:1723)
+	at org.hibernate.impl.AbstractSessionImpl.list(AbstractSessionImpl.java:165)
+	at org.hibernate.impl.SQLQueryImpl.list(SQLQueryImpl.java:175)
+	at org.hy.dao.impl.JdepotDaoImpl.checkKh(JdepotDaoImpl.java:101)
+	at org.hy.service.impl.MaintainRegisterServiceImpl.checkKh(MaintainRegisterServiceImpl.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:307)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:108)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:89)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:202)
+	at $Proxy40.checkKh(Unknown Source)
+	at org.hy.resteasyservice.MaintainRegisterList.checkKh(MaintainRegisterList.java:620)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.jboss.resteasy.core.MethodInjectorImpl.invoke(MethodInjectorImpl.java:140)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:255)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:220)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:209)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:519)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:496)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:119)
+	at org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher.service(ServletContainerDispatcher.java:208)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:55)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:50)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.orm.hibernate3.support.OpenSessionInViewFilter.doFilterInternal(OpenSessionInViewFilter.java:198)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.hy.filter.LoginCheckFilter.doFilter(LoginCheckFilter.java:26)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.hy.filter.LoginCheckFilter.doFilter(LoginCheckFilter.java:26)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:859)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:619)
+[WARN] 2012-11-02 11:10:11,228 org.hibernate.util.JDBCExceptionReporter - SQL Error: 208, SQLState: S0002
+[ERROR] 2012-11-02 11:10:11,228 org.hibernate.util.JDBCExceptionReporter - 对象名  'J_CLOTHING' 无效。
+[DEBUG] 2012-11-02 11:10:11,228 org.springframework.orm.hibernate3.HibernateTransactionManager - Initiating transaction commit
+[DEBUG] 2012-11-02 11:10:11,228 org.springframework.orm.hibernate3.HibernateTransactionManager - Committing Hibernate transaction on Session [org.hibernate.impl.SessionImpl@6a9993]
+[DEBUG] 2012-11-02 11:10:11,228 org.hibernate.transaction.JDBCTransaction - commit
+[DEBUG] 2012-11-02 11:10:11,230 org.hibernate.transaction.JDBCTransaction - re-enabling autocommit
+[DEBUG] 2012-11-02 11:10:11,231 org.hibernate.transaction.JDBCTransaction - committed JDBC Connection
+[DEBUG] 2012-11-02 11:10:11,231 org.hibernate.jdbc.ConnectionManager - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+[DEBUG] 2012-11-02 11:10:11,231 org.springframework.orm.hibernate3.HibernateTransactionManager - Closing Hibernate Session [org.hibernate.impl.SessionImpl@6a9993] after transaction
+[DEBUG] 2012-11-02 11:10:11,231 org.springframework.orm.hibernate3.SessionFactoryUtils - Registering Hibernate Session for deferred close
+款号错误
+[DEBUG] 2012-11-02 11:10:11,232 org.springframework.orm.hibernate3.SessionFactoryUtils - Processing deferred close of Hibernate Sessions
+[DEBUG] 2012-11-02 11:10:11,232 org.springframework.orm.hibernate3.SessionFactoryUtils - Closing Hibernate Session
+[DEBUG] 2012-11-02 11:10:11,232 org.hibernate.jdbc.ConnectionManager - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+[DEBUG] 2012-11-02 11:10:11,232 org.logicalcobwebs.proxool.X6DB - 000012 (05/07/00) - Connection #1 returned (now AVAILABLE)
+[DEBUG] 2012-11-02 11:10:11,234 org.hibernate.jdbc.ConnectionManager - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+[DEBUG] 2012-11-02 11:10:11,234 org.springframework.orm.hibernate3.SessionFactoryUtils - Closing Hibernate Session
+[DEBUG] 2012-11-02 11:10:11,234 org.hibernate.jdbc.ConnectionManager - releasing JDBC connection [ (open PreparedStatements: 0, globally: 0) (open ResultSets: 0, globally: 0)]
+[DEBUG] 2012-11-02 11:10:11,234 org.logicalcobwebs.proxool.X6DB - 000012 (04/07/00) - Connection #5 returned (now AVAILABLE)
+[DEBUG] 2012-11-02 11:10:11,234 org.hibernate.jdbc.ConnectionManager - transaction completed on session with on_close connection release mode; be sure to close the session to release JDBC resources!
+[DEBUG] 2012-11-02 11:10:13,564 org.logicalcobwebs.proxool.X6DB - 000012 (04/07/00) - House keeping triggerSweep done
+[DEBUG] 2012-11-02 11:10:13,583 org.logicalcobwebs.proxool.X6DB - 000012 (04/08/00) - Connection #8 (7db3) created to keep 5 available = AVAILABLE -> jdbc:sqlserver://192.168.0.151:1433;DatabaseName=EPApp (3ca402) by thread Prototyper
+[DEBUG] 2012-11-02 11:10:13,606 org.logicalcobwebs.proxool.X6DB - 000012 (04/09/00) - Connection #9 (180f521) created to keep 5 available = AVAILABLE -> jdbc:sqlserver://192.168.0.151:1433;DatabaseName=EPApp (15d82b7) by thread Prototyper

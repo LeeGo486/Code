@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <style type="text/css">
+        #WriteBg img {
+            width:100%;
+        }
+        textarea {
+            width:190px;
+            height:100px;
+
+            resize : none; /*右下角角标*/
+            background:transparent;/*背景透明*/
+            background-repeat:no-repeat;
+            border-style:solid;
+
+            border-bottom-style:none;
+            border-left-style:none;
+            border-right-style:none;
+            border-top-style:none;
+            outline:none;
+            font-family:华文行楷;
+            font-size:16px;
+
+            text-align:justify;
+            letter-spacing:2px;
+            line-height:inherit;
+            
+        }
+        #wishDiv,#focusDiv{
+            position: absolute; 
+            left: 22%;
+            z-index:1;
+        }
+        #focusDiv{
+            z-index:2;
+        }
+        #wishDone {
+            position: absolute; 
+            left: 36%;
+            z-index:1;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#WriteBg img").load(function () {
+                var bgHeight = $("#WriteBg").height();
+                $("#wishDiv").css("top", bgHeight * 0.585);
+                $("#focusDiv").css("top", bgHeight * 0.585);
+                $("#wishDone").css("top", bgHeight * 0.80);
+            });
+
+            $("#focus").click(function () {
+                $("#focusDiv").html("");
+                $("#wishDiv textarea").focus().val("");
+            });
+
+            $("#wishDiv textarea").focus(function () { $("#focusDiv").html(""); });
+
+            $("body").css("margin", "0px").css("background-size","100%");
+            
+            $("#sumbit").click(function () {
+                var result = $("#wishDiv textarea").val();
+                if (result == "") {
+                    Msg.show("赶快写下您的愿望吧！", 1);
+                    $("#wishDiv textarea").focus();
+                    return;
+                } else {
+                    window.location.href = "LookWish?result=" + result;
+                };
+            });
+        });
+    </script>
+}
+
+<div id="WriteBg">
+    <img src="/Areas/Game/Resources/images/OneOneWish/WriteWish.jpg"/>
+</div>
+
+<div id="wishDiv">
+    <textarea rows="3" cols="35" maxlength="40"></textarea>
+</div>
+<div id="focusDiv">
+    <a id="focus"><img alt="focus" src="/Areas/Game/Resources/images/OneOneWish/focus.png" /></a>
+</div>
+<div id="wishDone">
+    <a id="sumbit" title="DoneButton">
+        <img alt="button" src="/Areas/Game/Resources/images/OneOneWish/goResult.png"/>
+    </a>
+</div>

@@ -1,0 +1,26 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="carmaster, App_Web_carmaster.master.d716d88e" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>无标题页</title>
+    <link href="../car/car_default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table style="table-layout: fixed; width: 100%; border-collapse: collapse; border-bottom: #ccccff 1px solid;">
+            <tr>
+                <td align="left" style="width: 50%; height: 42px;" valign="middle">
+                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+                    </asp:ScriptManager>
+                    <asp:Label id="lbltitle" runat="server" Width="345px" Font-Bold="True" Font-Names="宋体" Font-Size="12pt"></asp:Label></td>
+                <td align="right" style="width: 50%; height: 42px;" valign="middle">
+                    <asp:HyperLink ID="hlkhelp" runat="server" Target="_blank" Font-Bold="True" Font-Names="宋体" Font-Size="9pt">帮助</asp:HyperLink></td>
+            </tr>
+        </table>
+        <asp:contentplaceholder id="ctplhder" runat="server">
+        </asp:contentplaceholder>
+    </div>
+    </form>
+</body>
+</html>

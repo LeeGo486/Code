@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150419164821</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=2712500", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-19 16:59:29:9898 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150419164821</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=2712500", "", "", "", "120400010000")</instr>
+    <recodes>F5读卡失败                                                                                            </recodes>
+    <info>刷卡失败，错误信息为：读卡失败                                                                                            </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-19 16:59:37:0152 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150419164821</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=2715500", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-19 16:59:55:2022 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150419164821</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=2715500", "", "", "", "120400010000")</instr>
+    <recodes>0062226031300027463112015041917002400001900000015041910037697000000000271550012045691094210249089800S交通银行                               银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):交通银行
+总计(TOTAL):RMB 27155.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-19 17:00:16:3394 </crdate>
+  </log>
+</logs>

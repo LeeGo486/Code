@@ -1,0 +1,11 @@
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\HZY.COM.WS.GL_ERP2.dll
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\HZY.COM.WS.GL_ERP2.pdb
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\HZY.COM.Common.Base.dll
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\HZY.COM.Common.DBAccess.DBConn.dll
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\HZY.COM.Common.dll
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\HZY.COM.WS.DataSets.dll
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\Interop.MSXML2.dll
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\bin\Debug\HZY.COM.WS.DataSets.pdb
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\obj\Debug\HZY.COM.WS.GL_ERP2.csprojResolveAssemblyReference.cache
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\obj\Debug\HZY.COM.WS.GL_ERP2.dll
+E:\Work\Code\Vex\HZY.COM.WS.GL_ERP2\obj\Debug\HZY.COM.WS.GL_ERP2.pdb

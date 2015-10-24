@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>信息类产品诊断报告</title> 
+    <meta http-equiv="description" content="信息类产品诊断报告">
+    <meta http-equiv="content-type" content="text/html">  
+    <meta charset="UTF-8"> 
+    <script src="../../../jquery-easyui-1.3.4/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../../jquery-easyui-1.3.4/themes/peoa/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+	 
+        <style type="text/css">
+	        .mytable {
+			        width: 635px;  
+			        border-collapse:collapse;  
+                    border-spacing:0;
+	        }
+	
+	        .mytable td{
+		        height: 19px;
+		        font-size: 12px; 
+		        /*font-family: Arial, Helvetica;*/  
+		        border: 1px solid black;    
+	        } 
+	  
+            .mytable2 {
+			        width: 635px;  
+		            font-size: 12px;   
+	        }
+              
+	        .mytable1 tr td { 
+		        font-size: 19px; 
+                font-weight:600;
+		        /*font-family: Arial, Helvetica;*/  
+        
+	        } 
+
+	        .font1{
+			        height: 19px;
+			        font-size: 10px; 
+			        /*font-family: Arial, Helvetica;*/   
+	        }
+            .input1{
+		        font-size: 12px; 
+		        font-family: Arial, Helvetica; 
+                width:97%;
+                border-left:none;
+                border-top:none;
+                border-right:none; 
+                border-bottom: 1px solid #666666;
+                background-color:#fff;
+                color:#000;
+	        }
+            .textarea1{
+                border:1px solid;
+		        font-size: 12px; 
+		        /*font-family: Arial, Helvetica;*/ 
+                width:99%;  
+                height: 80px;  
+                overflow:auto; 
+                background-color:#fff;  
+                color:#000;
+	        }
+            .input2{
+		        font-size: 12px; 
+		        font-family: Arial, Helvetica; 
+                width:97%;
+                border-left:none;
+                border-top:none;
+                border-right:none; 
+                border-bottom: none; 
+                background-color:#fff;
+                color:#000;
+	        } 
+
+        </style> 
+
+  </head>
+  
+  <body style="padding:0px; font-family: Arial, Microsoft YaHei; " onload="setValues()"> 
+      <div id="tree_dept"></div>
+    <div style="text-align: center;">
+		<div style="margin: auto; margin-top:0px; width:635px;">
+			<table  class="mytable1" >
+				<tr style="height: 10px; vertical-align:bottom"> 
+					<!--<td style=" width: 635px;  "><div style="text-decoration:underline;"><span id="printTT">抬头</span></div></td>--> 
+				</tr>  
+				<tr style="height:35px;">
+					<td style=" width: 635px;  "><div> 信 息 类 产 品 诊 断 报 告 </div></td>
+				<tr>  
+			</table>  
+	        <hr style="width: 635px; border-top:3px solid #555555;" align="left"> 		
+			<br>
+			<table class="mytable2" style="text-align: left;"> 
+				<tr style="height: 30px;">
+					<td style="text-align: right;">部门名称：</td>
+                    <td colspan="2"><input type="text" id ="fa3_department"  disabled="disabled" class="input1"/></td>
+					<td style="text-align: right; ">&nbsp;&nbsp;</td> 
+					<td style="text-align: right;"   text-align: right;>姓&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+                    <td><input type="text" id ="fa3_name" disabled="disabled" class="input1"/></td>
+				</tr> 
+				<tr style="height: 30px;">
+					<td style="width:80px; text-align: right;">设备型号：</td>
+                    <td style="width:110px;" ><input type="text" id ="fa3_deviceno" disabled="disabled" class="input1"/> </td>
+					<td style="width:100px;text-align: right;">资产编码：</td> 
+                    <td style="width:110px;" ><input type="text" id ="fa3_assetsno" disabled="disabled" class="input1"/></td>
+					<td style="width:100px; text-align: right;">日&nbsp;&nbsp;&nbsp;&nbsp;期：</td;>
+                    <td style="width:110px;" ><input  id ="fa3_filldate" disabled="disabled"  class="input1"/></td>
+				</tr>   
+            </table>
+			<br><br>
+           
+            <div style="font-weight: bold; text-align:left; font-size:14px;"> 故障现象：</div> 
+			<textarea class="textarea1"  id="fa3_faultphenomenon" name="fa3_faultphenomenon" disabled="disabled"></textarea>
+			 
+            <br><br>
+            <div style="font-weight: bold; text-align:left; font-size:14px;"> 故障诊断结果：</div>
+            <textarea class="textarea1"  id="fa3_diagnosisresults" name="fa3_diagnosisresults"  disabled="disabled"></textarea>
+            <br><br> 
+            <div style="font-weight: bold; text-align:left; font-size:14px;">故障处理建议：</div>
+            <textarea class="textarea1"  id="fa3_solution" name="fa3_solution" disabled="disabled"></textarea>
+            <br><br> 
+            <div style="font-weight: bold; text-align:left; font-size:14px;">更换清单：</div>
+            <table   class="mytable" > 
+				<tr style="text-align: center; height: 40px;">
+					<td style="width:50px;">序号</td>
+					<td style="width:260px;">品牌型号</td>
+					<td style="width:100px;">数量</td>
+					<td style="width:200px;">备注</td> 
+				</tr>  
+				<tr>
+					<td><span id="fa3_no1"></span></td>
+					<td><span id="fa3_brandmodel1"></span></td>
+					<td><span id="fa3_num1"></span></td>
+					<td><span id="fa3_remarks1"></span></td> 
+				</tr>  
+                <tr> 
+					<td><span id="fa3_no2"></span></td>
+					<td><span id="fa3_brandmodel2"></span></td>
+					<td><span id="fa3_num2"></span></td>
+					<td><span id="fa3_remarks2"></span></td> 
+				</tr>  
+                <tr>
+					<td><span id="fa3_no3"></span></td>
+					<td><span id="fa3_brandmodel3"></span></td>
+					<td><span id="fa3_num3"></span></td>
+					<td><span id="fa3_remarks3"></span></td> 
+				</tr>       
+			</table>   
+            <table   class="mytable2" style="text-align: left; height:30px;">  
+                <tr style="height: 35px;">
+					<td style="width:180px">诊断部门：<span id="fa3_diagnosisdept"></span></td> 
+					<td style="width:150px">诊断人：<span id="fa3_diagnosispeople"></span></td> 
+					<td style="width:150px">审核人：<span id="fa3_audit"></span></td> 
+                    <td style="width:150px">审核日期：<span id="fa3_auditdate"></span></td> 
+				</tr>
+			</table>
+		</div>
+	</div>
+  </body> 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/dataUtil.js"></script>
+ 	<script type="text/javascript" src="../../../JS/PE_OA/Common/basedata.js"></script>  
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/peoa.js"></script> 
+ 	<script type="text/javascript" src="../../../JS/PE_OA/FA/FA_IPDR_print.js"></script>   
+	<script type="text/javascript">
+		//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+	    function forbidBackSpace(e) {
+	        var ev = e || window.event; //获取event对象 
+	        var obj = ev.target || ev.srcElement; //获取事件源 
+	        var t = obj.type || obj.getAttribute('type'); //获取事件源类型 
+	        var vReadOnly = obj.readOnly;
+	        var vDisabled = obj.disabled;
+	        vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+	        vDisabled = (vDisabled == undefined) ? true : vDisabled;
+	        var flag1 = ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vDisabled == true);
+	        var flag2 = ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea";
+	        if (flag2 || flag1) return false;
+	    }
+	    document.onkeypress = forbidBackSpace;
+	    document.onkeydown = forbidBackSpace; 
+	  </script>   	  
+</html>

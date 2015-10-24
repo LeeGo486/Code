@@ -1,0 +1,63 @@
+﻿<script type="text/javascript">
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+</script>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">科目大类</span>
+    <select class="form-control">
+        <option>店铺杂费</option>
+        <option>办公用品</option>
+        <option>办公家具</option>
+        <option>统一福利</option>
+    </select>
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">科目小类</span>
+    <select class="form-control">
+        <option>鲜花费</option>
+        <option>饮水费</option>
+        <option>客户维护费</option>
+        <option>办公用品</option>
+        <option>桌子</option>
+        <option>椅子</option>
+    </select>
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">金额</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">费用用途</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">科目预算金额</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">科目已用金额</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">已分配金额</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">余额</span>
+    <input type="text" class="form-control" value="" >
+</div>
+
+<div class="optarea" style="margin-top:4px;">
+    <span class="btnarea" onclick="$(this).parent().parent().parent().remove();"><i class="icon-remove"></i> 删除明细</span>
+</div>

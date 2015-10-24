@@ -1,0 +1,153 @@
+﻿
+<script type="text/javascript">
+    function AddCustomerCallBack() {
+        $("#winCustomerCallBack button.btn-primary").on("click", function (e) {
+            $("#winCustomerCallBack").modal('hide');
+        });
+        $("#winCustomerCallBack button.btn-danger").on("click", function (e) {
+            Msg.show("反馈成功", 0);
+            $("#winCustomerCallBack").modal('hide');
+        });
+        $("#winCustomerCallBack").modal({
+            "backdrop": "static",
+            "keyboard": true,
+            "show": true
+        });
+        var hydp = $('#winCustomerCallBack .hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    }
+</script>
+<!--客户反馈-->
+<div id="winCustomerCallBack" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon">结果：</span>
+                    <select class="form-control">
+                        <option>拒绝</option>
+                        <option>接受</option>
+                    </select>
+                </div>
+                <br />
+                <textarea class="form-control" placeholder="原因"></textarea>
+                <br />
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">再次预约：</span>
+                    <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4><span class="title"><i class="icon-user"></i> 个人</span> <span class="badge pull-right ls">1</span></h4>
+
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('欧阳雪梅');">欧阳雪梅(EP350602)</a></span><br />
+            <span><i class="icon-time"></i> 2014-06-17</span><br />
+            <span><i class="icon-phone"></i><a href="tel:15988381281">15*******81</a></span>
+        </div>
+    </div>
+     <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();"><i class="icon-group"></i> 服务支持</span>
+        <span class="btnarea" onclick="AddCustomerCallBack();"><i class="icon-edit"></i> 反馈</span>
+    </div>
+</div>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/1.png" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('王永兰');">王永兰(EP350603)</a></span><br />
+            <span><i class="icon-time"></i> 2014-06-17</span><br />
+            <span><i class="icon-phone"></i><a href="tel:15988381281">15*******81</a></span>
+        </div>
+    </div>
+     <div class="optarea" style="margin-top:4px;">
+         <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();"><i class="icon-group"></i> 服务支持</span>
+        <span class="btnarea" onclick="AddCustomerCallBack();"><i class="icon-edit"></i> 反馈</span>
+    </div>
+</div>
+
+<h4><span class="title"><i class="icon-user"></i> 店长分配</span> <span class="badge pull-right ls">3</span></h4>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/2.png" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('高明');">高明(EP350602)</a></span><br />
+            <span><i class="icon-time"></i> 2014-06-17</span><br />
+            <span><i class="icon-phone"></i> <a href="tel:15988381281">15*******81</a></span>
+        </div>
+    </div>
+     <div class="optarea" style="margin-top:4px;">
+         <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();"><i class="icon-group"></i> 服务支持</span>
+        <span class="btnarea" onclick="AddCustomerCallBack();"><i class="icon-edit"></i> 反馈</span>
+    </div>
+</div>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/3.png" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('施美玲');">施美玲(EP350602)</a></span><br />
+            <span><i class="icon-time"></i> 2014-06-17</span><br />
+            <span><i class="icon-phone"></i> <a href="tel:15988381281">15*******81</a></span>
+        </div>
+    </div>
+     <div class="optarea" style="margin-top:4px;">
+         <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();"><i class="icon-group"></i> 服务支持</span>
+        <span class="btnarea" onclick="AddCustomerCallBack();"><i class="icon-edit"></i> 反馈</span>
+    </div>
+</div>
+
+<h4><span class="title"><i class="icon-user"></i> 7月销售预约</span><span class="badge pull-right ls">2</span></h4>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('谢莉莉');">谢莉莉(EP350602)</a></span><br />
+            <span><i class="icon-time"></i> 2014-06-17</span><br />
+            <span><i class="icon-phone"></i> <a href="tel:15988381281">15*******81</a></span>
+        </div>
+    </div>
+     <div class="optarea" style="margin-top:4px;">
+         <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();"><i class="icon-group"></i> 服务支持</span>
+        <span class="btnarea" onclick="AddCustomerCallBack();"><i class="icon-edit"></i> 反馈</span>
+    </div>
+</div>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/2.png" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('张金霞');">张金霞(EP350602)</a></span><br />
+            <span><i class="icon-time"></i> 2014-06-17</span><br />
+            <span><i class="icon-phone"></i> <a href="tel:15988381281">15*******81</a></span>
+        </div>
+    </div>
+    <div class="optarea" style="margin-top:4px;">
+         <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="ShopServiceSupport();"><i class="icon-group"></i> 服务支持</span>
+        <span class="btnarea" onclick="AddCustomerCallBack();"><i class="icon-edit"></i> 反馈</span>
+    </div>
+</div>

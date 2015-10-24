@@ -1,0 +1,194 @@
+﻿@import 'base.css';
+body, html
+{
+	background: #fff url('../images/bg.gif') repeat-x 0 -50px;
+	margin: 0;
+	padding: 0;
+}
+body, p, td, input, textarea, select
+{
+	font-size: 8pt;
+	font-family: Arial;
+	color: #023c61;
+}
+
+input[type="text"], textarea, select
+{
+	border: solid 1px #a5a5a5;
+}
+input[disabled="disabled"]
+{
+	background-color: #efefef !important;
+}
+
+a:link, a:visited, a:active
+{
+	color: #570;
+	text-decoration: none;
+}
+a:hover
+{
+	color: #333;
+	text-decoration: underline;
+}
+
+#datefields
+{
+	padding: 4px 5px;
+	float: left;
+	display: block;
+}
+
+
+h3
+{
+	font-size: 14px;
+	margin: 0;
+	padding: 0 10px;
+}
+h2
+{
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+}
+h1
+{
+	font-size: 30px;
+	margin: 0;
+	padding: 0;
+}
+p
+{
+	padding: 0 20px;
+}
+
+
+/* -------------------------end editpanel */
+.spacer
+{
+	clear: both;
+	height: 10px;
+	overflow: hidden;
+}
+.clear
+{
+	clear: both;
+	height: 1px !important;
+	overflow: hidden !important;
+}
+
+/* begin form */
+div.buttonHolder
+{
+	position:absolute;
+	bottom:10px;
+	right:0px;
+	text-align: right;
+	margin: 1em 0 0 0;
+	padding: 1em; /* CSS3 */
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+}
+div.buttonHolder .primaryAction
+{
+	padding: 5px 12px;
+	line-height: 1;
+	background: #254a86;
+	border: 1px solid #163362;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff; /* CSS3 */
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	box-shadow: 1px 1px 0 #fff;
+	-webkit-box-shadow: 1px 1px 0 #fff;
+	-moz-box-shadow: 1px 1px 0 #fff;
+	text-shadow: -1px -1px 0 rgba(0,0,0,.25);
+	margin: 0 0 0 5px;
+}
+div.buttonHolder .primaryAction:active
+{
+	position: relative;
+	top: 1px;
+}
+div.buttonHolder .primaryAction[disabled="disabled"]
+{
+	border: 1px solid #5d5d5d;
+	background: #5d5d5d;
+}
+.x-toolbar
+{
+	background: #fff; /*border-bottom:solid 1px #d3d3d3;*/
+}
+.x-selector
+{
+	padding: 5px; /*border-bottom: solid 1px #ababab;*/
+}
+/*.x-toolbar button
+{
+	background-repeat: no-repeat;
+	background-position: 2px;
+	padding: 3px 0 1px 18px;
+	background-color: #ECF3F6;
+	border-color: #ECF3F6;
+	border-width: 1px;
+	border-style: solid;
+	overflow: hidden;
+	margin: 0;
+}
+.x-toolbar button.hover
+{
+	border-color: #fff #5d5d5d #5d5d5d #fff;
+}
+.x-toolbar button.toggle, .x-toolbar button.mousedown
+{
+	border-color: #5d5d5d #fff #fff #5d5d5d;
+}*/
+.editbox
+{
+	padding: 0;
+	background: #fff;
+	width: 98%;
+	font-family: Verdana;
+	border: solid 1px #ccc !important;
+}
+.selected .editbox
+{
+	background: #ffc !important;
+	border: solid 1px #ffc !important;
+}
+.editbox.modify
+{
+	color: Red;
+}
+#sheetinfo
+{
+}
+#sheetinfo h4
+{
+	margin: 0;
+	padding: 0;
+	line-height: 30px;
+	font-size: 14px;
+}
+#ColorSizePanel
+{
+    position:relative;    
+}
+#loadingPanel
+{
+    position:absolute;
+    top:100px;
+    left:200px;
+    z-index:9999;
+    background:#fff;
+    border:solid 1px #CCC;
+    padding:10px 20px;
+}

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "圣诞小游戏";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/NpaiaChristmas.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/vTicker/jquery.vticker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#bg").load(function () {
+                $("#btn").css("top", $("#bg").height() * 0.72);
+                $("button").css("top", $("#bg").height() * 0.9);
+            })
+
+            if ($("li").size() > 10) {
+                $('.dowebok').vTicker({
+                    showItems: 10
+                });
+            } else {
+                $('.dowebok').vTicker({
+                    showItems: $("li").size()
+                });
+            }
+
+            
+        })
+    </script>
+}
+
+<img id="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/indexbg.png"/>
+<img id="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/indexButton.png"/>
+<div style="background:url(/Areas/Game/Resources/images/NpaiaChristmas/listbg.png)">
+    <img id="listbtn" src="~/Areas/Game/Resources/images/NpaiaChristmas/listButton.png" style="width:30%;float:left;margin:10px;"/>
+    <div class="dowebok" style="text-align:left;font-size:1.5em;color:#8B4C39;">
+        <ul style="list-style-type: none;margin-left:10px;">
+            @foreach (ElegantWM.EntityModel.Game_Record se in ViewBag.List)
+            {
+                <li>
+                    @{string nick = "";}
+                    @if (string.IsNullOrEmpty(se.Nickname))
+                    {
+                        nick = "匿名";
+                    }
+                    else if (se.Nickname.Length > 1)
+                    {
+                        nick = se.Nickname.Substring(0, 1) + "***" + @se.Nickname.Substring(se.Nickname.Length - 1, 1);
+                    }
+                    else
+                    {
+                        nick = @se.Nickname.Substring(0, 1) + "***";
+                    }
+                    @nick&nbsp;&nbsp;&nbsp;&nbsp;@se.AwardName
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $("img#btn").click(function () {
+        window.location.href = "/Game/NpaiaChristmas/Stocking?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("button").click(function () {
+        $.post("/Game/NpaiaChristmas/Reset?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+            Msg.show(rst.msg, rst.result);
+        });
+    })
+</script>

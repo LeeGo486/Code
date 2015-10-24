@@ -1,0 +1,161 @@
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<html>
+	<head>
+		<title>温度换算</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<SCRIPT language="JScript">
+<!--
+var k=273.15;
+var ct=0;
+var temp=0;
+var choice=0;
+var cap1=new Array(6);
+cap1[0]="摄氏度";
+cap1[1]="华氏度";
+cap1[2]="开氏度";
+cap1[3]="兰氏度";
+cap1[4]="列氏度";
+cap1[5]="摄氏度";
+
+var cap2=new Array(10);
+cap2[0]="华氏度"
+cap2[1]="开氏度"
+cap2[2]="兰氏度"
+cap2[3]="列氏度"
+cap2[4]="摄氏度"
+cap2[5]="华氏度"
+cap2[6]="开氏度"
+cap2[7]="兰氏度"
+cap2[8]="列氏度"
+cap2[9]="摄氏度"
+
+<!-- TEMPERATURE ARRAY-->
+var t=new Array(12);
+t[0]=0;
+t[1]=0;
+t[2]=0;
+t[3]=0;
+t[4]=0;
+t[5]=0;
+t[6]=0;
+t[7]=0;
+t[8]=0;
+t[9]=0;
+t[10]=0;
+t[11]=0;
+
+
+function calc(boxes)
+{
+document.boxes.b1a.value=(cap1[choice]);
+document.boxes.b2a.value=(cap2[choice]);
+document.boxes.b3a.value=(cap2[choice+1]);
+document.boxes.b4a.value=(cap2[choice+2]);
+document.boxes.b5a.value=(cap2[choice+3]);
+
+<!-- Converting input number to Kelvin-->
+temp=eval(document.inbox.b0.value);
+document.boxes.b1.value=temp;
+if (choice==0){temp=temp + k};
+if (choice==1){temp=((temp-32)/1.8)+273.15};
+if (choice==2){temp=temp*1};
+if (choice==3){temp=temp/1.8};
+if (choice==4){temp=(temp*1.25)+273.15};
+if (choice==5){};
+
+if (choice==0){ct=1}
+if (choice==1){ct=2}
+if (choice==2){ct=3}
+if (choice==3){ct=4}
+if (choice==4){ct=5}
+if (choice==5){ct=6}
+
+
+t[0]=(temp-273.15);
+t[1]=(temp-273.15)*1.8 + 32;
+t[2]=(temp);
+t[3]=temp*1.8;
+t[4]=(temp-273.15)/1.25;
+t[5]=temp-273.15;
+t[6]=(temp-273.15)*1.8 + 32;
+t[7]=(temp);
+t[8]=(temp*1.8);
+t[9]=(temp-273.15)/1.25;
+t[10]=(temp-273.15);
+t[11]=(temp-273.15)*1.8 + 32;
+
+document.boxes.b2.value=t[ct];ct=ct+1;
+document.boxes.b3.value=t[ct];ct=ct+1;
+document.boxes.b4.value=t[ct];ct=ct+1;
+document.boxes.b5.value=t[ct];ct=ct+1;
+
+}
+//-->
+		</SCRIPT>
+	</head>
+	<body class="bodycolor" topmargin="5">
+		<TABLE width="100%" border="0" cellPadding="0" cellSpacing="0" class="small" ID="Table1">
+			<TBODY>
+				<TR>
+					<TD valign="top"><br>
+						<table width="75%" border="0" align="center" cellpadding="0" cellspacing="0" class="small"
+							ID="Table2">
+							<tr>
+								<td>
+									可实现摄氏度(CELSIUS EQUALS)、华氏度(FARENHEIT EQUALS)、开氏度(KELVIN EQUALS)、兰氏度(RANKINE 
+									EQUALS)、列氏度(REAUMUR EQUALS)五种温度计量单位间的互转互换。</td>
+							</tr>
+						</table>
+						<br>
+						<table width="75%" border="0" align="center" cellpadding="0" cellspacing="0" class="small"
+							ID="Table3">
+							<tr>
+								<td>
+									<strong>要转换的温度值:</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<FORM name="inbox" ID="Form1">
+										<INPUT name="b0" type="number" class="SmallInput" size="6" ID="Number1">&nbsp;&nbsp;类型:
+										<INPUT onclick="choice=0; calc(); return true" type="button" size="5" value="摄氏度" class='SmallButton'
+											name="button" ID="Button1">&nbsp; <INPUT onclick="choice=1; calc(); return true" type="button" size="5" value="华氏度" class='SmallButton'
+											name="button" ID="Button2">&nbsp; <INPUT onclick="choice=2; calc(); return true" type="button" size="5" value="开氏度" class='SmallButton'
+											name="button" ID="Button3">&nbsp; <INPUT onclick="choice=3; calc(); return true" type="button" size="5" value="兰氏度" class='SmallButton'
+											name="button" ID="Button4">&nbsp; <INPUT onclick="choice=4; calc(); return true" type="button" size="5" value="列氏度" class='SmallButton'
+											name="button" ID="Button5">
+									</FORM>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>换算结果:</strong></td>
+							</tr>
+							<tr>
+								<td>
+									<FORM name="boxes" ID="Form2">
+										<INPUT name="b1" type="number" class="SmallInput" size="15" ID="Number2"> <INPUT name="b1a" type="number" class="SmallInput" size="8" ID="Number3">
+										&nbsp;&nbsp;|&nbsp;&nbsp; <INPUT name="b2" type="number" class="SmallInput" size="15" ID="Number4">
+										<INPUT name="b2a" type="number" class="SmallInput" size="8" ID="Number5">
+										<BR>
+										<INPUT name="b3" type="number" class="SmallInput" size="15" ID="Number6"> <INPUT name="b3a" type="number" class="SmallInput" size="8" ID="Number7">
+										&nbsp;&nbsp;|&nbsp;&nbsp; <INPUT name="b4" type="number" class="SmallInput" size="15" ID="Number8">
+										<INPUT name="b4a" type="number" class="SmallInput" size="8" ID="Number9">
+										<BR>
+										<INPUT name="b5" type="number" class="SmallInput" size="15" ID="Number10"> <INPUT name="b5a" type="number" class="SmallInput" size="8" ID="Number11">
+										<BR>
+										<BR>
+										<INPUT  type="reset" value="数据重置" class='SmallButton' name="reset"
+											ID="Reset1"> </UL></FORM>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								</td>
+							</tr>
+						</table>
+						<BR>
+				</TR>
+			</TBODY>
+		</TABLE>
+	</body>
+</html>

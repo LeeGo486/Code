@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>盘点差异管控</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../JS/Inventory/Inventory_Apply.js?Date=20131223" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'center',iconCls:'icon-ok'">
+        <div class="easyui-layout" data-options="fit:true">
+            <div region="north" split="true" style="width: 200px; padding: 0px; height: 45px">
+                <form id="form_select" name="form_reply" method="post">
+                    <table style="font-size: 9pt;" cellpadding="5px;">
+                        <tr>
+                            <td>盘点登帐日期：
+                            </td>
+                            <td>
+                                <input id="txtbegindate" name="txtsetdate_begin" style="width: 100px" />
+                            </td>
+                            <td>----
+                            </td>
+                            <td>
+                                <input id="txtenddate" name="txtsetdate_end" style="width: 100px" />
+                            </td>
+                            <td>
+                                <input id="txtselect" type="button" value="查询" onclick="InitGird_select()" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div data-options="region:'center',border:false">
+                <table id="tab_list" style="width: 100%; height: 98%">
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-options="region:'south'" title="审批历史">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'center',border:false">
+                <table id="tab_list_detail" style="width: 100%; height: 250px">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div iconcls="icon-add" title="盘亏赔偿申请" id="divApply" style="width: 529px; height: 266px; margin-right: 0px;">
+        <form id="form_Apply" title="盘亏赔偿申请" name="form_Apply" method="post">
+            <table style="font-size: 9pt;" cellpadding="5px;">
+                <tr>
+                    <td>盘亏赔偿说明：
+                    </td>
+                    <td colspan="3">
+                        <textarea id="txtcontent" name="txtcontent" cols="20" rows="2" style="width: 340px; height: 86px;" class="easyui-validatebox"
+                            data-options="required:true" missingmessage="盘亏赔偿说明,不能超过100个字" maxlength="100"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>盘亏金额：
+                    </td>
+                    <td>
+                        <input id="txtsums" name="txtsums" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>盘亏数量：
+                    </td>
+                    <td>
+                        <input id="txtnums" name="txtnums" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>申请赔偿金额：
+                    </td>
+                    <td>
+                        <input id="txtreturn_sums" name="txtreturn_sums" style="width: 100px" data-options="required:true" class="easyui-numberbox"
+                            missingmessage="必须填写申请赔偿金额">
+                    </td>
+                    <td>申请赔偿折扣：
+                    </td>
+                    <td>
+                        <input id="txtdiscount" name="txtdiscount" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>附件上传：
+                    </td>
+                    <td  colspan="3">
+                        <input id="txtfilepath" name="txtfilepath" style="width: 260px" data-options="required:true" class="easyui-validatebox">
+                        <input type="button" id="B_filepath" value="附件上传"></input>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-ok" data-options="plain:true" onclick="Apply_Submit()" class="easyui-linkbutton">保存并提交分公司经理审批</a>
+                        <a href="#" id="A1" iconcls="icon-undo" onclick="Cancel('A1')" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
+    <div iconcls="icon-add" title="汇款" id="divremittance" style="width: 529px; height: 266px; margin-right: 0px;">
+        <form id="form_remittance" title="汇款" name="form_remittance" method="post">
+            <table style="font-size: 9pt;" cellpadding="5px;">
+                 <tr>
+                    <input id="txtinventory_diff_id" name="txtinventory_diff_id" type="hidden">
+                    <input id="txtinventoryid" name="txtinventoryid" type="hidden">
+                </tr>
+                <tr>
+                    <td>盘亏金额：
+                    </td>
+                    <td>
+                        <input id="txtsums_remittance" name="txtsums_remittance" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>盘亏数量：
+                    </td>
+                    <td>
+                        <input id="txtnums_remittance" name="txtnums_remittance" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td>申请赔偿金额：
+                    </td>
+                    <td>
+                        <input id="txtreturn_sums_remittance" name="txtreturn_sums_remittance" style="width: 100px" disabled="disabled">
+                    </td>
+                    <td>申请赔偿折扣：
+                    </td>
+                    <td>
+                        <input id="txtdiscount_remittance" name="txtdiscount_remittance" style="width: 100px" disabled="disabled">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>付款方式：
+                    </td>
+                    <td>
+                        <input id="txtmethod" name="txtmethod" style="width: 100px">
+                    </td>
+                    <td>流水号：
+                    </td>
+                    <td>
+                        <input id="txtserialnumber" name="txtserialnumber" style="width: 100px" >
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>汇款金额：
+                    </td>
+                    <td colspan="1">
+                        <input id="txtamount_of_remittance" name="txtamount_of_remittance" style="width: 100px" class="easyui-numberbox" data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" align="center">
+                        <a href="#" id="A2" iconcls="icon-ok" data-options="plain:true" onclick="Remittance_Submit()" class="easyui-linkbutton">保存并提交财务确认</a>
+                        <a href="#" id="A3" iconcls="icon-undo" onclick="Cancel('A2')" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

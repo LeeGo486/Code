@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "休假记录查询";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            //$("#dav").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dpay").css("background-color", "#2c3e50").css("border-bottom", "");
+            var nowDate = new Date();
+            var m_Nowyear = nowDate.getFullYear();
+            var m_Lastyeay = nowDate.getFullYear() - 1;
+            var m_Nextyeay = nowDate.getFullYear() + 1;
+
+            var selyearObj = $("#year");
+            selyearObj.append("<option >" + m_Lastyeay + "</option>");
+            selyearObj.append("<option >" + m_Nowyear + "</option>");
+            selyearObj.append("<option >" + m_Nextyeay + "</option>");
+            var month = nowDate.getMonth()-1;
+            var year = nowDate.getFullYear();
+            $("#month").val(month);
+            $("#year").val(year);
+        });
+        function load() {
+            var data = {
+                year: $("#year").val(),
+                month: $("#month").val()
+            };
+            Msg.show("加载中...", 3);
+            $.post("/HR/EHRManagement/VacationGetInfo", data, function (rst) {
+                Msg.hide();
+                $("#VacationGetInfo").html(rst);
+            });
+        }
+    </script>
+}
+
+<div class="ht">
+    <i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;休假查询：
+</div>
+
+
+<div class="input-group">
+    <span class="input-group-addon">年</span>
+    <select id="year" class="form-control" onchange="load()">
+    </select>
+    <span class="input-group-addon">月</span>
+
+    <select id="month" class="form-control" onchange="load()">
+        @for (int i = 1; i <= 12; i++)
+        {
+            <option value='@i') >@(i)月</option>
+        }
+    </select>
+</div>
+
+<br />
+
+<div class="dataDetail" id="VacationGetInfo">
+
+</div>
+

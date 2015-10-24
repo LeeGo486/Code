@@ -1,0 +1,553 @@
+﻿@{
+    ViewBag.Title = "需求分析";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <script src="~/Scripts/hightcharts/highcharts-3d.js"></script>
+
+    <script>
+
+
+        Date.prototype.Format = function (formatStr) {
+            var str = formatStr;
+            var Week = ['日', '一', '二', '三', '四', '五', '六'];
+
+            str = str.replace(/yyyy|YYYY/, this.getFullYear());
+            str = str.replace(/yy|YY/, (this.getYear() % 100) > 9 ? (this.getYear() % 100).toString() : '0' + (this.getYear() % 100));
+
+            str = str.replace(/MM/, (this.getMonth() + 1) > 9 ? (this.getMonth() + 1).toString() : '0' + (this.getMonth() + 1));
+            str = str.replace(/M/g, (this.getMonth() + 1));
+
+            str = str.replace(/w|W/g, Week[this.getDay()]);
+
+            str = str.replace(/dd|DD/, this.getDate() > 9 ? this.getDate().toString() : '0' + this.getDate());
+            str = str.replace(/d|D/g, this.getDate());
+
+            str = str.replace(/hh|HH/, this.getHours() > 9 ? this.getHours().toString() : '0' + this.getHours());
+            str = str.replace(/h|H/g, this.getHours());
+            str = str.replace(/mm/, this.getMinutes() > 9 ? this.getMinutes().toString() : '0' + this.getMinutes());
+            str = str.replace(/m/g, this.getMinutes());
+
+            str = str.replace(/ss|SS/, this.getSeconds() > 9 ? this.getSeconds().toString() : '0' + this.getSeconds());
+            str = str.replace(/s|S/g, this.getSeconds());
+
+            return str;
+        }
+
+
+        $(function () {
+            var myDate = new Date();
+            var url = "";
+            var ITDCDeptList;
+
+            //$("#txtStartDate").val(myDate.Format("yyyy-MM-dd"));
+            //$("#txtEndDate").val(myDate.Format("yyyy-MM-dd"));
+            LoadOverView();
+
+            //合同金额占比分析 
+            LoadContractChart("#defaultPercentBtn", "801B1");
+
+            //订单数分析 
+            LoadOrderChart("#defaultColumnBtn", "802B1");
+
+            //及时交付率分析
+            LoadTimelyDeliveryRateChart("#defaultBtn", "901B1");
+
+            //满意度分析
+            LoadSatisfactionChart("#defaultSatisfactionBtn", "902B1");
+
+            var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+                hydp.hide();
+            }).data('datepicker');
+
+            url = "/IT/Request/GetITDComDept?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题,100C】");
+            $.post(url, function (data) {
+                var temp = Msg.show("正在加载数据...", 3);
+                var rst = eval("(" + data + ")");
+                ITDCDeptList = rst.Dept;
+                $("#sltCompany").append("<option value=' '>全部</option>");
+                $("#sltDept").append("<option value=' '>全部</option>");
+
+                $.each(rst.Company, function (index, value) {
+                    $("#sltCompany").append("<option value='" + value.fCompany + "'>" + value.fCompany + "</option>");
+                });
+                temp.hide();
+            });
+
+            $("#sltCompany").change(function () {
+                var checkText = $("#sltCompany").find("option:selected").text();
+                $("#sltDept option").remove();
+                $("#sltDept").append("<option value=' '>全部</option>");
+
+                $.each(ITDCDeptList, function (index, value) {
+                    if (value.fCompany == checkText) {
+                        $("#sltDept").append("<option value='" + value.fThreeDept + "'>" + value.fThreeDept + "</option>");
+                    }
+                });
+            });
+
+
+            $.post("/IT/Request/GetUserName?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+                $("#txtOrderResp").val(data);
+            });
+
+            $("#result").hide();
+            $("#resultTitle").hide();
+            $("#divDayReport").hide();
+
+            $("#sltOprationType").val("801A");
+
+            $("#sltOprationType").change(function () {
+                var value = $(this).val();
+                if (value != "853A") {
+                    $("#divDayReport").hide();
+                    $("#divCommon").show();
+                    $("#txtStartDate").val("");
+                    $("#txtEndDate").val("");
+                }
+                else {
+                    $("#divDayReport").show();
+                    $("#divCommon").hide();
+                    $("#txtStartDate").val(myDate.Format("yyyy-MM-dd"));
+                    $("#txtEndDate").val(myDate.Format("yyyy-MM-dd"));
+                }
+            });
+        });
+
+        function LoadOverView() {
+            var m0 = Msg.show("正在加载数据...", 3);
+            var url = "";
+            // url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" +  escape("【操作类型,微信】【问题,921】");
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=920";
+            $.post(url, function (data) {
+                $("#overview").html(data);
+                m0.hide();
+            });
+        };
+
+        function LoadContractChart(id, key) {
+            var m1 = Msg.show("正在加载数据...", 3);
+            var url = "";
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(key);
+
+            $(id).parent().children().removeClass("captionHS");
+            $(id).addClass("captionHS");
+
+            $.post(url, function (data) {
+                var objData = eval("(" + data + ")");
+                LoadContractPercentChart(objData.data);
+                m1.hide();
+            });
+        };
+        function LoadOrderChart(id, key) {
+            var m2 = Msg.show("正在加载数据...", 3);
+            var url = "";
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(key);
+
+            $(id).parent().children().removeClass("captionHS");
+            $(id).addClass("captionHS");
+
+            $.post(url, function (data) {
+                var objData = eval("(" + data + ")");
+                var company = new Object();
+                company.categories = objData.company;
+                LoadOrderColumnChart(company, objData.series);
+                m2.hide();
+            });
+        };
+        function LoadTimelyDeliveryRateChart(id, key) {
+            var m3 = Msg.show("正在加载数据...", 3);
+            var url = "";
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(key);
+
+            $(id).parent().children().removeClass("captionHS");
+            $(id).addClass("captionHS");
+            $.post(url, function (data) {
+                var objData = eval("(" + data + ")");
+                var xAxis = new Object();
+                xAxis.categories = objData.categories;
+                var series = new Object();
+                series.data = objData.data;
+                LoadTimelyDeliveryRateLineChart(xAxis, series);
+                m3.hide();
+            });
+        };
+        function LoadSatisfactionChart(id, key) {
+            var m4 = Msg.show("正在加载数据...", 3);
+            var url = "";
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(key);
+
+            $(id).parent().children().removeClass("captionHS");
+            $(id).addClass("captionHS");
+            $.post(url, function (data) {
+                var objData = eval("(" + data + ")");
+                var xAxis = new Object();
+                xAxis.categories = objData.categories;
+                var series = new Object();
+                series.data = objData.data;
+                LoadSatisfactionLineChart(xAxis, series);
+                m4.hide();
+            });
+        };
+
+
+        function LoadContractPercentChart(data) {
+            $('#contractChart').highcharts({
+                chart: {
+                    type: 'pie',
+                    height: 250,
+
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                subtitle: {
+                    text: null
+                },
+                title: {
+                    text: null
+                },
+                tooltip: {
+                    pointFormat: '合同占比: <b>{point.percentage:.1f}%</b><br />合同金额: <b>{point.y}万元</b>'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 35,
+                        dataLabels: {
+                            enabled: false,
+                            format: '{point.name}'
+                        },
+                        showInLegend: true
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '合同金额',
+                    data: data
+                }]
+            });
+        }
+        function LoadOrderColumnChart(xAxis, series) {
+            //debugger;
+            //销售按状态汇总
+            $('#orderChart').highcharts({
+                chart: {
+                    type: 'column',
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    height: 250,
+                    backgroundColor: null
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: null
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: null
+                    }
+                },
+                xAxis: xAxis,
+                tooltip: {
+                    format: '{point.y}'
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: series
+            })
+        }
+        function LoadTimelyDeliveryRateLineChart(xAxis, series) {
+            //debugger;
+            //按交付及时率分析
+            $('#timelyDeliveryRateChart').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    height: 250,
+                    backgroundColor: null
+                },
+                title: {
+                    text: null,
+                    x: -20 //center
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: xAxis,
+                yAxis: {
+                    max: 100,
+                    title: {
+                        text: null
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    pointFormat: '及时交付率：{point.y}%'
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [series]
+            });
+        }
+        function LoadSatisfactionLineChart(xAxis, series) {
+            $('#satisfactionChart').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    height: 250,
+                    backgroundColor: null
+                },
+                title: {
+                    text: null,
+                    x: -20 //center
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: xAxis,
+                yAxis: {
+                    max: 12,
+                    title: {
+                        text: null
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    pointFormat: '满意度（平均值）：{point.y} 分'
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [series]
+            });
+        }
+
+
+        function submit() {
+            //alert("");
+            var oprationType = $("#sltOprationType").val();
+
+            var com = $("#sltCompany").val();
+            var dept = $("#sltDept").val();
+
+            var demandresp = $("#txtDemandresp").val();
+
+            var orderresp = $("#txtOrderresp").val();
+            var orderState = $("#sltOrderState").val();
+
+            var startState = $("#txtStartDate").val().replace("-", "").replace("-", "");
+            var endState = $("#txtEndDate").val().replace("-", "").replace("-", "");
+
+            var url = "";
+
+            if (oprationType == "") {
+                Msg.show("操作类型必须选择", 1);
+                return;
+            }
+            else if (oprationType != "853A") {
+                url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题," + oprationType + "】【需求公司," + com + "】【需求部门," + dept + "】【需求提报人," + demandresp + "】【订单负责人," + orderresp + "】【订单状态," + orderState + "】");
+            }
+            else {
+                url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题," + oprationType + "】【需求公司," + com + "】【订单负责人," + orderresp + "】【汇报日期," + startState + "】【汇报日期," + endState + "】");
+            }
+
+            $("#result").html("");
+            Msg.show("请稍候...", 3);
+            $.post(url, function (data) {
+                Msg.hide();
+                $("#result").html(data);
+                $("#result").show();
+                $("#resultTitle").show();
+
+                $('html, body').animate({ scrollTop: $("#btnSubmit").offset().top }, 300, false);
+
+            })
+        }
+    </script>
+
+}
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;OverView
+</div>
+<div class="mainArea" style="margin-top: 0px; min-height: 0px" id="overview">
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;合同金额占比分析
+</div>
+<div class="mainArea" style="min-height: 0px">
+    <div id="contractChart"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="LoadContractChart(this,'801B4');"><i class="glyphicon glyphicon-th-list"></i>&nbsp;订单类型</div>
+        <div class="btnOpt" onclick="LoadContractChart(this,'801B3');" style="border-right: 1px solid #ccc;"><i class="glyphicon glyphicon-link"></i>&nbsp;业务链</div>
+        <div class="btnOpt" onclick="LoadContractChart(this,'801B2');" style="border-right: 1px solid #ccc;"><i class=" glyphicon glyphicon-barcode"></i>&nbsp;品牌</div>
+        <div class="btnOpt" onclick="LoadContractChart(this,'801B1');" style="border-right: 1px solid #ccc;" id="defaultPercentBtn"><i class="glyphicon glyphicon-home"></i>&nbsp;公司</div>
+    </div>
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;订单数分析
+</div>
+<div class="mainArea" style="min-height: 0px">
+    <div id="orderChart"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="LoadOrderChart(this,'802B4');"><i class="glyphicon glyphicon-th-list"></i>&nbsp;订单类型</div>
+        <div class="btnOpt" onclick="LoadOrderChart(this,'802B3');" style="border-right: 1px solid #ccc;"><i class="glyphicon glyphicon-link"></i>&nbsp;业务链</div>
+        <div class="btnOpt" onclick="LoadOrderChart(this,'802B2');" style="border-right: 1px solid #ccc;"><i class=" glyphicon glyphicon-barcode"></i>&nbsp;品牌</div>
+        <div class="btnOpt" onclick="LoadOrderChart(this,'802B1');" style="border-right: 1px solid #ccc;" id="defaultColumnBtn"><i class="glyphicon glyphicon-home"></i>&nbsp;公司</div>
+    </div>
+</div>
+
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;及时交付率分析
+</div>
+<div class="mainArea" style="min-height: 0px">
+    <div id="timelyDeliveryRateChart"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="LoadTimelyDeliveryRateChart(this,'901B4');"><i class="glyphicon glyphicon-th-list"></i>&nbsp;订单类型</div>
+        <div class="btnOpt" onclick="LoadTimelyDeliveryRateChart(this,'901B3');" style="border-right: 1px solid #ccc;"><i class="glyphicon glyphicon-link"></i>&nbsp;业务链</div>
+        <div class="btnOpt" onclick="LoadTimelyDeliveryRateChart(this,'901B2');" style="border-right: 1px solid #ccc;"><i class=" glyphicon glyphicon-barcode"></i>&nbsp;品牌</div>
+        <div class="btnOpt" onclick="LoadTimelyDeliveryRateChart(this,'901B1');" style="border-right: 1px solid #ccc;" id="defaultBtn"><i class="glyphicon glyphicon-home"></i>&nbsp;公司</div>
+    </div>
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;满意度分析
+</div>
+<div class="mainArea" style="min-height: 0px">
+    <div id="satisfactionChart"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="LoadSatisfactionChart(this,'902B4');"><i class="glyphicon glyphicon-th-list"></i>&nbsp;订单类型</div>
+        <div class="btnOpt" onclick="LoadSatisfactionChart(this,'902B3');" style="border-right: 1px solid #ccc;"><i class="glyphicon glyphicon-link"></i>&nbsp;业务链</div>
+        <div class="btnOpt" onclick="LoadSatisfactionChart(this,'902B2');" style="border-right: 1px solid #ccc;"><i class=" glyphicon glyphicon-barcode"></i>&nbsp;品牌</div>
+        <div class="btnOpt" onclick="LoadSatisfactionChart(this,'902B1');" style="border-right: 1px solid #ccc;" id="defaultSatisfactionBtn"><i class="glyphicon glyphicon-home"></i>&nbsp;公司</div>
+    </div>
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;高级查询
+</div>
+
+<div class="mainArea" style="min-height: 0px">
+
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">报表名称</span>
+        <select id="sltOprationType" class="form-control">
+            <optgroup label="按公司汇总">
+                <option value="801A">销售单按公司汇总</option>
+                <option value="811A">需求单按公司汇总</option>
+                <option value="821A">开发单按公司汇总</option>
+            </optgroup>
+            <optgroup label="按状态汇总">
+                <option value="802A">销售单按状态汇总</option>
+                <option value="812A">需求单按状态汇总</option>
+                <option value="822A">开发单按状态汇总</option>
+            </optgroup>
+
+            <optgroup label="按负责人汇总">
+                <option value="803A">销售单按负责人汇总</option>
+                <option value="813A">需求单按负责人汇总</option>
+                <option value="823A">开发单按负责人汇总</option>
+                <option value="853A">每日汇报</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="input-group  requestQuery ">
+        <span class="input-group-addon">公　　司</span>
+        <select id="sltCompany" class="form-control">
+        </select>
+    </div>
+
+    <div id="divCommon">
+        <div class="input-group   requestQuery">
+            <span class="input-group-addon">部　　门</span>
+            <select id="sltDept" class="form-control">
+            </select>
+        </div>
+        <div class="input-group   requestQuery">
+            <span class="input-group-addon">订单状态</span>
+            <select id="sltOrderState" class="form-control">
+                <option value=" ">全部</option>
+                <option value="未开始">未开始</option>
+                <option value="进行中">进行中</option>
+                <option value="已完成">已完成</option>
+                <option value="已核算">已核算</option>
+                <option value="已取消">已取消</option>
+
+            </select>
+        </div>
+
+        <div class="input-group  requestQuery">
+            <span class="input-group-addon">提&nbsp;&nbsp;报&nbsp;&nbsp;人</span>
+            <input type="text" class="form-control" placeholder="全部" id="txtDemandresp" value="">
+        </div>
+
+    </div>
+
+    <div class="input-group  requestQuery">
+        <span class="input-group-addon">负&nbsp;&nbsp;责&nbsp;&nbsp;人</span>
+        <input type="text" class="form-control" placeholder="全部" id="txtOrderresp" value="">
+    </div>
+
+    <div id="divDayReport">
+        <div class="input-group  requestQuery">
+            <span class="input-group-addon">开始时间</span>
+            <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="true" id="txtStartDate" value="">
+        </div>
+
+        <div class="input-group  requestQuery">
+            <span class="input-group-addon">结束时间</span>
+            <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="true" id="txtEndDate" value="">
+        </div>
+        <br />
+    </div>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 20px;" data-loading-text="查询"
+        id="btnSubmit" onclick="submit()">
+        查询</button>
+</div>
+
+<div class="ht" id="resultTitle">
+    <i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;查询结果
+</div>
+<div class="mainArea" style="margin-top: 0px; min-height: 0px" id="result">
+</div>

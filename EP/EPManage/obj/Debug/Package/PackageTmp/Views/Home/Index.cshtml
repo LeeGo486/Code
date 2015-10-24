@@ -1,0 +1,51 @@
+﻿@model EPManageWeb.Models.UserLoginModel
+@{
+    ViewBag.Title = "用户登陆";
+}
+@section Css
+{
+    <link href="@Styles.Url("~/Content/login.css")" rel="stylesheet"/>
+}
+<div class="logo">
+    <img src="@Url.Content("~/Images/logo.gif")" />
+</div>
+<div class="container">
+    <h3>基样检索库</h3>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        if (this.HasErrorMessage)
+        {
+        @Html.ValidationSummary(null, new { @class = "alert" })
+        }
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">@Html.LabelFor(t => t.UserName) </label>
+            <div class="controls">
+                @Html.TextBoxFor(t => t.UserName)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">@Html.LabelFor(t => t.PassWord)</label>
+            <div class="controls">
+                @Html.PasswordFor(t => t.PassWord)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" id="btnSubmit" class="btn">登陆</button>
+                <a href="#regModal"  role="button" class="btn" data-toggle="modal">注册</a>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="regModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">用户注册</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        
+    </div>
+</div>

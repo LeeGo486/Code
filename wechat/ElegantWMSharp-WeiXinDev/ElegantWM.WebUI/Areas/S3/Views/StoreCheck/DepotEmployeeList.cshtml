@@ -1,0 +1,144 @@
+﻿@model List<ElegantWM.WebUI.Areas.S3.Controllers.StoreCheckController.S3_DepotEmployee>
+
+<script>
+    var m_LastEmployeeName = undefined;
+    function cheageToDepotEmployee(name) {
+        if (m_LastEmployeeName != undefined) {
+            $("#storeEmployeeCheckMsg" + m_LastEmployeeName).html("");
+            $("#storeEmployeeCheckMsg" + m_LastEmployeeName).hide();
+        }
+
+        m_LastEmployeeName = name;
+
+        $("#storeEmployeeCheckMsg" + m_LastEmployeeName).show();
+        $("#storeEmployeeCheckMsg" + m_LastEmployeeName).html($("#storeEmployeeCheckMsgTemplete").html());
+
+        $("#depotEmployeeName").html(name);
+
+        scrollTo("#storeEmployeeCheckMsg" + m_LastEmployeeName);
+    }
+
+    function cheageToDepotEmployeeSubmit() {
+        Msg.show("切换身份成功，请关闭本页面，以" + $("#depotEmployeeName").html() + "店员的身份进行操作", 0);
+    }
+
+</script>
+<style>
+    .dataTable th {
+        text-align:left;
+    }
+</style>
+<div id="depotEmployInfo">
+    <div class="ht">
+        <i class="icon-user"></i>&nbsp;&nbsp;店内人员列表
+    <span onclick="$('#depotEmployee').fadeOut(1000);scrollTo('#storeCheckSubmit');">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    </div>
+
+
+    @foreach (ElegantWM.WebUI.Areas.S3.Controllers.StoreCheckController.S3_DepotEmployee depotEmployee in Model)
+    {
+        <div class="mainArea clearfix" style="min-height: 0px">
+            <table class="dataTable">
+                <tr>
+                    <td rowspan="5" colspan="2">
+                        <div>
+                            <img src="@depotEmployee.ImgUrl "  style="width:100px;height:135px;"/>
+                        </div>
+                    </td>
+                    <th>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</th>
+                    <td>
+                        <b>@depotEmployee.Name</b>
+                    </td>
+                    <td style="text-align:right;"><a class="badge ls full-right" onclick="cheageToDepotEmployee('@depotEmployee.Name') ">切换</a></td>
+                </tr>
+                <tr>
+                    <th>入职年限：</th>
+                    <td colspan="2">
+                        @depotEmployee.CompanyAge
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标：</th>
+                    <td colspan="2">
+                        @(depotEmployee.Target)
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成：</th>
+                    <td colspan="2">
+                        @depotEmployee.Complete
+                    </td>
+                </tr>
+                <tr>
+                    <th>薪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金：</th>
+                    <td colspan="2">
+                        @(depotEmployee.Salary)
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>完成率：</th>
+                    <td>
+                        <span style=" color:@if (depotEmployee.CompleteRate < 1)
+                                            {@("#F00")}
+                                            else
+                                            {@("#66CC33")}">
+                            @(depotEmployee.CompleteRate.ToString("0.00%"))</span>
+                    </td>
+                    <th>能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;力：</th>
+                    <td colspan="2">
+                        @(depotEmployee.Capacity)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+         <br />     
+        <div id="storeEmployeeCheckMsg@(depotEmployee.Name)"></div> 
+    }
+
+    <div id="storeEmployeeCheckMsgTemplete" style="min-height: 0px; display: none">
+        <div id="storeEmployeeCheckMsg">
+            <div class="ht">
+                <i class="glyphicon glyphicon-exclamation-sign" style="color:red"></i>&nbsp;&nbsp;提示信息
+        <span onclick="$('#storeEmployeeCheckMsg').fadeOut(1000);">
+            <i class="icon-remove icon-large"></i>
+        </span>
+            </div>
+
+            <div class="dataDetail">
+                您好，您选择了以<span id="depotEmployeeName" style="color: red"></span>人员的身份查看业务情况。您可以
+        <br />
+                <br />
+                1、点击<a href="/S3/Customer">“服务->销售机会”</a>,查看该名员工的所有客户销售工作。
+         <br />
+                <br />
+                2、点击<a href="/S3/Support">“服务->店内支持”</a>,查看该名员工的所有店内支持工作，比如泊车、迎客、招待、房间、货品搭配等。
+
+         <br />
+                <br />
+                3、点击<a href="/S3/Equipment">“服务->设施维护”</a>,来查看店内关于形象品，店内设施维护，IT请求的业务情况。
+
+         <br />
+                <br />
+                4、点击<a href="/S3/Assistant">“商品->商品助手”</a>,来查看店内对于货品库存、搭配、学习、分享、问题建议等。
+
+         <br />
+                <br />
+                5、点击<a href="/S3/Exhibit">“商品->陈列”</a>,来查看店内的陈列效果维护、汇报、学习、分享、问题建议等。
+
+         <br />
+                <br />
+                6、点击<a href="/S3/Salary/Index">“个人->我的薪资”</a>,来查看该员工的薪资、能力、培训学习等情况。
+        <button type="button" class="btn btn-success" style="width: 100%; margin-top: 20px;" data-loading-text="确认切换"
+            id="btnSubmit" onclick="cheageToDepotEmployeeSubmit()">
+            确认切换</button>
+            </div>
+        </div>
+        <br />  
+    </div>
+</div>

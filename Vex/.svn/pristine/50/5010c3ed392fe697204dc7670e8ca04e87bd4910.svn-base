@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <link id="Link1" href="../../jquery-easyui-1.4.3/themes/bootstrap/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.4.3/themes/icon.css" rel="stylesheet" type="text/css" />
+    
+    <!-- <link href="../../css/SPWX_Examine.css" rel="stylesheet" type="text/css" /> -->
+    <script src="../../jquery-easyui-1.4.3/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/changeEasyuiTheme.js" type="text/javascript"></script>
+    
+    <script src="../../jquery-easyui-1.4.3/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/SPWX/SPWX_OnceAgain.js?Date=20150905" type="text/javascript"></script>
+    <style>
+        body{
+            background-color:#fff;
+            font-size:12px;
+            color:#5A5A5A;
+            font-family: "Helvetica","Tahoma","Arial",
+            "PingFang SC","Microsoft JhengHei","SimSun","sans-serif";
+        }
+        .area{
+            margin-top:10px;
+            margin-left: 20px;
+        }
+        .name{
+            margin-right: 10px;
+        }
+        .finish{
+            margin-top:20px;
+            margin-left: 40px;
+
+        }
+        .finish td{
+            padding-right: 20px;
+            line-height: 35px;
+        }
+        .finBtn{
+            margin-left:170px;
+            /*margin-right: 20px;*/
+            margin-top:20px;
+        }
+        .title{
+            margin-top:10px;
+        }
+        .win{
+            padding:10px;
+            font-size:1.1em;
+            line-height: 18px;
+        }
+        .address{
+            color:#0081c2;
+            font-size: 1.1em;
+            /*text-decoration:underline;*/
+        }
+        .tab{
+            margin-left:30px;
+        }
+        .tab th{
+            font-weight:normal;
+        }
+    </style>
+</head>
+<body>
+    <!-- Head -->
+    <div>
+        <!-- Search -->
+        <div>
+            <input id="search" />
+        </div>
+        <!-- Button -->
+        <div style="margin-top:10px;">
+            <a id="again">再判定</a>
+            <a id="accomplish">维修完成</a>
+            <a id="back">寄回门店</a>
+            <span style="color:#990033;font-size:1.1em;margin-left:20px;">Tip：双击可查看详情</span>
+        </div>
+    </div>
+    
+    <!-- DataGrid -->
+    <table id="tab_list"></table>
+
+    <!-- 维修完成 -->
+    <div id="finishWin">
+        <form id="finForm">
+            <table class="finish">
+                <tr>
+                    <td>是否完成:</td>
+                    <td><input type="text" id="isFinish" name="txtIsFinish" /></td>
+                </tr>
+                <tr>
+                    <td>维修人:</td>
+                    <td><input type="text" id="FinishMan" name="txtFinishMan" /></td>
+                </tr>
+                <tr>
+                    <td>维修时间:</td>
+                    <td><input id="FinDate" name="txtFinishDate"></input></td>
+                </tr>
+                <tr>
+                    <td>最终维修点:</td>
+                    <td><input type="text" id="FinishPoint" name="txtFinishPoint" /></td>
+                </tr>
+                <tr>
+                    <td>收费金额:</td>
+                    <td><span id="money"></span></td>
+                </tr>
+            </table>
+        </form>
+        
+        <div class="finBtn">
+            <a id="finSave">保存</a>
+            <a id="finClose">关闭</a>
+        </div>
+    </div>
+
+    <!-- 寄回门店 -->
+    <div class="win" id="expressWin">
+        <!-- Wx -->
+        <div>
+            <p>维修单:<span id="wxno" class="address"></span></p>
+        </div>
+        <!-- Deport -->
+        <div>
+            <p>寄往店铺:<span id="deport" class="address"></span></p>
+            <p>店铺地址:<span id="address" class="address"></span></p>
+        </div>
+        <!-- 总部 -->
+        <div>
+            <p>发送地:<span id="wxaddress" class="address"></span></p>
+        </div>
+        <!-- 物流 -->
+        <div>
+            <p>物流方式:</p>
+            <table class="tab">
+                <tr>
+                    <th>快递公司:</th>
+                    <td><input id="expName" /></td>
+                </tr>
+                <tr>
+                    <th>快递单号:</th>
+                    <td><input id="expNo" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="finBtn">
+            <a id="submitExp"></a>
+            <a id="closeExpWin"></a>
+        </div>
+    </div>
+</body>
+</html>

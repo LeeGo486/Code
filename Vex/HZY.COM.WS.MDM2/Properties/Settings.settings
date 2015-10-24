@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HZY.COM.WS.MDM2.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HZY_COM_WS_MDM2_WSRR_WSRR" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:8083/WSRR.asmx</Value>
+    </Setting>
+    <Setting Name="HZY_COM_WS_MDM2_AMSendWS_MsgCenter" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.0.89/MsgCenter.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

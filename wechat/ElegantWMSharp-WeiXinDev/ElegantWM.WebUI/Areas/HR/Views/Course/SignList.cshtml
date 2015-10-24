@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.V_HR_CourseSignRst>
+@foreach (ElegantWM.EntityModel.V_HR_CourseSignRst rst in Model)
+{
+    <div class="lesson">
+        <div style="margin-bottom:6px;"><span class="label @(rst.SignRst=="正常"?"label-success":"label-danger")">@rst.SignRst</span> <span class="label label-warning">@rst.LessonName</span></div>
+        时间： @rst.StartTime.ToString("yyyy-MM-dd") （@rst.StartTime.ToString("HH:mm") ~ @rst.EndTime.ToString("HH:mm")）<br />
+        签到： @(rst.CreateTime==null?"":rst.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss"))
+    </div>
+}

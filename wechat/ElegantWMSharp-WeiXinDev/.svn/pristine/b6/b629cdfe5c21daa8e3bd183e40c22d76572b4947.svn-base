@@ -1,0 +1,270 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //本店营业利润同比分析
+        $('#profit1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '本店营业利润同比分析',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: [{
+                categories: ['12年', '13年', '14年']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: [{
+                name: '营业利润',
+                color: '#4F94CD',
+                type: 'column',
+                yAxis: 0,
+                data: [120, 138, 150],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            },{
+                name: '销售利润率',
+                color: '#B22222',
+                type: 'line',
+                yAxis: 1,
+                data: [30, 25, 22],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        /*//XX店铺--营业利润同比分析
+        $('#profit2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '同店营业利润同比分析'
+            },
+            subtitle: {
+                text: '北京华贸EP雅莹之家'
+            },
+            xAxis: [{
+                categories: ['12年', '13年', '14年']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: [{
+                name: '营业利润',
+                color: '#4F94CD',
+                type: 'column',
+                yAxis: 0,
+                data: [210, 255, 302],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: '销售利润率',
+                color: '#B22222',
+                type: 'line',
+                yAxis: 1,
+                data: [35, 22, 31],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });*/
+
+        //本月利润排名
+        $('#profit2').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '本月利润排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海东方商厦淮海店', '上海五角场百联又一城', '上海百联中环东方商厦', '上海虹桥友谊商城', '上海新世界', '上海黄金广场 ', '上海久光百货', '上海汇金百货', '上海青浦东方大厦'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '本月利润',
+                color: '#4F94CD',
+                data: [39, 38, 37, 34, {
+                    y: 34,
+                    color: '#B22222'
+                }, 27, 24, 21, 16]
+            }]
+        });
+
+        //本年累计利润排名
+        $('#profit3').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '本年累计利润排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海虹桥友谊商城', '上海黄金广场 ', '上海久光百货', '上海五角场百联又一城', '上海新世界', '上海东方商厦淮海店', '上海汇金百货', '上海百联中环东方商厦', '上海青浦东方大厦'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '本年累计利润',
+                color: '#4F94CD',
+                data: [319, 224, 188, 178, {
+                    y: 175,
+                    color: '#B22222'
+                }, 152, 126, 125, 122]
+            }]
+        });
+    });
+</script>
+
+<div class="ht" id="sprofit">
+    <i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;利润分析
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="profit1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="profit2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="profit3" style="margin:30px 0px 0px 0px;"></div>
+</div>

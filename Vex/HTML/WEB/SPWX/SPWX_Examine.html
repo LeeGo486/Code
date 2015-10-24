@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <link id="Link1" href="../../jquery-easyui-1.4.3/themes/bootstrap/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.4.3/themes/icon.css" rel="stylesheet" type="text/css" />
+    
+    <link href="../../css/SPWX_Examine.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.4.3/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/changeEasyuiTheme.js" type="text/javascript"></script>
+    
+    <script src="../../jquery-easyui-1.4.3/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/SPWX/SPWX_Examine.js?Date=20150905" type="text/javascript"></script>
+</head>
+<body>
+    <div data-options="region:'center',fit:true">
+    <!-- Search -->
+    <div class="width100"><input id="schWXno" /></div>
+    <!-- main -->
+    <div id="wxpd" class="top width100">
+        <!-- Head -->
+    	<div class="fontsize12 top width100">
+    		<div class="left top fontsize12">
+                <span>维修单|</span><span id= "wxno"></span>
+            </div>
+            <div class="right">
+                <span class="left span">快递单号|<span id="expressno"></span></span>
+                <!-- <span class="left span">剩余单数|<span id="surplus"></span></span> -->
+            </div>
+    	</div>
+        <!-- 维修单信息 -->
+        <div class="infoBG width100">
+            <!-- 款式信息 -->
+            <div class="left top ">
+                <div class="left fontsize12 width100" >
+                    <span class="padd3">款式信息</span>
+                </div>
+
+                <div class="left top fontsize12 lineH">
+                    <span class="padd6 left">款号：<span id ="sku"></span></span>
+                    <span class="padd6 left">颜色：<span id ="color"></span></span>
+                    <span class="padd6 left">尺码：<span id ="size"></span></span>
+                    <span class="padd6 left">售出时间：<span id ="selldate"></span></span>
+                    <span class="padd6 left" id="urgentlevel"></span>
+                    <span class="padd6 left width100">问题描述：<span id ="question"></span></span>
+                </div>
+                <div class="left top width100 fontsize12 lineH">
+                    <span class="padd6 left">店铺备注：<span id ="remark"></span></span>
+                </div>
+                 <div class="whiteL"></div>
+            </div>
+
+            <!-- 店铺信息 -->
+            <div class="left top width100 ">
+                <div class="left fontsize13 width100">
+                    <span  class="padd3">店铺信息</span>
+                </div>
+                <div class="left top fontsize12 width100 lineH">
+                    <span class="padd6 left">店铺：<span id="depot"></span></span>
+                    <span class="padd6 left">店长：<span id="resp"></span></span>
+                    <span class="padd6 left">受理导购：<span id="staff"></span></span>
+                </div>
+                <div class="whiteL left"></div>
+            </div>
+            <!-- 顾客信息 -->
+            <div id="vipInfo" class="left top width100 lineH">
+                <div class="left fontsize12 width100">
+                    <span class="padd3">顾客信息</span>
+                </div>
+                <div class="left top fontsize12 lineH">
+                    <span class="padd6 left">顾客姓名：<span id="vipname"></span></span>
+                    <span class="padd6 left">联系方式：<span id="vipphone"></span></span>
+                    <span class="padd6 left">付费维修：<span id="collect"></span></span>
+                </div>
+
+            </div>
+        </div>
+        <!-- 维修判定 -->
+        <div class="fontsize12 top width100">
+            <div class="left top fontsize12">
+                <span>维修判定</span>
+            </div>
+            <div class="grayL"></div>
+            <!-- 问题主因 -->
+            <form id="formMainQst">
+            <table cellpadding="5px;" class="top left width100 lineH">
+                <tr>
+                    <td colspan="2" class="padd3">主要问题</td>
+                </tr>
+                <tr>
+                    <td class="padd6">原因：</td>
+                    <td id="mainQuestion" >
+                        <a id="main0" class="marginR30 nature ">顾客原因</a>
+                        <a id="main1" class="marginR30 nature ">外部原因</a>
+                        <a id="main2" class="marginR30 nature ">内部原因</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="padd6">问题：</td>
+                    <td>
+                    <input id="qstComb" type="text" 
+                    class="easyui-combobox left" data-options="required:true">
+                    <span class="padd3">现象：</span>
+                    <input id="phenomenon" type="text" class="easyui-combobox left" >
+                    <span class="padd3">供应商：</span>
+                    <input id="supplier" type="text" class="easyui-combobox left" >
+                    </td>
+                </tr>
+                <tr>
+                    <td class="padd6" style="vertical-align:top">初步判定：</td>
+                    <td><input id="describe" type="text"></td>
+                </tr>
+            </table>
+            </form>
+            <!-- 问题次因 -->
+            <div class="left width100">
+                <input id="secondaryChk" type="checkbox" class="padd3" /><span>次要问题</span>
+            </div>
+            <form id="formSecQst">
+            <table id="secondary" cellpadding="5px;" class="top left width100 lineH">
+                <tr>
+                    <td colspan="2" class="padd3">次要问题</td>
+                </tr>
+                 <tr>
+                    <td class="padd6">原因：</td>
+                    <td id="secQuestion" class="padd6">
+                        <a id="secon0" class=" marginR30 nature">顾客原因</a>
+                        <a id="secon1" class=" marginR30 nature">外部原因</a>
+                        <a id="secon2" class=" marginR30 nature">内部原因</a>
+                
+                   </td>
+                </tr>
+                <tr>
+                    <td class="padd6">问题：</td>
+                    <td class="padd6"><input id="secqstComb" type="text" class="easyui-combobox left" style="padding:20px;" >
+                    <span class="padd6">现象：</span><input id="secphenomenon" type="text" class="easyui-combobox left" style="padding:20px;" >
+                    </td>
+                </tr>
+            </table>
+            </form>
+            <!-- 判定结果 -->
+            <form id="formRst">
+                                <div class="top left width100">
+                <div class="left top fontsize12">
+                <span>判定结果</span>
+                </div>
+                <div class="grayL"></div>
+                <div class="top10 left padd3">
+                    <span>判定结果</span>
+                    <span id="rst" class="marginL60">
+                    <a id="dec0" class="marginR30 nature top30 ">产品退仓</a>
+                    <a id="dec1" class="marginR30 nature top30 ">不能维修</a>
+                    <a id="dec2" class="marginR30 nature top30 ">可以维修</a>
+                    </span>
+                    <span id="day"></span>
+                    <span id="money"></span>
+                </div>
+                
+                <!-- 结果 -->
+                
+                <div class="left top30 width100">
+                    <!-- 责任部门 -->
+                    <span class="padd3 left">责任部门：</span>
+                        <span class="marginL60 left">
+                        <input class="left padd3" id="department" type="text" />
+                    </span>
+                    <!-- 产品退仓 -->
+                    <span id="cptc" class="left padd3">
+                        <span class="padd3 left">产品退仓：</span>
+                        <span class="left">
+                            <input id="degrade" type="text" />
+                        </span>
+                    </span>
+                    <!-- 可以维修 -->
+                    <span id="kywx" class="left padd3">
+                       <span class="padd3 left">维修方式：</span>
+                       <span class="padd3 left">
+                       <input id="maintainway" type="text" />
+                       </span>
+                       <span class="padd3 left">是否收费：</span>
+                       <span class="padd3 left">
+                       <input id="pay" type="text" />
+                       </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        </form>
+        <div class="left top marginL30"><a id="submit"></div>
+    </div>
+</body>
+</html>

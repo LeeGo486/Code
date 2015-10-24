@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>设计汇总报表</title>
+<meta charset="UTF-8" />
+<script src="/Scripts/jquery-1.8.2.min.js"></script>
+<script src="/Scripts/global.js"></script>
+<style type="text/css">	
+body{
+	font-size:14px;
+}
+select{
+	padding:6px;
+}
+.bgcolor{background-color:#fff;}
+#rpTable tr3 td {
+	padding: 4px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #c7d7e6;
+	border: solid 1px #AAA;
+}
+#rpTable {
+	font-size: 14px;
+	color: #666;
+	border: solid 1px #AAA;
+	border-collapse: collapse;
+}
+
+#rpTable td {
+	padding: 4px;
+	border: solid 1px #AAA;
+}
+
+#rpTable th {
+	padding: 4px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #c7d7e6;
+	border: solid 1px #AAA;
+}
+.titleTd {
+	padding: 4px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #c7d7e6;
+	border: solid 1px #AAA;
+}
+
+.sumTd{
+	background-color : yellow;
+}
+</style>
+<script type="text/javascript">
+ 
+    $(function () {
+		$("body").removeClass("bgcolor");
+        var msgBody = "<Interface WSID='4d7a7238-f540-4551-bbc3-67792e459077' App='ITDC' SessionID='6e927d27-a624-492f-b506-21a53d75f131'>";//" + getUrlParam("tokenId") + " WSRR环境
+        msgBody += "<band>EP</band><bgnDate>2014-01-01</bgnDate><endDate>2014-04-01</endDate></Interface>";
+        var jsonData = '{XmlInput:"' + encodeURIComponent(msgBody.replace(/"/g, '\\"')) + '"}';
+        $.ajax({
+            url: urlPacking("POST", WsrrTestUrl),//WsrrUrl 正式环境
+            type:'POST',
+            data:{ proxyData: jsonData },
+            success: function (data) {
+				$("body").addClass("bgcolor");
+                if (checkResponse(data))
+                    console.log(JSON.parse(data).d);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+				$("body").addClass("bgcolor");
+                alert(XMLHttpRequest.readyState +"-" + XMLHttpRequest.status + "-" + XMLHttpRequest.responseText);
+            }
+        }); 
+ }); 
+</script>
+</head>
+<body>
+	
+</body>
+</html>

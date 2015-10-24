@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <title>多样衣跟踪表</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.datagrid_groupview.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/JS_PrintArea.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/Lodop/LodopFuncs.js" type="text/javascript"></script>
+    <script src="../../JS/PLMAS/MultipleSample.js" type="text/javascript"></script>
+    
+    <script>
+        $.fn.datebox.defaults.formatter = function (date) {
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+            return y + '-' + (m < 10 ? ('0' + m) : m) + '-' + (d < 10 ? ('0' + d) : d);
+        }
+        $.fn.datebox.defaults.parser = function (s) {
+            if (!s) return new Date();
+            var ss = (s.split('-'));
+            var y = parseInt(ss[0], 10);
+            var m = parseInt(ss[1], 10);
+            var d = parseInt(ss[2], 10);
+            if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
+                return new Date(y, m - 1, d);
+            } else {
+                return new Date();
+            }
+        }
+    </script>
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+
+    <div data-options="region:'north',split:false,border:false" style="height: 120px">
+        <div style="padding-top: 10px; width: 100%;">
+            <form id="frmSeach">
+                <table>
+                    <tr>
+                        <td>部 门:</td>
+                        <td><input type="text" id="txtbrand" name="txtbrand" style="width: 150px" /></td>
+                        <td>产品线：</td>
+                        <td><input id="txtproductline" name="txtproductline" style="width: 200px" /></td>
+                        <td>季 节：</td>
+                        <td><input id="txtseason" name="txtseason" style="width: 100px" /></td>
+                        <td>样板号:</td>
+                        <td><input id="txtdyyyno1" name="txtdyyyno1" style="width: 100px" /></td>
+                        <td><a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="LoadDataClick()" >查询</a></td>
+                    </tr>
+                    <tr>
+                        <td>版 师: </td>
+                        <td><input id="txtdivision" name="txtdivision" style="width: 150px" onmouseover="this.title=this.text" /></td>
+                        <td>样衣状态:</td>
+                        <td><input id="txtstate" name="txtstate" style="width: 200px" /></td>
+                        <td>品 类: </td>
+                        <td colspan="3"><input id="txtcategory" name="txtcategory" style="width: 200px" /></td>
+                        <td><a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-print'" onclick="excelExport()">导出</a></td>
+                    </tr>
+                </table>
+            </form>
+            <p>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="btnShowEditWindow('state')">确认样状态维护</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="btnShowEditWindow('division')">样衣师人员维护</a>
+                <label style="color:red;padding-left:50px">灰色:取消; 黑色:同款; 黄色:已发; 绿色:已调; 白色:总款</label>
+            </p>
+        </div>
+    </div>
+
+    <div data-options="region:'center'" split="true" id="mainPanle">
+        <table id="tabList"></table>
+    </div>
+
+    <div id="StateWin" class="easyui-window" title="确认样状态维护界面" data-options="closed:true" style="width: 500px; height: 400px">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',spilt:true" style="height: 50px">
+                品牌<input id="txtbrand1" style="width: 80px" />
+                <!--当前状态<input id="txtstate1" />-->
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="btnSearch('state')">查询</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="btnNewAddData('tabStateList')">新建</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="btnEdit('tabStateList')">变更</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'" onclick="btnSave('tabStateList')">保存</a>
+            </div>
+            <div data-options="region:'center'" style="height: 340px">
+                <table id="tabStateList"></table>
+            </div>
+        </div>
+    </div>
+
+    <div id="DivisionWin" class="easyui-window" title="样衣师维护界面" data-options="closed:true" style="width: 500px; height: 400px">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',spilt:true" style="height: 50px">
+                品牌<input id="txtbrand2" style="width: 80px" />
+                <!--样衣工<input id="txtdivision2" />-->
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" onclick="btnSearch('division')">查询</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="btnNewAddData('tabDivisionList')">新建</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="btnEdit('tabDivisionList')">变更</a>
+                <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'" onclick="btnSave('tabDivisionList')">保存</a>
+            </div>
+
+            <div data-options="region:'center'" style="height: 340px">
+                <table id="tabDivisionList"></table>
+            </div>
+        </div>
+    </div>
+
+    <div id="winDetailForEP" class="easyui-window" data-options="closed:true,modal:true">
+        <table id="tabDetailForEP"></table>
+    </div>
+
+    <div id="editEPWin" class="easyui-window" data-options="closed:true,modal:true" style="width:800px;height:400px">
+        <p>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="saveDataForEP()" >保存</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="btnCancelForEP()" >取消</a>
+        </p>
+        <hr />
+        <form id="editEPForm">
+            <table>
+                <tr>
+                    <td>上货波段</td>
+                    <td><input id="txtfshangdate" name="txtfshangdate" class="easyui-datebox" disabled="disabled" /></td>
+                    <td>产品线</td>
+                    <td><input id="txtfaccbrand" name="txtfaccbrand" disabled="disabled" /></td>
+                    <td>系列</td>
+                    <td><input id="txtfseries" name="txtfseries" disabled="disabled" /></td>
+                </tr>
+                <tr>
+                    <td>大货款号</td>
+                    <td><input id="txtfstyleaddcolor1" name="txtfstyleaddcolor1" class="easyui-textbox" /></td>
+                    <td>样衣号</td>
+                    <td><input id="txtdyyyno" name="txtdyyyno" disabled="disabled" /></td>
+                    <td>调板进度</td>
+                    <td><input id="txtdyapdt" name="txtdyapdt" class="easyui-datebox" /></td>
+                </tr>
+                <tr>
+                    <td>样衣状态</td>
+                    <td><input id="txtdystat" name="txtdystat" /></td>
+                    <td>入选情况</td>
+                    <td><input id="txtdyysel" name="txtdyysel" /></td>
+                    <td>样衣组别</td>
+                    <td><input id="txtdydept" name="txtdydept" /></td>
+                    <!--<td>面料到货时间</td>
+                    <td><input id="txtdyfadt" name="txtdyfadt" class="easyui-datebox" /></td>-->
+                </tr>
+                <tr>
+                    <td>面辅料到货时间</td>
+                    <td><input id="txtdyfadt" name="txtdyfadt" class="easyui-datebox" /></td>
+                    <td>预计发大货时间</td>
+                    <td><input id="txtdypddt" name="txtdypddt" class="easyui-datebox" /></td>
+                    <td>实际发大货时间</td>
+                    <td><input id="txtdyaddt" name="txtdyaddt" class="easyui-datebox" /></td>
+                </tr>
+                <tr>
+                    <td>计划收回时间</td>
+                    <td><input id="txtdyprdt" name="txtdyprdt" class="easyui-datebox" /></td>
+                    <td>实际收回时间</td>
+                    <td><input id="txtdyardt" name="txtdyardt" class="easyui-datebox" /></td>
+                    <td>确认样发放时间</td>
+                    <td><input id="txtdycydt" name="txtdycydt" class="easyui-datebox" /></td>
+                </tr>
+                <tr>
+                    <td>备注</td>
+                    <td colspan="5"><input id="txtdyremk2" name="txtdyremk2" style="width:80%" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

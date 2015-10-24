@@ -1,0 +1,43 @@
+﻿ .pager
+ {
+     font-size: 12px;
+     margin: 8px 0;
+     padding: 3px 0 3px;
+     text-align: center;
+ }
+ 
+ .pager .current
+ {
+     background-color: #06c;
+     border: 1px solid #009;
+     color: #fff;
+     font-weight: bold;
+     margin-top: 4px;
+     padding: 3px 5px;
+     text-align: center;
+ }
+ 
+ .pager a
+ {
+     margin: 4px 3px;
+     border: 1px solid #9AAFE5;
+     padding: 3px 5px;
+     text-align: center;
+     text-decoration: none;
+     color: #2E6AB1;
+ }
+ 
+ .pager .pagerInput
+ {
+     padding: 3px 0 0 0;
+     border: 1px solid #9AAFE5;
+     text-align: center;
+     text-decoration: none;
+     height: 16px;
+     width: 30px;
+ }
+ .pager .pagerButton
+ {
+     border: 1px solid #9AAFE5;
+     cursor: pointer;
+ }

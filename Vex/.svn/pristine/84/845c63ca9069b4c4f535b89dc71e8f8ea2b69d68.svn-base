@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>WS服务申请</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+        <script src="../../jquery-easyui-1.3.4/cookieHelper.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.datagrid_groupview.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/JS_PrintArea.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js"></script>
+    <script language="javascript" src="../../JS/Lodop/LodopFuncs.js"></script>
+    <script src="../../JS/PLMAS/FLEXPLMProductCheck.js?Date=20140423" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+    <div region="north" style="height: 60px" data-options="split:false,border:false">
+        <div style="padding-top: 10px; width: 100%;">
+            <form id="frmSeach">
+                开始时间：<input class="easyui-datebox" id="txtBeginDate" name="txtBeginDate" data-options="formatter:Formater.Date" />
+                结束时间：<input class="easyui-datebox" id="txtEndDate" name="txtEndDate" data-options="formatter:Formater.Date" />
+                品牌:<input id="Brand" name="cmbBrand" style="width: 80px" />
+                设计师：<input id="cmbDesigner" name="cmbDesigner" style="width: 80px" />
+                设计号：<input id="txtDesignerId" name="txtDesignerId" />
+                <a href="#" id="btn_Search" iconcls="icon-search" onclick="SearchClick()" class="easyui-linkbutton"
+                    data-options="plain:true">搜索</a>
+
+            </form>
+        </div>
+    </div>
+    <div region="center" split="true" id="mainPanle">
+        <table id="tabList">
+        </table>
+    </div>
+
+    <div class="easyui-window" title="编辑款式信息" id="divEdit"
+        data-options="closed:true" style="width: 400px; height: 280px;text-align:center">
+        <form id="frmEdit" name="form_Edit" method="post">
+            <table style="margin:auto; width:300px;text-align:left" cellpadding="5px" >
+                <tr>
+                    <td>设计号：
+                    </td>
+                    <td>
+                        <input id="txtskc" name="txtskc" type="hidden" />
+                        <input id="txtDesignerId1" name="txtDesignerId1" value="" disabled="true" style="width: 180px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>款式类型：
+                    </td>
+                    <td>
+                        <input id="cmbkslx" name="cmbkslx" style="width: 120px" data-options="valueField:'id',textField:'text'">
+                    </td>
+                </tr>
+                <tr>
+                    <td>订货会季节：
+                    </td>
+                    <td>
+                        <input id="cmbdhhjj" name="cmbdhhjj" style="width: 150px" data-options="valueField:'id',textField:'text'">
+                    </td>
+                </tr>
+                <tr>
+                    <td>款式类别：
+                    </td>
+                    <td>
+                        <input id="cmbkslb" name="cmbkslb" style="width: 100px" data-options="valueField:'id',textField:'text'">
+                    </td>
+                </tr>
+                 <tr>
+                    <td>&nbsp;
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btnSubmit" iconcls="icon-save" onclick="EditSubmit()" class="easyui-linkbutton" data-options="plain:true">提交</a>
+                        <a href="#" id="btn_Cancle_Submit" iconcls="icon-undo" onclick="WindowClose('#divEdit')" class="easyui-linkbutton" data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <!-- 右键(LeeGo) -->
+    <div id="mm" class="easyui-menu" style="width:120px;">
+        <div id="mm-print" data-options="iconCls:'icon-print'">图稿打印</div>
+        <div id="mm-linking" data-options="iconCls:'icon-add'">材料关联</div>
+    </div>
+    
+    <!-- 材料关联窗口(LeeGo) -->
+    <div id="linkShow">
+
+        <img src="" style="width:40%;"/>
+
+        <div style=" float:right; width:60%;height:100%;">
+            <span style="color:#99CCCC;font-size:25px;">订货会季节:<input style="border:0px;" id="season"/></span>
+            <span style="color:#99CCCC;font-size:25px;">设计号:<input id="code"/>                
+                <input id="prno" type="hidden"/>
+                <input id="dspe" type="hidden"/>
+            </span><br />
+            <div style="margin-top:10px;">
+            <a id="close">关闭</a>
+            <a id="addM">增加面料</a>
+            <a id="addL">增加里布</a>
+            <a id="addF">增加辅料</a>
+            <a id="delete">删除物料</a>
+            </div>
+
+            <table id="material_list"></table>
+        </div>
+    </div>
+
+    <!-- 材料关联查询窗口(LeeGo) -->
+    <div id="materialSearch">
+        <div style="margin-top:5px;margin-left:5px;">
+            <span>材料编号:&nbsp;&nbsp;<input id="itno" />
+                <input id="itgr" type="hidden"/>
+            </span>
+            <a id="btnSearch">查询</a><a id="btnSave">保存</a><a id="btnClose">关闭</a>
+        </div>
+        
+        <table id="search_list"></table>
+    </div>
+
+    <!--打印控件(LeeGo)-->
+    <object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width="0" height="0">
+        <embed id="LODOP_EM" type="application/x-print-lodop" width="0" height="0" pluginspage="../../JS/Lodop/install_lodop32.exe"/>
+    </object>
+
+    <!-- 打样申请窗口(LeeGo) -->
+    <div id="applyDesign">
+        <div style="margin-left:30px;margin-top:30px;">
+            <label for="measurementsid">样板号：</label>
+                <input id="measurementsid" readonly="readonly"
+                    style='border-left:0px;border-top:0px;border-right:0px;border-bottom:0px;background-color:#e9e7e8'/>
+            <label for="boduanseries">系列号：</label>
+                <input id="boduanseries" readonly="readonly"
+                    style='border-left:0px;border-top:0px;border-right:0px;border-bottom:0px;background-color:#e9e7e8'/>
+            <label for="boduan">波段：</label>
+                <input id="boduan" readonly="readonly"
+                    style='border-left:0px;border-top:0px;border-right:0px;border-bottom:0px;background-color:#e9e7e8'/>
+            <label for="samplenum">已有样衣数：</label>
+                <input id="samplenum" readonly="readonly"
+                    style='border-left:0px;border-top:0px;border-right:0px;width:50px;
+                        border-bottom:0px;background-color:#e9e7e8'/>
+            <a id="detail">明细</a>
+        </div>
+
+        <div style ="margin-left:30px; margin-top:30px;">
+            <form id="formApply">
+                <span>请选择打样类型:</span>
+                <table style="margin-left:60px;padding:10px;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="version1" onclick="monitor(1)" 
+                                    name="txtdyversion" type="radio" value="1" />
+                                <span>制作头版样衣</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="version0" onclick="monitor(0)" name="txtdyversion" type="radio" value="0" />
+                                <span>制作非头版样衣</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>请选择打样原因：</span>
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" name="chkdyrezn" value="调版" />
+                                <span>调版</span>
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" name="chkdyrezn" value="展色" />
+                                <span>展色</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" name="chkdyrezn" value="换面料" />
+                                <span>换面料</span>
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" name="chkdyrezn" value="换工艺" />
+                                <span>换工艺</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input onclick="reson(this)" type="checkbox" disabled="disabled" name="DYREZN" />
+                                <span>其他原因</span>
+                            </td>
+                            <td>
+                                <input id="otherReson" type="text" disabled="disabled" name="txtdyrezn" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>是否需要调版:</td>
+                            <td>
+                                <input id="tiaoban"  type="radio" disabled="disabled" name="cmbaltermeasurement" value="1"/>是
+                            </td>
+                            <td>
+                                <input  type="radio" disabled="disabled" name="cmbaltermeasurement" value="0" />否
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>领料人:</td>
+                            <td><input id ="dycrpe" name="cmbdycrpe" /></td>
+                        </tr>
+                        <tr>
+                            <td>打样数量:</td>
+                            <td><input id="ss" name="cmbdynumber" required="required" style="width:80px;"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>打样类型:</td>
+                            <td><input name="txtdytype" value="初样" readonly="readonly"
+                                style='border-left:0px;border-top:0px;border-right:0px;border-bottom:0px;background-color:#e9e7e8'/>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <div style="margin-top:10px;margin-left:50px;">
+                <a id="sureApply">确认</a><a id="closeApply">关闭</a>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- 打样申请明细窗口(LeeGo)-->
+    <div id ="detailWin">
+            <table id = 'detailYangYi'>
+
+            </table>
+            <a style="margin-top:15px;margin-left:250px;" id="detailWinCls">关闭</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+﻿<script type="text/javascript">
+    var reimbursementNum = 1;
+    var budgetNum = 1;
+
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+
+    //加载我要报销
+    function loadDoReimbursement() {
+        Msg.show("我要报销加载中...", 3);
+        $.get("/S3/Finance/DoReimbursement", function (htmldata) {
+            Msg.hide();
+            showDoReimbursement(htmldata);
+        });
+    }
+
+    //显示我要报销
+    function showDoReimbursement(data) {
+        $("#sdoreimbursementarea").html(data);
+        scrollTo("#sdoreimbursementarea");
+    }
+
+    //提交我要报销
+    function doReimbursement(data) {
+        Msg.show("提交成功", 0);
+    }
+
+    //添加我要报销明细
+    function loadDoReimbursementsub(id) {
+        Msg.show("我要报销明细加载中...", 3);
+        $.get("/S3/Finance/DoReimbursementsub", function (htmldata) {
+            Msg.hide();
+            reimbursementNum = reimbursementNum + 1;
+            var q = ("00" + reimbursementNum).substr(0, 3);
+            var html = "<li class='list-group-item'><div style='font-size:14px;'>" + q + "<span onclick='showReimbursementInfo(&quot;rei" + reimbursementNum + "&quot;);' style='float:right;'><i class='cus icon-double-angle-down'></i></span></div><div id='rei" + reimbursementNum + "' class='cusHideReimbursementArea' style='display:none;'>";
+            html = html + htmldata + "</div></li>";
+            $("ul#reimbursementsub").html($("ul#reimbursementsub").html() + html);
+            scrollTo("ul#reimbursementsub li:eq(" + (num - 1) + ")");
+        });
+    }
+
+    //显示我要报销明细
+    function showReimbursementInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideReimbursementArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+
+    //添加预算科目
+    function loadDoBudget(id) {
+        Msg.show("预算科目加载中...", 3);
+        $.get("/S3/Finance/DoBudget", function (htmldata) {
+            Msg.hide();
+            budgetNum = budgetNum + 1;
+            var q = ("00" + budgetNum).substr(0, 3);
+            var html = "<li class='list-group-item'><div style='font-size:14px;'>" + q + "<span onclick='showBudgetInfo(&quot;bud" + budgetNum + "&quot;);' style='float:right;'><i class='cus icon-double-angle-down'></i></span></div><div id='bud" + budgetNum + "' class='cusHideBudgetArea' style='display:none;'>";
+            html = html + htmldata + "</div></li>";
+            $("ul#budget").html($("ul#budget").html() + html);
+            scrollTo("ul#budget li:eq(" + (num - 1) + ")");
+        });
+    }
+
+    //显示预算科目
+    function showBudgetInfo(id) {
+        if ($("#" + id).is(":visible")) {
+            $("#" + id).hide();
+            return;
+        }
+
+        $(".cusHideBudgetArea").hide();
+        $("#" + id).show();
+        scrollTo($("#" + id).parent());
+    }
+</script>
+<div class="ht" id="sdorepairs">
+    <i class="icon-money"></i>&nbsp;&nbsp;我要报销
+    <span onclick="$('#sdoreimbursementarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="mainArea">
+    <div class="input-group">
+        <span class="input-group-addon">单据状态</span>
+        <select class="form-control" disabled="disabled">
+            <option selected="selected">填写</option>
+            <option>已提交</option>
+            <option>完结</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">单号</span>
+        <input type="text" class="form-control" value="SP20140715001" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">申请人</span>
+        <input type="text" class="form-control" value="徐艳琼" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">附件
+        </span>
+        <input type="text" class="form-control" readonly="true">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button">浏览</button>
+        </span>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">部门（店铺）全称</span>
+        <input type="text" class="form-control" value="深圳深国投广场MALL" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">日期</span>
+        <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" value="2014-07-15">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">部门成本中心代码</span>
+        <input type="text" class="form-control" value="HN1045" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">电话号码</span>
+        <input type="text" class="form-control" value="15988381281" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">职员编码</span>
+        <input type="text" class="form-control" value="0740382" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">移动电话</span>
+        <input type="text" class="form-control" value="15988381281" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">银行账号</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">付款说明</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">备注</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <h5><span> 报销明细 </span><span onclick="loadDoReimbursementsub();" style="float:right;margin-left: 5px;padding: 0px 10px;border-bottom:0;"><i class="icon-plus icon-large"></i></span></h5>
+    <br />
+    <ul class="list-group" id="reimbursementsub">
+        <li class="list-group-item">
+            <div style="font-size:14px;">001<span onclick="showReimbursementInfo('rei1');" style="float:right;"><i class="cus icon-double-angle-down"></i></span></div>
+            <div id="rei1" class="cusHideReimbursementArea" style="display:none;">
+                @Html.Action("DoReimbursementsub")
+            </div>
+        </li>
+    </ul>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">总金额</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">币种</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">汇率</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <h5><span> 预算科目 </span><span onclick="loadDoBudget();" style="float:right;margin-left: 5px;padding: 0px 10px;border-bottom:0;"><i class="icon-plus icon-large"></i></span></h5>
+    <br />
+    <ul class="list-group" id="budget">
+        <li class="list-group-item">
+            <div style="font-size:14px;">001<span onclick="showBudgetInfo('bud1');" style="float:right;"><i class="cus icon-double-angle-down"></i></span></div>
+            <div id="bud1" class="cusHideBudgetArea" style="display:none;">
+                @Html.Action("DoBudget")
+            </div>
+        </li>
+    </ul>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="doReimbursement();">提交</button>
+</div>

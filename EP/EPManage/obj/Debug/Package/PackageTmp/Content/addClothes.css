@@ -1,0 +1,27 @@
+﻿.clothesSizeDropDown {
+    display: none;
+}
+
+.addClothes {
+    width: 950px;
+}
+
+.width20 {
+    width: 20px;
+}
+
+table.addClothes td {
+    vertical-align: top;
+}
+
+#myModal {
+    width: 1000px;
+    margin-left: -500px;
+}
+div#file_SampleFile {
+    width:300px;
+}
+.ui-menu {
+    max-height:150px;
+    overflow-y:scroll;
+}

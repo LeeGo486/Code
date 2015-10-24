@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "ITDC报表";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="mainArea">
+    @(new HtmlString(((string)ViewBag.Result).Replace("\n","<br />").Replace("?key=", "?sid=" + Request["sid"] + "&oid=" + Request["oid"] + "&key=")))
+</div> 

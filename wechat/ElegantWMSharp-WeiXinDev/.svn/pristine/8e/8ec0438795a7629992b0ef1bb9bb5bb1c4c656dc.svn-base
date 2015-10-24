@@ -1,0 +1,68 @@
+﻿@model ElegantWM.EntityModel.WX_RespImgTxt
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            //赞
+            $("#sprise").click(function () {
+                $.post("/WeiXin/Article/Praise/@Html.ViewContext.RouteData.Values["id"]?oid=" + Url.get("oid") + "&sid=" + Url.get("sid"), function (data) {
+                    Msg.show(data.msg, data.result);
+                });
+            });
+        });
+    </script>
+    <style type="text/css">
+        h2 {
+            font-size:20px;
+            font-weight: 700;
+        }
+        .mark {
+            margin:10px auto 20px auto;
+        }
+        .tag {
+            color: #607fa6;
+        }
+        .content img {
+            max-width:100%;
+        }
+        .s3overlay{
+	        bottom: 10px;
+	        right: 8px;
+	        width:40px;
+            text-align:center;
+	        background: #555;
+	        color: #fff;
+	        font-size: 16px;
+	        font-family: sans-serif;
+	        text-decoration: none;
+	        opacity: .4;
+	        padding: 4px;
+            position:fixed;
+	        -webkit-border-radius: 3px;
+	        -moz-border-radius: 3px;
+	        border-radius: 3px;
+        }
+        .s3overlay hr{
+            margin:8px 4px;
+            height:1px;border:none;border-top:1px solid #999;
+        }
+    </style>
+}
+<h2>@Model.Title</h2>
+<div class="mark">
+    @Model.CreateTime.ToString("yyyy-MM-dd") &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">阅读（@Model.Hits）</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag"><i class="glyphicon glyphicon-thumbs-up"></i>（@Model.Praise）</span>
+</div>
+<div class="content">
+    @(new HtmlString(Model.Content))
+</div>
+<div class="s3overlay">
+    <i id="stop" class="icon-arrow-up"></i>
+    <hr />
+    <i id="sprise" class="glyphicon glyphicon-thumbs-up"></i>
+</div>

@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage/Base.Master" AutoEventWireup="true"
+    CodeBehind="Modal.master.cs" Inherits="F23Web.Report.MasterPage.Modal" %>
+
+<%@ Register Assembly="F23Base.Controls" Namespace="F23Base.Controls" TagPrefix="cc1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <base target="_self" />
+    <style type="text/css">
+        body, html
+        {
+            overflow: hidden;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="x-page">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <div class="buttonHolder">
+            <cc1:ButtonItem ID="btnsubmit" runat="server" Text="确 定" CssClass="primaryAction"
+                Callback="e_submit" Enabled="false" Type="button" Width="120px" />
+            <cc1:ButtonItem ID="btncancel" runat="server" Text=" 取 消" CssClass="primaryAction"
+                Callback="e_cancel" Type="button" Width="120px" HotKey="esc" />
+        </div>
+    </div>
+</asp:Content>

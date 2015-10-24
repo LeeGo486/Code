@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>到货计划</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/gray/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../JS/Hawk/DeliveryPlan.js?Date=20150115" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north'" title="高级筛选" style="height: 80px" split="true">
+        <table>
+            <tr>
+                <td>采购单号:</td>
+                <td>
+                    <input type="text" id="txtpo1_pocode_srh" style="width:100px" />
+                </td>
+                <td>到货计划编号:</td>
+                <td>
+                    <input type="text" id="txtap1_apcode_srh" style="width:100px" />
+                </td>
+                <td>采购人:</td>
+                <td>
+                    <input type="text" id="txtap1_rguser" style="width:80px" />
+                </td>
+                <td>SKU:</td>
+                <td><input type="text" id="txtSKU" style="width:120px" /></td>
+                <td>
+                    <button id="btnSearch" onclick="btnSearch()">查询</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div data-options="region:'center'" title="到货计划主表" style="height: 200px" split="true">
+        <table id="APOHeadList"></table>
+    </div>
+    <div data-options="region:'south'" title="到货计划明细" style="height: 200px" split="true">
+        <table id="APODetailList"></table>
+    </div>
+
+
+
+    <div title="新增到货计划" class="easyui-window" id="winAddAPO" style="padding: 5px" split="true" data-options="closed:true,modal: true,maximized: true">
+        <div class="easyui-layout" data-options="fit:true" split="true">
+            <div data-options="region:'north'" style="height: 40px">
+                <table>
+                    <tr>
+                        <td>采购单号:</td>
+                        <td>
+                            <input id="txtpo1_pocode_add" disabled="disabled" /></td>
+                        <td>到货计划编号:</td>
+                        <td>
+                            <input id="txtap1_apcode_add" disabled="disabled" />
+                        </td>
+                        <td>到货计划日期:</td>
+                        <td><input id="txtap1_aplandt_add" class="easyui-datebox" disabled="disabled" /></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div data-options="region:'center'" title="到货计划明细" style="height: 400px" split="true">
+                <table id="tabAddAPOdetail"></table>
+            </div>
+
+        </div>
+    </div>
+
+    <div title="采购单商品列表" id="winEditAPO" class="easyui-window" data-options="closed:true,modal: true" style="width: 850px; height: 400px">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north'" style="height: 40px">
+                <table>
+                    <tr>
+                        <td>采购单号:</td>
+                        <td>
+                            <input id="txtpo1_pocode" />
+                        </td>
+                        <td>计划到货日期:</td>
+                        <td>
+                            <input id="APOdate" class="easyui-datebox" data-options="formatter:function(date){return date.format('yyyy-MM-dd')}" required="required"/>
+                        </td>
+                        <td>
+                            <button id="btnSearchGood" onclick="btnPO2_PODetailList()">查询</button>
+                        </td>
+                        <td></td>
+                        <td>到货计划编号:<input id="txtap1_apcode" disabled="disabled" />
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div data-options="region:'center'">
+                <table id="tabGoodList"></table>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+</html>

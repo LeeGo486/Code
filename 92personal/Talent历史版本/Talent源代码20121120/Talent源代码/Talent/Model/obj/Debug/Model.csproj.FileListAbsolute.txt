@@ -1,0 +1,9 @@
+C:\Users\luobin\Desktop\Talent\Model\bin\Debug\Talent.Model.dll
+C:\Users\luobin\Desktop\Talent\Model\bin\Debug\Talent.Model.pdb
+C:\Users\luobin\Desktop\Talent\Model\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\luobin\Desktop\Talent\Model\obj\Debug\Talent.Model.dll
+C:\Users\luobin\Desktop\Talent\Model\obj\Debug\Talent.Model.pdb
+D:\Document\Work\Code\Talent历史版本\Talent源代码20121120\Talent源代码\Talent\Model\bin\Debug\Talent.Model.dll
+D:\Document\Work\Code\Talent历史版本\Talent源代码20121120\Talent源代码\Talent\Model\bin\Debug\Talent.Model.pdb
+D:\Document\Work\Code\Talent历史版本\Talent源代码20121120\Talent源代码\Talent\Model\obj\Debug\Talent.Model.dll
+D:\Document\Work\Code\Talent历史版本\Talent源代码20121120\Talent源代码\Talent\Model\obj\Debug\Talent.Model.pdb

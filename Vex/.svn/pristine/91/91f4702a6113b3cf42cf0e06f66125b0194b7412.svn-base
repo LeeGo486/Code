@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+///WSID:57a51159-4710-42cd-bca3-32fdaeacc616
+
+namespace HZY.COM.WS.HZY_Joreal_CMT
+{
+    class TaskHQ
+    {
+    }
+}
+ 

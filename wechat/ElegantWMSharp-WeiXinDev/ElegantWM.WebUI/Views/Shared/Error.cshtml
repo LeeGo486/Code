@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "异常";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<div class="mainArea" style="text-align:center;padding-top:50px;">
+    <i onclick="document.getElementById('urlExp').style.display='block';" class="icon-warning-sign icon-4x"></i> 
+    <br /><br />
+    <h4>异常</h4>
+    <p id="urlExp" style="display:none;">
+        Url:@(((HandleErrorInfo)ViewData.Model).ControllerName)/@(((HandleErrorInfo)ViewData.Model).ActionName)
+    </p>
+    <p>
+        @(((HandleErrorInfo)ViewData.Model).Exception.Message)
+    </p>
+</div>

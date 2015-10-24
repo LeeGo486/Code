@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "GetMyIntegral";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#showRecordsOfConsumption").click(function () {
+            $("#RecordsOfConsumption").show();
+            $("#IntegralExchange").hide();
+            $("#Notice").hide();
+        });
+        $("#showIntegralExchange").click(function () {
+            $("#RecordsOfConsumption").hide();
+            $("#IntegralExchange").show();
+            $("#Notice").hide();
+        });
+        $("#showNotice").click(function () {
+            $("#RecordsOfConsumption").hide();
+            $("#IntegralExchange").hide();
+            $("#Notice").show();
+        });
+    });
+
+
+</script>
+
+<style>
+    .noticList {
+        border: 1px solid #e5e5e5;
+        background-color: #fff;
+        padding: 10px 10px 14px 10px;
+        margin-bottom: 12px;
+        border-radius: 3px;
+    }
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/VipBg.jpg" />
+    </li>
+</ul>
+<h5 style="text-align: center">当前积分：88888888 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即将过期：888</h5>
+<table>
+    <tr>
+        <td style="text-align: center">
+            <div id="info" class="btn-group" data-toggle="buttons">
+                <label class="btn active" id="showRecordsOfConsumption" style="width: 100px;">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                    消费记录
+                </label>
+                <label class="btn" id="showIntegralExchange" style="width: 100px;">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    积分兑换
+                </label>
+                <label class="btn" id="showNotice" style="width: 100px;">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    特权说明
+                </label>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table id="RecordsOfConsumption">
+    <tr>
+        <td colspan="2">
+            <div class="noticList">
+                <span>消费时间：2014年1月1号</span><br />
+                <span style="color: red">消费金额：888</span><br />
+                <span>活的积分：888</span><br />
+            </div>
+        </td>
+    </tr>
+</table>
+<table id="IntegralExchange" style="display: none;">
+    <tr>
+        <td>
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/ticketbg.jpg" width="100%" />
+        </td>
+    </tr>
+</table>
+
+<table id="Notice" style="display: none; text-align:center">
+      <tr>
+        <td>
+            你目前尊享：【白金卡】
+        </td>
+    </tr>
+    <tr>
+        <td>
+           再积【1000】分，即可升级为【砖石卡】
+        </td>
+    </tr>
+     <tr>
+        <td>
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/bj.png" width="80%" />
+        </td>
+    </tr>
+      
+</table>
+

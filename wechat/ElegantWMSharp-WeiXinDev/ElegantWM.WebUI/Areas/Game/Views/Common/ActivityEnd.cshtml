@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "活动结束";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section script{
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#Bg").fullpage({})
+        })
+    </script>
+}
+<div id="Bg">
+    <img class="bg" src="~/Areas/Game/Resources/images/Common/end.jpg" style="width: 100%;" />
+</div>

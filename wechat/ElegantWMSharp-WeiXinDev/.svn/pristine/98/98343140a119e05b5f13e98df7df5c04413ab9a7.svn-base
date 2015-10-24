@@ -1,0 +1,325 @@
+﻿@{
+    ViewBag.Title = "我的薪资";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <script src="~/Scripts/hightcharts/highcharts-more.js"></script>
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            $("#sgomyincome").click(function () {
+                scrollTo("#smyincome");
+            });
+            $("#sgoper").click(function () {
+                scrollTo("#sperformance");
+            });
+        });
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+
+        //加载培训履历
+        function loadTrainList() {
+            Msg.show("培训履历加载中...", 3);
+            $.get("/S3/Salary/TrainList", function (htmldata) {
+                Msg.hide();
+                showTrainList(htmldata);
+            });
+        }
+
+        //显示培训履历
+        function showTrainList(data) {
+            $("#strainarea").html(data);
+            scrollTo("#strainarea");
+            $("li").click(function () {
+                $("li").removeClass("dataListSld");
+                $(this).addClass("dataListSld");
+            });
+        }
+
+        //显示培训履历详细资料
+        function showTrainInfo(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                return;
+            }
+            Msg.show("加载中...", 3);
+            $(".cusHideTrainArea").html("");
+            $(".cusHideTrainArea").hide();
+            $.post("/S3/Salary/Train", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+
+        //加载工作履历
+        function loadWorkList() {
+            Msg.show("工作履历加载中...", 3);
+            $.get("/S3/Salary/WorkList", function (htmldata) {
+                Msg.hide();
+                showWorkList(htmldata);
+            });
+        }
+
+        //显示工作履历
+        function showWorkList(data) {
+            $("#sworkarea").html(data);
+            scrollTo("#sworkarea");
+        }
+
+        //加载能力评价
+        function loadAbility() {
+            Msg.show("能力评价加载中...", 3);
+            $.get("/S3/Salary/Ability", function (htmldata) {
+                Msg.hide();
+                showAbility(htmldata);
+            });
+        }
+
+        //显示能力评价
+        function showAbility(data) {
+            $("#sabilityarea").html(data);
+            scrollTo("#sabilityarea");
+        }
+
+        //加载绩效工资
+        function loadPerformance() {
+            Msg.show("绩效工资加载中...", 3);
+            $.get("/S3/Salary/Performance", function (htmldata) {
+                Msg.hide();
+                showPerformance(htmldata);
+            });
+        }
+
+        //显示绩效工资
+        function showPerformance(data) {
+            $("#sperformancearea").html(data);
+            scrollTo("#sperformancearea");
+        }
+
+        //加载我的考勤
+        function loadMyCheck() {
+            Msg.show("我的考勤加载中...", 3);
+            $.get("/S3/Salary/MyCheck", function (htmldata) {
+                Msg.hide();
+                showMyCheck(htmldata);
+            });
+        }
+
+        //显示我的考勤
+        function showMyCheck(data) {
+            $("#smycheckarea").html(data);
+            scrollTo("#smycheckarea");
+        }
+
+        //加载我的佣金
+        function loadMyIncome() {
+            Msg.show("我的佣金加载中...", 3);
+            $.get("/S3/Salary/MyIncome", function (htmldata) {
+                Msg.hide();
+                showMyIncome(htmldata);
+            });
+        }
+
+        //显示我的佣金
+        function showMyIncome(data) {
+            $("#sincomearea").html(data);
+            scrollTo("#sincomearea");
+        }
+
+        //加载我的工资
+        function loadMySalary() {
+            Msg.show("我的工资加载中...", 3);
+            $.get("/S3/Salary/MySalary", function (htmldata) {
+                Msg.hide();
+                showMySalary(htmldata);
+            });
+        }
+
+        //显示我的工资
+        function showMySalary(data) {
+            $("#ssalaryarea").html(data);
+            scrollTo("#ssalaryarea");
+        }
+
+        //单击图标，加载客户数据
+        function loadCustomers() {
+            Msg.show("客户加载中...", 3);
+            $.get("/S3/Customer/CustomerList", function (htmldata) {
+                Msg.hide();
+                showCustomers(htmldata);
+                loadMyCustomerNum();
+            });
+        }
+
+        //显示客户资料信息
+        function showCustomers(data) {
+            $("#scustomerarea").html(data);
+            scrollTo("#scustomerarea");
+            $("li").click(function () {
+                $("li").removeClass("dataListSld");
+                $(this).addClass("dataListSld");
+            });
+        }
+
+        //显示客户的详细资料
+        function showCustomerInfo(id) {
+            Msg.show("加载资料中...", 3);
+            $.post("/S3/Customer/CustomerDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+
+        //显示客户的消费记录
+        function showCustomerConsume(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                return;
+            }
+            Msg.show("加载中...", 3);
+            $(".cusHideCsmArea").html("");
+            $(".cusHideCsmArea").hide();
+            $.post("/S3/Customer/CustomerConsume", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+
+        //显示客户订单信息
+        function showCustomerOrder(id) {
+            Msg.show("加载中...", 3);
+            $.post("/S3/Customer/CustomerOrderDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+
+        //加载我的客户比比看
+        function loadMyCustomerNum() {
+            Msg.show("客户加载中...", 3);
+            $.get("/S3/Salary/MyCustomerNum", function (htmldata) {
+                Msg.hide();
+                showMyCustomerNum(htmldata);
+            });
+        }
+
+        //显示我的客户比比看
+        function showMyCustomerNum(data) {
+            $("#scustomernumarea").html(data);
+        }
+
+        //加载我的目标
+        function loadMyGoal() {
+            Msg.show("我的目标加载中...", 3);
+            $.get("/S3/Salary/MyGoal", function (htmldata) {
+                Msg.hide();
+                showMyGoal(htmldata);
+            });
+        }
+
+        //显示我的目标
+        function showMyGoal(data) {
+            $("#smygoalarea").html(data);
+            scrollTo("#smygoalarea");
+        }
+
+        //加载目标比比看
+        function loadAllGoal() {
+            Msg.show("目标比比看加载中...", 3);
+            $.get("/S3/Salary/AllGoal", function (htmldata) {
+                Msg.hide();
+                showAllGoal(htmldata);
+            });
+        }
+
+        //显示目标比比看
+        function showAllGoal(data) {
+            $("#sallgoalarea").html(data);
+            scrollTo("#sallgoalarea");
+        }
+
+        //加载目标达成率
+        function loadMyFinished() {
+            Msg.show("目标达成率加载中...", 3);
+            $.get("/S3/Salary/MyFinished", function (htmldata) {
+                Msg.hide();
+                showMyFinished(htmldata);
+            });
+        }
+
+        //显示目标达成率
+        function showMyFinished(data) {
+            $("#smyfinishedarea").html(data);
+            scrollTo("#smyfinishedarea");
+        }
+
+        //加载目标达成率比比看
+        function loadAllFinished() {
+            Msg.show("目标达成率比比看加载中...", 3);
+            $.get("/S3/Salary/AllFinished", function (htmldata) {
+                Msg.hide();
+                showAllFinished(htmldata);
+            });
+        }
+
+        //显示目标达成率比比看
+        function showAllFinished(data) {
+            $("#sallfinishedarea").html(data);
+            scrollTo("#sallfinishedarea");
+        }
+    </script>
+}
+@Html.Action("MyInfo")
+<div id="sincomearea">
+    @Html.Action("MyIncome")
+</div>
+<div id="ssalaryarea">
+    @Html.Action("MySalary")
+</div>
+<div id="sperformancearea">
+</div>
+<div id="scustomerarea">
+</div>
+<div id="scustomernumarea">
+</div>
+<div id="smygoalarea">
+</div>
+<div id="sallgoalarea">
+</div>
+<div id="smyfinishedarea">
+</div>
+<div id="sallfinishedarea">
+</div>
+<div id="strainarea">
+</div>
+<div id="sworkarea">
+</div>
+<div id="sabilityarea">
+</div>
+<div id="smycheckarea">
+</div>
+<div class="s3overlay">
+    <i id="stop" class="icon-arrow-up icon-2x"></i>
+    <hr />
+    <i id="sgomyincome" class="icon-money icon-2x"></i>
+    <hr />
+    <i id="sgoper" class="icon-bar-chart icon-2x"></i>
+    <hr />
+    <i id="ssearch" class="icon-search icon-2x"></i>
+</div>

@@ -1,0 +1,8 @@
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\bin\Debug\HZY.COM.ST1005A.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\bin\Debug\HZY.COM.ST1005A.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\bin\Debug\HZY.COM.Common.Base.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\bin\Debug\HZY.COM.Common.DBAccess.DBConn.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\bin\Debug\HZY.COM.Common.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\bin\Debug\Interop.MSXML2.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\obj\Debug\HZY.COM.ST1005A.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.ST1005A\obj\Debug\HZY.COM.ST1005A.pdb

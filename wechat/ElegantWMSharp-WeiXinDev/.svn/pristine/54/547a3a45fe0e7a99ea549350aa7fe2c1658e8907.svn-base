@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "用户绑定";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                if ($.trim($("#txtName").val()).length <= 0) {
+                    $("#txtName").focus();
+                    Msg.show("姓名不能为空", 1);
+                    return;
+                }
+                if ($.trim($("#txtIdCode").val()).length <= 0) {
+                    $("#txtIdCode").focus();
+                    Msg.show("身份证不能为空", 1);
+                    return;
+                }
+                if ($.trim($("#txtPosCode").val()).length <= 0) {
+                    $("#txtPosCode").focus();
+                    Msg.show("导购号不能为空", 1);
+                    return;
+                }
+                var postData = {
+                    ehrName: $("#txtName").val(),
+                    idCode: $("#txtIdCode").val(),
+                    posCode: $("#txtPosCode").val(),
+                    sid: Url.get("sid"),
+                    oid:Url.get("oid")
+                };
+                Msg.show("绑定中...", 3);
+                $.post("/S3/User/BindEhrDrp", postData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        if (Url.get("ReturnUrl") != null)
+                            window.location.href = Url.get("ReturnUrl");
+                        else
+                            window.location.href = "/S3/User/Index?sid="+Url.get("sid")+"&oid="+Url.get("oid");
+                    }
+                });
+            });
+        });
+    </script>
+}
+<div class="dataDetail">
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;EHR 信息</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">姓&emsp;&emsp;名</span>
+        <input id="txtName" type="text" class="form-control" maxlength="8" placeholder="请输入姓名">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">身&ensp;份&ensp;证</span>
+        <input id="txtIdCode" type="number" class="form-control" maxlength="18" placeholder="请输入身份证号">
+    </div>
+    <br />
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;POS 信息</span></h4>
+    <div class="input-group ">
+        <span class="input-group-addon">导&ensp;购&ensp;号</span>
+        <input id="txtPosCode" type="text" class="form-control" maxlength="14" placeholder="请输入POS的导购编号">
+    </div>
+    <font color="#aaa">导购号查询方法：进入店铺管理--设置班次及营业员，请保证姓名与EHR的一致。</font>
+    <input id="btnSubmit" type="button" value="绑定账号" class="btn btn-success" style="width: 100%; margin-top: 30px;" />
+
+</div>

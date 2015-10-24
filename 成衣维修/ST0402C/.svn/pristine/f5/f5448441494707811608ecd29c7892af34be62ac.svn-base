@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+	<filter>
+		<filter-name>webFilter</filter-name>
+		<filter-class>
+			org.hy.filter.LoginCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>webFilter</filter-name>
+		<url-pattern>/web/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>  
+   		<filter-name>webFilter</filter-name>  
+   		<url-pattern>/rest/*</url-pattern>  
+  	</filter-mapping>
+	<filter-mapping>  
+   		<filter-name>webFilter</filter-name>  
+   		<url-pattern>*.jsp</url-pattern>  
+  	</filter-mapping>  
+	
+
+	<!-- 配置spring的监听器加载applicationContext.xml文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param> 
+
+ 
+	<!-- 开启监听 -->
+
+	<!--
+		<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		</listener>
+	-->
+	
+	<!-- 配置OpenSessionInViewFilter,必须在struts2监听之前 -->
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>Resteasy</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Resteasy</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+
+		<description>proxool 监控</description>
+		<display-name>proxool admin</display-name>
+		<servlet-name>proxooladmin</servlet-name>
+		<servlet-class>org.logicalcobwebs.proxool.admin.servlet.AdminServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>proxooladmin</servlet-name>
+		<url-pattern>/admin/proxool</url-pattern>
+	</servlet-mapping>
+
+	<!--  
+	<filter>
+		<filter-name>lazyLoadingFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>lazyLoadingFilter</filter-name>
+		<url-pattern>/rest/*,/web/*</url-pattern>
+	</filter-mapping>
+-->
+
+	<!-- 设置监听加载上下文 -->
+<!-- 	
+<filter>    
+   <filter-name>hibernateFilter</filter-name>    
+    <filter-class>org. framework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+
+	singleSession默认为true,若设为false则等于没用OpenSessionInView
+	<init-param>
+		<param-name>singleSession</param-name>
+		<param-value>true</param-value>
+	</init-param> 
+	
+</filter>    
+<filter-mapping>    
+ <filter-name>hibernateFilter</filter-name>    
+ <url-pattern>/*</url-pattern>    
+</filter-mapping>   -->
+	
+	
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+
+	<filter-mapping>  
+   		<filter-name>struts2</filter-name>  
+   		<url-pattern>*.jsp</url-pattern>  
+  	</filter-mapping>  
+	
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/web/*</url-pattern>
+	</filter-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>ProjectInitServel</servlet-name>
+		<servlet-class>org.hy.servlet.ProjectInitServel</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+</web-app>

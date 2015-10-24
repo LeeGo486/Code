@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150430121505</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=317400", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-30 13:22:10:9856 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150430121505</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=317400", "", "", "", "120400010000")</instr>
+    <recodes>F5密码错                                                                                              </recodes>
+    <info>刷卡失败，错误信息为：密码错                                                                                              </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-30 13:22:40:1693 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150430121505</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=317400", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-30 13:22:42:3464 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150430121505</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=317400", "", "", "", "120400010000")</instr>
+    <recodes>004895920314279224   2015043013231800000800000015043010038965170300000031740012045691094210200733200S中国建设银行                           银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):中国建设银行
+总计(TOTAL):RMB 3174.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-30 13:23:05:6407 </crdate>
+  </log>
+</logs>

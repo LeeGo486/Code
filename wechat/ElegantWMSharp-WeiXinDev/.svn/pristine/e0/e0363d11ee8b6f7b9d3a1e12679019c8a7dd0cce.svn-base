@@ -1,0 +1,195 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //消费品类分布
+        $('#cusConsume').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 220,
+                width: 300,
+                backgroundColor: null
+            },
+            title: null,
+            tooltip: {
+                pointFormat: '占比：{point.percentage:.1f}%'
+            }, 
+            credits: {
+                enabled: false 
+            }, 
+            plotOptions: { 
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        distance: -30,
+                        format: '{point.y}/{point.name}',
+                        style: {
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '品类',
+                data: [
+                    ['衬衫', 40],
+                    ['裤子', 50],
+                    ['羽绒服', 20],
+                    ['毛衫', 14],
+                    ['连衣裙', 14]
+                ]
+            }]
+        });
+    });
+</script>
+<div class="dataDetail" style="margin-top: 18px;">
+    <span class="badge pull-right hs"> 修 改 </span>
+    <h4><span><i class="icon-user"></i>&nbsp;&nbsp;个人信息</span></h4>
+    <div class="infoArea clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;欧阳雪梅</span><br />
+            <span><i class="icon-trophy"></i> EP350602</span><br />
+            <span><i class="icon-phone"></i><a href="tel:15988381281"> 15*******81</a></span>
+        </div>
+    </div>
+        <table class="dataTable">
+           <tr>
+                <th><img src="/favicon.ico" />：</th>
+                <td>ammy</td>
+                <th><img src="~/Areas/S3/Resources/images/mail.ico" />：</th>
+                <td>jk@g.com</td>
+            </tr>
+            <tr>
+                <th><img src="~/Areas/S3/Resources/images/favicon.ico" />：</th>
+                <td>7107820</td>
+                <th>来源：</th>
+                <td>朋友介绍</td>
+            </tr>
+            <tr>
+                <th>年龄：</th>
+                <td>42</td>
+                <th>生日：</th>
+                <td>01-19</td>
+            </tr>
+            <tr>
+                <th>去年等级：</th>
+                <td>金卡</td>
+                <th>发展日期：</th>
+                <td>2013/6/7</td>
+            </tr>
+            <tr>
+                <th>从事行业：</th>
+                <td>金融业</td>
+                <th>岗位：</th>
+                <td>高层管理</td>
+            </tr>
+            <tr>
+                <th>省份：</th>
+                <td>浙江</td>
+                <th>城市</th>
+                <td>杭州</td>
+            </tr>
+            <tr>
+                <th>地址：</th>
+                <td colspan="3">荣业大街大都会2号楼2601</td>
+            </tr>
+            <tr>
+                <th>忠诚度：</th>
+                <td>品牌型</td>
+                <th>消费类型：</th>
+                <td>当季消费</td>
+            </tr>
+            <tr><th>身高：</th><td>167cm</td><th>体型：</th><td>标准型凸腹</td></tr>
+            <tr><th>性格：</th><td>独立性</td><th>肤色：</th><td>黝黑</td></tr>
+            <tr><th>沟通方式：</th><td>电话</td><th>适联时间：</th><td>12~14点</td></tr>
+            <tr><th>个人爱好：</th><td>逛街</td><th>兴趣活动：</th><td>新品活动</td></tr>
+            <tr><th>消费品牌：</th><td>雅莹</td><th>获取渠道：</th><td>朋友推荐</td></tr>
+            <tr><th>偏爱颜色：</th><td>藏蓝</td><th>偏爱书籍：</th><td>时尚芭莎</td></tr>
+            <tr><th>偏爱电影：</th><td>爱情</td><th>偏爱饮品：</th><td>咖啡</td></tr>
+            <tr><th>期望礼品：</th><td>工艺品</td><th></th><td></td></tr>
+            <tr><th>客户忌讳：</th><td colspan="3">薪资、佛教、政治</td></tr>
+            <tr><th>客户宜谈：</th><td colspan="3">时尚、旅行、家常</td></tr>
+            <tr><th>导购评价：</th><td colspan="3">外表不容易接近，但多次沟通后，非常愿意交朋友</td></tr>
+        </table><br />
+        <h4><span><i class="icon-picture"></i>试衣照片</span></h4>
+        <div class="cusFit clearfix">
+            <img src="/Areas/S3/Resources/images/CustomerFitting/p1.jpg" onclick="showCustomerFittingImg('1.jpg');" />
+            <img src="/Areas/S3/Resources/images/CustomerFitting/p2.jpg" onclick="showCustomerFittingImg('2.jpg');" />
+            <img src="/Areas/S3/Resources/images/CustomerFitting/p3.jpg" onclick="showCustomerFittingImg('3.jpg');" />
+            <img src="/Areas/S3/Resources/images/CustomerFitting/p4.jpg" onclick="showCustomerFittingImg('4.jpg');" />
+            <img src="/Areas/S3/Resources/images/CustomerFitting/p5.jpg" onclick="showCustomerFittingImg('5.jpg');" />
+        </div>
+</div>
+<div class="dataDetail" style="margin-top: 8px;">
+    <h4><span><i class="icon-shopping-cart"></i>消费品类 </span></h4>
+    <!-- 这里的ID要唯一 -->
+    <div id="cusConsume"></div>
+    <table class="dataTable" align="center" style="margin-bottom: 20px;">
+        <tr>
+            <th>总消金额:</th>
+            <td>24,554.0</td>
+            <th>总消次数:</th>
+            <td>9</td>
+        </tr>
+        <tr>
+            <th>去年消费:</th>
+            <td>20,429.0</td>
+            <th>今年消费:</th>
+            <td>4,125.0</td>
+        </tr>
+        <tr>
+            <th>最近消费:</th>
+            <td>2014-06-06</td>
+            <th>最近消费:</th>
+            <td>1,759.0</td>
+        </tr>
+    </table>
+    <h4><span><i class="icon-money"></i>客户消费明细 </span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <span class="badge pull-right hs">3件 / ￥15,917.0</span>
+            天津大友谊
+            <br />
+            <a href="javascript:void(0);" onclick="showCustomerOrder('单号');">PSD050-2014-06-06-0001</a>
+        </li>
+        <li class="list-group-item">
+            <span class="badge pull-right hs">3件 / ￥5,398.0</span>
+            广州太古汇
+            <br />
+            <a href="javascript:void(0);" onclick="showCustomerOrder('单号');">PS5366-2014-04-19-0013</a>
+        </li>
+    </ul>
+</div>
+<div class="dataDetail" style="margin-top: 8px;">
+    <h4><span><i class="icon-heart"></i>服务历史 </span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <span class="badge pull-right ls">应邀</span>
+            您已经计划好怎样度过优雅的女人节了吗？亲爱的李瑞琴贵宾：诚邀您前来开启精致女……<br />
+            <span style="color: #969696">维护人：岳艳芳&nbsp;&nbsp;&nbsp;&nbsp;维护时间：2014-05-12
+            </span>
+        </li>
+        <li class="list-group-item">
+            <span class="badge pull-right hs">拒绝</span>
+            您已经计划好怎样度过优雅的女人节了吗？亲爱的李瑞琴贵宾：诚邀您前来开启精致女……<br />
+            <span style="color: #969696">维护人：岳艳芳&nbsp;&nbsp;&nbsp;&nbsp;维护时间：2014-05-12
+            </span>
+        </li>
+    </ul>
+    <div class="optarea">
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="AddNewWarmTask(1);"><i class="icon-time"></i> 预约</span>
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="AddNewWarmTask(2);"><i class="icon-heart-empty"></i> 关怀</span>
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="AddNewWarmTask(3);"><i class="icon-wrench"></i> 维修</span>
+        <span class="btnarea" onclick="AddNewWarmTask(4);"><i class="icon-gift"></i> 定制</span>
+    </div>
+    <div class="optarea" style="margin-top:5px;">
+        <span class="btnarea" onclick="ShopServiceSupport();"><i class="icon-group"></i> 服务支持</span>
+    </div>
+</div>

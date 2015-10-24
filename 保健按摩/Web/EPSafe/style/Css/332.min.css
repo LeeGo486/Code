@@ -1,0 +1,229 @@
+BODY {
+	COLOR: #666
+}
+A {
+	COLOR: #666
+}
+.g_border {
+	BORDER-BOTTOM-COLOR: #c8cbd2; BORDER-TOP-COLOR: #c8cbd2; BORDER-RIGHT-COLOR: #c8cbd2; BORDER-LEFT-COLOR: #c8cbd2
+}
+.g_hover {
+	BACKGROUND: #edf2f5; COLOR: #000
+}
+.g_hover A {
+	COLOR: #000
+}
+.g_hover SPAN {
+	COLOR: #666
+}
+.g_cover {
+	BACKGROUND: #edf2f5
+}
+.webHeader {
+	BACKGROUND: #fff; HEIGHT: 80px
+}
+.webContainer {
+	BACKGROUND: #fff
+}
+.corpTitle {
+	FONT-FAMILY: Î¢ÈíÑÅºÚ, ËÎÌå; FONT-SIZE: 30px; TOP: 180px; FONT-WEIGHT: bold; LEFT: 400px
+}
+.localer {
+	TOP: 8px
+}
+.banner {
+	WIDTH: 960px; BACKGROUND: url(../Images/1.jpg) no-repeat; HEIGHT: 150px
+}
+
+.nav {
+	LINE-HEIGHT: 42px; WIDTH: 790px; BACKGROUND: url(../Images/nav.gif) repeat-x 0px -42px; HEIGHT: 42px; TOP: 30px; RIGHT: 0px; LEFT: auto
+}
+.nav .navCenterContent {
+	VERTICAL-ALIGN: top
+}
+.nav .navLeft {
+	LINE-HEIGHT: 42px; WIDTH: 20px; DISPLAY: table-cell; BACKGROUND: url(../Images/nav.gif) no-repeat 0px 0px; HEIGHT: 42px
+}
+.nav .navCenter {
+	MARGIN-TOP: 2px; HEIGHT: 31px
+}
+.nav .navRight {
+	LINE-HEIGHT: 42px; WIDTH: 54px; DISPLAY: table-cell; BACKGROUND: url(../Images/nav.gif) no-repeat -16px -84px; HEIGHT: 42px
+}
+.nav .itemPrev {
+	BACKGROUND: url(../Images/navleft.gif) no-repeat; HEIGHT: 31px
+}
+.nav .itemPrevHover {
+	BACKGROUND: url(../Images/navleft2.gif) no-repeat
+}
+.nav .itemNext {
+	BACKGROUND: url(../Images/navright.gif) no-repeat; HEIGHT: 31px; TOP: 0px; RIGHT: 0px
+}
+.nav .itemNextHover {
+	BACKGROUND: url(../Images/navright2.gif) no-repeat
+}
+.nav .item {
+	LINE-HEIGHT: 22px; MARGIN-TOP: 5px; HEIGHT: 22px; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+.nav .item .itemCenter A {
+	COLOR: #333
+}
+.nav .itemHover .itemCenter A {
+	COLOR: #1459a5
+}
+.nav .itemSelected .itemCenter A {
+	COLOR: #1459a5
+}
+.navSubMenu .content {
+	BORDER-BOTTOM: #a3b1bf 1px solid; BORDER-LEFT: #a3b1bf 1px solid; BORDER-TOP: 0px; BORDER-RIGHT: #a3b1bf 1px solid
+}
+.navSubMenu .middle .center .item {
+	BACKGROUND: #ebf0f2
+}
+.navSubMenu .middle .center .item .itemCenter A {
+	COLOR: #666
+}
+.navSubMenu .middle .center .itemHover {
+	BACKGROUND: #d6e0e4
+}
+.navSubMenu .middle .center .itemHover .itemCenter A {
+	COLOR: #1459a5
+}
+.sideForms .formBanner {
+	BACKGROUND: url(../Images/sBg.png) repeat-x 0px -42px; HEIGHT: 41px
+}
+.sideForms .formBanner A {
+	COLOR: #fff
+}
+.sideForms .formBanner .center {
+	LINE-HEIGHT: 30.5px; BACKGROUND: url(../Images/sBg.png) no-repeat right -84px; HEIGHT: 41px
+}
+.sideForms .formBannerTitle {
+	LINE-HEIGHT: 30.5px; BACKGROUND: url(../Images/sBg.png) no-repeat 0px 0px; HEIGHT: 41px; COLOR: #fff
+}
+.sideForms .formBannerTitle .titleText {
+	PADDING-LEFT: 34px
+}
+.sideForms .formBannerBtn {
+	MARGIN-TOP: 4px
+}
+.sideForms .formMiddle {
+	BORDER-BOTTOM: #b8c7d5 1px solid; BORDER-LEFT: #b8c7d5 1px solid; BACKGROUND-COLOR: #fff; ZOOM: 1; BORDER-RIGHT: #b8c7d5 1px solid
+}
+.mainForms .formBanner {
+	BACKGROUND: url(../Images/mBg.png) repeat-x 0px -37px; HEIGHT: 36px
+}
+.mainForms .formBanner .center {
+	BACKGROUND: url(../Images/mBg.png) no-repeat right -74px; HEIGHT: 36px
+}
+.mainForms .formBannerTitle {
+	LINE-HEIGHT: 31px; BACKGROUND: url(../Images/mBg.png) no-repeat 0px 0px; HEIGHT: 36px
+}
+.mainForms .formBannerTitle .titleText {
+	PADDING-LEFT: 35px
+}
+.mainForms .formBannerOther {
+	LINE-HEIGHT: 31px; HEIGHT: 37px
+}
+.mainForms .formMiddle {
+	BACKGROUND: #fff
+}
+.productListSytle {
+	BORDER-BOTTOM: #dce2e5 1px solid
+}
+.formStyle9 .formMiddle {
+	FONT-FAMILY: "ËÎÌå", "ÐÂËÎÌå"; COLOR: #000
+}
+.productFilterVert .productFilterValue {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; TABLE-LAYOUT: fixed; CLEAR: both; PADDING-TOP: 0px
+}
+.productFilterVert .productFilterValueLeft {
+	WIDTH: 30px; DISPLAY: table-cell; HEIGHT: 29px
+}
+.productFilterVert .productFilterValueCenter {
+	LINE-HEIGHT: 29px; HEIGHT: 29px
+}
+.productFilterVert .productFilterValueCenter A {
+	DISPLAY: block; TEXT-DECORATION: none
+}
+.productFilterVert .g_hover {
+	BACKGROUND-COLOR: #5283b5; COLOR: #fff
+}
+.productFilterVert .g_hover A {
+	COLOR: #fff
+}
+.productFilterVert .separatorLine {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.productFilterVert .g_cover {
+	BACKGROUND: 0px 50%
+}
+.productFilterVert .g_selected .productFilterValueCenter {
+	BACKGROUND-COLOR: #5283b5
+}
+.productFilterVert .g_selected .productFilterValueCenter A {
+	COLOR: #fff
+}
+.productFilterVert .productFilterNameLeft {
+	WIDTH: 30px; DISPLAY: table-cell; BACKGROUND: url(/image/template/313/filter.gif) no-repeat center 50%; HEIGHT: 100%
+}
+.productFilterVert .productFilterNameCenter {
+	FONT-WEIGHT: bolder
+}
+.g_mallBuy {
+	BACKGROUND: url(/image/buy.png) no-repeat 0px -40px
+}
+.g_mallBuyBig {
+	BACKGROUND: url(/image/buyB.png) no-repeat 0px -80px
+}
+.productFilter .productFilterFold .productFilterNameLeft {
+	DISPLAY: none
+}
+.productFilter .productFilterUnfold .productFilterNameLeft {
+	DISPLAY: none
+}
+.g_sB_rt {
+	BACKGROUND: url(../Images/floata_Blue1.png) no-repeat 0px 0px
+}
+.g_sB_rc {
+	BACKGROUND: url(../Images/floata_Blue1.png) repeat-y -60px 0px; COLOR: #fff
+}
+.g_sB_rb {
+	BACKGROUND: url(../Images/floata_Blue1.png) no-repeat -120px 0px
+}
+.g_sB_lt {
+	BACKGROUND: url(../Images/floata_Blue1.png) no-repeat -180px 0px
+}
+.g_sB_lc {
+	BACKGROUND: url(../Images/floata_Blue1.png) repeat-y -240px 0px; COLOR: #fff
+}
+.g_sB_lb {
+	BACKGROUND: url(../Images/floata_Blue1.png) no-repeat -300px 0px
+}
+.formTabButton .formTabMiddleHover {
+	COLOR: #1f529f
+}
+.product-gallery .gallery-control-prev {
+	BACKGROUND: url(../Images/Blue1_prev.png) no-repeat; _background: url(../Images/Blue1_prev.gif) no-repeat
+}
+.product-gallery .gallery-control-next {
+	BACKGROUND: url(../Images/Blue1_next.png) no-repeat; _background: url(../Images/Blue1_next.gif) no-repeat
+}
+.visitorCounterBg {
+	BACKGROUND: url(../Images/blue1.gif) no-repeat
+}
+
+
+.usertablerow1 {
+	BACKGROUND-COLOR: #eef3f6
+}
+.usertablerow2 {
+	
+}
+.usertableborder {
+	FONT-WEIGHT: bolder; FONT-SIZE: 12px;
+	LINE-HEIGHT: normal; 
+	FONT-STYLE: normal; 
+	FONT-VARIANT: normal;
+	border:1px solid  #dfe3e5;
+}

@@ -1,0 +1,321 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6dbc9aa9, pid=1836, tid=2140
+#
+# JRE version: 6.0_27-b07
+# Java VM: Java HotSpot(TM) Server VM (20.2-b06 mixed mode windows-x86 )
+# Problematic frame:
+# V  [jvm.dll+0x59aa9]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x29c2f400):  JavaThread "IncomingPacketHandler (channel=DefaultPartition-SFSBCache)" daemon [_thread_in_vm, id=2140, stack(0x2d480000,0x2d4d0000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x2a2d7fe4
+
+Registers:
+EAX=0x2a297fe8, EBX=0x000000a5, ECX=0x2d4cf7bc, EDX=0x0000ffff
+ESP=0x2d4cf750, EBP=0x2d4cf77c, ESI=0x03fe32ab, EDI=0x00000000
+EIP=0x6dbc9aa9, EFLAGS=0x00010246
+
+Top of Stack: (sp=0x2d4cf750)
+0x2d4cf750:   29c2f400 2d4cf7bc 00000010 0000000c
+0x2d4cf760:   0000ffff 03fe3278 00000003 00000000
+0x2d4cf770:   00000003 2d4cf7bc 00001633 2d4cf798
+0x2d4cf780:   6dbc9ee8 03fe32c0 29da275c 2a132ff0
+0x2d4cf790:   29c2f400 2d4cf7bc 2d4cf7f0 6dbca0c0
+0x2d4cf7a0:   00000002 00000003 29da2760 29c2f400
+0x2d4cf7b0:   29c2f400 29da275c 00000000 29da275c
+0x2d4cf7c0:   29da2764 29da2760 0000001f 2a297fe8 
+
+Instructions: (pc=0x6dbc9aa9)
+0x6dbc9a89:   80 c2 e3 88 16 e9 9a 00 00 00 33 c0 66 8b 44 37
+0x6dbc9a99:   01 89 45 e4 66 8b 45 e4 86 c4 0f b7 d0 8b 41 10
+0x6dbc9aa9:   66 8b 14 90 66 89 54 37 01 eb 79 47 57 56 e8 f4
+0x6dbc9ab9:   fb ff ff 8b 4d f8 eb 6c 8b 51 04 8b 12 0f b6 44 
+
+
+Register to memory mapping:
+
+EAX=0x2a297fe8 is an unknown value
+EBX=0x000000a5 is an unknown value
+ECX=0x2d4cf7bc is pointing into the stack for thread: 0x29c2f400
+EDX=0x0000ffff is an unknown value
+ESP=0x2d4cf750 is pointing into the stack for thread: 0x29c2f400
+EBP=0x2d4cf77c is pointing into the stack for thread: 0x29c2f400
+ESI=0x03fe32ab is an oop
+{constMethod} 
+ - klass: {other class}
+ - method:       0x03fe32c0 {method} '<init>' '(Ljava/lang/Throwable;Ljava/lang/String;)V' in 'java/lang/reflect/UndeclaredThrowableException'
+ - exceptions:   0x03a411e8
+bci_from(03FE32AB) = 3; print_codes():
+EDI=0x00000000 is an unknown value
+
+
+Stack: [0x2d480000,0x2d4d0000],  sp=0x2d4cf750,  free space=317k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x59aa9]
+V  [jvm.dll+0x59ee8]
+V  [jvm.dll+0x5a0c0]
+V  [jvm.dll+0x81ad3]
+V  [jvm.dll+0x869be]
+V  [jvm.dll+0x897b7]
+V  [jvm.dll+0x89b76]
+V  [jvm.dll+0x52cea]
+j  org.apache.commons.logging.impl.Log4jProxy.log(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V+54
+j  org.apache.commons.logging.impl.Log4jProxy.error(Ljava/lang/Object;Ljava/lang/Throwable;)V+7
+j  org.apache.commons.logging.impl.Log4JLogger.error(Ljava/lang/Object;Ljava/lang/Throwable;)V+6
+j  org.jgroups.protocols.TP.handleIncomingPacket(Lorg/jgroups/Address;Lorg/jgroups/Address;[BII)V+453
+j  org.jgroups.protocols.TP.access$400(Lorg/jgroups/protocols/TP;Lorg/jgroups/Address;Lorg/jgroups/Address;[BII)V+8
+j  org.jgroups.protocols.TP$IncomingPacketHandler.run()V+64
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0x10e23d]
+V  [jvm.dll+0x1a5791]
+V  [jvm.dll+0x10e3f1]
+V  [jvm.dll+0x10e44b]
+V  [jvm.dll+0xc0799]
+V  [jvm.dll+0x12dbe4]
+V  [jvm.dll+0x15601c]
+C  [msvcr71.dll+0x9565]  endthreadex+0xa0
+C  [kernel32.dll+0x24829]  GetModuleHandleA+0xdf
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  org.apache.commons.logging.impl.Log4jProxy.log(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V+54
+j  org.apache.commons.logging.impl.Log4jProxy.error(Ljava/lang/Object;Ljava/lang/Throwable;)V+7
+j  org.apache.commons.logging.impl.Log4JLogger.error(Ljava/lang/Object;Ljava/lang/Throwable;)V+6
+j  org.jgroups.protocols.TP.handleIncomingPacket(Lorg/jgroups/Address;Lorg/jgroups/Address;[BII)V+453
+j  org.jgroups.protocols.TP.access$400(Lorg/jgroups/protocols/TP;Lorg/jgroups/Address;Lorg/jgroups/Address;[BII)V+8
+j  org.jgroups.protocols.TP$IncomingPacketHandler.run()V+64
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x2b42c400 JavaThread "http-0.0.0.0-80-7" daemon [_thread_blocked, id=3284, stack(0x2e570000,0x2e5c0000)]
+  0x2c0e5400 JavaThread "http-0.0.0.0-80-6" daemon [_thread_blocked, id=3064, stack(0x2e6b0000,0x2e700000)]
+  0x2bcedc00 JavaThread "http-0.0.0.0-80-5" daemon [_thread_blocked, id=3256, stack(0x2e4d0000,0x2e520000)]
+  0x2bf75400 JavaThread "http-0.0.0.0-80-4" daemon [_thread_blocked, id=936, stack(0x2e480000,0x2e4d0000)]
+  0x2cc67000 JavaThread "http-0.0.0.0-80-3" daemon [_thread_blocked, id=2884, stack(0x2e430000,0x2e480000)]
+  0x2c80ec00 JavaThread "http-0.0.0.0-80-2" daemon [_thread_blocked, id=4060, stack(0x2e3e0000,0x2e430000)]
+  0x28cc3400 JavaThread "IdleRemover" daemon [_thread_blocked, id=2592, stack(0x28350000,0x283a0000)]
+  0x2a01e800 JavaThread "Thread-5" [_thread_blocked, id=2984, stack(0x2e390000,0x2e3e0000)]
+  0x2a30e800 JavaThread "ajp-127.0.0.1-8009-Acceptor-0" daemon [_thread_in_native, id=2416, stack(0x2e340000,0x2e390000)]
+  0x2b681400 JavaThread "http-0.0.0.0-80-1" daemon [_thread_blocked, id=2588, stack(0x2e2f0000,0x2e340000)]
+  0x2b740400 JavaThread "http-0.0.0.0-80-Acceptor-0" daemon [_thread_in_native, id=1376, stack(0x2e2a0000,0x2e2f0000)]
+  0x2ec96400 JavaThread "JBossLifeThread" [_thread_blocked, id=1140, stack(0x2e250000,0x2e2a0000)]
+  0x29921400 JavaThread "ScannerThread" daemon [_thread_blocked, id=3292, stack(0x2e200000,0x2e250000)]
+  0x2c2e4400 JavaThread "Timer-9" daemon [_thread_blocked, id=3396, stack(0x2e160000,0x2e1b0000)]
+  0x29b83400 JavaThread "UILServerILService Accept Thread" [_thread_in_native, id=620, stack(0x2e110000,0x2e160000)]
+  0x2a2bd400 JavaThread "TimeoutFactory-0" daemon [_thread_blocked, id=1956, stack(0x2e0c0000,0x2e110000)]
+  0x2a195400 JavaThread "JCA PoolFiller" [_thread_blocked, id=2928, stack(0x2dc00000,0x2dc50000)]
+  0x28484800 JavaThread "Timer-8" daemon [_thread_blocked, id=324, stack(0x2dbb0000,0x2dc00000)]
+  0x2887b800 JavaThread "HSQLDB Timer @1b8cdd5" daemon [_thread_blocked, id=3416, stack(0x2db60000,0x2dbb0000)]
+  0x297e1400 JavaThread "DefaultQuartzScheduler_QuartzSchedulerThread" [_thread_blocked, id=2892, stack(0x2df70000,0x2dfc0000)]
+  0x2b43c800 JavaThread "DefaultQuartzScheduler_Worker-9" [_thread_blocked, id=2964, stack(0x2df20000,0x2df70000)]
+  0x2a0f0400 JavaThread "DefaultQuartzScheduler_Worker-8" [_thread_blocked, id=1448, stack(0x2ded0000,0x2df20000)]
+  0x287f1400 JavaThread "DefaultQuartzScheduler_Worker-7" [_thread_blocked, id=2580, stack(0x2de80000,0x2ded0000)]
+  0x29d8d400 JavaThread "DefaultQuartzScheduler_Worker-6" [_thread_blocked, id=3900, stack(0x2de30000,0x2de80000)]
+  0x29c4f400 JavaThread "DefaultQuartzScheduler_Worker-5" [_thread_blocked, id=980, stack(0x2dde0000,0x2de30000)]
+  0x287e9c00 JavaThread "DefaultQuartzScheduler_Worker-4" [_thread_blocked, id=2496, stack(0x2dd90000,0x2dde0000)]
+  0x2a0b0400 JavaThread "DefaultQuartzScheduler_Worker-3" [_thread_blocked, id=1800, stack(0x2dd40000,0x2dd90000)]
+  0x2a3e0c00 JavaThread "DefaultQuartzScheduler_Worker-2" [_thread_blocked, id=3488, stack(0x2dcf0000,0x2dd40000)]
+  0x2ba3ec00 JavaThread "DefaultQuartzScheduler_Worker-1" [_thread_blocked, id=672, stack(0x2dca0000,0x2dcf0000)]
+  0x29cac000 JavaThread "DefaultQuartzScheduler_Worker-0" [_thread_blocked, id=2256, stack(0x2dc50000,0x2dca0000)]
+  0x2a0a4400 JavaThread "WorkManager(3)-1" daemon [_thread_blocked, id=644, stack(0x2db10000,0x2db60000)]
+  0x296d3400 JavaThread "Thread-22" daemon [_thread_blocked, id=4024, stack(0x2dac0000,0x2db10000)]
+  0x29028c00 JavaThread "ContainerBackgroundProcessor[StandardEngine[jboss.web]]" daemon [_thread_blocked, id=864, stack(0x2da70000,0x2dac0000)]
+  0x2a254c00 JavaThread "RequestProcessor-2" daemon [_thread_blocked, id=1000, stack(0x2da20000,0x2da70000)]
+  0x2a0a8400 JavaThread "RequestProcessor-1" daemon [_thread_blocked, id=2060, stack(0x2d9d0000,0x2da20000)]
+  0x28ea3400 JavaThread "ServerMessageReceptor0" daemon [_thread_blocked, id=3252, stack(0x2d980000,0x2d9d0000)]
+  0x2a5aa800 JavaThread "ClientMessageReceptor0" daemon [_thread_blocked, id=512, stack(0x2d930000,0x2d980000)]
+  0x28e1a400 JavaThread "RequestController-6" daemon [_thread_blocked, id=2264, stack(0x2d8e0000,0x2d930000)]
+  0x2a4ce800 JavaThread "RequestController-5" daemon [_thread_blocked, id=1392, stack(0x2d890000,0x2d8e0000)]
+  0x2ba7e400 JavaThread "RequestController-4" daemon [_thread_blocked, id=3996, stack(0x2d840000,0x2d890000)]
+  0x2a07c800 JavaThread "RequestController-3" daemon [_thread_blocked, id=2508, stack(0x2d7f0000,0x2d840000)]
+  0x29ef5800 JavaThread "RequestController-2" daemon [_thread_blocked, id=1796, stack(0x2d7a0000,0x2d7f0000)]
+  0x29efd400 JavaThread "ORB thread" [_thread_blocked, id=140, stack(0x2d750000,0x2d7a0000)]
+  0x2a3f0c00 JavaThread "ServerSocketListener" daemon [_thread_in_native, id=3352, stack(0x2d700000,0x2d750000)]
+  0x29d91800 JavaThread "RequestController-1" daemon [_thread_blocked, id=4092, stack(0x2d6b0000,0x2d700000)]
+  0x2a084400 JavaThread "Timer-7" [_thread_blocked, id=596, stack(0x2d660000,0x2d6b0000)]
+  0x29dbcc00 JavaThread "MERGE2.FindSubgroups thread (channel=DefaultPartition-EntityCache)" daemon [_thread_blocked, id=3212, stack(0x2d610000,0x2d660000)]
+  0x29e94400 JavaThread "ServerSocket acceptor thread (channel=DefaultPartition-EntityCache)" daemon [_thread_in_native, id=2960, stack(0x2d5c0000,0x2d610000)]
+  0x2a0c5800 JavaThread "UDP mcast receiver (channel=DefaultPartition-EntityCache)" daemon [_thread_in_native, id=896, stack(0x2d3d0000,0x2d420000)]
+  0x2a0b6400 JavaThread "UDP.UcastReceiverThread (channel=DefaultPartition-EntityCache)" daemon [_thread_in_native, id=3024, stack(0x2d380000,0x2d3d0000)]
+  0x29aaa400 JavaThread "DiagnosticsHandler (channel=DefaultPartition-EntityCache)" daemon [_thread_in_native, id=1472, stack(0x2d2e0000,0x2d330000)]
+  0x2a371400 JavaThread "Timer-6" daemon [_thread_blocked, id=720, stack(0x2b1d0000,0x2b220000)]
+  0x2a298800 JavaThread "Timer-5" [_thread_blocked, id=3664, stack(0x2b180000,0x2b1d0000)]
+  0x2a17d400 JavaThread "MERGE2.FindSubgroups thread (channel=DefaultPartition-SFSBCache)" daemon [_thread_blocked, id=476, stack(0x2b130000,0x2b180000)]
+  0x29d12400 JavaThread "ServerSocket acceptor thread (channel=DefaultPartition-SFSBCache)" daemon [_thread_in_native, id=3032, stack(0x2d570000,0x2d5c0000)]
+  0x29f43800 JavaThread "UDP mcast receiver (channel=DefaultPartition-SFSBCache)" daemon [_thread_in_native, id=2300, stack(0x2d520000,0x2d570000)]
+  0x29d92000 JavaThread "UDP.UcastReceiverThread (channel=DefaultPartition-SFSBCache)" daemon [_thread_in_native, id=1540, stack(0x2d4d0000,0x2d520000)]
+=>0x29c2f400 JavaThread "IncomingPacketHandler (channel=DefaultPartition-SFSBCache)" daemon [_thread_in_vm, id=2140, stack(0x2d480000,0x2d4d0000)]
+  0x29b1dc00 JavaThread "DiagnosticsHandler (channel=DefaultPartition-SFSBCache)" daemon [_thread_in_native, id=1296, stack(0x2d430000,0x2d480000)]
+  0x29c50800 JavaThread "Timer-4" daemon [_thread_blocked, id=2640, stack(0x2d290000,0x2d2e0000)]
+  0x29a8f400 JavaThread "JBossMQ Cache Reference Softner" daemon [_thread_blocked, id=3336, stack(0x2b240000,0x2b290000)]
+  0x28bd5400 JavaThread "PooledInvokerAcceptor#0-4448" [_thread_in_native, id=3448, stack(0x2b0e0000,0x2b130000)]
+  0x29905400 JavaThread "RMI TCP Accept-4447" daemon [_thread_in_native, id=1452, stack(0x2b090000,0x2b0e0000)]
+  0x28e48000 JavaThread "JBoss System Threads(1)-4" daemon [_thread_in_native, id=3904, stack(0x2b040000,0x2b090000)]
+  0x280cd800 JavaThread "JBoss System Threads(1)-3" daemon [_thread_in_native, id=3200, stack(0x2aff0000,0x2b040000)]
+  0x28656400 JavaThread "RMI TCP Accept-1101" daemon [_thread_in_native, id=4076, stack(0x2afa0000,0x2aff0000)]
+  0x28cf2800 JavaThread "AsynchViewChangeHandler Thread" [_thread_blocked, id=224, stack(0x2af50000,0x2afa0000)]
+  0x29922c00 JavaThread "AsynchKeyChangeHandler Thread" [_thread_blocked, id=2356, stack(0x2af00000,0x2af50000)]
+  0x29866400 JavaThread "MERGE2.FindSubgroups thread (channel=DefaultPartition)" daemon [_thread_blocked, id=944, stack(0x2aeb0000,0x2af00000)]
+  0x28d7f800 JavaThread "ServerSocket acceptor thread (channel=DefaultPartition)" daemon [_thread_in_native, id=3796, stack(0x2ae60000,0x2aeb0000)]
+  0x28fac400 JavaThread "UDP mcast receiver (channel=DefaultPartition)" daemon [_thread_in_native, id=1408, stack(0x2ae10000,0x2ae60000)]
+  0x29877c00 JavaThread "UDP.UcastReceiverThread (channel=DefaultPartition)" daemon [_thread_in_native, id=352, stack(0x2adc0000,0x2ae10000)]
+  0x28d87400 JavaThread "IncomingPacketHandler (channel=DefaultPartition)" daemon [_thread_blocked, id=2424, stack(0x2ad70000,0x2adc0000)]
+  0x28518c00 JavaThread "DiagnosticsHandler (channel=DefaultPartition)" daemon [_thread_in_native, id=2168, stack(0x2ad20000,0x2ad70000)]
+  0x28d70800 JavaThread "Timer-3" daemon [_thread_blocked, id=2644, stack(0x2acd0000,0x2ad20000)]
+  0x297cc400 JavaThread "main-FastReceiver" [_thread_in_native, id=3272, stack(0x2ac80000,0x2acd0000)]
+  0x286a5c00 JavaThread "SnmpPortal--1" [_thread_blocked, id=540, stack(0x2ac30000,0x2ac80000)]
+  0x2965b400 JavaThread "SnmpTimer" daemon [_thread_blocked, id=3976, stack(0x2abe0000,0x2ac30000)]
+  0x297fc400 JavaThread "main-FastReceiver" [_thread_blocked, id=3700, stack(0x2ab90000,0x2abe0000)]
+  0x28cfa400 JavaThread "SnmpPortal--1" [_thread_blocked, id=3704, stack(0x2ab40000,0x2ab90000)]
+  0x29877400 JavaThread "main-FastReceiver" [_thread_blocked, id=3344, stack(0x2aaf0000,0x2ab40000)]
+  0x296c5800 JavaThread "Timer-2" [_thread_blocked, id=4068, stack(0x2aaa0000,0x2aaf0000)]
+  0x288fbc00 JavaThread "SnmpPortal--1" [_thread_blocked, id=2564, stack(0x2aa50000,0x2aaa0000)]
+  0x28566400 JavaThread "SubscriptionWatchDog" [_thread_blocked, id=2548, stack(0x2aa00000,0x2aa50000)]
+  0x285c9800 JavaThread "MERGE2.FindSubgroups thread (channel=Tomcat-Cluster)" daemon [_thread_blocked, id=1528, stack(0x2a9b0000,0x2aa00000)]
+  0x28bd4400 JavaThread "ServerSocket acceptor thread (channel=Tomcat-Cluster)" daemon [_thread_in_native, id=884, stack(0x2a960000,0x2a9b0000)]
+  0x28c73400 JavaThread "UDP mcast receiver (channel=Tomcat-Cluster)" daemon [_thread_in_native, id=3756, stack(0x2a910000,0x2a960000)]
+  0x28b95400 JavaThread "UDP.UcastReceiverThread (channel=Tomcat-Cluster)" daemon [_thread_in_native, id=2856, stack(0x2a8c0000,0x2a910000)]
+  0x29a01400 JavaThread "DiagnosticsHandler (channel=Tomcat-Cluster)" daemon [_thread_in_native, id=3476, stack(0x2a820000,0x2a870000)]
+  0x28c17400 JavaThread "Timer-1" daemon [_thread_blocked, id=3820, stack(0x2a620000,0x2a670000)]
+  0x28588c00 JavaThread "ServerSocketRefresh" daemon [_thread_blocked, id=2652, stack(0x2a5d0000,0x2a620000)]
+  0x2800e800 JavaThread "AcceptorThread#0:3873" [_thread_in_native, id=948, stack(0x29550000,0x295a0000)]
+  0x28bc1000 JavaThread "ServerSocketRefresh" daemon [_thread_blocked, id=700, stack(0x29500000,0x29550000)]
+  0x28be7400 JavaThread "AcceptorThread#0:4446" [_thread_in_native, id=3116, stack(0x294b0000,0x29500000)]
+  0x2847b400 JavaThread "PooledInvokerAcceptor#0-4445" [_thread_in_native, id=840, stack(0x29460000,0x294b0000)]
+  0x28141800 JavaThread "RMI TCP Accept-4444" daemon [_thread_in_native, id=3712, stack(0x29410000,0x29460000)]
+  0x28899400 JavaThread "Listener:3955" daemon [_thread_in_native, id=904, stack(0x293c0000,0x29410000)]
+  0x28b6a400 JavaThread "Thread-4" daemon [_thread_blocked, id=1424, stack(0x29370000,0x293c0000)]
+  0x2865c400 JavaThread "Thread-3" daemon [_thread_blocked, id=1212, stack(0x29320000,0x29370000)]
+  0x28b7f400 JavaThread "Listener:3952" daemon [_thread_in_native, id=3068, stack(0x292d0000,0x29320000)]
+  0x28a85c00 JavaThread "JBoss System Threads(1)-2" daemon [_thread_in_native, id=2540, stack(0x29280000,0x292d0000)]
+  0x28aa4400 JavaThread "GC Daemon" daemon [_thread_blocked, id=2968, stack(0x29230000,0x29280000)]
+  0x28aa7c00 JavaThread "RMI Reaper" [_thread_blocked, id=1972, stack(0x291e0000,0x29230000)]
+  0x28cb0800 JavaThread "RMI TCP Accept-1098" daemon [_thread_in_native, id=2376, stack(0x29190000,0x291e0000)]
+  0x28bed400 JavaThread "JBoss System Threads(1)-1" daemon [_thread_in_native, id=2600, stack(0x29140000,0x29190000)]
+  0x287e9000 JavaThread "Timer-0" daemon [_thread_blocked, id=404, stack(0x29060000,0x290b0000)]
+  0x00307000 JavaThread "DestroyJavaVM" [_thread_blocked, id=3568, stack(0x00900000,0x00950000)]
+  0x27d83c00 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=3968, stack(0x282b0000,0x28300000)]
+  0x27d81400 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=2412, stack(0x28260000,0x282b0000)]
+  0x27d77400 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=1524, stack(0x28210000,0x28260000)]
+  0x27d75c00 JavaThread "Attach Listener" daemon [_thread_blocked, id=1504, stack(0x281c0000,0x28210000)]
+  0x27f83c00 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3660, stack(0x28170000,0x281c0000)]
+  0x27d63800 JavaThread "Finalizer" daemon [_thread_blocked, id=4080, stack(0x27f20000,0x27f70000)]
+  0x27d62000 JavaThread "Reference Handler" daemon [_thread_blocked, id=592, stack(0x27ed0000,0x27f20000)]
+
+Other Threads:
+  0x27d5e400 VMThread [stack: 0x27e80000,0x27ed0000] [id=1536]
+  0x27d8e800 WatcherThread [stack: 0x28300000,0x28350000] [id=3044]
+
+VM state:synchronizing (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00306170] Threads_lock - owner thread: 0x27d5e400
+[0x00306580] Heap_lock - owner thread: 0x2b42c400
+[0x003069f8] MethodData_lock - owner thread: 0x2c0e5400
+
+Heap
+ PSYoungGen      total 174656K, used 1583K [0x1cfa0000, 0x27a40000, 0x27a40000)
+  eden space 174592K, 0% used [0x1cfa0000,0x1d12bde0,0x27a20000)
+  from space 64K, 0% used [0x27a30000,0x27a30000,0x27a40000)
+  to   space 64K, 0% used [0x27a20000,0x27a20000,0x27a30000)
+ PSOldGen        total 349568K, used 57982K [0x07a40000, 0x1cfa0000, 0x1cfa0000)
+  object space 349568K, 16% used [0x07a40000,0x0b2df9c8,0x1cfa0000)
+ PSPermGen       total 65536K, used 65535K [0x03a40000, 0x07a40000, 0x07a40000)
+  object space 65536K, 99% used [0x03a40000,0x07a3fff8,0x07a40000)
+
+Code Cache  [0x00980000, 0x00dd0000, 0x03980000)
+ total_blobs=1207 nmethods=1027 adapters=133 free_code_cache=45886336 largest_free_block=16960
+
+Dynamic libraries:
+0x00400000 - 0x00424000 	C:\Program Files\Java\jdk1.6.0_27\bin\java.exe
+0x7c930000 - 0x7ca00000 	C:\WINDOWS\system32\ntdll.dll
+0x7c800000 - 0x7c92b000 	C:\WINDOWS\system32\kernel32.dll
+0x77f30000 - 0x77fdb000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x77c20000 - 0x77cbf000 	C:\WINDOWS\system32\RPCRT4.dll
+0x76eb0000 - 0x76ec3000 	C:\WINDOWS\system32\Secur32.dll
+0x7c340000 - 0x7c396000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\msvcr71.dll
+0x6db70000 - 0x6dfc8000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\server\jvm.dll
+0x77e10000 - 0x77ea0000 	C:\WINDOWS\system32\USER32.dll
+0x77bd0000 - 0x77c18000 	C:\WINDOWS\system32\GDI32.dll
+0x769e0000 - 0x76a0a000 	C:\WINDOWS\system32\WINMM.dll
+0x76180000 - 0x7619d000 	C:\WINDOWS\system32\IMM32.DLL
+0x7f000000 - 0x7f009000 	C:\WINDOWS\system32\LPK.DLL
+0x74ae0000 - 0x74b45000 	C:\WINDOWS\system32\USP10.dll
+0x71b20000 - 0x71b28000 	C:\WINDOWS\system32\rdpsnd.dll
+0x77f10000 - 0x77f21000 	C:\WINDOWS\system32\WINSTA.dll
+0x77b70000 - 0x77bca000 	C:\WINDOWS\system32\msvcrt.dll
+0x71ba0000 - 0x71bf7000 	C:\WINDOWS\system32\NETAPI32.dll
+0x76ab0000 - 0x76abb000 	C:\WINDOWS\system32\PSAPI.DLL
+0x6d850000 - 0x6d85c000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\verify.dll
+0x6d3d0000 - 0x6d3ef000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\java.dll
+0x6d890000 - 0x6d89f000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\zip.dll
+0x6d6b0000 - 0x6d6c3000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\net.dll
+0x71b60000 - 0x71b77000 	C:\WINDOWS\system32\WS2_32.dll
+0x71b50000 - 0x71b58000 	C:\WINDOWS\system32\WS2HELP.dll
+0x71a80000 - 0x71ac0000 	C:\WINDOWS\System32\mswsock.dll
+0x76e30000 - 0x76e5b000 	C:\WINDOWS\system32\DNSAPI.dll
+0x76ed0000 - 0x76ed7000 	C:\WINDOWS\System32\winrnr.dll
+0x76e70000 - 0x76e9e000 	C:\WINDOWS\system32\WLDAP32.dll
+0x76ee0000 - 0x76ee5000 	C:\WINDOWS\system32\rasadhlp.dll
+0x6d600000 - 0x6d609000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\management.dll
+0x68000000 - 0x68035000 	C:\WINDOWS\system32\rsaenh.dll
+0x75870000 - 0x7592d000 	C:\WINDOWS\system32\USERENV.dll
+0x69660000 - 0x696b7000 	C:\WINDOWS\system32\hnetcfg.dll
+0x71a40000 - 0x71a48000 	C:\WINDOWS\System32\wshtcpip.dll
+0x76c50000 - 0x76c69000 	C:\WINDOWS\system32\iphlpapi.dll
+0x76c30000 - 0x76c49000 	C:\WINDOWS\system32\MPRAPI.dll
+0x76d50000 - 0x76d84000 	C:\WINDOWS\system32\ACTIVEDS.dll
+0x76d20000 - 0x76d48000 	C:\WINDOWS\system32\adsldpc.dll
+0x76ac0000 - 0x76b05000 	C:\WINDOWS\system32\credui.dll
+0x7ca10000 - 0x7d1eb000 	C:\WINDOWS\system32\SHELL32.dll
+0x77eb0000 - 0x77f02000 	C:\WINDOWS\system32\SHLWAPI.dll
+0x769c0000 - 0x769d8000 	C:\WINDOWS\system32\ATL.DLL
+0x774b0000 - 0x775e9000 	C:\WINDOWS\system32\ole32.dll
+0x775f0000 - 0x7767b000 	C:\WINDOWS\system32\OLEAUT32.dll
+0x76d90000 - 0x76d9c000 	C:\WINDOWS\system32\rtutils.dll
+0x7e020000 - 0x7e02f000 	C:\WINDOWS\system32\SAMLIB.dll
+0x770d0000 - 0x77244000 	C:\WINDOWS\system32\SETUPAPI.dll
+0x77cd0000 - 0x77dd3000 	C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.3790.3959_x-ww_D8713E55\comctl32.dll
+0x6d6d0000 - 0x6d6d9000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\nio.dll
+0x6d830000 - 0x6d838000 	C:\Program Files\Java\jdk1.6.0_27\jre\bin\sunmscapi.dll
+0x760a0000 - 0x76131000 	C:\WINDOWS\system32\CRYPT32.dll
+0x76080000 - 0x76092000 	C:\WINDOWS\system32\MSASN1.dll
+
+VM Arguments:
+jvm_args: -Dprogram.name=run.bat -Xms128m -Xmx512m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djava.endorsed.dirs=D:\jboss-4.2.3.GA\lib\endorsed 
+java_command: org.jboss.Main -c all
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.6.0_27
+PATH=C:\Program Files\Java\jdk1.6.0_27\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\Microsoft SQL Server\80\Tools\Binn\;D:\Program Files\Microsoft SQL Server\90\Tools\binn\
+USERNAME=Administrator
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 11, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows Server 2003 family Build 3790 Service Pack 2
+
+CPU:total 4 (1 cores per cpu, 1 threads per core) family 6 model 15 stepping 11, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3
+
+Memory: 4k page, physical 2096540k(1053428k free), swap 4038752k(2612800k free)
+
+vm_info: Java HotSpot(TM) Server VM (20.2-b06) for windows-x86 JRE (1.6.0_27-b07), built on Jul 19 2011 00:55:35 by "java_re" with MS VC++ 7.1 (VS2003)
+
+time: Fri Dec 21 09:47:30 2012
+elapsed time: 208 seconds
+

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FBI 费用模块</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.2/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.2/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="../../jquery-easyui-1.3.2/demo/demo.css">
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.2/jquery-1.8.0.min.js"></script>
+<script type="text/javascript"
+	src="../../jquery-easyui-1.3.2/jquery.easyui.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		bindTabEvent();
+		bindTabMenuEvent();
+		
+		//菜单树
+		$('#tree').tree({
+			method : 'get',
+			url : 'tree_data1.json',
+			onClick : function(node) {
+				if (node.attributes == undefined ) {
+					$('#tree').tree('toggle', node.target);//打开或关闭节点的触发器，target参数是一个节点DOM对象。
+					return;
+				}
+				addTab(node.text, node.attributes);
+			}
+		});
+
+		$('#tabs').tabs({//选项卡
+			//width:900, //height:400,
+			//plain : true,//简洁模式
+			fit : true,//铺满浏览器
+			border : true,//边框
+			//tools:'#tab-tools',
+			scrollIncrement : 100,
+			scrollDuration : 400,
+			onContextMenu : function(e, title) {
+				//alert(title);
+				e.preventDefault();//方法就是可以阻止它的默认行为的发生而发生其他的事情。
+				$('#mm').menu('show', {
+					left : e.pageX,
+					top : e.pageY
+				});
+			}
+		});
+	});
+
+	function addTab(title, url) {
+		if ($('#tabs').tabs('exists', title)) {
+			$('#tabs').tabs('select', title);
+		} else {
+			if (url) {
+				var content = '<iframe frameborder="0"  src="'
+						+ url + '" style="width:100%;height:98%;"></iframe>';
+			} else {
+				var content = '未实现';
+			}
+			$('#tabs').tabs('add', {
+				title : title,
+				content : content,
+				closable : true,
+				tools:[{   
+	       		 	iconCls:'icon-mini-refresh',   
+	        		handler:function(){   
+	           			//$("#"+tabPanel).tabs('close','首页');     
+	        		}   
+	    		}]
+			});
+		}
+	}
+/**
+	function addTab(title, url) {
+		if ($('#tabs').tabs('exists', title)) {
+			$('#tabs').tabs('select', title);
+		} else {
+			$('#tabs').tabs('add', {
+				title : title,
+				//href:URL, // 使用href会导致页面加载两次，所以使用content代替  
+				content : '<iframe name="indextab" scrolling="auto" frameborder="0" style="width:100%;height:99%;"></iframe>',  
+				closable : true
+			});
+			window.open(url,"indextab");  
+		}
+	}
+**/
+	//绑定tab的双击事件、右键事件  
+	function bindTabEvent() {
+		$(".tabs-inner").live('dblclick', function() {
+			var subtitle = $(this).children("span").text();
+			if ($(this).next().is('.tabs-close')) {
+				$('#tabs').tabs('close', subtitle);
+			}
+		});
+		$(".tabs-inner").live('contextmenu', function(e) {
+			$('#mm').menu('show', {
+				left : e.pageX,
+				top : e.pageY
+			});
+			var subtitle = $(this).children("span").text();
+			$('#mm').data("currtab", subtitle);
+			return false;
+		});
+	}
+
+	//绑定tab右键菜单事件 
+	function bindTabMenuEvent() {
+		//关闭当前  
+		$('#mm-tabclose').click(function() {
+			var tab = $('#tabs').tabs('getSelected');
+			var currtab_title = $('#mm').data("currtab");
+			if (tab.panel('options').closable) {
+				$('#tabs').tabs('close', currtab_title);
+			}
+		});
+		//全部关闭 
+		$('#mm-tabcloseall').click(function() {
+			$('.tabs-inner span').each(function(i, n) {
+				if ($(this).parent().next().is('.tabs-close')) {
+					var t = $(n).text();
+					$('#tabs').tabs('close', t);
+				}
+			});
+		});
+		//关闭除当前之外的TAB  
+		$('#mm-tabcloseother').click(function() {
+			var currtab_title = $('#mm').data("currtab");
+			$('.tabs-inner span').each(function(i, n) {
+				if ($(this).parent().next().is('.tabs-close')) {
+					var t = $(n).text();
+					if (t != currtab_title)
+						$('#tabs').tabs('close', t);
+				}
+			});
+		});
+		//关闭当前右侧的TAB  
+		$('#mm-tabcloseright').click(function() {
+			var nextall = $('.tabs-selected').nextAll();
+			if (nextall.length == 0) {
+				//alert('已经是最后一个了');  
+				//$.messager.alert("ok", '已经是最后一个了');
+				return false;
+			}
+			nextall.each(function(i, n) {
+				if ($('a.tabs-close', $(n)).length > 0) {
+					var t = $('a:eq(0) span', $(n)).text();
+					$('#tabs').tabs('close', t);
+				}
+			});
+			return false;
+		});
+		//关闭当前左侧的TAB
+		$('#mm-tabcloseleft').click(function() {
+			var prevall = $('.tabs-selected').prevAll();
+			if (prevall.length == 1) {
+				//alert('已经是第一个了');  
+				return false;
+			}
+			prevall.each(function(i, n) {
+				if ($('a.tabs-close', $(n)).length > 0) {
+					var t = $('a:eq(0) span', $(n)).text();
+					$('#tabs').tabs('close', t);
+				}
+			});
+			return false;
+		});
+	}
+</script>
+<style type="text/css">
+
+</style>
+</head>
+
+<body class="easyui-layout" style="font-size: 12px;">
+
+	<div data-options="region:'north',border:false" 
+		style="height:42px;background:#B3DFDA;background-image: url('FBIlogo0.png');
+			background-repeat: no-repeat;">
+		
+	</div>
+	
+	<div data-options="region:'west', split:true, title:'费用模块  v1.0',iconCls:'icon-expense'"
+		style="width:190px;padding:2px; color: #494e8f ">
+			<ul id="tree" class="easyui-tree"></ul>
+	</div>
+
+	<div data-options="region:'center'">
+		<div id="tabs">
+			<div title="主界面" style="overflow: hidden;" data-options="tools:'#p-tools'">
+				<iframe  frameborder="0" src="manager.html" style="width:100%;height:99%;" >
+				</iframe>
+			</div>
+		</div>
+	</div>
+	
+	<div data-options="region:'south',border:false" 
+		style="height:28px;background:#B3DFDA;">
+		
+	</div>
+
+	<div id="mm" class="easyui-menu" style="width:150px;">
+		<div id="mm-tabclose">关闭</div>
+		<div id="mm-tabcloseall">关闭全部</div>
+		<div id="mm-tabcloseother">关闭其他</div>
+		<div class="menu-sep"></div>
+		<div id="mm-tabcloseright">关闭右侧标签</div>
+		<div id="mm-tabcloseleft">关闭左侧标签</div>
+	</div>
+	
+</body>
+
+</html>

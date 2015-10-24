@@ -1,0 +1,4 @@
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.AutoMapper\bin\Debug\ElegantWM.AutoMapper.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.AutoMapper\bin\Debug\ElegantWM.AutoMapper.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.AutoMapper\obj\Debug\ElegantWM.AutoMapper.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.AutoMapper\obj\Debug\ElegantWM.AutoMapper.pdb

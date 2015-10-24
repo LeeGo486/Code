@@ -1,0 +1,79 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //目标达成率比比看
+        $('#allfinished').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '目标达成率比比看',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['徐艳琼', '陈慧珊', '黄秋娜', '陈小芳'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false,
+                    format: '{value}%'
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%',
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '1月份目标达成率',
+                color: '#4F94CD',
+                data: [105, 98, 90, 87]
+            }]
+        });
+    });
+</script>
+
+<div class="ht" id="sallfinished">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;目标达成率比比看
+    <span onclick="$('#sallfinishedarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="allfinished" style="margin:30px 0px 36px 0px;"></div>
+    全国冠军：李华&nbsp;&nbsp;122%<br />
+    个人佣金：90%<br />
+    排名：18位，加油！
+</div>

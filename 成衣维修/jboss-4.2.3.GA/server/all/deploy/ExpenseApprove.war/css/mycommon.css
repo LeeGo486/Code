@@ -1,0 +1,269 @@
+@CHARSET "UTF-8";
+.text1_1 {color: #0070C0;font-size: 12;}
+.text1_2 {color: #0070C0;font-size:12;font-weight: bold;}
+.text2_1 {color: red;font-size: 12;}
+.text2_2 {color: red;font-size:12;font-weight: bold;}
+
+
+.text_disabled {text-align: left;
+				background-color: #C0C0C0 ;
+			    border-style: none;
+			    border-width:0;
+			    readonly:expression(this.readOnly=true);
+			    width:100%;
+			   	height: 100%;
+			   	font-size: 12
+			   	}
+.text_enabled {text-align: left;
+				background-color:white;
+			    border-style: none;
+			    border-width:0;
+			    readonly:expression(this.readOnly=false);
+			    width:100%;
+			 	height: 100%;
+			 	font-size: 12
+			   	}
+.field_enabled {text-align: left;
+				background-color:#C8C8FF;
+				/*color:#000000;*/
+				border:1px #000000 solid;
+				/*border-top:0px;
+				border-left:0px;*/
+
+				padding:2px;
+				height:18px;
+				font-size: 12
+			   	}
+.td_disabled {text-align: left;
+				background-color: #C0C0C0;
+			    border:1px #000000 solid;
+				/*border-top:0px;*/
+				/*border-left:0px;*/
+
+				padding:2px;
+				height:25px;
+				font-size: 12
+			   	}
+.td_enabled {text-align: left;
+			background-color:white;
+			 border:1px #000000 solid;
+				/*border-top:0px;
+				border-left:0px;*/
+
+				padding:2px;
+				height:25px;
+				font-size: 12
+			 }
+
+.checkbox_onlyread{readonly:expression(this.readOnly=true);}
+.table_thin{
+			
+			border-color:  #000000;
+			border-collapse:collapse;
+			background-color:  #000000;
+			
+           
+            }
+ .checkBox_1{
+ 				height: 16px;
+ }
+/*以下为分公司费用报销的界面CSS代码*/
+
+.td_field{background-color:white;
+		  font-size: 12;
+		  font-weight: 700;
+		 }
+.td_field_thin{background-color:white;
+		  font-size: 13;
+		  font-weight: 500;
+		 }
+.td_field_thin_ce{background-color:white;
+		 		 font-size: 11;
+		 		 font-weight: 500;
+				 }
+.td_field_title{background-color:#E7ECF3;
+		  font-size: 12;
+		  font-weight: 700;
+		  text-align: center;
+		 }
+.td_text{background-color:white;
+			  text-align: left;
+			   font-size: 12;
+			  }
+.td_text_center{background-color:white;
+			  text-align: center;
+			   font-size: 12;
+			  }
+
+.td_text_center_nodisplay{background-color:white;
+			  			  text-align: center;
+			   			  font-size: 12;
+			  			  display: none;
+			  			  }
+
+.text_read_red{background-color:white;
+			    border-style: none;
+			    border-width:0;
+			    readonly:expression(this.readOnly=true);
+			    font-size: 12;
+			    color: red
+			  }
+			  
+
+.text_read_common{background-color:white;
+			    border-style: none;
+			    border-width:0;
+			    readonly:expression(this.readOnly=true);
+			    font-size: 12;
+			  }
+.text_write_common{
+			    	width:95%;
+			    	font-size: 12;
+			  	}
+.text_write_noborder{background-color:white;
+			    	width:95%;
+			    	font-size: 12;
+			  		}
+
+.td_text_menu{background-color:#E7ECF3;
+			  text-align: center;
+			   font-size: 13;
+			   height: 30
+			   
+			  }
+
+.td_text_menu2{background-color:#CECEFF;
+			  text-align: center;
+			   font-size: 14;
+			   height: 22;
+			   font-weight:500;
+			   padding-bottom: 2
+			   
+			  }
+
+.text_write_noborder_trip{background-color:white;
+			    	font-size: 12;
+			    	border-style: none;
+			    	border-width:0;
+			    	width: 84;
+			  		}
+.text_read_noborder_trip{background-color:white;
+			    border-style: none;
+			    border-width:0;
+			    readonly:expression(this.readOnly=true);
+			    font-size: 12;
+			    width: 84;
+			  }
+/*button Css*/
+
+.btn_save { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/girdsave.gif) 0 2 no-repeat ; background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_save_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/girdsave.gif) 0 2 no-repeat ; background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+
+.btn_submit { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/drop-yes.gif) 0 2 no-repeat ; background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_submit_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/drop-yes.gif) 0 2 no-repeat ; background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+
+.btn_back { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/view-refresh.png) 0 2 no-repeat ; background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_back_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/view-refresh.png) 0 2 no-repeat ; background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+
+.btn_print { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/print.gif) 0 2 no-repeat ; background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_print_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/print.gif) 0 2 no-repeat ; background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_search { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/zoom.png) 0 2 no-repeat ; background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_search_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/zoom.png) 0 2 no-repeat ; background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_add { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			/*background:url(images/girdadd.gif) 0 2 no-repeat ;*/ background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_add_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			/*background:url(images/girdadd.gif) 0 2 no-repeat ;*/ background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+
+.btn_delete { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			/*background:url(images/girddel.gif) 0 2 no-repeat ;*/ background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_delete_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			/*background:url(images/girddel.gif) 0 2 no-repeat ;*/ background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+
+.btn_delete1 { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/girddel.gif) 0 2 no-repeat ; background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_delete1_on { width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/girddel.gif) 0 2 no-repeat ; background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+			
+.btn_reset{ width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/filterArrow.gif) 0 2 no-repeat ; background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+.btn_reset_on{ width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background:url(images/filterArrow.gif) 0 2 no-repeat ; background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+			
+.btn_refuse{ width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+			background-color:#E2E9F1;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+
+.btn_refuse_on{width:60px; 
+			height:23px;
+			border:1px solid #6E788B;
+		    background-color:#FFFF80;
+			font-size:12px; line-height:180%; cursor:pointer;vertical-align: middle;}
+
+
+

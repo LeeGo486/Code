@@ -1,0 +1,144 @@
+﻿<style type="text/css">
+            .iosSlider {
+				width: 400px;
+                min-height:200px;
+			}
+			.iosSlider .slider {
+				width: 100%;
+				height: 100%;
+			}
+			.iosSlider .slider .item {
+				position: relative;
+				top: 0;
+				left: 0;
+				width: 900px;
+				height: 300px;
+				background: #fff;
+				margin: 0 0 0 0;
+			}
+			.iosSliderButtons {
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				width: 200px;
+				height: 10px;
+			}
+			.iosSliderButtons .button {
+				float: left;
+				width: 9px;
+				height: 9px;
+				background: #666;
+				margin: 0 10px 0 0;
+				opacity: 0.25;
+				filter: alpha(opacity:25);
+				border: 1px solid #000;
+                border-radius:10px;
+			}
+			.iosSliderButtons .selected {
+				background: #fff;
+				opacity: 1;
+				filter: alpha(opacity:100);
+			}
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('.iosSlider').iosSlider({
+            scrollbar: true,
+            autoSlide: true,
+            snapVelocityThreshold:1,
+            autoSlideTimer:3000,
+            frictionCoefficient: 0.6,
+            elasticPullResistance:0.6,
+            snapToChildren: true,
+            desktopClickDrag: true,
+            scrollbarLocation: 'top',
+            scrollbarMargin: '10px 10px 0 10px',
+            scrollbarBorderRadius: '0',
+            responsiveSlideWidth: true,
+            navSlideSelector: $('.iosSliderButtons .button'),
+            infiniteSlider: true,
+            startAtSlide: '1',
+            onSlideChange: slideContentChange,
+            onSliderLoaded: slideContentLoaded
+        });
+        function slideContentChange(args) {
+            $(args.sliderObject).parent().find('.iosSliderButtons .button').removeClass('selected');
+            $(args.sliderObject).parent().find('.iosSliderButtons .button:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+
+        }
+        function slideContentLoaded(args) {
+            $(args.sliderObject).parent().find('.iosSliderButtons .button').removeClass('selected');
+            $(args.sliderObject).parent().find('.iosSliderButtons .button:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+        }
+    });
+</script>
+<div id="cl_theme" class="ht">
+    <i class="icon-comments-alt"></i>&nbsp;&nbsp;[陈列详细] 演绎东方精致生活
+</div>
+<div class="dataDetail">
+    <h4><span><i class="icon-film"></i>&nbsp;&nbsp;效果图</span></h4>
+    <div class = 'iosSlider'>
+			<div class = 'slider'>
+				<div class = 'item' id = 'item2'>
+                    <img src="/Areas/S3/Resources/images/Exhibit/2.jpg" width="100%">
+				</div>
+				<div class = 'item' id = 'item3'>
+                    <img src="/Areas/S3/Resources/images/Exhibit/4.jpg" width="100%">
+				</div>
+			</div>
+			<div class = 'iosSliderButtons'>
+				<div class = 'button'></div>
+				<div class = 'button'></div>
+			</div>
+	</div><br />
+    <div id="dn_cl">
+        <h4><span><i class="icon-reorder"></i>&nbsp;&nbsp;区域</span></h4>
+        嘉兴生活馆，二楼，饰品区
+    </div>
+    <br />
+    <h4><span><i class="icon-tasks"></i>&nbsp;&nbsp;要点说明</span></h4>
+    相关陈列道具将于6月20日发放到各个店铺，陈列完成时间：2014年6月26日
+    <div class="optarea" style="margin-top:4px;">
+        <span id="btnConnact" class="btnarea" style="border-right:1px solid #ccc;"><a href="tel:13888888888" style="color:#CC3333;"><i class="glyphicon glyphicon-earphone"></i> 周琴</a></span>
+        <span id="btnAction" class="btnarea" onclick="$('#jy').fadeOut(100);$('#fk').fadeIn(800);scrollTo($('#fk'));" style="border-right:1px solid #ccc;"><i class="icon-bolt"></i> 汇报(1)</span>
+        <span class="btnarea" onclick="$('#jy').fadeIn(800);$('#fk').fadeOut(100);scrollTo($('#jy'));" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(1)</span>
+        <span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span>
+    </div>
+    <div id="fk" style="display:none;">
+        <h4><span><i class="icon-comment"></i> 执行汇报</span></h4>
+        <div style="border-bottom:1px dashed #ccc;margin-bottom:4px;padding:4px 0px;">
+            <span class="badge pull-right ls">[2014-07-03] 武汉国广</span><br />
+            <img src="/Areas/S3/Resources/images/Exhibit/4.jpg" width="100%" style="margin-top:10px;" /><br />
+            一条BOLD COLOR的连衣裙，让客户能够从众人之中脱颖而出
+        </div>
+        <div style="border-bottom:1px dashed #ccc;margin-bottom:4px;padding:4px 0px;">
+            总部陈列点评：★★★★★<br />
+            橱窗顶灯灯光较暗，凸显不出炎炎夏日的效果
+        </div>
+        <br />
+        <h4><span><i class="icon-comment"></i> 执行汇报</span></h4>
+        <div class="input-group">
+            <span class="input-group-addon">图片
+            </span>
+            <input type="text" class="form-control" readonly="true">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">浏览</button>
+            </span>
+        </div><br />
+        <div class="input-group">
+            <span class="input-group-addon">汇报</span>
+            <textarea class="form-control" placeholder="请输入汇报内容"></textarea>
+        </div>
+        <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="请稍后..." onclick="Msg.show('汇报提交成功！',0)">提交汇报</button>
+    </div>
+    <div id="jy" style="display:none;">
+        <h4><span><i class="icon-comment"></i> 建议信息</span></h4>
+        <div style="border-bottom:1px dashed #ccc;margin-bottom:4px;padding:4px 0px;">[2014-07-03，武汉东湖万达] 具有垂感的亚麻材质，穿着舒适且具有时髦看点，绝对是时尚主妇的必要搭配</div>
+        
+        <div class="input-group">
+            <span class="input-group-addon">建议</span>
+            <textarea class="form-control" placeholder="请输入建议内容"></textarea>
+        </div>
+        <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="请稍后..." onclick="Msg.show('建议提交成功！',0)">提交建议</button>
+    </div>
+</div>

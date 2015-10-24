@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150418135029</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=134900", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-18 13:52:36:5866 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150418135029</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=134900", "", "", "", "120400010000")</instr>
+    <recodes>00622892000006540456 2015041813530900001200000015041810037392000000000013490012045691094210200000000S他行卡                                 银联商户号(UNION PAY MERCHANT CODE):102335056911002
+总计(TOTAL):RMB 1349.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-18 13:53:04:3272 </crdate>
+  </log>
+</logs>

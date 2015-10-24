@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150426153206</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=879700", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-26 15:35:58:7958 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150426153206</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=879700", "", "", "", "120400010000")</instr>
+    <recodes>006225210204431531   2015042615363300001600000015042610038575290300000087970012045691094210218620300S上海浦东发展银行                       银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):上海浦东发展银行
+总计(TOTAL):RMB 8797.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-26 15:36:27:1754 </crdate>
+  </log>
+</logs>

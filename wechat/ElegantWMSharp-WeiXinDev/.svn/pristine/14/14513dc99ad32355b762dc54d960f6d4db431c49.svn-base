@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "雅斓魔法圣诞季";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        document.getElementById("audio").play();
+    })
+
+    WeixinApi.ready(function (Api) {
+        // 微信分享的数据
+        var url = "http://it.hwafashion.com/Game/GLChristmas/Share?sid=FF25138F-08F0-49C8-8768-83EFADDB2618&lid=" + Url.get("oid");
+
+        var wxData = {
+            "appId": "", // 服务号可以填写appId
+            "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/GLChristmas/icon.png',
+            "link": url,
+            "desc": "开启属于我的雅斓魔法圣诞寻宝之旅",
+            "title": "雅斓魔法圣诞季"
+        };
+
+        // 分享的回调
+        var wxCallbacks = {
+
+        };
+
+        // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+        Api.shareToFriend(wxData, wxCallbacks);
+
+        // 点击分享到朋友圈，会执行下面这个代码
+        Api.shareToTimeline(wxData, wxCallbacks);
+    });
+</script>
+<audio id="audio" autoplay="" loop="" src="~/Areas/Game/Resources/MP3/JingleBellRock.mp3"></audio>
+<img id="pause" src="~/Areas/Game/Resources/images/GLChristmas/pause.png" style="width:10%;position:fixed;left:85%;display:none;z-index: 9;top: 5%;"/>
+<img id="play" src="~/Areas/Game/Resources/images/GLChristmas/play.png" style="width:10%;position:fixed;left:85%;z-index: 9;top: 5%;"/>
+<div class="section" style="position:relative;">
+@if (ViewBag.Info == new Guid("45E0B6A8-6809-44B6-A52A-D5B9A88BF57B"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/level1.jpg" style="width:100%;"/>
+}
+else if (ViewBag.Info == new Guid("F32D831B-3A8A-4D71-B652-1766D04B5AD6"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/level2.jpg" style="width:100%;"/>
+}
+else if (ViewBag.Info == new Guid("2F9F6C73-7935-4E8C-B68A-341005893C93"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/level3.jpg" style="width:100%;"/>
+}
+else if (ViewBag.Info == new Guid("CDC86961-79F0-46F2-9EB1-CA650D517AEB"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/level4.jpg" style="width:100%;"/>
+}
+else if (ViewBag.Info == new Guid("AD334A86-8B90-4E58-A845-3E6F809BA9BA"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/level5.jpg" style="width:100%;"/>
+}
+    <div style="position: absolute;top: 15%;left: 80%;color: white;font-size: 2em;font-weight: bold;">@ViewBag.Seq</div>
+</div>
+@*<button type="button" class="btn btn-success" style="width: 80%; position:absolute;top: 70%;left:10%;">重置</button>*@
+<script type="text/javascript">
+    $("button").click(function () {
+        $.post("/Game/GLChristmas/Reset?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+            Msg.show(rst.msg, rst.result);
+        });
+    })
+
+    $("#pause").click(function () {
+        document.getElementById("audio").play();
+        $(this).hide()
+        $("#play").show();
+    })
+
+    $("#play").click(function () {
+        document.getElementById("audio").pause();
+        $(this).hide()
+        $("#pause").show();
+    })
+</script>

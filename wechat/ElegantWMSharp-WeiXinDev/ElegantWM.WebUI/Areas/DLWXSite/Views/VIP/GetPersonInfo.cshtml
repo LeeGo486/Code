@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "个人信息";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#ChangePersoninfo").click(function () {
+            window.location.href = "/DLWXSite/VIP/ChangePersoninfo/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid")
+        });
+    });
+</script>
+<style>
+    #personinfo {
+        padding: 40px;
+        margin-bottom: 52px;
+        margin-top: -30px;
+    }
+
+        #personinfo table {
+            text-align: left;
+            width: 100%;
+        }
+
+            #personinfo table tr {
+                height: 60px;
+            }
+
+                #personinfo table tr td {
+                    border-bottom: 1px solid #808080;
+                }
+</style>
+
+
+<ul style="padding: 0px;" id="imggg">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/kqbg.jpg" />
+    </li>
+</ul>
+
+<div id="personinfo">
+    <table>
+        <tr>
+            <td>
+                <span>卡号：@ViewBag.dtpCentumInfo.Rows[0]["vipcode"]</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>VIP状态：@ViewBag.dtpCentumInfo.Rows[0]["State"]</span><span class="pull-right"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>移动电话：@ViewBag.dtpCentumInfo.Rows[0]["phone"]</span><span class="pull-right"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>出生年月：@ViewBag.dtpCentumInfo.Rows[0]["birthday"]</span><span class="pull-right"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>职业：@ViewBag.dtpCentumInfo.Rows[0]["Occupation"]</span><span class="pull-right"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>地址：@ViewBag.dtpCentumInfo.Rows[0]["province"]
+                    @ViewBag.dtpCentumInfo.Rows[0]["city"]
+                    @ViewBag.dtpCentumInfo.Rows[0]["region"]
+                    @ViewBag.dtpCentumInfo.Rows[0]["vipadd"]
+                </span><span class="pull-right"></span>
+            </td>
+        </tr>
+        <tr style="">
+            <td style="text-align: center;border-bottom: 0px">
+                <span>
+                    <button id="ChangePersoninfo" type="button" class="btn btn-default" style="width: 90%; margin: 10px; margin-bottom: 51px">修改个人信息</button>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,235 @@
+﻿using System;
+using System.Data;
+using System.Text;
+using System.Data.SqlClient;
+using Maticsoft.DBUtility;//Please add references
+namespace Talent.DAL
+{
+	/// <summary>
+	/// 数据访问类:TB_RC_UpkeepDate
+	/// </summary>
+	public partial class TB_RC_UpkeepDate
+	{
+        private DbHelperSQLP dbhelp = null;
+
+		public TB_RC_UpkeepDate()
+		{
+            this.dbhelp = new DbHelperSQLP(PubConstant.TalentConnectionString);
+        }
+		#region  Method
+
+
+
+		/// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(Talent.Model.TB_RC_UpkeepDate model)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("insert into TB_RC_UpkeepDate(");
+			strSql.Append("UD_CB_No,UD_TI_No,UD_Date,UD_Result,UD_CreatePer,UD_CreateDate)");
+			strSql.Append(" values (");
+			strSql.Append("@UD_CB_No,@UD_TI_No,@UD_Date,@UD_Result,@UD_CreatePer,@UD_CreateDate)");
+			strSql.Append(";select @@IDENTITY");
+			SqlParameter[] parameters = {
+					new SqlParameter("@UD_CB_No", SqlDbType.Int,4),
+					new SqlParameter("@UD_TI_No", SqlDbType.Int,4),
+					new SqlParameter("@UD_Date", SqlDbType.DateTime),
+					new SqlParameter("@UD_Result", SqlDbType.VarChar,1000),
+					new SqlParameter("@UD_CreatePer", SqlDbType.VarChar,20),
+					new SqlParameter("@UD_CreateDate", SqlDbType.DateTime)};
+			parameters[0].Value = model.UD_CB_No;
+			parameters[1].Value = model.UD_TI_No;
+			parameters[2].Value = model.UD_Date;
+			parameters[3].Value = model.UD_Result;
+			parameters[4].Value = model.UD_CreatePer;
+			parameters[5].Value = model.UD_CreateDate;
+
+            object obj = dbhelp.GetSingle(strSql.ToString(), parameters);
+			if (obj == null)
+			{
+				return 0;
+			}
+			else
+			{
+				return Convert.ToInt32(obj);
+			}
+		}
+		/// <summary>
+		/// 更新一条数据
+		/// </summary>
+		public bool Update(Talent.Model.TB_RC_UpkeepDate model)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("update TB_RC_UpkeepDate set ");
+			strSql.Append("UD_CB_No=@UD_CB_No,");
+			strSql.Append("UD_TI_No=@UD_TI_No,");
+			strSql.Append("UD_Date=@UD_Date,");
+			strSql.Append("UD_Result=@UD_Result,");
+			strSql.Append("UD_CreatePer=@UD_CreatePer,");
+			strSql.Append("UD_CreateDate=@UD_CreateDate");
+			strSql.Append(" where UD_No=@UD_No");
+			SqlParameter[] parameters = {
+					new SqlParameter("@UD_CB_No", SqlDbType.Int,4),
+					new SqlParameter("@UD_TI_No", SqlDbType.Int,4),
+					new SqlParameter("@UD_Date", SqlDbType.DateTime),
+					new SqlParameter("@UD_Result", SqlDbType.VarChar,1000),
+					new SqlParameter("@UD_CreatePer", SqlDbType.VarChar,20),
+					new SqlParameter("@UD_CreateDate", SqlDbType.DateTime),
+					new SqlParameter("@UD_No", SqlDbType.Int,4)};
+			parameters[0].Value = model.UD_CB_No;
+			parameters[1].Value = model.UD_TI_No;
+			parameters[2].Value = model.UD_Date;
+			parameters[3].Value = model.UD_Result;
+			parameters[4].Value = model.UD_CreatePer;
+			parameters[5].Value = model.UD_CreateDate;
+			parameters[6].Value = model.UD_No;
+
+            int rows = dbhelp.ExecuteSql(strSql.ToString(), parameters);
+			if (rows > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// 删除一条数据
+		/// </summary>
+		public bool Delete(int UD_No)
+		{
+			
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("delete from TB_RC_UpkeepDate ");
+			strSql.Append(" where UD_No=@UD_No");
+			SqlParameter[] parameters = {
+					new SqlParameter("@UD_No", SqlDbType.Int,4)
+			};
+			parameters[0].Value = UD_No;
+
+            int rows = dbhelp.ExecuteSql(strSql.ToString(), parameters);
+			if (rows > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		/// <summary>
+		/// 批量删除数据
+		/// </summary>
+		public bool DeleteList(string UD_Nolist )
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("delete from TB_RC_UpkeepDate ");
+			strSql.Append(" where UD_No in ("+UD_Nolist + ")  ");
+            int rows = dbhelp.ExecuteSql(strSql.ToString());
+			if (rows > 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+        public bool DeleteByWhere(string strWhere)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from TB_RC_UpkeepDate ");
+            strSql.Append(" where " + strWhere);
+            int rows = dbhelp.ExecuteSql(strSql.ToString());
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public Talent.Model.TB_RC_UpkeepDate GetModel(int UD_No)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select  top 1 UD_No,UD_CB_No,UD_TI_No,UD_Date,UD_Result,UD_CreatePer,UD_CreateDate from TB_RC_UpkeepDate ");
+            strSql.Append(" where UD_No=@UD_No");
+            SqlParameter[] parameters = {
+					new SqlParameter("@UD_No", SqlDbType.Int,4)
+			};
+            parameters[0].Value = UD_No;
+
+            Talent.Model.TB_RC_UpkeepDate model = new Talent.Model.TB_RC_UpkeepDate();
+            DataSet ds = dbhelp.Query(strSql.ToString(), parameters);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0]["UD_No"] != null && ds.Tables[0].Rows[0]["UD_No"].ToString() != "")
+                {
+                    model.UD_No = int.Parse(ds.Tables[0].Rows[0]["UD_No"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["UD_CB_No"] != null && ds.Tables[0].Rows[0]["UD_CB_No"].ToString() != "")
+                {
+                    model.UD_CB_No = int.Parse(ds.Tables[0].Rows[0]["UD_CB_No"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["UD_TI_No"] != null && ds.Tables[0].Rows[0]["UD_TI_No"].ToString() != "")
+                {
+                    model.UD_TI_No = int.Parse(ds.Tables[0].Rows[0]["UD_TI_No"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["UD_Date"] != null && ds.Tables[0].Rows[0]["UD_Date"].ToString() != "")
+                {
+                    model.UD_Date = DateTime.Parse(ds.Tables[0].Rows[0]["UD_Date"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["UD_Result"] != null && ds.Tables[0].Rows[0]["UD_Result"].ToString() != "")
+                {
+                    model.UD_Result = ds.Tables[0].Rows[0]["UD_Result"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["UD_CreatePer"] != null && ds.Tables[0].Rows[0]["UD_CreatePer"].ToString() != "")
+                {
+                    model.UD_CreatePer = ds.Tables[0].Rows[0]["UD_CreatePer"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["UD_CreateDate"] != null && ds.Tables[0].Rows[0]["UD_CreateDate"].ToString() != "")
+                {
+                    model.UD_CreateDate = DateTime.Parse(ds.Tables[0].Rows[0]["UD_CreateDate"].ToString());
+                }
+                return model;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+		/// <summary>
+		/// 获得数据列表
+		/// </summary>
+		public DataSet GetList(string strWhere)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select UD_No,UD_CB_No,UD_TI_No,UD_Date,UD_Result,UD_CreatePer,UD_CreateDate ");
+			strSql.Append(" FROM TB_RC_UpkeepDate ");
+			if(strWhere.Trim()!="")
+			{
+				strSql.Append(" where "+strWhere);
+			}
+            return dbhelp.Query(strSql.ToString());
+		}
+
+		
+
+		#endregion  Method
+	}
+}
+

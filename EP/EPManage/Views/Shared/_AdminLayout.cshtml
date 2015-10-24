@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Css
+{
+    <link href="@Styles.Url("~/Content/site.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/searchbox.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/sortable.css")" rel="stylesheet"/>
+    @RenderSection("Css", false)
+}
+@section Js
+{
+    @RenderSection("Js", false)
+}
+
+<div class="container head">
+    @{Html.RenderPartial("_head");}
+    @RenderSection("head")
+</div>
+@RenderSection("searchbox", false)
+<div class="body container">
+    @RenderBody()
+</div>

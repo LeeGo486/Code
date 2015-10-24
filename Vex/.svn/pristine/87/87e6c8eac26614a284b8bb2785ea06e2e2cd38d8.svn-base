@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>薪资报表</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../JS/DLWXSite//Notice.js?Date=20131223" type="text/javascript"></script>
+    <!--<script type="text/javascript" src="/Scripts/global.js?v=1.4"></script>-->
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+    <div region="center" split="true" id="mainPanle">
+        <table id="tabList">
+        </table>
+    </div>
+
+    <div iconcls="icon-add" title="新增" id="divEdit" class="easyui-window" data-options="closed:true" style="width: 820px; height: 266px;">
+        <form id="form_Edit" title="新增" name="form_Edit" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <input id="txtid" name="txtid" style="width: 100px" type="hidden">
+                    </td>
+                </tr>
+                <tr>
+                    <th>标题
+                    </th>
+                    <td>
+                        <input id="txtnoticetitle" name="txtnoticetitle" style="width: 300px" class="easyui-validatebox"
+                            data-options="required:true">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>排序
+                    </th>
+                    <td>
+                        <input class="easyui-numberbox" id="txtsortcode" name="txtsortcode" style="width: 300px;" required="required" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>状态
+                    </th>
+                    <td>
+                        <select class="easyui-combobox" id="txtstate" name="txtstate" style="width: 100px;" data-options="panelHeight:'auto',editable:false">
+                            <option value="1">正常</option>
+                            <option value="2">停用</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>内容
+                    </th>
+                    <td>
+                        <textarea id="txtnoticecontent" name="txtnoticecontent" cols="20" rows="3" style="width: 800px; height: 200px;" class="easyui-validatebox"
+                            data-options="required:true"></textarea>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-ok" data-options="plain:true" onclick="Edit_Submit()" class="easyui-linkbutton">保存并提交</a>
+                        <a href="#" id="A1" iconcls="icon-undo" onclick="Cancel()" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
+</body>
+</html>

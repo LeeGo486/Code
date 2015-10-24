@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "购物车";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+       <link href="~/Areas/DLWXSite/Resources/Mobile.css" rel="stylesheet" />
+}
+
+<ul style="padding: 0 10px;margin-top:13px">
+    @foreach (System.Data.DataRow dr in ViewBag.ShoppingCart.Rows)
+    {
+        if (@dr["ID"] != "")
+        {
+        <li class="@dr["ID"]">
+            <table class="cart">
+                <tr>
+                    <td class="check" rowspan="3">
+                        <input type="checkbox" />
+                    </td>
+                    <td class="smallImg" rowspan="3">
+                        <img style="width: 100%" src="http://122.225.19.188:8090@{@dr["STYL_PicturePath"].ToString().Split(',')[0].ToString()}" onerror="this.src='/Areas/NPaia/Resources/images/Goods/error.gif';"/>
+                    </td>
+                    <td>
+                        <span>@dr["STYL_Name"]</span>|<span>@dr["STYL_Code"]</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>@float.Parse(dr["Number"].ToString()).ToString("0") 件</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>@dr["STL2_Color"]</span>|<span>@dr["STL2_Size"]</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="color: red;">@float.Parse(dr["STYL_SellPrice"].ToString()).ToString("0.00")</span>|<span style="text-decoration: line-through;">@float.Parse(dr["STYL_Price"].ToString()).ToString("0.00")</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="count" colspan="3" style="text-align: right;">
+                        <span>共 @float.Parse(dr["Number"].ToString()).ToString("0") 件 小计 <span class="amount">@dr["Amount"]</span></span>
+                        <button id="@dr["ID"]" type="button" class="btn btn-danger" style="width: 54px;margin-left: 20px;">删除</button>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        }
+    }
+</ul>
+<div class="split"></div>
+<div style="text-align: right; padding: 10px;">
+    合计：<span id="count">0.00</span>
+</div>
+<div class="split"></div>
+<button id="order" type="button" class="btn btn-success" style="width: 80%; margin: 35px;margin-bottom:52px">预购</button>
+<script type="text/javascript">
+    $("#order").click(function () {
+        if ($("ul li").has("input:checked").size() == 0) {
+            Msg.show("请先选择款式", 1);
+            return;
+        }
+
+        var id = "";
+
+        $("ul li").has("input:checked").each(function (i) {
+            if (i == 0)
+                id += $(this).attr("class");
+            else
+                id += "|" + $(this).attr("class");
+        })
+
+        window.location.href = "/DLWXSite/DLGoods/Order?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&id=" + id;
+    })
+
+    $("td button").click(function () {
+        Msg.show("删除中...", 3);
+        var id = $(this).attr("id");
+        $.post("/DLWXSite/DLGoods/DelShoppingCart?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&id=" + id, function (data) {
+            Msg.hide();
+            var rst = eval("(" + data + ")");
+
+            if (rst[0].Result == "True") {
+                $("." + id).remove();
+                sumAmount();
+                Msg.show(rst[0].Message, 0);
+            }
+            else {
+                Msg.show(rst[0].Message, 1);
+            }
+        });
+    })
+
+    function sumAmount() {
+        var count = 0;
+
+        $("table.cart").has("input:checked").each(function () {
+            count += parseFloat($(this).find(".amount").text());
+        })
+
+        $("#count").text(count);
+    }
+
+    $("input:checkbox").click(function () {
+        sumAmount();
+    })
+</script>

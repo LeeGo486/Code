@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "用户领奖界面";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+
+@section script{
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <style type="text/css">
+        #Bg img {
+            width: 100%;
+        }
+
+        #btn {
+            position: absolute;
+            left: 36%;
+            z-index: 1;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#Bg img").load(function () {
+                var bgHeight = $("#Bg").height();
+                $("#btn").css("top", bgHeight * 0.85);
+            });
+
+            $("#btnSubmit").click(function () {
+                window.location.href = "/Game/RedTemple/psInfo?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            });
+
+            function onBridgeReady() {
+                WeixinJSBridge.call('hideOptionMenu');
+            }
+
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            } else {
+                onBridgeReady();
+            }
+        })
+
+    </script>
+
+}
+<div id="Bg">
+    <img src="/Areas/Game/Resources/images/RedTemple/@ViewBag.Awardimg"/>
+</div>
+
+<div id="btn">
+    <button id="btnSubmit" type="button" class="btn btn-default" style="width: 100%; height: 30px; text-align: center">填写联系方式</button>
+</div>

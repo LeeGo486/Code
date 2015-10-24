@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "领奖";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".button").click(function () {
+                if ($("#name").val() == "") {
+                    Msg.show("清输入你的姓名！", 1);
+                    return;
+                }
+                if ($("#tel").val() == "" || $("#tel").val().length != 11 || !/^1[34587]\d{9}$/.test($("#tel").val())) {
+                    $("#tel").focus();
+                    Msg.show("手机号无效！", 1);
+                    return;
+                }
+                //构造提交json的格式
+                var paramData = {
+                    name: $("#name").val(),
+                    Tel: $("#tel").val()
+                };
+
+                Msg.show("提交中...", 3);
+                $.post("/Game/GLAllTheChips/Submit?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid"), paramData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        setTimeout(function () { window.location.href = "/Game/GLAllTheChips/Ticket?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid") }, 1000);
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                });
+            });
+
+            function onBridgeReady() {
+                WeixinJSBridge.call('hideOptionMenu');
+            }
+
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            } else {
+                onBridgeReady();
+            }
+
+        });
+    </script>
+    <style type="text/css">
+        .bg {
+            background: url(/Areas/Game/Resources/images/GLAllTheChips/bg.jpg) top center no-repeat;
+            background-size: 100%;
+            font-family: 'Microsoft YaHei',Arial;
+            margin: 0px;
+            background-attachment: scroll;
+        }
+
+            .bg table {
+                width: 100%;
+                text-align: center;
+            }
+
+        .input {
+            background-color: rgba(247, 241, 241, 0.00);
+            border: 1px solid #000;
+            font-size: 16px;
+            width: 75%;
+        }
+
+        .button {
+            margin-top: 15px;
+        }
+
+        .notice {
+            margin-top: 15px;
+        }
+    </style>
+}
+<div class="bg">
+    <img class="" src="~/Areas/Game/Resources/images/GLAllTheChips/Winning.png" alt="head" style="width: 100%" />
+    <table>
+        <tr>
+            <td>
+                <input id="name" name="name" class="input" placeholder="姓名："></td>
+        </tr>
+        <tr style="height: 5px"></tr>
+        <tr>
+            <td>
+                <input id="tel" name="tel" type="number" class="input" placeholder="手机号码："></td>
+        </tr>
+    </table>
+    <img class="button" src="~/Areas/Game/Resources/images/GLAllTheChips/button.png" alt="head" style="width: 100%" />
+    <img class="notice" src="~/Areas/Game/Resources/images/GLAllTheChips/Winning1.png" alt="head" style="width: 100%" />
+</div>

@@ -1,0 +1,33 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "用户信息";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+}
+
+<div class="ht">
+    <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;用户信息
+</div>
+<ul class="list-group">
+    <li class="list-group-item">
+        <i class="icon-user"></i>&nbsp;&nbsp;导购姓名：@Model.Rows[0]["names"]
+    </li>
+    <li class="list-group-item">
+        <i class="icon-credit-card"></i>&nbsp;&nbsp;导购编号：@Model.Rows[0]["employeeid"]
+    </li>
+    <li class="list-group-item">
+        <i class="icon-home"></i>&nbsp;&nbsp;所属大区：@Model.Rows[0]["d_dq"]
+    </li>
+    <li class="list-group-item">
+        <i class="icon-user"></i>&nbsp;&nbsp;督导姓名：@Model.Rows[0]["d_dd"]
+    </li>
+    <li class="list-group-item">
+        <i class="icon-home"></i>&nbsp;&nbsp;所属店铺：@Model.Rows[0]["d_name"]
+    </li>
+    <li class="list-group-item">
+        <i class="icon-credit-card"></i>&nbsp;&nbsp;店铺编号：@Model.Rows[0]["depotid"]
+    </li>
+</ul>

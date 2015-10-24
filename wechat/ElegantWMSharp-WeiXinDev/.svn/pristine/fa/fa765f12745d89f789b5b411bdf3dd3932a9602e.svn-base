@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "新品预购";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+            $(".iosSlider").iosSlider({
+                desktopClickDrag: true,
+                snapToChildren: true,
+                snapSlideCenter: true,
+                infiniteSlider: true,
+                onSlideChange: slideContentChange,
+                onSliderLoaded: slideContentLoaded,
+                autoSlide: true,
+                autoSlideTimer: 3000,
+                autoSlideTransTimer: 750
+            });
+
+            var winWidth = 0;
+            var winHeight = 0;
+            if (window.innerWidth)
+                winWidth = window.innerWidth;
+            else if ((document.body) && (document.body.clientWidth))
+                winWidth = document.body.clientWidth;
+            //获取窗口高度
+            if (window.innerHeight)
+                winHeight = window.innerHeight;
+            else if ((document.body) && (document.body.clientHeight))
+                winHeight = document.body.clientHeight;
+            //通过深入Document内部对body进行检测，获取窗口大小
+            if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+                winHeight = document.documentElement.clientHeight;
+                winWidth = document.documentElement.clientWidth;
+            }
+
+            $(".iosSlider").height(winWidth * 0.96);
+
+            function slideContentChange(args) {
+                $(args.sliderObject).parent().find(".iosSliderButtons .button").removeClass("selected");
+                $(args.sliderObject).parent().find(".iosSliderButtons .button:eq(" + (args.currentSlideNumber - 1) + ")").addClass("selected");
+
+            }
+            function slideContentLoaded(args) {
+                $(args.sliderObject).parent().find(".iosSliderButtons .button").removeClass("selected");
+                $(args.sliderObject).parent().find(".iosSliderButtons .button:eq(" + (args.currentSlideNumber - 1) + ")").addClass("selected");
+            }
+
+            var width = 0;
+            $(".iosSliderButtons .button").each(function () {
+                width = width + $(this).outerWidth(true);
+            })
+            $(".iosSliderButtons").width(width);
+            $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+
+            var evt = "onorientationchange" in window ? "orientationchange" : "resize";
+
+            window.addEventListener(evt, function () {
+                switch (window.orientation) {
+                    case 0:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                    case -90:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                    case 90:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                    case 180:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                }
+            }, false);
+        });
+    </script>
+
+}
+
+<ul class="indexul">
+    <li>
+        <div class="iosSlider">
+            <div class="slider">
+                <div class="item">
+                    <img src="~/Areas/DLWXSite/Resources/images/Goods/Loop1.jpg" onclick="window.location.href='http://mp.weixin.qq.com/s?__biz=MjM5MjkzMzU1MQ==&mid=213052433&idx=1&sn=5f2ebb288273ecaa4e96752bd87bdbc0'" />
+                </div>
+                <div class="item">
+                    <img src="~/Areas/DLWXSite/Resources/images/Goods/Loop2.jpg" onclick="window.location.href='http://mp.weixin.qq.com/s?__biz=MjM5MjkzMzU1MQ==&mid=213052433&idx=1&sn=5f2ebb288273ecaa4e96752bd87bdbc0'" />
+                </div>
+                <div class="item">
+                    <img src="~/Areas/DLWXSite/Resources/images/Goods/Loop3.jpg" onclick="window.location.href='http://mp.weixin.qq.com/s?__biz=MjM5MjkzMzU1MQ==&mid=213052433&idx=1&sn=5f2ebb288273ecaa4e96752bd87bdbc0'" />
+                </div>
+            </div>
+            <div class="iosSliderButtons">
+                <div class="button"></div>
+                <div class="button"></div>
+                <div class="button"></div>
+            </div>
+        </div>
+        <li class="split"></li>
+
+    @for (int i = 0; i < @ViewBag.ThemeCount; i++)
+    {
+        <li>
+            <img id="@ViewBag.Theme.Rows[i]["ThemeCode"]" src="~/Areas/DLWXSite/Resources/images/Goods/@(@ViewBag.Theme.Rows[i]["ThemeCode"]).jpg" 
+                onclick="window.location.href = '/DLWXSite/DLGoods/SKUList?styl_type=@ViewBag.Theme.Rows[i]["ThemeCode"]&name=@ViewBag.Theme.Rows[i]["ThemeName"]&sid=' + Url.get('sid') + '&oid=' + Url.get('oid')"/>
+        </li>
+        <li class="split"></li>
+    }
+</ul>

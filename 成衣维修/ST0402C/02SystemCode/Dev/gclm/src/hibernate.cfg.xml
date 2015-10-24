@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+ 
+    <session-factory>
+     
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+  
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">10</property>
+ 		
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+ 
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+ 
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <!-- Echo all formatted SQL to stdout -->
+        <property name="hibernate.format_sql">false</property>
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
+	
+		<mapping class="org.hy.model.CMOperateRecord" />
+		<mapping class="org.hy.model.Menu"/>
+		<mapping class="org.hy.model.CMOperator"/>
+		<mapping class="org.hy.model.MaintainRegister"/>
+		<mapping class="org.hy.model.Role"/>
+		<mapping class="org.hy.model.LoginLog"/>
+		<mapping class="org.hy.model.MaintainRegister"/>
+		<mapping class="org.hy.model.Ysgsxxb"/>
+		<mapping class="org.hy.model.Jdepot"/>	
+		<mapping class="org.hy.model.Ppwxcdyb"/>
+		<mapping class="org.hy.model.Typzb"/>
+		
+		<mapping class="org.hy.model.Tybmb"/>
+		<mapping class="org.hy.model.Logistics"/>
+	</session-factory>
+</hibernate-configuration>

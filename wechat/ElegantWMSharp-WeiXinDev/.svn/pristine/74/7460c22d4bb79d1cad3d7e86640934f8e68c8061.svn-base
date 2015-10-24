@@ -1,0 +1,85 @@
+﻿<br />
+<div class="input-group">
+    <span class="input-group-addon">资产大类</span>
+    <select class="form-control">
+        <option>电子设备</option>
+        <option>办公设备</option>
+        <option>运输设备</option>
+        <option>生产设备</option>
+    </select>
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">资产小类</span>
+    <select class="form-control">
+        <option>电脑</option>
+        <option>服务器</option>
+        <option>空调</option>
+        <option>办公桌</option>
+    </select>
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">资产名称</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">品牌</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">规格/型号</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">数量</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">申请单价</span>
+    <input type="text" class="form-control" value="" >
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">使用人</span>
+    <input type="text" class="form-control" value="徐艳琼" readonly="readonly">
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">是否调配</span>
+    <select class="form-control">
+        <option>是</option>
+        <option>否</option>
+    </select>
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">行动计划</span>
+    <select class="form-control">
+        <option>新增设备</option>
+        <option>新增人员</option>
+        <option>设备升级</option>
+    </select>
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">附件
+    </span>
+    <input type="text" class="form-control" readonly="true">
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button">浏览</button>
+    </span>
+</div>
+<br />
+<div class="input-group ">
+    <span class="input-group-addon">备注</span>
+    <input type="text" class="form-control" value="" >
+</div>
+
+<div class="optarea" style="margin-top:4px;">
+    <span class="btnarea" onclick="$(this).parent().parent().parent().remove();"><i class="icon-remove"></i> 删除明细</span>
+</div>

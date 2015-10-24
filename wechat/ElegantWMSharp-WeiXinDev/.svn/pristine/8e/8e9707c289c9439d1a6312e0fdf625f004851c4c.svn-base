@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A6AC61D-916A-49D0-8CF3-E7FBEDA777B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElegantWM.IDAL</RootNamespace>
+    <AssemblyName>ElegantWM.IDAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IEFRepository.cs" />
+    <Compile Include="IGameLinkDAL.cs" />
+    <Compile Include="IGameTicketDAL.cs" />
+    <Compile Include="IGame_LittleModelDAL.cs" />
+    <Compile Include="IGame_LittleModelResultDAL.cs" />
+    <Compile Include="IHR_SpecificDAL.cs" />
+    <Compile Include="IITDCDAL.cs" />
+    <Compile Include="IOO_IndustryDAL.cs" />
+    <Compile Include="IOO_MenuTemplateDAL.cs" />
+    <Compile Include="IWsrrDAL.cs" />
+    <Compile Include="IWXKeyWordDAL.cs" />
+    <Compile Include="IWXRespImgTxtDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IHRJobsDAL.cs" />
+    <Compile Include="IHRJobSeekerDAL.cs" />
+    <Compile Include="IWXAccountDAL.cs" />
+    <Compile Include="IHRCourseDAL.cs" />
+    <Compile Include="IHRCourseAttendDAL.cs" />
+    <Compile Include="IHRCourseLessonDAL.cs" />
+    <Compile Include="IHRCourseUserDAL.cs" />
+    <Compile Include="IHRLKCourseUserDAL.cs" />
+    <Compile Include="IWXFansDAL.cs" />
+    <Compile Include="IWXMenuDAL.cs" />
+    <Compile Include="IHRWXEmployeeDAL.cs" />
+    <Compile Include="IHRQuestionDAL.cs" />
+    <Compile Include="IHRQARstDAL.cs" />
+    <Compile Include="IWXLKFansC3AMDAL.cs" />
+    <Compile Include="IITSMEngineerDAL.cs" />
+    <Compile Include="IITSMEventDAL.cs" />
+    <Compile Include="IITSMEventLogDAL.cs" />
+    <Compile Include="IITSMEgrScheduleDAL.cs" />
+    <Compile Include="IITSMBasicInfoDAL.cs" />
+    <Compile Include="IWXContactsDAL.cs" />
+    <Compile Include="IS3DictionaryDAL.cs" />
+    <Compile Include="ISHOPCustomerFeedbackDAL.cs" />
+    <Compile Include="INPaiaVipUserDAL.cs" />
+    <Compile Include="IWXArticleLogDAL.cs" />
+    <Compile Include="IWXLKRegMemberFansDAL.cs" />
+    <Compile Include="ISHOPEventDAL.cs" />
+    <Compile Include="ISHOPEventFeedbackDAL.cs" />
+    <Compile Include="ICMTTaskDetailDAL.cs" />
+    <Compile Include="ICUS1_CustomerDocDAL.cs" />
+    <Compile Include="IGameAwardDAL.cs" />
+    <Compile Include="IGameRecordDAL.cs" />
+    <Compile Include="IGameQuestionDAL.cs" />
+    <Compile Include="IGameAnswerDAL.cs" />
+    <Compile Include="IGameQARstDAL.cs" />
+    <Compile Include="IGameQAVolunteerDAL.cs" />
+    <Compile Include="IFire_QuestionDAL.cs" />
+    <Compile Include="IGameUserInfoDAL.cs" />
+    <Compile Include="IGLGameUserInfoDAL.cs" />
+    <Compile Include="IGLGameRecordDAL.cs" />
+    <Compile Include="IGLGameAwardDAL.cs" />
+    <Compile Include="IGLGameLinkDAL.cs" />
+    <Compile Include="IHRSpecificDAL.cs" />
+    <Compile Include="IWX_Account_USER_AUZDAL.cs" />
+    <Compile Include="IGame_QrstDAL.cs" />
+    <!--DHELPERBLL-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElegantWM.EntityModel\ElegantWM.EntityModel.csproj">
+      <Project>{c403bce8-d507-4a38-bf7c-2f76efaf0db4}</Project>
+      <Name>ElegantWM.EntityModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

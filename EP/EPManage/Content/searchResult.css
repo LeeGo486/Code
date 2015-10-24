@@ -1,0 +1,65 @@
+﻿.searchResult {
+    width: 1290px;
+    margin: 5px auto 0px auto;
+}
+
+    .searchResult li.span2 {
+        margin: 16px 14px 0px 14px;
+        width: 228px;
+        min-height: 250px;
+        height: auto;
+        border: 1px solid rgb(147,120,105);
+        padding-bottom:2px;
+    }
+        .searchResult li.span2 .row1 {
+            min-height:165px;
+            height:auto;
+        }
+    .searchResult .span2 .pic {
+        width: 135px;
+        min-height:175px;
+        height:195px;
+        float: left;
+        border: 1px solid #CCC;
+        text-align:center;
+        max-height:195px;
+        overflow:hidden;
+    }
+
+    .searchResult .span2 .right {
+        margin-left: 125px;
+        padding-top: 20px;
+        text-align:right;
+    }
+	.searchResult .span2 .right .picbg {
+		 border:0.5px solid #CCC;
+		 }
+		.searchResult .span2 .right .picbg:hover {
+		 border:1px solid #958061;
+		}
+        .searchResult .span2 .right div {
+            margin-top: 5px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            font-family: 宋体;
+            color: #958061;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+    .searchResult .clothesNO {
+        font-family: 宋体;
+        color: #958061;
+        font-size: 12px;
+        margin-left: 5px;
+        font-weight: bold;
+    }
+
+        .searchResult .clothesNO .left {
+            width: 192px;
+            float: left;
+        }
+
+        .searchResult .clothesNO .detailLink {
+            margin-left: 192px;
+        }

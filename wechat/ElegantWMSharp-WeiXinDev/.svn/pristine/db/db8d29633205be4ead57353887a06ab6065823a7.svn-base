@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>@(ViewBag.Title)</title>
+	<meta charset="utf-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta name="keywords" content="雅斓名店GraceLand 2015A/W New Arrival">
+	<meta name="description" content="雅斓名店GraceLand 2015A/W New Arrival">
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="pragram" content="no-cache">
+	<meta name="sharecontent" data-msg-img="" data-msg-title="" data-msg-content="雅斓名店GraceLand 2015A/W New Arrival" data-msg-callBack="" data-line-img="" data-line-title="" data-line-callBack=""/>
+    
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+     <!--IOS Masker-->
+    <link href="~/Scripts/IosOverlay/css/iosOverlay.css" rel="stylesheet" />
+    <script src="~/Scripts/IosOverlay/js/spin.min.js"></script>
+    <script src="~/Scripts/IosOverlay/js/iosOverlay.js"></script>
+    <script src="~/Scripts/WeixinApi/WeixinApi.js"></script>
+    <script src="~/Scripts/MatrixGlobal.js"></script>
+    <link href="~/Areas/Matrix/Resources/Mobile.css" rel="stylesheet" />
+    @RenderSection("script", false)
+</head>
+<body class="app" data-app-id="3344" data-ad="true" free="0" data-form-host="">
+     @RenderBody()
+</body>
+</html>
+    <script type="text/javascript">
+        //<![CDATA[
+        (function () {
+            window.addEventListener('load', function () {
+                $('.page').on('current', function () {
+                    var guideWraps = $('.u-guideWrap');
+                    guideWraps.hide();
+                    $(this).find('.u-guideTop').addClass('furu').show();
+                    $(this).find('.u-guideWrap').addClass('furu').show();
+                });
+            });
+        })()
+        //]]>
+</script>   

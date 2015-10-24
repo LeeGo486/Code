@@ -1,0 +1,33 @@
+﻿@model EPManageWeb.Entities.Models.Clothes
+@{
+    ViewBag.Title = "EditClothesTags";
+    Layout = "~/Views/Shared/_AjaxLayout.cshtml";
+}
+@section Css
+{
+    <link href="@Styles.Url("~/Content/searchbox.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/jquery.multiselect.css")" rel="stylesheet"/>
+    <style type="text/css">
+        .tdOrder {
+            display: none;
+        }
+    </style>
+}
+
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.multiselect.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/editClothesTags.js")"></script>
+    <script type="text/javascript">
+
+        var tags = "@Html.Raw(Model.Tags)".split(',');
+        for (var i = 0; i < tags.length; i++) {
+
+            var a = tags[i].split('-')[tags[i].split('-').length - 1];
+            $('input[name="' + a + '"]').attr('checked', 'checked');
+        }
+    </script>
+}
+
+@{Html.RenderPartial("~/Views/Main/_searchbox.cshtml", Model.ClothesType);}

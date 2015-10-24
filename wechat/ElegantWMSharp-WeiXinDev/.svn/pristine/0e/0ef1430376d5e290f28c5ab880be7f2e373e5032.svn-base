@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>主题形象</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link href="~/Content/Plugin/Bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="~/Content/Plugin/Bootstrap/bootbox.min.js"></script>
+    <!--IOS Masker-->
+    <link href="~/Scripts/IosOverlay/css/iosOverlay.css" rel="stylesheet" />
+    <script src="~/Scripts/IosOverlay/js/spin.min.js"></script>
+    <script src="~/Scripts/IosOverlay/js/iosOverlay.js"></script>
+    <script src="~/Scripts/WeixinApi/WeixinApi.js"></script>
+    <script src="~/Scripts/MatrixGlobal.js"></script>
+    <link href="~/Areas/Matrix/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Areas/NPaia/Resources/Mobile.css" rel="stylesheet" />
+    <style>
+        .seriesLine {
+            border-top:1px solid #38587e;
+            width: 20%;
+            float:left;
+            margin-top:19px;
+        }
+
+        .seriesPoint {
+            background-color: #38587e;
+            border-radius:50%;
+            width:6px;
+            height:6px;
+            float:left;
+            margin-top:17px;
+        }
+
+        .seriesText {
+            margin-left:10px;
+            float: left;
+        }
+
+        .viewLine {
+            border-top:1px solid #38587e;
+            width: 40%;
+            float:right;
+            margin-top:19px;
+        }
+
+        .viewPoint {
+            background-color: #38587e;
+            border-radius:50%;
+            width:6px;
+            height:6px;
+            float:right;
+            margin-top:17px;
+        }
+
+        .viewText {
+            margin-right:10px;
+            float: right;
+        }
+
+        .styleFrontOdd {
+            float: left;
+            background-color: #38587e;
+            font-size: 12px;
+            line-height: 15px;
+            color: #fff;
+            padding: 5px 10px;
+            border-bottom-left-radius: 15px;
+            border-top-left-radius: 15px;
+            margin-left: -1px;
+        }
+
+        .styleBackOdd {
+            float: left;
+            background-color: #1f3c5e;
+            font-size: 12px;
+            line-height: 15px;
+            color: #fff;
+            padding: 5px 10px;
+            border-bottom-right-radius: 15px;
+            border-top-right-radius: 15px;
+            margin-left: -1px;
+        }
+
+        .styleMiddleOdd {
+            float: left;
+            border-top:25px solid #38587e;
+            border-right: 40px solid #1f3c5e;
+            margin-left: -1px;
+        }
+
+        .styleFrontEven {
+            float: left;
+            background-color: #c3aa81;
+            font-size: 12px;
+            line-height: 15px;
+            color: #fff;
+            padding: 5px 10px;
+            border-bottom-left-radius: 15px;
+            border-top-left-radius: 15px;
+            margin-left: -1px;
+        }
+
+        .styleBackEven {
+            float: left;
+            background-color: #8a807f;
+            font-size: 12px;
+            line-height: 15px;
+            color: #fff;
+            padding: 5px 10px;
+            border-bottom-right-radius: 15px;
+            border-top-right-radius: 15px;
+            margin-left: -1px;
+        }
+
+        .styleMiddleEven {
+            float: left;
+            border-top:25px solid #c3aa81;
+            border-right: 40px solid #8a807f;
+            margin-left: -1px;
+        }
+
+        .styleIndex {
+            float: left;
+            background-color: #8a807f;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            color: #fff;
+            margin: 4px 5px;
+        }
+
+        .styleArrowOdd {
+            float: left;
+            border-top: 5px solid #ededed;
+            border-bottom: 5px solid #ededed;
+            border-right: 10px solid #38587e;
+            margin-top: 7px;
+        }
+
+        .styleArrowEven {
+            float: left;
+            border-top: 5px solid #ededed;
+            border-bottom: 5px solid #ededed;
+            border-right: 10px solid #c3aa81;
+            margin-top: 7px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @if (ViewBag.Name == "写意廓形")
+        { 
+            <img src="~/Areas/NPaia/Resources/images/Goods/theme1.jpg" style="width: 100%;"/>
+        }
+        else if (ViewBag.Name == "印花异想")
+        { 
+            <img src="~/Areas/NPaia/Resources/images/Goods/theme2.jpg" style="width: 100%;"/>
+        }
+        else if (ViewBag.Name == "纯澈新姿")
+        { 
+            <img src="~/Areas/NPaia/Resources/images/Goods/theme3.jpg" style="width: 100%;"/>
+        }
+        else if (ViewBag.Name == "织线新姿")
+        { 
+            <img src="~/Areas/NPaia/Resources/images/Goods/theme4.jpg" style="width: 100%;"/>
+        }
+    </div>
+    @foreach (System.Data.DataRow dr in ViewBag.Title)
+    {
+        if (dr["VID"] != "")
+        {
+            <div style="text-align: left;padding: 5px 0;color: #38587e;line-height:40px;">
+                <div class="viewLine"></div>
+                <div class="viewPoint"></div>
+                <div class="viewText">@dr["Name"]</div>
+                <div style="clear:both;"></div>
+            </div>
+            <img src="http://122.225.19.188:8090@{@dr["BigImage"].ToString()}"  style="width: 100%;"/>
+            <div style="text-align: left;padding: 5px 0;color: #38587e;line-height:40px;">
+                <div class="seriesLine"></div>
+                <div class="seriesPoint"></div>
+                <div class="seriesText">Series Products</div>
+                <div style="clear:both;"></div>
+            </div>
+            int i = 0;
+            foreach (System.Data.DataRow dr2 in ViewBag.List)
+            {
+                if (dr2["VID"].ToString() == dr["VID"].ToString() && dr2["StyleID"] != "")
+                {
+                    if (i % 2 == 0)
+                    {
+                        <div style="margin-bottom: 15px;" class="styleArea">
+                            <div class="styleIndex">@(i+1)</div>
+                            <div class="styleArrowOdd"></div>
+                            <div class="styleFrontOdd">@dr2["STYL_Name"]@dr2["STYL_Code"]</div>
+                            <div style="display:none" class="styleCode">@dr2["STYL_Code"]</div>
+                            <div class="styleMiddleOdd"></div>
+                            <div class="styleBackOdd">价格:￥@float.Parse(dr2["STYL_Price"].ToString()).ToString("0")</div>
+                            <div style="clear:both;"></div>
+                        </div>
+                    }else
+                    {
+                        <div style="margin-bottom: 15px;" class="styleArea">
+                            <div class="styleIndex">@(i+1)</div>
+                            <div class="styleArrowEven"></div>
+                            <div class="styleFrontEven">@dr2["STYL_Name"]@dr2["STYL_Code"]</div>
+                            <div style="display:none" class="styleCode">@dr2["STYL_Code"]</div>
+                            <div class="styleMiddleEven"></div>
+                            <div class="styleBackEven">价格:￥@float.Parse(dr2["STYL_Price"].ToString()).ToString("0")</div>
+                            <div style="clear:both;"></div>
+                        </div>
+                    }
+                    i++; 
+                }
+            }
+        }
+    }
+    <div style="  position: fixed;bottom: 0;width: 100%;height:45px;">
+        <img id="navShoppingcart" src="~/Areas/NPaia/Resources/images/Goods/shopping-cart.png" style="float: left;height:100%;"/>
+        <img id="navPersonal" src="~/Areas/NPaia/Resources/images/Goods/user.png"  style="float: right;height:100%;"/>
+    </div>
+    <div class="footer" style="margin: 0; z-index: 99;">
+        <a href="http://mp.weixin.qq.com/s?__biz=MzA5MDM3NjUxNA==&mid=200423812&idx=1&sn=668eb5a784c0ae5fcc53612687808642#rd">Powered by <span style="text-decoration: underline;">C3 Matrix 微信孵化平台</span><br />
+            © 2014 华之毅 信息服务中心</a>
+        <div>投诉电话:<a href="tel:4008881273"> 4008881273</a></div>
+    </div>
+    <script type="text/javascript">
+        $("#navPersonal").click(function () {
+            window.location.href = "/NPaia/Goods/Personal?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+
+        $("#navShoppingcart").click(function () {
+            window.location.href = "/NPaia/Goods/ShoppingCart?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+
+        $(".styleArea").click(function () {
+            window.location.href = "/NPaia/Goods/SKUDetail?sku=" + $(this).find(".styleCode").text() + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.hy</groupId>
+  <artifactId>public.ws</artifactId>
+  <version>0.0.1</version>
+  <packaging>war</packaging>
+  <name>public.ws</name>
+  <properties>
+		<webapp.name>public_ws</webapp.name>
+		<webapp.postfix></webapp.postfix>
+		<resteasy.version>2.2.1.GA</resteasy.version>
+		<spring.version>3.0.6.RELEASE</spring.version>
+		<mysql.version>5.1.20</mysql.version>
+		<spring-security.version>3.1.0.RC2</spring-security.version>
+		<softarch.version>1.0</softarch.version>
+		<tomcat.version>6.0.18</tomcat.version>
+		<jsf.version>1.2_15</jsf.version>
+		<atomikos.version>3.8.0</atomikos.version>
+	</properties>
+	<build>
+	
+		<finalName>${webapp.name}</finalName>
+		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/assembly</directory>
+			</resource>
+		</resources>
+		<!-- source paths for testing -->
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<directory>src/test/assembly</directory>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp${webapp.postfix}</directory>
+						</resource>
+						<!--
+							sometimes, define assembly configurations under the web-inf in
+							assembly dir
+						-->
+						<resource>
+							<directory>src/main/assembly</directory>
+							<includes>
+								<include>**/WEB-INF/**</include>
+							</includes>
+						</resource>
+					</webResources>
+					<webXml>src/main/webapp${webapp.postfix}/WEB-INF/web.xml</webXml>
+					<warName>${webapp.name}</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<dependencies>
+		<!-- GSON -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+
+		<!-- RESTEasy -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>${resteasy.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-spring</artifactId>
+			<version>${resteasy.version}</version>
+			<!--  
+			<exclusions>
+				<exclusion>
+					<artifactId>resteasy-jettison-provider</artifactId>
+					<groupId>org.jboss.resteasy</groupId>
+				</exclusion>
+			</exclusions>-->
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+			<version>${resteasy.version}</version>
+		</dependency>
+		<!-- JSON : convert jettison to jackson -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>${resteasy.version}</version>
+		</dependency>
+
+		<!-- SpringFramework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.persistence</groupId>
+					<artifactId>persistence-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.1.0.RC2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.1.0.RC2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.1.0.RC2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>org.aspectj-library</artifactId>
+			<type>libd</type>
+			<version>1.6.5.RELEASE</version>
+		</dependency>
+
+		<!-- Criteria4JPA 0.2 -->
+		<dependency>
+			<groupId>org.criteria4jpa</groupId>
+			<artifactId>criteria4jpa</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<!-- P6SPY -->
+		<dependency>
+			<groupId>p6spy</groupId>
+			<artifactId>p6spy</artifactId>
+			<version>1.3</version>
+		</dependency>
+
+		<!-- Hibernate JPA -->
+		<dependency>
+			<!-- Opensource for hibernate from Jboss -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.0.0.CR5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.0.0.CR5</version>
+		</dependency>
+
+		<!-- Hibernate Validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>
+
+		<!-- Commons-lang -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+
+		<!-- Log4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+		<!-- concrete Log4J Implementation for SLF4J API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-jxpath</groupId>
+			<artifactId>commons-jxpath</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<!-- ==== dependencies for unit test ==== -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>org.springframework.test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+			<!-- ============================================================== -->
+
+		<!-- ==== dependencies for testing runtime environments === -->
+
+		<!-- ++++ dependencies for jvm such as agents ++++ -->
+		<!-- provide java agent for JPA load-time weaving -->
+		<!-- old id: org.springframework.instrument.classloading -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-instrument-tomcat</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		
+		<!-- ==== mysql ==== -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		
+		<!-- ===sqlserver=== -->
+		 
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.2.7</version>
+		</dependency>
+		
+		
+		<!-- 
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>2.0</version>
+			<scope>system</scope>
+      		<systemPath>X:\DB_Apps\JDBCDrive\MSSQL\sqljdbc4.jar</systemPath> 
+		</dependency>
+		-->
+		<!-- ==== dependencies for web integration (restful) test ==== -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- ==== dependencies for web integration (cactus) test ==== 
+		<dependency>
+			<groupId>org.apache.cactus</groupId>
+			<artifactId>cactus.core.framework.javaEE.13-14</artifactId>
+			<version>1.8.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>nekohtml</groupId>
+					<artifactId>nekohtml</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.mortbay.jetty</artifactId>
+					<groupId>org.mortbay.jetty</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion> 
+			</exclusions>
+		</dependency>
+		-->
+		
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>coyote</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>jasper</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${jsf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>${jsf.version}</version>
+		</dependency>
+ 
+		
+		<dependency>
+			<groupId>nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+			<version>1.9.6.2</version>
+		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.apache.cactus</groupId>
+			<artifactId>cactus.core.framework.wrapper.javaEE.14</artifactId>
+			<version>1.8.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		-->
+		<!-- JTA 配置 -->
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>atomikos-util</artifactId>
+			<version>${atomikos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions</artifactId>
+			<version>${atomikos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-api</artifactId>
+			<version>${atomikos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-hibernate3</artifactId>
+			<version>${atomikos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-jdbc</artifactId>
+			<version>${atomikos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-jdbc-deprecated</artifactId>
+			<version>${atomikos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atomikos</groupId>
+			<artifactId>transactions-jta</artifactId>
+			<version>${atomikos.version}</version>
+		</dependency>
+		
+		<!-- ==== project dependencies ==== -->
+		<dependency>
+			<groupId>org.hy</groupId>
+			<artifactId>foundation.common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hy</groupId>
+			<artifactId>foundation.utils</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		
+		
+		
+		<dependency>
+			<groupId>com.softarch.asset.template</groupId>
+			<artifactId>testEnvironment.webserver</artifactId>
+			<version>${softarch.version}</version>
+			<scope>test</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.softarch.asset.template</groupId>
+			<artifactId>testEnvironment.db</artifactId>
+			<version>${softarch.version}</version>
+			<scope>test</scope>
+			<optional>true</optional>
+		</dependency>
+		
+		
+	
+	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>Central</id>
+			<name>EP Maven Center</name>
+			<url>http://192.168.0.122:8081/nexus/content/repositories/central/</url>
+		</repository>
+		<repository>
+			<id>Maven Repository Center</id>
+			<name>Maven Repository Center</name>
+			<url>http://search.maven.org/</url>
+		</repository>
+		<!-- RESTEasy -->
+		<repository>
+			<id>JBoss's Maven Repository</id>
+			<name>JBoss Nexus Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+</project>

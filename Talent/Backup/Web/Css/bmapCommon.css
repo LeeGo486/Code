@@ -1,0 +1,182 @@
+
+.marker_0 .marker_word {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_0 .marker_r {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_1 .marker_word {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_1 .marker_r {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_2 .marker_word {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_2 .marker_r {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_3 .marker_word {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_3 .marker_r {
+	BACKGROUND: url(po.png) 0px 0px
+}
+.marker_0 {
+	WHITE-SPACE: nowrap; HEIGHT: 40px
+}
+.marker_1 {
+	WHITE-SPACE: nowrap; HEIGHT: 40px
+}
+.marker_2 {
+	WHITE-SPACE: nowrap; HEIGHT: 40px
+}
+.marker_3 {
+	WHITE-SPACE: nowrap; HEIGHT: 40px;margin:0 auto;
+}
+
+.marker_0 .marker_word {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 24px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; HEIGHT: 24px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.marker_1 .marker_word {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 24px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; HEIGHT: 24px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.marker_2 .marker_word {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 24px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; HEIGHT: 24px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.marker_3 .marker_word {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 24px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; HEIGHT: 24px; CURSOR: pointer; PADDING-TOP: 0px
+}
+
+.marker_0 .marker_b {
+	POSITION: absolute; WIDTH: 10px;  BACKGROUND: url(po_titie6.gif) 0px 0px; HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+.marker_1 .marker_b {
+	POSITION: absolute; WIDTH: 10px;BACKGROUND: url(po_titie6.gif) 0px 0px; HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+.marker_2 .marker_b {
+	POSITION: absolute; WIDTH: 10px; BACKGROUND: url(po_titie6.gif) 0px 0px; HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+.marker_3 .marker_b {
+	POSITION: absolute; WIDTH: 10px; BACKGROUND: url(po_titie6.gif) 0px 0px; HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+
+EM {
+	FONT-STYLE: normal; COLOR: #cc0000
+}
+.marker_0 .marker_r {
+	Z-INDEX: 110; POSITION: absolute; WIDTH: 3px; HEIGHT: 24px; TOP: 1px; RIGHT: -1px
+}
+.marker_1 .marker_r {
+	Z-INDEX: 110; POSITION: absolute; WIDTH: 3px; HEIGHT: 24px; TOP: 1px; RIGHT: -1px
+}
+.marker_2 .marker_r {
+	Z-INDEX: 110; POSITION: absolute; WIDTH: 3px; HEIGHT: 24px; TOP: 1px; RIGHT: -1px
+}
+.marker_3 .marker_r {
+	Z-INDEX: 110; POSITION: absolute; WIDTH: 3px; HEIGHT: 24px; TOP: 1px; RIGHT: -1px
+}
+* HTML .marker_0 .marker_b {
+	POSITION: absolute; WIDTH: 11px; BACKGROUND: url(po_titie6.gif); HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+.marker_1 .marker_b {
+	POSITION: absolute; WIDTH: 11px; BACKGROUND: url(po_titie6.gif); HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+.marker_2 .marker_b {
+	POSITION: absolute; WIDTH: 11px;  BACKGROUND: url(po_titie6.gif); HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+.marker_3 .marker_b {
+	POSITION: absolute; WIDTH: 11px;  BACKGROUND: url(po_titie6.gif); HEIGHT: 10px; OVERFLOW: hidden; LEFT: 13px
+}
+.marker_0 .marker_word {
+	BACKGROUND-POSITION: 0px 0px; COLOR: #fff
+}
+.marker_1 .marker_word {
+	BACKGROUND-POSITION: 0px -48px; COLOR: #fff
+}
+.marker_2 .marker_word {
+	BACKGROUND-POSITION: 0px -96px; COLOR: #fff
+}
+.marker_3 .marker_word {
+	BACKGROUND-POSITION: 0px -144px; COLOR: #fff
+}
+.marker_0 .marker_r {
+	BACKGROUND-POSITION: 0px -24px
+}
+.marker_1 .marker_r {
+	BACKGROUND-POSITION: 0px -72px
+}
+.marker_2 .marker_r {
+	BACKGROUND-POSITION: 0px -120px
+}
+.marker_3 .marker_r {
+	BACKGROUND-POSITION: 0px -168px
+}
+.marker_0 .marker_b {
+	BACKGROUND-POSITION: 0px 0px
+}
+.marker_1 .marker_b {
+	BACKGROUND-POSITION: 0px -10px
+}
+.marker_2 .marker_b {
+	BACKGROUND-POSITION: 0px -20px
+}
+.marker_3 .marker_b {
+	BACKGROUND-POSITION: 0px -30px
+}
+
+label.BMapLabel
+{
+    width:auto;
+}
+
+DIV.colorPicker_controlset
+{
+	padding-bottom: 0.25em;
+	padding-left: 0px;
+	width: 100%;
+	padding-right: 0px;
+	display: block;
+	float: left;
+	width: 16px;
+	padding-top: 0.25em;
+}
+DIV.colorPicker_controlset DIV
+{
+	display: inline;
+	float: left;
+}
+DIV.colorPicker-picker-self
+{
+/*	
+	border-left: #ccc 1px solid;
+    //padding-left: 0px !important;
+	//width: 4px;
+	//padding-right: 0px !important;
+	//background: url(arrow.gif) no-repeat right top;
+
+	//border-right: #ccc 1px solid;
+     */
+     border-bottom: #ccc 1px solid;
+     border-top: #ccc 1px solid;
+	padding-bottom: 0px !important;
+	line-height: 16px;
+	height: 16px;
+	cursor: pointer;
+	padding-top: 0px !important;
+}
+input.lgray
+{
+     background-color:#ffffff ;
+     border:1px   solid #ffffff;
+     color:#0A0A0A;
+}
+a.ldownload
+{
+   display:block; float:right;width:50px; line-height:21px;
+}
+a.ldelete
+{
+   display:block; float:right;width:50px; line-height:21px;color:Red
+}

@@ -1,0 +1,46 @@
+﻿  
+/*  预算科目小类选中项用 */
+.btn3 {    
+    height:21px;
+    font-size:13px; 
+    background:none;
+    color:#20609b;   
+    border-radius: 5px; /*按钮圆角*/   
+    -webkit-border-radius:5px;
+    /*border: 1px solid #808080;*/  
+    border:none;
+    margin-left:3px;
+    margin-right:3px;
+    margin-top:7px;
+    padding:1px 3px 1px 3px; 
+}
+
+.btn3:hover,
+.btn3:active { 
+     color:#fff;
+     background-color: #28b779;   
+}
+
+.btn3_choose {     
+     color:#fff;
+     background-color: #28b779;   
+}
+
+
+
+.table1 {
+    border:0px solid #808080;
+	border-collapse:collapse;
+    text-align:center;
+}
+
+.table1 td {
+    border:1px solid #808080;
+    height:25px;
+    width:140px;
+}
+
+.input1{   
+    width:98%;
+    border:none; 
+}

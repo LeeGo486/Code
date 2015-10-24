@@ -1,0 +1,1640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://data.ws.datahub/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="CERPWSService2Service" targetNamespace="http://data.ws.datahub/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://data.ws.datahub/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getADJData" type="tns:getADJData" />
+      <xs:element name="getADJDataResponse" type="tns:getADJDataResponse" />
+      <xs:element name="getASNData" type="tns:getASNData" />
+      <xs:element name="getASNDataResponse" type="tns:getASNDataResponse" />
+      <xs:element name="getINVSkuData" type="tns:getINVSkuData" />
+      <xs:element name="getINVSkuDataResponse" type="tns:getINVSkuDataResponse" />
+      <xs:element name="getMoveData" type="tns:getMoveData" />
+      <xs:element name="getMoveDataResponse" type="tns:getMoveDataResponse" />
+      <xs:element name="getSOData" type="tns:getSOData" />
+      <xs:element name="getSODataResponse" type="tns:getSODataResponse" />
+      <xs:element name="getTransfData" type="tns:getTransfData" />
+      <xs:element name="getTransfDataResponse" type="tns:getTransfDataResponse" />
+      <xs:element name="processSP" type="tns:processSP" />
+      <xs:element name="processSPResponse" type="tns:processSPResponse" />
+      <xs:element name="putADJData" type="tns:putADJData" />
+      <xs:element name="putADJDataResponse" type="tns:putADJDataResponse" />
+      <xs:element name="putASNData" type="tns:putASNData" />
+      <xs:element name="putASNDataResponse" type="tns:putASNDataResponse" />
+      <xs:element name="putCustData" type="tns:putCustData" />
+      <xs:element name="putCustDataResponse" type="tns:putCustDataResponse" />
+      <xs:element name="putKitSKUData" type="tns:putKitSKUData" />
+      <xs:element name="putKitSKUDataResponse" type="tns:putKitSKUDataResponse" />
+      <xs:element name="putMoveData" type="tns:putMoveData" />
+      <xs:element name="putMoveDataResponse" type="tns:putMoveDataResponse" />
+      <xs:element name="putSKUData" type="tns:putSKUData" />
+      <xs:element name="putSKUDataResponse" type="tns:putSKUDataResponse" />
+      <xs:element name="putSOData" type="tns:putSOData" />
+      <xs:element name="putSODataResponse" type="tns:putSODataResponse" />
+      <xs:element name="putTransfData" type="tns:putTransfData" />
+      <xs:element name="putTransfDataResponse" type="tns:putTransfDataResponse" />
+      <xs:element name="putUserData" type="tns:putUserData" />
+      <xs:element name="putUserDataResponse" type="tns:putUserDataResponse" />
+      <xs:element name="wmsADJDetails" nillable="true" type="xs:anyType" />
+      <xs:element name="wmsADJHeader" type="tns:wmsADJHeader" />
+      <xs:element name="wmsADJInfo" type="tns:wmsADJInfo" />
+      <xs:element name="wmsASNDetails" type="tns:wmsASNDetails" />
+      <xs:element name="wmsASNHeader" type="tns:wmsASNHeader" />
+      <xs:element name="wmsASNInfo" type="tns:wmsASNInfo" />
+      <xs:element name="wmsCustAddress" type="tns:wmsCustAddress" />
+      <xs:element name="wmsCustHeader" type="tns:wmsCustHeader" />
+      <xs:element name="wmsCustomerInfo" type="tns:wmsCustomerInfo" />
+      <xs:element name="wmsINVHeader" type="tns:wmsINVHeader" />
+      <xs:element name="wmsINVInfo" type="tns:wmsINVInfo" />
+      <xs:element name="wmsKitSkuDetails" type="tns:wmsKitSkuDetails" />
+      <xs:element name="wmsKitSkuHeader" type="tns:wmsKitSkuHeader" />
+      <xs:element name="wmsKitSkuInfo" type="tns:wmsKitSkuInfo" />
+      <xs:element name="wmsMoveHeader" type="tns:wmsMoveHeader" />
+      <xs:element name="wmsMoveInfo" type="tns:wmsMoveInfo" />
+      <xs:element name="wmsParamInfo" type="tns:wmsParamInfo" />
+      <xs:element name="wmsResultInfo" type="tns:wmsResultInfo" />
+      <xs:element name="wmsSODetails" type="tns:wmsSODetails" />
+      <xs:element name="wmsSOHeader" type="tns:wmsSOHeader" />
+      <xs:element name="wmsSOInfo" type="tns:wmsSOInfo" />
+      <xs:element name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+      <xs:element name="wmsSkuAccessory" type="tns:wmsSkuAccessory" />
+      <xs:element name="wmsSkuForwardingLOC" type="tns:wmsSkuForwardingLOC" />
+      <xs:element name="wmsSkuHeader" type="tns:wmsSkuHeader" />
+      <xs:element name="wmsSkuInfo" nillable="true" type="xs:anyType" />
+      <xs:element name="wmsTransfDetails" type="tns:wmsTransfDetails" />
+      <xs:element name="wmsTransfHeader" type="tns:wmsTransfHeader" />
+      <xs:element name="wmsTransfInfo" type="tns:wmsTransfInfo" />
+      <xs:element name="wmsUserHeader" type="tns:wmsUserHeader" />
+      <xs:complexType name="putMoveData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="moveInfo" type="tns:wmsMoveInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSecurityInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsMoveInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsMoveHeaders" nillable="true" type="tns:wmsMoveHeader" />
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsMoveHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="detailsItem" nillable="true" type="tns:wmsMoveDetails" />
+          <xs:element minOccurs="0" name="FMWAREHOUSEID" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="MDOCCREATIONTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="MDOCNO" type="xs:string" />
+          <xs:element minOccurs="0" name="MDOCTYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="MOVEMENTTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="REASON" type="xs:string" />
+          <xs:element minOccurs="0" name="REASONCODE" type="xs:string" />
+          <xs:element minOccurs="0" name="STATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="TOWAREHOUSEID" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE4" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE5" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsMoveDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="FMID" type="xs:string" />
+          <xs:element minOccurs="0" name="FMLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="FMQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="GROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTNUM" type="xs:string" />
+          <xs:element minOccurs="0" name="MDOCLINENO" type="xs:string" />
+          <xs:element minOccurs="0" name="MDOCLINESTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="MDOCNO" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYALLOCATED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYAVAILABLE" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYONHOLD" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="TOID" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="TOQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF1" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF2" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF3" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF4" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF5" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsResultInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="resultInfo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="returnCode" type="xs:string" />
+          <xs:element minOccurs="0" name="returnDesc" type="xs:string" />
+          <xs:element minOccurs="0" name="returnFlag" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsParamInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="customerid" type="xs:string" />
+          <xs:element minOccurs="0" name="messageid" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="param" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="stdno" type="xs:string" />
+          <xs:element minOccurs="0" name="warehouseid" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putMoveDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putUserData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="userInfo" type="tns:wmsUserInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsUserInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsUserHeader" nillable="true" type="tns:wmsUserHeader" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsUserHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTIVE_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="NAME" type="xs:string" />
+          <xs:element minOccurs="0" name="PASSWORD" type="xs:string" />
+          <xs:element minOccurs="0" name="ROLEID" type="xs:string" />
+          <xs:element minOccurs="0" name="ROLENAME" type="xs:string" />
+          <xs:element minOccurs="0" name="USERID" type="xs:string" />
+          <xs:element minOccurs="0" name="USER_TITLE" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putUserDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSOData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSODataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsSOInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSOInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsSOHeaders" nillable="true" type="tns:wmsSOHeader" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSOHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BILLINGID" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLINGNAME" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="b_CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="b_CONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="b_COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="b_EMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="b_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="b_PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="b_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="b_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERCITY" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERCONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERCOUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERFAX" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERID" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERNAME" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERPROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERTEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERTEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="CONSIGNEEID" type="xs:string" />
+          <xs:element minOccurs="0" name="CONSIGNEENAME" type="xs:string" />
+          <xs:element minOccurs="0" name="CONSIGNEENAME_E" type="xs:string" />
+          <xs:element minOccurs="0" name="CREATESOURCE" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="c_ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="c_ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="c_ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="c_ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="c_CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="c_CONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="c_COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="c_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="c_MAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="c_PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="c_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="c_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="c_ZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="DELIVERYTERMS" type="xs:string" />
+          <xs:element minOccurs="0" name="DELIVERYTERMSDESCR" type="xs:string" />
+          <xs:element minOccurs="0" name="DOOR" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="detailsItem" nillable="true" type="tns:wmsSODetails" />
+          <xs:element minOccurs="0" name="EDISENDFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME2" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME3" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME4" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME5" type="xs:string" />
+          <xs:element minOccurs="0" name="ERPCANCELFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="EXPECTEDSHIPMENTTIME1" type="xs:string" />
+          <xs:element minOccurs="0" name="EXPECTEDSHIPMENTTIME2" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_06" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_07" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_08" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_09" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_10" type="xs:string" />
+          <xs:element minOccurs="0" name="ISSUEPARTYID" type="xs:string" />
+          <xs:element minOccurs="0" name="ISSUEPARTYNAME" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="i_CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="i_CONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="i_COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="i_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="i_MAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="i_PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="i_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="i_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="LASTSHIPMENTTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="MODIFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDERNO" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDERTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDERTYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDER_PRINT_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="PAYMENTTERMS" type="xs:string" />
+          <xs:element minOccurs="0" name="PAYMENTTERMSDESCR" type="xs:string" />
+          <xs:element minOccurs="0" name="PICKING_PRINT_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="PLACEOFDELIVERY" type="xs:string" />
+          <xs:element minOccurs="0" name="PLACEOFDISCHARGE" type="xs:string" />
+          <xs:element minOccurs="0" name="PRIORITY" type="xs:string" />
+          <xs:element minOccurs="0" name="RELEASESTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="REQUIREDDELIVERYTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="REQUIREDELIVERYNO" type="xs:string" />
+          <xs:element minOccurs="0" name="RFGETTASK" type="xs:string" />
+          <xs:element minOccurs="0" name="ROUTE" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREFERENCE1" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREFERENCE2" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREFERENCE3" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREFERENCE4" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREFERENCE5" type="xs:string" />
+          <xs:element minOccurs="0" name="SOSTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="STOP" type="xs:string" />
+          <xs:element minOccurs="0" name="TRANSPORTATION" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE4" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE5" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE6" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSECODE" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSEID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSODetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ALLOCATIONRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATIVESKU" type="xs:string" />
+          <xs:element minOccurs="0" name="CUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_06" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_07" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_08" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_09" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_10" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_11" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_12" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_13" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_14" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_15" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_16" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_17" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_18" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_19" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_20" type="xs:string" />
+          <xs:element minOccurs="0" name="ERPCANCELFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="GROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="KITREFERENCENO" type="xs:string" />
+          <xs:element minOccurs="0" name="KITSKU" type="xs:string" />
+          <xs:element minOccurs="0" name="LINESTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="LOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT01" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT02" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT03" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT04" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT05" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT06" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT07" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT08" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT09" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT10" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT11" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT12" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTNUM" type="xs:string" />
+          <xs:element minOccurs="0" name="NETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDERLINENO" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDERLINEREFERENCENO" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDERNO" type="xs:string" />
+          <xs:element minOccurs="0" name="PACKID" type="xs:string" />
+          <xs:element minOccurs="0" name="PICKZONE" type="xs:string" />
+          <xs:element minOccurs="0" name="PRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYALLOCATED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYALLOCATED_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYORDERED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYORDERED_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYPICKED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYPICKED_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYSHIPPED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYSHIPPED_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYSOFTALLOCATED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYSOFTALLOCATED_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="ROTATIONID" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="SOFTALLOCATIONRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="TRACEID" type="xs:string" />
+          <xs:element minOccurs="0" name="UOM" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE4" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE5" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE6" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putSKUData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="skuInfo" type="tns:wmsSkuInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSkuInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsSkuHeaders" nillable="true" type="tns:wmsSkuHeader" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSkuHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTIVE_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="ALLOCATIONRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATE_SKU1" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATE_SKU2" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATE_SKU3" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATE_SKU4" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATE_SKU5" type="xs:string" />
+          <xs:element minOccurs="0" name="APPROVALNO" type="xs:string" />
+          <xs:element minOccurs="0" name="CARTONGROUP" type="xs:string" />
+          <xs:element minOccurs="0" name="COPYPACKIDTOLOTATT12" type="xs:string" />
+          <xs:element minOccurs="0" name="CUBE" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="CYCLECLASS" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTHOLD" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTRECEIVINGUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTSHIPMENTUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_E" type="xs:string" />
+          <xs:element minOccurs="0" name="FIRSTINBOUNDDATE" type="xs:string" />
+          <xs:element minOccurs="0" name="FIRSTOP" type="xs:string" />
+          <xs:element minOccurs="0" name="FREIGHTCLASS" type="xs:string" />
+          <xs:element minOccurs="0" name="GROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="HAZARD_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="HSCODE" type="xs:string" />
+          <xs:element minOccurs="0" name="INBOUNDLIFEDAYS" type="xs:string" />
+          <xs:element minOccurs="0" name="INVCHGWITHSHIPMENT" type="xs:string" />
+          <xs:element minOccurs="0" name="KITFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="LASTCYCLECOUNT" type="xs:string" />
+          <xs:element minOccurs="0" name="LASTMAINTENANCEDATE" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTID" type="xs:string" />
+          <xs:element minOccurs="0" name="MEDICALTYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="MEDICINESPECICALCONTROL" type="xs:string" />
+          <xs:element minOccurs="0" name="NETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="OUTBOUNDLIFEDAYS" type="xs:string" />
+          <xs:element minOccurs="0" name="OVERRCVPERCENTAGE" type="xs:string" />
+          <xs:element minOccurs="0" name="PACKID" type="xs:string" />
+          <xs:element minOccurs="0" name="PRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="PUTAWAYLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="PUTAWAYRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="PUTAWAYZONE" type="xs:string" />
+          <xs:element minOccurs="0" name="QCRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="QCTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYMAX" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYMIN" type="xs:string" />
+          <xs:element minOccurs="0" name="REORDERQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="REPLENISHRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="REPORTUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVECODE" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD01" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD02" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD03" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD04" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD05" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD06" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD07" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD08" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD09" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD10" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD11" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD12" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD13" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD14" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD15" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD16" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD17" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVEDFIELD18" type="xs:string" />
+          <xs:element minOccurs="0" name="ROTATIONID" type="xs:string" />
+          <xs:element minOccurs="0" name="SHELFLIFE" type="xs:string" />
+          <xs:element minOccurs="0" name="SHELFLIFEFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="SHELFLIFETYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="SKUHIGH" type="xs:string" />
+          <xs:element minOccurs="0" name="SKULENGTH" type="xs:string" />
+          <xs:element minOccurs="0" name="SKUWIDTH" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP1" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP2" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP3" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP4" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP5" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP6" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP7" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP8" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU_GROUP9" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATIVE_PUTAWAYZONE1" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATIVE_PUTAWAYZONE2" type="xs:string" />
+          <xs:element minOccurs="0" name="SN_ASN_QTY" type="xs:string" />
+          <xs:element minOccurs="0" name="SN_SO_QTY" type="xs:string" />
+          <xs:element minOccurs="0" name="SOFTALLOCATIONRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="SPECIALMAINTENANCE" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="skuAccessorys" nillable="true" type="tns:wmsSkuAccessory" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="skuForwardingLOCs" nillable="true" type="tns:wmsSkuForwardingLOC" />
+          <xs:element minOccurs="0" name="TARE" type="xs:string" />
+          <xs:element minOccurs="0" name="TARIFFID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSkuAccessory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACCESSORY" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_E" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="QTY" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsSkuForwardingLOC">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="BULKLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="BYKEYLOTATT" type="xs:string" />
+          <xs:element minOccurs="0" name="CASEPICKLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="DYNAMICPICKINGCOUNT" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="FWDLOC" type="xs:string" />
+          <xs:element minOccurs="0" name="LOCATIONREPLENISHMENTGROUP" type="xs:string" />
+          <xs:element minOccurs="0" name="LOCATION_USAGE" type="xs:string" />
+          <xs:element minOccurs="0" name="LOWERLIMIT" type="xs:string" />
+          <xs:element minOccurs="0" name="MINIMUMREPLENISHMENTUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="MINIMUMREPLENISHQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="REPLENISHTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="REPLENISHWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="SOURCEONCE" type="xs:string" />
+          <xs:element minOccurs="0" name="UPLIMIT" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSEID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putSKUDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putADJData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="adjInfo" type="tns:wmsADJInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsADJInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsADJHeaders" nillable="true" type="tns:wmsADJHeader" />
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsADJHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADJCREATIONTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ADJNO" type="xs:string" />
+          <xs:element minOccurs="0" name="ADJTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="CYCLECOUNTNO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="detailsItem" nillable="true" type="tns:wmsADJDetails" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="REASON" type="xs:string" />
+          <xs:element minOccurs="0" name="REASONCODE" type="xs:string" />
+          <xs:element minOccurs="0" name="STATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE4" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE5" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSEID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsADJDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADJLINENO" type="xs:string" />
+          <xs:element minOccurs="0" name="ADJNO" type="xs:string" />
+          <xs:element minOccurs="0" name="CUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="GROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="LINESTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="LOCATIONID" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTNUM" type="xs:string" />
+          <xs:element minOccurs="0" name="NETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="PRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="QTY" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYALLOCATED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYAVAILABLE" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYONHOLD" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="TOCUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="TOGROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="TONETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="TOPRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="TOQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="TRACEID" type="xs:string" />
+          <xs:element minOccurs="0" name="UOM" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putADJDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getASNData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getASNDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsASNInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsASNInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsASNHeaders" nillable="true" type="tns:wmsASNHeader" />
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsASNHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ASNCREATIONTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNNO" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREFERENCE1" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREFERENCE2" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREFERENCE3" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREFERENCE4" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREFERENCE5" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNSTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNTYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="ASN_PRINT_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLINGCLASS_GROUP" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLINGID" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLINGNAME" type="xs:string" />
+          <xs:element minOccurs="0" name="BYTRACE_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="b_CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="b_CONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="b_COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="b_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="b_MAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="b_PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="b_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="b_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="b_ZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERCITY" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERCONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERCOUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERFAX" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERID" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERNAME" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERPROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERTEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERTEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIERZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="COUNTRYOFDESTINATION" type="xs:string" />
+          <xs:element minOccurs="0" name="COUNTRYOFORIGIN" type="xs:string" />
+          <xs:element minOccurs="0" name="CREATESOURCE" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="c_COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="DELIVERYTERMS" type="xs:string" />
+          <xs:element minOccurs="0" name="DELIVERYTERMSDESCR" type="xs:string" />
+          <xs:element minOccurs="0" name="DELIVERYVEHICLENO" type="xs:string" />
+          <xs:element minOccurs="0" name="DELIVERYVEHICLETYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="DOOR" type="xs:string" />
+          <xs:element minOccurs="0" name="DRIVER" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="detailsItem" nillable="true" type="tns:wmsASNDetails" />
+          <xs:element minOccurs="0" name="EDISENDFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME2" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME3" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME4" type="xs:string" />
+          <xs:element minOccurs="0" name="EDISENDTIME5" type="xs:string" />
+          <xs:element minOccurs="0" name="EXPECTEDARRIVETIME1" type="xs:string" />
+          <xs:element minOccurs="0" name="EXPECTEDARRIVETIME2" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_06" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_07" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_08" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_09" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_10" type="xs:string" />
+          <xs:element minOccurs="0" name="ISSUEPARTYID" type="xs:string" />
+          <xs:element minOccurs="0" name="ISSUEPARTYNAME" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="i_CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="i_CONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="i_COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="i_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="i_MAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="i_PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="i_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="i_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="i_ZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="LASTRECEIVINGTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="MODIFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="PACKMATERIALCONSUME" type="xs:string" />
+          <xs:element minOccurs="0" name="PAYMENTTERMS" type="xs:string" />
+          <xs:element minOccurs="0" name="PAYMENTTERMSDESCR" type="xs:string" />
+          <xs:element minOccurs="0" name="PLACEOFDELIVERY" type="xs:string" />
+          <xs:element minOccurs="0" name="PLACEOFDISCHARGE" type="xs:string" />
+          <xs:element minOccurs="0" name="PLACEOFLOADING" type="xs:string" />
+          <xs:element minOccurs="0" name="PONO" type="xs:string" />
+          <xs:element minOccurs="0" name="PRIORITY" type="xs:string" />
+          <xs:element minOccurs="0" name="QCSTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="RECEIVEID" type="xs:string" />
+          <xs:element minOccurs="0" name="RELEASESTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVE_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="RETURN_PRINT_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIERID" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_CONTACT" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_MAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_NAME" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="SUPPLIER_ZIP" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE4" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE5" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE6" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSECODE" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSEID" type="xs:string" />
+          <xs:element minOccurs="0" name="ZONEGROUP" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsASNDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ALTERNATIVEDESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="ALTERNATIVESKU" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNLINENO" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNNO" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTAINERID" type="xs:string" />
+          <xs:element minOccurs="0" name="CREATESOURCE" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="DAMAGEDQTY_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_06" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_07" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_08" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_09" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_10" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_11" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_12" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_13" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_14" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_15" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_16" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_17" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_18" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_19" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_20" type="xs:string" />
+          <xs:element minOccurs="0" name="EXPECTEDQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="EXPECTEDQTY_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="HOLDREJECTCODE" type="xs:string" />
+          <xs:element minOccurs="0" name="HOLDREJECTREASON" type="xs:string" />
+          <xs:element minOccurs="0" name="LINESTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT01" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT02" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT03" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT04" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT05" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT06" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT07" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT08" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT09" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT10" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT11" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT12" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="PACKID" type="xs:string" />
+          <xs:element minOccurs="0" name="PALLETIZEMETHOD" type="xs:string" />
+          <xs:element minOccurs="0" name="PALLETIZEQTY_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="PLANTOLOC" type="xs:string" />
+          <xs:element minOccurs="0" name="POLINENO" type="xs:string" />
+          <xs:element minOccurs="0" name="PONO" type="xs:string" />
+          <xs:element minOccurs="0" name="PRINTLABEL" type="xs:string" />
+          <xs:element minOccurs="0" name="PRODUCTSTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="PRODUCTSTATUS_DESCR" type="xs:string" />
+          <xs:element minOccurs="0" name="QCSTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="RECEIVEDQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="RECEIVEDQTY_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="RECEIVEDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="RECEIVINGLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="REJECTEDQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="REJECTEDQTY_EACH" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVE_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="SKUDESCRC" type="xs:string" />
+          <xs:element minOccurs="0" name="SKUDESCRE" type="xs:string" />
+          <xs:element minOccurs="0" name="TOTALCUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="TOTALGROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="TOTALNETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="TOTALPRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="UOM" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE4" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE5" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE6" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putKitSKUData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="kitskuInfo" type="tns:wmsKitSkuInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsKitSkuInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsKitSkuHeaders" nillable="true" type="tns:wmsKitSkuHeader" />
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsKitSkuHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_E" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="detailsItem" nillable="true" type="tns:wmsKitSkuDetails" />
+          <xs:element minOccurs="0" name="EDITTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="ENABLE_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="KITSKU" type="xs:string" />
+          <xs:element minOccurs="0" name="KITTING_RATE" type="xs:string" />
+          <xs:element minOccurs="0" name="WORKINGPROCEDUREDESCR" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsKitSkuDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_E" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="KITSKU" type="xs:string" />
+          <xs:element minOccurs="0" name="QTY" type="xs:string" />
+          <xs:element minOccurs="0" name="SEQUENCE" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putKitSKUDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putASNData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="asnInfo" type="tns:wmsASNInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putASNDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getMoveData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getMoveDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsMoveInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTransfData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTransfDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsTransfInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsTransfInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsTransfHeaders" nillable="true" type="tns:wmsTransfHeader" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsTransfHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="detailsItem" nillable="true" type="tns:wmsTransfDetails" />
+          <xs:element minOccurs="0" name="h_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="REASON" type="xs:string" />
+          <xs:element minOccurs="0" name="REASONCODE" type="xs:string" />
+          <xs:element minOccurs="0" name="STATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="TDOCCREATIONTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="TDOCNO" type="xs:string" />
+          <xs:element minOccurs="0" name="TDOCTYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="TRANSFERTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE1" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE2" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE3" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE4" type="xs:string" />
+          <xs:element minOccurs="0" name="USERDEFINE5" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSEID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsTransfDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="d_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="FMCUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="FMCUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="FMGROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="FMID" type="xs:string" />
+          <xs:element minOccurs="0" name="FMLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="FMLOTNUM" type="xs:string" />
+          <xs:element minOccurs="0" name="FMNETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="FMPRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="FMQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="FMQTYALLOCATED" type="xs:string" />
+          <xs:element minOccurs="0" name="FMQTYAVAILABLE" type="xs:string" />
+          <xs:element minOccurs="0" name="FMQTYONHOLD" type="xs:string" />
+          <xs:element minOccurs="0" name="FMSKU" type="xs:string" />
+          <xs:element minOccurs="0" name="TDOCLINENO" type="xs:string" />
+          <xs:element minOccurs="0" name="TDOCLINESTATUS" type="xs:string" />
+          <xs:element minOccurs="0" name="TDOCNO" type="xs:string" />
+          <xs:element minOccurs="0" name="TOCUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="TOCUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="TOGROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="TOID" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOCATION" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT01" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT02" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT03" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT04" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT05" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT06" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT07" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT08" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT09" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT10" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT11" type="xs:string" />
+          <xs:element minOccurs="0" name="TOLOTATT12" type="xs:string" />
+          <xs:element minOccurs="0" name="TONETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="TOPRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="TOQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="TOSKU" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF1" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF2" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF3" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF4" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF5" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getADJData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getADJDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsADJInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putCustData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="custInfo" type="tns:wmsCustomerInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsCustomerInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsCustHeader" nillable="true" type="tns:wmsCustHeader" />
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsCustHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTIVE_FLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="ALLINAREA" type="xs:string" />
+          <xs:element minOccurs="0" name="ALLINFLAG" type="xs:string" />
+          <xs:element minOccurs="0" name="ALLINRATE" type="xs:string" />
+          <xs:element minOccurs="0" name="ALLINRATETYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREF1TOLOT4" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREF2TOLOT5" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREF3TOLOT6" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREF4TOLOT7" type="xs:string" />
+          <xs:element minOccurs="0" name="ASNREF5TOLOT8" type="xs:string" />
+          <xs:element minOccurs="0" name="ASN_SND_EML" type="xs:string" />
+          <xs:element minOccurs="0" name="BANKACCOUNT" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLCLASS" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLCLASSINV" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLINGDATE" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLTO" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLWITHASNTYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="BILLWITHSOTYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="CALCULATECODE" type="xs:string" />
+          <xs:element minOccurs="0" name="CARRIER" type="xs:string" />
+          <xs:element minOccurs="0" name="CARTONGROUP" type="xs:string" />
+          <xs:element minOccurs="0" name="CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_EMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_TITLE" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_EMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_TITLE" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT3" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT3_EMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT3_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT3_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT3_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT3_TITLE" type="xs:string" />
+          <xs:element minOccurs="0" name="COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="CUBICUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="CURRENCY" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMER_TYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTALLOCATIONRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTPACKID" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTPUTAWAYRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTRECEIVINGUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTREPLENISHRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTREPORTUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTSHIPMENTUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTSKULOTID" type="xs:string" />
+          <xs:element minOccurs="0" name="DEFAULTSOFTALLOCATIONRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_C" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_E" type="xs:string" />
+          <xs:element minOccurs="0" name="DOC_PREFIX" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="d_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="detailsItem" nillable="true" type="tns:wmsCustAddress" />
+          <xs:element minOccurs="0" name="EASYCODE" type="xs:string" />
+          <xs:element minOccurs="0" name="EDI_CODE" type="xs:string" />
+          <xs:element minOccurs="0" name="FOLLOWUP" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_06" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_07" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_08" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_09" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_10" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_11" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_12" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_13" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_14" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_15" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_16" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_17" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_18" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_19" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_20" type="xs:string" />
+          <xs:element minOccurs="0" name="IDX_LOAD_CONSIGNEE" type="xs:string" />
+          <xs:element minOccurs="0" name="IDX_LOAD_SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="IDX_LOAD_SUPPLIER" type="xs:string" />
+          <xs:element minOccurs="0" name="INBOUND_LABEL" type="xs:string" />
+          <xs:element minOccurs="0" name="INVCHGWITHSHIPMENT" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="ORDERBYSQL" type="xs:string" />
+          <xs:element minOccurs="0" name="OUTBOUND_LABEL" type="xs:string" />
+          <xs:element minOccurs="0" name="OVERRCVPERCENTAGE" type="xs:string" />
+          <xs:element minOccurs="0" name="OVERRECEIVING" type="xs:string" />
+          <xs:element minOccurs="0" name="PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="QCRULE" type="xs:string" />
+          <xs:element minOccurs="0" name="RESERVECODE" type="xs:string" />
+          <xs:element minOccurs="0" name="ROTATIONID" type="xs:string" />
+          <xs:element minOccurs="0" name="ROUTECODE" type="xs:string" />
+          <xs:element minOccurs="0" name="r_OWNER" type="xs:string" />
+          <xs:element minOccurs="0" name="SN_ASN_CLS" type="xs:string" />
+          <xs:element minOccurs="0" name="SN_ASN_SO" type="xs:string" />
+          <xs:element minOccurs="0" name="SN_SO_CLS" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREF1TOLOT4" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREF2TOLOT5" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREF3TOLOT6" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREF4TOLOT7" type="xs:string" />
+          <xs:element minOccurs="0" name="SOREF5TOLOT8" type="xs:string" />
+          <xs:element minOccurs="0" name="SO_SND_EML" type="xs:string" />
+          <xs:element minOccurs="0" name="STOP" type="xs:string" />
+          <xs:element minOccurs="0" name="TARIFFID" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF1" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF2" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF3" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF4" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF5" type="xs:string" />
+          <xs:element minOccurs="0" name="VAT" type="xs:string" />
+          <xs:element minOccurs="0" name="WEIGHTUOM" type="xs:string" />
+          <xs:element minOccurs="0" name="ZIP" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsCustAddress">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADDRESS1" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS2" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS3" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS4" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDRESS_LINENO" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="CITY" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_EMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT1_TITLE" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_EMAIL" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_FAX" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_TEL1" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_TEL2" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTACT2_TITLE" type="xs:string" />
+          <xs:element minOccurs="0" name="COUNTRY" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMER_TYPE" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="NOTES" type="xs:string" />
+          <xs:element minOccurs="0" name="PROVINCE" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF1" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF2" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF3" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF4" type="xs:string" />
+          <xs:element minOccurs="0" name="UDF5" type="xs:string" />
+          <xs:element minOccurs="0" name="ZIP" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putCustDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putSOData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="soInfo" type="tns:wmsSOInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putSODataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="processSP">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="processSPResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putTransfData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="transfInfo" type="tns:wmsTransfInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="putTransfDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getINVSkuData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="wmsSecurityInfo" type="tns:wmsSecurityInfo" />
+          <xs:element minOccurs="0" name="wmsParam" type="tns:wmsParamInfo" />
+          <xs:element minOccurs="0" name="storeid" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsSkuList" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getINVSkuDataResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:wmsINVInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsINVInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="wmsINVHeaders" nillable="true" type="tns:wmsINVHeader" />
+          <xs:element minOccurs="0" name="wmsResultInfo" type="tns:wmsResultInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wmsINVHeader">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADDTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="ADDWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="ASTOCKQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="CUBIC" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMERID" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCR_E" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITTIME" type="xs:string" />
+          <xs:element minOccurs="0" name="EDITWHO" type="xs:string" />
+          <xs:element minOccurs="0" name="GROSSWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_01" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_02" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_03" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_04" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_05" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_06" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_07" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_08" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_09" type="xs:string" />
+          <xs:element minOccurs="0" name="h_EDI_10" type="xs:string" />
+          <xs:element minOccurs="0" name="LOCATIONID" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT01" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT02" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT03" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT04" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT05" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT06" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT07" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT08" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT09" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT10" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT11" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTATT12" type="xs:string" />
+          <xs:element minOccurs="0" name="LOTNUM" type="xs:string" />
+          <xs:element minOccurs="0" name="NETWEIGHT" type="xs:string" />
+          <xs:element minOccurs="0" name="PRICE" type="xs:string" />
+          <xs:element minOccurs="0" name="QTY" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYALLOCATED" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYMVIN" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYMVOUT" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYOK" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYONHOLD" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYRPIN" type="xs:string" />
+          <xs:element minOccurs="0" name="QTYRPOUT" type="xs:string" />
+          <xs:element minOccurs="0" name="SKU" type="xs:string" />
+          <xs:element minOccurs="0" name="SQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="STOCKQTY" type="xs:string" />
+          <xs:element minOccurs="0" name="TRACEID" type="xs:string" />
+          <xs:element minOccurs="0" name="WAREHOUSEID" type="xs:string" />
+          <xs:element minOccurs="0" name="ZONEGROUP" type="xs:string" />
+          <xs:element minOccurs="0" name="ZQTY" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getADJDataResponse">
+    <wsdl:part name="parameters" element="tns:getADJDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getINVSkuData">
+    <wsdl:part name="parameters" element="tns:getINVSkuData" />
+  </wsdl:message>
+  <wsdl:message name="putSODataResponse">
+    <wsdl:part name="parameters" element="tns:putSODataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSOData">
+    <wsdl:part name="parameters" element="tns:getSOData" />
+  </wsdl:message>
+  <wsdl:message name="putUserData">
+    <wsdl:part name="parameters" element="tns:putUserData" />
+  </wsdl:message>
+  <wsdl:message name="putCustDataResponse">
+    <wsdl:part name="parameters" element="tns:putCustDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="putASNDataResponse">
+    <wsdl:part name="parameters" element="tns:putASNDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="putCustData">
+    <wsdl:part name="parameters" element="tns:putCustData" />
+  </wsdl:message>
+  <wsdl:message name="putASNData">
+    <wsdl:part name="parameters" element="tns:putASNData" />
+  </wsdl:message>
+  <wsdl:message name="putADJDataResponse">
+    <wsdl:part name="parameters" element="tns:putADJDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="putTransfData">
+    <wsdl:part name="parameters" element="tns:putTransfData" />
+  </wsdl:message>
+  <wsdl:message name="putADJData">
+    <wsdl:part name="parameters" element="tns:putADJData" />
+  </wsdl:message>
+  <wsdl:message name="getINVSkuDataResponse">
+    <wsdl:part name="parameters" element="tns:getINVSkuDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="processSPResponse">
+    <wsdl:part name="parameters" element="tns:processSPResponse" />
+  </wsdl:message>
+  <wsdl:message name="putTransfDataResponse">
+    <wsdl:part name="parameters" element="tns:putTransfDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTransfDataResponse">
+    <wsdl:part name="parameters" element="tns:getTransfDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="putSKUDataResponse">
+    <wsdl:part name="parameters" element="tns:putSKUDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="putUserDataResponse">
+    <wsdl:part name="parameters" element="tns:putUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSODataResponse">
+    <wsdl:part name="parameters" element="tns:getSODataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTransfData">
+    <wsdl:part name="parameters" element="tns:getTransfData" />
+  </wsdl:message>
+  <wsdl:message name="processSP">
+    <wsdl:part name="parameters" element="tns:processSP" />
+  </wsdl:message>
+  <wsdl:message name="putSOData">
+    <wsdl:part name="parameters" element="tns:putSOData" />
+  </wsdl:message>
+  <wsdl:message name="getADJData">
+    <wsdl:part name="parameters" element="tns:getADJData" />
+  </wsdl:message>
+  <wsdl:message name="putSKUData">
+    <wsdl:part name="parameters" element="tns:putSKUData" />
+  </wsdl:message>
+  <wsdl:message name="getASNData">
+    <wsdl:part name="parameters" element="tns:getASNData" />
+  </wsdl:message>
+  <wsdl:message name="getMoveDataResponse">
+    <wsdl:part name="parameters" element="tns:getMoveDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="putMoveDataResponse">
+    <wsdl:part name="parameters" element="tns:putMoveDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMoveData">
+    <wsdl:part name="parameters" element="tns:getMoveData" />
+  </wsdl:message>
+  <wsdl:message name="putMoveData">
+    <wsdl:part name="parameters" element="tns:putMoveData" />
+  </wsdl:message>
+  <wsdl:message name="putKitSKUDataResponse">
+    <wsdl:part name="parameters" element="tns:putKitSKUDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="putKitSKUData">
+    <wsdl:part name="parameters" element="tns:putKitSKUData" />
+  </wsdl:message>
+  <wsdl:message name="getASNDataResponse">
+    <wsdl:part name="parameters" element="tns:getASNDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IERPWSService2">
+    <wsdl:operation name="putMoveData">
+      <wsdl:input name="putMoveData" message="tns:putMoveData" />
+      <wsdl:output name="putMoveDataResponse" message="tns:putMoveDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putUserData">
+      <wsdl:input name="putUserData" message="tns:putUserData" />
+      <wsdl:output name="putUserDataResponse" message="tns:putUserDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getSOData">
+      <wsdl:input name="getSOData" message="tns:getSOData" />
+      <wsdl:output name="getSODataResponse" message="tns:getSODataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putSKUData">
+      <wsdl:input name="putSKUData" message="tns:putSKUData" />
+      <wsdl:output name="putSKUDataResponse" message="tns:putSKUDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putADJData">
+      <wsdl:input name="putADJData" message="tns:putADJData" />
+      <wsdl:output name="putADJDataResponse" message="tns:putADJDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getASNData">
+      <wsdl:input name="getASNData" message="tns:getASNData" />
+      <wsdl:output name="getASNDataResponse" message="tns:getASNDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putKitSKUData">
+      <wsdl:input name="putKitSKUData" message="tns:putKitSKUData" />
+      <wsdl:output name="putKitSKUDataResponse" message="tns:putKitSKUDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putASNData">
+      <wsdl:input name="putASNData" message="tns:putASNData" />
+      <wsdl:output name="putASNDataResponse" message="tns:putASNDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMoveData">
+      <wsdl:input name="getMoveData" message="tns:getMoveData" />
+      <wsdl:output name="getMoveDataResponse" message="tns:getMoveDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTransfData">
+      <wsdl:input name="getTransfData" message="tns:getTransfData" />
+      <wsdl:output name="getTransfDataResponse" message="tns:getTransfDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getADJData">
+      <wsdl:input name="getADJData" message="tns:getADJData" />
+      <wsdl:output name="getADJDataResponse" message="tns:getADJDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putCustData">
+      <wsdl:input name="putCustData" message="tns:putCustData" />
+      <wsdl:output name="putCustDataResponse" message="tns:putCustDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putSOData">
+      <wsdl:input name="putSOData" message="tns:putSOData" />
+      <wsdl:output name="putSODataResponse" message="tns:putSODataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="processSP">
+      <wsdl:input name="processSP" message="tns:processSP" />
+      <wsdl:output name="processSPResponse" message="tns:processSPResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="putTransfData">
+      <wsdl:input name="putTransfData" message="tns:putTransfData" />
+      <wsdl:output name="putTransfDataResponse" message="tns:putTransfDataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getINVSkuData">
+      <wsdl:input name="getINVSkuData" message="tns:getINVSkuData" />
+      <wsdl:output name="getINVSkuDataResponse" message="tns:getINVSkuDataResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CERPWSService2ServiceSoapBinding" type="tns:IERPWSService2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="putMoveData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putMoveData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putMoveDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putUserData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putUserData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putUserDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSOData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getSOData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSODataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putADJData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putADJData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putADJDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putSKUData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putSKUData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putSKUDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getASNData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getASNData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getASNDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putASNData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putASNData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putASNDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putKitSKUData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putKitSKUData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putKitSKUDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMoveData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getMoveData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getMoveDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getADJData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getADJData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getADJDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTransfData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getTransfData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTransfDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putCustData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putCustData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putCustDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putSOData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putSOData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putSODataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processSP">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="processSP">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="processSPResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="putTransfData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="putTransfData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="putTransfDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getINVSkuData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getINVSkuData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getINVSkuDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CERPWSService2Service">
+    <wsdl:port name="CERPWSService2Port" binding="tns:CERPWSService2ServiceSoapBinding">
+      <soap:address location="http://172.16.205.68:7965/datahubWeb/WMSSOAP" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

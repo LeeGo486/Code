@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150426132851</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=50000", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-26 13:41:47:5310 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150426132851</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=50000", "", "", "", "120400010000")</instr>
+    <recodes>F5超限额请电话索权                                                                                    </recodes>
+    <info>刷卡失败，错误信息为：超限额请电话索权                                                                                    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-26 13:42:36:4408 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150426132851</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=40000", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-26 13:42:45:9653 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150426132851</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=40000", "", "", "", "120400010000")</instr>
+    <recodes>F5超限额请电话索权                                                                                    </recodes>
+    <info>刷卡失败，错误信息为：超限额请电话索权                                                                                    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-26 13:43:02:7363 </crdate>
+  </log>
+</logs>

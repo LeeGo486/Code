@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>店铺反馈</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../JS/JorealCMT/Feedback.JS?Date=20140201" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'center'">
+       <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north'" style="height:100px;">
+                <form id="fSearch">
+                    <table>
+                        <tr>
+                            <td>预约时间：<input id="txtStartTime" name="txtStartTime" style="width:80px;"/></td>
+                            <td>至：<input id="txtEndTime" name="txtEndTime" style="width:80px;"/></td>
+                        </tr>
+                        <tr>
+                            <td>任务主题：<input id="txtPlanName" name="txtPlanName" style="width:80px;"/></td>
+                        </tr>
+                        <tr>
+                            <td>客户经理：<input id="txtCustomerManager" name="txtCustomerManager" style="width:80px;"/></td>
+                            <td><a id="btnSearch" onclick="btnSearch()">查询</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div data-options="region:'center',title:'待预约列表'">
+                <table id="contact_list"></table>
+            </div>
+       </div>
+    </div>
+
+    <div data-options="region:'east',split:true" title="客户信息" style="width:451px;">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north'" style="height:260px;">
+                <table border="0">
+                    <tr>
+                        <td colspan="2">客户姓名：&nbsp&nbsp<input id="Name" style="width:50px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">客户等级：&nbsp&nbsp<input id="Level" style="width:50px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">出生年月：&nbsp&nbsp<input id="Birthday" style="width:80px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">客户年龄：&nbsp&nbsp<input id="Age" style="width:30px;border:0px;background-color:transparent;" disabled="disabled"/></td>    
+                    </tr>
+                    <tr>
+                        <td colspan="2">手机号码：&nbsp&nbsp<input id="MobileNum" style="width:100px;border:0px;background-color:transparent;" disabled="disabled"/></td>                       
+                        <td colspan="2">发展日期：&nbsp&nbsp<input id="BuildDate" style="width:100px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">客户经理：&nbsp&nbsp<input id="CustomerManager" style="width:50px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">忠诚度特征：&nbsp&nbsp<input id="LoyaltyType" style="width:88px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                    <tr><td colspan="8"><hr /></td></tr>
+                    <tr>
+                        <td colspan="2">VIP卡号：&nbsp&nbsp&nbsp<input id="VIPCard" style="width:80px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">POS积分：&nbsp&nbsp<input id="Point" style="width:50px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">最近消费金额：&nbsp&nbsp<input id="RecentConsumptionAmount" style="width:100px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">最近消费日期：&nbsp&nbsp<input id="RecentConsumptionDate" style="width:80px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">今年消费金额：&nbsp&nbsp<input id="ThisYearConsumptionAmount" style="width:100px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">去年消费金额：&nbsp&nbsp<input id="LastYearConsumpitonAmount" style="width:100px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">12个月以内消费金额：&nbsp&nbsp<input id="TwelveMonthsConsumptionAmount" style="width:80px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">12个月内消费次数：&nbsp&nbsp<input id="TwelveMonthsConsumptionNum" style="width:80px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">总消费金额：&nbsp&nbsp<input id="TotalAmount" style="width:100px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                        <td colspan="2">总消费次数：&nbsp&nbsp<input id="TotalNum" style="width:100px;border:0px;background-color:transparent;" disabled="disabled"/></td>
+                    </tr>
+                </table>
+            </div>
+<!--            <div data-options="region:'center',title:'预约反馈'">
+                <form id="fFeedback">
+                    <table>
+                        <tr><td>预约结果：&nbsp&nbsp<input id="comFruit" name="comFruit" style="width:100px;"/></td></tr>
+                        <tr id="InvitationDate"><td>应邀日期：&nbsp&nbsp<input id="datInvitationDate" name="datInvitationDate" style="width:100px;"/></td></tr>
+                        <tr id="Reason"><td>拒绝原因：&nbsp&nbsp<input id="comReason" name="comReason" style="width:100px;" /></td></tr>
+                        <tr id="ReservationDateAgain"><td>再次预约时间：&nbsp&nbsp<input id="datReservationDateAgain" name="datReservationDateAgain" style="width:80px;" /></td></tr>
+                        <tr id="ValueInformation">
+                            <td>有价值信息：&nbsp&nbsp<input name="txtValueInformation" type="radio" value="是" checked  />是
+                                                      <input name="txtValueInformation" type="radio" value="否" />否
+                            </td>
+                        </tr>
+                        <tr id="Feedback"><td>维护反馈：&nbsp&nbsp<textarea rows="2" cols="20" name="txtFeedback"></textarea></td></tr>
+                        <tr id="button"><td><a id="btnSubmit" onclick="btnSubmit()">提交</a></td></tr>
+                    </table>
+                </form>
+            </div>
+            <div data-options="region:'east',title:'维护历史'" style="width:250px;">
+                <table id="history_list"></table>
+            </div>-->
+        </div>
+    </div>
+</body>
+</html>

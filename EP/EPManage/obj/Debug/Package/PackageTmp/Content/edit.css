@@ -1,0 +1,20 @@
+﻿.items li{
+    margin-right:5px;
+}
+
+.sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+.sortable li {
+    font-size: 1.4em;
+    height: 18px;
+    margin: 0 3px 3px;
+    padding: 0.4em 0.4em 0.4em 1.5em;
+}
+.sortable li span {
+    margin-left: -1.3em;
+    position: absolute;
+}

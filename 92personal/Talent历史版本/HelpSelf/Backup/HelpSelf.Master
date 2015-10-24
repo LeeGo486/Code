@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HelpSelf.master.cs" Inherits="HelpSelf.Web.HelpSelf" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="Style/Site.css" rel="stylesheet" type="text/css" />
+    <link href="ImagesMenu/common.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript">
+        function clickagain() {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "login.aspx/clickagain",
+                cache: false,
+                data: {},
+                async: true,
+                dataType: "json",
+                success: function () { }
+            });
+        }
+        window.setInterval("clickagain()", 60000);
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <table style="width:100%"  >
+    <tr >
+    <td  valign="top" >
+    <div style="margin-left:6px">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"> 
+    </asp:ContentPlaceHolder>
+    </div>
+    </td></tr>
+    <tr>
+    <td  valign="top" >
+    <!-- right 部分  -->
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
+    </asp:ContentPlaceHolder>
+    </td></tr>
+    </table>
+    </form>
+</body>
+</html>

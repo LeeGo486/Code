@@ -1,0 +1,290 @@
+﻿@{
+    ViewBag.Title = "我的支持";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <script type="text/javascript">
+        function doAction(type) {
+            if (type == 1) {
+                bootbox.alert("<textarea placeholder='请输入补充要求' class='form-control' />");
+            } else {
+                bootbox.alert("<textarea placeholder='请输入汇报内容' class='form-control' />");
+            }
+        }
+        function showCustomer(id) {
+            Msg.show("加载中...", 3);
+            $.post("/S3/Customer/CustomerConsume", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html('<div class="ht"><span onclick=\'$("#'+id+'").fadeOut(500);\'><i class="icon-remove icon-large"></i></span></div>'+htmldata);
+                $("#" + id).show();
+            });
+        }
+    </script>
+}
+<div class="ht">
+    <i class="icon-user-md"></i>&nbsp;&nbsp;我的支持
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail clearfix">
+    <span class="badge pull-right ls">已受理</span>
+    <h4><span>请求内容</span></h4>
+    <table width="100%">
+        <tr>
+            <td> 类型：<b>停车位</b></td><td align="right">需求时间：2014-07-16 12:50</td>
+        </tr>
+        <tr>
+            <td>请求人：<a href="tel:15988381281"><i class="icon-phone"></i> 张玲</a></td><td align="right">请求时间：2014-07-10 11:00</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span>客户信息</span></h4>
+    <div class="infoArea clearfix" style="border:1px solid #eee;border-radius:4px;">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo"><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:showCustomer('c1');">欧阳雪梅</a></span><br />
+            <span><i class="icon-time"></i> 2014-07-16 13:00 到店</span>
+        </div>
+        <div style="margin-top:10px;float:right;width:60px;text-align:center;"><a href="tel:15988381281"><i class="icon-phone icon-3x"></i></a></div>
+    </div>
+    <div id="c0" style="display:none;">
+    </div>
+    <br />
+    <h4><span>细节要求</span></h4>
+    07-16下午一点门口11号停车位
+    <div class="optarea">
+        <span class="btnarea" onclick="doAction(2);"><i class="icon-edit"></i> 汇报</span>
+    </div>
+</div>
+
+<div class="dataDetail clearfix" style="margin-top:12px;">
+    <span class="badge pull-right ls">已受理</span>
+    <h4><span>请求内容</span></h4>
+    <table width="100%">
+        <tr>
+            <td> 类型：<b>本地话服务</b></td><td align="right">需求时间：2014-07-16 13:00</td>
+        </tr>
+        <tr>
+            <td>请求人：<a href="tel:15988381281"><i class="icon-phone"></i> 张玲</a></td><td align="right">请求时间：2014-07-10 11:00</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span>客户信息</span></h4>
+    <div class="infoArea clearfix" style="border:1px solid #eee;border-radius:4px;">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo"><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:showCustomer('c1');">欧阳雪梅</a></span><br />
+            <span><i class="icon-time"></i> 2014-07-16 13:00 到店</span>
+        </div>
+        <div style="margin-top:10px;float:right;width:60px;text-align:center;"><a href="tel:15988381281"><i class="icon-phone icon-3x"></i></a></div>
+    </div>
+    <div id="c4" style="display:none;">
+    </div>
+    <br />
+    <h4><span>细节要求</span></h4>
+    客户是广东人，建议用粤语沟通
+    <div class="optarea">
+        <span class="btnarea" onclick="doAction(2);"><i class="icon-edit"></i> 汇报</span>
+    </div>
+</div>
+
+<div class="dataDetail clearfix" style="margin-top:12px;">
+    <span class="badge pull-right ls">已受理</span>
+    <h4><span>请求内容</span></h4>
+    <table width="100%">
+        <tr>
+            <td> 类型：<b>VIPRoom</b></td><td align="right">需求时间：2014-07-16 13:00</td>
+        </tr>
+        <tr>
+            <td>请求人：<a href="tel:15988381281"><i class="icon-phone"></i> 张玲</a></td><td align="right">请求时间：2014-07-10 11:00</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span>客户信息</span></h4>
+    <div class="infoArea clearfix" style="border:1px solid #eee;border-radius:4px;">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo"><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:showCustomer('c1');">欧阳雪梅</a></span><br />
+            <span><i class="icon-time"></i> 2014-07-16 13:00 到店</span>
+        </div>
+        <div style="margin-top:10px;float:right;width:60px;text-align:center;"><a href="tel:15988381281"><i class="icon-phone icon-3x"></i></a></div>
+    </div>
+    <div id="c1" style="display:none;"></div>
+    <br />
+    <h4><span>细节要求</span></h4>
+    在2014-07-16上午10点准备VIPRoom
+    <div class="optarea">
+        <span class="btnarea" onclick="doAction(2);"><i class="icon-edit"></i> 汇报</span>
+    </div>
+</div>
+
+<div class="dataDetail clearfix" style="margin-top:12px;">
+    <span class="badge pull-right hs">未受理</span>
+    <h4><span>请求内容</span></h4>
+    <table width="100%">
+        <tr>
+            <td> 类型：<b>饮品</b></td><td align="right">需求时间：2014-07-16 13:15</td>
+        </tr>
+        <tr>
+            <td>请求人：<a href="tel:15988381281"><i class="icon-phone"></i> 张玲</a></td><td align="right">请求时间：2014-07-10 11:00</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span>客户信息</span></h4>
+    <div class="infoArea clearfix" style="border:1px solid #eee;border-radius:4px;">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo"><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:showCustomer('c1');">欧阳雪梅</a></span><br />
+            <span><i class="icon-time"></i> 2014-07-16 13:00 到店</span>
+        </div>
+        <div style="margin-top:10px;float:right;width:60px;text-align:center;"><a href="tel:15988381281"><i class="icon-phone icon-3x"></i></a></div>
+    </div>
+    <div id="c2" style="display:none;"></div>
+    <br />
+    <h4><span>细节要求</span></h4>
+    该客户喜欢现磨咖啡，少糖。给客户的女儿准备2瓶旺仔牛奶。
+    <div class="optarea">
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="doAction(1);"><i class="icon-wrench"></i> 受理</span>
+        <span class="btnarea" onclick="doAction(2);"><i class="icon-edit"></i> 汇报</span>
+    </div>
+</div>
+
+
+<div class="dataDetail clearfix" style="margin-top:12px;">
+    <span class="badge pull-right hs">未受理</span>
+    <h4><span>请求内容</span></h4>
+    <table width="100%">
+        <tr>
+            <td> 类型：<b>商品准备</b></td><td align="right">需求时间：2014-07-16 13:20</td>
+        </tr>
+        <tr>
+            <td>请求人：<a href="tel:15988381281"><i class="icon-phone"></i> 张玲</a></td><td align="right">请求时间：2014-07-10 11:00</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span>客户信息</span></h4>
+    <div class="infoArea clearfix" style="border:1px solid #eee;border-radius:4px;">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo"><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:showCustomer('c1');">欧阳雪梅</a></span><br />
+            <span><i class="icon-time"></i> 2014-07-16 13:00 到店</span>
+        </div>
+        <div style="margin-top:10px;float:right;width:60px;text-align:center;"><a href="tel:15988381281"><i class="icon-phone icon-3x"></i></a></div>
+    </div>
+    <div id="c5" style="display:none;"></div>
+    <br />
+    <h4><span>货品方案（A）</span></h4>
+    <table class="table table-striped">
+        <tr><th>图片</th><th>款号</th><th>颜色</th><th>尺码</th></tr>
+        <tr>
+            <td>
+                <img src="~/Areas/S3/Resources/images/E13EB5027aH.jpg" width="50px" /></td>
+            <td>E13EB5027aH</td>
+            <td>灰</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Areas/S3/Resources/images/E13EC6122aY.jpg" width="50px" /></td>
+            <td>E13EC6122aY</td>
+            <td>黄</td>
+            <td>4</td>
+        </tr>
+    </table>
+    <h4><span>货品方案（B）</span></h4>
+    <table class="table table-striped">
+        <tr>
+            <td>
+                <img src="~/Areas/S3/Resources/images/N14PC9180aI.jpg" width="50px" /></td>
+            <td>N14PC9180aI</td>
+            <td>粉</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Areas/S3/Resources/images/E13PO6111aW.jpg" width="50px" /></td>
+            <td>E13PO6111aW</td>
+            <td>白</td>
+            <td>4</td>
+        </tr>
+    </table>
+     <h4><span>货品方案（C）</span></h4>
+    <table class="table table-striped">
+        <tr>
+            <td>
+                <img src="~/Areas/S3/Resources/images/E13AC1001aY.jpg" width="50px" /></td>
+            <td>E13AC1001aY</td>
+            <td>黄</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Areas/S3/Resources/images/E13AC9508aY.jpg" width="50px" /></td>
+            <td>E13AC9508aY</td>
+            <td>白</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Areas/S3/Resources/images/E13AC6006aY.jpg" width="50px" /></td>
+            <td>E13AC6006aY</td>
+            <td>黄</td>
+            <td>4</td>
+        </tr>
+    </table>
+    <div class="optarea">
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="doAction(1);"><i class="icon-wrench"></i> 受理</span>
+        <span class="btnarea" onclick="doAction(2);"><i class="icon-edit"></i> 汇报</span>
+    </div>
+</div>
+
+<div class="dataDetail clearfix" style="margin-top:12px;">
+    <span class="badge pull-right hs">未受理</span>
+    <h4><span>请求内容</span></h4>
+    <table width="100%">
+        <tr>
+            <td> 类型：<b>物品寄存</b></td><td align="right">需求时间：2014-07-16 12:55</td>
+        </tr>
+        <tr>
+            <td>请求人：<a href="tel:15988381281"><i class="icon-phone"></i> 张玲</a></td><td align="right">请求时间：2014-07-10 11:00</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span>客户信息</span></h4>
+    <div class="infoArea clearfix" style="border:1px solid #eee;border-radius:4px;">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo"><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:showCustomer('c1');">欧阳雪梅</a></span><br />
+            <span><i class="icon-time"></i> 2014-07-16 13:00 到店</span>
+        </div>
+        <div style="margin-top:10px;float:right;width:60px;text-align:center;"><a href="tel:15988381281"><i class="icon-phone icon-3x"></i></a></div>
+    </div>
+    <div id="c3" style="display:none;">
+    </div>
+    <br />
+    <h4><span>细节要求</span></h4>
+    客户购物完成后还要到别的地方办事，寄存包包，14:20-15:00。
+    <div class="optarea">
+        <span class="btnarea" style="border-right: 1px solid #ccc;" onclick="doAction(1);"><i class="icon-wrench"></i> 受理</span>
+        <span class="btnarea" onclick="doAction(2);"><i class="icon-edit"></i> 汇报</span>
+    </div>
+</div>

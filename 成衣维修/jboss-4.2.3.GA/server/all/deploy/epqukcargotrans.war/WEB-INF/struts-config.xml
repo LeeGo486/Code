@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >
+    <form-bean name="searchStoreCargoForm" type="ep.org.quickcargotransfer.form.SearchStoreCargoForm" />
+    <form-bean name="responseCargoApplyForm" type="ep.org.quickcargotransfer.form.ResponseCargoApplyForm" />
+    <form-bean name="notifySendCargoForm" type="ep.org.quickcargotransfer.form.NotifySendCargoForm" />
+    <form-bean name="sendCargoForm" type="ep.org.quickcargotransfer.form.SendCargoForm" />
+    <form-bean name="receiveCargoForm" type="ep.org.quickcargotransfer.form.ReceiveCargoForm" />
+    <form-bean name="baseReportForm" type="ep.org.quickcargotransfer.form.BaseReportForm" />
+    <form-bean name="viewCargoApplyResForm" type="ep.org.quickcargotransfer.form.ViewCargoApplyResForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      parameter="action"
+      path="/mainMenu"
+      type="ep.org.quickcargotransfer.action.MainMenuAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="tomainmenu" path="/quickcargotransfer/mainmenu.jsp" />
+    </action>
+    <action
+      attribute="searchStoreCargoForm"
+      name="searchStoreCargoForm"
+      path="/searchCargo"
+      scope="request"
+      parameter="action"
+      type="ep.org.quickcargotransfer.action.SearchCargoAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toSearchCargo" path="/quickcargotransfer/searchcargo.jsp" />
+    </action>
+    
+    <action
+      attribute="responseCargoApplyForm"
+      name="responseCargoApplyForm"
+      parameter="action"
+      path="/responseCargoApply"
+      scope="request"
+      type="ep.org.quickcargotransfer.action.ResponseCargoApplyAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toResponseCargoApply" path="/quickcargotransfer/responseCargoApply.jsp" />
+      <forward name="toDetailReqCargo" path="/quickcargotransfer/detailReqCargo.jsp" />	
+    </action>
+    <action
+      attribute="notifySendCargoForm"
+      name="notifySendCargoForm"
+      parameter="action"
+      path="/notifyCargo"
+      scope="request"
+      type="ep.org.quickcargotransfer.action.NotifyCargoAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toNotifyCargo" path="/quickcargotransfer/notifySendCargo.jsp" />
+    </action>
+    <action
+      attribute="sendCargoForm"
+      name="sendCargoForm"
+      parameter="action"
+      path="/sendCargo"
+      scope="request"
+      type="ep.org.quickcargotransfer.action.SendCargoAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toSendCargo" path="/quickcargotransfer/sendCargo.jsp" />
+      <forward name="toCancelSendCargo" path="/quickcargotransfer/cancelSendCargo.jsp" />
+      <forward name="toBarcodeSendCargo" path="/quickcargotransfer/barcodeSendCargo.jsp" />
+      <forward name="toPrintSendCargo" path="/quickcargotransfer/sendCargoPrint.jsp"></forward>
+    </action>
+    <action
+      attribute="receiveCargoForm"
+      name="receiveCargoForm"
+      parameter="action"
+      path="/receiveCargo"
+      scope="request"
+      type="ep.org.quickcargotransfer.action.ReceiveCargoAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toReceiveCargo" path="/quickcargotransfer/receiveCargo.jsp" />
+      <forward name="toBarcodeReceive" path="/quickcargotransfer/barcodeReceiveCargo.jsp"></forward>
+      <forward name="toReceiveAppraise" path="/quickcargotransfer/receiveAppraise.jsp"></forward>
+    </action>
+    
+    
+    <action
+      parameter="action"
+      path="/waitSendNotify"
+      type="ep.org.quickcargotransfer.action.WaitSendNotifyAction"
+      validate="false">
+      <forward name="toWaitSendNotify" path="/quickcargotransfer/waitSendNotify.jsp" />
+    </action>
+    
+    <action
+      parameter="action"
+      path="/waitSendCargo"
+      type="ep.org.quickcargotransfer.action.WaitSendCargoAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toWaitSendCargo" path="/quickcargotransfer/waitSendCargo.jsp" />
+    </action>
+    
+    <action
+      parameter="action"
+      path="/waitReceiveCargo"
+      type="ep.org.quickcargotransfer.action.WaitReceiveCargoAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toWaitReceiveCargo" path="/quickcargotransfer/waitReceiveCargo.jsp" />
+    </action>
+    <action
+      attribute="baseReportForm"
+      name="baseReportForm"
+      parameter="action"
+      path="/baseReport"
+      scope="request"
+      type="ep.org.quickcargotransfer.action.BaseReportAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toBaseReport" path="/quickcargotransfer/baseReportQuery.jsp" />
+      <forward name="toBeCanceledNotifySend" path="/quickcargotransfer/beCanceledNotifySend.jsp" />
+      <forward name="toBeCanceledSendCargoGF" path="/quickcargotransfer/beCanceledSendCargoGF.jsp" />
+      <forward name="toSuccessCargoTrans" path="/quickcargotransfer/successCargoTrans.jsp" />
+    </action>
+    <action
+      attribute="viewCargoApplyResForm"
+      name="viewCargoApplyResForm"
+      parameter="action"
+      path="/viewCargoApplyRes"
+      scope="request"
+      type="ep.org.quickcargotransfer.action.ViewCargoApplyResAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toViewResMain" path="/quickcargotransfer/viewCargoApplyRes.jsp" />
+      <forward name="toViewResSub" path="/quickcargotransfer/viewCargoApplyResSub.jsp" />
+    </action>
+	
+  
+  </action-mappings>
+
+  <message-resources parameter="ep.org.quickcargotransfer.ApplicationResources" />
+</struts-config>
+

@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "会员信息";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var data1 = [];
+        $(function () {
+            $("#VIPCard img").load(function () {
+                var bgHeight = $("#VIPCard").height();
+                var bgWidth = $("#VIPCard").width();
+                $("#vipstate").css("top", bgHeight * 0.3);
+                $("#vipstate").css("left", bgWidth * 0.35);
+                $("#vipcode").css("top", bgHeight * 0.7);
+                $("#vipcode").css("right", bgWidth * 0.1);
+            })
+        });
+
+    </script>
+    <style type="text/css">
+      
+    </style>
+}
+<div id="VIPCard">
+    <img src="~/Areas/DLWXSite/Resources/images/VIP/VIPCard.jpg" alt="head" width='100%'>
+</div>
+
+<div id="vipstate" style="position: absolute; z-index: 99999"><span style="font-size: 40px">@ViewBag.dtpCentumInfo.Rows[0]["State"]</span></div>
+<div id="vipcode" style="position: absolute; z-index: 99999"><span style="font-size: 20px">@ViewBag.dtpCentumInfo.Rows[0]["vipcode"]</span></div>
+
+<ul class="list-group" style="margin-top: 5px;">
+    <li class="list-group-item" onclick="window.location.href = '/DLWXSite/DLGoods/GetOrder?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/dd.png" alt="head" style="width: 20px; float: left" />
+        &nbsp;&nbsp;&nbsp;&nbsp;全部订单<span class="pull-right">></span></li>
+    <li class="list-group-item" onclick="window.location.href = '/DLWXSite/DLGoods/ShoppingCart?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/shopping-cart.png" alt="head" style="width: 20px; float: left" />
+        &nbsp;&nbsp;&nbsp;&nbsp;购物车<span class="pull-right">></span></li>
+</ul>
+<ul class="list-group" style="margin-top: -10px;">
+    <li class="list-group-item" onclick="window.location.href = '/DLWXSite/VIP/GetMyIntegral?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/jf.png" alt="head" style="width: 20px; float: left" />
+        &nbsp;&nbsp;&nbsp;&nbsp;我的积分
+        <span class="pull-right">></span></li>
+    <li class="list-group-item" onclick="window.location.href = '/DLWXSite/VIP/GetMyTicket?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/kq.png" alt="head" style="width: 20px; float: left" />
+        &nbsp;&nbsp;&nbsp;&nbsp;卡券中心
+        <span class="pull-right">></span></li>
+    <li class="list-group-item" onclick="window.location.href = '/DLWXSite/VIP/GetPersonInfo?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/person.png" alt="head" style="width: 20px; float: left" />
+        &nbsp;&nbsp;&nbsp;&nbsp;完善个人信息,领取1000积分
+        <span class="pull-right">></span></li>
+</ul>
+<ul class="list-group" style="margin-bottom: 60px; margin-top: -10px;">
+
+    <li class="list-group-item" onclick="window.location.href = '/DLWXSite/VIP/GetNoticeInfo?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/message.png" alt="head" style="width: 20px; float: left" />
+        &nbsp;&nbsp;&nbsp;&nbsp;最新通知
+        <span class="pull-right">></span></li>
+    <li class="list-group-item" onclick="window.location.href = '/DLWXSite/VIP/GetNearbyShopInfo?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/shop.png" alt="head" style="width: 20px; float: left" />
+        &nbsp;&nbsp;&nbsp;&nbsp;门店查询
+        <span class="pull-right">></span></li>
+</ul>

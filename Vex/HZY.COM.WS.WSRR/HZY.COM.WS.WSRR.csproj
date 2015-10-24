@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E7B12068-142A-43B2-8DCE-1F1EB5A82A00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZY.COM.WSRR</RootNamespace>
+    <AssemblyName>HZY.COM.WSRR</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HZY.COM.Common">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.Base">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.DBAccess.DBConn">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.DBAccess.DBConn.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WSRR_LogAnalysis.cs" />
+    <Compile Include="WSRR_WS_ClassCombox.cs" />
+    <Compile Include="WSServiceCall_Delete.cs" />
+    <Compile Include="WSServiceCall_Edit.cs" />
+    <Compile Include="WSServiceCall_ForEasyUI.cs" />
+    <Compile Include="WSServiceCall_GetList.cs" />
+    <Compile Include="WSServiceCall_Param_Delete.cs" />
+    <Compile Include="WSServiceCall_Param_Edit.cs" />
+    <Compile Include="WSServiceCall_Param_Edit_ForEasyUI.cs" />
+    <Compile Include="WSServiceCall_Param_GetListByTaskID.cs" />
+    <Compile Include="WS_Applay.cs" />
+    <Compile Include="WS_Cfg_List_ForEasyUI.cs" />
+    <Compile Include="WS_Cfg_List_ForEasyUICombox.cs" />
+    <Compile Include="WS_Deploy.cs" />
+    <Compile Include="WS_Deploy_ForEasyUI.cs" />
+    <Compile Include="WS_Edit.cs" />
+    <Compile Include="WS_Edit_ForEasyUI.cs" />
+    <Compile Include="WS_GetAllList.cs" />
+    <Compile Include="WS_GetList.cs" />
+    <Compile Include="WS_Param_Delete.cs" />
+    <Compile Include="WS_Param_Edit.cs" />
+    <Compile Include="WS_Param_GetListByWS_ID.cs" />
+    <Compile Include="WS_Parrm_Edit_ForEasyUI.cs" />
+    <Compile Include="WSRR_Search.cs" />
+    <Compile Include="WSServiceCall_Log_GetListByTaskID.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{C12F1233-F7C6-45F7-8F22-8BAC49FCBE62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.ST1005A\HZY.COM.WS.ST1005A.csproj">
+      <Project>{34406428-5A4B-417B-BFF1-60A7B5EA1493}</Project>
+      <Name>HZY.COM.WS.ST1005A</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

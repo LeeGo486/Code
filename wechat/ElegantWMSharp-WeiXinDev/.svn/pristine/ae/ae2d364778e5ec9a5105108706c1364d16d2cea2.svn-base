@@ -1,0 +1,69 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $('#ability').highcharts({
+            chart: {
+                polar: true,
+                type: 'line',
+                height: 250
+            },
+            title: {
+                text: '能力模型',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['货品知识', '销售技巧', '客户服务技巧'],
+                tickmarkPlacement: 'on',
+                lineWidth: 0
+            },
+            yAxis: {
+                gridLineInterpolation: 'polygon',
+                lineWidth: 0,
+                min: 0
+            },
+            tooltip: {
+                shared: true
+            },
+            series: [{
+                name: '能力模型',
+                data: [5, 5, 5],
+                pointPlacement: 'on'
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    });
+</script>
+
+<div class="ht" id="sability">
+    <i class="icon-thumbs-up"></i>&nbsp;&nbsp;能力评价
+    <span onclick="$('#sabilityarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <div id="ability"></div>
+    <table class="dataTable ability">
+        <tr>
+            <td>货品知识：</td>
+            <td>★★★★★</td>
+        </tr>
+        <tr>
+            <td>销售技巧：</td>
+            <td>★★★★★</td>
+        </tr>
+        <tr>
+            <td>客户服务技巧：</td>
+            <td>★★★★★</td>
+        </tr>
+    </table>
+</div>

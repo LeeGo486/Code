@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+///索赔后台类
+///WSID:
+///LeeGo
+///
+namespace HZY.COM.WS.GroupERP
+{
+    class Claim
+    {
+    }
+}

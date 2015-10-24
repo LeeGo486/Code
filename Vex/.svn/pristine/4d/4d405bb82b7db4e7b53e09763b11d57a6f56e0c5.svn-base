@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>商品管理</title>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/gray/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../JS/Present/Goods.js?Date=20131225" type="text/javascript"></script>
+    <style>
+        body {
+            font-family:                   Verdana,Geneva,Arial,sans-serif;
+            font-size:                       small;
+        }
+        .space {
+            margin-top:                  8px;
+            margin-bottom:           8px;
+            margin-left:                   10px;
+        }
+        span {
+            margin-right:                8px;
+        }
+        #picShow {
+            background-color:      #808080; 
+            width:                            100px; 
+            height:                           100px;
+        }
+        #tab_Form {
+            width:                             500px;
+            border-collapse:          collapse;
+            margin-left:                   20px;
+            margin-top:                   10px;
+        }
+       #tab_Form th {
+           text-align:                       right;
+           vertical-align:                 top;
+           padding-top:                2px;
+           padding-right:              10px;
+           font-size:                        1.2em;
+        }
+       #tab_Form td {
+           vertical-align:                 top;
+           padding-bottom:          10px;
+        }
+            #tab_Form table {
+                border:                       none;
+                padding:                    0px;
+            }
+            #tab_Form table td {
+                text-align:                  left;
+                padding-bottom:    0px;
+            }
+        #info th {
+            font-size:                      1em;
+            color:                             #808080;
+        }
+        #uploadPic{
+            margin-top:                0px;
+        }
+        #upload {
+            float:                             right;
+            margin-left:                 5px;
+        }
+        #saveButton {
+            text-align:                   center;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"  class="easyui-layout" data-options="fit:true" >
+        <div data-options="region:'north',height:'79'">
+            <div class="space">
+                <form id="serachForm">
+                    <span>商品编号</span><input name="txtGoodsNo" />
+                    <span>商品名称</span><input name="txtName" />
+                    <a id="mainSearch" href="#" title="search button">查询</a>
+                    <a id="mainReset" href="#" title="reset button">清空</a>
+                </form>
+            </div>
+             <div class="space" >
+                <a id="mainNew" href="#" title="new button">新建</a>
+                <a id="mainEdit" href="#" title="edit button">修改</a>
+                <a id="putOn" href="#" title="put on sale button">上架</a>
+                <a id="putOff" href="#" title="put off sale button">下架</a>
+                <a id="putDown" href="#" title="delete Goods button">删除</a>
+            </div>
+        </div>
+
+        <div data-options="region:'center'">
+            <table id="tab_list"></table>
+        </div>
+    </div>
+    <div id="window">
+        <form id="winForm">
+            <table id="tab_Form">
+                <tr>
+                    <th>基础信息：</th>
+                    <td>
+                        <table id="info">
+                            <tr>
+                                <th>商品编号</th>
+                                <td><input id="GoodsNo" type="text" readonly="readonly" /></td>
+                            </tr>
+                            <tr>
+                                <th>商品名称</th>
+                                <td><input name="txtName" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <th>商品原价</th>
+                                <td><input name="txtPrice" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <th>商品现价</th>
+                                <td><input name="txtRetailPrice" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <th>商品规格</th>
+                                <td><input name="txtSpec" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <th>商品品类</th>
+                                <td><select name="txtCategoryCode" style="width:148px;">
+                                            <option value="C" selected="selected">蛋糕</option>
+                                            <option value ="M">甜品</option>
+                                    </select></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th>商品简述：</th>
+                    <td><textarea name="txtDescription" rows="2" cols="48"></textarea></td>
+                </tr>
+                <tr>
+                    <th>商品描述：</th>
+                    <td><textarea name="txtDetail" rows="8" cols="48"></textarea></td>
+                </tr>
+                <tr>
+                    <th>图片上传：</th>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><div id="picShow"></div></td>
+                                <td><select id="txtPicPath" name="txtPicPath" size="6" style="width: 200px"></select>
+                                    <div id="upload">
+                                         <input id="uploadPic" type="button" value="上传" /><br />
+                                         <input id="delPic" type="button" value="删除" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="saveButton" colspan ="2">
+                        <a id="winSave" href="#" title="save button">保存</a>
+                        <a id="winClose" href="#" title="close button">关闭</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+﻿@foreach (System.Data.DataRow dr in ViewBag.AttendanceGet.Rows)
+{
+    <table class="AvTable">
+        <tr>
+            <th>@dr["C_CARDRECORDDATE"]</th>
+            <td>@dr["C_CARDRECORDTIME"]</td>
+        </tr>
+    </table>
+}

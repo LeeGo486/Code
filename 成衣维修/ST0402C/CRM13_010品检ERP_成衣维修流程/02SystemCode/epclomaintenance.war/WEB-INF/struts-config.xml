@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >
+    <form-bean name="cloMaintenanceForm" type="ep.org.clothingmaintenance.form.CloMaintenanceForm" />
+    <form-bean name="maintenanceInfoListForm" type="ep.org.clothingmaintenance.form.MaintenanceInfoListForm" />
+    <form-bean name="eidtMaintenanceBillForm" type="ep.org.clothingmaintenance.form.EidtMaintenanceBillForm" />
+    <form-bean name="viewMaintenanceBillForm" type="ep.org.clothingmaintenance.form.ViewMaintenanceBillForm" />
+    <form-bean name="HQSendGoodsForm" type="ep.org.clothingmaintenance.form.HQSendGoodsForm" />
+    <form-bean name="appraiseinfoForm" type="ep.org.clothingmaintenance.form.AppraiseinfoForm" />
+    <form-bean name="operaterecordForm" type="ep.org.clothingmaintenance.form.OperaterecordForm" />
+    <form-bean name="expressWayBillForm" type="ep.org.clothingmaintenance.form.ExpressWayBillForm" />
+    <form-bean name="shopPrintForm" type="ep.org.clothingmaintenance.form.ShopPrintForm" />
+    <form-bean name="shopLogisticsBillForm" type="ep.org.clothingmaintenance.form.ShopLogisticsBillForm" />
+    <form-bean name="customerPrintForm" type="ep.org.clothingmaintenance.form.CustomerPrintForm" />
+    <form-bean name="cloMaintenanceSelForm" type="ep.org.clothingmaintenance.form.CloMaintenanceSelfForm" />
+    <form-bean name="eidtMaintenanceBillSelfForm" type="ep.org.clothingmaintenance.form.EidtMaintenanceBilSelflForm" />
+    <form-bean name="maintenanceInfoListSelfForm" type="ep.org.clothingmaintenance.form.MaintenanceInfoListSelfForm" />
+    <form-bean name="viewMaintenanceBillSelfForm" type="ep.org.clothingmaintenance.form.ViewMaintenanceBillSelfForm" />
+    <form-bean name="customerPrintSelfForm" type="ep.org.clothingmaintenance.form.CustomerPrintSelfForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      attribute="cloMaintenanceForm"
+      name="cloMaintenanceForm"
+      parameter="method"
+      path="/cloMaintenanceMain"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.CloMaintenanceMainAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="cloMaintenanceMain" path="/colmaintenance/colmaintenancemain.jsp" />
+      <forward name="loginWrong" path="/colmaintenance/loginWrong.jsp" />
+    </action>
+   
+    <action
+      attribute="maintenanceInfoListForm"
+      name="maintenanceInfoListForm"
+      parameter="method"
+      path="/maintenanceInfoList"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.MaintenanceInfoListAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="tomaintenanceInfoList" path="/colmaintenance/maintenanceInfoList.jsp" />
+    </action>
+   
+   
+    <action
+      attribute="eidtMaintenanceBillForm"
+      name="eidtMaintenanceBillForm"
+      parameter="method"
+      path="/eidtMaintenanceBill"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.EidtMaintenanceBillAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="shopselect" path="/colmaintenance/shopselect.jsp" />
+      <forward name="eidtMaintenanceBill" path="/colmaintenance/eidtMaintenanceBill.jsp" />
+    </action>
+    
+    
+    
+    <action
+      attribute="viewMaintenanceBillForm"
+      name="viewMaintenanceBillForm"
+      parameter="method"
+      path="/viewMaintenanceBill"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.ViewMaintenanceBillAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="viewMaintenanceInfo" path="/colmaintenance/maintenanceParticularInfo.jsp" />
+    </action>
+    
+    
+    
+    <action
+      attribute="HQSendGoodsForm"
+      name="HQSendGoodsForm"
+      parameter="method"
+      path="/viewHQSendGoods"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.ViewHQSendGoodsAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="viewHQSendGoods" path="/colmaintenance/HQsendgoods.jsp" />
+    </action>
+    
+    
+    <action
+      attribute="appraiseinfoForm"
+      name="appraiseinfoForm"
+      parameter="method"
+      path="/appraiseinfo"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.AppraiseinfoAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toAppraiseInfo" path="/colmaintenance/appraiseinfo.jsp" />
+    </action>
+   
+   
+    <action
+      attribute="operaterecordForm"
+      name="operaterecordForm"
+      parameter="method"
+      path="/operaterecord"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.OperaterecordAction"
+      validate="false">
+      <forward name="toOperateRecord" path="/colmaintenance/operaterecord.jsp" />
+    </action>
+   
+   
+   
+    <action
+      attribute="expressWayBillForm"
+      name="expressWayBillForm"
+      parameter="method"
+      path="/expressWayBill"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.ExpressWayBillAction"
+      validate="false">
+      <forward name="toExpressWayBill" path="/colmaintenance/expressWayBill.jsp" />
+    </action>
+   
+   
+    <action
+      attribute="shopPrintForm"
+      name="shopPrintForm"
+      parameter="method"
+      path="/shopPrint"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.ShopPrintAction"
+      validate="false">
+      <forward name="toShopPrint" path="/colmaintenance/shopPrint.jsp" />
+    </action>
+   
+   
+    <action
+      attribute="shopLogisticsBillForm"
+      name="shopLogisticsBillForm"
+      parameter="method"
+      path="/shopLogisticsBill"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.ShopLogisticsBillAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="shopLogisticsBill" path="/colmaintenance/shopLogisticsBill.jsp" />
+    </action>
+   
+   
+    <action
+      attribute="customerPrintForm"
+      name="customerPrintForm"
+      parameter="method"
+      path="/customerPrint"
+      type="ep.org.clothingmaintenance.action.CustomerPrintAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toCustomerPrint" path="/colmaintenance/customerPrint.jsp" />
+    </action>
+   
+   
+    <action
+      attribute="cloMaintenanceSelForm"
+      name="cloMaintenanceSelForm"
+      parameter="method"
+      path="/cloMaintenanceSelf"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.CloMaintenanceSelfAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="cloMaintenanceMainSelf" path="/colmaintenance/colmaintenancemainself.jsp" />
+      <forward name="loginWrong" path="/colmaintenance/loginWrong.jsp" />	
+    </action>
+    
+    
+    <action
+      attribute="eidtMaintenanceBillSelfForm"
+      name="eidtMaintenanceBillSelfForm"
+      parameter="method"
+      path="/eidtMaintenanceBillSelf"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.EidtMaintenanceBillSelfAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="eidtMaintenanceBillSelf" path="/colmaintenance/eidtMaintenanceBillSelf.jsp" />
+       <forward name="completeMaintenanceBillSelf" path="/colmaintenance/completeMaintenanceBillSelf.jsp" />
+    </action>
+    
+    
+    <action
+      attribute="maintenanceInfoListSelfForm"
+      name="maintenanceInfoListSelfForm"
+      parameter="method"
+      path="/maintenanceInfoListSelf"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.MaintenanceInfoListSelfAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="tomaintenanceInfoListSelf" path="/colmaintenance/maintenanceInfoListSelf.jsp" />
+    </action>
+   
+   
+    <action
+      attribute="viewMaintenanceBillSelfForm"
+      name="viewMaintenanceBillSelfForm"
+      parameter="method"
+      path="/viewMaintenanceBillSelf"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.ViewMaintenanceBillSelfAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="viewMaintenanceInfoSelf" path="/colmaintenance/maintenanceParticularInfoSelf.jsp" />
+    </action>
+   
+    <action
+      attribute="customerPrintSelfForm"
+      name="customerPrintSelfForm"
+      parameter="method"
+      path="/customerPrintSelf"
+      scope="request"
+      type="ep.org.clothingmaintenance.action.CustomerPrintSelfAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toCustomerPrintSelf" path="/colmaintenance/customerPrintSelf.jsp" />
+    </action>
+
+  </action-mappings>
+
+  <message-resources parameter="ep.org.clothingmaintenance.ApplicationResources" />
+</struts-config>
+

@@ -1,0 +1,532 @@
+09:23:36,115 INFO  [Server] Starting JBoss (MX MicroKernel)...
+09:23:36,115 INFO  [Server] Release ID: JBoss [Trinity] 4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200807181439)
+09:23:36,115 DEBUG [Server] Using config: org.jboss.system.server.ServerConfigImpl@1193779
+09:23:36,115 DEBUG [Server] Server type: class org.jboss.system.server.ServerImpl
+09:23:36,115 DEBUG [Server] Server loaded through: org.jboss.system.server.NoAnnotationURLClassLoader
+09:23:36,115 DEBUG [Server] Boot URLs:
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/endorsed/serializer.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/endorsed/xalan.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/endorsed/xercesImpl.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/jboss-jmx.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/concurrent.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/log4j-boot.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/jboss-common.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/jboss-system.jar
+09:23:36,115 DEBUG [Server]   file:/D:/jboss-4.2.3.GA/lib/jboss-xml-binding.jar
+09:23:36,115 INFO  [Server] Home Dir: D:\jboss-4.2.3.GA
+09:23:36,115 INFO  [Server] Home URL: file:/D:/jboss-4.2.3.GA/
+09:23:36,115 DEBUG [Server] Library URL: file:/D:/jboss-4.2.3.GA/lib/
+09:23:36,130 INFO  [Server] Patch URL: null
+09:23:36,130 INFO  [Server] Server Name: all
+09:23:36,130 INFO  [Server] Server Home Dir: D:\jboss-4.2.3.GA\server\all
+09:23:36,130 INFO  [Server] Server Home URL: file:/D:/jboss-4.2.3.GA/server/all/
+09:23:36,130 INFO  [Server] Server Log Dir: D:\jboss-4.2.3.GA\server\all\log
+09:23:36,130 DEBUG [Server] Server Data Dir: D:\jboss-4.2.3.GA\server\all\data
+09:23:36,130 INFO  [Server] Server Temp Dir: D:\jboss-4.2.3.GA\server\all\tmp
+09:23:36,130 DEBUG [Server] Server Config URL: file:/D:/jboss-4.2.3.GA/server/all/conf/
+09:23:36,130 DEBUG [Server] Server Library URL: file:/D:/jboss-4.2.3.GA/server/all/lib/
+09:23:36,130 INFO  [Server] Root Deployment Filename: jboss-service.xml
+09:23:36,130 DEBUG [Server] Starting General Purpose Architecture (GPA)...
+09:23:36,490 DEBUG [Server] Created MBeanServer: org.jboss.mx.server.MBeanServerImpl@17ce4e7[ defaultDomain='jboss' ]
+09:23:36,552 DEBUG [Server] Boot url list: [file:/D:/jboss-4.2.3.GA/server/all/conf/]
+09:23:36,568 DEBUG [Server] Creating loader for URL: file:/D:/jboss-4.2.3.GA/server/all/conf/
+09:23:36,568 DEBUG [RepositoryClassLoader] setRepository, repository=org.jboss.mx.loading.UnifiedLoaderRepository3@765a16, cl=org.jboss.mx.loading.UnifiedClassLoader3@148bd3{ url=file:/D:/jboss-4.2.3.GA/server/all/conf/ ,addedOrder=0}
+09:23:36,568 DEBUG [RepositoryClassLoader] setRepository, repository=org.jboss.mx.loading.UnifiedLoaderRepository3@765a16, cl=org.jboss.mx.loading.UnifiedClassLoader3@148bd3{ url=file:/D:/jboss-4.2.3.GA/server/all/conf/ ,addedOrder=0}
+09:23:36,568 DEBUG [UnifiedLoaderRepository3] Adding org.jboss.mx.loading.UnifiedClassLoader3@148bd3{ url=file:/D:/jboss-4.2.3.GA/server/all/conf/ ,addedOrder=0}
+09:23:36,755 DEBUG [Server] Failed to create xmbean for: org.jboss.system.server.ServerInfo
+09:23:36,771 INFO  [ServerInfo] Java version: 1.6.0_27,Sun Microsystems Inc.
+09:23:36,771 INFO  [ServerInfo] Java VM: Java HotSpot(TM) Server VM 20.2-b06,Sun Microsystems Inc.
+09:23:36,786 INFO  [ServerInfo] OS-System: Windows 2003 5.2,x86
+09:23:36,786 DEBUG [ServerInfo] Full System Properties Dump
+09:23:36,786 DEBUG [ServerInfo]     java.vendor: Sun Microsystems Inc.
+09:23:36,786 DEBUG [ServerInfo]     sun.java.launcher: SUN_STANDARD
+09:23:36,786 DEBUG [ServerInfo]     sun.management.compiler: HotSpot Tiered Compilers
+09:23:36,786 DEBUG [ServerInfo]     os.name: Windows 2003
+09:23:36,786 DEBUG [ServerInfo]     sun.boot.class.path: D:\jboss-4.2.3.GA\lib\endorsed\serializer.jar;D:\jboss-4.2.3.GA\lib\endorsed\xalan.jar;D:\jboss-4.2.3.GA\lib\endorsed\xercesImpl.jar;C:\Program Files\Java\jdk1.6.0_27\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_27\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_27\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.6.0_27\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_27\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_27\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_27\jre\lib\modules\jdk.boot.jar;C:\Program Files\Java\jdk1.6.0_27\jre\classes
+09:23:36,786 DEBUG [ServerInfo]     sun.desktop: windows
+09:23:36,786 DEBUG [ServerInfo]     java.vm.specification.vendor: Sun Microsystems Inc.
+09:23:36,786 DEBUG [ServerInfo]     java.runtime.version: 1.6.0_27-b07
+09:23:36,786 DEBUG [ServerInfo]     user.name: Administrator
+09:23:36,786 DEBUG [ServerInfo]     jboss.bind.address: 127.0.0.1
+09:23:36,786 DEBUG [ServerInfo]     jboss.home.dir: D:\jboss-4.2.3.GA
+09:23:36,786 DEBUG [ServerInfo]     user.language: zh
+09:23:36,786 DEBUG [ServerInfo]     sun.boot.library.path: C:\Program Files\Java\jdk1.6.0_27\jre\bin
+09:23:36,786 DEBUG [ServerInfo]     jboss.home.url: file:/D:/jboss-4.2.3.GA/
+09:23:36,786 DEBUG [ServerInfo]     java.version: 1.6.0_27
+09:23:36,786 DEBUG [ServerInfo]     user.timezone: Asia/Shanghai
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.home.dir: D:\jboss-4.2.3.GA\server\all
+09:23:36,786 DEBUG [ServerInfo]     jgroups.bind_addr: 127.0.0.1
+09:23:36,786 DEBUG [ServerInfo]     sun.arch.data.model: 32
+09:23:36,786 DEBUG [ServerInfo]     java.endorsed.dirs: D:\jboss-4.2.3.GA\lib\endorsed
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.home.url: file:/D:/jboss-4.2.3.GA/server/all/
+09:23:36,786 DEBUG [ServerInfo]     sun.cpu.isalist: pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86
+09:23:36,786 DEBUG [ServerInfo]     sun.jnu.encoding: GBK
+09:23:36,786 DEBUG [ServerInfo]     file.encoding.pkg: sun.io
+09:23:36,786 DEBUG [ServerInfo]     file.separator: \
+09:23:36,786 DEBUG [ServerInfo]     java.specification.name: Java Platform API Specification
+09:23:36,786 DEBUG [ServerInfo]     java.class.version: 50.0
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.config.url: file:/D:/jboss-4.2.3.GA/server/all/conf/
+09:23:36,786 DEBUG [ServerInfo]     user.country: CN
+09:23:36,786 DEBUG [ServerInfo]     java.home: C:\Program Files\Java\jdk1.6.0_27\jre
+09:23:36,786 DEBUG [ServerInfo]     java.vm.info: mixed mode
+09:23:36,786 DEBUG [ServerInfo]     jboss.lib.url: file:/D:/jboss-4.2.3.GA/lib/
+09:23:36,786 DEBUG [ServerInfo]     os.version: 5.2
+09:23:36,786 DEBUG [ServerInfo]     path.separator: ;
+09:23:36,786 DEBUG [ServerInfo]     java.vm.version: 20.2-b06
+09:23:36,786 DEBUG [ServerInfo]     user.variant: 
+09:23:36,786 DEBUG [ServerInfo]     java.protocol.handler.pkgs: org.jboss.net.protocol
+09:23:36,786 DEBUG [ServerInfo]     java.awt.printerjob: sun.awt.windows.WPrinterJob
+09:23:36,786 DEBUG [ServerInfo]     sun.io.unicode.encoding: UnicodeLittle
+09:23:36,786 DEBUG [ServerInfo]     awt.toolkit: sun.awt.windows.WToolkit
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.temp.dir: D:\jboss-4.2.3.GA\server\all\tmp
+09:23:36,786 DEBUG [ServerInfo]     sun.rmi.dgc.client.gcInterval: 3600000
+09:23:36,786 DEBUG [ServerInfo]     user.home: C:\Documents and Settings\Administrator
+09:23:36,786 DEBUG [ServerInfo]     java.specification.vendor: Sun Microsystems Inc.
+09:23:36,786 DEBUG [ServerInfo]     java.library.path: C:\Program Files\Java\jdk1.6.0_27\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Java\jdk1.6.0_27\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\Microsoft SQL Server\80\Tools\Binn\;D:\Program Files\Microsoft SQL Server\90\Tools\binn\;.
+09:23:36,786 DEBUG [ServerInfo]     java.vendor.url: http://java.sun.com/
+09:23:36,786 DEBUG [ServerInfo]     program.name: run.bat
+09:23:36,786 DEBUG [ServerInfo]     java.vm.vendor: Sun Microsystems Inc.
+09:23:36,786 DEBUG [ServerInfo]     sun.rmi.dgc.server.gcInterval: 3600000
+09:23:36,786 DEBUG [ServerInfo]     java.runtime.name: Java(TM) SE Runtime Environment
+09:23:36,786 DEBUG [ServerInfo]     sun.java.command: org.jboss.Main -c all
+09:23:36,786 DEBUG [ServerInfo]     java.class.path: C:\Program Files\Java\jdk1.6.0_27\lib\tools.jar;D:\jboss-4.2.3.GA\bin\run.jar
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.log.dir: D:\jboss-4.2.3.GA\server\all\log
+09:23:36,786 DEBUG [ServerInfo]     jbossmx.loader.repository.class: org.jboss.mx.loading.UnifiedLoaderRepository3
+09:23:36,786 DEBUG [ServerInfo]     java.vm.specification.name: Java Virtual Machine Specification
+09:23:36,786 DEBUG [ServerInfo]     java.vm.specification.version: 1.0
+09:23:36,786 DEBUG [ServerInfo]     sun.cpu.endian: little
+09:23:36,786 DEBUG [ServerInfo]     sun.os.patch.level: Service Pack 2
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.lib.url: file:/D:/jboss-4.2.3.GA/server/all/lib/
+09:23:36,786 DEBUG [ServerInfo]     java.io.tmpdir: C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\1\
+09:23:36,786 DEBUG [ServerInfo]     java.vendor.url.bug: http://java.sun.com/cgi-bin/bugreport.cgi
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.data.dir: D:\jboss-4.2.3.GA\server\all\data
+09:23:36,786 DEBUG [ServerInfo]     java.rmi.server.hostname: 127.0.0.1
+09:23:36,786 DEBUG [ServerInfo]     os.arch: x86
+09:23:36,786 DEBUG [ServerInfo]     java.awt.graphicsenv: sun.awt.Win32GraphicsEnvironment
+09:23:36,786 DEBUG [ServerInfo]     java.ext.dirs: C:\Program Files\Java\jdk1.6.0_27\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+09:23:36,786 DEBUG [ServerInfo]     user.dir: D:\jboss-4.2.3.GA\bin
+09:23:36,786 DEBUG [ServerInfo]     line.separator: 
+
+09:23:36,786 DEBUG [ServerInfo]     java.vm.name: Java HotSpot(TM) Server VM
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.base.dir: D:\jboss-4.2.3.GA\server
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.base.url: file:/D:/jboss-4.2.3.GA/server/
+09:23:36,786 DEBUG [ServerInfo]     javax.management.builder.initial: org.jboss.mx.server.MBeanServerBuilderImpl
+09:23:36,786 DEBUG [ServerInfo]     file.encoding: GBK
+09:23:36,786 DEBUG [ServerInfo]     java.specification.version: 1.6
+09:23:36,786 DEBUG [ServerInfo]     jboss.server.name: all
+09:23:36,802 DEBUG [Server] Created system MBean: jboss.system:type=ServerInfo
+09:23:36,802 DEBUG [Server] Failed to create xmbean for: org.jboss.system.ServiceController
+09:23:36,849 DEBUG [ServiceController] Controller MBean online
+09:23:36,849 DEBUG [Server] Created system MBean: jboss.system:service=ServiceController
+09:23:36,974 DEBUG [Server] Created system XMBean: jboss.system:service=MainDeployer
+09:23:36,974 DEBUG [ServiceController] Creating service jboss.system:service=MainDeployer
+09:23:36,990 DEBUG [MainDeployer] Creating jboss.system:service=MainDeployer
+09:23:37,036 DEBUG [MainDeployer] Created jboss.system:service=MainDeployer
+09:23:37,036 DEBUG [ServiceController] Creating dependent components for: jboss.system:service=MainDeployer dependents are: []
+09:23:37,036 DEBUG [ServiceController] starting service jboss.system:service=MainDeployer
+09:23:37,036 DEBUG [MainDeployer] Starting jboss.system:service=MainDeployer
+09:23:37,052 DEBUG [MainDeployer] Started jboss.system:service=MainDeployer
+09:23:37,052 DEBUG [ServiceController] Starting dependent components for: jboss.system:service=MainDeployer dependent components: []
+09:23:37,052 DEBUG [Server] Shutdown hook added
+09:23:37,099 DEBUG [Server] Created system XMBean: jboss.system:service=JARDeployer
+09:23:37,099 DEBUG [ServiceController] Creating service jboss.system:service=JARDeployer
+09:23:37,099 DEBUG [JARDeployer] Creating jboss.system:service=JARDeployer
+09:23:37,130 DEBUG [JARDeployer] Created jboss.system:service=JARDeployer
+09:23:37,130 DEBUG [ServiceController] Creating dependent components for: jboss.system:service=JARDeployer dependents are: []
+09:23:37,130 DEBUG [ServiceController] starting service jboss.system:service=JARDeployer
+09:23:37,130 DEBUG [JARDeployer] Starting jboss.system:service=JARDeployer
+09:23:37,130 DEBUG [MainDeployer] Adding deployer: org.jboss.deployment.JARDeployer@5f6303
+09:23:37,130 DEBUG [SuffixOrderHelper] Static suffix exists; ignoring request for adding enhanced suffix: 700:.jar
+09:23:37,130 DEBUG [JARDeployer] Started jboss.system:service=JARDeployer
+09:23:37,130 DEBUG [ServiceController] Starting dependent components for: jboss.system:service=JARDeployer dependent components: []
+09:23:37,162 DEBUG [Server] Created system XMBean: jboss.system:service=ServiceDeployer
+09:23:37,162 DEBUG [ServiceController] Creating service jboss.system:service=ServiceDeployer
+09:23:37,162 DEBUG [SARDeployer] Creating jboss.system:service=ServiceDeployer
+09:23:37,177 DEBUG [SARDeployer] Created jboss.system:service=ServiceDeployer
+09:23:37,177 DEBUG [ServiceController] Creating dependent components for: jboss.system:service=ServiceDeployer dependents are: []
+09:23:37,177 DEBUG [ServiceController] starting service jboss.system:service=ServiceDeployer
+09:23:37,177 DEBUG [SARDeployer] Starting jboss.system:service=ServiceDeployer
+09:23:37,177 DEBUG [MainDeployer] Adding deployer: org.jboss.deployment.SARDeployer@104c575
+09:23:37,193 DEBUG [SARDeployer] Started jboss.system:service=ServiceDeployer
+09:23:37,193 DEBUG [ServiceController] Starting dependent components for: jboss.system:service=ServiceDeployer dependent components: []
+09:23:37,193 INFO  [Server] Core system initialized
+09:23:37,208 DEBUG [MainDeployer] Starting deployment of package: file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml
+09:23:37,208 DEBUG [MainDeployer] Starting deployment (init step) of package at: file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml
+09:23:37,302 DEBUG [MainDeployer] Copying file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml -> D:\jboss-4.2.3.GA\server\all\tmp\deploy\tmp6896583975063972576jboss-service.xml
+09:23:37,302 DEBUG [MainDeployer] using deployer org.jboss.deployment.SARDeployer@104c575
+09:23:37,349 DEBUG [SARDeployer] Found classpath element: [classpath: null]
+09:23:37,349 DEBUG [SARDeployer] codebase URL is file:/D:/jboss-4.2.3.GA/server/all/lib/
+09:23:37,349 DEBUG [SARDeployer] listing codebase for archives matching *
+09:23:37,349 DEBUG [SARDeployer] URLLister class is org.jboss.net.protocol.file.FileURLLister
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/activation.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/antlr.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/autonumber-plugin.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/avalon-framework.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/bcel.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/bindingservice-plugin.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/bsf.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/bsh-deployer.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/bsh.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/cglib-2.2.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/commons-codec.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/commons-collections.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/commons-httpclient.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/commons-logging.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/dom4j.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/ejb3-persistence.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/el-api.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/hibernate-annotations.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/hibernate-entitymanager.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/hibernate3.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/hsqldb-plugin.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/hsqldb.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jacorb.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/javassist.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jaxen.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-cache-jdk50.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-common-jdbc-wrapper.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-ejb3x.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-hibernate.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-iiop.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-j2ee.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jaxrpc.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jaxws-ext.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jaxws.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jca.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jsr77.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jsr88.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-management.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-monitoring.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-remoting-int.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-remoting.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-saaj.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-serialization.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-srp.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-transaction.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-vfs.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jboss.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossha.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossjta-integration.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossjta.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossmq.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbosssx.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossts-common.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-common.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-framework.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-jboss42.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-spi.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jgroups.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jmx-adaptor-plugin.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jnpserver.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/joesnmp.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/jsp-api.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/log4j-snmp-appender.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/log4j.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/mail-plugin.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/mail.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/properties-plugin.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/quartz.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/scheduler-plugin-example.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/scheduler-plugin.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/servlet-api.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/sqljdbc4.jar
+09:23:37,365 DEBUG [SARDeployer] deployed classes for file:/D:/jboss-4.2.3.GA/server/all/lib/xmlentitymgr.jar
+09:23:37,365 DEBUG [SARDeployer] about to copy 0 local directories
+09:23:37,365 DEBUG [SARDeployer] looking for nested deployments in : file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml
+09:23:37,365 DEBUG [DeploymentInfo] createLoaderRepository from config: LoaderRepositoryConfig(repositoryName: JMImplementation:service=LoaderRepository,name=Default, repositoryClassName: null, configParserClassName: null, repositoryConfig: null)
+09:23:37,365 DEBUG [RepositoryClassLoader] setRepository, repository=org.jboss.mx.loading.UnifiedLoaderRepository3@765a16, cl=org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=0}
+09:23:37,365 DEBUG [RepositoryClassLoader] setRepository, repository=org.jboss.mx.loading.UnifiedLoaderRepository3@765a16, cl=org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=0}
+09:23:37,365 DEBUG [UnifiedLoaderRepository3] Adding org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=0}
+09:23:37,380 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/activation.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,427 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/antlr.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,427 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/autonumber-plugin.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,427 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/avalon-framework.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,474 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/bcel.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,474 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/bindingservice-plugin.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,490 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/bsf.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,505 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/bsh-deployer.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,537 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/bsh.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,537 DEBUG [ClassLoaderUtils] Multiple class loaders found for pkg: 
+09:23:37,568 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/cglib-2.2.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,568 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/commons-codec.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,615 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/commons-collections.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,630 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/commons-httpclient.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,646 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/commons-logging.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,662 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/dom4j.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,677 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/ejb3-persistence.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,677 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/el-api.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,708 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/hibernate-annotations.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,724 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/hibernate-entitymanager.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,865 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/hibernate3.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,865 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/hsqldb-plugin.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:37,912 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/hsqldb.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,302 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jacorb.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,349 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/javassist.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,380 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jaxen.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,427 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-cache-jdk50.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,443 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-common-jdbc-wrapper.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,443 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-ejb3x.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,458 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-hibernate.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,490 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-iiop.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,505 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-j2ee.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,521 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jaxrpc.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,521 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jaxws-ext.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,521 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jaxws.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,537 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jca.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,537 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jsr77.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,537 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-jsr88.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,552 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-management.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,568 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-monitoring.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,568 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-remoting-int.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,615 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-remoting.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,630 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-saaj.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,630 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-serialization.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,630 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-srp.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,646 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-transaction.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,646 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss-vfs.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,771 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jboss.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,787 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossha.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,802 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossjta-integration.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,833 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossjta.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,880 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossmq.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,927 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbosssx.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,927 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossts-common.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,943 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-common.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,943 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-framework.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,958 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-jboss42.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:38,958 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jbossws-spi.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,115 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jgroups.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,115 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jmx-adaptor-plugin.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,130 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jnpserver.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,130 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/joesnmp.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,146 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/jsp-api.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,146 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/log4j-snmp-appender.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,162 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/log4j.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,162 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/mail-plugin.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,193 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/mail.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,193 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/properties-plugin.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,208 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/quartz.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,208 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/scheduler-plugin-example.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,224 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/scheduler-plugin.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,224 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/servlet-api.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,271 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/sqljdbc4.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,271 DEBUG [RepositoryClassLoader] Added url: file:/D:/jboss-4.2.3.GA/server/all/lib/xmlentitymgr.jar, to ucl: org.jboss.mx.loading.UnifiedClassLoader3@9934d4{ url=null ,addedOrder=2}
+09:23:39,271 DEBUG [MainDeployer] found 0 subpackages of file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml
+09:23:39,271 DEBUG [MainDeployer] Watching new file: file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml
+09:23:39,271 DEBUG [MainDeployer] create step for deployment file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml
+09:23:39,271 DEBUG [SARDeployer] Deploying SAR, create step: url file:/D:/jboss-4.2.3.GA/server/all/conf/jboss-service.xml
+09:23:39,271 DEBUG [SARDeployer] Registering service UCL=jmx.loading:UCL=9934d4
+09:23:39,271 DEBUG [ServiceCreator] About to create bean: jboss.management.local:j2eeType=J2EEDomain,name=Manager with code: org.jboss.management.j2ee.LocalJBossServerDomain
+09:23:39,427 DEBUG [ServiceCreator] Created bean: jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,427 DEBUG [ServiceConfigurator] MainDeployer set to jboss.system:service=MainDeployer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,427 DEBUG [ServiceConfigurator] SARDeployer set to jboss.system:service=ServiceDeployer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,427 DEBUG [ServiceConfigurator] EARDeployer set to jboss.j2ee:service=EARDeployer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,427 DEBUG [ServiceConfigurator] EJBDeployer set to jboss.ejb:service=EJBDeployer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,427 DEBUG [ServiceConfigurator] RARDeployer set to jboss.jca:service=RARDeployer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,427 DEBUG [ServiceConfigurator] CMDeployer set to jboss.jca:service=ConnectionFactoryDeployer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] WARDeployer set to jboss.web:service=WebServer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] CARDeployer set to jboss.j2ee:service=ClientDeployer in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] MailService set to jboss:service=Mail in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] JMSService set to jboss.mq:service=DestinationManager in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] JNDIService set to jboss:service=Naming in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] JTAService set to jboss:service=TransactionManager in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] UserTransactionService set to jboss:service=ClientUserTransaction in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceConfigurator] RMI_IIOPService set to jboss:service=CorbaORB in jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:39,443 DEBUG [ServiceCreator] About to create xmbean object: jboss:service=AttributePersistenceService with code: org.jboss.system.pm.AttributePersistenceService with descriptor: resource:xmdesc/AttributePersistenceService-xmbean.xml
+09:23:39,474 DEBUG [ModelMBeanInvoker] Loaded persistence mgr: org.jboss.mx.persistence.ObjectStreamPersistenceManager
+09:23:39,474 DEBUG [ObjectStreamPersistenceManager] load, resource:org.jboss.system.pm.AttributePersistenceService@955cd5
+09:23:39,474 DEBUG [ObjectStreamPersistenceManager] Store file is: D:\jboss-4.2.3.GA\server\all\data\xmbean-attrs\AttributePersistenceService.ser
+09:23:39,474 DEBUG [ServiceCreator] Created bean: jboss:service=AttributePersistenceService
+09:23:39,474 DEBUG [ServiceCreator] About to create bean: jboss.system:service=ThreadPool with code: org.jboss.util.threadpool.BasicThreadPool
+09:23:39,505 DEBUG [ServiceCreator] Created bean: jboss.system:service=ThreadPool
+09:23:39,505 DEBUG [ServiceConfigurator] Name set to JBoss System Threads in jboss.system:service=ThreadPool
+09:23:39,505 DEBUG [ServiceConfigurator] ThreadGroupName set to System Threads in jboss.system:service=ThreadPool
+09:23:39,521 DEBUG [ServiceConfigurator] KeepAliveTime set to 60000 in jboss.system:service=ThreadPool
+09:23:39,521 DEBUG [ServiceConfigurator] MaximumPoolSize set to 10 in jboss.system:service=ThreadPool
+09:23:39,521 DEBUG [ServiceConfigurator] MaximumQueueSize set to 1000 in jboss.system:service=ThreadPool
+09:23:39,521 DEBUG [ServiceConfigurator] BlockingMode set to run in jboss.system:service=ThreadPool
+09:23:39,521 DEBUG [ServiceCreator] About to create xmbean object: jboss.system:type=Log4jService,service=Logging with code: org.jboss.logging.Log4jService with descriptor: resource:xmdesc/Log4jService-xmbean.xml
+09:23:39,552 DEBUG [ServiceCreator] Created bean: jboss.system:type=Log4jService,service=Logging
+09:23:39,552 DEBUG [ServiceConfigurator] ConfigurationURL set to resource:jboss-log4j.xml in jboss.system:type=Log4jService,service=Logging
+09:23:39,552 DEBUG [ServiceConfigurator] Log4jQuietMode set to true in jboss.system:type=Log4jService,service=Logging
+09:23:39,552 DEBUG [ServiceConfigurator] RefreshPeriod set to 60 in jboss.system:type=Log4jService,service=Logging
+09:23:39,552 DEBUG [ServiceCreator] About to create bean: jboss.rmi:type=RMIClassLoader with code: org.jboss.util.property.jmx.SystemPropertyClassValue
+09:23:39,552 DEBUG [ServiceCreator] Created bean: jboss.rmi:type=RMIClassLoader
+09:23:39,552 DEBUG [ServiceConfigurator] Property set to java.rmi.server.RMIClassLoaderSpi in jboss.rmi:type=RMIClassLoader
+09:23:39,552 DEBUG [ServiceConfigurator] ClassName set to org.jboss.system.JBossRMIClassLoader in jboss.rmi:type=RMIClassLoader
+09:23:39,552 DEBUG [ServiceCreator] About to create bean: jboss:service=WebService with code: org.jboss.web.WebService
+09:23:39,568 DEBUG [ServiceCreator] Created bean: jboss:service=WebService
+09:23:39,568 DEBUG [ServiceConfigurator] BindAddress set to 127.0.0.1 in jboss:service=WebService
+09:23:39,568 DEBUG [ServiceConfigurator] Port set to 8083 in jboss:service=WebService
+09:23:39,568 DEBUG [ServiceConfigurator] Host set to 127.0.0.1 in jboss:service=WebService
+09:23:39,568 DEBUG [ServiceConfigurator] DownloadServerClasses set to true in jboss:service=WebService
+09:23:39,568 DEBUG [ServiceConfigurator] DownloadResources set to false in jboss:service=WebService
+09:23:39,568 DEBUG [ServiceController] recording that jboss:service=WebService depends on jboss.system:service=ThreadPool
+09:23:39,568 DEBUG [ServiceConfigurator] considering ThreadPool with object name jboss.system:service=ThreadPool
+09:23:39,584 DEBUG [ServiceCreator] About to create xmbean object: jboss:service=NamingBeanImpl with code: org.jnp.server.NamingBeanImpl with descriptor: resource:xmdesc/NamingBean-xmbean.xml
+09:23:39,599 DEBUG [ServiceCreator] Created bean: jboss:service=NamingBeanImpl
+09:23:39,599 DEBUG [ServiceCreator] About to create xmbean object: jboss:service=Naming with code: org.jboss.naming.NamingService with descriptor: resource:xmdesc/NamingService-xmbean.xml
+09:23:39,646 DEBUG [ModelMBeanInvoker] Ignoring obsolete legacy interceptor: org.jboss.mx.interceptor.PersistenceInterceptor2
+09:23:39,646 DEBUG [ModelMBeanInvoker] Ignoring obsolete legacy interceptor: org.jboss.mx.interceptor.ModelMBeanInterceptor
+09:23:39,646 DEBUG [ModelMBeanInvoker] Ignoring obsolete legacy interceptor: org.jboss.mx.interceptor.ObjectReferenceInterceptor
+09:23:39,646 DEBUG [ServiceCreator] Created bean: jboss:service=Naming
+09:23:39,646 DEBUG [ServiceConfigurator] CallByValue set to false in jboss:service=Naming
+09:23:39,646 DEBUG [ServiceConfigurator] Port set to 1099 in jboss:service=Naming
+09:23:39,646 DEBUG [ServiceConfigurator] BindAddress set to 127.0.0.1 in jboss:service=Naming
+09:23:39,646 DEBUG [ServiceConfigurator] RmiPort set to 1098 in jboss:service=Naming
+09:23:39,646 DEBUG [ServiceConfigurator] RmiBindAddress set to 127.0.0.1 in jboss:service=Naming
+09:23:39,646 DEBUG [ServiceController] recording that jboss:service=Naming depends on jboss.system:service=ThreadPool
+09:23:39,646 DEBUG [ServiceConfigurator] considering LookupPool with object name jboss.system:service=ThreadPool
+09:23:39,646 DEBUG [ServiceController] recording that jboss:service=Naming depends on jboss:service=NamingBeanImpl
+09:23:39,646 DEBUG [ServiceConfigurator] considering Naming with object name jboss:service=NamingBeanImpl
+09:23:39,662 DEBUG [ServiceCreator] About to create xmbean object: jboss:service=JNDIView with code: org.jboss.naming.JNDIView with descriptor: resource:xmdesc/JNDIView-xmbean.xml
+09:23:39,677 DEBUG [ServiceCreator] Created bean: jboss:service=JNDIView
+09:23:39,677 DEBUG [ServiceConfigurator] HANamingService set to jboss:service=HAJNDI in jboss:service=JNDIView
+09:23:39,677 DEBUG [ServiceCreator] About to create bean: jboss.security:service=SecurityConfig with code: org.jboss.security.plugins.SecurityConfig
+09:23:39,677 DEBUG [ServiceCreator] Created bean: jboss.security:service=SecurityConfig
+09:23:39,677 DEBUG [ServiceConfigurator] LoginConfig set to jboss.security:service=XMLLoginConfig in jboss.security:service=SecurityConfig
+09:23:39,677 DEBUG [ServiceCreator] About to create bean: jboss.security:service=XMLLoginConfig with code: org.jboss.security.auth.login.XMLLoginConfig
+09:23:39,709 DEBUG [ServiceCreator] Created bean: jboss.security:service=XMLLoginConfig
+09:23:39,709 DEBUG [ServiceConfigurator] ConfigResource set to login-config.xml in jboss.security:service=XMLLoginConfig
+09:23:39,709 DEBUG [ServiceCreator] About to create bean: jboss.security:service=JaasSecurityManager with code: org.jboss.security.plugins.JaasSecurityManagerService
+09:23:39,724 DEBUG [ServiceCreator] Created bean: jboss.security:service=JaasSecurityManager
+09:23:39,724 DEBUG [ServiceConfigurator] ServerMode set to true in jboss.security:service=JaasSecurityManager
+09:23:39,724 DEBUG [ServiceConfigurator] SecurityManagerClassName set to org.jboss.security.plugins.JaasSecurityManager in jboss.security:service=JaasSecurityManager
+09:23:39,740 DEBUG [ServiceConfigurator] DefaultUnauthenticatedPrincipal set to anonymous in jboss.security:service=JaasSecurityManager
+09:23:39,740 DEBUG [ServiceConfigurator] DefaultCacheTimeout set to 1800 in jboss.security:service=JaasSecurityManager
+09:23:39,740 DEBUG [ServiceConfigurator] DefaultCacheResolution set to 60 in jboss.security:service=JaasSecurityManager
+09:23:39,740 DEBUG [ServiceConfigurator] DeepCopySubjectMode set to false in jboss.security:service=JaasSecurityManager
+09:23:39,740 DEBUG [JaasSecurityManagerService] setDeepCopySubjectMode=false
+09:23:39,740 DEBUG [ServiceCreator] About to create bean: jboss:service=XidFactory with code: org.jboss.tm.XidFactory
+09:23:39,740 DEBUG [ServiceCreator] Created bean: jboss:service=XidFactory
+09:23:39,740 DEBUG [ServiceCreator] About to create bean: jboss:service=TransactionManager with code: com.arjuna.ats.jbossatx.jta.TransactionManagerService
+09:23:39,802 DEBUG [ServiceCreator] Created bean: jboss:service=TransactionManager
+09:23:39,802 DEBUG [ServiceConfigurator] TransactionTimeout set to 300 in jboss:service=TransactionManager
+09:23:39,802 DEBUG [ServiceConfigurator] ObjectStoreDir set to D:\jboss-4.2.3.GA\server\all\data/tx-object-store in jboss:service=TransactionManager
+09:23:39,818 DEBUG [ServiceCreator] About to create xmbean object: jboss:service=ClientUserTransaction with code: org.jboss.tm.usertx.server.ClientUserTransactionService with descriptor: resource:xmdesc/ClientUserTransaction-xmbean.xml
+09:23:39,834 DEBUG [ServiceCreator] Created bean: jboss:service=ClientUserTransaction
+09:23:39,834 DEBUG [ServiceCreator] About to create bean: jboss:service=proxyFactory,target=ClientUserTransactionFactory with code: org.jboss.invocation.jrmp.server.JRMPProxyFactory
+09:23:39,834 DEBUG [ServiceCreator] Created bean: jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,834 DEBUG [ServiceConfigurator] InvokerName set to jboss:service=invoker,type=unified in jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,834 DEBUG [ServiceConfigurator] TargetName set to jboss:service=ClientUserTransaction in jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,834 DEBUG [ServiceConfigurator] JndiName set to UserTransactionSessionFactory in jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,849 DEBUG [ServiceConfigurator] ExportedInterface set to interface org.jboss.tm.usertx.interfaces.UserTransactionSessionFactory in jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,849 DEBUG [ServiceConfigurator] ClientInterceptors set to [interceptors: null] in jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,849 DEBUG [JRMPProxyFactory] added interceptor type: class org.jboss.proxy.ClientMethodInterceptor
+09:23:39,849 DEBUG [JRMPProxyFactory] added interceptor type: class org.jboss.invocation.InvokerInterceptor
+09:23:39,849 DEBUG [ServiceController] recording that jboss:service=proxyFactory,target=ClientUserTransactionFactory depends on jboss:service=invoker,type=unified
+09:23:39,849 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss:service=invoker,type=unified
+09:23:39,849 DEBUG [ServiceController] recording that jboss:service=ClientUserTransaction depends on jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,849 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss:service=proxyFactory,target=ClientUserTransactionFactory
+09:23:39,849 DEBUG [ServiceCreator] About to create bean: jboss:service=proxyFactory,target=ClientUserTransaction with code: org.jboss.invocation.jrmp.server.JRMPProxyFactory
+09:23:39,865 DEBUG [ServiceCreator] Created bean: jboss:service=proxyFactory,target=ClientUserTransaction
+09:23:39,865 DEBUG [ServiceConfigurator] InvokerName set to jboss:service=invoker,type=unified in jboss:service=proxyFactory,target=ClientUserTransaction
+09:23:39,865 DEBUG [ServiceConfigurator] TargetName set to jboss:service=ClientUserTransaction in jboss:service=proxyFactory,target=ClientUserTransaction
+09:23:39,865 DEBUG [ServiceConfigurator] ExportedInterface set to interface org.jboss.tm.usertx.interfaces.UserTransactionSession in jboss:service=proxyFactory,target=ClientUserTransaction
+09:23:39,865 DEBUG [ServiceConfigurator] ClientInterceptors set to [interceptors: null] in jboss:service=proxyFactory,target=ClientUserTransaction
+09:23:39,865 DEBUG [JRMPProxyFactory] added interceptor type: class org.jboss.proxy.ClientMethodInterceptor
+09:23:39,865 DEBUG [JRMPProxyFactory] added interceptor type: class org.jboss.invocation.InvokerInterceptor
+09:23:39,865 DEBUG [ServiceController] recording that jboss:service=proxyFactory,target=ClientUserTransaction depends on jboss:service=invoker,type=unified
+09:23:39,865 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss:service=invoker,type=unified
+09:23:39,865 DEBUG [ServiceController] recording that jboss:service=ClientUserTransaction depends on jboss:service=proxyFactory,target=ClientUserTransaction
+09:23:39,865 DEBUG [ServiceConfigurator] considering TxProxyName with object name jboss:service=proxyFactory,target=ClientUserTransaction
+09:23:39,865 DEBUG [ServiceCreator] About to create bean: jboss:service=invoker,type=unified with code: org.jboss.invocation.unified.server.UnifiedInvoker
+09:23:39,880 DEBUG [ServiceCreator] Created bean: jboss:service=invoker,type=unified
+09:23:39,880 DEBUG [ServiceController] recording that jboss:service=invoker,type=unified depends on jboss:service=TransactionManager
+09:23:39,880 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss:service=TransactionManager
+09:23:39,880 DEBUG [ServiceController] recording that jboss:service=invoker,type=unified depends on jboss.remoting:service=Connector,transport=socket
+09:23:39,880 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss.remoting:service=Connector,transport=socket
+09:23:39,880 DEBUG [ServiceCreator] About to create bean: jboss:service=invoker,type=jrmp with code: org.jboss.invocation.jrmp.server.JRMPInvoker
+09:23:39,927 DEBUG [ServiceCreator] Created bean: jboss:service=invoker,type=jrmp
+09:23:39,927 DEBUG [ServiceConfigurator] RMIObjectPort set to 4444 in jboss:service=invoker,type=jrmp
+09:23:39,927 DEBUG [ServiceConfigurator] ServerAddress set to 127.0.0.1 in jboss:service=invoker,type=jrmp
+09:23:39,927 DEBUG [ServiceController] recording that jboss:service=invoker,type=jrmp depends on jboss:service=TransactionManager
+09:23:39,927 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss:service=TransactionManager
+09:23:39,927 DEBUG [ServiceCreator] About to create bean: jboss:service=invoker,type=local with code: org.jboss.invocation.local.LocalInvoker
+09:23:39,943 DEBUG [ServiceCreator] Created bean: jboss:service=invoker,type=local
+09:23:39,943 DEBUG [ServiceController] recording that jboss:service=invoker,type=local depends on jboss:service=TransactionManager
+09:23:39,943 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss:service=TransactionManager
+09:23:39,943 DEBUG [ServiceCreator] About to create bean: jboss:service=invoker,type=pooled with code: org.jboss.invocation.pooled.server.PooledInvoker
+09:23:39,959 DEBUG [ServiceCreator] Created bean: jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] NumAcceptThreads set to 1 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] MaxPoolSize set to 300 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] ClientMaxPoolSize set to 300 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] SocketTimeout set to 60000 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] ServerBindAddress set to 127.0.0.1 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] ServerBindPort set to 4445 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] ClientConnectAddress set to 127.0.0.1 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] ClientConnectPort set to 0 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] ClientRetryCount set to 1 in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceConfigurator] EnableTcpNoDelay set to false in jboss:service=invoker,type=pooled
+09:23:39,959 DEBUG [ServiceController] recording that jboss:service=invoker,type=pooled depends on jboss:service=TransactionManager
+09:23:39,959 DEBUG [ServiceConfigurator] considering TransactionManagerService with object name jboss:service=TransactionManager
+09:23:39,959 DEBUG [ServiceCreator] About to create bean: jboss.remoting:service=NetworkRegistry with code: org.jboss.remoting.network.NetworkRegistry
+09:23:39,974 DEBUG [ServiceCreator] Created bean: jboss.remoting:service=NetworkRegistry
+09:23:39,974 DEBUG [ServiceCreator] About to create bean: jboss.remoting:service=Connector,transport=socket with code: org.jboss.remoting.transport.Connector
+09:23:39,990 DEBUG [ServiceCreator] Created bean: jboss.remoting:service=Connector,transport=socket
+09:23:39,990 DEBUG [ServiceConfigurator] Configuration set to [config: null] in jboss.remoting:service=Connector,transport=socket
+09:23:39,990 DEBUG [ServiceController] recording that jboss.remoting:service=Connector,transport=socket depends on jboss.remoting:service=NetworkRegistry
+09:23:39,990 DEBUG [ServiceConfigurator] considering <anonymous> with object name jboss.remoting:service=NetworkRegistry
+09:23:39,990 DEBUG [ServiceCreator] About to create bean: jboss.jdbc:service=metadata with code: org.jboss.ejb.plugins.cmp.jdbc.metadata.MetaDataLibrary
+09:23:39,990 DEBUG [ServiceCreator] Created bean: jboss.jdbc:service=metadata
+09:23:39,990 DEBUG [ServiceCreator] About to create bean: jboss.deployment:type=DeploymentScanner,flavor=URL with code: org.jboss.deployment.scanner.URLDeploymentScanner
+09:23:40,005 DEBUG [ServiceCreator] Created bean: jboss.deployment:type=DeploymentScanner,flavor=URL
+09:23:40,005 DEBUG [ServiceController] recording that jboss.deployment:type=DeploymentScanner,flavor=URL depends on jboss.system:service=MainDeployer
+09:23:40,005 DEBUG [ServiceConfigurator] considering Deployer with object name jboss.system:service=MainDeployer
+09:23:40,005 DEBUG [ServiceConfigurator] URLComparator set to org.jboss.deployment.DeploymentSorter in jboss.deployment:type=DeploymentScanner,flavor=URL
+09:23:40,021 DEBUG [ServiceConfigurator] FilterInstance set to org.jboss.deployment.scanner.DeploymentFilter@a3d3b in jboss.deployment:type=DeploymentScanner,flavor=URL
+09:23:40,021 DEBUG [ServiceConfigurator] ScanPeriod set to 5000 in jboss.deployment:type=DeploymentScanner,flavor=URL
+09:23:40,021 DEBUG [ServiceConfigurator] ScanEnabled set to true in jboss.deployment:type=DeploymentScanner,flavor=URL
+09:23:40,021 DEBUG [ServiceConfigurator] URLs set to deploy/ in jboss.deployment:type=DeploymentScanner,flavor=URL
+09:23:40,021 DEBUG [URLDeploymentScanner] Adding URL from spec: deploy/
+09:23:40,021 DEBUG [URLDeploymentScanner] URL: file:/D:/jboss-4.2.3.GA/server/all/deploy/
+09:23:40,021 DEBUG [URLDeploymentScanner] Added url: file:/D:/jboss-4.2.3.GA/server/all/deploy/
+09:23:40,021 DEBUG [URLDeploymentScanner] URL list: [file:/D:/jboss-4.2.3.GA/server/all/deploy/]
+09:23:40,021 DEBUG [ServiceConfigurator] RecursiveSearch set to true in jboss.deployment:type=DeploymentScanner,flavor=URL
+09:23:40,021 DEBUG [ServiceController] Creating service jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:40,021 DEBUG [LocalJBossServerDomain] Creating jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:40,021 DEBUG [LocalJBossServerDomain] setupJ2EEMBeans(), create J2EEServer instance
+09:23:40,021 DEBUG [J2EEDomain] ctor, name: jboss.management.local:name=jboss.management.local,j2eeType=J2EEDomain
+09:23:40,037 DEBUG [J2EEDomain] postRegister(), parent: null
+09:23:40,037 DEBUG [J2EEServer] postRegister(), parent: jboss.management.local:j2eeType=J2EEDomain,name=jboss.management.local
+09:23:40,052 DEBUG [JVM] postRegister(), parent: jboss.management.local:j2eeType=J2EEServer,name=Local
+09:23:40,068 DEBUG [LocalJBossServerDomain] Registered as listener of: jboss.system:service=ServiceController
+09:23:40,084 DEBUG [LocalJBossServerDomain] Registering with all deployers, mainDeployer=jboss.system:service=MainDeployer
+09:23:40,084 DEBUG [LocalJBossServerDomain] Getting current deployers
+09:23:40,084 DEBUG [LocalJBossServerDomain] Registering as listener of deployer: jboss.system:service=ServiceDeployer
+09:23:40,084 DEBUG [LocalJBossServerDomain] Registering as listener of deployer: jboss.system:service=JARDeployer
+09:23:40,084 DEBUG [LocalJBossServerDomain] Created jboss.management.local:j2eeType=J2EEDomain,name=Manager
+09:23:40,084 DEBUG [LocalJBossServerDomain] handleNotification: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [DefaultManagedObjectFactoryMap] Failed to find factory for event: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [ServiceController] Creating dependent components for: jboss.management.local:j2eeType=J2EEDomain,name=Manager dependents are: []
+09:23:40,084 DEBUG [ServiceController] Creating service jboss:service=AttributePersistenceService
+09:23:40,084 DEBUG [AttributePersistenceService] Creating jboss:service=AttributePersistenceService
+09:23:40,084 DEBUG [AttributePersistenceService] Created jboss:service=AttributePersistenceService
+09:23:40,084 DEBUG [LocalJBossServerDomain] handleNotification: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [DefaultManagedObjectFactoryMap] Failed to find factory for event: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [ServiceController] Creating dependent components for: jboss:service=AttributePersistenceService dependents are: []
+09:23:40,084 DEBUG [ServiceController] Creating service jboss.system:service=ThreadPool
+09:23:40,084 DEBUG [LocalJBossServerDomain] handleNotification: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [DefaultManagedObjectFactoryMap] Failed to find factory for event: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [ServiceController] Creating dependent components for: jboss.system:service=ThreadPool dependents are: [ObjectName: jboss:service=WebService
+  State: CONFIGURED
+  I Depend On:
+    jboss.system:service=ThreadPool
+, ObjectName: jboss:service=Naming
+  State: CONFIGURED
+  I Depend On:
+    jboss.system:service=ThreadPool
+    jboss:service=NamingBeanImpl
+]
+09:23:40,084 DEBUG [ServiceController] Creating service jboss:service=WebService
+09:23:40,084 DEBUG [WebService] Creating jboss:service=WebService
+09:23:40,084 INFO  [WebService] Using RMI server codebase: http://127.0.0.1:8083/
+09:23:40,084 DEBUG [WebService] Created jboss:service=WebService
+09:23:40,084 DEBUG [LocalJBossServerDomain] handleNotification: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [DefaultManagedObjectFactoryMap] Failed to find factory for event: javax.management.Notification[source=jboss.system:service=ServiceController][type=org.jboss.system.ServiceMBean.create][message=]
+09:23:40,084 DEBUG [ServiceController] Creating dependent components for: jboss:service=WebService dependents are: []
+09:23:40,084 DEBUG [ServiceController] Creating service jboss:service=Naming
+09:23:40,084 DEBUG [ServiceController] waiting in create of jboss:service=Naming waiting on jboss:service=NamingBeanImpl
+09:23:40,084 DEBUG [ServiceController] Creating service jboss.system:type=Log4jService,service=Logging
+09:23:40,099 DEBUG [Log4jService] Creating jboss.system:type=Log4jService,service=Logging
+09:23:40,099 INFO  [Log4jService$URLWatchTimerTask] Configuring from URL: resource:jboss-log4j.xml

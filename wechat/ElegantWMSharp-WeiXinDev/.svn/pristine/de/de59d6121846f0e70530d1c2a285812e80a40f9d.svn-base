@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "粉丝管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <script src="~/Application/WXFans/app.js"></script>
+}

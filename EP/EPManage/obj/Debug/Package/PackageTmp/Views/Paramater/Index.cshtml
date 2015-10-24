@@ -1,0 +1,44 @@
+﻿@model EPManageWeb.Entities.Models.ClothesType
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section head{}
+
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".sortable").sortable();
+        });
+        $("#save").click(function () {
+            alert($(".sortable").sortable("toArray"));
+        });
+    </script>
+}
+<div class="searchbox">
+    <table>
+        @foreach (var t in Model.ClothesParts)
+        {
+            <tr>
+                <th>@t.Name</th>
+                <td>
+                    <ul class="nav sortable">
+                        @foreach (var t2 in t.PartTypes)
+                        {
+                            <li id="@t2.Id">@t2.Name</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <a href="#myModal" role="button" class="btn" data-toggle="modal">添加</a>
+                    <button id="save" class="btn btn-primary">确定</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@{Html.RenderPartial("EditClothesPartType");}

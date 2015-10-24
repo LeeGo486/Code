@@ -1,0 +1,73 @@
+﻿<br />
+<div class="dataDetail">
+    <h4><span>&nbsp;&nbsp;客户信息</span></h4><span class="icon-double-angle-up" style="float:right"></span>
+        <table class="dataTable">
+            <tr>
+                <th>姓名：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["Name"]</td>
+                <th>卡号：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["VIPCard"]</td>
+                
+            </tr>
+            <tr>
+                <th>生日：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["Birthday"]</td>
+                <th>年龄：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["Age"]</td>
+            </tr>
+            <tr>
+                <th>手机：</th>
+                <td><a href="tel:@ViewBag.CusInfo.Rows[0]["MobileNum"]"> @ViewBag.CusInfo.Rows[0]["MobileNum"]</a></td>
+                <th>等级：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["Level"]</td>
+            </tr>
+            <tr>
+                <th>经理：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["CustomerManager"]</td>
+                <th>发展：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["SeekDate"]</td>
+            </tr>
+            <tr>
+                <th style="width:80px;">特征：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["LoyaltyType"]</td>
+                <th>积分：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["points"]</td>
+            </tr>
+        </table>
+    <br />
+    <h4><span>&nbsp;&nbsp;消费信息</span></h4><span class="icon-double-angle-up" style="float:right"></span>
+        <table class="dataTable">
+            <tr>
+                <th style="width:100px;">最&nbsp;近&nbsp;消&nbsp;费&nbsp;金&nbsp;额：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["RecentConsumptionAmount"]</td>
+            </tr>
+            <tr>
+                <th style="width:100px;">最&nbsp;近&nbsp;消&nbsp;费&nbsp;日&nbsp;期：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["RecentConsumptionDate"]</td>
+            </tr>
+            <tr>
+                <th style="width:100px;">今&nbsp;年&nbsp;消&nbsp;费&nbsp;金&nbsp;额：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["ThisYearConsumptionAmount"]</td>
+            </tr>
+            <tr>
+                <th style="width:100px;">去&nbsp;年&nbsp;消&nbsp;费&nbsp;金&nbsp;额：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["LastYearConsumpitonAmount"]</td>
+            </tr>
+            <tr style="width:100px;">
+                <th>总&nbsp;&nbsp;消&nbsp;&nbsp;费&nbsp;&nbsp;金&nbsp;&nbsp;额：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["TotalAmount"]</td>
+            </tr>
+            <tr style="width:100px;">
+                <th>总&nbsp;&nbsp;消&nbsp;&nbsp;费&nbsp;&nbsp;次&nbsp;&nbsp;数：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["TotalNum"]</td>
+            </tr>
+            <tr>
+                <th style="width:130px;">12个月内消费金额：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["TwelveMonthsConsumptionAmount"]</td>
+            </tr>
+            <tr>
+                <th>12个月内消费次数：</th>
+                <td>@ViewBag.CusInfo.Rows[0]["TwelveMonthsConsumptionNum"]</td>
+            </tr>
+        </table>
+</div>

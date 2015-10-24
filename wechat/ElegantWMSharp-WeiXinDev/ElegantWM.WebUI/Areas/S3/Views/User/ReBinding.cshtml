@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "重新绑定";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                if ($.trim($("#txtPosCode").val()).length <= 0) {
+                    $("#txtPosCode").focus();
+                    Msg.show("请输入新的导购号", 1);
+                    return;
+                }
+                var postData = {
+                    posCode: $("#txtPosCode").val(),
+                    sid: Url.get("sid"),
+                    oid: Url.get("oid"),
+                    IsRePos:true
+                };
+                Msg.show("绑定中...", 3);
+                $.post("/S3/User/BindEhrDrp", postData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        window.location.href = "/S3/User/Index?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                    }
+                });
+            });
+        });
+    </script>
+}
+<div class="ht">
+    <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;切换导购号
+</div>
+<div class="dataDetail">
+    <div style="text-align:center;margin:10px 0 40px 0;color:#f66;">
+        <i class="icon-exclamation-sign icon-4x"></i><br />
+        请确认您输入的POS导购编号是否正确或者是否出于离职状态！
+    </div>
+    <div class="input-group ">
+        <span class="input-group-addon">新导购号</span>
+        <input id="txtPosCode" type="text" class="form-control" maxlength="14" placeholder="请输入新的POS导购编号">
+    </div>
+    <font color="#aaa">导购号查询方法：进入店铺管理--设置班次及营业员，请保证姓名与EHR的一致。</font>
+    <input id="btnSubmit" type="button" value="切换导购号" class="btn btn-success" style="width: 100%; margin-top: 30px;" />
+</div>

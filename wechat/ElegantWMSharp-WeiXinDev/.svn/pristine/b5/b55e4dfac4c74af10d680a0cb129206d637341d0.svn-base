@@ -1,0 +1,34 @@
+﻿<table style="margin-top: -10px; font-size: 10px">
+    @if (ViewBag.flag == "1")
+    {
+        <tr>
+            <td rowspan="1">
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/shopsearchbg.jpg" style="width: 80%" />
+            </td>
+            <td style="width: 60%"><span>无相关店铺</span><br />
+            </td>
+        </tr>
+    }
+    else
+    {
+        foreach (System.Data.DataRow dr in ViewBag.Shop.Rows)
+        {
+        <tr>
+            <td rowspan="1">
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/shopsearchbg.jpg" style="width: 80%" />
+            </td>
+            <td style="width: 70%">
+                <span>店铺名称：@dr["j_name"]</span><br />
+                <span>店铺电话：@dr["m_shoptel"]</span><br />
+                <span>店铺地址：@dr["g_address"]</span><br />
+                <div class="distance"><span>距离：@dr["Distance"] km</span></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        }
+    }
+</table>

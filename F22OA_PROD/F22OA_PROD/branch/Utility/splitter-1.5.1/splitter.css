@@ -1,0 +1,67 @@
+﻿body, html
+{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+/*
+Horizontal Splitter Stylese
+-------------------------------*/
+.hsplitter
+{
+	width: 100%;
+}
+.hsplitter #TopPane
+{
+	overflow: hidden;
+	height: 200px;
+}
+.hsplitter #BottomPane
+{
+	overflow: hidden;
+}
+.hsplitter .hsplitbar
+{
+	height: 6px;
+	border-style: solid;
+	border-color: #99bbe8;
+	border-width: 1px 0;
+	background: #dfe8f6 url(img/hgrabber.gif) no-repeat center;
+}
+.hsplitter .hsplitbar.active, .hsplitter .hsplitbar:hover
+{
+	border-color: #4b86d5;
+}
+
+/*
+Vertical Splitter Stylese
+-------------------------------*/
+.vsplitter
+{
+	width: 100%;
+	height: 200px;
+}
+.vsplitter #LeftPane
+{
+	min-width: 100px;
+	overflow: auto;
+}
+.vsplitter #RightPane
+{
+	width: auto;
+	overflow: auto;
+}
+.vsplitter .vsplitbar
+{
+	width: 6px;
+	border-style: solid;
+	border-color: #99bbe8;
+	border-width: 0 1px;
+	background: #dfe8f6 url(img/vgrabber.gif) no-repeat center;
+}
+.vsplitter .vsplitbar.active, .vsplitter .vsplitbar:hover
+{
+	border-color: #4b86d5;
+}
+
+

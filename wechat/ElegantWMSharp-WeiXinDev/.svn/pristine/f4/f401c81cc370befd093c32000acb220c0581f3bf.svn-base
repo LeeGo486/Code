@@ -1,0 +1,81 @@
+﻿@model ElegantWM.EntityModel.HR_Course
+@{
+    ViewBag.Title = "课程管理";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            //选课按钮事件
+            $("button").click(function () {
+                $(this).button('loading');
+                Msg.show("请稍后...", 3);
+                //$.post("/HR/Course/Choose/@Model.Id ", function (rst) {
+                $.post("/HR/Course/Choose?id=" + '@Model.Id' + "&SignUpType=" + '@Model.SignUpType', function (rst) {
+                    Msg.hide();
+                    $("button").button('reset');
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+        });
+    </script>
+}
+<div class="courseDetail">
+    <span class="badge pull-right kkz">已报名：@ViewBag.Registers</span>
+    <h3><i class="glyphicon glyphicon-book"></i>@Model.CourseName</h3>
+
+    地点：@Model.Venue<br />
+    日期：@Model.StartDate.ToString("yyyy-MM-dd") ~ @Model.EndDate.ToString("yyyy-MM-dd")<br />
+    描述：@Model.CourseDesc
+    <h4><span><i class="glyphicon glyphicon-time"></i>课 时 </span></h4>
+    @foreach (ElegantWM.EntityModel.HR_CourseLesson lesson in ViewBag.Lesson)
+    {
+        <div class="lesson">
+            <div style="margin-bottom: 6px;"><span class="label label-warning">@lesson.LessonName</span></div>
+            时间： @lesson.StartTime.ToString("yyyy-MM-dd") （@lesson.StartTime.ToString("HH:mm") ~ @lesson.EndTime.ToString("HH:mm")）
+            <br />
+            讲师：@lesson.Teacher&nbsp;&nbsp;<br />
+            积分：@lesson.Integration<br />
+        </div>
+    }
+</div>
+
+
+@if (Model.SignUpType == 1)
+{
+    if (DateTime.Now.Date <= Model.StartDate)
+    {
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="报名中...">我要报名</button>
+    }
+    else
+    {
+    <button type="button" class="btn btn-success" disabled="disabled" style="width: 100%; margin-top: 30px;">报名时间已过</button>
+    }
+}
+else if (Model.SignUpType == 2)
+{
+    <button type="button" class="btn btn-success" disabled="disabled" style="width: 100%; margin-top: 30px;">无需要报名&定学员</button>
+}
+else if (Model.SignUpType == 3)
+{
+    if (DateTime.Now.Date <= Model.StartDate)
+    {
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="特定人员报名中...">我要报名</button>
+    }
+    else
+    {
+    <button type="button" class="btn btn-success" disabled="disabled" style="width: 100%; margin-top: 30px;">报名时间已过</button>
+    }
+}
+@*
+@if (DateTime.Now.Date <= Model.StartDate && Model.SignUpType == 1)
+{
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="报名中...">我要报名</button>
+}
+else if (DateTime.Now.Date > Model.StartDate && Model.SignUpType == 1)
+{
+    <button type="button" class="btn btn-success" disabled="disabled" style="width: 100%; margin-top: 30px;">报名时间已过</button>
+}
+*@
+

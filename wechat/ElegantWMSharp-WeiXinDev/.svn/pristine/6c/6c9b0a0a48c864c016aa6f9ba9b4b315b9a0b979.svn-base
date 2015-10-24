@@ -1,0 +1,24 @@
+body {
+    font-family:'Microsoft YaHei',Arial;
+    background-attachment:scroll;
+}
+
+
+.share {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+    .share img {
+        width: 100%;
+        height: 200%;
+    }
+
+.share1 {
+    position: fixed;
+    z-index:9999999;
+}
+    .share1 img {
+        width: 100%;
+    }

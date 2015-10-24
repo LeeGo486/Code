@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "圣诞小游戏";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/NpaiaChristmas.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#bg").load(function () {
+                var height = $("#bg").height();
+                $("#btn").css("top", height * 0.35);
+                $("#pause").css("top", height * 0.05);
+                $("#play").css("top", height * 0.05);
+                $("#countdown").css("top", height * 0.6);
+                $("#snow").css("top", height * (-1));
+                $("#countdown").height(height * 0.2);
+
+                $("#snow").animate({
+                    top: "0"
+                },15000)
+
+            });
+            if ($("#countdown").text() != "抽奖次数已用完")
+                countDown($("#countdown").text());
+            else
+                $("#countdown").css("font-size", "1.5em");
+
+            document.getElementById("audio").play();
+        })
+
+        WeixinApi.ready(function (Api) {
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/NpaiaChristmas/icon.png',
+                "link": 'http://it.hwafashion.com/Game/NpaiaChristmas/?sid=FF25138F-08F0-49C8-8768-83EFADDB2618',
+                "desc": "恩派雅-就是如此任性",
+                "title": "恩派雅-就是如此任性"
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+        });
+
+        function countDown(oft) {
+            var ofh = parseInt(oft / 3600);
+
+            var ofm = "0" + parseInt((oft % 3600) / 60);
+            ofm = ofm.substring(ofm.length - 2);
+
+            var ofs = "0" + parseInt(((oft % 3600) % 60 % 60));
+            ofs = ofs.substring(ofs.length - 2);
+
+            $("#countdown").text(ofh + ":" + ofm + ":" + ofs);
+            if (oft == 0) {
+                setTimeout("goToWinning()", 2000);
+            } else {
+                oft = parseInt(oft) - 1;
+                setTimeout('countDown(' + oft + ')', 1000);
+            }
+        }
+
+        function goToWinning() {
+            window.location.href = "/Game/NpaiaChristmas/Winning?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        }
+    </script>
+}
+<audio id="audio" autoplay="" loop="" src="~/Areas/Game/Resources/MP3/JingleBells_.mp3"></audio>
+<img id="snow" src="~/Areas/Game/Resources/images/NpaiaChristmas/snow.png"/>
+<img id="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/countdownbg.png"/>
+<img id="pause" src="~/Areas/Game/Resources/images/NpaiaChristmas/pause.png" style="width:10%;position:absolute;left:85%;display:none;"/>
+<img id="play" src="~/Areas/Game/Resources/images/NpaiaChristmas/play.png" style="width:10%;position:absolute;left:85%;"/>
+<img id="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/friend.png" style="width:30%;position:absolute;left:35%;"/>
+<div id="countdown" style="width:50%;position:absolute;left:25%;font-size: 3em;color: #fff;">@ViewBag.Info</div>
+
+<script type="text/javascript">
+    $("img#btn").click(function () {
+        WeixinApi.shareTip();
+    })
+
+    $("#pause").click(function () {
+        document.getElementById("audio").play();
+        $(this).hide()
+        $("#play").show();
+    })
+
+    $("#play").click(function () {
+        document.getElementById("audio").pause();
+        $(this).hide()
+        $("#pause").show();
+    })
+</script>

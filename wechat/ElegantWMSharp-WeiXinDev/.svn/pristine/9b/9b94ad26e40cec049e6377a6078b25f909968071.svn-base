@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "EP雅莹“为爱加分”";
+    Layout = "~/Areas/Game/Views/Shared/_Layout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/qz.css?v3" rel="stylesheet" />
+    <script src="~/Scripts/IosSlider/jquery.iosslider.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var isShow = 0;
+            $('.iosSlider').iosSlider({
+                scrollbar: true,
+                autoSlide: true,
+                snapVelocityThreshold: 2,
+                autoSlideTimer: 3000,
+                frictionCoefficient: 0.6,
+                elasticPullResistance: 0.6,
+                snapToChildren: true,
+                desktopClickDrag: true,
+                scrollbarLocation: 'top',
+                scrollbarMargin: '10px 10px 0 10px',
+                scrollbarBorderRadius: '0',
+                responsiveSlideWidth: true,
+                navSlideSelector: $('.iosSliderButtons .button'),
+                infiniteSlider: true,
+                startAtSlide: '1',
+                onSlideChange: slideContentChange,
+                onSliderLoaded: slideContentLoaded
+            });
+            function slideContentChange(args) {
+                $(args.sliderObject).parent().find('.iosSliderButtons .button').removeClass('selected');
+                $(args.sliderObject).parent().find('.iosSliderButtons .button:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+
+            }
+            function slideContentLoaded(args) {
+                $(args.sliderObject).parent().find('.iosSliderButtons .button').removeClass('selected');
+                $(args.sliderObject).parent().find('.iosSliderButtons .button:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+            }
+            var totalPlay = '@ViewBag.playCount';
+            if (parseInt(totalPlay) >= 2) {
+                window.location.href = "/Game/Quiz/Share?sid=CFE404EA-FE5B-4A85-87F0-B2701929462C&id=CFE404EA-FE5B-4A85-87F0-B2701929462C&oid=@(Request["oid"])";
+            }
+            $(window).bind("scroll", function () {
+                if (isShow == 0) {
+                    $(".pdown").hide();
+                    $(window).unbind("scroll");
+                }else {
+                    isShow = 1;
+                }
+            });
+        });
+    </script>
+}
+<div class="sec1">
+    <img src="/Areas/Game/Resources/images/qz/hd.png" height="200px;" />
+</div>
+<div class="sec2">
+    <table style="width: 100px; border-collapse: collapse; margin: 0px 0px 0px 36px;">
+        <tr style="border: 1px solid #b44a00; border-collapse: collapse;">
+            <td style="width:@((ViewBag.process / 50000) * 99)px;height:20px;background-color:#ff6a00;border-collapse:collapse;"></td>
+            <td style="border:1px solid #b44a00;background-color:#b44a00;height:20px;border-collapse:collapse;width:@(99 - (ViewBag.process / 50000) * 99)px;"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size: 16px; color: #018bba;">已筹集@(string.Format("{0:P1}", ((Double)(ViewBag.process) / 50000)))
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="sec3">
+    您每答对1题，我们都将为星星的孩子捐出1元。本次活动目标筹款 50000 元，相当于 500堂 的音乐课程。
+</div>
+<div class="sec4">
+    @if(ViewBag.playCount<2){
+        <a href="/Game/Quiz/Start?oid=@Request["oid"]"><img src="/Areas/Game/Resources/images/qz/bt1.png" /></a>
+    }
+    <a href="http://anniversary.i-creative.cn/"><img src="/Areas/Game/Resources/images/qz/bt2.png" /></a>
+</div>
+<iframe height="250" width="96%" src="http://player.youku.com/embed/XNTE2ODA2MDA0" frameborder=0 allowfullscreen></iframe>
+<div class='iosSlider'>
+    <div class='slider'>
+        <div class='item' id='item1'>
+            <img src="/Areas/Game/Resources/images/qz/img11.jpg">
+        </div>
+        <div class='item' id='item2'>
+            <img src="/Areas/Game/Resources/images/qz/img12.jpg">
+        </div>                                        
+        <div class='item' id='item3'>                 
+            <img src="/Areas/Game/Resources/images/qz/img13.jpg">
+        </div>                                        
+        <div class='item' id='item4'>                 
+            <img src="/Areas/Game/Resources/images/qz/img14.jpg">
+        </div>                                        
+        <div class='item' id='item6'>                 
+            <img src="/Areas/Game/Resources/images/qz/img15.jpg">
+        </div>                                        
+        <div class='item' id='item7'>                 
+            <img src="/Areas/Game/Resources/images/qz/img16.jpg">
+        </div>                                        
+        <div class='item' id='item8'>                 
+            <img src="/Areas/Game/Resources/images/qz/img17.jpg">
+        </div>                                        
+        <div class='item' id='item9'>                 
+            <img src="/Areas/Game/Resources/images/qz/img18.jpg">
+        </div>                                        
+        <div class='item' id='item10'>                
+            <img src="/Areas/Game/Resources/images/qz/img19.jpg">
+        </div>                                        
+        <div class='item' id='item11'>                
+            <img src="/Areas/Game/Resources/images/qz/img110.jpg">
+        </div>
+        <div class='item' id='item12'>
+            <img src="/Areas/Game/Resources/images/qz/img111.jpg">
+        </div>
+    </div>
+    <div class="iosSliderButtons">
+        <div class="button"></div><div class="button"></div><div class="button"></div><div class="button"></div>
+        <div class="button"></div><div class="button"></div><div class="button"></div><div class="button"></div>
+        <div class="button"></div><div class="button"></div><div class="button"></div><div class="button"></div>
+    </div>
+</div>
+<div class="bm">
+    <h3><a href="/Game/Quiz/Volunteer?oid=@Request["oid"]" style="text-decoration: none; color: #018bba;">>>志愿者报名(点击)<<</a></h3>
+    自闭症儿童，因为不能进行正常的语言表达和社交行动，被称为“星星的孩子”。
+    <br />
+    <br />
+    目前我国已确诊自闭症人数160万，未确诊人数在500万以上，如一个个孤独的星球处于我们周遭，其实走近看，一个个都是斑斓的世界。或许，音乐可以打开这些孩子们的心灵之门？
+    <br />
+    <br />
+    带着这样的想法，著名指挥家曹鹏先生号召创办了“天使知音沙龙”，在上海慈善基金会、上海城市交响乐团支持下，7年间坚持用音乐和孩子们沟通，从自己的小世界走出开始一起唱歌跳舞，甚至登上舞台演奏，每一点的成长变化都让让欣喜和感动，让一个个家庭重新有了笑声和希望。
+    <br />
+    <br />
+    为帮助更多自闭症儿童用音乐走出孤独，走进生活，本次活动EP雅莹将筹集5万元善款用做自闭症儿童的音乐教育金，由“天使知音沙龙”协助执行。
+    <br />
+    <br />
+    你答题，我筹资，您的一分用心都将成为星星孩子的希望的筹码，期待共同参与！
+</div>
+<img src="/Areas/Game/Resources/images/qz/ep.png" width="100%" />
+<div class="pdown">
+    <img src="/Areas/Game/Resources/images/qz/pdown.png" width="60px" />
+</div>

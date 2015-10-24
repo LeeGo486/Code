@@ -1,0 +1,336 @@
+﻿@{
+    ViewBag.Title = "雅斓魔法圣诞季";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link rel="stylesheet" type="text/css" href="~/Scripts/fullPage/jquery.fullPage.css" />
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script type="text/javascript" src="~/Scripts/rotate/jQueryRotate.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            document.getElementById("audio").play();
+
+            switch (parseInt($("#num").text())) {
+                case 4:
+                    $("#star4").show();
+                    $("#grey4").hide();
+                case 3:
+                    $("#star5").show();
+                    $("#grey5").hide();
+                case 2:
+                    $("#star6").show();
+                    $("#grey6").hide();
+                case 1:
+                    $("#star7").show();
+                    $("#grey7").hide();
+            }
+
+            $("#tree2").animate({
+                width: "100%",
+                left: "0%"
+            }, 1000,
+            function () {
+                $("#star4").animate({
+                    width: "25%",
+                    left: "8%"
+                }, 1000);
+                $("#star5").animate({
+                    width: "20%",
+                    left: "75%"
+                }, 1000);
+                $("#star6").animate({
+                    width: "20%",
+                    left: "8%"
+                }, 1000);
+                $("#star7").animate({
+                    width: "25%",
+                    left: "50%"
+                }, 1000);
+                $("#grey4").animate({
+                    width: "25%",
+                    left: "8%"
+                }, 1000);
+                $("#grey5").animate({
+                    width: "20%",
+                    left: "75%"
+                }, 1000);
+                $("#grey6").animate({
+                    width: "20%",
+                    left: "8%"
+                }, 1000);
+                $("#grey7").animate({
+                    width: "25%",
+                    left: "50%"
+                }, 1000,
+                function () {
+                    var angle = 0;
+                    setInterval(function () {
+                        angle += 10;
+                        $('#star4').rotate(angle);
+                        $('#star5').rotate(angle);
+                        $('#star6').rotate(angle);
+                        $('#star7').rotate(angle);
+                    }, 50);
+
+                    $("#buck").animate({
+                        left: "0%"
+                    }, 1000);
+                    $("#eye1").animate({
+                        left: "16%"
+                    }, 1000);
+                    $("#eye2").animate({
+                        left: "16%"
+                    }, 1000,
+                    function () {
+                        var angle = 1;
+                        setInterval(function () {
+                            if (angle == 1) {
+                                $("#eye1").show();
+                                $("#eye2").hide();
+                            }
+                            else {
+                                $("#eye2").show();
+                                $("#eye1").hide();
+                            }
+                            angle = angle * (-1);
+                        }, 500);
+
+                        $("#ufo2").animate({
+                            width: "40%",
+                            left: "45%"
+                        }, 1000,
+                        function () {
+                            var angle = 1;
+                            var rorate = 0;
+                            setInterval(function () {
+                                rorate += 30;
+                                $('#down1').rotate(rorate);
+                                $('#down2').rotate(rorate);
+                                $('#down3').rotate(rorate);
+                                if (angle == 1) {
+                                    $("#ufo2").css("top", "17%");
+                                }
+                                else {
+                                    $("#ufo2").css("top", "13%");
+                                }
+                                angle = angle * (-1);
+                            }, 500);
+
+                            $("#merry").animate({
+                                width: "80%",
+                                left: "20%"
+                            }, 1000)
+
+                            var loop1 = 1;
+                            setInterval(function () {
+                                if (loop1 == 1) {
+                                    $("#down1").show();
+                                    $("#down1").animate({
+                                        top: "50%",
+                                        left: "20%"
+                                    }, 2000, function () {
+                                        $("#down1").animate({
+                                            top: "100%",
+                                            left: "40%"
+                                        }, 2000, function () {
+                                            $("#down1").hide();
+                                        });
+                                    });
+                                }
+                                else {
+                                    $("#down1").animate({
+                                        top: "0%"
+                                    }, 100);
+                                }
+                                loop1 = loop1 * (-1);
+                            }, 4000);
+
+                            var loop2 = 1;
+                            setInterval(function () {
+                                if (loop2 == 1) {
+                                    $("#down2").show();
+                                    $("#down2").animate({
+                                        top: "100%"
+                                    }, 2000, function () {
+                                        $("#down2").hide();
+                                    });
+                                }
+                                else {
+                                    $("#down2").animate({
+                                        top: "0%"
+                                    }, 100);
+                                }
+                                loop2 = loop2 * (-1);
+                            }, 2000);
+
+                            var loop3 = 1;
+                            setInterval(function () {
+                                if (loop3 == 1) {
+                                    $("#down3").show();
+                                    $("#down3").animate({
+                                        top: "50%",
+                                        left: "60%"
+                                    }, 1500, function () {
+                                        $("#down3").animate({
+                                            top: "100%",
+                                            left: "80%"
+                                        }, 1500, function () {
+                                            $("#down3").hide();
+                                        })
+                                    });
+                                }
+                                else {
+                                    $("#down3").animate({
+                                        top: "0%"
+                                    }, 100);
+                                }
+                                loop3 = loop3 * (-1);
+                            }, 3000);
+
+                            setTimeout(function () {
+                                $("#info").fadeIn(1000);
+                                $(".infotext").fadeIn(1000, function () {
+                                    $(".infotext").show();
+
+                                    if ($(".infotext").attr("id") == "i1") {
+                                        $("#grey4").click(function () {
+                                            clickStar($("#grey4"), $("#star4"));
+                                        })
+                                        $("#grey5").click(function () {
+                                            clickStar($("#grey5"), $("#star5"));
+                                        })
+                                        $("#grey6").click(function () {
+                                            clickStar($("#grey6"), $("#star6"));
+                                        })
+                                        $("#grey7").click(function () {
+                                            clickStar($("#grey7"), $("#star7"));
+                                        })
+                                    }
+                                });
+                            }, 3000);
+                        });
+                    });
+                });
+            });
+        })
+
+        var flag = false;
+        function clickStar(ele1,ele2) {
+            if (flag) {
+                return;
+            }
+            else {
+                flag = true;
+                $.post("/Game/GLChristmas/ClickStar?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&lid=" + Url.get("lid"), function (rst) {
+
+                    if (rst.result == 0) {
+                        $(".infotext").hide();
+                        $("#text9").show();
+                        ele1.hide();
+                        ele2.show()
+                    } else {
+                        flag = false;
+                        Msg.show(rst.msg, rst.result);
+                    }
+                });
+            }
+        }
+
+        WeixinApi.ready(function (Api) {
+            // 微信分享的数据
+            var url = "http://it.hwafashion.com/Game/GLChristmas/Share?sid=FF25138F-08F0-49C8-8768-83EFADDB2618&lid=" + Url.get("oid");
+
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/GLChristmas/icon.png',
+                "link": url,
+                "desc": "开启属于我的雅斓魔法圣诞寻宝之旅",
+                "title": "雅斓魔法圣诞季"
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+        });
+    </script>
+}
+<audio id="audio" autoplay="" loop="" src="~/Areas/Game/Resources/MP3/JingleBellRock.mp3"></audio>
+<img id="pause" src="~/Areas/Game/Resources/images/GLChristmas/pause.png" style="width:10%;position:fixed;left:85%;display:none;z-index: 9;top: 5%;"/>
+<img id="play" src="~/Areas/Game/Resources/images/GLChristmas/play.png" style="width:10%;position:fixed;left:85%;z-index: 9;top: 5%;"/>
+<div class="section" style="position:relative;width:100%;">
+    <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/bg1.jpg" style="width:100%;"/>
+    <img id="tree2" src="~/Areas/Game/Resources/images/GLChristmas/tree2.png" style="position:absolute;top: 25%;width:100%;left:50%;"/>
+    <div id="num" style="display:none;">@ViewBag.Num</div>
+    <img id="star4" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star4.png" style="position:absolute;top: 23%;width:0%;left:20%;display:none;"/>
+    <img id="star5" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star5.png" style="position:absolute;top: 20%;width:0%;left:85%;display:none;"/>
+    <img id="star6" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star6.png" style="position:absolute;top: 3%;width:0%;left:20%;display:none;"/>
+    <img id="star7" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star7.png" style="position:absolute;top: 3%;width:0%;left:65%;display:none;"/>
+    <img id="grey4" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey4.png" style="position:absolute;top: 23%;width:0%;left:20%;"/>
+    <img id="grey5" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey5.png" style="position:absolute;top: 20%;width:0%;left:85%;"/>
+    <img id="grey6" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey6.png" style="position:absolute;top: 3%;width:0%;left:20%;"/>
+    <img id="grey7" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey7.png" style="position:absolute;top: 3%;width:0%;left:65%;"/>
+    <img id="buck" src="~/Areas/Game/Resources/images/GLChristmas/buck.png" style="position:absolute;top: 55%;width:60%;left:100%;"/>
+    <img id="eye1" src="~/Areas/Game/Resources/images/GLChristmas/eye1.png" style="position:absolute;top: 76%;width:10%;left:116%;display:none;"/>
+    <img id="eye2" src="~/Areas/Game/Resources/images/GLChristmas/eye2.png" style="position:absolute;top: 76%;width:10%;left:116%;"/>
+    <img id="ufo2" src="~/Areas/Game/Resources/images/GLChristmas/ufo.png" style="position:absolute;top: 15%;width:0%;left:65%;"/>
+    <img id="merry" src="~/Areas/Game/Resources/images/GLChristmas/merry.png" style="position:absolute;top: 40%;width:0%;left:60%;"/>
+    <img id="down1" src="~/Areas/Game/Resources/images/GLChristmas/down1.png" style="position:absolute;top: 0%;width:15%;left:30%;display:none;z-index:9;"/>
+    <img id="down2" src="~/Areas/Game/Resources/images/GLChristmas/down2.png" style="position:absolute;top: 0%;width:15%;left:50%;display:none;z-index:9;"/>
+    <img id="down3" src="~/Areas/Game/Resources/images/GLChristmas/down3.png" style="position:absolute;top: 0%;width:30%;left:70%;display:none;"/>
+    <img id="info" src="~/Areas/Game/Resources/images/GLChristmas/info.png" style="position:absolute;top: 45%;width:80%;left:20%;display:none;"/>
+    @if(ViewBag.Type == 1) {
+        <img id="i1" class="infotext" src="~/Areas/Game/Resources/images/GLChristmas/text8.png" style="position:absolute;top: 50%;width:65%;left:30%;display:none;"/>
+        <img id="text9" src="~/Areas/Game/Resources/images/GLChristmas/text9.png" style="position:absolute;top: 51%;width:65%;left:30%;display:none;"/>
+    }
+    else
+    {
+        if (ViewBag.Num == 0)
+        {
+            <img id="i00" class="infotext" src="~/Areas/Game/Resources/images/GLChristmas/text7.png" style="position:absolute;top: 51%;width:65%;left:30%;display:none;"/>
+        }
+        else if (ViewBag.Num == 1)
+        {
+            <img id="i01" class="infotext" src="~/Areas/Game/Resources/images/GLChristmas/startext3.png" style="position:absolute;top: 55%;width:65%;left:28%;display:none;"/>
+        }
+        else if (ViewBag.Num == 2)
+        {
+            <img id="i02" class="infotext" src="~/Areas/Game/Resources/images/GLChristmas/startext2.png" style="position:absolute;top: 55%;width:65%;left:28%;display:none;"/>
+        }
+        else if (ViewBag.Num == 3)
+        {
+            <img id="i03" class="infotext" src="~/Areas/Game/Resources/images/GLChristmas/startext1.png" style="position:absolute;top: 55%;width:65%;left:28%;display:none;"/>
+        }
+        @*<button type="button" class="btn btn-success" style="width: 80%; position:absolute;top: 70%;left:10%;">重置</button>
+        <script type="text/javascript">
+            $("button").click(function () {
+                $.post("/Game/GLChristmas/Reset?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                    Msg.show(rst.msg, rst.result);
+                });
+            })
+        </script>*@
+    }
+</div>
+<script type="text/javascript">
+    $("#text9").click(function () {
+        window.location.href = "/Game/GLChristmas/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#pause").click(function () {
+        document.getElementById("audio").play();
+        $(this).hide()
+        $("#play").show();
+    })
+
+    $("#play").click(function () {
+        document.getElementById("audio").pause();
+        $(this).hide()
+        $("#pause").show();
+    })
+</script>

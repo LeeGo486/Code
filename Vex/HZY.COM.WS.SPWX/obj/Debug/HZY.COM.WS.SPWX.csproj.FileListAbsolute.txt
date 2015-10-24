@@ -1,0 +1,11 @@
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\HZY.COM.WS.SPWX.dll
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\HZY.COM.WS.SPWX.pdb
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\HZY.COM.Common.Base.dll
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\HZY.COM.Common.DBAccess.DBConn.dll
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\HZY.COM.Common.dll
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\HZY.COM.WS.DataSets.dll
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\Interop.MSXML2.dll
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\bin\Debug\HZY.COM.WS.DataSets.pdb
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\obj\Debug\HZY.COM.WS.SPWX.csprojResolveAssemblyReference.cache
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\obj\Debug\HZY.COM.WS.SPWX.dll
+E:\Work\Code\Vex\HZY.COM.WS.SPWX\obj\Debug\HZY.COM.WS.SPWX.pdb

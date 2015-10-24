@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{77A6F903-31AA-4986-A567-7788666328B3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElegantWM.IBLL</RootNamespace>
+    <AssemblyName>ElegantWM.IBLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IBaseService.cs" />
+    <Compile Include="IGameLinkService.cs" />
+    <Compile Include="IGameTicketService.cs" />
+    <Compile Include="IGame_LittleModelResultService.cs" />
+    <Compile Include="IGame_LittleModelService.cs" />
+    <Compile Include="IITDCService.cs" />
+    <Compile Include="IOO_IndustryService.cs" />
+    <Compile Include="IOO_MenuTemplateService.cs" />
+    <Compile Include="IWsrrService.cs" />
+    <Compile Include="IWXKeyWordService.cs" />
+    <Compile Include="IWXRespImgTxtService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IHRJobsService.cs" />
+    <Compile Include="IHRJobSeekerService.cs" />
+    <Compile Include="IWXAccountService.cs" />
+    <Compile Include="IHRCourseService.cs" />
+    <Compile Include="IHRCourseAttendService.cs" />
+    <Compile Include="IHRCourseLessonService.cs" />
+    <Compile Include="IHRCourseUserService.cs" />
+    <Compile Include="IHRLKCourseUserService.cs" />
+    <Compile Include="IWXFansService.cs" />
+    <Compile Include="IWXMenuService.cs" />
+    <Compile Include="IHRWXEmployeeService.cs" />
+    <Compile Include="IHRQuestionService.cs" />
+    <Compile Include="IHRQARstService.cs" />
+    <Compile Include="IWXLKFansC3AMService.cs" />
+    <Compile Include="IITSMEngineerService.cs" />
+    <Compile Include="IITSMEventService.cs" />
+    <Compile Include="IITSMEventLogService.cs" />
+    <Compile Include="IITSMEgrScheduleService.cs" />
+    <Compile Include="IITSMBasicInfoService.cs" />
+    <Compile Include="IWXContactsService.cs" />
+    <Compile Include="IS3DictionaryService.cs" />
+    <Compile Include="ISHOPCustomerFeedbackService.cs" />
+    <Compile Include="INPaiaVipUserService.cs" />
+    <Compile Include="IWXArticleLogService.cs" />
+    <Compile Include="IWXLKRegMemberFansService.cs" />
+    <Compile Include="ISHOPEventService.cs" />
+    <Compile Include="ISHOPEventFeedbackService.cs" />
+    <Compile Include="ICMTTaskDetailService.cs" />
+    <Compile Include="ICUS1_CustomerDocService.cs" />
+    <Compile Include="IGameAwardService.cs" />
+    <Compile Include="IGameRecordService.cs" />
+    <Compile Include="IGameQuestionService.cs" />
+    <Compile Include="IGameAnswerService.cs" />
+    <Compile Include="IGameQARstService.cs" />
+    <Compile Include="IGameQAVolunteerService.cs" />
+    <Compile Include="IFire_QuestionService.cs" />
+    <Compile Include="IGameUserInfoService.cs" />
+    <Compile Include="IGLGameUserInfoService.cs" />
+    <Compile Include="IGLGameRecordService.cs" />
+    <Compile Include="IGLGameAwardService.cs" />
+    <Compile Include="IGLGameLinkService.cs" />
+    <Compile Include="IHRSpecificService.cs" />
+    <Compile Include="IWX_Account_USER_AUZService.cs" />
+    <Compile Include="IGame_QrstService.cs" />
+    <!--DHELPERBLL-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElegantWM.DTO\ElegantWM.DTO.csproj">
+      <Project>{9e93760c-361e-41d0-9195-8eabeba3abd9}</Project>
+      <Name>ElegantWM.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.EntityModel\ElegantWM.EntityModel.csproj">
+      <Project>{c403bce8-d507-4a38-bf7c-2f76efaf0db4}</Project>
+      <Name>ElegantWM.EntityModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

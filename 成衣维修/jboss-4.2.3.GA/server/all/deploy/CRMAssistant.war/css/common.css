@@ -1,0 +1,298 @@
+@CHARSET "UTF-8";
+
+body
+	{
+	margin: 0;
+	font-family: Microsoft YaHei !important;
+	font-size: 0.9em;
+	height: 100%;
+    width: 100%;
+	}
+
+.clear
+	{
+	clear: both;
+	}
+	
+.left
+	{
+	float: left;
+	}
+	
+#title
+	{
+	width: 1000px;
+	height: 40px;
+	background-color: #FFF8DC;
+	font-size: 1.1em;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid gray;
+	border-width: 0 0 2px 0;
+	}
+	
+#sign,#titleName
+	{
+	float: left;
+	padding: 8px 20px;
+	}
+	
+#sign
+	{
+	font-family: Georgia;
+    font-style: italic;
+    font-weight: bold;
+    padding: 10px 20px;
+	}
+	
+#main
+	{
+	margin-left: auto;
+	margin-right: auto;
+	width: 1000px;
+	}
+	
+#manage
+	{
+	float: left;
+	height: 1407px;
+	background-color: #FFF8DC;
+	width: 148px;
+	border: 2px solid gray;
+	border-width: 0 2px 0 0;
+	}
+	
+#manageTitle
+	{
+	height: 20px;
+	background-color: #E0FFFF;
+	padding: 5px 10px;
+	border: 1px solid gray;
+	border-width: 0 0 1px 0;
+	}
+
+#manageType .m_type
+	{
+	font-size: 0.8em;
+	border: 1px dotted gray;
+	border-width: 0 0 1px 0;
+	margin: 0 10px;
+    padding: 10px;
+    cursor: pointer;
+	}
+
+#manageType .m_type:hover
+	{
+	color: blue;
+	}
+	
+#data
+	{
+	float: left;
+	width: 850px;
+	}
+	
+#search
+	{
+	height: auto;
+	width: 100%;
+	background-color: #E0FFFF;
+	border: 1px solid gray;
+	border-width: 0 0 1px 0;
+	}
+	
+#searchTitle,
+#detailTitle
+	{
+	height: 20px;
+	padding: 5px 10px;
+	background-color: #EBEBEB;
+	border: 1px solid gray;
+	border-width: 0 0 1px 0;
+	}
+	
+#searchTitle #check,
+#searchTitle #checkText
+	{
+    float: left;
+    margin: 0; 
+	}
+	
+#searchTitle #check
+	{
+	background: url("../image/check.png") no-repeat scroll 0 0 transparent;
+	height: 30px;
+    margin-top: -8px;
+    width: 30px;
+    cursor: pointer;
+	}
+	
+#searchTitle #search_close
+	{
+    margin-top: -3px;
+    cursor: pointer;
+    float:right;
+	}
+
+#searchTitle #search_close img
+	{
+	height: 25px;
+	}
+	
+#search div .condition
+	{
+	float: left;
+	width: 230px;
+	}	
+	
+#search div div,
+#search div input,
+#search div select
+	{
+	margin: 5px;
+	}
+	
+#search div input
+	{
+	height: 15px;
+	width: 134px;
+	}
+	
+#search div select
+	{
+	height: 20px;
+	width: 140px;
+	}
+
+#search #s_depot_list
+	{
+	position: absolute;
+	border: 1px solid #817F82;
+	z-index: 999;
+	background-color: #FFFFFF;
+	}
+
+#search #s_depot_list td
+	{
+	cursor: pointer;
+	}
+
+#search #s_depot_list td.m0
+	{
+	background-color: #EBEBEB;
+	}
+
+#search #s_depot_list td.m1
+	{
+	background-color: #FFFFFF;
+	}
+	
+#search div input#s_button
+	{
+	height: 22px;
+	width: 50px;
+	line-height: 10px;
+	}
+	
+#list
+	{
+	height: 350px;
+	border: 1px solid gray;
+	border-width: 0 0 1px 0;
+	}
+	
+#list .a_id
+	{
+	display: none;
+	}
+	
+#list tr
+	{
+	height: 30px;
+	cursor: pointer;
+	}
+
+#dialog .checkLabel,
+#dialog .checkArea
+	{
+	float: left;
+	padding: 20px 5px;
+	}
+	
+#dialog div.checkLabel
+	{
+	width: 100px;
+	}
+	
+#progress
+	{
+	height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: none;
+	}
+	
+#progress #background
+	{
+	background: none repeat scroll 0 0 gray;
+	height: 100%;
+    width: 100%;
+    opacity: 0.25;
+    filter: alpha(opacity=25);
+	}
+
+#detail #detail_close
+	{
+	margin-top: -3px;
+    cursor: pointer;
+    float:right;
+	}
+	
+#detail #detail_close img
+	{
+	height: 25px;
+	}
+	
+#detail #pt_close
+	{
+	margin-top: 0;
+    cursor: pointer;
+    float:right;
+	}
+	
+#detail #pt_close img
+	{
+	height: 20px;
+	}
+
+#detail div
+	{
+	margin: 5px;
+	}
+
+#detail_19 div
+	{
+	margin: 0;
+	}
+	
+#detail div.long
+	{
+	width: 200px;
+	}
+	
+#detail div.short
+	{
+	width: 150px;
+	}
+	
+#detail_3,
+#detail_12,
+#detail_15,
+#detail_18
+	{
+	background-color: #FFF68F;
+	border: 1px solid gray;
+	padding: 2px;
+	}

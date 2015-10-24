@@ -1,0 +1,3 @@
+1、新建一个库。如：“bbsxp”。
+2、将根目录下/OA/bbsxp/database/BBSXP2007.sql运行到该库（用于创建该论坛需要用到的各种表）
+3、修改/OA/bbsxp/conn.asp文件，将第6行的“IsSqlDataBase=1”改成1，并确定18-21行的数据库连接是否填写正确。

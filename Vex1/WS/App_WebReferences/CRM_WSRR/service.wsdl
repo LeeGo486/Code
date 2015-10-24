@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.turbocrm.com/webservice" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.turbocrm.com/webservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.turbocrm.com/webservice">
+      <xsd:complexType name="WSO_SOAPHeader">
+        <xsd:all>
+          <xsd:element name="PHPSESSID" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BeCompatibleRequest">
+    <wsdl:part name="allInOneVersion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="BeCompatibleHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="BeCompatibleResponse">
+    <wsdl:part name="BeCompatibleReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMessagesRequest">
+    <wsdl:part name="userCode" type="xsd:string" />
+    <wsdl:part name="userPassword" type="xsd:string" />
+    <wsdl:part name="allInOneVersion" type="xsd:string" />
+    <wsdl:part name="pageInfo" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMessagesHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMessagesResponse">
+    <wsdl:part name="GetMessagesReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="ReadUsersRequest">
+    <wsdl:part name="allInOneVersion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="ReadUsersHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReadUsersResponse">
+    <wsdl:part name="ReadUsersReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserRequest">
+    <wsdl:part name="allInOneVersion" type="xsd:string" />
+    <wsdl:part name="users" type="xsd:string" />
+    <wsdl:part name="signature" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserResponse">
+    <wsdl:part name="UpdateUserReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteUsersRequest">
+    <wsdl:part name="users" type="xsd:string" />
+    <wsdl:part name="allInOneVersion" type="xsd:string" />
+    <wsdl:part name="signature" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteUsersHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="WriteUsersResponse">
+    <wsdl:part name="WriteUsersReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="deleteu8allinoneuserRequest">
+    <wsdl:part name="userInfoXml" type="xsd:string" />
+    <wsdl:part name="signature" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="deleteu8allinoneuserHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="deleteu8allinoneuserResponse">
+    <wsdl:part name="deleteu8allinoneuserReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="loginRequest">
+    <wsdl:part name="user" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+    <wsdl:part name="lang" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="loginReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="logoutRequest" />
+  <wsdl:message name="logoutHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="processU9Request">
+    <wsdl:part name="queryXml" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="processU9Header">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="processU9Response">
+    <wsdl:part name="processU9Return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="processWithLoginRequest">
+    <wsdl:part name="user" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+    <wsdl:part name="queryXml" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="processWithLoginHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="processWithLoginResponse">
+    <wsdl:part name="processWithLoginReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="saveu8allinoneuserRequest">
+    <wsdl:part name="userInfoXml" type="xsd:string" />
+    <wsdl:part name="signature" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="saveu8allinoneuserHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="saveu8allinoneuserResponse">
+    <wsdl:part name="saveu8allinoneuserReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="WS_SystemPortType">
+    <wsdl:operation name="BeCompatible">
+      <wsdl:input message="tns:BeCompatibleRequest" />
+      <wsdl:output message="tns:BeCompatibleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessages">
+      <wsdl:input message="tns:GetMessagesRequest" />
+      <wsdl:output message="tns:GetMessagesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadUsers">
+      <wsdl:input message="tns:ReadUsersRequest" />
+      <wsdl:output message="tns:ReadUsersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input message="tns:UpdateUserRequest" />
+      <wsdl:output message="tns:UpdateUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteUsers">
+      <wsdl:input message="tns:WriteUsersRequest" />
+      <wsdl:output message="tns:WriteUsersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteu8allinoneuser">
+      <wsdl:input message="tns:deleteu8allinoneuserRequest" />
+      <wsdl:output message="tns:deleteu8allinoneuserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginRequest" />
+      <wsdl:output message="tns:loginResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <wsdl:input message="tns:logoutRequest" />
+    </wsdl:operation>
+    <wsdl:operation name="processU9">
+      <wsdl:input message="tns:processU9Request" />
+      <wsdl:output message="tns:processU9Response" />
+    </wsdl:operation>
+    <wsdl:operation name="processWithLogin">
+      <wsdl:input message="tns:processWithLoginRequest" />
+      <wsdl:output message="tns:processWithLoginResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="saveu8allinoneuser">
+      <wsdl:input message="tns:saveu8allinoneuserRequest" />
+      <wsdl:output message="tns:saveu8allinoneuserResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_SystemBinding" type="tns:WS_SystemPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="BeCompatible">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=BeCompatible" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:BeCompatibleHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessages">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=GetMessages" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:GetMessagesHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadUsers">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=ReadUsers" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:ReadUsersHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=UpdateUser" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:UpdateUserHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteUsers">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=WriteUsers" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:WriteUsersHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteu8allinoneuser">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=deleteu8allinoneuser" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:deleteu8allinoneuserHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=login" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=logout" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:logoutHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="processU9">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=processU9" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:processU9Header" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processWithLogin">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=processWithLogin" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:processWithLoginHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveu8allinoneuser">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System&amp;method=saveu8allinoneuser" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:saveu8allinoneuserHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_System">
+    <wsdl:port name="WS_SystemPort" binding="tns:WS_SystemBinding">
+      <soap:address location="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_System" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

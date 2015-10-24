@@ -1,0 +1,242 @@
+﻿@{
+    ViewBag.Title = "2015EP雅莹“莹彩风尚”少儿模特大赛";
+    Layout = "~/Areas/Game/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section script{
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/LittleModel.css" />
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script>
+        var appId, ticket, timestamp, nonceStr, signature;
+
+        $(function () {
+            //获取appid
+            $.post("/Game/LittleModel/GetAppId?sid=" + Url.get("sid") + "&oid=" + Url.get("wxid"), function (rst) {
+                if (rst.result == 0) {
+                    appId = rst.msg;
+                    //获取ticket
+                    $.post("/Game/LittleModel/GetTicket?sid=" + Url.get("sid") + "&oid=" + Url.get("wxid"), function (rst) {
+                        if (rst.result == 0) {
+                            ticket = rst.msg;
+                            timestamp = parseInt(new Date().getTime() / 1000) + '';
+                            nonceStr = Math.random().toString(36).substr(2, 15);
+
+                            //获取signature
+                            $.post("/Game/LittleModel/GetSignature?sid=" + Url.get("sid") + "&oid=" + Url.get("wxid") + "&ticket=" + ticket + "&nonceStr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + window.location.href.replace(/&/g, '%26'), function (rst) {
+                                if (rst.result == 0) {
+                                    signature = rst.msg;
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: appId, // 必填，公众号的唯一标识
+                                        timestamp: timestamp, // 必填，生成签名的时间戳
+                                        nonceStr: nonceStr, // 必填，生成签名的随机串
+                                        signature: signature,// 必填，签名，见附录1
+                                        jsApiList: [
+                                            'onMenuShareTimeline',
+                                            'onMenuShareAppMessage'
+                                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                } else {
+                                    //alert("获取signature失败")
+                                }
+                            });
+                        } else {
+                            //alert("获取GetTicket失败")
+                        }
+                    });
+                } else {
+                    //alert("获取appid失败")
+                }
+            });
+
+        });
+
+        wx.ready(function () {
+
+            var url = "http://it.hwafashion.com/Game/LittleModel/Index?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid");
+            var imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/LittleModel/share.jpg';
+            wx.onMenuShareTimeline({
+                title: '2015EP雅莹“莹彩风尚”少儿模特大赛', // 分享标题
+                link: url,// 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: '2015EP雅莹“莹彩风尚”少儿模特大赛', // 分享标题
+                desc: '少儿模特大赛', // 分享描述
+                link: url, // 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+        });
+
+        wx.error(function (res) {
+            //alert(res);
+        });
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+    </script>
+}
+
+<div class="container">
+    <!--characters-->
+    <img class="characters" src="~/Areas/Game/Resources/images/LittleModel/characters.png" alt="characters" />
+    <!--search-->
+    <form class="form-inline search">
+
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only" for="mark"></label>
+                <input type="text" class="form-control" id="mark" placeholder="输入姓名或编号" />
+                <span class="input-group-btn">
+                    <button id="search" class="btn btn-default" type="button">搜索</button></span>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="a-button">
+        <a class="btn btn-defult" href="#prize">奖项设置</a>
+        <a class="btn btn-defult" href="#rule">比赛须知</a>
+    </div>
+    <div class="block">
+        <button type="button" id="group1" class="btn btn-defult GroupButton">幼儿组排名(3-7周岁)</button>
+        <button type="button" id="group2" class="btn btn-defult GroupButton">少儿组排名(8-12周岁)</button>
+    </div>
+
+    <!--模特照片-->
+    <div id="Pic">
+        @Html.Action("LittleModelPic", "LittleModel", new { strWhere = "", iBeginPage = 1, iPage = 1, iGroup = 1, oid = ViewBag.Oid })
+    </div>
+
+
+    <!--比赛规则-->
+    <div id="rule" class="notice font-color">
+        <img class="ruleTig" src="~/Areas/Game/Resources/images/LittleModel/ruleTig.png" alt="rule Tig" />
+        <!--复赛-->
+        <div class="block">
+            <p class="title">
+                <span class="glyphicon glyphicon-star title"></span>
+                复赛
+            </p>
+            <p class="text">
+                进过试镜海选，共决出200名参赛小模特，进入复赛环节。复赛分大众评审及专业评审两部分。大众评审需关注“雅斓名店”官方微信进行，专业评审于嘉兴雅斓名店现场进行。<br>
+                专业评审占复赛总成绩60%，大众评审占复赛总成绩40%，最终复赛成绩将于7月17日公布。将于“嘉兴雅斓名店”官方微信、“妈咪宝宝”官方微信、19楼活动主页等渠道公布，敬请关注。届时顺利晋级的宝贝，也将以短信、电话形式进行通知
+            </p>
+            <dl class="ul-lv1">
+                <dt>一、复赛——专业评审（占复赛总成绩60%）</dt>
+                <dd>
+                    <ol>
+                        <li>时间：7月3日-7月6日，共四天，每天上午及下午两场。</li>
+                        <li>复赛场地：graceland雅斓嘉兴名店，地址：禾兴路南路464号育子弄口。</li>
+                        <li>比赛环节：自我介绍、才艺展示（才艺展示涉及乐器及其他辅助器械，需自行准备）</li>
+                        <li>比赛评分规则：3位评委根据小模特整体形象、言语表达、才艺特长给予综合打分，满分100分（取3位评审的平均分）。</li>
+                        <li>结果公布：现场公布</li>
+                    </ol>
+                </dd>
+                <dt>二、复赛——大众评审（占复赛总成绩40%）</dt>
+                <dd>
+                    <ol>
+                        <li>投票时间：7月3日-7月14日</li>
+                        <li>评比方式：关注“雅斓名店”官方微信即可参加投票。每个微信ID需投3位宝宝，一个ID仅限投一次。</li>
+                        <li>评分规则：根据大众评审最终投票结果进行评分，得分按名次顺序依次递减，第一名得满分（100分），最后一名不得分。</li>
+                        <li>结果公布：将与复赛专业评审成绩一起，于“雅斓名店”官方微信进行公布。</li>
+                    </ol>
+                </dd>
+            </dl>
+        </div>
+        <hr />
+        <!--决赛-->
+        <div class="block">
+            <p class="title">
+                <span class="glyphicon glyphicon-star title"></span>
+                决赛
+            </p>
+            <ol>
+                <li>时间：7月25日，决赛人数：100人。</li>
+                <li>决赛场地：浙江雅莹服装有限公司活动厅。地址：嘉兴市秀洲区华云路160</li>
+                <li>7月20-24日期间，晋级复赛小模特将安排决赛走秀培训，具体以电话通知为准。</li>
+            </ol>
+        </div>
+        <hr />
+        <!--比赛回报-->
+        <div class="block">
+            <p class="title">
+                <span class="glyphicon glyphicon-star title"></span>
+                比赛回报
+            </p>
+            <ol>
+                <li>所有参赛的宝贝可获得妈咪宝宝亲子摄影提供价值666元的试镜服务：2组造型服务(价值400元)、贝克车载一个(价值168元)、10寸纪念款水晶一个(价值98元)，还可获赠精美礼品一份。</li>
+                <li>“莹彩风尚”少儿模特大赛通过试镜、复赛、决赛三次角逐，对小模特走秀、才艺表演进行公证评判，决出幼儿组（3-7周岁）、少儿组（8—12周岁）两个年龄组的冠、亚、季军及各单项奖，由大赛组委会颁发荣誉证书和奖品。</li>
+                <li>决赛前，由专业老师进行走秀培训辅导，获得别样参赛体验。</li>
+                <li>表现优异的宝贝有机会成为大赛代言人，参与各大时装show活动，并登上EP雅莹风尚杂志。</li>
+            </ol>
+        </div>
+        <hr />
+
+    </div>
+    <!--奖项设置-->
+    <div id="prize" class="notice font-color">
+        <div class="block">
+            <p class="title">
+                <span class="glyphicon glyphicon-star title"></span>
+                奖项设置
+            </p>
+            <ol>
+                <li>冠军：各组最高分者获得，每组各1名，共2名（奖励：价值1.6万元普吉岛亲子游）</li>
+                <li>亚军：各组第二名获得者，每组各2名，共4名（奖励：价值2000元奖品）</li>
+                <li>季军：各组第三名获得者，每组各3名，共6名（奖励：价值1000元奖品）</li>
+                <li>各单项表演奖 ：a.最具才艺表演奖  b.最具模特表演奖  c.最具风采表演奖  d.最具口才表演奖  e.最具魅力表演奖（奖励：价值500元奖品）</li>
+                <li>优秀奖：共33人（奖励：价值200元奖品）</li>
+            </ol>
+            <p style="float: left; text-align: left;">
+                （注：每位选手只能获一个奖项）
+            </p>
+        </div>
+    </div>
+    <div class="notice font-color">
+        <div class="row">
+            <div class="col-xs-10">
+                <p style="font-weight: bold;text-align:center;">本次大赛活动最终解释权归本大赛组委会所有！</p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    $().ready(function () {
+        $("#group1").click(function () {
+            $.get("/Game/LittleModel/LittleModelPic?iBeginPage=1&iPage=1&iGroup=1&sid=a2cf00a8-4c8c-4853-b9fd-63fc4b406c38&oid=@ViewBag.Oid", function (data) {
+                $("#Pic").html("").html(data);
+            });
+        });
+        $("#group2").click(function () {
+            $.get("/Game/LittleModel/LittleModelPic?iBeginPage=1&iPage=1&iGroup=2&sid=a2cf00a8-4c8c-4853-b9fd-63fc4b406c38&oid=@ViewBag.Oid", function (data) {
+                $("#Pic").html("").html(data);
+            });
+        });
+        $("#search").click(function () {
+            var qualification = $("#mark").val();
+            if (qualification == "") {
+                alert("请输入编号或姓名！");
+                return;
+            };
+            $.post("/Game/LittleModel/LittleModelPic?strWhere=(L_No = '" + qualification + "' OR L_Name = '" + qualification + "')&iBeginPage=0&iPage=0&iGroup=0&sid=a2cf00a8-4c8c-4853-b9fd-63fc4b406c38&oid=@ViewBag.Oid", function (data) {
+                $("#Pic").html("").html(data);
+            });
+        });
+    })
+</script>

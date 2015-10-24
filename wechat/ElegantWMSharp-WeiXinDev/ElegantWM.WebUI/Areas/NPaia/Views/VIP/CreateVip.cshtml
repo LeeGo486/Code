@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "会员注册";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/NPaia/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function updateTimeLabel(time) {
+            var btn = $("#getAuthCode");
+            btn.fadeIn(1000);
+            //  $("#getAuthCode")[0].innerHTML
+            btn[0].innerHTML = (time <= 0 ? "获取验证码" : ((time) + "秒后重试"));
+            var hander = setInterval(function () {
+                if (time <= 0) {
+                    clearInterval(hander);
+                    btn[0].innerHTML = ("获取验证码");
+                    btn.attr("disabled", false);
+
+                }
+                else {
+                    btn[0].innerHTML = ((time--) + "秒后重试"); btn
+                    btn.attr("disabled", true);
+                }
+            }, 1000);
+        }
+
+
+        /**********校验表单信息***********/
+        $(function () {
+            /***********发送验证短信************/
+            $("#getAuthCode").click(function () {
+                var strMobileNumber = $("#VipTel").val();
+                if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                    $("#VipTel").focus();
+                    Msg.show('手机号码无效', 1);
+                    return;
+                }
+                $("#txtAuthenticode").focus();
+                //按钮倒计时
+                updateTimeLabel(60);
+                Msg.show("短信发送中...", 3);
+                var url = "/Npaia/VIP/SendSms?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&tel=" + strMobileNumber;
+                $.post(url, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+
+            //申请注册
+            $("#btnSubmit").click(function () {
+                var strMobileNumber = $("#VipTel").val();
+                if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                    $("#VipTel").focus();
+                    Msg.show('手机号码无效!', 1);
+                    return;
+                }
+                if ($.trim($("#txtAuthenticode").val()).length <= 0) {
+                    $("#txtAuthenticode").focus();
+                    Msg.show('请输入验证码!', 1);
+                    return;
+                }
+
+                if ($.trim($("#VipName").val()).length <= 0) {
+                    $("#VipName").focus();
+                    Msg.show('请输入姓名!', 1);
+                    return;
+                }
+
+                //验证手机验证码是否正确
+                var url = "/NPaia/VIP/CheckAuthCode?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") +
+                            "&VipTel=" + $("#VipTel").val() + "&AuthCode=" + $("#txtAuthenticode").val();
+                $(this).button("loading");
+                Msg.show("注册中...", 3);
+                var flag = false;
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    async: false,
+                    success: function (rst) {
+                        if (rst.result == 1) {
+                            Msg.hide();
+                            $("#btnSubmit").button("reset");
+                            Msg.show(rst.msg, rst.result);
+                            flag = true;
+                            return;
+                        }
+                    },
+                    failure: function (rst) {
+                        Msg.hide();
+                        $("#btnSubmit").button("reset");
+                        Msg.show("网络异常！", 1);
+                    },
+                    error: function () {
+                        Msg.hide();
+                        $("#btnSubmit").button("reset");
+                        Msg.show("请求异常！", 1);
+                    }
+                });
+                if (flag) return;
+
+                var data = {
+                    VipTel: $("#VipTel").val(),
+                    VipSex: $("#VipSex").val(),
+                    VipName: $("#VipName").val()
+                };
+
+                $.post("/NPaia/VIP/DRPCheckPhone?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), data, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        window.location.href = "/NPaia/VIP/Index/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                    }
+                    $("#btnSubmit").button("reset");
+                });
+            });
+        });
+    </script>
+}
+<div class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;会员注册</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">姓&ensp;&ensp;&ensp;&ensp;名</span>
+        <input type="text" id="VipName" name="VipName" class="form-control" placeholder="请输入姓名">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">性&ensp;&ensp;&ensp;&ensp;别</span>
+        <select id="VipSex" class="form-control">
+            <option>男</option>
+            <option selected>女</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">手机号码</span>
+        <input id="VipTel" name="VipTel" type="number" class="form-control" style="ime-mode: disabled" autocomplete="off" maxlength="11" placeholder="请填写手机号码。">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">验&ensp;证&ensp;码</span>
+        <input id="txtAuthenticode" name="txtAuthenticode" type="number" class="form-control" maxlength="4" placeholder="填写验证码。">
+        <span class="input-group-btn">
+            <button id="getAuthCode" class="btn btn-default" type="button">获取验证码</button>
+        </span>
+    </div>
+    <input id="btnSubmit" type="button" value="申请注册" class="btn btn-success" style="width: 100%; margin-top: 30px;" />
+</div>

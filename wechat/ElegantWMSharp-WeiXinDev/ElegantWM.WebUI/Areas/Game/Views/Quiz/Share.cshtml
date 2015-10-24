@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "EP雅莹“为爱加分”";
+    Layout = "~/Areas/Game/Views/Shared/_Layout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/qz.css" rel="stylesheet" />
+    <script type="text/javascript">
+        // 需要分享的内容，请放到ready里
+        WeixinApi.ready(function (Api) {
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://it.hwafashion.com:8088/Areas/Game/Resources/images/qz/hd.png',
+                "link": 'http://why.elegant-prosper.com/?weixin_redirect=http%3a%2f%2fit.hwafashion.com%3a8088%2fGame%2fQuiz%3foid%3d%5bopenid%5d',
+                "desc": $(".sec3").html(),
+                "title": "EP雅莹为爱加分"
+            };
+            // 分享的回调
+            var wxCallbacks = {
+            };
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+        });
+    </script>
+}
+<div class="startqa">
+    <img src="/Areas/Game/Resources/images/qz/ks.png" height="50px" />
+</div>
+@if(string.IsNullOrEmpty(Request["oid"])){
+    if (int.Parse(ViewBag.MyResult.Rows[0]["MyTotal"].ToString()) >= 5)
+    {
+        <div class="sec3">棒棒哒！1分钟内共答对了 @ViewBag.MyResult.Rows[0]["MyTotal"] 题，筹得 @ViewBag.MyResult.Rows[0]["MyTotal"] 元，击败了 @string.Format("{0:P}", ViewBag.MyResult.Rows[0]["MyPercent"]) 的童鞋！还有 @(50000 - int.Parse(ViewBag.MyResult.Rows[0]["Total"].ToString())) 元等待被筹集，赶快号召小伙伴一起爱心接力！</div>
+    }
+    else{
+        <div class="sec3">心塞！1分钟内才答对了 @ViewBag.MyResult.Rows[0]["MyTotal"] 题，筹得 @ViewBag.MyResult.Rows[0]["MyTotal"] 元，击败了 @string.Format("{0:P}", ViewBag.MyResult.Rows[0]["MyPercent"]) 的童鞋！还有 @(50000 - int.Parse(ViewBag.MyResult.Rows[0]["Total"].ToString())) 元等待被筹集，赶快号召小伙伴一起爱心接力！</div>    
+    }
+}else{
+    <div class="sec3">感谢您已经用智慧完成了第一棒的爱心接力，为星星的的孩子们筹得 @ViewBag.MyTotal 元教育基金，快分享给您的朋友继续传递爱吧！</div>
+}
+<div class="sec4">
+    <img src="/Areas/Game/Resources/images/qz/fxhy.png" onclick="WeixinApi.shareTip();" />
+    @if(string.IsNullOrEmpty(Request["oid"])){
+    <a href="http://why.elegant-prosper.com/?weixin_redirect=http%3a%2f%2fit.hwafashion.com%3a8088%2fGame%2fQuiz%3foid%3d%5bopenid%5d"><img src="/Areas/Game/Resources/images/qz/zwyc.png" /></a>
+    }
+</div>
+@if(string.IsNullOrEmpty(Request["oid"])){
+<div class="ymj">
+    <div style="position:absolute;top:57px;left:90px;width:110px;font-size:20px;color:#7c3000;">@ViewBag.MyResult.Rows[0]["Total"]</div>
+    <div style="position:absolute;top:118px;left:100px;width:60px;font-size:22px;color:#7c3000;">@(int.Parse(ViewBag.MyResult.Rows[0]["Total"].ToString())/100)</div>
+</div>
+}
+<div class="bm">
+    <h3>近期活动预告</h3>
+    1月21日，上海大剧院由EP雅莹和周大福赞助的关爱自闭症儿童巡回慈善音乐会。
+</div>
+<img src="/Areas/Game/Resources/images/qz/ep.png" width="100%" />

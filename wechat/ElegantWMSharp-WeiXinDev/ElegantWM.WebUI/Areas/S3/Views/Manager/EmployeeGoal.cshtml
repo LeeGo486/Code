@@ -1,0 +1,61 @@
+﻿<div class="ht" id="semployeegoal">
+    <i class="glyphicon icon-tags"></i>&nbsp;&nbsp;客户经理目标
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div class="input-group">
+        <span class="input-group-addon">客户经理</span>
+        <select class="form-control">
+            <option>李菲菲</option>
+            <option>周琳</option>
+            <option>单玲</option>
+            <option>张欣</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">销售年资</span>
+        <select class="form-control">
+            <option>0-6月</option>
+            <option>6月-1年</option>
+            <option>1-3年</option>
+            <option>3年以上</option>
+        </select>
+    </div>
+    <br />
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="input-group ">
+                <span class="input-group-addon">C级客户</span>
+                <input type="text" class="form-control" value="" >
+                <span class="input-group-addon">%</span>
+            </div>
+            <br />
+            <div>陌生/新顾客（第一次接触）</div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group ">
+                <span class="input-group-addon">B级客户</span>
+                <input type="text" class="form-control" value="" >
+                <span class="input-group-addon">%</span>
+            </div>
+            <br />
+            <div>定期来店消费（每年消费2-4次）</div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group ">
+                <span class="input-group-addon">A级客户</span>
+                <input type="text" class="form-control" value="" >
+                <span class="input-group-addon">%</span>
+            </div>
+            <br />
+            <div>忠诚客户（每年消费5次或5万以上）</div>
+        </li>
+    </ul>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submitEmployeeGoal();">设定目标</button>
+</div>

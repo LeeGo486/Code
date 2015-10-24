@@ -1,0 +1,13 @@
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.WS.SSO.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.WS.SSO.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.Common.Base.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.Common.DBAccess.DBConn.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.Common.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.WS.AM.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.WS.DataSets.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\Interop.MSXML2.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.WS.AM.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\bin\Debug\HZY.COM.WS.DataSets.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\obj\Debug\HZY.COM.WS.SSO.csprojResolveAssemblyReference.cache
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\obj\Debug\HZY.COM.WS.SSO.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.SSO\obj\Debug\HZY.COM.WS.SSO.pdb

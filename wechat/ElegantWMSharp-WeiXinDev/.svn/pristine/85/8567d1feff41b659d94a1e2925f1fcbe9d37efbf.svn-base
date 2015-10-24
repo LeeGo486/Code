@@ -1,0 +1,158 @@
+﻿
+@if (ViewBag.ModelList.Rows.Count == 1) {
+    <div>
+        <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[0]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+        <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[0]["L_PicPath"]" alt="ModelPic"></a>
+        <div class="picInfo-left">
+             <p style="">编号：@ViewBag.ModelList.Rows[0]["L_No"]</p>
+             <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[0]["Result"])</p>
+        </div>
+        <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[0]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid")>查看详情</a></div>
+    </div>
+}
+else if (ViewBag.ModelList.Rows.Count > 1 && ViewBag.ModelList.Rows.Count < 10){
+    <div class="pull-left" style="width:50%;">
+            <div>
+                <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[0]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+                <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[0]["L_PicPath"]" alt="ModelPic"></a>
+                <div class="picInfo-left">
+                    <p style="">编号：@ViewBag.ModelList.Rows[0]["L_No"]</p>
+                    <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[0]["Result"])</p>
+                </div>
+                <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[0]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+            </div>
+    
+    @for(int i = 1;i<ViewBag.ModelList.Rows.Count;i++){
+        if(i%2 == 0){
+            <div>
+                <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[i]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+                <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[i]["L_PicPath"]" alt="ModelPic"></a>
+                <div class="picInfo-left">
+                    <p style="">编号：@ViewBag.ModelList.Rows[i]["L_No"]</p>
+                    <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[0]["Result"])</p>
+                </div>
+                <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[i]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+            </div>
+        }
+    }
+    </div>
+    <div class="pull-right" style="width:50%;"> 
+    @for (int i = 1; i < ViewBag.ModelList.Rows.Count - 1; i++) {
+        if (i%2 != 0) {
+            <div>
+                <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[i]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+                <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[i]["L_PicPath"]" alt="ModelPic"></a>
+                <div class="picInfo-left">
+                    <p style="">编号：@ViewBag.ModelList.Rows[i]["L_No"]</p>
+                    <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[0]["Result"])</p>
+                </div>
+                <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[i]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+            </div> 
+        }
+    }
+    </div>   
+}
+else if (ViewBag.ModelList.Rows.Count >= 10) { 
+    <div class="pull-left" style="width:49.5%;">
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[0]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[0]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[0]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[0]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[0]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[2]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[2]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[2]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[2]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[2]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[4]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[4]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[4]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[4]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[4]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[6]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[6]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[6]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[0]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[6]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[8]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[8]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[8]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[8]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[8]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+    </div>
+    <!--右-->
+    <div class="pull-right" style="width:49.5%;">
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[1]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[1]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[1]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[1]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[1]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[3]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[3]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[3]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[3]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[3]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[5]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[5]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[5]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[5]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[5]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[7]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[7]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[7]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[7]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[7]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+        <div>
+            <a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[9]["L_ID"]&iResult=3&oid=@ViewBag.Oid")>
+            <img style="width:100%" src="~/Areas/Game/Resources/images/LittleModel/@ViewBag.ModelList.Rows[9]["L_PicPath"]" alt="ModelPic"></a>
+            <div class="picInfo-left">
+                 <p style="">编号：@ViewBag.ModelList.Rows[9]["L_No"]</p>
+                 <p style="margin-bottom:1px; padding-left:5px;">得票：@(ViewBag.ModelList.Rows[9]["Result"])</p>
+            </div>
+            <div class="picInfo-right"><a href="/Game/LittleModel/LittleModelInfo?LId=@ViewBag.ModelList.Rows[9]["L_ID"]&iResult=3&iOverplus=-1&oid=@ViewBag.Oid">查看详情</a></div>
+        </div>
+    </div>
+}
+
+<div id="pagePosition" style="clear:left">
+    @Html.Action("PageList")
+</div>
+
+
+

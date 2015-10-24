@@ -1,0 +1,153 @@
+﻿@model List<ElegantWM.WebUI.Areas.S3.Controllers.StoreCheckController.S3_Depot>
+
+<script>
+    var m_LastDepotID = undefined;
+    function storeCheck(depotName, id) {
+
+        if (id != m_LastDepotID) {
+            if (m_LastDepotID != undefined) {
+                $("#storeCheckMsg" + m_LastDepotID).html("");
+                $("#storeCheckMsg" + m_LastDepotID).hide();
+            }
+            m_LastDepotID = id;
+
+            $("#storeCheckMsg" + m_LastDepotID).show();
+            $("#storeCheckMsg" + m_LastDepotID).html($("#storeCheckMsgTemplete").html());
+            $("#checkDepotName").html(depotName);
+
+            $("#depotEmployee").hide();
+
+            $("#btnStoreCheckSubmit").bind("click", function () {
+                //获取店内人员信息
+                Msg.show("数据加载中...", 3);
+
+                $("#storeCheckSubmit").show();
+
+                $("#depotName").html(depotName);
+
+                $.get("/S3/StoreCheck/CheckList", function (htmldata) {
+                    Msg.hide();
+                    $("#checkList").show();
+                    $("#checkList").html(htmldata);
+
+                });
+
+                $.get("/S3/StoreCheck/DepotEmployeeList", function (htmldata) {
+                    Msg.hide();
+                    $("#depotEmployee").show();
+                    $("#depotEmployee").html(htmldata);
+
+                });
+
+                scrollTo("#storeCheckSubmit");
+            }
+            );
+        }
+        else {
+            $('#storeCheckMsg').fadeIn(1000);
+        }
+
+        scrollTo("#storeCheckMsg" + m_LastDepotID);
+
+    }
+
+    function hideStoreCheck() {
+        $('#depotInfo').fadeOut(1000);
+        m_LastDepotID = undefined;
+    }
+
+</script>
+<div id="depotInfo">
+    <div class="ht">
+        <i class="glyphicon glyphicon-th-list"></i>&nbsp;&nbsp;店铺列表
+    <span onclick="hideStoreCheck();">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    </div>
+
+
+    @foreach (ElegantWM.WebUI.Areas.S3.Controllers.StoreCheckController.S3_Depot depot in Model)
+    {
+        <div class="eventSch clearfix">
+            <ul class="list-group">
+                <li class="list-group-item"><b>@depot.DepotName</b><a class="badge ls full-right" onclick="storeCheck('@depot.DepotName','@depot.ID') ">我要巡店</a></li>
+                <li class="list-group-item"><span class="lable">分公司：</span>@depot.Company</li>
+                <li class="list-group-item"><span class="lable">销售目标：</span>@(depot.Target.ToString("#,##0元")) &nbsp; &nbsp; &nbsp; &nbsp;<span class="lable">完成：</span>@depot.SaleAccount.ToString("#,##0元")</li>
+                <li class="list-group-item"><span class="lable">完成率：</span>@(Convert.ToDecimal(depot.CompleteRate).ToString("0.00%"))  &nbsp; &nbsp; &nbsp; &nbsp;<span class="lable">增长率：</span>
+                    <span style=" color:@if (depot.IncreaseRate < 0)
+                                        {@("#F00")}
+                                        else
+                                        {@("#000")}">
+                        @(Convert.ToDecimal(depot.IncreaseRate).ToString("0.00%"))</span></li>
+            </ul>
+        </div>
+        <br />
+        <div id="storeCheckMsg@(depot.ID)"></div> 
+    }
+</div>
+<div id="storeCheckMsgTemplete" style="min-height: 0px; display: none">
+    <div id="storeCheckMsg">
+        <div class="ht">
+            <i class="glyphicon glyphicon-exclamation-sign" style="color:red"></i>&nbsp;&nbsp;提示信息
+        <span onclick="$('#storeCheckMsg').fadeOut(1000);">
+            <i class="icon-remove icon-large"></i>
+        </span>
+        </div>
+
+        <div class="dataDetail">
+            您好，您将以<span id="checkDepotName" style="color: red"></span>店长身份进入3S。您可以
+        <br />
+            <br />
+            1、点击<a href="/S3/Finance/Index">“个人->财务管理”</a>,查看店内的财务及经营情况。
+         <br />
+            <br />
+            2、点击<a href="/S3/HR/Index">“个人->人力资源”</a>,查看店内所有员工的能力、培训、考勤、业务等情况。
+
+         <br />
+            <br />
+            3、点击<a href="/S3/Equipment">“服务->设施维护”</a>,来查看店内关于形象品，店内设施维护，IT请求的业务情况。
+
+         <br />
+            <br />
+            4、点击<a href="/S3/Assistant">“商品->商品助手”</a>,来查看店内对于货品库存、搭配、学习、分享、问题建议等。
+
+         <br />
+            <br />
+            5、点击<a href="/S3/Exhibit">“商品->陈列”</a>,来查看店内的陈列效果维护、汇报、学习、分享、问题建议等。
+
+         <br />
+            <br />
+            @*6、点击“个人->我的薪资”,来查看该员工的薪资、能力、培训学习等情况。*@
+            <button type="button" class="btn btn-success" style="width: 100%; margin-top: 20px;" data-loading-text="确认巡店"
+                id="btnStoreCheckSubmit">
+                确认巡店</button>
+
+        </div>
+
+        <br />
+
+        <div id="storeCheckSubmit" style="display: none">
+            <div class="ht">
+                <i class="glyphicon glyphicon-exclamation-sign" style="color:red"></i>&nbsp;&nbsp;已经切换到<b id="depotName" style="color: red"></b>
+                <span onclick="$('#storeCheckSubmit').fadeOut(1000);">
+                    <i class="icon-remove icon-large"></i>
+                </span>
+
+
+            </div>
+
+            <div class="btn-group" style="width: 100%;">
+                <button type="button" class="btn btn-default" style="width: 50%;" onclick="$('#checkList').fadeIn(1000);scrollTo('#checkList');">巡店记录</button>
+                <button type="button" class="btn btn-default" style="width: 50%;" onclick="$('#depotEmployee').fadeIn(1000);scrollTo('#depotEmployee');">人员列表</button>
+            </div>
+            <br />
+
+            <div id="checkList" style="display: none">
+            </div>
+
+            <div id="depotEmployee" style="display: none">
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

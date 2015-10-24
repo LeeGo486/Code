@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "填写联系方式";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            $(".bg").load(function () {
+                var height = $(".bg").height();
+                $("#main").css("top", height * 0.3);
+            })
+
+
+            $("#submit").click(function () {
+                if ($("#username").val() == "") {
+                    Msg.show("请输入姓名", 1);
+                    return;
+                }
+                if ($("#tel").val() == "") {
+                    Msg.show("请输入手机号", 1);
+                    return;
+                }
+                if ($("#address").val() == "") {
+                    Msg.show("请输入收货地址", 1);
+                    return;
+                }
+
+                //构造提交json的格式
+                var paramData = {
+                    Oid: Url.get("oid"),
+                    Name: $("#username").val(),
+                    Tel: $("#tel").val(),
+                    Address: $("#address").val()
+                };
+
+                Msg.show("提交中...", 3);
+                $.post("/Game/PachiraMacrocarpa/Submit?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        window.history.go(-1);
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                });
+            });
+        })
+    </script>
+}
+
+
+<img class="bg" src="~/Areas/Game/Resources/images/PachiraMacrocarpa/infobg.jpg" style="width: 100%;" />
+
+<div id="main" style="position: absolute; width: 97%;">
+
+    <div class="input-group" style="margin: 0px 25px 0px 25px;">
+        <span class="input-group-addon" style="border: 0px; background-color: #f2e4e1">
+            <img src="/Areas/Game/Resources/images/PachiraMacrocarpa/name.png" height="20"></span>
+        <input id="username" name="username" class="form-control" style="border-radius: 5px 5px 5px 5px; background-color: #f2e4e1; border: 0px; width: 100%; height: 30px;" placeholder="请输入姓名">
+    </div>
+
+    <div class="input-group" style="margin: 0px 16px 0px 16px;">
+        <span class="input-group-addon" style="border: 0px; background-color: #f2e4e1">&nbsp;
+            <img src="/Areas/Game/Resources/images/PachiraMacrocarpa/tel.png" height="20"></span>
+        <input type="number" id="tel" name="tel" class="form-control" style="border-radius: 5px 5px 5px 5px; background-color: #f2e4e1; border: 0px; height: 30px;" placeholder="输入您的电话">
+    </div>
+    <div class="input-group" style="margin: 0px 26px 0px 26px;">
+        <span class="input-group-addon" style="border: 0px; background-color: #f2e4e1">
+            <img src="/Areas/Game/Resources/images/PachiraMacrocarpa/add.png" height="20"></span>
+        <input type="number" id="" name="" style="background-color: #f2e4e1; border: 0px; height: 0px;width:0px">
+    </div>
+
+    <div class="input-group" style="margin: 0px 10px 0px 10px;">
+        <span class="input-group-addon" style="border: 0px; background-color: #f2e4e1"></span>
+        <input id="address" name="address" class="form-control" style="border-radius: 5px 5px 5px 5px; background-color: #f2e4e1; border: 0px; height: 30px;" placeholder="输入您的地址">
+    </div>
+
+    <br />
+    <br />
+    <center>
+    <div>
+        <button id="submit" type="button" class="btn btn-default" style="width: 30%; height: 30px; margin-top: -25px; text-align: center">提交</button>
+    </div></center>
+</div>

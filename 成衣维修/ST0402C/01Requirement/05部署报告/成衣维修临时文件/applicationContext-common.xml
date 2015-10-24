@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+           default-lazy-init="true">
+<!-- 配置数据源   定义数据源的Bean ，给Hibernate的sessionFactory-->
+	<bean id="dataSource" 
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" 
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		
+		<property name="url"
+			value="jdbc:sqlserver://192.168.0.141:1433;DatabaseName=turbocrm60"></property>
+		<property name="username" value="004"></property>
+		<property name="password" value="VALSN14B"></property>
+	</bean>
+  
+  
+<!-- 配置sessionFactory  定义Hibernate的sessionFactory，通过该Bean，可以获得Hibernate的Session-->
+	<bean id="sessionFactory"
+	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="dataSource">
+		<ref bean="dataSource" />
+	</property>
+	<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+			<prop key="hibernate.dialect">com.hzy.util.CustomDialect</prop>
+ 
+			<!--设置二级缓冲 -->
+			<!-- <prop key="hibernate.cache.provider_class"> org.hibernate.cache.EhCacheProvider 
+				</prop> -->
+			<!--设置二级缓冲，打开查询缓冲 -->
+			<!-- <prop key="hibernate.cache.use_query_cache">true</prop> -->
+			<!--设置显示Hibernate操作的SQL语句 -->
+			<prop key="hibernate.show_sql">true</prop>
+			<prop key="hibernate.format_sql">true</prop>
+			<prop key="hibernate.use_sql_comments">true</prop>
+	 
+			 
+		</props>
+	</property>
+	<property name="mappingResources">
+		<list>
+			<value>com/hzy/pojo/VshopActivityAnalysis.hbm.xml</value>
+			<value>com/hzy/pojo/VthemeShop.hbm.xml</value> 
+		</list>
+	</property>
+</bean>
+<!-- 配置声明式事务 -->
+
+<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+<!-- 配置实体类 -->	
+	<!-- <bean id="vshopActivityAnaly" class="com.hzy.pojo.VshopActivityAnalysis" scope="prototype"></bean>
+
+	 -->
+	</beans>

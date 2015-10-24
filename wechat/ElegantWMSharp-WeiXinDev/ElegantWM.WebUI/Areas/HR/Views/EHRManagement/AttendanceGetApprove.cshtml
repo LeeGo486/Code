@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "审批漏打卡";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+            //$("#dav").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dpay").css("background-color", "#2c3e50").css("border-bottom", "")
+        });
+        //确定提交
+        function AttendanceApproveSubmit(strtype, c_approveflowid, c_oid_renewcardsign, c_remark, c_renewremark) {
+            var dataApproveSubmit = {
+                strtype: strtype,
+                c_approveflowid: c_approveflowid,
+                c_oid_renewcardsign: c_oid_renewcardsign,
+                c_remark: c_remark,
+                c_renewremark: c_renewremark
+            };
+            Msg.show("提交中请稍后...", 3);
+            $.post("/HR/EHRManagement/AttendanceApproveSubmit", dataApproveSubmit, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+                window.location.reload();
+            });
+        }
+    </script>
+}
+
+<div class="ht">
+    <i class="icon-wrench"></i>&nbsp;&nbsp;需要我审批的单据
+</div>
+
+
+@if (@ViewBag.AttendanceGetApprove.Rows[0]["c_approveflowid"] == "")
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，目前没有需要您审批的单据。<br />
+        <br />
+    </div>
+}
+else
+{
+    foreach (System.Data.DataRow dr in ViewBag.AttendanceGetApprove.Rows)
+    {
+    <div class="eventSch clearfix">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span style="color: #969696">姓名：</span>
+                <span style="color: #969696">@dr["c_name"] </span>
+                <br />
+                <span style="color: #969696">申请日期：</span>
+                <span style="color: #969696">@dr["C_RENEWTIMECARDTIME"] </span>
+            </li>
+            <li class="list-group-item"><span style="color: #969696">原因：</span>@dr["C_UNCARDRECORDREASON"]
+            </li>
+        </ul>
+        <div class="operate">
+            <div class="btnOpt" onclick="AttendanceApproveSubmit(1,@dr["c_approveflowid"],@dr["c_oid_renewcardsign"],'@dr["c_remark"]','@dr["c_renewremark"]');">
+                <i class="icon-signout"></i>&nbsp;审批通过
+            </div>
+            <div class="btnOpt" onclick="AttendanceApproveSubmit(1,@dr["c_approveflowid"],@dr["c_oid_renewcardsign"],'@dr["c_remark"]','@dr["c_renewremark"]');"  
+                style="border-right: 1px solid #ccc;">
+                <i class="icon-ok"></i>&nbsp;审批驳回
+            </div>
+        </div>
+    </div>
+    }
+}

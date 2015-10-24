@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace ElegantWM.WebUI.Areas.Game.Controllers
+{
+    public class LittleModelController : Controller
+    {
+        //
+        // GET: /Game/LittleModel/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+    }
+}

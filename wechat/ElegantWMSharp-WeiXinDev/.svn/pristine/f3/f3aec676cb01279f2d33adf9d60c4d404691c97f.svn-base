@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="WSRRSoap" />
+            </basicHttpBinding>
+            <customBinding>
+                <binding name="WSRRSoap12">
+                    <textMessageEncoding messageVersion="Soap12" />
+                    <httpTransport />
+                </binding>
+            </customBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://172.16.205.57:8080/WSRR.asmx" binding="basicHttpBinding"
+                bindingConfiguration="WSRRSoap" contract="WSRRTest.WSRRSoap"
+                name="WSRRSoap" />
+            <endpoint address="http://172.16.205.57:8080/WSRR.asmx" binding="customBinding"
+                bindingConfiguration="WSRRSoap12" contract="WSRRTest.WSRRSoap"
+                name="WSRRSoap12" />
+        </client>
+    </system.serviceModel>
+</configuration>

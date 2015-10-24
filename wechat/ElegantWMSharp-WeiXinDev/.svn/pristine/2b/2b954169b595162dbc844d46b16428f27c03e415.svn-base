@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "GetNearbyShopInfo";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+
+    });
+
+
+</script>
+
+<style>
+    .noticList {
+        border: 1px solid #e5e5e5;
+        background-color: #fff;
+        padding: 10px;
+        margin-bottom: 12px;
+        border-radius: 3px;
+        margin: 20px;
+    }
+
+    .bottom {
+        margin-bottom: 56px;
+    }
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/shopbg.jpg" />
+    </li>
+</ul>
+
+<div style="margin: 20px">
+    <div style="border-bottom: 2px solid #808080; margin: 20px;">
+        <span>最近门店</span>
+    </div>
+
+    <div style="padding: 15px;">
+        <table style="margin-top: -10px">
+            <tr>
+                <td rowspan="1">
+                    <img src="~/Areas/DLWXSite/Resources/images/VIP/shopsearchbg.jpg" style="width: 30%" />
+                </td>
+                <td style="width: 50%">
+                    <span>嘉兴中山西路</span><br />
+                    <span>嘉兴中山西路</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="1">
+                    <img src="~/Areas/DLWXSite/Resources/images/VIP/shopsearchbg.jpg" style="width: 30%" />
+                </td>
+                <td style="width: 50%">
+                    <span>嘉兴中山西路</span><br />
+                    <span>嘉兴中山西路</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="1">
+                    <img src="~/Areas/DLWXSite/Resources/images/VIP/shopsearchbg.jpg" style="width: 30%" />
+                </td>
+                <td style="width: 50%">
+                    <span>嘉兴中山西路</span><br />
+                    <span>嘉兴中山西路</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>

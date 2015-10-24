@@ -1,0 +1,505 @@
+@import 'base.css';
+body, html
+{
+    overflow: hidden;
+}
+#header
+{
+    background: #dcf1fc url(../images/bgline.gif) repeat-x 0 -123px;
+    line-height: 37px;
+    height: 37px;
+}
+#header a
+{
+    color: #95caea;
+}
+#header a:hover
+{
+    color: #b9e8ff;
+}
+
+#header #companyname
+{
+    color: #eff6fe;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+#header #welcome
+{
+    color: #95caea;
+    float: right;
+    padding: 0 10px;
+}
+#page
+{
+    height: 100%;
+}
+#body
+{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+#body #body-west
+{
+    width: 200px;
+    overflow: hidden;
+    height: 100%;
+    float: left;
+    clear: right;
+    border-right: solid 1px #b6ddf2;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
+
+#body #body-center
+{
+    height: 100%;
+    background: #dcf1fc url(../images/bgline.gif) repeat-x 0 -160px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+#tabcontrol
+{
+    margin-left: 200px;
+}
+#body-close-handler
+{
+    
+    width: 5px;
+    overflow: hidden;
+    height: 35px;
+    position: absolute;
+    left: 199px;
+    top: 200px;
+    z-index: 2;
+    cursor:pointer;
+    background:  url(../images/toggle-left.gif) repeat  top;
+    text-indent:1000px;
+}
+#body-west-header
+{
+    padding: 5px;
+    margin: 0 1px 0 0;
+}
+#body-west-header ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 34px;
+    border: 1px solid #BFD1EB;
+    background: #dcf1fc url(../images/bgline.gif) repeat-x 0 -161px;
+}
+
+#body-west-header ul li
+{
+    float: left;
+    width: 26px;
+    height: 24px;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+}
+
+#body-west-header ul li.active
+{
+    background: #fff;
+}
+
+#body-west-menu
+{
+    overflow: auto;
+    margin: 0 1px 0 0;
+    height: 800px;
+}
+
+#body-west-filter
+{
+    padding: 5px;
+    margin: 0 1px 0 0;
+}
+.filterTextbox
+{
+    height: 20px;
+    overflow: hidden;
+    background: url(../images/input-bg-gray.gif) repeat-x;
+    border: solid 1px #ccc;
+}
+.filterTextbox input
+{
+    border: none;
+    height: 16px;
+    line-height: 16px;
+    padding: 2px 0 2px 25px;
+    margin: 0;
+    width: 160px;
+    background: url(../images/input-filter.gif) no-repeat left center;
+}
+
+/* 切换*/
+div.toggleHide #body-close-handler
+{
+    left:-1px;
+    background-image: url(../images/toggle-right.gif);
+}
+div.toggleHide #body-west
+{
+    display:none;
+}
+div.toggleHide #body-center #tabcontrol
+{
+    margin:0;
+}
+
+/* tab*/
+.tab
+{
+    padding: 5px;
+}
+.tab-header
+{
+    clear: both;
+    padding: 0 0 0 0;
+    background: url(../images/bgline.gif) repeat-x 0 -85px;
+    height: 28px;
+    overflow: hidden;
+}
+.tab-header ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.x-tab-button
+{
+    float: left;
+    clear: right;
+    margin: 0 0 0 2px;
+    cursor: default;
+    height: 28px;
+    overflow: hidden;
+}
+.x-tab-button div.x-tab-button-left
+{
+    width: 6px;
+    float: left;
+    height: 28px;
+    background-image: url(../images/tabbg.gif);
+    background-repeat: no-repeat;
+}
+.x-tab-button div.x-tab-button-center
+{
+    width: 94px;
+    float: left;
+    overflow: hidden;
+    height: 28px;
+    line-height: 30px;
+    text-align: center;
+    background-image: url(../images/bgline.gif);
+    font-weight: bold;
+    background-repeat: repeat-x;
+}
+.x-tab-button div.x-tab-button-right
+{
+    width: 6px;
+    float: left;
+    height: 28px;
+    background-image: url(../images/tabbg.gif);
+    background-repeat: no-repeat;
+}
+
+.x-tab-button.x-state-default .x-tab-button-left
+{
+    background-position: 0 0;
+}
+.x-tab-button.x-state-default .x-tab-button-center
+{
+    background-position: 0 0;
+}
+.x-tab-button.x-state-default .x-tab-button-right
+{
+    background-position: -6px 0;
+}
+.x-tab-button.x-state-hover .x-tab-button-left
+{
+    background-position: -12px 0;
+}
+.x-tab-button.x-state-hover .x-tab-button-center
+{
+    background-position: 0 -28px;
+}
+.x-tab-button.x-state-hover .x-tab-button-right
+{
+    background-position: -18px 0;
+}
+.x-tab-button.x-state-active .x-tab-button-left
+{
+    background-position: -24px 0;
+}
+.x-tab-button.x-state-active .x-tab-button-center
+{
+    background-position: 0 -56px;
+}
+.x-tab-button.x-state-active .x-tab-button-right
+{
+    background-position: -30px 0;
+}
+
+.tab-content
+{
+    background: #fff;
+    border: solid 1px #b6ddf2;
+    border-top: none;
+    height: 800px;
+}
+.tab-icon-close
+{
+    background: url(../images/tab-icon-close.gif) no-repeat 0 -10px;
+    width: 10px;
+    height: 10px;
+    float: right;
+    margin-top: 5px;
+    cursor: pointer;
+    display: none;
+    overflow: hidden;
+}
+.tab-icon-close-hover
+{
+    background-position: 0 0;
+}
+.x-tab-button.x-state-active .tab-icon-close
+{
+    display: block;
+}
+.panel-icon
+{
+    width: 16px;
+    height: 12px;
+    overflow: hidden;
+    float: right;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+
+.messagebox
+{
+    position: absolute;
+    z-index: 999;
+    background: #fffcdf;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #fff #909090 #909090 #fff;
+    padding: 10px;
+    width: 200px;
+    top: 20px;
+    margin: 5px 0 0 -150px;
+}
+.messagebox-controler
+{
+    text-align: right;
+    margin: 5px 0 0 0;
+    padding: 5px 0 0 0;
+    border-top: solid 1px #909090;
+}
+
+#home
+{
+    padding: 5px;
+    overflow: auto;
+}
+
+#main
+{
+    margin: 0 auto;
+    padding-right: 280px;
+    text-align: left;
+}
+#leftMain
+{
+    width: 100%;
+    float: left;
+}
+#rightMain
+{
+    float: right;
+    width: 280px;
+    overflow: hidden;
+    margin-right: -280px;
+}
+.panel
+{
+    padding: 3px;
+    background: #fff;
+}
+.panelheader
+{
+    padding: 0 5px;
+    line-height: 25px;
+    color: #95caea;
+    border: 1px solid #BFD1EB;
+    background: #dcf1fc url(../images/bgline.gif) repeat-x 0 -161px;
+}
+.panelheader h3
+{
+    font-weight: bold;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: #036;
+}
+.panelheader a
+{
+}
+.panelheader a:hover
+{
+    text-decoration: none !important;
+}
+.panellinks
+{
+    float: right;
+    font-size: 10px;
+}
+.panelsublinks
+{
+    line-height: 25px;
+}
+.panelcontent
+{
+    padding: 10px 5px;
+}
+/* 副标题*/
+.panelsubheader
+{
+    line-height: 30px;
+    clear: both;
+}
+/* 副标题*/
+.panelsubheader a
+{
+    padding: 0 5px;
+}
+#main ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#main ul li
+{
+    line-height: 20px;
+    height: 20px;
+    overflow: hidden;
+    border-bottom: dotted 1px #ddd;
+}
+#main ul li:hover
+{
+    background: #ffe;
+}
+#main ul li span
+{
+    float: right;
+    color: #aaa;
+    font-size: 11px;
+}
+#main ul li b, #main ul li b.alert
+{
+    color: Orange;
+}
+#main ul li b.high
+{
+    color: Red;
+}
+#main ul li b.low
+{
+    color: Blue;
+}
+#main ul li b.normal
+{
+    color: Green;
+}
+.paneltoggle
+{
+    cursor: pointer;
+}
+#tipspanel
+{
+    overflow: hidden;
+}
+#tipspanel
+{
+}
+#tipspanel ul
+{
+    display: none;
+}
+.panelsublinks .tipsactive
+{
+    font-weight: bold;
+}
+#userlist_contextmenu
+{
+    background: #fff;
+    border: solid 1px #BFD1EB;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    z-index: 999;
+    padding: 5px;
+}
+#userlist_contextmenu ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#userlist_contextmenu ul li
+{
+    float: left;
+    cursor: pointer;
+}
+#userlist_contextmenu ul li:hover
+{
+}
+#userlist_contextmenu ul li span
+{
+}
+#MessageBox
+{
+    border: solid 1px #BFD1EB;
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+    height: 100px;
+    right: 10px;
+    z-index: 9999;
+    background: #dcf1fc url(../images/bgline.gif) repeat-x 0 -161px;
+}
+#MessageBoxHeader
+{
+    color: #036;
+    line-height: 30px;
+    height: 30px;
+}
+#MessageBoxContent
+{
+    height: 40px;
+    line-height: 20px;
+    padding: 0 10px;
+    color: #036;
+    overflow: hidden;
+}
+#MessageBoxFooter
+{
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    padding: 0 10px;
+}

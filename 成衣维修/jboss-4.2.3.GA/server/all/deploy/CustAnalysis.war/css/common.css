@@ -1,0 +1,203 @@
+@CHARSET "UTF-8";
+
+body
+	{
+	margin: 0;
+	font-family: Microsoft YaHei !important;
+	font-size: 0.9em;
+	height: 100%;
+    width: 100%;
+	}
+
+.clear
+	{
+	clear: both;
+	}
+	
+.left
+	{
+	float: left;
+	}
+	
+#title
+	{
+	width: 1000px;
+	height: 40px;
+	background-color: #FFF8DC;
+	font-size: 1.1em;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid gray;
+	border-width: 0 0 2px 0;
+	}
+
+#sign,#titleName
+	{
+	float: left;
+	padding: 8px 20px;
+	}
+	
+#sign
+	{
+	font-family: Georgia;
+    font-style: italic;
+    font-weight: bold;
+    padding: 10px 20px;
+	}
+
+table
+	{
+	width: 1000px;
+	font-size: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid gray;
+	border-width: 1px 0 0 1px;
+	border-collapse:collapse;
+	}
+
+table td
+	{
+	height: 30px;
+	border: 1px solid gray;
+	border-width: 0 1px 1px 0;
+	padding: 0 5px;
+	empty-cells:show;
+	}
+
+.head td
+	{
+	background-color: #FFF68F;
+	padding: 0 10px;
+	}
+	
+.toLeft
+	{
+	text-align: left;
+	}
+	
+.toCenter
+	{
+	text-align: center;
+	}
+
+#basic td.toLeft
+	{
+	width: 150px;
+	}
+
+#preferences td.toLeft
+	{
+	width: 185px;
+	}
+
+#spending td.toLeft
+	{
+	width: 150px;
+	}
+
+#recently td#skc
+	{
+	word-break: break-all;
+	}
+	
+#basic #photo
+	{
+	width: 150px;
+	}
+
+#frequency td.toCenter
+	{
+	width: 60px;
+	}
+
+.category
+	{
+	width: 70px;
+	}
+	
+.subcategory
+	{
+	width: 45px
+	}
+	
+.date,
+.mode,
+.content,
+.feedback
+	{
+	width: 70px;
+	}
+
+#search
+	{
+	width: 1000px;
+	height: 40px;
+	background-color: #E0FFFF;
+	font-size: 1.1em;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid gray;
+	border-width: 0 0 2px 0;
+	}
+	
+#search div
+	{
+	float: left;
+	margin: 7px 40px;
+	}
+	
+#search #sel
+	{
+	width: 50px;
+	height: 25px;
+	}
+	
+#listData
+	{
+	font-size: 1.1em;
+	}
+
+thead tr
+	{
+	height: 30px;
+	}
+
+.depot
+	{
+	width: 300px
+	}
+	
+.name
+	{
+	width: 100px
+	}
+	
+.mobile
+	{
+	width: 150px
+	}
+
+.card
+	{
+	width: 150px
+	}
+	
+.date
+	{
+	width: 150px
+	}
+
+.title,
+.time,	
+.amount,
+.nums,
+.discount
+	{
+	width: 100px
+	}
+	
+.operate
+	{
+	width: 100px
+	}

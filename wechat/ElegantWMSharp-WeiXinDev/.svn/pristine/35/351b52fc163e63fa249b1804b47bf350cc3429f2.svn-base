@@ -1,0 +1,43 @@
+﻿@model ElegantWM.EntityModel.HR_Course
+@{
+    ViewBag.Title = "课时评价界面";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () { });
+        //评价
+        function Survey(id) {
+            Msg.show("请稍后...", 3);
+            $.post("/HR/Course/CheckSurvey/" + id, function (rst) {
+                Msg.hide();
+                if (rst.result == 0) {
+                    window.location.href = "/HR/Course/Survey/" + id;
+                } else {
+                    Msg.show(rst.msg, rst.result);
+                }
+            });
+        }
+    </script>
+}
+<div class="courseDetail">
+    <h3><i class="glyphicon glyphicon-book"></i>@Model.CourseName</h3>
+    地点：@Model.Venue<br />
+    日期：@Model.StartDate.ToString("yyyy-MM-dd") ~ @Model.EndDate.ToString("yyyy-MM-dd")<br />
+    描述：@Model.CourseDesc
+
+    <h4><span><i class="glyphicon glyphicon-time"></i>课 时 </span></h4>
+    @foreach (ElegantWM.EntityModel.HR_CourseLesson lesson in ViewBag.Lesson)
+    {
+        <div class="lesson">
+            <div style="margin-bottom: 6px;"><span class="label label-warning">@lesson.LessonName</span></div>
+            时间： @lesson.StartTime.ToString("yyyy-MM-dd") （@lesson.StartTime.ToString("HH:mm") ~ @lesson.EndTime.ToString("HH:mm")）
+            <br />
+            讲师：@lesson.Teacher&nbsp;&nbsp; 积分：@lesson.Integration<br />
+            <div class="operate">
+                <div class="btnOpt" onclick="Survey('@lesson.Id');"><i class="glyphicon glyphicon-star-empty"></i>评价</div>
+            </div>
+        </div>
+    }
+</div>

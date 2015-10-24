@@ -1,0 +1,33 @@
+﻿.container {
+    width: 400px;
+    height: 220px;
+    min-height: 220px;
+    margin-top: -110px;
+    margin-left: -200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: rgb(184,154,70);
+    color: white;
+}
+
+    .container h3 {
+        text-align: center;
+    }
+
+body {
+    background-image: url(../Images/body_bg.jpg);
+}
+
+.form-horizontal .control-label {
+    width: 90px;
+}
+
+.form-horizontal .controls {
+    margin-left: 100px;
+}
+
+.logo {
+    padding-left: 50px;
+    padding-top: 10px;
+}

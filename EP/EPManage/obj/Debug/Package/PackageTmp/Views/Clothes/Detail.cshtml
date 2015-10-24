@@ -1,0 +1,204 @@
+﻿@model EPManageWeb.Entities.Models.Clothes
+@{
+    ViewBag.Title = String.Format("样板：{0} 详细信息", Model.SampleNO);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Css{
+    <link href="@Styles.Url("~/Content/site.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/detail.css")" rel="stylesheet"/>
+
+}
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/detail.js")"></script>
+}
+<div class="row bottomline">
+    <div class="span1">
+        <img src="@Url.Content("~/Images/logo.gif")" />
+    </div>
+    <div class="span9 center">样板编号：@Model.SampleNO 大货编号： @Model.ProductNO 访问次数：@Model.ViewCount</div>
+    <div class="span2">@Html.ActionLink("下载样板文件", "Download", new { id = Model.Id, type = "SampleFile" }, new { @class = "btn btn-primary btn-large" })</div>
+</div>
+<div class="dvleft">
+    <div class="title">款式图</div>
+    <div class="pictures">
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="active item">
+                    <img src="@Url.Content(Model.FirstStylePic())" />
+                </div>
+                @foreach (var t in Model.StylePicFiles())
+                {
+                     if(t != Model.FirstStylePic())
+                    {   
+                    <div class="item">
+                        <img src="@Url.Content(t)" />
+                    </div>
+                    }
+                }
+            </div>
+            @if (Model.StylePicFiles().Count > 1)
+            {
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            }
+        </div>
+    </div>
+    <div class="title">成衣图片</div>
+    <div class="pictures">
+        <div id="myCarousel2" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="active item">
+                    <img src="@Url.Content(Model.FirstClothesPic())" />
+                </div>
+                @foreach (var t in Model.ClothesPicFiles())
+                {
+                     if(t != Model.FirstStylePic())
+                    {   
+                    <div class="item">
+                        <img src="@Url.Content(t)" />
+                    </div>
+                    }
+                }
+            </div>
+            @if (Model.ClothesPicFiles().Count > 1)
+            {
+                <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a>
+            }
+        </div>
+    </div>
+    <div>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <th>销售总数</th>
+                <td>@Model.SaledCount</td>
+            </tr>
+            <tr>
+                <th>生产总数</th>
+                <td>@Model.ProductedCount</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="dvright">
+    <table id="sampleTable">
+        <tr>
+            <th>版型图</th>
+            <td>
+                <div id="myCarousel3" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <img src="@Url.Content(Model.FirstModelVersionPic())" />
+                        </div>
+                        @foreach (var t in Model.ModelVersionPicFiles())
+                        {
+                            if (t != Model.FirstStylePic())
+                            { 
+                            <div class="item">
+                                <img src="@Url.Content(t)" />
+                            </div>
+                            }
+                        }
+                    </div>
+                    @if (Model.ModelVersionPicFiles().Count > 1)
+                    {
+                        <a class="carousel-control left" href="#myCarousel3" data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#myCarousel3" data-slide="next">&rsaquo;</a>
+                    }
+                </div>
+                <div class="clearfix"></div>
+            </td>
+            <th>尺寸表</th>
+            <td class="clothSizeTd">
+                <table class="clothesSizeTable table table-bordered table-condensed">
+                    <tr>
+                        <th>部位</th>
+                        <th>尺寸</th>
+                    </tr>
+                    @foreach (ClothesSize t in Model.ClothesSize())
+                    {
+                        <tr>
+                            <td>@t.Key</td>
+                            <td>@t.Value</td>
+                        </tr>
+                    }
+                </table>
+                <div>单位:cm</div>
+            </td>
+        </tr>
+    </table>
+    <table class="comments table table-condensed table-bordered">
+        <tr>
+            <th colspan="2">工艺要求</th>
+        </tr>
+        <tr>
+            <td class="span2">工艺简述</td>
+            <td>@Model.Comment</td>
+        </tr>
+        <tr>
+            <td class="span2">工艺属性</td>
+            <td>@Model.Tags</td>
+        </tr>
+        <tr>
+            <td>工艺单文件</td>
+            @if (!String.IsNullOrEmpty(Model.TechnologyFile))
+            {
+                <td>@Model.TechnologyFile @Html.ActionLink("下载", "DownLoad", new { id = Model.Id, type = "TechnologyFile" })</td>
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
+        <tr>
+            <td>辅料卡文件</td>
+            @if (!String.IsNullOrEmpty(Model.AssessoriesFile))
+            {
+                <td>@Model.AssessoriesFile @Html.ActionLink("下载", "DownLoad", new { id = Model.Id, type = "AssessoriesFile" })</td>
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
+    </table>
+</div>
+@if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin ||
+    Model.Owner.Id.ToString() == HttpContext.Current.Items["UserId"].ToString())
+{
+    <div class="text-right span9">
+        <button id="editClothes" class="btn btn-success">编辑</button>
+        <button id="editClothesTags" class="btn btn-success">编辑衣服标签</button>
+    </div>
+}
+<!-- Modal -->
+<div id="myModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">款式信息</h3>
+    </div>
+    <div class="modal-body" id="divAddClothes">
+    </div>
+    <div class="modal-footer">
+        <input type="hidden" id="clothesId" value="@Model.Id" />
+        @Html.ActionLink("删除", "Del", "Clothes", new { id = Model.Id }, new { @class = "btn btn-danger", id = "btnDelClothes" })
+        @Html.ActionLink("保存", "Edit", "Clothes", new { @id = Model.Id }, new { @class = "btn btn-info", id = "btnAddClothes" })
+        <button class="btn" id="btnClose" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
+
+<!-- Clothes Tags Modal -->
+<div id="tagsModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="tagsModelLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="tagsModelLabel">编辑衣服标签</h3>
+    </div>
+    <div class="modal-body" id="divEditClothesTags">
+    </div>
+    <div class="modal-footer">
+        @Html.ActionLink("保存", "EditTags", "Clothes", new { @id = Model.Id }, new { @class = "btn btn-info", id = "btnEditClothesTags" })
+        <button class="btn" data-dismiss="modal" aria-hidden="true" id="clseBtnEditClothesTags">关闭</button>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data;
+using System.Text;
+using System.Collections;
+
+using HZY.COM;
+using HZY.COM.Common;
+using HZY.COM.WS.DataSets;
+using HZY.COM.Common.Base;
+using HZY.COM.Common.DBAccess;
+//using HZY.COM.ST1005A;
+
+///WSID:57a51159-4710-42cd-bca3-32fdaeacc616
+
+namespace HZY.COM.WS.HZY_Joreal_CMT
+{
+    public class TaskHQ : HZYLogicBase, ILogicGetData
+    {
+        #region 构造函数
+        public TaskHQ()
+        {
+            this.m_SessionCheck = true;
+        }
+        #endregion
+
+        #region 内部变量
+
+        #endregion
+    }
+}
+ 

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html"> 
+    <meta charset="UTF-8">  
+    <meta http-equiv="description" content="人员调转"> 
+    <title>人员调转</title>  	 
+    
+    <script src="../../../jquery-easyui-1.3.4/jquery-1.8.0.min.js" type="text/javascript"></script> 
+    <link id="easyuiTheme" href="../../../jquery-easyui-1.3.4/themes/ehras/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <!--<script src="../../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>-->
+    <link href="../../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script> 
+ 	
+    <link id="mycss" href="css/hrcss.css"rel="stylesheet" type="text/css" /> 
+  </head>
+  
+  <body style="margin:0px; width:99.8%;"  id="mybody"  >  
+	<div id='lby' title="列表页" style="width:100%; margin:0 auto; ">   
+        <div id="xxk" style="background-color:#fff;">    
+            <div   style="width:100%" class="div1">
+                <div style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;人员调转 </div> 
+                <div style="float:right;" >
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true" 
+	           				onclick="actClose();" style="height:21px;">返回</a>&nbsp;&nbsp;
+                </div> 
+	        </div>  
+            <div style="height:25px;"> 
+				<table style="width:98%; height:22px;">
+					<tr>  
+                        <td style="width:55%; color:blue;">
+                            &nbsp;&nbsp;&nbsp;&nbsp;人员： <span id="hr7_name" ></span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;编号： <span id="hr7_code"></span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;当前部门： <span id="dqbmspan"></span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;当前岗位： <span id="dqgwspan"></span>
+                        </td>      
+                        <td style="text-align:right;width:45%;">
+                            <a id="bcbtn" href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-save'" 
+	           				    onclick="actSave();">保 存</a> 
+                            &nbsp;&nbsp;&nbsp;&nbsp;  
+                            <a id="tjbtn" href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-redo'" 
+	           				    onclick="actApprove('tj');">提 交</a> 
+                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                            <a id="shbtn" href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-redo'" 
+	           				    onclick="actApprove('sh');">审 核</a> 
+                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                            <a id="bhbtn" href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-undo'" 
+	           				    onclick="actApprove('bh');">驳 回</a>   
+                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                            <a id="qxbtn" href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-stop_red'" 
+	           				    onclick="actApprove('qx');">取消申请</a>   
+						</td>   
+                        <td style="width:5%;"></td> 
+					</tr>   
+				</table>
+		    </div>  
+            <form id="ryxxForm" name="ryxxForm">
+            <div style="text-align:left;" >
+				<table style="width:98%; padding-left:10px;">
+                    <tr style="height:10px;"> </tr>  
+					<tr>    
+	           			 <td style="width:10%;" >调转时间<span class="required1">&nbsp;*&nbsp;</span>：</td>  
+                         <td style="width:90%;">   
+                             <input  id="c_recordtime" name="c_recordtime" type="text" style="width:153px;"/> 
+                             <input  id="c_oid_staffrecord" name="c_oid_staffrecord" type="hidden" />
+                             <input  id="c_empoid" name="c_empoid" type="hidden" /> 
+                             <input  id="c_oldunitid" name="c_oldunitid" type="hidden" /> 
+                             <input  id="c_oldunitcode" name="c_oldunitcode" type="hidden" /> 
+                             <input  id="c_oldunitname" name="c_oldunitname" type="hidden" /> 
+                             <input  id="c_oldjobid" name="c_oldjobid" type="hidden" /> 
+                             <input  id="c_oldjobcode" name="c_oldjobcode" type="hidden" /> 
+                             <input  id="c_oldjobname" name="c_oldjobname" type="hidden" /> 
+                             <input  id="c_oldempstatus" name="c_oldempstatus" type="hidden" />  
+                             <input  id="c_oldtype" name="c_oldtype" type="hidden" />  
+                             <input  id="hr7_neworgid" name="hr7_neworgid" type="hidden" /> 
+                             <input  id="hr7_neworgcode" name="hr7_neworgcode" type="hidden" /> 
+                             <input  id="hr7_neworgname" name="hr7_neworgname" type="hidden" /> 
+                         </td>    
+                    </tr>    
+					<tr>  
+	           			 <td>调转部门<span class="required1">&nbsp;*&nbsp;</span>：</td>  
+                         <td style="height:28px;">
+                             <input  id="c_newunitname" name="c_newunitname" type="text" style="width:600px;" disabled="disabled"/>
+                             <a id="deptbtn" href="#" class="easyui-linkbutton" 
+                                 data-options=" plain:true,iconCls:'icon-side_tree'" 
+	           				     onclick ="openDeptdlg();"></a> 
+                             <input  id="c_newunitid" name="c_newunitid" type="hidden"/>
+                             <input  id="c_newunitcode" name="c_newunitcode" type="hidden"/> 
+                         </td>   
+					</tr>     
+					<tr>   
+                         <td>调转岗位<span class="required1">&nbsp;*&nbsp;</span>：</td> 
+                         <td>
+                             <input  id="c_newjobname" name="c_newjobname" type="text" style="width:150px;"/>
+                             <input  id="c_newjobid" name="c_newjobid" type="hidden"/>
+                             <input  id="c_newjobcode" name="c_newjobcode" type="hidden"/> 
+                         </td> 
+					</tr>  
+					<tr>   
+                         <td>调转原因<span class="required1">&nbsp;*&nbsp;</span>：</td> 
+                         <td>
+                             <input  id="c_changetype" name="c_changetype" type="text" style="width:150px;"/> 
+                         </td> 
+					</tr> 
+                    <tr>   
+                         <td>员工类别<span class="required1">&nbsp;*&nbsp;</span>：</td> 
+                         <td>
+                             <input  id="c_type" name="c_type" type="text" style="width:150px;"/> 
+                         </td>     
+					</tr>    
+                    <tr>   
+                         <td>备注内容：</td> 
+                         <td>   
+                             <textarea id="c_remark"   style="width:600px; height:100px;"></textarea>
+                             <br>
+                             <span style="color:blue;">可输入英文字符1024个，相当于汉字341个。</span>  
+                         </td>  
+					</tr> 
+				</table>
+		    </div> 
+            </form>   
+            <div>
+                <table style="width:80%;  padding-left:10px;">
+                    <tr style="height:40px; vertical-align:bottom;">
+                        <td style="font-size:14px; font-weight:600;">试用期信息</td>
+                    </tr>
+                    <tr>   
+                         <td>
+                             <input id="isSYQ"  name="isSYQ" type="checkbox"  onchange="cxTypeChange()"> 设置试用期
+                         </td>   
+                         <td colspan="3" >
+                             <span style="color:blue;">(试用期开始日期为该人员入司时间)</span>  
+                         </td>      
+					</tr>   
+                    <tr>    
+                         <td colspan="4">
+                             <input type="radio" name="syqtype" value="0" onclick="actChangeST('0')" /> 选择试用期长度 
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             <input type="radio" name="syqtype" value="1" onclick="actChangeST('1')" /> 确定试用期结束时间
+                         </td>      
+					</tr>      
+                    <tr>   
+                         <td style="width:10%;">试用期月数：</td> 
+                         <td style="width:25%;">
+                             <input  id="syqMonth"  type="text" style="width:153px;"/>
+                         </td> 
+                         <td style="width:10%;">
+                             <span style="color:blue;">或</span> 
+                         </td>   
+                         <td style="width:15%;">试用期结束日期：</td> 
+                         <td style="width:40%;">
+                             <input  id="syqEndDate"  type="text" style="width:153px;"/>
+                             <br> 
+                         </td>       
+					</tr>    
+                </table>
+            </div>
+        </div>     
+	</div>    
+     
+    <div id="otherdiv" style="display:none;">  
+        <!-- 部门选择窗 -->
+        <div id="deptdlg" class="easyui-dialog" title="部门选择窗" style="width:700px;height:400px;padding:1px"
+		     data-options="toolbar:'#deptdlg-toolbar',buttons:'#deptdlg-buttons',resizable:true,modal:true,top:50"
+             closed="true">
+            <table id="deptgrid" class="easyui-datagrid"></table>
+	        <div id="deptdlg-toolbar" style="padding:2px 0">
+			    <table style="width:100%">
+				    <tr style="height:28px;"> 
+					    <td style="text-align:left;padding-right:2px"> 
+			                &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="color:red;">部门名称：</span> 
+			                <input id="cxDept" type="text"  style="width:180px" ></input>
+			                &nbsp;&nbsp;&nbsp;&nbsp;
+			           	    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'" 
+			           		    onclick="searchDepts('Query')">查询</a> 	            
+                        </td>
+                        <td style="text-align:center;"> 
+			                    <span style="color:blue;">(默认查询前20条信息)</span>         
+                        </td>
+				    </tr>
+			    </table>
+		    </div>
+		    <div id="deptdlg-buttons">
+			    <a href="#" class="easyui-linkbutton" onclick="setDeptxx();">确定</a>
+			    <a href="#" class="easyui-linkbutton" onclick="javascript: $('#deptdlg').dialog('close');">取消</a>
+		    </div> 
+        </div> 
+    </div> 
+	<script type="text/javascript" src="../../../JS/EHRAS/Util/dateUtil.js"></script>
+	<script type="text/javascript" src="../../../JS/EHRAS/Util/dataUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/EHRAS/Util/jsonUtil.js"></script>	  
+	<script type="text/javascript" src="../../../JS/EHRAS/Util/peoa.js"></script>
+ 	<script type="text/javascript" src="../../../JS/EHRAS/Common/basedata.js"></script> 
+	<script type="text/javascript" src="../../../JS/EHRAS/HR/idCard.js"></script>   
+    <script type="text/javascript" src="../../../JS/EHRAS/HR/basedatahr.js"></script>   
+	<script type="text/javascript" src="../../../JS/EHRAS/HR/perTurn.js"></script> 
+	<script type="text/javascript">
+	    //处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+	    function forbidBackSpace(e) {
+	        var ev = e || window.event; //获取event对象 
+	        var obj = ev.target || ev.srcElement; //获取事件源 
+	        var t = obj.type || obj.getAttribute('type'); //获取事件源类型 
+	        var vReadOnly = obj.readOnly;
+	        var vDisabled = obj.disabled;
+	        vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+	        vDisabled = (vDisabled == undefined) ? true : vDisabled;
+	        var flag1 = ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vDisabled == true);
+	        var flag2 = ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea";
+	        if (flag2 || flag1) return false;
+	    }
+	    document.onkeypress = forbidBackSpace;
+	    document.onkeydown = forbidBackSpace;
+	 </script>   
+  </body>
+ 
+</html>

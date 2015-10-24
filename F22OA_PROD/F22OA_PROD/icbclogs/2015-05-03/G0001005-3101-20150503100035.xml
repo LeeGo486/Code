@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150503100035</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=592100", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-03 11:54:59:2425 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150503100035</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=592100", "", "", "", "120400010000")</instr>
+    <recodes>F5接收数据失败,签到失败                                                                               </recodes>
+    <info>刷卡失败，错误信息为：接收数据失败,签到失败                                                                               </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-03 11:55:54:2747 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150503100035</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=592100", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-03 11:55:55:3017 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150503100035</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=592100", "", "", "", "120400010000")</instr>
+    <recodes>004047390007286364   2015050311563200000100000015050310039264000000000059210012045691094210257221700S上海浦东发展银行                       银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):上海浦东发展银行
+总计(TOTAL):RMB 5921.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-03 11:56:19:6321 </crdate>
+  </log>
+</logs>

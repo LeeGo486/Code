@@ -1,0 +1,136 @@
+
+$(document).ready(function(){
+
+	//插件初始化
+	initPlugin();
+	
+})
+
+
+function initPlugin()
+{
+	//tabs
+	$("#List").tabs({
+		title:'维修列表',
+		
+		closable:false,
+		// pill:true,
+		fit:true,
+		onClose:function(title,index){
+			if(title == "成衣维修登记"){
+				$("#tab_list").datagrid("reload");
+			}
+		}
+	});
+
+	
+	//button
+	$("#applyCom").linkbutton({
+		width:120,
+		height:30,
+		iconAlign:"left",
+		onClick:function(){
+			addTabs();
+		}
+	})
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+                + "&XML=" + GetFormJson([], 'getDataGrid');
+	//dataGrid
+	initDataGrid(url);
+}
+
+function initDataGrid(url)
+{
+	
+
+	$("#tab_list").datagrid({
+	    // url:GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750'),
+	    // queryParams: { "XML": GetGetJson([], 'getDataGrid') },
+	    url:url,
+        singleSelect: true,
+        fit:false,
+        columns: [[
+            { field: 'wxno', title: '维修单号', width: 100 },
+            { field: 'wxstname', title: '维修单类型', width: 100 },
+            { field: 'respname', title: '店长姓名', width: 100 },
+            { field: 'respphone', title: '店长电话', width: 100 },
+            { field: 'staffname', title: '受理导购', width: 100 },
+            { field: 'staffphone', title: '导购电话', width: 100 },
+            { field: 'sku', title: '维修款号', width: 100 },
+            { field: 'backdate', title: '退回日期', width: 100 },
+            { field: 'question', title: '问题描述', width: 200 },
+            { field: 'statusname', title: '维修单状态', width: 75 }
+		
+        ]],
+        pagination: true, //是否开启分页
+        pageNumber: 1, //默认索引页
+        pageSize: 20, //默认一页数据条数
+        onDblClickRow: function(index,row){
+            var rowid = row.id;
+            //跳转页面
+            lookoverWX(rowid);
+        }
+	    });
+	    $('#ss').searchbox({
+	    	width:200,
+	    	prompt:'请输入维修单号或款号',
+	    	searcher:function(value,name){
+	    		searchWX(value);
+	    	}
+
+	    });
+	    $("#print").linkbutton({
+	    	iconCls: 'icon-print',
+	    	text:'维修单打印',
+	    	plain:true,
+	    	onClick:function(){
+	    		printWX();
+	    	}
+	    })
+		//获取生成的搜索框
+		var a=$("#testa");
+		$(".datagrid-toolbar").append(a);
+}
+
+function addTabs()
+{
+	var url = "../../WEB/SPWX/SPWX_Apply.html";
+
+	var content = "<iframe id=\"newWx\" scrolling=\"auto\" frameborder=\"0\" src=\""+url+"\"";
+	content += " style=\"width:100%;height:95%\"></iframe>";
+
+    $('#List').tabs('add',{
+       	title: '成衣维修登记',
+        content: content,
+        iconCls: 'icon-add',
+        closable: true
+    });     
+}
+
+function lookoverWX(rowId) {
+    var url = "../../WEB/SPWX/SPWX_Lookover.html?wxno=" + rowId;
+
+    var content = "<iframe scrolling=\"auto\" frameborder=\"0\" src=\""+url+"\"";
+	content += " style=\"width:100%;height:95%\"></iframe>";
+
+	$("#List").tabs('add',{
+		title: '成衣维修明细',
+        content: content,
+        iconCls: 'icon-search',
+        closable: true
+	});
+}
+
+function printWX(){
+	alert("打印");
+
+}
+
+function searchWX(value){
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([{"name":"txtScreen","value":value}], 'screenDataGrid');
+
+	initDataGrid(url);
+}

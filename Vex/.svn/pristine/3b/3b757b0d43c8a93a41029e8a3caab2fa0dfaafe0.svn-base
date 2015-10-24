@@ -1,0 +1,873 @@
+ var m_DatagridID = '#ryxxlb'; //列表ID
+ var m_LastIndex = -1;  //人员列表最后一次选中行下标
+ var m_LastIndex1 = -1;  //关联部门列表最后一次选中行下标
+ var m_PageNumber = 1;  //当前页码
+ var m_PageSize = 10;  //每页显示行数
+ 
+ 
+ 
+ //用户信息
+ var m_UserInfo = parent.m_UserInfo; 
+ var m_taskTypes = hr_getBaseItems(3);
+ var m_states = hr_getBaseItems(2);
+ var m_actors = hr_getBaseItems(1);
+ 
+ var m_pers = [];
+
+ //选项组
+ var m_GenderTypes = [];
+ var m_EmployeeSources = [];
+ var m_DomicileTypes = [];
+ var m_Nationalitys = [];
+ var m_Nations = [];
+ var m_Maritals = [];
+ var m_Nations = [];
+ var m_PolityTypes = [];
+ var m_Grades = [];
+ var m_Degrees = [];
+ var m_BooleanTypes = [];
+ var m_EmployeeTypes = [];
+ var m_AreaTypes = [];
+ var m_ProbationDays = [];
+ var m_Jobs = [];
+ var m_Banks = [];
+ var m_employeestatus = [];
+ var m_employeestatus1 = [];
+ var m_companys = [];
+
+ var m_widths = [153, 150, 120, 100, 70, 200, 300];
+ var m_imgurl = hr_getServUrl();
+
+
+ var m_task = {};
+ var m_perinfo = '';
+ /***********************************************************************
+  *  初始化
+  *  DLY 
+  */ 
+ $(function () { 
+     // 滚动条居顶
+     parent.sc();
+
+     //用户认证
+     if (m_UserInfo == undefined || m_UserInfo.userName == undefined) {
+         top.location.href = 'error.html';
+         return;
+     }
+
+
+     //获取基础数据选项
+     getTypeItems(); 
+     
+     // 设置相关控件 
+     setDatebox('#c_hiredate');
+     setDatebox('#c_beginworkdate');
+     setDatebox('#syqEndDate');
+     setCombobox('#syqMonth', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_ProbationDays);
+     setCombobox('#c_gender', m_widths[3], m_widths[3], m_widths[3], false, false, 'c_code', 'c_name', m_GenderTypes);
+     setCombobox('#c_sourcetype', m_widths[0], m_widths[0], m_widths[3], false, false, 'c_code', 'c_name', m_EmployeeSources);
+     setCombobox('#c_domicile', m_widths[3], m_widths[3], m_widths[4], false, false, 'c_code', 'c_name', m_DomicileTypes);
+     setCombobox('#c_nationality', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_Nationalitys);
+     setCombobox('#c_nation', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_Nations);
+     setCombobox('#c_marital', m_widths[3], m_widths[3], m_widths[2], false, false, 'c_code', 'c_name', m_Maritals);
+     setCombobox('#c_polity', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_PolityTypes);
+     setCombobox('#c_knowledge', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_Grades);
+     setCombobox('#c_degree', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_Degrees);
+     setCombobox('#c_isnotchance', m_widths[3], m_widths[3], m_widths[4], false, false, 'c_code', 'c_name', m_BooleanTypes);
+     setCombobox('#c_ifeluser', m_widths[3], m_widths[3], m_widths[4], false, false, 'c_code', 'c_name', m_BooleanTypes);
+     setCombobox('#c_ifhqin', m_widths[3], m_widths[3], m_widths[4], false, false, 'c_code', 'c_name', m_BooleanTypes);
+     setCombobox('#c_employeetype', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_EmployeeTypes);
+     setCombobox('#c_area', m_widths[3], m_widths[3], m_widths[2], false, false, 'c_code', 'c_name', m_AreaTypes);
+     setCombobox('#c_jobname', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_name', 'c_name', m_Jobs);
+     setCombobox('#c_bankid', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_oid_bank', 'c_name', m_Banks);
+     setCombobox('#c_employeestatus', m_widths[0], m_widths[0], m_widths[2], false, false, 'c_code', 'c_name', m_employeestatus1);
+     setCombobox('#c_conpany', m_widths[0], m_widths[6], m_widths[5], false, false, 'c_code', 'c_name', m_companys);
+     m_companys
+
+     //项目代码 下拉框设置 
+     $('#c_jobname').combobox({ 
+         onSelect: function (data) { 
+             $('#c_jobid').val(m_UserInfo.selfInfo.c_jobid);
+             $('#c_jobcode').val(m_UserInfo.selfInfo.c_jobcode);
+         }
+     });
+       
+     
+     // 初始化权限数据控制
+     setbillInfoByURL(); 
+    
+     $('#otherdiv').show(); 
+ }); 
+ 
+
+/***********************************************************************
+  *  初始化权限数据控制
+  *  DLY 
+  */
+ function setbillInfoByURL() {
+     var flag = false;
+     var type = dataUtil_undefinedOrNull(basedata_getUrlParam("v0"), '');
+     var type1 = dataUtil_undefinedOrNull(basedata_getUrlParam("v1"), '');
+     controlTools(1); //先隐藏所以按钮
+     if (type == 'new' && type1 == "list") { // 新建
+         controlTools(2);
+         actChangeST('0');
+         setInfo('new', '');  
+     } else if (type == 'old' && type1 == "list") {   // 更新
+         controlTools(2);
+         actChangeST('0');
+         //获取hr人员信息
+         var peroid = dataUtil_undefinedOrNull(basedata_getUrlParam("v2"), '');
+         var row = { c_oid: peroid };
+         per = hr_getPer(row);
+         setInfo('old', per);
+         //隐藏试用期div --更人员信息暂不含试用期
+         $('#syqdiv').hide(); 
+         $('#c_jobname').combobox('disable');
+     } else if (type == 'old1' || type == 'old2') {   // 待办或查询 
+         var taskid = dataUtil_undefinedOrNull(basedata_getUrlParam("v3"), '');
+         var cons1 = ' AND  HR3_ID= \'' + taskid + '\''; 
+         var res1 = hr_getTask(cons1);
+         if (res1 == '1') {
+             alert('未找到对应待办任务信息，请截全屏图发给系统管理员！');
+             return flag;
+         } else if (res1.hr3_id != undefined && res1.hr3_id != '') {
+             m_task = res1;
+         } else {
+             alert('待办任务信息获取失败，请截全屏图发给系统管理员！');
+             return flag;
+         }
+
+         var rid = dataUtil_undefinedOrNull(basedata_getUrlParam("v2"), '');
+         if (rid == '') {
+             alert('记录ID无效，请截全屏图发给系统管理员！');
+             return;
+         }
+         var cons = ' AND  HR5_ID= \'' + rid + '\'';
+         var res = hr_getPerRecord(cons);
+         if (res == '1') {
+             alert('未找到对应人员信息，请截全屏图发给系统管理员！');
+             return flag;
+         } else if (res.hr5_id != undefined && res.hr5_id != '') {
+             m_perinfo = res; 
+         } else {
+             alert('人员信息获取失败，请截全屏图发给系统管理员！');
+             return flag;
+         } 
+
+         //设置值
+         setInfo('old', m_perinfo);  
+
+         //权限控制 
+         if (type == 'old1' && m_task.hr3_actor == '申请人') {  //待办，区分申请人和审核人 
+             controlTools(3);
+         } else if (type == 'old1' && m_task.hr3_actor == '人资' ) {
+             controlTools(4);
+         } else if (type == 'old1' && m_task.hr3_actor == '经理') {
+             controlTools(4);
+         } else {
+             controlFields(1);
+             actChangeST('');
+         }
+
+         //隐藏试用期div --更人员信息暂不含试用期
+         if (m_task.hr3_type == m_taskTypes[2].value) {
+             $('#syqdiv').hide();
+             $('#c_jobname').combobox('disable');
+         }
+     } else if (type == 'old3' && type1 == "list") {   // 更新
+         //获取hr人员信息
+         var peroid = dataUtil_undefinedOrNull(basedata_getUrlParam("v2"), '');
+         var row = { c_oid: peroid };
+         per = hr_getPer(row);
+         setInfo('old', per);
+         controlFields(1);
+         actChangeST(''); 
+         $('#c_employeestatus').combobox('loadData', m_employeestatus);
+         
+     }
+ }
+  
+  
+/***********************************************************************
+ *  验证身份证号码
+ *  DLY 
+ */
+function checkIdCard(id) {
+    $('#c_birthday').val('');
+    $('#c_age').val(''); 
+    if (id != '' && idcard_check(id)) {
+        var birthday = idcard_getBirthDay(id, '-');
+        if (birthday != '') {
+            var curyear = (new Date()).getFullYear(); 
+            var age = 1 * curyear - birthday.substring(0, 4)+1;
+            $('#c_birthday').val(birthday);
+            $('#c_age').val(age);
+        }
+    } 
+}
+
+
+/***********************************************************************
+ *  设置日期控件
+ *  DLY 
+ */
+function setDatebox(field) { 
+    $(field).datebox({
+        width: m_widths[0],
+        closeText: '关闭',
+        editable: false,
+        formatter: function (date) { 
+            return dateUtil_dateFomaterB(date, '-');
+        },
+        parser: function (s) {
+            var t = Date.parse(s);
+            if (!isNaN(t)) {
+                return new Date(t);
+            } else {
+                return new Date();
+            }
+        },
+        onChange: function (newValue, oldValue) {
+            if (newValue != oldValue) { 
+            }
+        }
+    });
+}
+
+
+/***********************************************************************
+ *  设置下拉控件
+ *  DLY 
+ */
+function setCombobox(field, width, pwidth, pheight, edit, multi, vfield, tfield, data) {
+    $(field).combobox({
+        width: width,
+        panelWidth: pwidth,
+        panelHeight: pheight,
+        editable: edit,
+        multiple: multi,
+        valueField: vfield,
+        textField: tfield,
+        data: data
+    });
+}
+ 
+
+/***********************************************************************
+ *  设置员工信息
+ *  DLY 
+ */
+function setInfo(type, per) {
+    if (type == 'new') { 
+        $('form').find('input').prop('value', ''); 
+        $('#c_hiredate').datebox('setValue','');
+        $('#c_beginworkdate').datebox('setValue','');
+        $('#syqBegin').datebox('setValue','');
+        $('#syqEnd').datebox('setValue',''); 
+        $('#c_gender').combobox('setValue',''); 
+        $('#c_sourcetype').combobox('setValue', '9');
+        $('#c_domicile').combobox('setValue',''); 
+        $('#c_nationality').combobox('setValue','1'); 
+        $('#c_nation').combobox('setValue','156'); 
+        $('#c_marital').combobox('setValue',''); 
+        $('#c_polity').combobox('setValue','13'); 
+        $('#c_knowledge').combobox('setValue',''); 
+        $('#c_degree').combobox('setValue',''); 
+        $('#c_ifeluser').combobox('setValue',''); 
+        $('#c_ifhqin').combobox('setValue',''); 
+        $('#c_employeetype').combobox('setValue','3'); 
+        $('#c_area').combobox('setValue', '');
+        $('#c_jobname').combobox('setValue', '');
+        $('#c_bankid').combobox('setValue', '3251895');  
+        $('#c_employeestatus').combobox('setValue', '1');
+        $('#c_conpany').combobox('setValue', '');
+
+        $('#c_jobseniority').numberbox('setValue', '0');
+        // 入聘部门随操作人（店长）
+        $('#c_unitname').val(m_UserInfo.selfInfo.c_unitname);
+        $('#c_unitid').val(m_UserInfo.selfInfo.c_unitid);
+        $('#c_unitcode').val(m_UserInfo.selfInfo.c_unitcode);
+        $('#c_orgname').val(m_UserInfo.selfInfo.c_orgname);
+        $('#c_orgid').val(m_UserInfo.selfInfo.c_orgid);
+        $('#c_orgcode').val(m_UserInfo.selfInfo.c_orgcode);
+
+        //照片
+        $('#img_photo').attr("src", "img/noman.gif");
+        $('#c_photo').val(''); 
+         
+    } else if (type == 'old') { 
+        $('#c_hiredate').datebox('setValue', per.c_hiredate == '' ? '' : dateUtil_dateFomaterB(new Date(per.c_hiredate.replace(/-/g, '/')), '-'));
+        $('#c_beginworkdate').datebox('setValue', per.c_beginworkdate == '' ? '' : dateUtil_dateFomaterB(new Date(per.c_beginworkdate.replace(/-/g, '/')), '-'));
+        //$('#syqBegin').datebox('setValue', per.syqBegin);
+        //$('#syqEnd').datebox('setValue', per.syqEnd);
+        $('#c_gender').combobox('setValue', per.c_gender);
+        $('#c_sourcetype').combobox('setValue', per.c_sourcetype);
+        $('#c_domicile').combobox('setValue', per.c_domicile);
+        $('#c_nationality').combobox('setValue', per.c_nationality);
+        $('#c_nation').combobox('setValue', per.c_nation);
+        $('#c_marital').combobox('setValue', per.c_marital);
+        $('#c_polity').combobox('setValue', per.c_polity);
+        $('#c_knowledge').combobox('setValue', per.c_knowledge);
+        $('#c_degree').combobox('setValue', per.c_degree);
+        $('#c_ifeluser').combobox('setValue', per.c_ifeluser);
+        $('#c_ifhqin').combobox('setValue', per.c_ifhqin);
+        $('#c_employeetype').combobox('setValue', per.c_employeetype);
+        $('#c_area').combobox('setValue', per.c_area); 
+        $('#c_jobname').combobox('setValue', per.c_jobname); 
+        $('#c_bankid').combobox('setValue', per.c_bankid);  
+        $('#c_employeestatus').combobox('setValue', per.c_employeestatus);
+        $('#c_conpany').combobox('setValue', per.c_conpany);
+
+        $('#c_oid').val(per.c_oid);
+        $('#c_employeeid').val(per.c_employeeid);
+        $('#c_code').val(per.c_code);
+        $('#c_name').val(per.c_name);
+        if (per.c_photo != '' && per.c_photo != '-1') {
+            $('#img_photo').attr("src", m_imgurl + per.c_photo + '.jpg'); 
+        } else { 
+            $('#img_photo').attr("src", "img/noman.gif");
+        } 
+        $('#c_photo').val(per.c_photo); 
+        $('#c_jobseniority').numberbox('setValue', per.c_jobseniority);
+        $('#c_birthplace').val(per.c_birthplace);
+        $('#c_idcard').val(per.c_idcard);
+        $('#c_passport').val(per.c_passport);
+        $('#c_age').val(per.c_age); 
+        $('#c_birthday').val(per.c_birthday == '' ? '' : dateUtil_dateFomaterB(new Date(per.c_birthday.replace(/-/g, '/')), '-'));
+        $('#c_usedname').val(per.c_usedname);
+        $('#c_firstname').val(per.c_firstname);
+        $('#c_middlename').val(per.c_middlename);
+        $('#c_lastname').val(per.c_lastname);
+        $('#c_regresidence').val(per.c_regresidence);
+        $('#c_nativeplace').val(per.c_nativeplace);
+        $('#c_specialty').val(per.c_specialty);
+        $('#c_remarkinfo').val(per.c_remarkinfo);
+        $('#c_unitname').val(per.c_unitname); 
+        $('#c_unitid').val(per.c_unitid);
+        $('#c_unitcode').val(per.c_unitcode);
+        $('#c_orgname').val(per.c_orgname);
+        $('#c_orgid').val(per.c_orgid);
+        $('#c_orgcode').val(per.c_orgcode); 
+        $('#c_jobid').val(per.c_jobid);
+        $('#c_jobcode').val(per.c_jobcode);
+        $('#c_account').val(per.c_account);
+        $('#c_oid_indiaccount').val(per.c_oid_indiaccount);
+        $('#c_phonenumber').val(per.c_phonenumber);
+    }
+
+    //试用期  
+    var type = dataUtil_undefinedOrNull(basedata_getUrlParam("v0"), ''); 
+    if (type == 'new' || type == 'old') {
+        $("#isSYQ").attr("checked", false);
+        if (type == 'new') { 
+            $("#isSYQ").attr("checked", true);
+        }
+        $(':radio[name="syqtype"]').eq(0).attr("checked", true);
+        $('#syqEndDate').datebox('setValue', '');
+        $('#syqMonth').combobox('setValue', '3');
+    } else if (type == 'old1' || type == 'old2' || type == 'old3') {
+        //试用期  
+        $('#syqEndDate').datebox('setValue', per.hr5_syqenddate);
+        $('#syqMonth').combobox('setValue', (per.hr5_syqmonth == '' && per.hr5_syqenddate == '') ? '3' : per.hr5_syqmonth);
+        var raflag = '0';
+        if (per.hr5_syqenddate != '') {
+            $(':radio[name="syqtype"]').eq(1).attr("checked", true);
+            raflag = '1';
+        } else {
+            $(':radio[name="syqtype"]').eq(0).attr("checked", true);
+        }
+
+        if (per.hr5_syqbegindate != '') {
+            $("#isSYQ").attr("checked", true);
+        } else {
+            $("#isSYQ").attr("checked", false);
+        }
+        actChangeST(raflag);
+    } 
+}
+
+
+/***********************************************************************
+*  工具条及按钮控制
+*  DLY 
+*/
+function controlTools(type) {
+    if (type == 1) {    //全不可见  
+        $('#bcbtn').hide();
+        $('#bcbtn1').hide();
+        $('#tjbtn').hide();
+        $('#shbtn').hide();
+        $('#bhbtn').hide(); 
+        $('#qxbtn').hide();
+        $('#upPhotobtn').hide();
+        $('#delPhotobtn').hide();
+    } else if (type == 2) { //申请人 - 新建
+        $('#bcbtn').show();
+        $('#bcbtn1').show();
+        $('#tjbtn').hide();
+        $('#shbtn').hide();
+        $('#bhbtn').hide(); 
+        $('#qxbtn').hide();
+        $('#upPhotobtn').show();
+        $('#delPhotobtn').show();
+    } else if (type == 3) { //申请人 - 待办 
+        $('#bcbtn').show();
+        $('#bcbtn1').show();
+        $('#tjbtn').show();
+        $('#shbtn').hide();
+        $('#bhbtn').hide();
+        $('#qxbtn').show();
+        $('#upPhotobtn').show();
+        $('#delPhotobtn').show();
+    } else if (type == 4) {  //审批人 - 待办 
+        $('#bcbtn').show();
+        $('#bcbtn1').show();
+        $('#tjbtn').hide();
+        $('#shbtn').show();
+        $('#bhbtn').show();
+        $('#qxbtn').show();
+        $('#upPhotobtn').show();
+        $('#delPhotobtn').show();
+    }
+}
+
+
+/***********************************************************************
+*  控件控制
+*  DLY 
+*/
+function controlFields(type) {
+    if (type == 1) {    //全只读 
+        $('form').find('input').prop("disabled", "disabled");
+        $(':checkbox').attr("disabled", true);
+        $(':radio').attr("disabled", true);
+        // 设置相关控件 
+        $('#c_hiredate').datebox('disable'); 
+        $('#c_beginworkdate').datebox('disable');  
+        $('#syqEndDate').datebox('disable');
+        $('#syqMonth').combobox('disable');
+        $('#c_gender').combobox('disable');
+        $('#c_sourcetype').combobox('disable');
+        $('#c_domicile').combobox('disable');
+        $('#c_nationality').combobox('disable');
+        $('#c_nation').combobox('disable');
+        $('#c_marital').combobox('disable');
+        $('#c_polity').combobox('disable');
+        $('#c_knowledge').combobox('disable');
+        $('#c_degree').combobox('disable');
+        $('#c_isnotchance').combobox('disable');
+        $('#c_ifeluser').combobox('disable');
+        $('#c_ifhqin').combobox('disable');
+        $('#c_employeetype').combobox('disable');
+        $('#c_area').combobox('disable');
+        $('#c_jobname').combobox('disable');
+        $('#c_bankid').combobox('disable');
+        $('#c_employeestatus').combobox('disable'); 
+        $('#c_jobseniority').numberbox('disable');
+        $('#c_conpany').combobox('disable');
+    }  
+}
+
+
+/***********************************************************************
+ *  获取基础选项
+ *  DLY 
+ */
+function getTypeItems() {
+    var type1 = hr_getCodeType(1);// 员工状态 
+    var type2 = hr_getCodeType(2);//性别  
+    var type3 = hr_getCodeType(3);//员工来源  
+    var type4 = hr_getCodeType(4);//户籍性质  
+    var type5 = hr_getCodeType(5);//名族  
+    var type6 = hr_getCodeType(6);//国籍  
+    var type7 = hr_getCodeType(7);//婚姻状况  
+    var type8 = hr_getCodeType(8);//政治面貌 
+    var type9 = hr_getCodeType(9);//最高学历  
+    var type10 = hr_getCodeType(10);//最高学位 
+    var type11 = hr_getCodeType(11);//试用期  
+    var type12 = hr_getCodeType(12);//布尔类型 
+    var type15 = hr_getCodeType(15);//员工类别 
+    var type16 = hr_getCodeType(16);//所属区域 
+    var type19 = hr_getCodeType(19);//合同所属公司  
+
+    var types = '\'0\',' + '\'' + type1 + '\',' + '\'' + type2 + '\',' + '\'' + type3 + '\','
+              + '\'' + type4 + '\',' + '\'' + type5 + '\',' + '\'' + type6 + '\','
+              + '\'' + type7 + '\',' + '\'' + type8 + '\',' + '\'' + type9 + '\','
+              + '\'' + type10 + '\',' + '\'' + type11 + '\',' + '\'' + type12 + '\',' + '\'' + type15 + '\','
+              + '\'' + type16 + '\',' + '\'' + type19 + '\'';
+    var row = { c_typecode: types };
+    var codeitems = hr_getCodeItems(row);
+    for (var i = 0; i < codeitems.length; i++) {
+        var t1 = codeitems[i].c_typecode.toUpperCase();
+        if (t1 == type1.toUpperCase()) {
+            m_employeestatus.push(codeitems[i]);
+            if (codeitems[i].c_code == '1' || codeitems[i].c_code == '2' || codeitems[i].c_code == '6') { 
+                m_employeestatus1.push(codeitems[i]);
+            }
+        } else if (t1 == type2.toUpperCase()) {
+            m_GenderTypes.push(codeitems[i]);
+        } else if (t1 == type3.toUpperCase()) {
+            m_EmployeeSources.push(codeitems[i]);
+        } else if (t1 == type4.toUpperCase()) {
+            m_DomicileTypes.push(codeitems[i]);
+        } else if (t1 == type5.toUpperCase()) {
+            m_Nationalitys.push(codeitems[i]);
+        } else if (t1 == type6.toUpperCase()) {
+            m_Nations.push(codeitems[i]);
+        } else if (t1 == type7.toUpperCase()) {
+            m_Maritals.push(codeitems[i]);
+        } else if (t1 == type8.toUpperCase()) {
+            m_PolityTypes.push(codeitems[i]);
+        } else if (t1 == type9.toUpperCase()) {
+            m_Grades.push(codeitems[i]);
+        } else if (t1 == type10.toUpperCase()) {
+            m_Degrees.push(codeitems[i]);
+        } else if (t1 == type11.toUpperCase()) {
+            m_ProbationDays.push(codeitems[i]);
+        } else if (t1 == type12.toUpperCase()) {
+            m_BooleanTypes.push(codeitems[i]);
+        } else if (t1 == type15.toUpperCase()) {
+            m_EmployeeTypes.push(codeitems[i]);
+        } else if (t1 == type16.toUpperCase()) {
+            m_AreaTypes.push(codeitems[i]);
+        } else if (t1 == type19.toUpperCase()) {
+            m_companys.push(codeitems[i]);
+        } 
+    }
+     
+    //alert(jsonUtil_jsonToStr(m_employeestatus));
+    //获取岗位信息
+    var row1 = { c_unitid: m_UserInfo.selfInfo.c_unitid };
+    m_Jobs = hr_getJobs(row1);
+
+    //获取银行信息
+    var row2 = {};
+    m_Banks = hr_getBanks(row2);
+}
+ 
+
+/***********************************************************************
+ *  保存
+ *  DLY 
+ */
+function actSave() {
+    var resFlag = false;
+    //alert(jsonUtil_form2json('#ryxxForm'));
+    //保存校验 并获取记录信息
+    var perInfo = saveCheck();
+    if (perInfo == '') {
+        return resFlag;
+    }
+    var flag2 = dataUtil_undefinedOrNull(basedata_getUrlParam("v0"), '');
+    //新建申请
+    if (flag2 == 'new' || flag2 == 'old') {
+
+        //生成任务行
+        var atype = m_taskTypes[1].value;
+        if (flag2 == 'old') {
+            atype = m_taskTypes[2].value;
+        } 
+
+        //保存主表 
+        perInfo[0].hr5_id = dataUtil_NewGuid();
+        flag1 = hr_savePer('N', perInfo[0], m_UserInfo.userName);
+        if (!flag1) {
+            alert('保存人员信息失败！')
+            return resFlag;
+        } 
+
+        var zrow = perInfo[0];
+         
+        
+        var arow = {};
+        arow.hr3_id = dataUtil_NewGuid();
+        arow.hr3_rid = zrow.hr5_id;
+        arow.hr3_type = atype;
+        arow.hr3_subject = m_UserInfo.deptName + ' - ' + atype + ' - ' + zrow.c_name;
+        arow.hr3_state = m_states[0].value;
+        arow.hr3_rguser = m_UserInfo.userName;
+        arow.hr3_actor = m_actors[0].value;
+        arow.hr3_perid = m_UserInfo.deptID;
+        //arow.hr3_perid1 = m_UserInfo.empCode1; // 无需大区经理审批
+        if (hr_FlowComFlag(m_UserInfo.selfInfo.c_orgid) == '1') { //雅莹等特殊控制
+            arow.hr3_perid2 = m_UserInfo.empCode1; // 分公司人资 
+            arow.hr3_perid1 = m_UserInfo.empCode2; // 便于总部人资查看
+        } else {
+            arow.hr3_perid1 = m_UserInfo.empCode1; // 分公司人资 
+            arow.hr3_perid2 = m_UserInfo.empCode2; // 总部人资
+        }
+        arow.hr3_rgdt = dateUtil_dateFomaterA(new Date(), '-');
+        arow.hr3_uptno = 0;
+        arow.hr3_com = m_UserInfo.selfInfo.c_orgid;
+        flag1 = hr_saveTask('N', arow, m_UserInfo.userName);
+        if (!flag1) {
+            alert('生成待办任务失败！')
+            return resFlag;
+        }   
+        alert('保存成功！');
+
+        // 跳转到任务页
+        var curlo = 'perInfo.html?' + 'v0=old1&v1=task&v2=' + zrow.hr5_id
+                     + '&v3=' + arow.hr3_id
+                     + '&s=' + new Date().getTime();
+        parent.turnPage('B', 'tasksPage', curlo);
+    } else if (flag2 == 'old1') { 
+        var rid = dataUtil_undefinedOrNull(basedata_getUrlParam("v2"), '');
+        perInfo[0].hr5_id = rid;
+        flag1 = hr_savePer('U', perInfo[0], m_UserInfo.userName);
+        if (!flag1) {
+            alert('保存人员信息失败！')
+            return resFlag;
+        }  
+        alert('保存成功！');
+    } 
+    resFlag = true;
+    return resFlag;
+}
+
+
+/***********************************************************************
+*  保存校验 返回记录信息
+*  DLY 
+*/
+function saveCheck() {
+    var res = ''; 
+    var perInfo = eval('[{' + jsonUtil_form2json('#ryxxForm') + '}]'); //获取单据主信息json 
+
+    if (perInfo[0].c_name == ''
+        || perInfo[0].c_gender == ''
+        || perInfo[0].c_hiredate == ''
+        || perInfo[0].c_unitname == ''
+        || perInfo[0].c_jobname == ''
+        || perInfo[0].c_jobseniority == ''
+        || perInfo[0].c_employeetype == ''
+        || perInfo[0].c_domicile == ''
+        || perInfo[0].c_idcard == ''
+        || perInfo[0].c_area == ''
+        || perInfo[0].c_birthplace == ''
+        || perInfo[0].c_regresidence == ''
+        || perInfo[0].c_nativeplace == ''
+        || perInfo[0].c_marital == ''
+        || perInfo[0].c_polity == ''
+        || perInfo[0].c_knowledge == ''
+        || perInfo[0].c_phonenumber == ''
+        || perInfo[0].c_conpany == '') {
+        alert("带 *  的字段都必填!");
+        return res;
+    }
+
+    //试用期
+    var isSYQ = $('#isSYQ').is(':checked');
+    if (isSYQ) {
+        var ravalue = $(':radio[name="syqtype"]:checked').val();
+        if (ravalue == 0) {
+            var m = $('#syqMonth').combobox('getValue');
+            if (m == '') {
+                alert('请选择试用期月数！');
+                return res;
+            }
+            perInfo[0].hr5_syqbegindate = perInfo[0].c_hiredate;
+            perInfo[0].hr5_syqenddate = '';
+            perInfo[0].hr5_syqmonth = m;
+        } else {
+            var edate = $('#syqEndDate').datebox('getValue');
+            if (edate == '') {
+                alert('请选择试用期结束日期！');
+                return res;
+            }
+            perInfo[0].hr5_syqbegindate = perInfo[0].c_hiredate;
+            perInfo[0].hr5_syqenddate = edate;
+            perInfo[0].hr5_syqmonth = '';
+        }
+    } else {
+        perInfo[0].hr5_syqbegindate = '';
+        perInfo[0].hr5_syqenddate = '';
+        perInfo[0].hr5_syqmonth = '';
+    }
+    res = perInfo;
+    return res;
+}
+
+
+/***********************************************************************
+*  流程  店长——人资
+*  DLY 
+*/
+function actApprove(type) {
+    //数据修改校验 
+    //$(m_DatagridID).datagrid('endEdit', m_LastIndex);
+    //if ($(m_DatagridID).datagrid('getChanges').length > 0) {
+    //    alert('数据已修改，请先保存！');
+    //    return;
+    //}
+    var flag = false;
+
+    //任务状态校验 
+    var taskid = dataUtil_undefinedOrNull(basedata_getUrlParam("v3"), '');
+    if (taskid == '') {
+        alert('任务ID无效，请截全屏图发给系统管理员！');
+        return flag;
+    }
+    var cons = ' AND  HR3_ID= \'' + taskid + '\'';
+    var res = hr_getTask(cons);
+    var zrow = {};
+    if (res == '1') {
+        alert('未找到对应待办任务，请截全屏图发给系统管理员！');
+        return;
+    } else if (res.hr3_id != undefined && res.hr3_id != '') {
+        if (res.hr3_state != m_task.hr3_state) {
+            alert('该任务状态已更新，请刷新任务！');
+            return flag;
+        }
+    } else {
+        alert('待办任务信息获取失败，请截全屏图发给系统管理员！');
+        return flag;
+    }
+
+
+    //审批操作
+    var actinfo = '';
+    var actT = dateUtil_dateFomaterA(new Date(), '-');
+    if (type == 'tj') {
+        actinfo = '提交';
+        res.hr3_comment = res.hr3_comment + '店长：' + m_UserInfo.userName + ' ' + actinfo +  ' ' + actT + 'rrbrrr'; 
+        if (hr_FlowComFlag(m_UserInfo.selfInfo.c_orgid) == '3') { //卓莱雅等经过分公司经理环节
+            res.hr3_state = '经理待批';
+            res.hr3_actor = '经理';
+        } else { //其他公司不经过分公司经理环节
+            res.hr3_state = '人资待批';
+            res.hr3_actor = '人资'; 
+        }
+    } else if (type == 'sh') {
+        actinfo = '审核'; 
+        if (res.hr3_actor == '经理') {
+            res.hr3_comment = res.hr3_comment + '经理：' + m_UserInfo.userName + ' ' + actinfo + ' ' + actT + 'rrbrrr';
+            res.hr3_state = '人资待批';
+            res.hr3_actor = '人资';
+        } if (res.hr3_actor == '人资') {
+            res.hr3_comment = res.hr3_comment + '人资：' + m_UserInfo.userName + ' ' + actinfo + ' ' + actT + 'rrbrrr';
+            res.hr3_state = '已完结';
+            res.hr3_actor = '';
+        } 
+    } else if (type == 'bh') {
+        actinfo = '驳回'; 
+        if (res.hr3_actor == '经理') {
+            res.hr3_comment = res.hr3_comment + '经理：' + m_UserInfo.userName + ' ' + actinfo + ' ' + actT + 'rrbrrr';
+            res.hr3_state = '经理(驳回)';
+            res.hr3_actor = '申请人';
+        } else if (res.hr3_actor == '人资') {
+            res.hr3_comment = res.hr3_comment + '人资：' + m_UserInfo.userName + ' ' + actinfo + ' ' + actT + 'rrbrrr';
+            res.hr3_state = '人资(驳回)';
+            res.hr3_actor = '申请人';
+        }
+    } else if (type == 'qx') {
+        actinfo = '取消';
+        res.hr3_comment = res.hr3_comment + res.hr3_actor + '：' + m_UserInfo.userName + ' ' + actinfo + ' ' + actT + 'rrbrrr';
+        res.hr3_state = '已取消';
+        res.hr3_actor = '';
+    } 
+    
+    $.messager.confirm('确认框', '确认' + actinfo + '该人员信息吗？', function (r) {
+        if (r) {  
+            //同步到EHR
+            if (res.hr3_state == '已完结') {
+                var row = { type:"emp", taskid: res.hr3_id, actorid: m_UserInfo.empID };
+                var ressjtb = hr_ActDataSync(row);
+                if (ressjtb == undefined || ressjtb == "") {
+                    alert('EHR数据同步失败！');
+                    return flag;
+                } else if (ressjtb.flag == '0') {
+                    alert('EHR数据同步错误： ' + ressjtb.message);
+                    return flag;
+                } 
+            }
+            //修改任务信息  
+            var flag1 = hr_saveTask('U', res, m_UserInfo.userName);
+            if (!flag1) {
+                alert(actinfo + '失败，请截全屏图发给系统管理员！')
+                return flag;
+            }
+            alert(actinfo + '成功！');
+            parent.turnPage('A', 'tasks');
+        }
+    });
+}
+
+
+/***********************************************************************
+ *  关闭
+ *  DLY 
+ */
+function actClose() {
+    var type = dataUtil_undefinedOrNull(basedata_getUrlParam("v1"), '');
+    if (type == 'task') {
+        parent.turnPage('A', 'tasks', '');
+    } else if (type == 'list') {  
+        parent.turnPage('A', 'persons', '');
+    } 
+}
+
+
+/***********************************************************************
+ *  上传照片
+ *  DLY 
+ */
+function uploadfile(type, filepath) { 
+    if (type == 'A') { 
+        //if (window.navigator.userAgent.indexOf("MSIE") < 0) {
+        //    alert("上传照片请在IE浏览器或IE兼容模式下操作！");
+        //    return false;
+        //}
+        var url = "upPhoto.html";
+        document.getElementById('openhere').src = url;
+        $('#upPhotodlg').dialog('open');
+    } else if (type == 'B') { 
+        var row = {
+            photoPath: filepath, photoID: ""
+            , upType: "new", actorid: "33", actor: "cc"
+        }; 
+        var res = hr_uploadPhoto(row); 
+        if (res) {
+            if (res.result.toUpperCase() == 'TRUE') { 
+                $('#upPhotodlg').dialog('close');
+                alert('上传照片成功！');
+                $('#img_photo').attr("src", m_imgurl + res.message + ".jpg");
+                $('#c_photo').val(res.message);
+            } else if (res.result.toUpperCase() == 'FALSE') {
+               alert(res.message);
+            }  
+        } else {
+            alert('上传照片失败！');
+        }
+    }
+}
+ 
+
+/***********************************************************************
+ *  清除照片
+ *  DLY 
+ */
+function deletefile() { 
+    $('#img_photo').attr("src", "noman.gif");
+    $('#c_photo').val(''); 
+}
+
+
+/***********************************************************************
+*  试用期方式控制
+*  DLY 
+*/
+function actChangeST(type) {
+    if (type == '0') {
+        $('#syqEndDate').datebox('disable');
+        $('#syqMonth').combobox('enable');
+    } else if (type == '1') {
+        $('#syqEndDate').datebox('enable');
+        $('#syqMonth').combobox('disable');
+    } else {
+        $('#syqEndDate').datebox('disable');
+        $('#syqMonth').combobox('disable');
+    }
+
+}

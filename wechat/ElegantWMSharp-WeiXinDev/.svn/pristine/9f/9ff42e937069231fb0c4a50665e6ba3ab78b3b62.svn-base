@@ -1,0 +1,5 @@
+.bg{
+	background-image:url(../../Resources/images/LittleModel/bg.jpg);
+	background-repeat:no-repeat;
+	width:100%;
+}

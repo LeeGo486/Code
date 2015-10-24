@@ -1,0 +1,75 @@
+/* CSS Document */
+
+A:link 
+{
+	COLOR: #FF9900;
+	TEXT-DECORATION: none;
+	font-size: 12px;
+}
+A:visited 
+{
+	COLOR: #ee6600;
+	TEXT-DECORATION: none;
+	font-size: 12px;
+}
+A:active 
+{
+	COLOR: #FF9900;
+	TEXT-DECORATION: none;
+	font-size: 12px;
+}
+A:hover 
+{
+	COLOR: #404040; TEXT-DECORATION: underline
+}
+body {
+	SCROLLBAR-FACE-COLOR: #72828b;
+	MARGIN: 0px;
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+	SCROLLBAR-SHADOW-COLOR: #ffffff;
+	SCROLLBAR-3DLIGHT-COLOR: #72828b;
+	SCROLLBAR-ARROW-COLOR: #ffffff;
+	SCROLLBAR-TRACK-COLOR: #edf1f1;
+	SCROLLBAR-DARKSHADOW-COLOR: #72828b;
+	SCROLLBAR-BASE-COLOR: #edf1f1;
+	color:660066
+	
+}
+.title
+{
+	color:#3366FF;
+	font-size:medium;
+	 font-family:ºÚÌå;
+	}
+.area
+{
+	background-color:#ffffff;
+}
+.news
+{
+	font-size:12px;
+	color:#666666;
+	font-weight:lighter;
+	line-height:18px;
+}
+.newsitem
+{
+	font-size:12px;
+	color:#FF9900;
+}
+.shopping
+{
+	font-size:12px;
+}
+.textbox {BORDER-TOP-STYLE: none; BORDER-BOTTOM: 1px solid;
+          BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none;
+          border-bottom-color:Navy;
+          HEIGHT:20px;
+          background-color:#f5f5f5;
+		 color:Navy
+         }
+.button { border:none 1px solid navy;
+          HEIGHT:22px;
+          background:#336699;
+           color:#ffffff
+         }

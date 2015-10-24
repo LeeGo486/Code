@@ -1,0 +1,292 @@
+﻿@{
+    ViewBag.Title = "订单确认";
+    Layout = "~/Views/Shared/_DLWXSiteBaseLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+
+        $.post("/DLWXSite/DLGoods/GetProvince?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+            var rst = eval("(" + data + ")");
+
+            var html = "<option></option>";
+            for (var i = 0; i < rst.length; i++) {
+                html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+            }
+            $("#province select").html(html);
+        });
+    });
+</script>
+<body style="background-color: #f0f0f0">
+    <div class="OrderInfo">
+        <div class="OrderInfoDiv">
+            <table class="OrderInfotable">
+                <tr>
+                    <td style="width: 20%">预购人</td>
+                    <td>
+                        <input type="text"  id="username" value="@ViewBag.UserName" readonly=""></td>
+                </tr>
+                <tr>
+                    <td>手机号</td>
+                    <td>
+                        <input type="text"  id="tel" value="@ViewBag.Tel" readonly=""></td>
+                </tr>
+
+                <tr>
+                    <td>预约店铺</td>
+                    <td>
+                        <div id="province">
+                            <select>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>市</td>
+                    <td>
+                        <div id="city">
+                            <select>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>门店</td>
+                    <td>
+                        <div>
+                            <select class="hzyDepot">
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>试穿日期</td>
+                    <td>
+                        <div>
+                            <input class="hzyDp seDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>试穿时间</td>
+                    <td>
+                        <div>
+                            <select class="hzyTime">
+                                <option>9:00-10:00</option>
+                                <option>10:00-11:00</option>
+                                <option>11:00-12:00</option>
+                                <option>12:00-13:00</option>
+                                <option>13:00-14:00</option>
+                                <option>14:00-15:00</option>
+                                <option>15:00-16:00</option>
+                                <option>16:00-17:00</option>
+                                <option>17:00-18:00</option>
+                                <option>18:00-19:00</option>
+                                <option>19:00-20:00</option>
+                                <option>20:00-21:00</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="OrderInfoDivStyle">
+            <ul class="OrderInfoul">
+                @{float count = 0;}
+                @foreach (System.Data.DataRow dr in ViewBag.Order.Rows)
+                {
+                    if (@dr["ID"] != "")
+                    {
+                        { count = count + float.Parse(dr["Amount"].ToString()); }
+                    <li class="@dr["ID"]">
+                        <table class="cart">
+                            <tr>
+                                <td class="smallImg" rowspan="5">
+                                    <img  src="http://122.225.19.188:8090@{@dr["STYL_PicturePath"].ToString().Split(',')[0].ToString()}" onerror="this.src='/Areas/NPaia/Resources/images/Goods/error.gif';"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="vertical-align: top">
+                                    <span style="font-weight: bold; color: #000;">@dr["STYL_Name"]</span><br />
+                                    <span>@dr["STYL_Code"]</span><br />
+                                    <span>@float.Parse(dr["Number"].ToString()).ToString("0") 件</span><br />
+                                    <span>@dr["STL2_Color"]</span><br />
+                                    <span>@dr["STL2_Size"]码</span>
+                                    <span class="sku" style="display: none;">@dr["STL2_ID"]</span>
+                                </td>
+                            </tr>
+
+                            <tr style="display: none">
+                                <td>
+                                    <span style="color: red;" class="sellprice">@float.Parse(dr["STYL_SellPrice"].ToString()).ToString("0.00")</span>/<span style="text-decoration: line-through;" class="price">@float.Parse(dr["STYL_Price"].ToString()).ToString("0.00")</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="count" colspan="2" style="text-align: right;">
+                                    <span><span class="number" style="display: none">@float.Parse(dr["Number"].ToString()).ToString("0")</span> <span class="amount" style="display: none">@dr["Amount"]</span></span>
+                                    <img id="@dr["ID"]" src="~/Areas/DLWXSite/Resources/images/Goods/Delete.png"  style="width: 60px;margin-left: -5px;" >
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                    }
+                }
+                <li>
+                    <table class="">
+                        <tr>
+                            <td style="width: 25%">我要留言</td>
+                            <td>
+                                <textarea placeholder="请输入留言"></textarea></td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            <img id="order" class="OrderButton" src="~/Areas/DLWXSite/Resources/images/Goods/OrderButton.jpg" width="100%">
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    $(".count img").click(function () {
+        Msg.show("删除中...", 3);
+        var id = $(this).attr("id");
+        $.post("/DLWXSite/DLGoods/DelShoppingCart?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&id=" + id, function (data) {
+            Msg.hide();
+            var rst = eval("(" + data + ")");
+
+            if (rst[0].Result == "True") {
+                $("#count").text(parseInt($("#count").text()) - parseInt($("." + id).find(".amount").text()));
+                $("." + id).remove();
+                Msg.show(rst[0].Message, 0);
+                window.history.go(-1);
+            }
+            else {
+                Msg.show(rst[0].Message, 1);
+            }
+        });
+    })
+
+    $("#order").click(function () {
+        if ($("ul li").size() == 0) {
+            Msg.show("请先选择款式", 1);
+            return;
+        }
+        if ($(".hzyDepot option:selected").val() == "") {
+            Msg.show("请选择取货店铺", 1);
+            return;
+        }
+        if ($(".hzyDp").val() == "") {
+            Msg.show("请选择取货日期", 1);
+            return;
+        }
+        var date = new Date();
+        var date1 = date.getFullYear() + "-" + ((date.getMonth() + 1).toString().length == 1 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-" + (date.getDate().toString().length == 1 ? "0" + date.getDate() : date.getDate());
+
+        if ($(".hzyDp").val() < date1) {
+            Msg.show("取货日期不能小于当前日期", 1);
+            return;
+        }
+        //构造提交json的格式
+        var paramData = {
+            RgUser: $("#username").val(),
+            Tel: $("#tel").val(),
+            Deliverydate: $(".hzyDp").val() + " " + $(".hzyTime option:selected").text(),
+            Amount: $("#count").text(),
+            Depotid: $(".hzyDepot option:selected").val(),
+            Desp: $("textarea").val(),
+            Detail: []
+        };
+        $("ul li").each(function (i) {
+            var subData = {
+                id: $(this).attr("class"),
+                Stlid: $(this).find(".sku").text(),
+                Deliverydate: $(".hzyDp").val() + " " + $(".hzyTime option:selected").text(),
+                Number: $(this).find(".number").text(),
+                Price: $(this).find(".price").text(),
+                SellPrice: $(this).find(".sellprice").text(),
+                Amount: $(this).find(".amount").text()
+            }
+            paramData.Detail.push(subData);
+        })
+
+        Msg.show("提交中...", 3);
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(paramData),
+            dataType: 'json',
+            contentType: 'application/json',
+            url: "/DLWXSite/DLGoods/AddOrder?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"),
+            success: function (data) {
+                Msg.hide();
+                var rst = eval("(" + data + ")");
+
+                if (rst[0].Result == "True") {
+                    Msg.show(rst[0].Message, 0);
+                    window.location.href = "/DLWXSite/DLGoods/GetOrder?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                }
+                else {
+                    Msg.show(rst[0].Message, 1);
+                }
+            }
+        });
+    })
+
+    $("#province select").change(function () {
+        getCity();
+    })
+
+    $("#city select").change(function () {
+        getDepot();
+    })
+
+    function getCity() {
+        $.post("/DLWXSite/DLGoods/GetCity?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&pid=" + $("#province option:selected").val(), function (data) {
+            var rst = eval("(" + data + ")");
+
+            var html = "<option></option>";
+            for (var i = 0; i < rst.length; i++) {
+                html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+            }
+            $("#city select").html(html);
+            getDepot();
+        });
+    }
+
+    function getDepot() {
+        $.post("/DLWXSite/DLGoods/GetDepot?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&pid=" + $("#province option:selected").text() + "&cid=" + $("#city option:selected").text(), function (data) {
+            var rst = eval("(" + data + ")");
+
+            if ($("#city option:selected").val() == "") {
+                return;
+            } else {
+                if (rst[0].j_depotid == "") {
+                    Msg.show("抱歉，该城市尚无DoubleLove门店！", 1);
+                } else {
+                    var html = "<option></option>";
+                    for (var i = 0; i < rst.length; i++) {
+                        html = html + "<option value='" + rst[i].j_depotid + "'>" + rst[i].j_name + "</option>";
+                    }
+                    $(".hzyDepot").html(html);
+                }
+            }
+        });
+    }
+</script>

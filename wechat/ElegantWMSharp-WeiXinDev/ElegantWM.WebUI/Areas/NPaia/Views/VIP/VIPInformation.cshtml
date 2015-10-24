@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "会员信息";
+    Layout = "~/Views/Shared/_NPaiaLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/NPaia/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var data1 = [];
+        $(function () {
+            $("#Bg img").load(function () {
+                var bgHeight = $("#Bg").height();
+                var bgWeith = $("#Bg").width();
+
+                //$("#vipinfo").css("width", bgWeith - 15);
+                //var vipinfoWeith = $("#vipinfo").width();
+                //$("#vipinfo").css("left", (bgWeith - vipinfoWeith) * 0.5);
+
+                $("#vipcode").css("width", bgWeith - 15);
+                var vipcodeWeith = $("#vipcode").width();
+                $("#vipcode").css("left", (bgWeith - vipcodeWeith) * 0.5);
+
+                $("#vipinfo").css("width", bgWeith - 15);
+                var vipinfoWeith = $("#vipinfo").width();
+                $("#vipinfo").css("left", (bgWeith - vipinfoWeith) * 0.5);
+            });
+
+            $.post("/Npaia/VIP/GetDepot?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                if (rst.result == 0) {
+                    data1 = eval(rst.msg);
+                    var selshopObj = $("#selectShop");
+                    selshopObj.append("<option value=''>请选择店铺</option>");
+                    for (var i = 0; i < data1.length; i++) {
+                        selshopObj.append("<option value='" + data1[i].DEPT_ID + "'>" + data1[i].DEPT_Name + "</option>");
+                    }
+                } else {
+                    Msg.show(rst.msg, rst.result);
+                }
+            });
+            $("#cardinfo").hide();
+            $("#ticketinfo").hide();
+            $("#vipqyinfo").hide();
+            $("#shopinfo").hide();
+        })
+
+        function showInfo(ths, id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).hide();
+                $(ths).children().children().addClass("icon-double-angle-down");
+                $(ths).children().children().removeClass("icon-double-angle-up");
+                return;
+            }
+            else {
+                $("#cardinfo").hide();
+                $("#ticketinfo").hide();
+                $("#vipqyinfo").hide();
+                $("#shopinfo").hide();
+
+                $(ths).children().children().addClass("icon-double-angle-up");
+                $(ths).children().children().removeClass("icon-double-angle-down");
+                $("#" + id).show();
+            }
+        }
+
+        function changgeShop(depotid) {
+            if (depotid == "") {
+                $("#shopinfomation").hide();
+            } else {
+                $("#shopinfomation").show();
+                for (var i = 0; i < data1.length; i++) {
+                    var depot = data1[i].DEPT_ID;
+                    if (depotid == depot) {
+                        document.getElementById("home").innerText = data1[i].DEPT_Address
+                        document.getElementById("phone").innerText = data1[i].DEPT_Phone
+                        $("#home").val(data1[i].DEPT_Address);
+                        $("#phone").val(data1[i].DEPT_Phone);
+                    }
+                }
+            }
+        }
+
+    </script>
+    <style type="text/css">
+        .info {
+            background-color: #B5B5B6;
+            
+        }
+    </style>
+}
+<div id="Bg">
+    <img src="~/Areas/NPaia/Resources/images/VIP/vipbg1.jpg" alt="head" width='100%'>
+</div>
+
+<div id="vipcode" style="position: absolute; top: 28%; font-size: 18px; text-align: left; letter-spacing: 2px;margin-left:5px">
+    @ViewBag.dtpCentumInfo.Rows[0]["vipname"]
+    <br />
+    @ViewBag.dtpCentumInfo.Rows[0]["vipcode"]
+</div>
+
+
+<div id="vipinfo" style="position: absolute; top: 38%; text-align: left; margin-top: 8px;">
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item" onclick="showInfo(this,'cardinfo')">
+                <div>
+                    <img src="~/Areas/NPaia/Resources/images/VIP/card.png" alt="head" style="width: 30px; float: left" />&nbsp;&nbsp;我的积分
+                    <i class=" icon-double-angle-down" style="float: right"></i>
+                </div>
+            </li>
+
+            <li id="cardinfo" class="info">
+                <div style="background-color: #c7c5c5">
+                    <table>
+                        <tr>
+                            <td style="margin-left:5px;color:white" >积分为：@ViewBag.dtpCentumInfo.Rows[0]["centum"]</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+
+            <li class="list-group-item" onclick="showInfo(this,'ticketinfo')">
+                <div>
+                    <img src="~/Areas/NPaia/Resources/images/VIP/ticket.png" alt="head" style="width: 30px; float: left" />&nbsp;&nbsp;我的券享 
+                <i class="icon-double-angle-down" style="float: right"></i>
+                </div>
+            </li>
+
+            <li id="ticketinfo" class="info" style="display: none">
+                <div>
+                    <table>
+                        <tr>
+                            <td style="margin-left:5px;color:white" >无</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+
+            <li class="list-group-item" onclick="showInfo(this,'vipqyinfo')">
+                <div>
+                    <img src="~/Areas/NPaia/Resources/images/VIP/vipqy.png" alt="head" style="width: 30px; float: left" />&nbsp;&nbsp;我的权益
+                 <i class="icon-double-angle-down" style="float: right;"></i>
+                </div>
+            </li>
+
+            <li id="vipqyinfo" class="info" style="display: none">
+                <div>
+                    <table style="line-height:6px;color:white">
+                        <tr>
+                            <td style="margin-left:5px" >享/折扣优惠·购物享受9折优惠</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:5px" >享/积分返利·消费金额的3%返利·无门槛随时兑换</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:5px" >享/生日礼遇·生日当月双倍积分·不限次数</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:5px" >享/好友推荐·老带新·同事享受新V首笔消费积分赠送</td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+
+            <li class="list-group-item" onclick="showInfo(this,'shopinfo')">
+                <div>
+                    <img src="~/Areas/NPaia/Resources/images/VIP/shop.png" alt="head" style="width: 30px; float: left;" />&nbsp;&nbsp;店铺查询
+             <i class="icon-double-angle-down" style="float: right;"></i>
+                </div>
+            </li>
+
+            <li id="shopinfo" style="display: none">
+                <div class="input-group" style="margin-top: 5px">
+                    <span class="input-group-addon">请选择店铺</span>
+                    <select id="selectShop" class="form-control" onchange="changgeShop(this.value)">
+                    </select>
+                </div>
+                <div id="shopinfomation" style="display: none; text-align: left; padding: 10px 10px 0px;">
+                    <div><i class="icon-home"></i><span id="home" style="margin-left: 5px"></span></div>
+                    <div><i class="icon-phone"></i><span id="phone" style="margin-left: 5px"></span></div>
+                    <div><i class="icon-phone-sign"></i><a href="tel:4008881273" style="margin-left: 5px">4008881273</a>(投诉)</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

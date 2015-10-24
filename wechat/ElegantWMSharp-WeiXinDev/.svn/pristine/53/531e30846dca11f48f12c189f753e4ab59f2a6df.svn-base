@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "课时设置";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <script src="~/Application/HRCourseLesson/app.js"></script>
+}

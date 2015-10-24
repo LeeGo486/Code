@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "我要巡店";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript">
+        //获取店铺列表
+        function GetDepotList(type) {
+            Msg.show("数据加载中...", 3);
+            $.get("/S3/StoreCheck/DepotList?type=" + type, function (htmldata) {
+                Msg.hide();
+                $("#depotList").html(htmldata);
+                scrollTo("#depotList");
+            });
+        }
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+    </script>
+}
+<div class="ht">
+    <i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;概览
+</div>
+<div class="dataDetail">
+    <table class="dataTable">
+        <tr>
+            <td colspan="2">
+                <div style="margin: 10px">
+                    <a class="badge ls" onclick="GetDepotList('All') ">总店铺数(28)</a><span>&nbsp;&nbsp;</span><a class="badge hs" onclick="GetDepotList('NoComplete') ">不达标店铺数(8)</a>
+            </td>
+        </tr>
+        <tr>
+            <th style="width: 100px">年目标业绩：</th>
+            <td>24,090,000元</td>
+        </tr>
+        <tr>
+            <th>已完成：</th>
+            <td>12,892,573元 
+            </td>
+        </tr>
+        <tr>
+            <th>完成率：</th>
+            <td><span style="color: #66CC33">53.5%</span>
+            </td>
+        </tr>
+        <tr>
+            <th>增长率：</th>
+            <td><span style="color: #66CC33">0.8%</span>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+<div id="depotList">
+
+</div>

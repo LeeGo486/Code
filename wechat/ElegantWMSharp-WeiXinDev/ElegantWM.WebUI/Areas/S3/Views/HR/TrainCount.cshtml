@@ -1,0 +1,58 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //培训次数
+        $('#traincount').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '培训次数',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: [{
+                categories: ['徐艳琼', '陈慧珊', '黄秋娜', '陈小芳']
+            }],
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            series: [{
+                name: '培训次数',
+                color: '#4F94CD',
+                type: 'column',
+                yAxis: 0,
+                data: [8, 7, 5, 3],
+                tooltip: {
+                    valueSuffix: null
+                },
+                dataLabels: {
+                    enabled: true
+                }
+
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    });
+</script>
+
+<div class="ht" id="straincount">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;培训次数
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="traincount" style="margin:30px 0px 36px 0px;"></div>
+</div>

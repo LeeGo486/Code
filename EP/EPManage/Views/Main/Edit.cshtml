@@ -1,0 +1,190 @@
+﻿@model EPManageWeb.Entities.Models.ClothesType
+@{
+    ViewBag.Title = String.Format("修改 {0} 的属性", Model.Name);
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section head{
+    <link href="@Styles.Url("~/Content/edit.css")" rel="stylesheet"/>
+
+}
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ui/jquery-ui.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/edit.js")"></script>
+}
+
+<div class="searchbox">
+    @foreach (var type in Model.ClothesParts)
+    {
+        if (type.Children != null && type.Children.Count > 0)
+        {
+            type.Children[0].PartTypes = type.Children[0].PartTypes.OrderBy(t => t.Order).ToList();
+        <table  class="tblPartItems">
+            <tr>
+                <th rowspan="@type.Children.Count" class="title">@type.Name</th>
+                <td class="subTitle">@type.Children[0].Name</td>
+                <td colspan="3">
+                    <ul id="nav_@type.Children[0].Id" class="nav items">
+                        @foreach (var t in type.Children[0].PartTypes)
+                        {
+                            <li typeId="@t.Id" class="btn btnType">@t.Name
+                                <button data="@t.Id" class="close">&times;</button>
+                                @if (t.Children != null && t.Children.Count > 0)
+                                {
+                                    <span class="caret"></span>
+                                }
+                            </li>
+                        }
+                        <li>
+                            <button data="@type.Children[0].Id" data-toggle="modal" data-target="#myModal" class="btn btn-info">添加</button>
+                            <button data="@type.Children[0].Id" class="btn btn-info sortbtn">保存</button></li>
+                    </ul>
+                </td>
+            </tr>
+            @for (var i = 1; i < type.Children.Count; i++)
+            {
+                type.Children[i].PartTypes = type.Children[i].PartTypes.OrderBy(t => t.Order).ToList();
+                <tr>
+                    <td class="subTitle">@type.Children[i].Name</td>
+                    <td colspan="3">
+                        <ul id="nav_@type.Children[i].Id" class="nav items">
+
+                            @foreach (var t in type.Children[i].PartTypes)
+                            {
+                                <li typeId="@t.Id" class="btn btnType">@t.Name
+                                    <button data="@t.Id" class="close">&times;</button>
+                                    @if (t.Children != null && t.Children.Count > 0)
+                                    {
+                                        <span class="caret"></span>
+                                    }
+                                </li>
+                            }
+                            <li>
+                                <button data="@type.Children[i].Id" data-toggle="modal" data-target="#myModal" class="btn btn-info">添加</button>
+                                <button data="@type.Children[i].Id" class="btn btn-info sortbtn">保存</button></li>
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </table>
+        }
+        else
+        {
+            type.PartTypes = type.PartTypes.OrderBy(t => t.Order).ToList();
+        <table  class="tblPartItems">
+            <tr>
+                <th>@type.Name</th>
+                <td>
+                    <ul id="nav_@type.Id" class="nav items">
+                        @foreach (var t in type.PartTypes)
+                        {
+                            <li typeId="@t.Id" class="btn btnType">@t.Name
+                                <button data="@t.Id" class="close">&times;</button>
+                                @if (t.Children != null && t.Children.Count > 0)
+                                {
+                                    <span class="caret"></span>
+                                }
+                            </li>
+                        }
+                        <li>
+                            <button data="@type.Id" data-toggle="modal" data-target="#myModal" class="btn btn-info">添加</button>
+                            <button data="@type.Id" class="btn btn-info sortbtn">保存</button></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        }
+        <div class="split"></div>
+    }
+    <table class="tblStyleItems">
+        <tr>
+            <th>经典款</th>
+            <td>
+                <ul id="nav_classic" class="nav items">
+                    @foreach (var t in ViewBag.ClassicStyles as IList<EPManageWeb.Entities.Models.Tag>)
+                    {
+                        <li data="@t.Id" class="btn btnType">@t.Value
+                            <button data="@t.Id" class="close nav_classic">&times;</button>
+                        </li>
+                    }
+
+                    <li>
+                        <button data="classic" data-toggle="modal" data-target="#styleModal" class="btn btn-info">添加</button>
+                        <button data="classic" class="btn btn-info sortbtn">保存</button></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <table class="tblStyleItems">
+        <tr>
+            <th>畅销款</th>
+            <td>
+                <ul id="nav_bestsell" class="nav items bestsell">
+                    @foreach (var t in ViewBag.BestSellingStyles as IList<EPManageWeb.Entities.Models.Tag>)
+                    {
+                        <li  data="@t.Id" class="btn btnType">@t.Value
+                            <button data="@t.Id" class="close nav_classic">&times;</button>
+                        </li>
+                    }
+
+                    <li>
+                        <button data="bestsell" data-toggle="modal" data-target="#styleModal" class="btn btn-info">添加</button>
+                        <button data="bestsell" class="btn btn-info sortbtn">保存</button></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">
+            <img src="@Url.Content("~/Images/logo.gif")" />请输入</h3>
+    </div>
+    <div class="modal-body">
+        <input id="name" type="text" class="input-medium search-query">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <input type="hidden" id="clothPartId" />
+        @Html.ActionLink("添加", "AddClothesPartType", null, new { @class = "btn btn-primary", id = "btnAddClothesPartType" })
+    </div>
+</div>
+
+<div id="styleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">
+            <img src="@Url.Content("~/Images/logo.gif")" />请输入</h3>
+    </div>
+    <div class="modal-body">
+        <input id="ClassicOrBestSelling" type="text" class="input-medium search-query">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <input type="hidden" id="styleType" />
+        @Html.ActionLink("添加", "AddClothesClassicOrBestSelling", null, new { @class = "btn btn-primary", id = "btnAddClothesClassicOrBestSelling" })
+    </div>
+</div>
+
+<div id="partTypeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">
+            <img src="@Url.Content("~/Images/logo.gif")" />请输入</h3>
+    </div>
+    <div class="modal-body">
+        <div id="clothesPartChildren">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btnclose" data-dismiss="modal" aria-hidden="true">关闭</button>
+        @Html.ActionLink("保存", "SaveClothesPartTypes", "ClothesPartTypes", new { @class = "btn btn-primary", id = "btnSaveClothesPartType" })
+    </div>
+</div>
+
+<div class="alert alert-success">
+    操作提示： 在本页面，您可通过拖动，双击等操作修改每个属性的可选项，以及添加每个属性的子属性。
+</div>

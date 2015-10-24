@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "调查问卷";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/Questionnaire.css?v3" />
+      <script src="/Areas/Game/Resources/js/Questionnaire.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+}
+
+<div class="survey">
+    <h3>课程满意度调查</h3>
+    <h3>注：你有40分钟的时间做题</h3>
+    <h3> 倒计时：<span id="dtimer"></span>秒</h3>
+    <div>
+        <h4><span>单项选择题</span></h4>
+
+        <div style="font-size: 14px; margin: 15px 0px 20px 0px;">
+            <span>1.下列选项中哪一个是X15PS4014aC的成分？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q1" id="A_1_1" value="A" /><label for="A_1_1">棉97.9% 氨纶2.1%</label><br />
+                <input type="radio" name="q1" id="A_1_2" value="B" /><label for="A_1_2">97%锦纶3%氨纶</label><br />
+                <input type="radio" name="q1" id="A_1_3" value="C" /><label for="A_1_3">50%莫代尔50%棉</label><br />
+                <input type="radio" name="q1" id="A_1_4" value="D" /><label for="A_1_4">100%莫代尔</label><br />
+            </div>
+
+            <span>2.进口通透肌理风衣料的面料特性是？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q2" id="A_2_1" value="A" /><label for="A_2_1">良好的挺阔性</label><br />
+                <input type="radio" name="q2" id="A_2_2" value="B" /><label for="A_2_2">良好的耐磨性</label><br />
+                <input type="radio" name="q2" id="A_2_3" value="C" /><label for="A_2_3">良好的染色性</label><br />
+                <input type="radio" name="q2" id="A_2_4" value="D" /><label for="A_2_4">良好的抗静电性</label><br />
+            </div>
+
+
+            <span>3.X15ER4032aW是什么廓型？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q3" id="A_3_1" value="A" /><label for="A_3_1">Y型</label><br />
+                <input type="radio" name="q3" id="A_3_2" value="B" /><label for="A_3_2">A型</label><br />
+                <input type="radio" name="q3" id="A_3_3" value="C" /><label for="A_3_3">H型</label><br />
+                <input type="radio" name="q3" id="A_3_4" value="D" /><label for="A_3_4">O型</label><br />
+            </div>
+
+
+            <span>4.X15PG1021aH选用的面料是？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q4" id="A_4_1" value="A" /><label for="A_4_1">真丝生丝缎</label><br />
+                <input type="radio" name="q4" id="A_4_2" value="B" /><label for="A_4_2">进口带子沙</label><br />
+                <input type="radio" name="q4" id="A_4_3" value="C" /><label for="A_4_3">极细丝光棉</label><br />
+                <input type="radio" name="q4" id="A_4_4" value="D" /><label for="A_4_4">大肚纱肌理提花</label><br />
+            </div>
+
+            <span>5.意大利进口丙纶的特点是？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q5" id="A_5_1" value="A" /><label for="A_5_1">轻如薄纸</label><br />
+                <input type="radio" name="q5" id="A_5_2" value="B" /><label for="A_5_2">具有层次感</label><br />
+                <input type="radio" name="q5" id="A_5_3" value="C" /><label for="A_5_3">挺括不起皱</label><br />
+                <input type="radio" name="q5" id="A_5_4" value="D" /><label for="A_5_4">薄而不透</label><br />
+            </div>
+
+            <span>6.X15PS7007aY突出的设计点是？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q6" id="A_6_1" value="A" /><label for="A_6_1">七分袖</label><br />
+                <input type="radio" name="q6" id="A_6_2" value="B" /><label for="A_6_2">泡泡袖</label><br />
+                <input type="radio" name="q6" id="A_6_3" value="C" /><label for="A_6_3">挺括不起皱</label><br />
+                <input type="radio" name="q6" id="A_6_4" value="D" /><label for="A_6_4">马蹄袖</label><br />
+            </div>
+
+            <span>7.3月3日波段的产品中运用了一个恩派雅自主研发的花型是？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q7" id="A_7_1" value="A" /><label for="A_7_1">钻蓝蝶变</label><br />
+                <input type="radio" name="q7" id="A_7_2" value="B" /><label for="A_7_2">云紫丁</label><br />
+                <input type="radio" name="q7" id="A_7_3" value="C" /><label for="A_7_3">重复几何</label><br />
+                <input type="radio" name="q7" id="A_7_4" value="D" /><label for="A_7_4">佩斯利</label><br />
+            </div>
+
+            <span>8.进口带子沙面料的视觉特性是？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q8" id="A_8_1" value="A" /><label for="A_8_1">带有金属光泽</label><br />
+                <input type="radio" name="q8" id="A_8_2" value="B" /><label for="A_8_2">色泽柔和</label><br />
+                <input type="radio" name="q8" id="A_8_3" value="C" /><label for="A_8_3">增加层次感</label><br />
+                <input type="radio" name="q8" id="A_8_4" value="D" /><label for="A_8_4">极具塑性</label><br />
+            </div>
+
+            <span>9.X15PG9519aC是什么廓型？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q9" id="A_9_1" value="A" /><label for="A_9_1">X型</label><br />
+                <input type="radio" name="q9" id="A_9_2" value="B" /><label for="A_9_2">A型</label><br />
+                <input type="radio" name="q9" id="A_9_3" value="C" /><label for="A_9_3">H型</label><br />
+                <input type="radio" name="q9" id="A_9_4" value="D" /><label for="A_9_4">T型</label><br />
+            </div>
+
+            <span>10.X15PG7014aW运用的领型特点是？</span>
+            <div style="margin: 0px 0px 16px 0px;">
+                <input type="radio" name="q10" id="A_10_1" value="A" /><label for="A_10_1">戗驳领</label><br />
+                <input type="radio" name="q10" id="A_10_2" value="B" /><label for="A_10_2">阿尔斯特领</label><br />
+                <input type="radio" name="q10" id="A_10_3" value="C" /><label for="A_10_3">青果领</label><br />
+                <input type="radio" name="q10" id="A_10_4" value="D" /><label for="A_10_4">T型翻驳领</label><br />
+            </div>
+
+        </div>
+
+        <h4><span>多选择题</span></h4>
+        <span>11.下列款号中哪些是冰蓝韵动系列的重点款式？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q11" id="A_11_1" value="A" /><label for="A_11_1">X15PS4014aC</label><br />
+            <input type="checkbox" name="q11" id="A_11_2" value="B" /><label for="A_11_2">X15PS5015aW</label><br />
+            <input type="checkbox" name="q11" id="A_11_3" value="C" /><label for="A_11_3">X15PS5013aC</label><br />
+            <input type="checkbox" name="q11" id="A_11_4" value="D" /><label for="A_11_4">X15PS7007aB</label><br />
+            <input type="checkbox" name="q11" id="A_11_5" value="E" /><label for="A_11_5">X15PS7005aB</label><br />
+        </div>
+
+        <span>12.下列款号中哪些是形格空间系列的重点款式？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q12" id="A_12_1" value="A" /><label for="A_12_1">X15PG9406aW</label><br />
+            <input type="checkbox" name="q12" id="A_12_2" value="B" /><label for="A_12_2">X15PG9521aW</label><br />
+            <input type="checkbox" name="q12" id="A_12_3" value="C" /><label for="A_12_3">X15PG9405aW</label><br />
+            <input type="checkbox" name="q12" id="A_12_4" value="D" /><label for="A_12_4">X15PG9518aC</label><br />
+            <input type="checkbox" name="q12" id="A_12_5" value="E" /><label for="A_12_5">X15PG9404aC</label><br />
+        </div>
+        <span>13.下列款号中哪些是醇香记忆系列的重点款式？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q13" id="A_13_1" value="A" /><label for="A_13_1">X15PR9523aH</label><br />
+            <input type="checkbox" name="q13" id="A_13_2" value="B" /><label for="A_13_2">X15PG1055aZ</label><br />
+            <input type="checkbox" name="q13" id="A_13_3" value="C" /><label for="A_13_3">X15PG4074aZ</label><br />
+            <input type="checkbox" name="q13" id="A_13_4" value="D" /><label for="A_13_4">X15PG9303aH</label><br />
+            <input type="checkbox" name="q13" id="A_13_5" value="E" /><label for="A_13_5">X15PG6018aH</label><br />
+        </div>
+
+
+        <span>14.下列款号中哪些是盈彩风尚系列的重点款式？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q14" id="A_14_1" value="A" /><label for="A_14_1">X15PS6015aW</label><br />
+            <input type="checkbox" name="q14" id="A_14_2" value="B" /><label for="A_14_2">X15PS4063aB</label><br />
+            <input type="checkbox" name="q14" id="A_14_3" value="C" /><label for="A_14_3">X15PS5039aW</label><br />
+            <input type="checkbox" name="q14" id="A_14_4" value="D" /><label for="A_14_4">X15PS4015aC</label><br />
+            <input type="checkbox" name="q14" id="A_14_5" value="E" /><label for="A_14_5">X15PS4054bF</label><br />
+        </div>
+        <span>15.下列哪些选项是X15PG9405aW的FAB？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q15" id="A_15_1" value="A" /><label for="A_15_1">进口通透沙</label><br />
+            <input type="checkbox" name="q15" id="A_15_2" value="B" /><label for="A_15_2">进口带子沙</label><br />
+            <input type="checkbox" name="q15" id="A_15_3" value="C" /><label for="A_15_3">高雅恬静——白色</label><br />
+            <input type="checkbox" name="q15" id="A_15_4" value="D" /><label for="A_15_4">自主张扬——T型</label><br />
+            <input type="checkbox" name="q15" id="A_15_5" value="E" /><label for="A_15_5">几何透视拼接</label><br />
+        </div>
+        <span>16.棉氨纶衬衫料的特点？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q16" id="A_16_1" value="A" /><label for="A_16_1">高弹</label><br />
+            <input type="checkbox" name="q16" id="A_16_2" value="B" /><label for="A_16_2">轻柔</label><br />
+            <input type="checkbox" name="q16" id="A_16_3" value="C" /><label for="A_16_3">抗皱</label><br />
+            <input type="checkbox" name="q16" id="A_16_4" value="D" /><label for="A_16_4">吸湿</label><br />
+            <input type="checkbox" name="q16" id="A_16_5" value="E" /><label for="A_16_5">易打理</label><br />
+        </div>
+        <span>17.落肩袖可以给穿着者带来的好处？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q17" id="A_17_1" value="A" /><label for="A_17_1">很好的包容性</label><br />
+            <input type="checkbox" name="q17" id="A_17_2" value="B" /><label for="A_17_2">增加运动性</label><br />
+            <input type="checkbox" name="q17" id="A_17_3" value="C" /><label for="A_17_3">上半身显瘦</label><br />
+            <input type="checkbox" name="q17" id="A_17_4" value="D" /><label for="A_17_4">凸显女性的曲线</label><br />
+            <input type="checkbox" name="q17" id="A_17_5" value="E" /><label for="A_17_5">彰显层次感</label><br />
+        </div>
+
+
+        <span>18.下列哪些选项是X15PS5018aW的FAB？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q18" id="A_18_1" value="A" /><label for="A_18_1">仿真丝色丁</label><br />
+            <input type="checkbox" name="q18" id="A_18_2" value="B" /><label for="A_18_2">下摆胶印收边</label><br />
+            <input type="checkbox" name="q18" id="A_18_3" value="C" /><label for="A_18_3">上窄下宽造型——A型</label><br />
+            <input type="checkbox" name="q18" id="A_18_4" value="D" /><label for="A_18_4">多层次毛边拼接</label><br />
+            <input type="checkbox" name="q18" id="A_18_5" value="E" /><label for="A_18_5">多材质拼接—针织，网眼，仿真丝</label><br />
+        </div>
+
+
+        <span>19.空气层面料有哪些特点？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q19" id="A_19_1" value="A" /><label for="A_19_1">挺括不起皱</label><br />
+            <input type="checkbox" name="q19" id="A_19_2" value="B" /><label for="A_19_2">良好的垂感性</label><br />
+            <input type="checkbox" name="q19" id="A_19_3" value="C" /><label for="A_19_3">具有良好的塑形性</label><br />
+            <input type="checkbox" name="q19" id="A_19_4" value="D" /><label for="A_19_4">弹性佳</label><br />
+            <input type="checkbox" name="q19" id="A_19_5" value="E" /><label for="A_19_5">均极具韧性</label><br />
+        </div>
+
+        <span>20.真丝素绉缎印花面料有哪些特点？</span>
+        <div style="margin: 0px 0px 16px 0px;">
+            <input type="checkbox" name="q20" id="A_20_1" value="A" /><label for="A_20_1">光泽细腻</label><br />
+            <input type="checkbox" name="q20" id="A_20_2" value="B" /><label for="A_20_2">抗皱能力强</label><br />
+            <input type="checkbox" name="q20" id="A_20_3" value="C" /><label for="A_20_3">弹性好</label><br />
+            <input type="checkbox" name="q20" id="A_20_4" value="D" /><label for="A_20_4">滑爽透气</label><br />
+            <input type="checkbox" name="q20" id="A_20_5" value="E" /><label for="A_20_5">易打理</label><br />
+        </div>
+
+    </div>
+</div>
+
+
+<button id="btnSubmit" type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="提交中...">提交</button>
+

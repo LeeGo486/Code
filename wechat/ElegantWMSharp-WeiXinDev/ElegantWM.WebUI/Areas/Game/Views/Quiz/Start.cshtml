@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "EP雅莹“为爱加分”";
+    Layout = "~/Areas/Game/Views/Shared/_Layout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/qz.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var questions;
+        var answers;
+        var curIndex = 0;
+        var total = 0;
+        var isStart = 0;
+        var cdhander;
+        $(function () {
+            Msg.show("题目加载中...", 3);
+            $.get("/Game/Quiz/LoadQuestion?sid=CFE404EA-FE5B-4A85-87F0-B2701929462C", function (data) {
+                answers = data.A;
+                questions = data.Q;
+                loadQuestion();
+                Msg.hide();
+            });
+        });
+        //倒计时
+        function CountDown(time) {
+            $("#dtimer").html(time);
+            cdhander = setInterval(function () {
+                if (time <= 0) {
+                    $("#dtimer").html("00");
+                    clearInterval(cdhander);
+                    //完成了，提交成绩
+                    submitScore();
+                }
+                else {
+                    if (time-- <= 10)
+                        $("#dtimer").html("0" + time);
+                    else
+                        $("#dtimer").html(time);
+                }
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            var qst = questions[curIndex];
+            var htmldata = "<span>" + (curIndex + 1) + "</span>" + qst.Question;
+            if (qst.QImage == "" || qst.QImage == undefined) {
+                htmldata += "<ul style='margin:0px 40px;'>";
+            }
+            else {
+                htmldata += "<table><tr><td width='124px' style='text-align:right'><img src='/Areas/Game/Resources/images/qz/" + qst.QImage + "' height='80px' /></td><td><ul>";
+            }
+            var temp = "";
+            $.each(answers, function (index, item) {
+                if (item.Qid == qst.Id) {
+                    if (item.Answer.indexOf("以上") >= 0) {
+                        temp="<li " + (item.IsRight == 0 ? "" : " attr_data=1") + " onclick='checkAnswer(this);'>" + item.Answer + "</li>";
+                    }
+                    else
+                        htmldata += "<li " + (item.IsRight == 0 ? "" : " attr_data=1") + " onclick='checkAnswer(this);'>" + item.Answer + "</li>";
+                }
+            });
+            htmldata += temp;
+            if (qst.QImage == "" || qst.QImage == undefined) {
+                htmldata += "</ul>";
+            }
+            else {
+                htmldata += "</ul></td></tr></table>";
+            }
+            $(".qtitle").html(htmldata);
+            curIndex++;
+        }
+        CountDown(60);
+        function checkAnswer(ths) {
+            if (questions.length < curIndex + 1) {
+                clearInterval(cdhander);
+                submitScore();
+                return;
+            }
+            $.each($(".qtitle ul li"), function (index, item) {
+                if ($(item).attr("attr_data") == 1) {
+                    $(item).addClass("aright");
+                } else {
+                    $(item).addClass("awrong");
+                }
+                $(item).removeAttr("onclick");
+            });
+            if ($(ths).attr("attr_data") == 1) {
+                total = total + 1;
+                $(".result").html("<img src='/Areas/Game/Resources/images/qz/right.png' height='40px' /><h3>您已成功捐助了" + total + "元</h3>");
+            } else {
+                $(".result").html("<img src='/Areas/Game/Resources/images/qz/wrong.png' height='40px' /><h3>您已成功捐助了" + total + "元</h3>");
+            }
+            setTimeout(function () { loadQuestion(); }, 800);
+        }
+        //提交成绩
+        function submitScore() {
+            Msg.show("数据提交中...", 3);
+            $.post("/Game/Quiz/Submit?sid=CFE404EA-FE5B-4A85-87F0-B2701929462C&oid=" + Url.get("oid") + "&score=" + total, function (data) {
+                Msg.hide();
+                if (data.result == 0)
+                    window.location.href = "/Game/Quiz/Share/" + data.msg + "?sid=CFE404EA-FE5B-4A85-87F0-B2701929462C";
+                else
+                    Msg.show(data.msg, data.result);
+            });
+        }
+    </script>
+}
+<div class="startqa">
+    <img src="/Areas/Game/Resources/images/qz/ks.png" height="50px" />
+</div>
+<div class="djs">
+    倒计时：<span>60</span>秒
+    <div class="dumiao">
+        <span id="dtimer">60</span>
+    </div>
+</div>
+<div class="result">
+    <a href="/Game/Quiz/Start">
+       </a>
+</div>
+<div class="question">
+    <div class="qtitle">
+    </div>
+</div>

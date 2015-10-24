@@ -1,0 +1,417 @@
+﻿@{
+    ViewBag.Title = "雅斓魔法圣诞季";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link rel="stylesheet" type="text/css" href="~/Scripts/fullPage/jquery.fullPage.css" />
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script type="text/javascript" src="~/Scripts/rotate/jQueryRotate.js"></script>
+    <script type="text/javascript">
+        var flag = false;
+
+        $(function () {
+            document.getElementById("audio").play();
+
+            var down = 1;
+            setInterval(function () {
+                if (down == 1) {
+                    $("#pdown").css("top", "88%");
+                }
+                else {
+                    $("#pdown").css("top", "90%");
+                }
+                down = down * (-1);
+            }, 500);
+
+            $(function () {
+                $("#title1").animate({
+                    width: "100%",
+                    left: "0%"
+                }, 1000,
+                function(){
+                    $("#title2").animate({
+                        width: "100%",
+                        left: "0%"
+                    }, 1000,
+                        function () {
+                            $("#star1").animate({
+                                width: "15%",
+                                left: "75%"
+                            }, 1000);
+                            $("#star2").animate({
+                                width: "40%",
+                                left: "10%"
+                            }, 1000);
+                            $("#star3").animate({
+                                width: "15%",
+                                left: "25%"
+                            }, 1000,
+                            function () {
+                                $("#hand").animate({
+                                    left: "50%"
+                                }, 1000);
+
+                            var angle = 0;
+                            setInterval(function () {
+                                angle += 10;
+                                $('#star1').rotate(angle);
+                                $('#star2').rotate(angle);
+                                $('#star3').rotate(angle);
+                            }, 50);
+                        });
+                    });
+                });   
+            })
+
+            $("#fullpage").fullpage({
+                afterLoad: function (anchorLink, index) {
+                    //using index
+                    if (index == 1) {
+                        $("#pdown").show();
+                    }
+
+                    if (index == 2) {
+                        $("#pdown").show();
+
+                        $("#tree").animate({
+                            top: "0%"
+                        }, 1000,
+                        function () {
+                            $("#item1").animate({
+                                width: "35%",
+                                left: "25%"
+                            }, 1000);
+                            $("#item2").animate({
+                                width: "30%",
+                                left: "12%"
+                            }, 1000);
+                            $("#item3").animate({
+                                width: "45%",
+                                left: "43%"
+                            }, 1000);
+                            $("#item4").animate({
+                                width: "50%",
+                                left: "20%"
+                            }, 1000);
+                            $("#ufo").animate({
+                                width: "40%",
+                                left: "45%"
+                            }, 1000,
+                            function () {
+                                var angle = 1;
+                                setInterval(function () {
+                                    if (angle == 1) {
+                                        $("#ufo").css("top", "12%");
+                                    }
+                                    else {
+                                        $("#ufo").css("top", "8%");
+                                    }
+                                    angle = angle * (-1);
+                                }, 500);
+                            });
+                        });
+                    }
+
+                    if (index == 3) {
+                        $("#pdown").hide();
+
+                        $("#tree2").animate({
+                            top: "25%"
+                        }, 1000,
+                        function () {
+                            $("#star4").animate({
+                                width: "25%",
+                                left: "8%"
+                            }, 1000);
+                            $("#star5").animate({
+                                width: "20%",
+                                left: "75%"
+                            }, 1000);
+                            $("#star6").animate({
+                                width: "20%",
+                                left: "8%"
+                            }, 1000);
+                            $("#star7").animate({
+                                width: "25%",
+                                left: "50%"
+                            }, 1000,
+                            function () {
+                                var angle = 0;
+                                setInterval(function () {
+                                    angle += 10;
+                                    $('#star4').rotate(angle);
+                                    $('#star5').rotate(angle);
+                                    $('#star6').rotate(angle);
+                                    $('#star7').rotate(angle);
+                                }, 50);
+
+                                $("#buck").animate({
+                                    left: "0%"
+                                }, 1000);
+                                $("#eye1").animate({
+                                    left: "16%"
+                                }, 1000);
+                                $("#eye2").animate({
+                                    left: "16%"
+                                }, 1000,
+                                function () {
+                                    var angle = 1;
+                                    setInterval(function () {
+                                        if (angle == 1) {
+                                            $("#eye1").show();
+                                            $("#eye2").hide();
+                                        }
+                                        else {
+                                            $("#eye2").show();
+                                            $("#eye1").hide();
+                                        }
+                                        angle = angle * (-1);
+                                    }, 500);
+
+                                    $("#ufo2").animate({
+                                        width: "40%",
+                                        left: "45%"
+                                    }, 1000,
+                                    function () {
+                                        var angle = 1;
+                                        var rorate = 0;
+                                        setInterval(function () {
+                                            rorate += 30;
+                                            $('#down1').rotate(rorate);
+                                            $('#down2').rotate(rorate);
+                                            $('#down3').rotate(rorate);
+                                            if (angle == 1) {
+                                                $("#ufo2").css("top", "17%");
+                                            }
+                                            else {
+                                                $("#ufo2").css("top", "13%");
+                                            }
+                                            angle = angle * (-1);
+                                        }, 500);
+
+                                        $("#merry").animate({
+                                            width: "80%",
+                                            left: "20%"
+                                        }, 1000)
+
+                                        var loop1 = 1;
+                                        setInterval(function () {
+                                            if (loop1 == 1) {
+                                                $("#down1").show();
+                                                $("#down1").animate({
+                                                    top: "50%",
+                                                    left: "20%"
+                                                }, 2000, function () {
+                                                    $("#down1").animate({
+                                                        top: "100%",
+                                                        left: "40%"
+                                                    }, 2000, function () {
+                                                        $("#down1").hide();
+                                                    });
+                                                });                                             
+                                            }
+                                            else {
+                                                $("#down1").animate({
+                                                    top: "0%"
+                                                }, 100);
+                                            }
+                                            loop1 = loop1 * (-1);
+                                        }, 4000);
+
+                                        var loop2 = 1;
+                                        setInterval(function () {
+                                            if (loop2 == 1) {
+                                                $("#down2").show();
+                                                $("#down2").animate({
+                                                    top: "100%"
+                                                }, 2000, function () {
+                                                    $("#down2").hide();
+                                                });
+                                            }
+                                            else {
+                                                $("#down2").animate({
+                                                    top: "0%"
+                                                }, 100);
+                                            }
+                                            loop2 = loop2 * (-1);
+                                        }, 2000);
+
+                                        var loop3 = 1;
+                                        setInterval(function () {
+                                            if (loop3 == 1) {
+                                                $("#down3").show();
+                                                $("#down3").animate({
+                                                    top: "50%",
+                                                    left: "60%"
+                                                }, 1500, function () {
+                                                    $("#down3").animate({
+                                                        top: "100%",
+                                                        left: "80%"
+                                                    }, 1500, function () {
+                                                        $("#down3").hide();
+                                                    })
+                                                }); 
+                                            }
+                                            else {
+                                                $("#down3").animate({
+                                                    top: "0%"
+                                                }, 100);
+                                            }
+                                            loop3 = loop3 * (-1);
+                                        }, 3000);
+
+                                        setTimeout(function () {
+                                            $("#info").animate({
+                                                width: "80%",
+                                                left: "20%"
+                                            }, 1000);
+                                            $("#text1").animate({
+                                                width: "60%",
+                                                left: "30%"
+                                            }, 1000, function () {
+                                                $("#text1").show();
+                                                $(".star").click(function () {
+                                                    $(".star").hide();
+                                                    $(".grey").show();
+
+                                                    if (flag) {
+                                                        return;
+                                                    }
+                                                    else {
+                                                        flag = true;
+                                                        $.post("/Game/GLChristmas/Award?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                                                            if (rst.msg == "00000000-0000-0000-0000-000000000000") {
+                                                                $("#text1").hide();
+                                                                $("#text7").show();
+                                                            }
+                                                            else if (rst.msg == "45E0B6A8-6809-44B6-A52A-D5B9A88BF57B") {
+                                                                $("#text1").hide();
+                                                                $("#text2").show();
+                                                            }
+                                                            else if (rst.msg == "F32D831B-3A8A-4D71-B652-1766D04B5AD6") {
+                                                                $("#text1").hide();
+                                                                $("#text3").show();
+                                                            }
+                                                            else if (rst.msg == "2F9F6C73-7935-4E8C-B68A-341005893C93") {
+                                                                $("#text1").hide();
+                                                                $("#text4").show();
+                                                            }
+                                                            else if (rst.msg == "CDC86961-79F0-46F2-9EB1-CA650D517AEB") {
+                                                                $("#text1").hide();
+                                                                $("#text5").show();
+                                                            }
+                                                            else if (rst.msg == "AD334A86-8B90-4E58-A845-3E6F809BA9BA") {
+                                                                $("#text1").hide();
+                                                                $("#text6").show();
+                                                            }
+                                                            flag = false;
+                                                        });
+                                                    }
+                                                })
+                                            });
+                                        }, 3000);
+                                    });
+                                });
+                            });
+                        });
+                    }
+                }
+            });
+        })
+
+        WeixinApi.ready(function (Api) {
+            // 微信分享的数据
+
+            var url = "http://it.hwafashion.com/Game/GLChristmas/Share?sid=FF25138F-08F0-49C8-8768-83EFADDB2618&lid=" + Url.get("oid");
+
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/GLChristmas/icon.png',
+                "link": url,
+                "desc": "开启属于我的雅斓魔法圣诞寻宝之旅",
+                "title": "雅斓魔法圣诞季"
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+        });
+    </script>
+    
+}
+<audio id="audio" autoplay="" loop="" src="~/Areas/Game/Resources/MP3/JingleBellRock.mp3"></audio>
+<img id="pause" src="~/Areas/Game/Resources/images/GLChristmas/pause.png" style="width:10%;position:fixed;left:85%;display:none;z-index: 9;top: 5%;"/>
+<img id="play" src="~/Areas/Game/Resources/images/GLChristmas/play.png" style="width:10%;position:fixed;left:85%;z-index: 9;top: 5%;"/>
+<img id="pdown" src="~/Areas/Game/Resources/images/GLChristmas/pdown.png" style="position:fixed;top: 90%;width:20%;left:80%;z-index:9;"/>
+<div id="fullpage">
+    <div class="section">
+        <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/bg1.jpg" style="width:100%;"/>
+        <img id="title1" src="~/Areas/Game/Resources/images/GLChristmas/title1.png" style="position:absolute;top: 0%;width:0%;left:50%;"/>
+        <img id="title2" src="~/Areas/Game/Resources/images/GLChristmas/title2.png" style="position:absolute;top: 68%;width:0%;left:50%;z-index:9;"/>
+        <img id="hand" src="~/Areas/Game/Resources/images/GLChristmas/hand.png" style="position:absolute;top: 55%;width:50%;left:100%;"/>
+        <img id="star1" src="~/Areas/Game/Resources/images/GLChristmas/star1.png" style="position:absolute;top: 40%;width:0%;left:85%;"/>
+        <img id="star2" src="~/Areas/Game/Resources/images/GLChristmas/star2.png" style="position:absolute;top: 45%;width:0%;left:30%;"/>
+        <img id="star3" src="~/Areas/Game/Resources/images/GLChristmas/star3.png" style="position:absolute;top: 68%;width:0%;left:30%;"/>
+    </div>
+    <div class="section">
+        <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/bg1.jpg" style="width:100%;"/>
+        <img id="tree" src="~/Areas/Game/Resources/images/GLChristmas/tree.png" style="position:absolute;top: 100%;width:100%;left:0%;"/>
+        <img id="item1" src="~/Areas/Game/Resources/images/GLChristmas/item1.png" style="position:absolute;top: 35%;width:0%;left:40%;"/>
+        <img id="item2" src="~/Areas/Game/Resources/images/GLChristmas/item2.png" style="position:absolute;top: 50%;width:0%;left:30%;"/>
+        <img id="item3" src="~/Areas/Game/Resources/images/GLChristmas/item3.png" style="position:absolute;top: 45%;width:0%;left:75%;"/>
+        <img id="item4" src="~/Areas/Game/Resources/images/GLChristmas/item4.png" style="position:absolute;top: 65%;width:0%;left:45%;"/>
+        <img id="ufo" src="~/Areas/Game/Resources/images/GLChristmas/ufo.png" style="position:absolute;top: 10%;width:0%;left:45%;"/>
+    </div>
+    <div class="section">
+        <img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/bg1.jpg" style="width:100%;"/>
+        <img id="tree2" src="~/Areas/Game/Resources/images/GLChristmas/tree2.png" style="position:absolute;top: 100%;width:100%;left:0%;"/>
+        <img id="star4" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star4.png" style="position:absolute;top: 23%;width:0%;left:20%;"/>
+        <img id="star5" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star5.png" style="position:absolute;top: 20%;width:0%;left:85%;"/>
+        <img id="star6" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star6.png" style="position:absolute;top: 3%;width:0%;left:20%;"/>
+        <img id="star7" class="star" src="~/Areas/Game/Resources/images/GLChristmas/star7.png" style="position:absolute;top: 3%;width:0%;left:65%;"/>
+        <img id="grey4" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey4.png" style="position:absolute;top: 23%;width:25%;left:8%;display:none;"/>
+        <img id="grey5" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey5.png" style="position:absolute;top: 20%;width:20%;left:75%;display:none;"/>
+        <img id="grey6" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey6.png" style="position:absolute;top: 3%;width:20%;left:8%;display:none;"/>
+        <img id="grey7" class="grey" src="~/Areas/Game/Resources/images/GLChristmas/grey7.png" style="position:absolute;top: 3%;width:25%;left:50%;display:none;"/>
+        <img id="buck" src="~/Areas/Game/Resources/images/GLChristmas/buck.png" style="position:absolute;top: 50%;width:60%;left:100%;"/>
+        <img id="eye1" src="~/Areas/Game/Resources/images/GLChristmas/eye1.png" style="position:absolute;top: 70%;width:10%;left:116%;display:none;"/>
+        <img id="eye2" src="~/Areas/Game/Resources/images/GLChristmas/eye2.png" style="position:absolute;top: 70%;width:10%;left:116%;"/>
+        <img id="ufo2" src="~/Areas/Game/Resources/images/GLChristmas/ufo.png" style="position:absolute;top: 15%;width:0%;left:65%;"/>
+        <img id="merry" src="~/Areas/Game/Resources/images/GLChristmas/merry.png" style="position:absolute;top: 40%;width:0%;left:60%;"/>
+        <img id="down1" src="~/Areas/Game/Resources/images/GLChristmas/down1.png" style="position:absolute;top: 0%;width:15%;left:30%;display:none;z-index:9;"/>
+        <img id="down2" src="~/Areas/Game/Resources/images/GLChristmas/down2.png" style="position:absolute;top: 0%;width:15%;left:50%;display:none;z-index:9;"/>
+        <img id="down3" src="~/Areas/Game/Resources/images/GLChristmas/down3.png" style="position:absolute;top: 0%;width:30%;left:70%;display:none;"/>
+        <img id="info" src="~/Areas/Game/Resources/images/GLChristmas/info.png" style="position:absolute;top: 45%;width:0%;left:60%;"/>
+        <img id="text1" src="~/Areas/Game/Resources/images/GLChristmas/text1.png" style="position:absolute;top: 53%;width:0%;left:60%;display:none;"/>
+        <img id="text2" src="~/Areas/Game/Resources/images/GLChristmas/text2.png" style="position:absolute;top: 53%;width:50%;left:39%;display:none;" onclick="getWinning();"/>
+        <img id="text3" src="~/Areas/Game/Resources/images/GLChristmas/text3.png" style="position:absolute;top: 50%;width:50%;left:38%;display:none;" onclick="getWinning();"/>
+        <img id="text4" src="~/Areas/Game/Resources/images/GLChristmas/text4.png" style="position:absolute;top: 50%;width:50%;left:38%;display:none;" onclick="getWinning();"/>
+        <img id="text5" src="~/Areas/Game/Resources/images/GLChristmas/text5.png" style="position:absolute;top: 52%;width:50%;left:38%;display:none;" onclick="getWinning();"/>
+        <img id="text6" src="~/Areas/Game/Resources/images/GLChristmas/text6.png" style="position:absolute;top: 53%;width:50%;left:36%;display:none;" onclick="getWinning();"/>
+        <img id="text7" src="~/Areas/Game/Resources/images/GLChristmas/text7.png" style="position:absolute;top: 51%;width:65%;left:30%;display:none;"/>
+    </div>
+</div>
+<script type="text/javascript">
+    function getWinning() {
+        window.location.href = "/Game/GLChristmas/Info?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    }
+
+    $("#pause").click(function () {
+        document.getElementById("audio").play();
+        $(this).hide()
+        $("#play").show();
+    })
+
+    $("#play").click(function () {
+        document.getElementById("audio").pause();
+        $(this).hide()
+        $("#pause").show();
+    })
+</script>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "事件评价";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/Rating/bootstrap-rating-input.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".rating-input").addClass("input-group-addon").attr("style", "border-left:1px solid #ccc;width:100%");
+            $("button").click(function () {
+                if ($("#syTime").val() == "" || $("#syAttitude").val() == "" || $("#syResult").val() == "") {
+                    Msg.show("请完善评价", 1);
+                    return;
+                }
+                Msg.show("提交中...", 3);
+                $(this).button("loading");
+                var ent = {
+                    Id: '@Html.ViewContext.RouteData.Values["id"]',
+                    ElvTime: (parseInt($("#syTime").val()) + 1) * 2,
+                    ElvAtude: (parseInt($("#syAttitude").val()) + 1) * 2,
+                    ElvRst: (parseInt($("#syResult").val()) + 1) * 2,
+                    ElvDesc: $("#syRemark").val()
+                };
+                $.post("/IT/SM/SubmitEval?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), ent, function (rst) {
+                    Msg.hide();
+                    $("button").button("reset");
+                    if (rst.result == 0) {
+                        $("button").hide();
+                    }
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+        });
+    </script>
+}
+<div class="mainArea">
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">响应时间</span>
+        <input type="number" id="syTime" class="rating" data-max="4" />
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">服务态度</span>
+        <input type="number" id="syAttitude" class="rating" data-max="4" />
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">服务结果</span>
+        <input type="number" id="syResult" class="rating" data-max="4" />
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">其它反馈</span>
+        <textarea id="syRemark" class="form-control"></textarea>
+    </div>
+</div>
+<button type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="提交中...">提交评价</button>

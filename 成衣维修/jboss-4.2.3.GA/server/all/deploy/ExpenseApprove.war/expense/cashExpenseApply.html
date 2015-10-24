@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+
+		<title>现金费用报销申请</title>
+		<link rel="stylesheet" type="text/css" href="../css/mycommon.css" />
+		<script type="text/javascript" src="../myjs/myTime.js"></script>
+		<script type="text/javascript" src="../js/jquery-1.5.2.min.js"></script>
+	</head>
+	<script type="text/javascript">
+
+  	
+  	
+  	
+  	
+	
+
+
+
+  
+  </script>
+	<body>
+	
+		<div
+			style="position: relative; display: inline-block; width: 100%; height: 72px;">
+			<img alt="" src="../img/img1.JPG"
+				style="position: absolute; z-index: -1; left: 0; top: 0; width: 100%; height: 20">
+			<font size="2">分公司费用申请单：</font>
+			<table width="100%" border="0" cellpadding="2" cellspacing="1"
+				bgcolor="#AFC7D6">
+				<tr>
+					<td class="td_field" width="16%">
+						单据状态：
+					</td>
+					<td class="td_text" width="32%" colspan="2">
+						<input type="text" class="text_read_red" id="applyState"
+							value="分公司未提交">
+					</td>
+
+					<td class="td_field" width="16%">
+						单号：
+					</td>
+					<td class="td_text" width="32%" colspan="2">
+						<input type="text" class="text_read_red" id="applyNo"
+							value="E1234567"  disabled="disabled">
+					</td>
+
+				</tr>
+				<tr >
+					<td class="td_field" width="16%">
+						分公司代码：
+					</td>
+					<td class="td_text" width="16%">
+						<select disabled="disabled">
+							<option value="1">好</option>
+							<option value="1">不好</option>
+						</select>
+					</td>
+					<td class="td_field" width="16%">
+						申请人：
+					</td>
+					<td class="td_text" width="16%">
+						<input type="text" class="text_read_common" id="applicantName"
+							value="朱洪">
+					</td>
+					<td class="td_field" width="16%">
+						<font color="red">*</font>登记日期：
+					</td>
+					<td class="td_text" width="16%">
+						<input type="text" id="applyDate" onclick="setday(this)"
+							readonly="readonly">
+					</td>
+				</tr>
+
+
+			</table>
+
+		</div>
+
+
+
+		<div
+			style="position: relative; display: inline-block; width: 100%; height: 100px;">
+			<img alt="" src="../img/img1.JPG"
+				style="position: absolute; z-index: -1; left: 0; top: 0; width: 100%; height: 20">
+			<font size="2">费用信息：</font>
+			<table width="100%" border="0" cellpadding="2" cellspacing="1"
+				bgcolor="#AFC7D6">
+				<tr>
+					
+					<td class="td_field" width="16.5%">
+						分公司名称：
+					</td>
+					<td class="td_text" width="16.5%">
+						<input type="text" class="text_read_common" id="branchName"
+							value="E1234567">
+					</td>
+
+					<td class="td_field" width="16.5%">
+						<font color="red">*</font>发票寄回日期：
+					</td>
+					<td class="td_text" width="16.5%">
+						<input type="text" id="applyDate" onclick="setday(this)"
+							readonly="readonly">
+					</td>
+
+					<td class="td_field" width="16.5%"></td>
+					<td class="td_text" width="16.5%"></td>
+
+				</tr>
+				<tr>
+
+					<td class="td_field" width="16.5%">
+						<font color="red">*</font>金额：
+					</td>
+					<td class="td_text" width="16.5%">
+						<input type="text" id="applyDate" class="text_write_common">
+						￥
+					</td>
+
+					<td class="td_field" width="16.5%">
+						预算总额：
+					</td>
+					<td class="td_text" width="16.5%">
+						<input type="text" class="text_read_common" id="dqName"
+							value="20000.0000">
+					</td>
+
+					<td class="td_field" width="16.5%">
+						已用费用：
+					</td>
+					<td class="td_text" width="16.5%">
+						<input type="text" class="text_read_common" id="dqName"
+							value="10000.0000">
+					</td>
+
+				</tr>
+				<tr>
+					<td class="td_field" width="16.5%">
+						<font color="red">*</font>银行账号
+					</td>
+					<td class="td_text" colspan="3">
+						<input type="text" id="bankAccount" class="text_write_common">
+					</td>
+
+					<td class="td_field" width="16.5%"></td>
+					<td class="td_text" width="16.5%"></td>
+
+				</tr>
+			</table>
+
+		</div>
+
+		<br />
+		<div>
+			<input type="button" style="background-color: #E2E9F1" value="添加"
+				align="left" onclick="">
+			<input type="button" style="background-color: #E2E9F1" value="删除"
+				align="right" onclick="">
+			<table width="100%" border="0" cellpadding="2" cellspacing="1"
+				bgcolor="#AFC7D6">
+				<tr>
+					<td class="td_field_title" width="4%">
+						<input type="checkbox" >
+					</td>
+
+					<td class="td_field_title" width="66%">
+						费用用途
+					</td>
+
+
+
+					<td class="td_field_title" width="15%">
+						金额
+					</td>
+
+					<td class="td_field_title" width="15%">
+						使用日期
+					</td>
+
+				</tr>
+
+
+
+				<tr id="1001-tr">
+					<td class="td_text_center" align="center">
+						<input type="checkbox" id="1001" value="1001">
+					</td>
+					<td class="td_text_center">
+						<textarea  id="234234" rows="1" cols="120" onchange="alert($(this).attr('value')) ">12344444</textarea>
+					</td>
+
+					<td class="td_text_center">
+						<input type="text" >
+					</td>
+
+					<td class="td_text_center">
+						<input type="text" onclick="setday(this)" readonly="readonly" >
+					</td>
+				</tr>
+
+			</table>
+		</div>
+
+
+		<br />
+		<div>
+			<input type="button" style="background-color: #E2E9F1" value="添加"
+				align="left" onclick="">
+			<input type="button" style="background-color: #E2E9F1" value="删除"
+				align="right" onclick="">
+
+
+
+			<table width="100%" border="0" cellpadding="2" cellspacing="1"
+				bgcolor="#AFC7D6">
+
+				<tr>
+					<td class="td_field_title" width="4%">
+						<input type="checkbox">
+					</td>
+
+					<td class="td_field_title" width="24%">
+						店铺名
+					</td>
+					<td class="td_field_title" width="24%">
+						店铺成本中心
+					</td>
+
+					<td class="td_field_title" width="24%">
+						奖励金额(0)
+					</td>
+
+					<td class="td_field_title" width="24%">
+						备注
+					</td>
+				</tr>
+				<tr id="2001-tr">
+					<td class="td_text_center">
+						<input type="checkbox" id="2001" value="2001">
+					</td>
+					<td class="td_text_center">
+						<input type="text" value="" class="text_write_common"">
+					</td>
+					<td class="td_text_center">
+						<input type="text" value="" class="text_write_common" ">
+					</td>
+
+
+					<td class="td_text_center">
+						<input type="text" value="" class="text_write_common" ">
+					</td>
+
+
+
+					<td class="td_text_center">
+						<input type="text" 	class="text_write_common" ">
+					</td>
+				</tr>
+
+			</table>
+
+		</div>
+
+
+		<br />
+		<div>
+			<input type="button" style="background-color: #E2E9F1" value="添加"
+				align="left" onclick="">
+			<input type="button" style="background-color: #E2E9F1" value="删除"
+				align="right" onclick="">
+			<table width="100%" border="0" cellpadding="2" cellspacing="1"
+				bgcolor="#AFC7D6">
+				<tr>
+					<td class="td_field_title" width="4%">
+						<input type="checkbox" >
+					</td>
+
+					<td class="td_field_title" width="19.2%">
+						大类
+					</td>
+					<td class="td_field_title" width="19.2%">
+						所属科目
+					</td>
+					<td class="td_field_title" width="19.2%">
+						科目代码
+					</td>
+					<td class="td_field_title" width="19.2%">
+						金额(0)
+					</td>
+					<td class="td_field_title" width="19.2%">
+						备注
+					</td>
+				</tr>
+
+				<tr id="3001-tr">
+					<td class="td_text_center">
+						<input type="checkbox" id="3001" value="3001">
+					</td>
+
+					<td class="td_text_center">
+						<input type="text" value="11111111" class="text_write_common" onmouseout="">
+					</td>
+
+					<td class="td_text_center">
+						<input type="text" value="11111111" class="text_write_common">
+					</td>
+
+
+
+					<td class="td_text_center">
+						<input type="text" value="11111111" class="text_write_common">
+					</td>
+
+					<td class="td_text_center">
+						<input type="text" value="11111111" class="text_write_common">
+					</td>
+
+					<td class="td_text_center">
+						<input type="text" value="11111111" class="text_write_common">
+					</td>
+				</tr>
+
+			</table>
+		</div>
+
+
+	</body>
+</html>

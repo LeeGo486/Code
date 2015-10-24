@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/customerAnalysis.do" location="360,45" dimension="150,100" />
+  <StrutsActivity path="/customersInfo.do" location="360,210" dimension="150,100" />
+  <StrutsActivity path="/vipConsumeOderAnalysis/vipConsumeOderAnalysis.do" location="360,360" dimension="322,84" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumePeriodAnalysis.do" location="360,465" dimension="181,100" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumeDiscountAnalysis.do" location="360,615" dimension="150,100" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumeSituation.do" location="360,735" dimension="150,100" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumeSituationDetail.do" location="360,855" dimension="150,100" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipLevelContributionAnaysis.do" location="360,975" dimension="150,100" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipLevelContributionDetail.do" location="360,1125" dimension="150,100" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipBuyProdSortAnalysis.do" location="360,1260" dimension="322,84" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipBuyProdSortDetail.do" location="360,1365" dimension="310,84" />
+  <StrutsActivity path="/vipConsumeAnalysis/customerFullyInfo.do" location="360,1470" dimension="287,104" />
+  <StrutsActivity path="/vipCustomerApprove.do" location="1250,550" dimension="308,104" />
+  <StrutsActivity path="/index.jsp" location="645,45" dimension="100,48" />
+  <StrutsActivity path="/CustomerAnalysisDetail.jsp" location="675,225" dimension="202,48" />
+  <StrutsActivity path="/vipConsumeOderAnalysis/vipConsumeOderAnalysis.jsp" location="750,360" dimension="340,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumePeriodAnalysis.jsp" location="720,495" dimension="328,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumeDiscountAnalysis.jsp" location="750,645" dimension="340,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumeSituation.jsp" location="615,765" dimension="298,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipConsumeSituationDetail.jsp" location="720,870" dimension="334,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipLevelContributeAnalysis.jsp" location="690,990" dimension="340,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipLevelContributeDetail.jsp" location="795,1155" dimension="328,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipBuyProdSortAnalysis.jsp" location="825,1275" dimension="316,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/vipBuyProdSortAnalysisDetail.jsp" location="825,1380" dimension="352,48" />
+  <StrutsActivity path="/vipConsumeAnalysis/CustomerInfo.jsp" location="825,1485" dimension="218,49" />
+  <StrutsActivity path="/vipCustomerApprove/vipCustomerApprove.jsp" location="1250,750" dimension="308,53" />
+  <StrutsActivity path="" location="30,150" dimension="40,48" />
+  <StrutsActivity path="CustomerAnalysisDetail.jsp" location="780,45" dimension="196,48" />
+  <StrutsActivity path="/customerSMSBatchSend.do" location="1250,950" dimension="326,104" />
+  <StrutsActivity path="/sendMsg/batchSendCustomerSMS.jsp" location="50,1050" dimension="259,53" />
+  <StrutsTransition id="/index.jsp,null,/customerAnalysis.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="695,93" />
+      <AbsolutePoint location="695,108" />
+      <AbsolutePoint location="510,108" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipConsumeSituation.do,vipConsumeSituation,/vipConsumeAnalysis/vipConsumeSituation.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="510,789" />
+      <AbsolutePoint location="615,789" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeOderAnalysis/vipConsumeOderAnalysis.do,vipConsumeOderAnalysis,/vipConsumeOderAnalysis/vipConsumeOderAnalysis.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="682,384" />
+      <AbsolutePoint location="750,384" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipBuyProdSortAnalysis.do,vipBuyProdSortAnalysis,/vipConsumeAnalysis/vipBuyProdSortAnalysis.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="682,1299" />
+      <AbsolutePoint location="825,1299" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customerSMSBatchSend.do,msgBatchSend,/sendMsg/batchSendCustomerSMS.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1413,1002" />
+      <AbsolutePoint location="179,1076" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipLevelContributionDetail.do,vipLevelContributionDetail,/vipConsumeAnalysis/vipLevelContributeDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="510,1179" />
+      <AbsolutePoint location="795,1179" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customerAnalysis.do,tocustomeranalysis,/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="510,69" />
+      <AbsolutePoint location="645,69" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customerSMSBatchSend.do,toBatchMSMSend,/sendMsg/batchSendCustomerSMS.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1413,1054" />
+      <AbsolutePoint location="1413,1090" />
+      <AbsolutePoint location="309,1090" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipConsumeSituationDetail.do,vipConsumeSituationDetail,/vipConsumeAnalysis/vipConsumeSituationDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="510,894" />
+      <AbsolutePoint location="720,894" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipLevelContributionAnaysis.do,vipLevelContributeAnalysis,/vipConsumeAnalysis/vipLevelContributeAnalysis.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="510,1014" />
+      <AbsolutePoint location="690,1014" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/customersInfo.do,tocustomerinfo,/CustomerAnalysisDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="510,249" />
+      <AbsolutePoint location="675,249" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipConsumeDiscountAnalysis.do,vipConsumeDiscountAnalysis,/vipConsumeAnalysis/vipConsumeDiscountAnalysis.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="510,669" />
+      <AbsolutePoint location="750,669" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipBuyProdSortDetail.do,vipBuyProdSortDetail,/vipConsumeAnalysis/vipBuyProdSortAnalysisDetail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="670,1404" />
+      <AbsolutePoint location="825,1404" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipCustomerApprove.do,approve,/vipCustomerApprove/vipCustomerApprove.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1404,654" />
+      <AbsolutePoint location="1404,750" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/vipConsumePeriodAnalysis.do,vipConsumePeriodAnalysis,/vipConsumeAnalysis/vipConsumePeriodAnalysis.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="541,519" />
+      <AbsolutePoint location="720,519" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/vipConsumeAnalysis/customerFullyInfo.do,toCustomerInfo,/vipConsumeAnalysis/CustomerInfo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="647,1509" />
+      <AbsolutePoint location="825,1509" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

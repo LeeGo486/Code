@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/mainMenu.do" location="167,99" dimension="150,100" />
+  <StrutsActivity path="/searchCargo.do" location="165,240" dimension="346,84" />
+  <StrutsActivity path="/responseCargoApply.do" location="50,450" dimension="388,84" />
+  <StrutsActivity path="/notifyCargo.do" location="50,650" dimension="346,84" />
+  <StrutsActivity path="/sendCargo.do" location="45,780" dimension="334,84" />
+  <StrutsActivity path="/receiveCargo.do" location="45,1050" dimension="352,84" />
+  <StrutsActivity path="/waitSendNotify.do" location="106,1246" dimension="150,100" />
+  <StrutsActivity path="/waitSendCargo.do" location="45,1365" dimension="358,84" />
+  <StrutsActivity path="/waitReceiveCargo.do" location="1020,435" dimension="376,84" />
+  <StrutsActivity path="/baseReport.do" location="1020,720" dimension="340,84" />
+  <StrutsActivity path="/viewCargoApplyRes.do" location="135,1500" dimension="382,84" />
+  <StrutsActivity path="/quickcargotransfer/mainmenu.jsp" location="950,50" dimension="232,48" />
+  <StrutsActivity path="/quickcargotransfer/searchcargo.jsp" location="720,255" dimension="250,48" />
+  <StrutsActivity path="/quickcargotransfer/detailReqCargo.jsp" location="660,525" dimension="268,48" />
+  <StrutsActivity path="/quickcargotransfer/responseCargoApply.jsp" location="650,450" dimension="292,48" />
+  <StrutsActivity path="/quickcargotransfer/notifySendCargo.jsp" location="650,650" dimension="274,48" />
+  <StrutsActivity path="/quickcargotransfer/sendCargoPrint.jsp" location="585,945" dimension="268,48" />
+  <StrutsActivity path="/quickcargotransfer/sendCargo.jsp" location="585,765" dimension="238,48" />
+  <StrutsActivity path="/quickcargotransfer/cancelSendCargo.jsp" location="585,825" dimension="274,48" />
+  <StrutsActivity path="/quickcargotransfer/barcodeSendCargo.jsp" location="585,885" dimension="280,48" />
+  <StrutsActivity path="/quickcargotransfer/barcodeReceiveCargo.jsp" location="540,1110" dimension="298,48" />
+  <StrutsActivity path="/quickcargotransfer/receiveCargo.jsp" location="585,1020" dimension="256,48" />
+  <StrutsActivity path="/quickcargotransfer/receiveAppraise.jsp" location="585,1185" dimension="274,48" />
+  <StrutsActivity path="/quickcargotransfer/waitSendNotify.jsp" location="585,1275" dimension="268,48" />
+  <StrutsActivity path="/quickcargotransfer/waitSendCargo.jsp" location="600,1395" dimension="262,48" />
+  <StrutsActivity path="/quickcargotransfer/waitReceiveCargo.jsp" location="1035,585" dimension="280,48" />
+  <StrutsActivity path="/quickcargotransfer/beCanceledNotifySend.jsp" location="950,1050" dimension="304,48" />
+  <StrutsActivity path="/quickcargotransfer/successCargoTrans.jsp" location="950,1250" dimension="286,48" />
+  <StrutsActivity path="/quickcargotransfer/baseReportQuery.jsp" location="950,950" dimension="274,48" />
+  <StrutsActivity path="/quickcargotransfer/beCanceledSendCargoGF.jsp" location="950,1150" dimension="310,48" />
+  <StrutsActivity path="/quickcargotransfer/viewCargoApplyRes.jsp" location="720,1590" dimension="286,48" />
+  <StrutsActivity path="/quickcargotransfer/viewCargoApplyResSub.jsp" location="705,1500" dimension="304,48" />
+  <StrutsActivity path="" location="650,50" dimension="40,48" />
+  <StrutsActivity path="/quickcargotransfer/zbReportQuery.jsp" location="50,950" dimension="262,48" />
+  <StrutsTransition id="/waitSendCargo.do,toWaitSendCargo,/quickcargotransfer/waitSendCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="403,1419" />
+      <AbsolutePoint location="600,1419" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/baseReport.do,toBeCanceledSendCargoGF,/quickcargotransfer/beCanceledSendCargoGF.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1275,804" />
+      <AbsolutePoint location="1275,1174" />
+      <AbsolutePoint location="1260,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendCargo.do,toPrintSendCargo,/quickcargotransfer/sendCargoPrint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="321,864" />
+      <AbsolutePoint location="321,969" />
+      <AbsolutePoint location="585,969" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/receiveCargo.do,toReceiveAppraise,/quickcargotransfer/receiveAppraise.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="221,1134" />
+      <AbsolutePoint location="221,1209" />
+      <AbsolutePoint location="585,1209" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/receiveCargo.do,toReceiveCargo,/quickcargotransfer/receiveCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="397,1065" />
+      <AbsolutePoint location="585,1065" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/baseReport.do,toBaseReport,/quickcargotransfer/baseReportQuery.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1087,804" />
+      <AbsolutePoint location="1087,950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/mainMenu.do,tomainmenu,/quickcargotransfer/mainmenu.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="317,119" />
+      <AbsolutePoint location="1066,119" />
+      <AbsolutePoint location="1066,98" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/responseCargoApply.do,toResponseCargoApply,/quickcargotransfer/responseCargoApply.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="438,474" />
+      <AbsolutePoint location="650,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/notifyCargo.do,toNotifyCargo,/quickcargotransfer/notifySendCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="396,674" />
+      <AbsolutePoint location="650,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/baseReport.do,toBeCanceledNotifySend,/quickcargotransfer/beCanceledNotifySend.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1239,804" />
+      <AbsolutePoint location="1239,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/searchCargo.do,toSearchCargo,/quickcargotransfer/searchcargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="511,279" />
+      <AbsolutePoint location="720,279" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/baseReport.do,toSuccessCargoTrans,/quickcargotransfer/successCargoTrans.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1305,804" />
+      <AbsolutePoint location="1305,1274" />
+      <AbsolutePoint location="1236,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/responseCargoApply.do,toDetailReqCargo,/quickcargotransfer/detailReqCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="244,534" />
+      <AbsolutePoint location="244,549" />
+      <AbsolutePoint location="660,549" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/waitReceiveCargo.do,toWaitReceiveCargo,/quickcargotransfer/waitReceiveCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1175,519" />
+      <AbsolutePoint location="1175,585" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/viewCargoApplyRes.do,toViewResMain,/quickcargotransfer/viewCargoApplyRes.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="326,1584" />
+      <AbsolutePoint location="326,1614" />
+      <AbsolutePoint location="720,1614" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendCargo.do,toCancelSendCargo,/quickcargotransfer/cancelSendCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="379,849" />
+      <AbsolutePoint location="585,849" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/receiveCargo.do,toBarcodeReceive,/quickcargotransfer/barcodeReceiveCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="397,1119" />
+      <AbsolutePoint location="540,1119" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendCargo.do,toSendCargo,/quickcargotransfer/sendCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="379,795" />
+      <AbsolutePoint location="585,795" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/waitSendNotify.do,toWaitSendNotify,/quickcargotransfer/waitSendNotify.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="256,1299" />
+      <AbsolutePoint location="585,1299" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/viewCargoApplyRes.do,toViewResSub,/quickcargotransfer/viewCargoApplyResSub.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="517,1524" />
+      <AbsolutePoint location="705,1524" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendCargo.do,toBarcodeSendCargo,/quickcargotransfer/barcodeSendCargo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="214,864" />
+      <AbsolutePoint location="214,909" />
+      <AbsolutePoint location="585,909" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

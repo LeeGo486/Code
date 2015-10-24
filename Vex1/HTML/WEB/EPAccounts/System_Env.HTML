@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>系统编号管理</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/EPAccounts/System_Env.js?date=20140918" type="text/javascript"></script>
+</head>
+<body>
+    <table id="tab_list">
+    </table>
+    <div id="Div_Edit" title="添加环境信息" style="overflow: auto; padding: 12px">
+        <form id="form_Edit" name="form_Edit" method="post">
+            <table id="tab_Windows" >
+                <tr>
+                    <th>环境编号
+                    </th>
+                    <td>
+                        <input id="txtEnv_ID_Show" name="txtEnv_ID_Show" value="" class="easyui-textbox" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <th>环境简称
+                    </th>
+                    <td>
+                        <input id="txtEnv_Sn" name="txtEnv_Sn" value="" required="true" class="easyui-validatebox" maxlength="50"
+                            missingmessage="必须填写，字符不能超过50" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>环境名称
+                    </th>
+                    <td>
+                        <input id="txtEnv_Name" name="txtEnv_Name" value="" required="true" class="easyui-validatebox" maxlength="50"
+                            missingmessage="必须填写,字符不能超过50" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>所属系统
+                    </th>
+                    <td>
+                        <input id="cmbSystem_ID" name="cmbSystem_ID">
+                    </td>
+                </tr>
+                <tr>
+                    <th>公司
+                    </th>
+                    <td>
+                        <input id="cmbCompany_ID" name="cmbCompany_ID">
+                    </td>
+                </tr>
+                <tr>
+                    <th>单点登录地址
+                    </th>
+                    <td>
+                        <input id="txtSSO_Login_URL" name="txtSSO_Login_URL" value="" class="easyui-validatebox" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>登录主入口
+                    </th>
+                    <td>
+                        <input id="txtLogin_URL" name="txtLogin_URL" value="" class="easyui-textbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-save" class="easyui-linkbutton" onclick="Edit_Submnit()">提交</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

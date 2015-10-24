@@ -1,0 +1,168 @@
+body { background:#F7F9FD; font-size: 12px; margin-top:0px; text-align:center}
+td {  font-size: 12px}
+input, textarea {  font-size: 12px; }
+select {  font-size: 12px; border-width:1px}
+.inputbg {border:0px; border-bottom:1px solid #8AA6E5; background:transparent}
+
+
+
+A:link {
+	COLOR: #000099; TEXT-DECORATION: none
+}
+a.white:link{COLOR: #ffffff;FONT-SIZE: 12px;TEXT-DECORATION:none} 
+a.white:hover { COLOR: #ffffff;FONT-SIZE: 12px;TEXT-DECORATION: underline }
+a.white:visited { COLOR: #ffffff;TEXT-DECORATION: none }
+a.white:active { COLOR: #ffffff;TEXT-DECORATION: none }
+
+a.black:link{COLOR: #000000;TEXT-DECORATION:none} 
+a.black:hover { COLOR: #000000;FONT-SIZE: 12px;TEXT-DECORATION: underline }
+a.black:visited { COLOR: #000000;TEXT-DECORATION: none }
+a.black:active { COLOR: #000000;TEXT-DECORATION: none }
+
+.twidth { width: 760px; margin-left:auto; margin-right:auto;}
+.content, .content td { font-size: 14px;font-family:宋体,Arial; line-height:140%; margin:5px 20px }
+.content A:visited, .content A:link {color:blue; text-decoration:underline}
+.content A:hover {color:red; }
+.aTitle { font-size: 15px;font-weight:bold; }
+
+#sitehead {width:100%}
+#sitehead td.m { height:87px;border:1px solid #6687BA; }
+#sitehead td.l {width:0px}
+#sitehead td.r {width:0px}
+
+#middle { width:100%}
+
+#navbar td.m { height:23px; text-align:center}
+#navBar td.m img {vertical-align:middle}
+#navbar td.l { display:none; width:1px; background:#6687BA}
+#navbar td.r { display:none; width:1px; background:#6687BA}
+
+#navsub td.m { background: #F3F3f3; height:23px;}	/*二级分类*/
+#navsub td.l { display:none; width:10px; background:none;}
+#navsub td.r { display:none; width:10px; background:none; }
+
+
+.lframe td.tm { height:25px; background:url("lframe_t.gif");  text-align:center;}
+.lframe td.tl { display:none; width:1px; background:#799AE1;}
+.lframe td.tr { display:none; width:1px; background:#799AE1;}
+.lframe span.tt { color:#FFFFFF; font-weight:bold; padding-left:10px; }
+.lframe td.mm { background:#F2F8FF; padding:3px }
+.lframe td.ml { width:1px; background:#799AE1; }
+.lframe td.mr { width:1px; background:#799AE1; }
+.lframe td.bm { display:none; height:13px; border-top:1px solid #799AE1; background:none;font-size:1px; }
+.lframe td.bl { display:none; width:18px; background:none; }
+.lframe td.br { display:none;  width:22px; background:none; }
+
+.mframe td.tm{ height:25px; background:url("lframe_t.gif"); text-align:left;}
+.mframe td.tl { display:none; width:1px; background:#799AE1;}
+.mframe td.tr { display:none; width:1px; background:#799AE1;}
+.mframe span.tt { color:#FFFFFF; font-weight:bold; padding-left:10px; }
+.mframe td.mm { background:#F7FBFF; padding:3px }
+.mframe td.ml { width:1px; background:#799AE1}
+.mframe td.mr { width:1px; background:#799AE1}
+.mframe td.bm { height:1px; background:#799AE1;}
+.mframe td.bl { display:none; width:18px; background:none; }
+.mframe td.br { display:none; width:22px; background:none; }
+
+.summary-title { background: #EDF1F8;font-weight:bold;height:23px }
+
+.hidden { display:none;}
+.gray { color:gray; text-decoration:none }
+.time { color:red }
+.hit { color:green }
+
+.tdbg { background: #F2F8FF ; line-height:120%}
+.tdbg-dark {background: #EDF1F8; line-height:120%}
+.tdbg-light {background: #D7F5FF; line-height:120%}
+
+
+.quote { margin:10px; margin-left:2em; border:1px solid #CCCCCC; padding:5px;  background: #FFFFFF; font-family:Verdana,Arial,宋体; }
+
+
+.menuskin {
+	border: #666666 1px solid; visibility: hidden; font: 12px verdana;
+	position: absolute; background-color:#f6f6f6;
+	background-image:url("menubg.gif");
+	text-align:left;
+	}
+.menuskin a {
+	padding-right: 10px; padding-left: 25px; color: black; text-decoration: none; background-image:url(inc/noline.htc);
+	}
+.menuskin a:hover {text-decoration:none }
+#mouseoverstyle {
+	background-color: #c9d5e7; margin:2px; padding:0px; border:#597db5 1px solid;
+	}
+#mouseoverstyle a {
+	color: black
+}
+.menuitems{
+	margin:2px;padding:1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+A:link {
+	COLOR: #000099; TEXT-DECORATION: none
+}
+.DPFrame {
+	Z-INDEX:100; MARGIN:0PX; BORDER:black 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 12px; WIDTH: 100%; LINE-HEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: transparent; FONT-VARIANT: normal
+}
+#dpDropDownTable {
+	Z-INDEX:100; BORDER-RIGHT: black 1px solid; BORDER-TOP: lightgrey 1px solid; DISPLAY: none; BORDER-LEFT: lightgrey 1px solid; CURSOR: default; BORDER-BOTTOM: black 1px solid; POSITION: absolute; BACKGROUND-COLOR: #ffffff
+}
+.DPTitle {
+	Z-INDEX:100; FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #fffacd; LINE-HEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: #00008b; TEXT-ALIGN: center; FONT-VARIANT: normal
+}
+.DPWeekName {
+	Z-INDEX:100; FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #00008b; LINE-HEIGHT: normal; BORDER-BOTTOM: black 1px solid; FONT-STYLE: normal; TEXT-ALIGN: center; FONT-VARIANT: normal
+}
+.DPCellOther {
+	Z-INDEX:100; FONT-WEIGHT: normal; FONT-SIZE: 12px; CURSOR: hand; COLOR: silver; LINE-HEIGHT: normal; FONT-STYLE: normal; TEXT-ALIGN: center; FONT-VARIANT: normal
+}
+.DPCell {
+	Z-INDEX:100; FONT-WEIGHT: normal; FONT-SIZE: 12px; CURSOR: hand; COLOR: #00008b; LINE-HEIGHT: normal; FONT-STYLE: normal; TEXT-ALIGN: center; FONT-VARIANT: normal
+}
+.DPCellSelect {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; CURSOR: hand; COLOR: #000000; LINE-HEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: #ffa07a; TEXT-ALIGN: center; FONT-VARIANT: normal
+}
+.DPYear {
+	Z-INDEX:100; BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-WEIGHT:normal;  WIDTH: 24%; LINE-HEIGHT: normal; FONT-SIZE: 12px; BORDER-LEFT: 0px; COLOR: blue; LINE-HEIGHT: normal; BORDER-BOTTOM: 0px; FONT-STYLE: normal; BACKGROUND-COLOR: transparent; TEXT-ALIGN: right; FONT-VARIANT: normal
+}
+.DPYearDes {
+	Z-INDEX:100; BACKGROUND-COLOR: transparent
+}
+.DPMonth {
+	Z-INDEX:100; BORDER-RIGHT: 0px; BORDER-TOP: 0px; WIDTH: 12%;FONT-WEIGHT: normal; FONT-SIZE: 12px; BORDER-LEFT: 0px; COLOR: blue; LINE-HEIGHT: normal; BORDER-BOTTOM: 0px; FONT-STYLE: normal; BACKGROUND-COLOR: transparent; TEXT-ALIGN: right; FONT-VARIANT: normal
+}
+.DPMonthDes {
+	Z-INDEX:100; BACKGROUND-COLOR: transparent
+}
+.DPDay {
+	Z-INDEX:100; BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-WEIGHT:normal; WIDTH: 12%;FONT-SIZE: 12px; BORDER-LEFT: 0px; COLOR: blue; LINE-HEIGHT: normal; BORDER-BOTTOM: 0px; FONT-STYLE: normal; BACKGROUND-COLOR: transparent; TEXT-ALIGN: right; FONT-VARIANT: normal
+}
+.DPDayDes {
+	Z-INDEX:100; BACKGROUND-COLOR: transparent
+}
+.DPSep {
+	Z-INDEX:100; WIDTH: 10px; BACKGROUND-COLOR: transparent
+}
+.DPBtn {
+	Z-INDEX:100; BORDER-RIGHT: black 1px solid; BORDER-TOP: white 1px solid; FONT-WEIGHT: normal; FONT-SIZE: 12px; BORDER-LEFT: white 1px solid; WIDTH: 16px; COLOR: black; LINE-HEIGHT: normal; BORDER-BOTTOM: black 1px solid; FONT-STYLE: normal; BACKGROUND-COLOR: silver; FONT-VARIANT: normal
+}
+.DPDropBtn 
+{
+	Z-INDEX:100; BACKGROUND-COLOR: transparent; color:Maroon;  text-decoration: none
+}
+
+
+
+

@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+
+.text_disabled {text-align: left;
+				background-color: #C0C0C0 ;
+			    border-style: none;
+			    border-width:0;
+			    readonly:expression(this.readOnly=true);
+			    width:100%;
+			   	height: 100%;
+			   	font-size: 12
+			   	}
+.text_enabled {text-align: left;
+				background-color:white;
+			    border-style: none;
+			    border-width:0;
+			    readonly:expression(this.readOnly=false);
+			    width:100%;
+			 	height: 100%;
+			 	font-size: 12
+			   	}
+.field_enabled {text-align: left;
+				background-color:#C8C8FF;
+				/*color:#000000;*/
+				border:1px #000000 solid;
+				/*border-top:0px;
+				border-left:0px;*/
+
+				padding:2px;
+				height:18px;
+				font-size: 12
+			   	}
+.td_disabled {text-align: left;
+				background-color: #C0C0C0;
+			    border:1px #000000 solid;
+				
+
+				padding:2px;
+				height:25px;
+				font-size: 12
+			   	}
+.td_enabled {text-align: left;
+			background-color:white;
+			 border:1px #000000 solid;
+				/*border-top:0px;
+				border-left:0px;*/
+
+				padding:2px;
+				height:25px;
+				font-size: 12
+			 }
+
+.checkbox_onlyread{readonly:expression(this.readOnly=true);}
+.table_thin{
+			
+			border-color:  #000000;
+			border-collapse:collapse;
+			background-color:  #000000;
+			
+           
+            }
+ .checkBox_1{
+ 				height: 16px;
+ }
+

@@ -1,0 +1,305 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "系统列表";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <script src="~/Scripts/hightcharts/highcharts-3d.js"></script>
+    <script src="~/Scripts/hightcharts/highcharts-more.js"></script>
+    <script>
+        $(function () {
+            //Msg.show("正在加载数据...", 3);
+            LoadDistributionChart('#distributionChart', "610C1",100); //刻度
+            LoadDistributionChart('#d1Chart', "610C2",10);
+            LoadDistributionChart('#d2Chart', "610C3",10); 
+            LoadDistributionChart('#d3Chart', "610C4",10);
+             
+
+            //默认加载按公司占比图
+            LoadInstanceChart("#defaultPercentBtn", "610B1");
+
+            Msg.hide();
+
+            $("#result").hide();
+            $("#resultTitle").hide();
+
+            $("#sltCompany").append("<option value=' '>全部</option>");
+            $("#sltType").append("<option value=' '>全部</option>");
+            $("#sltDomain").append("<option value=' '>全部</option>");
+
+            var url = "";
+            url = "/IT/DC/GetWebListCombo?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            $.post(url, function (data) {
+                var rst = eval("(" + data + ")");
+                console.log(rst);
+                $.each(rst.Data, function (index, value) {
+                    console.log(value.sType);
+                    console.log(value.DIC_NAME);
+                    if (value.sType == '公司') {
+                        $("#sltCompany").append("<option value='" + value.DIC_NAME + "'>" + value.DIC_NAME + "</option>");
+                    };
+
+                    if (value.sType == '系统大类') {
+                        $("#sltType").append("<option value='" + value.DIC_NAME + "'>" + value.DIC_NAME + "</option>");
+                    };
+
+                    if (value.sType == '业务领域') {
+                        $("#sltDomain").append("<option value='" + value.DIC_NAME + "'>" + value.DIC_NAME + "</option>");
+                    };
+                });
+            });
+        });
+
+        function LoadInstanceChart(id, key) { 
+            var m1=Msg.show("正在加载数据...", 3);
+            var url = "";
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(key);
+
+            $(id).parent().children().removeClass("captionHS");
+            $(id).addClass("captionHS");
+
+            $.post(url, function (data) {
+                var objData = eval("(" + data + ")");
+                loadInstancePercentChart(objData.data);
+                m1.hide();
+            });
+        };
+        function loadInstancePercentChart(data) {
+            $('#instanceChart').highcharts({
+                chart: {
+                    type: 'pie',
+                    height: 250,
+
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                subtitle: {
+                    text: null
+                },
+                title: {
+                    text: null
+                },
+                tooltip: {
+                    pointFormat: '实例占比: <b>{point.percentage:.1f}%</b><br />实例数量: <b>{point.y}</b>'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 35,
+                        dataLabels: {
+                            enabled: false,
+                            format: '{point.name}'
+                        },
+                        showInLegend: true
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '',
+                    data: data
+                }]
+            });
+        }
+
+        //气泡图
+        function LoadDistributionChart(divid, key, tickInterval) {
+            var m2=Msg.show("正在加载数据...", 3);
+            var url = "";
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(key);
+
+            $.post(url, function (data) {
+                var series = new Object();
+                series.data = eval("([" + data + "])");
+                console.log(series.data);
+                //debugger;
+                LoadDistributionBubbleChart(divid, series.data, tickInterval);
+                m2.hide();
+            });
+        };
+
+        function LoadDistributionBubbleChart(divid, series,tickInterval) {
+            $(divid).highcharts({
+                chart: {
+                    type: 'bubble',
+                    height: 250,
+                    plotBorderWidth: 1
+                },
+
+                title: {
+                    text: null
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                tooltip: {
+                    pointFormat: '{point.extra}'
+                    //   formatter: function () { return '<br>'+ this.point.extra; }
+                },
+                xAxis: {
+                    //gridLineWidth: 1
+                    tickInterval: tickInterval //x刻度表
+                },
+
+                yAxis: {
+                    startOnTick: false,
+                    endOnTick: false,
+                    title: {
+                        text: null
+                    }
+                },
+                series: series
+            });
+        }
+
+        function submit() {
+            var com = $("#sltCompany").val();
+            var env = $("#sltEnv").val();
+            var type = $("#sltType").val();
+            var domain = $("#sltDomain").val();
+
+            var url = "";
+            url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题, 610A】【订单类型,业务】【环境," + env + "】【公司," + com + "】【系统大类," + type + "】【业务领域," + domain + "】");
+            $("#result").html("");
+            Msg.show("请稍候...", 3);
+            $.post(url, function (data) {
+                Msg.hide();
+                $("#result").html(data);
+                $("#result").show();
+                $("#resultTitle").show();
+                $('html, body').animate({ scrollTop: $("#btnSubmit").offset().top }, 300, false);
+            })
+        }
+
+    </script>
+}
+
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;产品分布分析
+</div>
+<div class="mainArea">
+    <div id="distributionChart"></div>
+</div>
+
+<div class="mainArea" style="min-height: 0px">
+0-100 业务系统
+100-200 集团管控系统
+200-300 IT平台
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;产品分布分析-业务系统
+</div>
+<div class="mainArea">
+    <div id="d1Chart"></div>
+</div>
+<div class="mainArea" style="min-height: 0px">
+0-10 门户
+10-20 数据分析
+20-30 产品开发
+30-60 制造及供应链
+60-90 分销零售与客户管理
+90-100 品牌及渠道
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;产品分布分析-集团管控系统
+</div>
+<div class="mainArea">
+    <div id="d2Chart"></div>
+</div>
+
+<div class="mainArea" style="min-height: 0px">
+120-130 集团管控(财务)
+130-140 集团管控(HR)
+140-150 集团管控(公司服务)
+150-160 集团管控(员工服务)
+160-170 集团管控(IT)
+170-200 集团管控(知识与信息)
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;产品分布分析-IT平台
+</div>
+<div class="mainArea">
+    <div id="d3Chart"></div>
+</div>
+
+<div class="mainArea" style="min-height: 0px">
+200-210 IT基础设施平台
+210-220 IT开发基础平台
+220-230 IT业务基础平台
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;产品实例分析
+</div>
+<div class="mainArea" style="min-height: 0px">
+    <div id="instanceChart"></div>
+    <div class="operate">
+        <div class="btnOpt" onclick="LoadInstanceChart(this,'610B4');"><i class="glyphicon glyphicon-hdd"></i>&nbsp;环境</div>
+        <div class="btnOpt" onclick="LoadInstanceChart(this,'610B3');" style="border-right: 1px solid #ccc;"><i class="glyphicon glyphicon-globe"></i>&nbsp;领域</div>
+        <div class="btnOpt" onclick="LoadInstanceChart(this,'610B2');" style="border-right: 1px solid #ccc;"><i class="glyphicon glyphicon-tasks"></i>&nbsp;大类</div>
+        <div class="btnOpt" onclick="LoadInstanceChart(this,'610B1');" style="border-right: 1px solid #ccc;" id="defaultPercentBtn"><i class="glyphicon glyphicon-home"></i>&nbsp;公司</div>
+    </div>
+</div>
+
+<div class="ht">
+    <i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;高级查询（Web站点）
+</div>
+
+<div class="mainArea" style="min-height: 0px">
+    <div class="input-group  requestQuery ">
+        <span class="input-group-addon">公　　司</span>
+        <select id="sltCompany" class="form-control">
+        </select>
+    </div>
+
+    <div class="input-group  requestQuery ">
+        <span class="input-group-addon">环　　境</span>
+        <select id="sltEnv" class="form-control">
+            <option value=" ">全部</option>
+            <option value="PROD">正式环境</option>
+            <option value="TEST">测试环境</option>
+        </select>
+    </div>
+
+    <div class="input-group  requestQuery ">
+        <span class="input-group-addon">系统大类</span>
+        <select id="sltType" class="form-control">
+        </select>
+    </div>
+
+    <div class="input-group  requestQuery ">
+        <span class="input-group-addon">业务领域</span>
+        <select id="sltDomain" class="form-control">
+        </select>
+    </div>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 20px;" data-loading-text="查询"
+        id="btnSubmit" onclick="submit()">
+        查询</button>
+</div>
+
+<div class="ht" id="resultTitle">
+    <i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;查询结果
+</div>
+<div class="mainArea" style="margin-top: 0px; min-height: 0px" id="result">
+</div>

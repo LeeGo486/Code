@@ -1,0 +1,127 @@
+﻿.ht{
+    padding: 5px; margin: 10px 0px 0px 0px;font-size:14px;
+}
+    .ht span {
+        float:right;
+        margin-left:5px;
+        padding:0px 10px;
+    }
+.dataList {
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    /*box-shadow: 1px 1px 2px #e5e5e5,-1px -1px 2px #e5e5e5;*/
+    padding: 10px 10px 14px 10px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+}
+ 
+.dataList:hover {
+    background-color: #fafafa;
+} 
+
+.dataListSld {
+    background-color: #efefef;
+}
+
+.dataList h3{
+    font-size:16px;
+    margin:6px 0px 16px 0px;
+    font-weight:bold;
+}
+
+.dataDetail {
+    color:#5e6060;
+    padding:10px;
+    border: 0px solid #e5e5e5;
+    background-color: #fff;
+    /*box-shadow: 1px 1px 2px #e3e3e5,-1px -1px 2px #e3e3e5;*/
+    font-size:small;
+    border-radius: 3px;
+}
+.dataDetail h3{
+    font-size:16px;
+    margin:0px 0px 12px 0px;
+    font-weight:bold;
+}
+
+.dataDetail h4{
+    font-size:14px;
+    margin:0px 0px 8px 0px;
+    font-weight:normal;
+    color:#444;
+    border-bottom:1px solid #ddd;
+    padding:0px 0px 8px 0px;
+}
+.dataDetail h4 span{
+    padding:7px 0px 7px 0px;
+    border-bottom:2px solid #CC3333;
+}
+
+.dataDetail h5 span{
+    padding:7px 0px 7px 0px;
+    border-bottom:2px solid #5CACEE;
+}
+.lesson{
+    border-bottom:1px dashed #ddd;
+    margin:8px 0px 8px 0px;
+    padding:8px 0px 8px 0px;
+    font-size:12px;
+}
+.dataDetail h6{
+    font-size:16px;
+    color:#FF6666;
+    text-align:center;
+    padding:16px 4px;
+    margin:8px 0px;
+}
+/**********表格样式*************/
+.dataTable {
+    width: 100%;
+}
+
+    .dataTable th {
+        text-align:right;
+        font-weight:normal;
+        padding: 4px 0px;
+        width: 70px;
+        color: #AAA;
+    }
+/*************薪资表格****************/
+.salaryTable{
+	width: 80%;
+	border-collapse: collapse;
+    border: 1px solid #E3E3E3;
+}
+
+    .salaryTable th {
+        text-align:right;
+        font-weight:normal;
+        padding: 6px 3px 6px 0px;
+		background-color:#f7f7f7;
+		border: 1px solid #efefef;
+		width:120px;
+    }
+	.salaryTable td {
+        text-align:right;
+        font-weight:normal;
+        padding: 6px 0px 6px 3px;
+		background-color:#fff;
+		border: 1px solid #efefef;
+    }
+/************我的薪资个人信息*************/
+.userInfo .headimg {
+    width: 100px;
+    text-align: center;
+}
+
+.userInfo .headimg img {
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        width:100px;
+        height:135px;
+        float:left;
+    }
+
+.lable {
+color: #AAA;
+}

@@ -1,0 +1,911 @@
+		public Defective()
+		{
+			this.m_SessionCheck = true;
+		}
+		public DataSet GetData()
+		{
+			DataSet returnData;
+			try
+			{
+				string text = this.m_request.Tables[0].Rows[0]["XML"].ToString();
+				this.m_RequestXML = Common.GetDSByExcelXML(text);
+				DataTable dataTable = this.m_RequestXML.Tables["OPTYPE"];
+				this.dt_DefList = this.m_RequestXML.Tables["List"];
+				if (dataTable.Rows[0][0].ToString().ToUpper() == "GET".ToUpper())
+				{
+					this.Get();
+				}
+				else
+				{
+					if (dataTable.Rows[0][0].ToString().ToUpper() == "OnExpandRow".ToUpper())
+					{
+						this.GetOnExpandRow();
+					}
+					else
+					{
+						if (dataTable.Rows[0][0].ToString().ToUpper() == "GetSearch".ToUpper())
+						{
+							this.GetSearch();
+						}
+						else
+						{
+							if (dataTable.Rows[0][0].ToString().ToUpper() == "GetSKC".ToUpper())
+							{
+								this.GetSKC();
+							}
+							else
+							{
+								if (dataTable.Rows[0][0].ToString().ToUpper() == "SetDefective".ToUpper())
+								{
+									this.SetDefective();
+								}
+								else
+								{
+									if (dataTable.Rows[0][0].ToString().ToUpper() == "GetPrintSearch".ToUpper())
+									{
+										this.GetPrintSearch();
+									}
+								}
+							}
+						}
+					}
+				}
+				returnData = this.m_ReturnData;
+			}
+			catch
+			{
+				this.conn.RollbackTransaction();
+				throw;
+			}
+			return returnData;
+		}
+		private void Get()
+		{
+			string pstrSQL = "\r\n                        SELECT [DD1_ST1_StyleCode]\r\n                              ,[DD1_ST2_Color]\r\n                              ,[DD1_Sources]\r\n                              ,[SIZE1]\r\n                              ,[SIZE2]\r\n                              ,[SIZE3]\r\n                              ,[SIZE4]\r\n                              ,[SIZE5]\r\n                              ,[SIZE6]\r\n                              ,[SIZE7]\r\n                              ,[SIZE8]\r\n                              ,[SIZE9]\r\n                              ,[SIZEF]\r\n                              ,(isNULL([SIZE1],0)+isNULL([SIZE2],0)+isNULL([SIZE3],0)+isNULL([SIZE4],0)+isNULL([SIZE5],0)+isNULL([SIZE6],0)+isNULL([SIZE7],0)+isNULL([SIZE8],0)+isNULL([SIZE9],0)+isNULL([SIZEF],0)) sumQty\r\n                              ,[DD1_DemoteReason]\r\n                              ,[DD1_RgDt]\r\n                              ,[DD1_RgUser]\r\n                        FROM [dbo].[View_DefectiveHead]\r\n                        WHERE (DD1_RgDt BETWEEN DATEADD(mm, DATEDIFF(mm, 0, GETDATE()), 0) AND GETDATE())";
+			this.m_ReturnData = this.conn.GetDataSetForPageList(pstrSQL, new string[0], this.m_hzyPageInfo);
+		}
+		private void GetOnExpandRow()
+		{
+			string text = this.dt_DefList.Rows[0]["StyleCode"].ToString();
+			string text2 = this.dt_DefList.Rows[0]["Color"].ToString();
+			string text3 = this.dt_DefList.Rows[0]["Sources"].ToString();
+			string text4 = this.dt_DefList.Rows[0]["RgDt"].ToString();
+			string sql = string.Concat(new string[]
+			{
+				"\r\n                        SELECT [DD1_ST1_StyleCode]\r\n                              ,[DD1_ST2_SKCCode]\r\n                              ,[DD1_ST2_Color]\r\n                              ,[DD1_ST3_Size]\r\n                              ,[DD1_DemoteBarcode]\r\n                        FROM [B03_TRANS].[DD1_Demotion]\r\n                        WHERE [DD1_ST1_StyleCode] = '",
+				text,
+				"' AND [DD1_ST2_Color] = '",
+				text2,
+				"'\r\n                        AND [DD1_Sources] = '",
+				text3,
+				"' AND [DD1_RgDt] = '",
+				text4,
+				"'"
+			});
+			this.m_ReturnData = this.conn.GetDataSet(sql);
+		}
+		private void GetSearch()
+		{
+			string text = this.dt_DefList.Rows[0]["Style"].ToString();
+			string text2 = this.dt_DefList.Rows[0]["RgUser"].ToString();
+			string text3 = this.dt_DefList.Rows[0]["Sour"].ToString();
+			string text4 = this.dt_DefList.Rows[0]["datStatDay"].ToString();
+			string text5 = this.dt_DefList.Rows[0]["datEndDay"].ToString();
+			string text6 = "\r\n                        SELECT [DD1_ST1_StyleCode]\r\n                              ,[DD1_ST2_Color]\r\n                              ,[DD1_Sources]\r\n                              ,[SIZE1]\r\n                              ,[SIZE2]\r\n                              ,[SIZE3]\r\n                              ,[SIZE4]\r\n                              ,[SIZE5]\r\n                              ,[SIZE6]\r\n                              ,[SIZE7]\r\n                              ,[SIZE8]\r\n                              ,[SIZE9]\r\n                              ,[SIZEF]\r\n                              ,(isNULL([SIZE1],0)+isNULL([SIZE2],0)+isNULL([SIZE3],0)+isNULL([SIZE4],0)+isNULL([SIZE5],0)+isNULL([SIZE6],0)+isNULL([SIZE7],0)+isNULL([SIZE8],0)+isNULL([SIZE9],0)+isNULL([SIZEF],0)) sumQty\r\n                              ,[DD1_DemoteReason]\r\n                              ,[DD1_RgDt]\r\n                              ,[DD1_RgUser]\r\n                        FROM [dbo].[View_DefectiveHead]\r\n                        WHERE 1=1";
+			if (text != "")
+			{
+				text6 = text6 + " AND DD1_ST1_StyleCode LIKE '%" + text + "%'";
+			}
+			if (text2 != "")
+			{
+				text6 = text6 + " AND DD1_RgUser = '" + text2 + "'";
+			}
+			if (text3 != "")
+			{
+				text6 = text6 + " AND DD1_Sources = '" + text3 + "'";
+			}
+			if (text4 != "")
+			{
+				string text7 = text6;
+				text6 = string.Concat(new string[]
+				{
+					text7,
+					" AND DD1_RgDt BETWEEN CONVERT(varchar(100),'",
+					text4,
+					"', 121) + ' 00:00:00.000'\r\n                            AND CONVERT(varchar(100), '",
+					text5,
+					"', 121) + ' 23:59:59.000'"
+				});
+			}
+			this.m_ReturnData = this.conn.GetDataSetForPageList(text6, new string[0], this.m_hzyPageInfo);
+		}
+		private void GetSKC()
+		{
+			string str = this.dt_DefList.Rows[0]["StyleCode"].ToString();
+			string sql = "SELECT ST2_SizeGroup FROM [B01_MDM].[ST2_StyleColor] WHERE [ST2_ST1_StyleCode]  LIKE '%" + str + "%'";
+			string str2 = this.conn.GetDataTableFirstValue(sql).ToString();
+			string sql2 = "\r\n                    SELECT [CT1_KeyID]\r\n                          ,[CT1_KeyName]\r\n                          ,[CT1_OptionsValues]\r\n                          ,[CT1_Options]\r\n                    FROM [M01_CONF].[CT0_CSYTAB]\r\n                    WHERE CT1_Code = 'SIDE' AND \r\n                    CT1_FatherID = (SELECT CT1_ID FROM [M01_CONF].[CT0_CSYTAB] WHERE CT1_KeyID = '" + str2 + "' )";
+			DataTable dataTable = this.conn.GetDataTable(sql2);
+			dataTable.TableName = "GetSize";
+			string sql3 = "\r\n                        SELECT [ST2_ST1_StyleCode]\r\n                              ,[ST2_SKCCode]\r\n                              ,[ST2_Color]\r\n                              ,[ST2_State]\r\n                              ,[ST2_SizeGroup]\r\n                        FROM [B01_MDM].[ST2_StyleColor]\r\n                        WHERE [ST2_State] = '20' AND [ST2_SupperierColor] NOT IN ('G','V')  AND [ST2_ST1_StyleCode]  LIKE '%" + str + "%'";
+			DataTable dataTable2 = this.conn.GetDataTable(sql3);
+			dataTable2.TableName = "Data";
+			this.m_ReturnData.Tables.Add(dataTable.Copy());
+			this.m_ReturnData.Tables.Add(dataTable2.Copy());
+		}
+		private void SetDefective()
+		{
+			DataSet dataSet = this.CretaeTable();
+			DataSet dataSet2 = new DataSet();
+			for (int i = 0; i < this.dt_DefList.Rows.Count; i++)
+			{
+				string pstrDemBarG = "";
+				string pstrDemBarV = "";
+				string pstrStyCode = this.dt_DefList.Rows[i]["st2_st1_stylecode"].ToString();
+				string pstrColor = this.dt_DefList.Rows[i]["st2_color"].ToString();
+				string text = this.dt_DefList.Rows[i]["dd1_sources"].ToString();
+				string pstrSKCCode = this.dt_DefList.Rows[i]["st2_skccode"].ToString();
+				string pstrDemRea = this.dt_DefList.Rows[i]["dd1_demotereason"].ToString();
+				string text2 = this.dt_DefList.Rows[i]["st2_sizegroup"].ToString();
+				this.dt_DefList.Columns.Remove("st2_st1_stylecode");
+				this.dt_DefList.Columns.Remove("st2_color");
+				this.dt_DefList.Columns.Remove("dd1_sources");
+				this.dt_DefList.Columns.Remove("st2_skccode");
+				this.dt_DefList.Columns.Remove("dd1_demotereason");
+				this.dt_DefList.Columns.Remove("st2_sizegroup");
+				int count = this.dt_DefList.Columns.Count;
+				for (int j = 0; j < count; j++)
+				{
+					string text3 = this.dt_DefList.Rows[i][j].ToString();
+					string columnName = this.dt_DefList.Columns[j].ColumnName;
+					if (text3 != "")
+					{
+						string pstrSize = columnName.Substring(columnName.Length - 1, 1);
+						string pstrNum = text3;
+						DataRow row = dataSet.Tables["dtDe"].NewRow();
+						dataSet.Tables["dtDe"].Rows.Add(row);
+						dataSet = this.BulidDs(pstrStyCode, pstrSKCCode, pstrColor, pstrSize, pstrNum, text, pstrDemRea, pstrDemBarG, pstrDemBarV, dataSet);
+						if (text == "供应商")
+						{
+							int index = dataSet.Tables["dtDe"].Rows.Count - 1;
+							pstrDemBarG = dataSet.Tables["dtDe"].Rows[index]["DD1_DemoteBarcode"].ToString();
+						}
+						else
+						{
+							int index = dataSet.Tables["dtDe"].Rows.Count - 1;
+							pstrDemBarV = dataSet.Tables["dtDe"].Rows[index]["DD1_DemoteBarcode"].ToString();
+						}
+					}
+				}
+			}
+			this.NewDefData(dataSet);
+		}
+		private void NewDefData(DataSet pdtInsert)
+		{
+			bool flag = false;
+			if (pdtInsert.Tables.Count == 4)
+			{
+				this.conn.BeginTransaction();
+				flag = this.conn.Insert("[B03_TRANS].[DD1_Demotion]", pdtInsert.Tables["dtDe"]);
+				flag = this.conn.Insert("[B01_MDM].[ST1_Style]", pdtInsert.Tables["dtStyle"]);
+				flag = this.conn.Insert("[B01_MDM].[ST2_StyleColor]", pdtInsert.Tables["dtSC"]);
+				flag = this.conn.Insert("[B01_MDM].[ST3_StyleColorSize]", pdtInsert.Tables["dtSCZ"]);
+			}
+			else
+			{
+				if (pdtInsert.Tables.Count == 2)
+				{
+					this.conn.BeginTransaction();
+					flag = this.conn.Insert("[B03_TRANS].[DD1_Demotion]", pdtInsert.Tables["dtDe"]);
+					flag = this.conn.Insert("[B01_MDM].[ST3_StyleColorSize]", pdtInsert.Tables["dtSCZ"]);
+				}
+				else
+				{
+					if (pdtInsert.Tables.Count == 1)
+					{
+						this.conn.BeginTransaction();
+						flag = this.conn.Insert("[B03_TRANS].[DD1_Demotion]", pdtInsert.Tables["dtDe"]);
+					}
+				}
+			}
+			if (flag)
+			{
+				this.dt_EditResult.Rows.Add(new object[]
+				{
+					true,
+					"申请成功"
+				});
+			}
+			else
+			{
+				this.dt_EditResult.Rows.Add(new object[]
+				{
+					false,
+					"申请失败"
+				});
+			}
+			this.conn.CommitTransaction();
+			this.m_ReturnData.Tables.Add(this.dt_EditResult);
+		}
+		private Hashtable CreateSKU(string pstrStyleCode, string pstrColor, string pstrSize, string pstrSources)
+		{
+			Hashtable hashtable = new Hashtable();
+			string value;
+			string value2;
+			string value3;
+			if (pstrSources == "供应商")
+			{
+				value = pstrStyleCode + "G" + pstrColor + pstrSize;
+				value2 = pstrStyleCode + "G";
+				value3 = pstrStyleCode + "G" + pstrColor;
+			}
+			else
+			{
+				value = pstrStyleCode + "V" + pstrColor + pstrSize;
+				value2 = pstrStyleCode + "V";
+				value3 = pstrStyleCode + "V" + pstrColor;
+			}
+			hashtable.Add("DemoteSKU", value);
+			hashtable.Add("DemoteStyle", value2);
+			hashtable.Add("DemoteSKC", value3);
+			return hashtable;
+		}
+		private string CreateBarCode(string pstrStyleCode, string pstrSources, string pstrBar)
+		{
+			string result = "";
+			int length = pstrStyleCode.Length;
+			if (pstrSources == "供应商" && pstrBar == "")
+			{
+				if (length == 11)
+				{
+					result = pstrStyleCode.Substring(0, 11) + "G01";
+				}
+				else
+				{
+					result = pstrStyleCode.Substring(0, 9) + "G01";
+				}
+			}
+			else
+			{
+				if (pstrSources == "供应商" && pstrBar != "")
+				{
+					int num = int.Parse(pstrBar.Substring(pstrBar.Length - 2));
+					num++;
+					if (num < 10)
+					{
+						if (length == 11)
+						{
+							result = pstrStyleCode.Substring(0, 11) + "G0" + num.ToString();
+						}
+						else
+						{
+							result = pstrStyleCode.Substring(0, 9) + "G0" + num.ToString();
+						}
+					}
+					else
+					{
+						if (length == 11)
+						{
+							result = pstrStyleCode.Substring(0, 11) + "G" + num.ToString();
+						}
+						else
+						{
+							result = pstrStyleCode.Substring(0, 9) + "G" + num.ToString();
+						}
+					}
+				}
+				else
+				{
+					if (pstrSources == "店铺" && pstrBar == "")
+					{
+						if (length == 11)
+						{
+							result = pstrStyleCode.Substring(0, 11) + "V01";
+						}
+						else
+						{
+							result = pstrStyleCode.Substring(0, 9) + "V01";
+						}
+					}
+					else
+					{
+						if (pstrSources == "店铺" && pstrBar != "")
+						{
+							int num = int.Parse(pstrBar.Substring(pstrBar.Length - 2));
+							num++;
+							if (num < 10)
+							{
+								if (length == 11)
+								{
+									result = pstrStyleCode.Substring(0, 11) + "V0" + num.ToString();
+								}
+								else
+								{
+									result = pstrStyleCode.Substring(0, 9) + "V0" + num.ToString();
+								}
+							}
+							else
+							{
+								if (length == 11)
+								{
+									result = pstrStyleCode.Substring(0, 11) + "V" + num.ToString();
+								}
+								else
+								{
+									result = pstrStyleCode.Substring(0, 9) + "V" + num.ToString();
+								}
+							}
+						}
+					}
+				}
+			}
+			return result;
+		}
+		private DataSet CretaeTable()
+		{
+			DataSet dataSet = new DataSet();
+			DataTable dataTable = new DataTable();
+			DataTable dataTable2 = new DataTable();
+			DataTable dataTable3 = new DataTable();
+			DataTable dataTable4 = new DataTable();
+			dataTable.Columns.Add("DD1_ID");
+			dataTable.Columns.Add("DD1_CONO");
+			dataTable.Columns.Add("DD1_DIVI");
+			dataTable.Columns.Add("DD1_ST1_StyleCode");
+			dataTable.Columns.Add("DD1_ST2_SKCCode");
+			dataTable.Columns.Add("DD1_ST2_Color");
+			dataTable.Columns.Add("DD1_ST3_Size");
+			dataTable.Columns.Add("DD1_Number");
+			dataTable.Columns.Add("DD1_Sources");
+			dataTable.Columns.Add("DD1_DemoteReason");
+			dataTable.Columns.Add("DD1_DemoteSKU");
+			dataTable.Columns.Add("DD1_DemoteBarcode");
+			dataTable.Columns.Add("DD1_RgDt");
+			dataTable.Columns.Add("DD1_RgUser");
+			dataTable.Columns.Add("DD1_LmDt");
+			dataTable.Columns.Add("DD1_LmUser");
+			dataTable3.Columns.Add("ST1_ID");
+			dataTable3.Columns.Add("ST1_CONO");
+			dataTable3.Columns.Add("ST1_DIVI");
+			dataTable3.Columns.Add("ST1_StyleCode");
+			dataTable3.Columns.Add("ST1_SupplierCode");
+			dataTable3.Columns.Add("ST1_BR1_BrandCode");
+			dataTable3.Columns.Add("ST1_SupperierStyle");
+			dataTable3.Columns.Add("ST1_Years");
+			dataTable3.Columns.Add("ST1_Season");
+			dataTable3.Columns.Add("ST1_ComModity");
+			dataTable3.Columns.Add("ST1_Unit");
+			dataTable3.Columns.Add("ST1_Category");
+			dataTable3.Columns.Add("ST1_LargeClass");
+			dataTable3.Columns.Add("ST1_SmallClass");
+			dataTable3.Columns.Add("ST1_Grade");
+			dataTable3.Columns.Add("ST1_Currency");
+			dataTable3.Columns.Add("ST1_Provenance");
+			dataTable3.Columns.Add("ST1_Ingredients");
+			dataTable3.Columns.Add("ST1_Standard");
+			dataTable3.Columns.Add("ST1_SafeTechnology");
+			dataTable3.Columns.Add("ST1_IsPrint");
+			dataTable3.Columns.Add("ST1_State");
+			dataTable3.Columns.Add("ST1_Attr01");
+			dataTable3.Columns.Add("ST1_Attr02");
+			dataTable3.Columns.Add("ST1_Attr03");
+			dataTable3.Columns.Add("ST1_Attr04");
+			dataTable3.Columns.Add("ST1_Attr05");
+			dataTable3.Columns.Add("ST1_RgDt");
+			dataTable3.Columns.Add("ST1_RgUser");
+			dataTable3.Columns.Add("ST1_LmDt");
+			dataTable3.Columns.Add("ST1_LmUser");
+			dataTable4.Columns.Add("ST2_ID");
+			dataTable4.Columns.Add("ST2_CONO");
+			dataTable4.Columns.Add("ST2_DIVI");
+			dataTable4.Columns.Add("ST2_ST1_StyleCode");
+			dataTable4.Columns.Add("ST2_SKCCode");
+			dataTable4.Columns.Add("ST2_Color");
+			dataTable4.Columns.Add("ST2_ColorGroup");
+			dataTable4.Columns.Add("ST2_SizeGroup");
+			dataTable4.Columns.Add("ST2_SupperierColor");
+			dataTable4.Columns.Add("ST2_SupperierSKC");
+			dataTable4.Columns.Add("ST2_PurchasePrice");
+			dataTable4.Columns.Add("ST2_SalePrice");
+			dataTable4.Columns.Add("ST2_RefSalePrice");
+			dataTable4.Columns.Add("ST2_ImagePath");
+			dataTable4.Columns.Add("ST2_State");
+			dataTable4.Columns.Add("ST2_RgDt");
+			dataTable4.Columns.Add("ST2_RgUser");
+			dataTable4.Columns.Add("ST2_LmDt");
+			dataTable4.Columns.Add("ST2_LmUser");
+			dataTable2.Columns.Add("ST3_ID");
+			dataTable2.Columns.Add("ST3_CONO");
+			dataTable2.Columns.Add("ST3_DIVI");
+			dataTable2.Columns.Add("ST3_ST1_StyleCode");
+			dataTable2.Columns.Add("ST3_ST2_SKCCode");
+			dataTable2.Columns.Add("ST3_SKUCode");
+			dataTable2.Columns.Add("ST3_Size");
+			dataTable2.Columns.Add("ST3_SupperierSize");
+			dataTable2.Columns.Add("ST3_State");
+			dataTable2.Columns.Add("ST3_RgDt");
+			dataTable2.Columns.Add("ST3_RgUser");
+			dataTable2.Columns.Add("ST3_LmDt");
+			dataTable2.Columns.Add("ST3_LmUser");
+			dataTable.TableName = "dtDe";
+			dataTable2.TableName = "dtSCZ";
+			dataTable4.TableName = "dtSC";
+			dataTable3.TableName = "dtStyle";
+			dataSet.Tables.Add(dataTable);
+			dataSet.Tables.Add(dataTable2);
+			dataSet.Tables.Add(dataTable3);
+			dataSet.Tables.Add(dataTable4);
+			return dataSet;
+		}
+		private DataSet BulidDs(string pstrStyCode, string pstrSKCCode, string pstrColor, string pstrSize, string pstrNum, string pstrSou, string pstrDemRea, string pstrDemBarG, string pstrDemBarV, DataSet pdsBulidDs)
+		{
+			string sql = string.Concat(new string[]
+			{
+				"\r\n                        SELECT [DD1_DemoteSKU]\r\n                        FROM [B03_TRANS].[DD1_Demotion]\r\n                        WHERE [DD1_ST1_StyleCode] = '",
+				pstrStyCode,
+				"' AND [DD1_ST2_Color] = '",
+				pstrColor,
+				"' \r\n                        AND [DD1_ST3_Size] = '",
+				pstrSize,
+				"' AND [DD1_Sources] = '",
+				pstrSou,
+				"'"
+			});
+			string sql2 = string.Concat(new string[]
+			{
+				"\r\n                        SELECT [DD1_DemoteBarcode]\r\n                        FROM [B03_TRANS].[DD1_Demotion]\r\n                        WHERE [DD1_ST1_StyleCode] = '",
+				pstrStyCode,
+				"' AND [DD1_ST2_Color] = '",
+				pstrColor,
+				"' \r\n                        AND [DD1_ST3_Size] = '",
+				pstrSize,
+				"' AND [DD1_Sources] = '",
+				pstrSou,
+				"'"
+			});
+			string sql3 = string.Concat(new string[]
+			{
+				"\r\n                        SELECT MAX([DD1_DemoteBarcode])\r\n                        FROM [B03_TRANS].[DD1_Demotion]\r\n                        WHERE [DD1_ST2_SKCCode] = '",
+				pstrSKCCode,
+				"'AND [DD1_Sources] = '",
+				pstrSou,
+				"'"
+			});
+			string text = this.conn.GetDataTableFirstValue(sql).ToString();
+			string text2 = this.conn.GetDataTableFirstValue(sql2).ToString();
+			string text3 = this.conn.GetDataTableFirstValue(sql3).ToString();
+			Hashtable hashtable = new Hashtable();
+			string value = "";
+			string text4;
+			string text5;
+			if (pstrSou == "供应商")
+			{
+				if (text2 == "" && text3 == "" && pstrDemBarG == "")
+				{
+					text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarG);
+					value = text2.Substring(text2.Length - 2);
+				}
+				else
+				{
+					if (text2 == "" && text3 != "" && pstrDemBarG == "")
+					{
+						pstrDemBarG = text3;
+						text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarG);
+						value = text2.Substring(text2.Length - 2);
+					}
+					else
+					{
+						if (text2 == "" && text3 == "" && pstrDemBarG != "")
+						{
+							text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarG);
+							value = text2.Substring(text2.Length - 2);
+						}
+						else
+						{
+							if (text2 == "" && text3 != "" && pstrDemBarG != "")
+							{
+								text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarG);
+								value = text2.Substring(text2.Length - 2);
+							}
+						}
+					}
+				}
+				hashtable = this.CreateSKU(pstrStyCode, pstrColor, pstrSize, pstrSou);
+				text = hashtable["DemoteSKU"].ToString();
+				text4 = hashtable["DemoteSKC"].ToString();
+				text5 = hashtable["DemoteStyle"].ToString();
+			}
+			else
+			{
+				if (text2 == "" && text3 == "" && pstrDemBarV == "")
+				{
+					text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarV);
+				}
+				else
+				{
+					if (text2 == "" && text3 != "" && pstrDemBarV == "")
+					{
+						pstrDemBarG = text3;
+						text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarV);
+					}
+					else
+					{
+						if (text2 == "" && text3 == "" && pstrDemBarV != "")
+						{
+							text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarV);
+						}
+						else
+						{
+							if (text2 == "" && text3 != "" && pstrDemBarV != "")
+							{
+								text2 = this.CreateBarCode(pstrStyCode, pstrSou, pstrDemBarV);
+							}
+						}
+					}
+				}
+				hashtable = this.CreateSKU(pstrStyCode, pstrColor, pstrSize, pstrSou);
+				text = hashtable["DemoteSKU"].ToString();
+				text4 = hashtable["DemoteSKC"].ToString();
+				text5 = hashtable["DemoteStyle"].ToString();
+			}
+			int index = pdsBulidDs.Tables["dtDe"].Rows.Count - 1;
+			string value2 = Guid.NewGuid().ToString();
+			string value3 = Guid.NewGuid().ToString();
+			string value4 = Guid.NewGuid().ToString();
+			string value5 = Guid.NewGuid().ToString();
+			Hashtable goods = this.GetGoods(text5, text4, text);
+			DataSet dataSet = new DataSet();
+			if (goods["style"].ToString() == "0" && goods["SKC"].ToString() == "0" && goods["SKU"].ToString() == "0")
+			{
+				DataRow row = pdsBulidDs.Tables["dtSCZ"].NewRow();
+				pdsBulidDs.Tables["dtSCZ"].Rows.Add(row);
+				int length = text5.Length;
+				string value6;
+				if (length == 11)
+				{
+					value6 = text5.Substring(0, length - 2);
+				}
+				else
+				{
+					value6 = text5.Substring(0, length - 1);
+				}
+				int count = pdsBulidDs.Tables["dtStyle"].Rows.Count;
+				int count2 = pdsBulidDs.Tables["dtSC"].Rows.Count;
+				if (count == 0)
+				{
+					dataSet = this.dsData(pstrStyCode, pstrSKCCode);
+					DataRow row2 = pdsBulidDs.Tables["dtStyle"].NewRow();
+					row2 = dataSet.Tables["dtStyle"].Rows[0];
+					pdsBulidDs.Tables["dtStyle"].ImportRow(row2);
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_ID"] = value5;
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_StyleCode"] = text5;
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_SupperierStyle"] = value6;
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_Grade"] = "降级品";
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_RgDt"] = this.now;
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_RgUser"] = base.hzyMessage.User_Name;
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_LmDt"] = this.now;
+					pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_LmUser"] = base.hzyMessage.User_Name;
+				}
+				if (count != 0)
+				{
+					dataSet = this.dsData(pstrStyCode, pstrSKCCode);
+					for (int i = 0; i < count; i++)
+					{
+						string a = pdsBulidDs.Tables["dtStyle"].Rows[i]["ST1_StyleCode"].ToString();
+						if (!(a != text5) || i == count - 1)
+						{
+							if (!(a != text5) || i != count - 1)
+							{
+								break;
+							}
+							DataRow row2 = pdsBulidDs.Tables["dtStyle"].NewRow();
+							row2 = dataSet.Tables["dtStyle"].Rows[0];
+							pdsBulidDs.Tables["dtStyle"].ImportRow(row2);
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_ID"] = value5;
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_StyleCode"] = text5;
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_SupperierStyle"] = value6;
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_Grade"] = "降级品";
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_RgDt"] = this.now;
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_RgUser"] = base.hzyMessage.User_Name;
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_LmDt"] = this.now;
+							pdsBulidDs.Tables["dtStyle"].Rows[pdsBulidDs.Tables["dtStyle"].Rows.Count - 1]["ST1_LmUser"] = base.hzyMessage.User_Name;
+						}
+					}
+				}
+				if (count2 == 0)
+				{
+					dataSet = this.dsData(pstrStyCode, pstrSKCCode);
+					DataRow row3 = pdsBulidDs.Tables["dtSC"].NewRow();
+					row3 = dataSet.Tables["dtSC"].Rows[0];
+					pdsBulidDs.Tables["dtSC"].ImportRow(row3);
+					pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ID"] = value4;
+					pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ST1_StyleCode"] = text5;
+					pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SKCCode"] = text4;
+					pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgDt"] = this.now;
+					pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgUser"] = base.hzyMessage.User_Name;
+					pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmDt"] = this.now;
+					pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmUser"] = base.hzyMessage.User_Name;
+					if (pstrSou == "供应商")
+					{
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "G";
+					}
+					else
+					{
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "V";
+					}
+				}
+				if (count2 != 0)
+				{
+					dataSet = this.dsData(pstrStyCode, pstrSKCCode);
+					for (int i = 0; i < count2; i++)
+					{
+						string a2 = pdsBulidDs.Tables["dtSC"].Rows[i]["ST2_SKCCode"].ToString();
+						if (!(a2 != text4) || i == count2 - 1)
+						{
+							if (!(a2 != text4) || i != count2 - 1)
+							{
+								break;
+							}
+							DataRow row3 = pdsBulidDs.Tables["dtSC"].NewRow();
+							row3 = dataSet.Tables["dtSC"].Rows[0];
+							pdsBulidDs.Tables["dtSC"].ImportRow(row3);
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ID"] = value4;
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ST1_StyleCode"] = text5;
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SKCCode"] = text4;
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgDt"] = this.now;
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgUser"] = base.hzyMessage.User_Name;
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmDt"] = this.now;
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmUser"] = base.hzyMessage.User_Name;
+							if (pstrSou == "供应商")
+							{
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "G";
+							}
+							else
+							{
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "V";
+							}
+						}
+					}
+				}
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ID"] = value2;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_CONO"] = "GL";
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DIVI"] = "D01";
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST1_StyleCode"] = pstrStyCode;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_SKCCode"] = pstrSKCCode;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_Color"] = pstrColor;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST3_Size"] = pstrSize;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Number"] = pstrNum;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Sources"] = pstrSou;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteReason"] = pstrDemRea;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteSKU"] = text;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteBarcode"] = text2;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgDt"] = this.now;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgUser"] = base.hzyMessage.User_Name;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmDt"] = this.now;
+				pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmUser"] = base.hzyMessage.User_Name;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ID"] = value3;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_CONO"] = "GL";
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_DIVI"] = "D01";
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ST1_StyleCode"] = text5;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ST2_SKCCode"] = text4;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_SKUCode"] = text;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_Size"] = pstrSize;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_SupperierSize"] = value;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_State"] = "20";
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_RgDt"] = this.now;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_RgUser"] = base.hzyMessage.User_Name;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_LmDt"] = this.now;
+				pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_LmUser"] = base.hzyMessage.User_Name;
+			}
+			else
+			{
+				if (goods["style"].ToString() != "0" && goods["SKC"].ToString() == "0" && goods["SKU"].ToString() == "0")
+				{
+					DataRow row = pdsBulidDs.Tables["dtSCZ"].NewRow();
+					pdsBulidDs.Tables["dtSCZ"].Rows.Add(row);
+					int count2 = pdsBulidDs.Tables["dtSC"].Rows.Count;
+					if (count2 == 0)
+					{
+						dataSet = this.dsData(pstrStyCode, pstrSKCCode);
+						DataRow row3 = pdsBulidDs.Tables["dtSC"].NewRow();
+						row3 = dataSet.Tables["dtSC"].Rows[0];
+						pdsBulidDs.Tables["dtSC"].ImportRow(row3);
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ID"] = value4;
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ST1_StyleCode"] = text5;
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SKCCode"] = text4;
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgDt"] = this.now;
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgUser"] = base.hzyMessage.User_Name;
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmDt"] = this.now;
+						pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmUser"] = base.hzyMessage.User_Name;
+						if (pstrSou == "供应商")
+						{
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "G";
+						}
+						else
+						{
+							pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "V";
+						}
+					}
+					if (count2 != 0)
+					{
+						dataSet = this.dsData(pstrStyCode, pstrSKCCode);
+						for (int i = 0; i < count2; i++)
+						{
+							string a2 = pdsBulidDs.Tables["dtSC"].Rows[i]["ST2_SKCCode"].ToString();
+							if (!(a2 != text4) || i == count2 - 1)
+							{
+								if (!(a2 != text4) || i != count2 - 1)
+								{
+									break;
+								}
+								DataRow row3 = pdsBulidDs.Tables["dtSC"].NewRow();
+								row3 = dataSet.Tables["dtSC"].Rows[0];
+								pdsBulidDs.Tables["dtSC"].ImportRow(row3);
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ID"] = value4;
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_ST1_StyleCode"] = text5;
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SKCCode"] = text4;
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgDt"] = this.now;
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_RgUser"] = base.hzyMessage.User_Name;
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmDt"] = this.now;
+								pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_LmUser"] = base.hzyMessage.User_Name;
+								if (pstrSou == "供应商")
+								{
+									pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "G";
+								}
+								else
+								{
+									pdsBulidDs.Tables["dtSC"].Rows[pdsBulidDs.Tables["dtSC"].Rows.Count - 1]["ST2_SupperierColor"] = "V";
+								}
+							}
+						}
+					}
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ID"] = value2;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_CONO"] = "GL";
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DIVI"] = "D01";
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST1_StyleCode"] = pstrStyCode;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_SKCCode"] = pstrSKCCode;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_Color"] = pstrColor;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST3_Size"] = pstrSize;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Number"] = pstrNum;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Sources"] = pstrSou;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteReason"] = pstrDemRea;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteSKU"] = text;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteBarcode"] = text2;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgDt"] = this.now;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgUser"] = base.hzyMessage.User_Name;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmDt"] = this.now;
+					pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmUser"] = base.hzyMessage.User_Name;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ID"] = value3;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_CONO"] = "GL";
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_DIVI"] = "D01";
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ST1_StyleCode"] = text5;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ST2_SKCCode"] = text4;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_SKUCode"] = text;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_Size"] = pstrSize;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_SupperierSize"] = value;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_State"] = "20";
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_RgDt"] = this.now;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_RgUser"] = base.hzyMessage.User_Name;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_LmDt"] = this.now;
+					pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_LmUser"] = base.hzyMessage.User_Name;
+				}
+				else
+				{
+					if (goods["style"].ToString() != "0" && goods["SKC"].ToString() != "0" && goods["SKU"].ToString() == "0")
+					{
+						DataRow row = pdsBulidDs.Tables["dtSCZ"].NewRow();
+						pdsBulidDs.Tables["dtSCZ"].Rows.Add(row);
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ID"] = value2;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_CONO"] = "GL";
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DIVI"] = "D01";
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST1_StyleCode"] = pstrStyCode;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_SKCCode"] = pstrSKCCode;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_Color"] = pstrColor;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST3_Size"] = pstrSize;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Number"] = pstrNum;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Sources"] = pstrSou;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteReason"] = pstrDemRea;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteSKU"] = text;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteBarcode"] = text2;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgDt"] = this.now;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgUser"] = base.hzyMessage.User_Name;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmDt"] = this.now;
+						pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmUser"] = base.hzyMessage.User_Name;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ID"] = value3;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_CONO"] = "GL";
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_DIVI"] = "D01";
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ST1_StyleCode"] = text5;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_ST2_SKCCode"] = text4;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_SKUCode"] = text;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_Size"] = pstrSize;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_SupperierSize"] = value;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_State"] = "20";
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_RgDt"] = this.now;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_RgUser"] = base.hzyMessage.User_Name;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_LmDt"] = this.now;
+						pdsBulidDs.Tables["dtSCZ"].Rows[pdsBulidDs.Tables["dtSCZ"].Rows.Count - 1]["ST3_LmUser"] = base.hzyMessage.User_Name;
+					}
+					else
+					{
+						if (goods["style"].ToString() != "0" && goods["SKC"].ToString() != "0" && goods["SKU"].ToString() != "0")
+						{
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ID"] = value2;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_CONO"] = "GL";
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DIVI"] = "D01";
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST1_StyleCode"] = pstrStyCode;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_SKCCode"] = pstrSKCCode;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST2_Color"] = pstrColor;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_ST3_Size"] = pstrSize;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Number"] = pstrNum;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_Sources"] = pstrSou;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteReason"] = pstrDemRea;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteSKU"] = text;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_DemoteBarcode"] = text2;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgDt"] = this.now;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_RgUser"] = base.hzyMessage.User_Name;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmDt"] = this.now;
+							pdsBulidDs.Tables["dtDe"].Rows[index]["DD1_LmUser"] = base.hzyMessage.User_Name;
+						}
+					}
+				}
+			}
+			return pdsBulidDs;
+		}
+		private void GetPrintSearch()
+		{
+			string text = this.dt_DefList.Rows[0]["PriStyCode"].ToString();
+			string text2 = this.dt_DefList.Rows[0]["Radio"].ToString();
+			int length = text.Length;
+			string text3;
+			if (length == 11)
+			{
+				text3 = text.Substring(0, 10);
+			}
+			else
+			{
+				text3 = text.Substring(0, 9);
+			}
+			string text4 = text.Substring(text.Length - 1);
+			string sql = string.Concat(new string[]
+			{
+				"\r\n                        SELECT [DD1_DemoteSKU]\r\n                              ,[DD1_DemoteBarcode]\r\n                        FROM [B03_TRANS].[DD1_Demotion]\r\n                        WHERE [DD1_ST2_SKCCode] = '",
+				text3,
+				"'AND [DD1_ST3_Size] = '",
+				text4,
+				"' AND [DD1_Sources] = '",
+				text2,
+				"'"
+			});
+			this.m_ReturnData = this.conn.GetDataSet(sql);
+		}
+		private DataSet dsData(string pstrStyle, string pstrSC)
+		{
+			DataSet dataSet = new DataSet();
+			DataTable dataTable = new DataTable();
+			DataTable dataTable2 = new DataTable();
+			string sql = "\r\n                                SELECT [ST1_ID]\r\n                                    ,[ST1_CONO]\r\n                                    ,[ST1_DIVI]\r\n                                    ,[ST1_StyleCode]\r\n                                    ,[ST1_SupplierCode]\r\n                                    ,[ST1_BR1_BrandCode]\r\n                                    ,[ST1_SupperierStyle]\r\n                                    ,[ST1_Years]\r\n                                    ,[ST1_Season]\r\n                                    ,[ST1_ComModity]\r\n                                    ,[ST1_Unit]\r\n                                    ,[ST1_Category]\r\n                                    ,[ST1_LargeClass]\r\n                                    ,[ST1_SmallClass]\r\n                                    ,[ST1_Grade]\r\n                                    ,[ST1_Currency]\r\n                                    ,[ST1_Provenance]\r\n                                    ,[ST1_Ingredients]\r\n                                    ,[ST1_Standard]\r\n                                    ,[ST1_SafeTechnology]\r\n                                    ,[ST1_IsPrint]\r\n                                    ,[ST1_State]\r\n                                    ,[ST1_Attr01]\r\n                                    ,[ST1_Attr02]\r\n                                    ,[ST1_Attr03]\r\n                                    ,[ST1_Attr04]\r\n                                    ,[ST1_Attr05]\r\n                                    ,[ST1_RgDt]\r\n                                    ,[ST1_RgUser]\r\n                                    ,[ST1_LmDt]\r\n                                    ,[ST1_LmUser]\r\n                                    FROM [B01_MDM].[ST1_Style]\r\n                                    WHERE [ST1_StyleCode] = '" + pstrStyle + "'";
+			string sql2 = "\r\n                                    SELECT [ST2_ID]\r\n                                          ,[ST2_CONO]\r\n                                          ,[ST2_DIVI]\r\n                                          ,[ST2_ST1_StyleCode]\r\n                                          ,[ST2_SKCCode]\r\n                                          ,[ST2_Color]\r\n                                          ,[ST2_ColorGroup]\r\n                                          ,[ST2_SizeGroup]\r\n                                          ,[ST2_SupperierColor]\r\n                                          ,[ST2_SupperierSKC]\r\n                                          ,[ST2_PurchasePrice]\r\n                                          ,[ST2_SalePrice]\r\n                                          ,[ST2_RefSalePrice]\r\n                                          ,[ST2_ImagePath]\r\n                                          ,[ST2_State]\r\n                                          ,[ST2_RgDt]\r\n                                          ,[ST2_RgUser]\r\n                                          ,[ST2_LmDt]\r\n                                          ,[ST2_LmUser]\r\n                                      FROM [B01_MDM].[ST2_StyleColor]\r\n                                      WHERE [ST2_SKCCode] = '" + pstrSC + "'";
+			DataTable dataTable3 = this.conn.GetDataTable(sql);
+			DataTable dataTable4 = this.conn.GetDataTable(sql2);
+			dataTable = dataTable3.Copy();
+			dataTable2 = dataTable4.Copy();
+			dataTable.TableName = "dtStyle";
+			dataTable2.TableName = "dtSC";
+			dataSet.Tables.Add(dataTable);
+			dataSet.Tables.Add(dataTable2);
+			return dataSet;
+		}
+		private Hashtable GetGoods(string pstrStyle, string pstrSKC, string pstrSKU)
+		{
+			Hashtable hashtable = new Hashtable();
+			string sql = "\r\n                        SELECT [ST1_ID]\r\n                        FROM [B01_MDM].[ST1_Style]\r\n                        WHERE [ST1_StyleCode] = '" + pstrStyle + "'";
+			string sql2 = "\r\n                        SELECT [ST2_ID]\r\n                        FROM [B01_MDM].[ST2_StyleColor]\r\n                        WHERE [ST2_SKCCode] = '" + pstrSKC + "'";
+			string sql3 = "\r\n                        SELECT [ST3_ID]\r\n                        FROM [B01_MDM].[ST3_StyleColorSize]\r\n                        WHERE [ST3_SKUCode] = '" + pstrSKU + "'";
+			int dataTableRowCount = this.conn.GetDataTableRowCount(sql);
+			int dataTableRowCount2 = this.conn.GetDataTableRowCount(sql2);
+			int dataTableRowCount3 = this.conn.GetDataTableRowCount(sql3);
+			hashtable.Add("style", dataTableRowCount);
+			hashtable.Add("SKC", dataTableRowCount2);
+			hashtable.Add("SKU", dataTableRowCount3);
+			return hashtable;
+		}

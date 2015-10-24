@@ -1,0 +1,196 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //近期未消费客户
+        $('#nobuyCus').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor:null
+            }, 
+            title: null,
+            tooltip: {
+                pointFormat: '占比：{point.percentage:.1f}%'
+            },
+            credits: {
+                enabled: false
+            }, 
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        distance: -30,
+                        format: '{point.y}/{point.name}',
+                        style: {
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    },
+                    point: {
+                        events: {
+                            click: function (e) {
+                                loadCustomers(this.name, 'pie');
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '时隔',
+                data: [
+                    ['120天', 40],
+                    ['90天', 50],
+                    ['60天', 20],
+                    ['30天', 14]
+                ]
+            }]
+        });
+
+        //同期消费品类分析
+        $('#sameCategory').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: null
+            },
+            xAxis: {
+                categories: ['连衣裙', '短裙', 'T恤', '衬衫', '裤子'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null
+                }
+            },
+            tooltip: {
+                pointFormat: '{point.y}人'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    point: {
+                        events: {
+                            click: function (e) {
+                                loadCustomers(this.category, 'bar');
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                data: [107, 31, 635, 203]
+            }]
+        });
+
+        //新会员前三次消费分析
+        $('#newCusConsume').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: null
+            },
+            xAxis: {
+                categories: [
+                    '仅一次',
+                    '仅二次',
+                    '仅三次'
+                ]
+            },
+            yAxis: [{
+                title: {
+                    text: '数量'
+                }
+            }, { // Secondary yAxis
+                title: {
+                    text: '金额'
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    point: {
+                        events: {
+                            click: function (e) {
+                                loadCustomers(this.category, 'column');
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            series:[
+                {
+                    name: '会员数',
+                    type: 'column',
+                    data: [45, 25, 27],
+                    tooltip: {
+                        valueSuffix: '人'
+                    }
+                }, {
+                    name: '消费金额',
+                    type: 'spline',
+                    yAxis: 1,
+                    data: [4500, 2500, 2700],
+                    tooltip: {
+                        valuePrefix: '￥:'
+                    }
+                }
+            ]
+        });
+    });
+</script>
+<div class="ht">
+    <i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;我的销售机会
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <h4><span><i class="icon-bar-chart"></i> 近期未消费客户 </span></h4>
+    <div id="nobuyCus"></div>
+    <h4><span><i class="icon-bar-chart"></i> 去年7月消费,今年7月未消费 </span></h4>
+    <div id="sameCategory" style="margin:30px 0px 36px 0px;"></div>
+    <h4><span><i class="icon-bar-chart"></i> 新会员前三次消费分析 </span></h4>
+    <div id="newCusConsume" style="margin:30px 0px 0px 0px;"></div>
+</div>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:j2ee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>my web application</display-name>
+  <context-param>
+    <param-name>webAppContext</param-name>
+    <param-value>public_ws</param-value>
+  </context-param>
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>public_ws.root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>resteasy.servlet.mapping.prefix</param-name>
+    <param-value>/resteasy</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+            org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+        </listener-class>
+  </listener>
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value>
+  </context-param>
+  <context-param>
+    <param-name>log4jExposeWebAppRoot</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+			classpath:spring/resteasyServerContext.xml
+			
+	</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+            org.jboss.resteasy.plugins.spring.SpringContextLoaderListener
+        </listener-class>
+  </listener>
+  
+ 
+
+  <servlet>
+    <servlet-name>Resteasy</servlet-name>
+    <servlet-class>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Resteasy</servlet-name>
+    <url-pattern>/resteasy/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ExceptionHandler</servlet-name>
+    <servlet-class>
+			org.hy.itdc.security.common.ExceptionHandleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExceptionHandler</servlet-name>
+    <url-pattern>/ExceptionHandler</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/index.jsp</welcome-file>
+    <welcome-file>/index.html</welcome-file>
+  </welcome-file-list>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>MyWebApp Realm</realm-name>
+  </login-config>
+</web-app>

@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "查询所有店铺";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.post("/DLWXSite/DLGoods/GetProvince?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+                var rst = eval("(" + data + ")");
+
+                var html = "<option></option>";
+                for (var i = 0; i < rst.length; i++) {
+                    html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+                }
+                $("#province select").html(html);
+            });
+
+            $("#province select").change(function () {
+                getCity();
+            })
+
+            $("#city select").change(function () {
+                getDepot();
+            })
+
+            function getCity() {
+                $.post("/DLWXSite/DLGoods/GetCity?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&pid=" + $("#province option:selected").val(), function (data) {
+                    var rst = eval("(" + data + ")");
+
+                    var html = "<option></option>";
+                    for (var i = 0; i < rst.length; i++) {
+                        html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+                    }
+                    $("#city select").html(html);;
+
+                    //getDepot();
+                });
+            }
+            function getDepot() {
+                var paramData = {
+                    type: 'single'
+                };
+                Msg.show("请稍后", 3);
+                $.post("/DLWXSite/VIP/GetNearbyShopInfoPartial?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&type=all" + "&pid=" + $("#province option:selected").text() + "&cid=" + $("#city option:selected").text(), function (data) {
+                    //rst = eval("(" + data + ")");
+                    $("#allShop").html(data); Msg.hide(); $("#allShop").find(".distance").hide();
+                });
+            }
+        });
+    </script>
+}
+<style>
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/shopbg.jpg" />
+    </li>
+</ul>
+
+<h4 style="text-align: center">请选择省市</h4>
+<div style="padding: 10px; background-color: #fff;">
+    <div class="input-group" id="province">
+        <select class="form-control">
+        </select>
+        <span class="input-group-addon">省</span>
+    </div>
+    <br />
+    <div class="input-group" id="city">
+        <select class="form-control">
+        </select>
+        <span class="input-group-addon">市</span>
+    </div>
+    <br />
+</div>
+
+<div style="margin: 20px">
+    <div style="padding: 15px;" id="allShop">
+    </div>
+</div>

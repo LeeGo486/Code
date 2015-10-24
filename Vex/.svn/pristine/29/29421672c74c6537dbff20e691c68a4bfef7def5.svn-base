@@ -1,0 +1,539 @@
+﻿
+var m_divi = $.cookie("compName"); //登录环境
+var m_index = 0;
+
+//初始化
+$(function () {
+    //btnSearch();
+});
+
+//加载付款管理表数据
+function Init_Payment_List(url) {
+    $('#tabPayment').datagrid({
+        url: url,
+        rownumbers: true,
+        fit: true,
+        striped: true,
+        columns: [[
+            { field: 'ck', checkbox: true },
+            { field: 'suppliercode', title: '供应商编号' },
+            { field: 'suppliername', title: '供应商名称' },
+            { field: 'brandname', title: '品牌名称' },
+            { field: 'pocode', title: '采购单号' },
+            { field: 'po2_liseq', title: '项次号' },
+            { field: 'po2_lsseq', title: '子项次号' },
+            { field: 'po2_pd1_supperierstyle', title: '供应商款号' },
+            { field: 'po2_pd1_supperiercolor', title: '供应商颜色' },
+            { field: 'po2_pd1_supperiersize', title: '供应商尺码' },
+            //{ field: '', title: '品名' },
+            { field: 'po2_pd1_productcode', title: 'SKU' },
+            { field: 'po2_number', title: '采购数量' },
+            { field: 'po2_unit', title: '单位' },
+            { field: 'po2_ocurrencyprice', title: '采购单价' },
+            { field: 'po2_ocurrencyamount', title: '采购金额' },
+            { field: 'ap1_apcode', title: '到货计划单号' },
+            { field: 'ap2_aplannumber', title: '到货计划数量' },
+            { field: 'aplanamount', title: '到货计划金额' },
+            { field: 'po1_paymenttypename', title: '付款方式' },
+            { field: 'po2_purchasecurrency', title: '币种' },
+            { field: 'unpaymenttotalamount', title: '未付金额' },
+            { field: 'paidmoney', title: '已付金额' },
+            { field: 'pr2_paymoney', title: '申请支付金额' },
+            { field: 'pr2_poolmoney', title: '资金池抵扣金额' },
+            { field: 'depositmoney', title: '定金抵扣金额' },
+            { field: 'DepositBalance', title: '定金余额' },
+            { field: 'carryovertotalamount', title: '结转金额' }, //已付-入库
+            //{ field: 'pr2_state', title: '付款状态' },
+            { field: 'po2_rguser', title: '采购人' },
+            //{ field: 'rp1_rgdt', title: '入库日期' },
+            { field: 'rpnumber', title: '入库数量' },
+            { field: 'rptotalamount', title: '入库金额' },
+            //{ field: 'rt1_rgdt', title: '退货日期' },
+            { field: 'rtpznumber', title: '退货数量' },
+            { field: 'rtocurrencysums', title: '退货金额' }
+        ]],
+        toolbar: [
+            {
+                id: 'Payment_add',
+                text: '申请付款',
+                iconCls: 'icon-add',
+                handler: function () {
+                    AddPayment();
+                }
+            },
+            '-',
+            {
+                id: 'Payment_edit',
+                text: '申请维护',
+                iconCls: 'icon-add',
+                handler: function () {
+                    EditPayment();
+                }
+            },
+            '-',
+            {
+                id: 'Payment_pay',
+                text: '财务付款',
+                iconCls: 'icon-add',
+                handler: function () {
+                    SavePayment();
+                }
+            },
+            '-',
+            {
+                id: 'Payment_end',
+                text: '付款完结',
+                iconCls: 'icon-redo',
+                handler: function () {
+                    EndPay();
+                }
+            }
+        ],
+        onLoadSuccess: function (data) {
+            if (data.rows.length > 0) {
+                //调用mergeCellsByField()合并单元格
+                //MergeCells("tabPayment", "po1_suppliercode,sp1_name,br1_name,po2_pocode,po2_liseq,po2_lsseq,po2_pd1_supperierstyle,po2_pd1_supperiercolor,po2_pd1_supperiersize,po2_pd1_productcode,");
+            }
+        }
+    });
+}
+
+//查询按钮事件 
+function btnSearch() {
+    var strPOcode = $('#txtPOCode_Payment').val();
+    var strAPcode = $('#txtAPCode').val();
+    if (strPOcode == '' && strAPcode == '') {
+        return false;
+    }
+    var data = [];
+    data[data.length] = { "name": "txt模块", "value": "POPaymentTrackReport" };
+    data[data.length] = { "name": "txt操作类型", "value": "GETPAYMENT" };
+    data[data.length] = { "name": "txtDIVI", "value": m_divi };
+    data[data.length] = { "name": "txtCONO", "value": "HYFG" };
+    data[data.length] = { "name": "txt采购编号", "value": strPOcode };
+    data[data.length] = { "name": "txt到货计划编号", "value": strAPcode };
+    data[data.length] = { "name": "txt合同编号", "value": '' };
+    data[data.length] = { "name": "txt供应商采购合同", "value": '' };
+    data[data.length] = { "name": "txt供应商编号", "value": '' };
+    data[data.length] = { "name": "txt供应商名称", "value": '' };
+    data[data.length] = { "name": "txt是否分页", "value": "1" };
+    data[data.length] = { "name": "txt每页数量", "value": "20" };
+    data[data.length] = { "name": "txt返回页码", "value": "1" };
+    data[data.length] = { "name": "txt排序字段", "value": "PO1_POCode" };
+    var xmlData = GetDBFrameAML(data);//组成调用APIxml
+    var url = GetWSRRURL('d4fe08ef-9fc8-46f8-96cb-1ac4ef260b05') + xmlData;
+    //var pocode = $('#txtPOCode_Payment').val();
+    //var url = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetPaymentData') + "&Where=PO2_DIVI='" + m_divi + "'";
+
+    Init_Payment_List(url);
+}
+
+//新增申请付款
+function AddPayment() {
+    var getRows = $('#tabPayment').datagrid('getChecked');
+    if (getRows.length > 0) {
+        var apcode = getRows[0].ap1_apcode;
+        for (var i = 0; i < getRows.length; i++) {
+            if (apcode != '') { //1.判断是不是属于同一个到货计划             
+                if (apcode != getRows[i].ap1_apcode) {
+                    alert('不属于同一个到货计划');
+                    return false;
+                }
+                else {//1.1 做了到货计划的 不能重复做付款申请
+                    if (getRows[i].pr2_requestcode != '') {
+                        alert(getRows[i].po2_pd1_productcode + '不能重复做付款申请');
+                        return false;
+                    }
+                }
+            }
+            else {  //2.如果没有做到货计划,判断是否存在还未付款的付款申请单
+                var data = [];
+                data[data.length] = { "name": "txtPR2_CONO", "value": getRows[0].cono };
+                data[data.length] = { "name": "txtPR2_DIVI", "value": getRows[0].divi };
+                data[data.length] = { "name": "txtPR1_PO1_POCode", "value": getRows[0].pocode };
+                data[data.length] = { "name": "txtPR1_AP1_APOCode", "value": getRows[0].ap1_apcode };
+                var xmlData = GetFormJson(data, 'CheckRequestIsOK');
+                //var strWhere=''
+                var htmlobj = $.ajax({
+                    url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+                    type: 'post',
+                    async: false, //同步,
+                    data: { "XML": xmlData }
+                });
+                var result = $.parseJSON(htmlobj.responseText);
+                if (!result.rows[0].result) {
+                    alert('存在还未付款的付款申请单');
+                    return false;
+                }
+            }
+
+
+            $('#EditWin').window('open');
+            $('#NeedToPayDataTable').datagrid({
+                data: getRows,
+                rownumbers: true,
+                fit: true,
+                striped: true,
+                onClickRow: clickRowToEdit,
+                columns: [[
+                    { field: 'ck', checkbox: true },
+                    { field: 'po2_liseq', title: '项次号' },
+                    { field: 'po2_lsseq', title: '子项次号' },
+                    { field: 'po2_state', title: '采购状态' },
+                    { field: 'po2_pd1_productcode', title: 'SKU' },
+                    { field: 'po2_pd1_supperierstyle', title: '供应商款号' },
+                    { field: 'po2_pd1_supperiercolor', title: '供应商颜色' },
+                    { field: 'po2_pd1_supperiersize', title: '供应商尺码' },
+                    { field: 'po2_number', title: '采购数量' },
+                    { field: 'ap1_apcode', title: '到货计划单号' },
+                    { field: 'ap2_aplannumber', title: '到货计划数量' },
+                    { field: 'po2_unit', title: '单位' },
+                    { field: 'po2_purchasecurrency', title: '币种' },
+                    { field: 'po2_ocurrencyprice', title: '采购单价' },
+                    { field: 'po2_ocurrencyamount', title: '采购金额' },
+                    { field: 'aplanamount', title: '到货计划金额' },
+                    { field: 'depositmoney', title: '定金抵扣金额' },
+                    { field: 'paidmoney', title: '已付金额' },
+                    //{ field: '', title: '未付金额' },
+                    { field: 'paymenttotalamount', title: '本次申请金额', editor: { type: 'numberbox' } }
+                    //{ field: 'pr2_state', title: '付款状态' },
+                    //{ field: '', title: '流程状态' }
+                ]]
+            });
+            //文本框赋值
+            $('#txtPayRequest').val();
+            $('#txtPocode').val(getRows[0].pocode);
+            $('#txtAPcode').val(getRows[0].ap1_apcode);
+            $('#txtSuppliercode').val(getRows[0].suppliername);
+        }
+
+
+    }
+    else {
+        alert('请先选中需要付款的数据');
+    }
+}
+
+//维护付款申请
+function EditPayment() {
+    var rows = [];
+    var arrays = [];
+    var getRows = $('#tabPayment').datagrid('getChecked');
+    if (getRows.length > 0) {
+        for (var i = 0; i < getRows.length; i++) {
+            if (getRows[i].pr2_requestcode == '') { //取未做付款申请行
+                rows[rows.length] = getRows[i];
+            }
+            else { //取已做付款申请行
+                arrays[arrays.length] = getRows[i].pr2_requestcode;
+            }
+            //if ((i < getRows.length - 1) && (getRows[i].pocode != getRows[i + 1].pocode)) {  //判断未做付款申请的行是否属于同一个采购单
+            //    alert('不属于同一个采购单');
+            //    return false;
+            //}
+        }
+        if (arrays.length == 0) {
+            alert('还未建付款申请单,不允许维护');
+            return false;
+        }
+        for (var j = 0; j < arrays.length - 1; j++) {
+            if (arrays[j] != arrays[j + 1]) {
+                alert('不属于同一个付款申请单');
+                return false;
+            }
+        }
+        //获取付款申请单中所有的子行  再加上还未新建付款申请单
+        //var url = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetPaymentData') + "&Where=PO2_DIVI='" + m_divi + "' AND PR2_RequestCode='" + arrays[0] + "'";
+        //var data = $.ajax({
+        //    url: url,
+        //    type: 'post',
+        //    async: false//同步,
+        //});
+        //data = $.parseJSON(data.responseText);
+        var myRows = $('#tabPayment').datagrid('getRows');
+        var data = [];
+        for (var z = 0; z < myRows.length; z++) {
+            if (myRows[z].pr2_requestcode == getRows[0].pr2_requestcode) {
+                data.push(myRows[z]);
+            }
+        }
+        //打开维护界面
+        $('#EditWin').window('open');
+        $('#NeedToPayDataTable').datagrid({
+            data: data,
+            rownumbers: true,
+            fit: true,
+            striped: true,
+            onDblClickRow: clickRowToEdit,
+            columns: [[
+                { field: 'ck', checkbox: true },
+                { field: 'po2_liseq', title: '项次号' },
+                { field: 'po2_lsseq', title: '子项次号' },
+                { field: 'po2_state', title: '采购状态' },
+                { field: 'po2_pd1_productcode', title: 'SKU' },
+                { field: 'po2_pd1_supperierstyle', title: '供应商款号' },
+                { field: 'po2_pd1_supperiercolor', title: '供应商颜色' },
+                { field: 'po2_pd1_supperiersize', title: '供应商尺码' },
+                { field: 'po2_number', title: '采购数量' },
+                { field: 'ap2_aplannumber', title: '到货计划数量' },
+                { field: 'po2_unit', title: '单位' },
+                { field: 'po2_purchasecurrency', title: '币种' },
+                { field: 'po2_ocurrencyprice', title: '采购单价' },
+                { field: 'po2_ocurrencyamount', title: '采购金额' },
+                { field: 'aplanamount', title: '到货计划金额' },
+                { field: 'depositmoney', title: '定金抵扣金额' },
+                { field: 'paidmoney', title: '已支付金额(含定金)' },
+                { field: 'paymenttotalamount', title: '本次申请支付金额', editor: 'numberbox', editor: 'numberbox' }
+                //{ field: 'pr2_state', title: '付款状态' },
+                //{ field: '', title: '流程状态' }
+            ]]
+        });
+        //文本框赋值
+        $('#txtPayRequest').val(data[0].pr2_requestcode);
+        $('#txtPocode').val(data[0].pocode);
+        $('#txtAPcode').val(data[0].ap1_apcode);
+        $('#txtSuppliercode').val(data[0].suppliername);
+
+    }
+}
+
+//点击行,进入编辑模式
+function clickRowToEdit(index, row) {
+    if (m_index != index) {
+        $('#NeedToPayDataTable').datagrid('endEdit', m_index);
+        m_index = index;
+    }
+    $('#NeedToPayDataTable').datagrid('beginEdit', m_index);
+}
+
+//保存按钮
+function Save() {
+    $('#NeedToPayDataTable').datagrid('endEdit', m_index);
+    var saveRow = $('#NeedToPayDataTable').datagrid('getChecked');
+    var payMoney = 0;
+    var requestMoney = 0;
+    var sumUnPay = 0;
+    if ($('#txtUsePoolMoney').numberbox('getValue') * 1 > $('#txtPoolMoney').numberbox('getValue')) {
+        alert('本次使用资金池金额不能大于资金池金额');
+        return false;
+    }
+    for (var i = 0; i < saveRow.length; i++) {
+        var unPay = saveRow[i].unpaymenttotalamount * 1;
+        if (saveRow[i].paymenttotalamount == '' || saveRow[i].paymenttotalamount * 1 < 0) {
+            alert('本次申请金额不能为空或者小于0');
+            return false;
+        }
+        //if (saveRow[i].ap1_apcode == '') {  //没有到货计划 就采用采购金额
+        //    unPay = saveRow[i].po2_ocurrencyamount * 1 - saveRow[i].pbpaymenttotalamount * 1;
+        //} else { //有到货计划就用到货计划金额
+        //    unPay = saveRow[i].aplanamount * 1 - saveRow[i].pbpaymenttotalamount * 1;
+        //}
+
+        if (saveRow[i].paymenttotalamount * 1 > unPay) {
+            alert(saveRow[i].po2_pd1_productcode + '本次申请支付金额超过未付金额');
+            return false;
+        }
+        if (saveRow[i].paymenttotalamount * 1 > 0 && saveRow[i].paymenttotalamount * 1 <= unPay) {
+            //payMoney += saveRow[i].pr2_paymoney * 1;
+            sumUnPay += unPay;  //统计未支付金额
+            requestMoney += saveRow[i].paymenttotalamount * 1; //统计申请支付金额
+        }
+        //if (saveRow[i].pr2_paymoney * 1 <= 0) {
+        //    alert("本次支付金额不能小于等于0");
+        //    return false;
+        //}
+        if (saveRow[i].pr2_requestcode != "" && saveRow[i].pr2_requestcode != $('#txtPayRequest').val()) {
+            alert('您所选的记录分属于不同的付款申请单，请确认一个申请单后再维护，谢谢！');
+            return false;
+        }
+        //如果属于同一个到货计划,还未做付款申请的  允许加到这个付款申请单中保存
+        if (saveRow[i].pr2_requestcode == "" && saveRow[i].pocode == $('#txtPocode').val() && saveRow[i].ap1_apcode == $('#txtAPcode').val()) {
+            saveRow[i].pr2_requestcode = $('#txtPayRequest').val();
+        }
+    }
+    $.messager.confirm('提示框', '本次申请支付总额为' + requestMoney + ',是否确认申请', function (r) {
+        if (r) {
+            var lastRow = saveRow.length;
+            saveRow[lastRow] = { 'unPayAmount': sumUnPay, 'poolAmount': $('#txtUsePoolMoney').numberbox('getValue') * 1, 'requestAmount': requestMoney };
+            var XMLData = GetGetJson(saveRow, 'EditPayRequest');
+            $.messager.progress({ title: '请稍后', msg: '处理中' });
+            //return;
+            $.ajax({
+                url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+                type: 'post',
+                async: true, //异步,
+                data: { "XML": XMLData },
+                success: function (result) {
+                    try {
+                        var result = eval("[" + result + "]");
+
+                        if (result[0].Error) {
+                            $.messager.progress('close');
+                            $.messager.alert("系统错误", result[0].Error, 'error');
+                        } else if (result[0].rows[0].result == "False") {
+                            $.messager.progress('close');
+                            $.messager.alert("提示", result[0].rows[0].message, 'error');
+                        }
+                        else {
+                            $.messager.progress('close');
+                            $('#tabPayment').datagrid("reload");
+                            $.messager.alert("提示", result[0].rows[0].message);
+                            $('#EditWin').window('close');
+
+                        }
+                    } catch (ex) {
+                        $.messager.progress('close');
+
+                        $.messager.alert("提示", ex, 'error');
+                    }
+                },
+                error: function () {
+                    $.messager.alert("提示", "提交错误了！", 'error');
+                }
+            });
+        }
+    });
+}
+
+function MergeCells(tableID, fldList) {
+    var Arr = fldList.split(",");
+    var dg = $('#' + tableID);
+    var fldName;
+    var RowCount = dg.datagrid("getRows").length;
+    var span;
+    var PerValue = "";
+    var CurValue = "";
+    var length = Arr.length - 1;
+    for (i = length; i >= 0; i--) {
+        fldName = Arr[i];
+        PerValue = "";
+        span = 1;
+        for (row = 0; row <= RowCount; row++) {
+            if (row == RowCount) {
+                CurValue = "";
+            }
+            else {
+                CurValue = dg.datagrid("getRows")[row][fldName];
+            }
+            if (PerValue == CurValue) {
+                span += 1;
+            }
+            else {
+                var index = row - span;
+                dg.datagrid('mergeCells', {
+                    index: index,
+                    field: fldName,
+                    rowspan: span,
+                    colspan: null
+                });
+                span = 1;
+                PerValue = CurValue;
+            }
+        }
+    }
+}
+
+//财务付款
+function SavePayment() {
+    var getRows = $('#tabPayment').datagrid('getChecked');
+    var getPOCode = $('#tabPayment').datagrid('getSelected').pocode; //采购单号
+    var suppliercode = $('#tabPayment').datagrid('getSelected').suppliercode; //供应商编号
+    var currency = $('#tabPayment').datagrid('getSelected').po2_purchasecurrency; //结算币种
+    if (getRows.length > 0) {
+
+        getRows[getRows.length] = { "Type": "paid", "pocode": getPOCode, "suppliercode": suppliercode, "currency": currency, "comment": "非定金" };
+
+        var XMLData = GetEditJsonbyType(getRows, 'EditPaymentDetail');
+        $.messager.progress({ title: '请稍后', msg: '处理中' });
+        $.ajax({
+            url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+            type: 'post',
+            async: true, //异步,
+            data: { "XML": XMLData },
+            success: function (result) {
+                try {
+                    var result = eval("[" + result + "]");
+                    if (result[0].Error) {
+                        $.messager.progress('close');
+                        $.messager.alert("系统错误", result[0].Error, 'error');
+                    } else if (result[0].rows[0].result == "False") {
+                        $.messager.progress('close');
+                        $.messager.alert("提示", result[0].rows[0].message, 'error');
+                    }
+                    else {
+                        $.messager.progress('close');
+                    }
+                } catch (ex) {
+                    $.messager.progress('close');
+                    $.messager.alert("提示", ex, 'error');
+                }
+            },
+            error: function () {
+                $.messager.alert("提示", "提交错误了！", 'error');
+            }
+        });
+    }
+}
+
+//付款完结
+function EndPay() {
+    var getRows = $('#tabPayment').datagrid('getChecked');
+    var DoType = 0;  //DoType:1.表示将结转金额更新供应商资金池和供应商交易历史表 0.表示只修改付款申请单状态为付款已完结
+    if (getRows.length > 0 && getRows.length < 2) {
+        if (getRows[0].pr2_state == '已完结') {
+            alert('已完结,不允许再次完结');
+            return false;
+        }
+
+        if (getRows[0].carryovertotalamount != 0) {
+            $.messager.confirm('提示框', '是否将（结转金额值，可修改）转入供应商资金池？,是否确认申请', function (r) {
+                if (r) {
+                    DoType = 1;
+                }
+            });
+        }
+        getRows[0].DoType = DoType;
+        var XMLData = GetGetJson(getRows, 'EndPay');
+        $.messager.progress({ title: '请稍后', msg: '处理中' });
+        //return;
+        $.ajax({
+            url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+            type: 'post',
+            async: true, //异步,
+            data: { "XML": XMLData },
+            success: function (result) {
+                try {
+                    var result = eval("[" + result + "]");
+
+                    if (result[0].Error) {
+                        $.messager.progress('close');
+                        $.messager.alert("系统错误", result[0].Error, 'error');
+                    } else if (result[0].rows[0].result == "False") {
+                        $.messager.progress('close');
+                        $.messager.alert("提示", result[0].rows[0].message, 'error');
+                    }
+                    else {
+                        $.messager.progress('close');
+                        $('#tabPayment').datagrid("reload");
+                        $.messager.alert("提示", result[0].rows[0].message);
+
+                    }
+                } catch (ex) {
+                    $.messager.progress('close');
+                    $.messager.alert("提示", ex, 'error');
+                }
+            },
+            error: function () {
+                $.messager.alert("提示", "提交错误了！", 'error');
+            }
+        });
+    }
+    else if (getRows.length > 2) {
+        alert('请只选一条');
+        return false;
+    }
+    else {
+        alert('请选择需要完结的单子');
+        return false;
+    }
+}

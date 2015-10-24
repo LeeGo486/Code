@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "考勤页面";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v6" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+            //$("#dav").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dpay").css("background-color", "#2c3e50").css("border-bottom", "");
+        });
+    </script>
+}
+<div style="font-size: 14px; color: #5e6060;">
+    <div class="infoArea clearfix">
+        <div class="headimg">
+            <img src="/Areas/HR/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo">
+            <span>@ElegantWM.Tools.CookieHelper.GetCookie("UserNameC")</span>
+        </div>
+    </div>
+
+    <div style="padding: 5px; margin: 10px 0px 0px 0px;">
+        <i class="glyphicon glyphicon-calendar"></i>个人考勤信息
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/AttendanceGetApply';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;补签考勤记录 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/AttendanceApply';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;补签考勤申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/AttendanceGetApprove';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;审批补签考勤申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/AttendanceGet';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;打卡记录查询 ></li>
+    </ul>
+
+    <div style="padding: 5px; margin: 10px 0px 0px 0px;">
+        <i class="glyphicon glyphicon-calendar"></i>加班信息
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/OverTimeApply';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;加班申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/OverTimeGetApprove';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;审批加班申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/OverTimeGet';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;加班记录 ></li>
+    </ul>
+
+    <div style="padding: 5px; margin: 10px 0px 0px 0px;">
+        <i class="glyphicon glyphicon-calendar"></i>休假信息
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/VacationApply';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;休假申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/VacationGetApprove';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;审批休假申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/VacationGet';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;休假记录 ></li>
+    </ul>
+
+    <div style="padding: 5px; margin: 10px 0px 0px 0px;">
+        <i class="glyphicon glyphicon-calendar"></i>公出信息
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/OutApply';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;公出申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/OutGetApprove';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;审批公出申请 ></li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/OutGet';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;公出记录 ></li>
+    </ul>
+
+
+</div>

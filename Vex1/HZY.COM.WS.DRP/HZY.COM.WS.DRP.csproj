@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E338BE67-2F5C-4FEE-BF8A-040F5F4AA0CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZY.COM.WS.DRP</RootNamespace>
+    <AssemblyName>HZY.COM.WS.DRP</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HZY.COM.Common">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.Base, Version=1.5.2014.1125, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\00最新\HZY.COM.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.DBAccess.DBConn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\00最新\HZY.COM.Common.DBAccess.DBConn.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FluxWMSOrderInterface.cs" />
+    <Compile Include="FluxWMSSKUInterface.cs" />
+    <Compile Include="GetStockForIBMWCS.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EmployeeInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="IBMWCSOrderInterface.cs" />
+    <Compile Include="Web References\WMSWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="IBMWCSKUInterface.cs" />
+    <Compile Include="StockToMiddleTable.cs" />
+    <Compile Include="IBMWCStockInterface.cs" />
+    <Compile Include="FluxWMSSameCOMTRDToWInterface.cs" />
+    <Compile Include="FluxWMSSameCOMTRWToDInterface.cs" />
+    <Compile Include="FluxWMSDifferentCOMTRDToWInterface.cs" />
+    <Compile Include="FluxWMSDifferentCOMTRWToDInterface.cs" />
+    <Compile Include="FluxWMSShopReturnDToWInterface.cs" />
+    <Compile Include="FluxWMSShopReturnWToDInterface.cs" />
+    <Compile Include="FluxWMSWeiPHReturnDToWInterface.cs" />
+    <Compile Include="FluxWMSWeiPHReturnWToDInterface.cs" />
+    <Compile Include="FluxWMSDSellDToWInterface.cs" />
+    <Compile Include="FluxWMSDSellWToDInterface.cs" />
+    <Compile Include="FluxWMSSTOCK_ADJUSTWToDInterface.cs" />
+    <Compile Include="FluxWMSSTOCK_transferWToDInterface.cs" />
+    <Compile Include="FluxWMSD_IndepotWToDInterface.cs" />
+    <Compile Include="FluxWMSD_MOVE_OutdepotWToDInterface.cs" />
+    <Compile Include="FluxWMSD_OutdepotWToDInterface.cs" />
+    <Compile Include="FluxWMSORDER_OUTDEPOTWToDInterface.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{c12f1233-f7c6-45f7-8f22-8bac49fcbe62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.SSO\HZY.COM.WS.SSO.csproj">
+      <Project>{df96ff31-7277-40ec-9384-3110d9a53a31}</Project>
+      <Name>HZY.COM.WS.SSO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WMSWS\CERPWSService2Service.wsdl" />
+    <None Include="Web References\WMSWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WMSWS\wmsADJInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WMSWS\wmsASNInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WMSWS\wmsINVInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WMSWS\wmsMoveInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WMSWS\wmsResultInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WMSWS\wmsSOInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WMSWS\wmsTransfInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://172.16.205.68:7965/datahubWeb/WMSSOAP/WSFLUXWMS%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WMSWS\</RelPath>
+      <UpdateFromURL>http://172.16.205.68:7965/datahubWeb/WMSSOAP/WSFLUXWMS%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>HZY_COM_WS_DRP_WMSWS_CERPWSService2Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

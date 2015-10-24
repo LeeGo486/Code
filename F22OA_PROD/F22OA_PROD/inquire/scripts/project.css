@@ -1,0 +1,150 @@
+html{
+overflow-y:scroll;
+overflow-x:hidden;
+}
+body
+{ font-size:12px; scrollbar-arrow-color:#666; scrollbar-base-color:#ffffff; scrollbar-darkshadow-color:#ffffff; scrollbar-face-color:#ECF3F6; 
+    background-color:#ECF3F6;
+}
+A:link{color: #000000; TEXT-DECORATION: none; font-size:12px}
+A:visited {COLOR: #000000; TEXT-DECORATION: none;font-size:12px}
+A:active {COLOR: #3333ff; TEXT-DECORATION: none;font-size:12px}
+A:hover {COLOR: #993300; TEXT-DECORATION: none;font-size:12px}
+
+
+/* a style which makes mainWrapper touch the bottom of sidebar and content */
+.clear{
+	border-top:1px solid transparent !important;
+	margin-top:-1px !important;
+	border-top:0;
+	margin-top:0;
+	clear:both;
+	visibility:hidden;
+}
+
+
+
+/* dpipi start */
+.gridheader{
+background:url(title1.jpg) repeat-x;
+}
+.gridfoot{
+background:url(title11.jpg) repeat-x;
+}
+TABLE.tbGrid
+{
+	  border-color:#9FD6FF;
+	  border-width:1px;
+	  border-style:solid;
+	  border-collapse:collapse;
+	  background-image: url(title_04.gif);
+}
+TABLE.news
+{
+	  border-color:#9FD6FF;
+	  border-width:1px;
+	  border-style:solid;
+	  border-collapse:collapse;
+	  background-image: url(title_04.gif);
+}
+.dgHeader
+{
+	background-image:url(title_04.gif);
+	background-color: #F2F9FF;
+	color:#014F8A;
+}
+.dgFoot
+{
+	background-image:url(title_04.gif);
+	background-color: #F2F9FF;
+	color:#014F8A;
+} 
+.btn
+{
+	background-color: aliceblue;
+	background-image:url(bg_btn2.gif);
+	border: #8496CE 0px solid;
+	color: #5A6DA5;	
+	height: 23px;
+	width: 100px;
+	cursor: hand;	
+	text-align:center;
+}
+.NormalBtn
+{
+	BORDER-RIGHT: #2c59aa 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #2c59aa 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; 
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); 
+	BORDER-LEFT: #2c59aa 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; 
+	BORDER-BOTTOM: #2c59aa 1px solid; 
+	height:23px;
+}
+.btn2 {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 4px; PADDING-LEFT: 4px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 1px; PADDING-BOTTOM: 0px; PADDING-TOP: 2px; HEIGHT: 23px; BACKGROUND-COLOR: #ece9d8; BORDER-RIGHT-WIDTH: 1px
+}
+
+.tbox
+{	BORDER: 1px solid #69a;          
+    background-color:#fff;
+	height:20px;
+      }
+ .tbsearch
+{		border:solid 1px #666;          
+        background-color:#eff;
+	  	
+      }
+.tbNoBorder
+{
+	BORDER-TOP-STYLE: none; BORDER-BOTTOM: none;
+          BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none;
+          border-bottom-color:#000000;
+          HEIGHT:20px; 
+}
+.tbox1 
+{    border:solid 1px #666;      
+	background-color:#eee;
+          HEIGHT:22px;
+          color:#333 
+                   	
+         }
+         
+.button	
+{ border:solid 1px #99999;
+          HEIGHT:22px;
+          background:#eff;
+          
+         }
+
+ .header
+ {  
+	width:100%;
+	padding:5px 0px 5px 3px;
+	font-size:14px;
+	font-weight:bold;
+	color: #005a5a;
+	 background-color:#d1eaf2;
+	/*background: url("project/pjt_header.gif")   repeat 0 100%;*/
+	height:28px;
+}         
+ .header1
+ {
+	 background-image:url(title1.jpg); 
+	 BACKGROUND-REPEAT: repeat-x;
+	color:#333333;	
+	 font-size:14px;
+   PADDING-LEFT:10px;
+	height:28px;
+	 font-weight:bold;
+}
+	.header1 A:link
+	{
+		color:#AA9D8D;
+		
+	}
+	.header1 A:hover
+	{
+		color:#E58712;
+	}
+	.header1 a:active
+	{
+		color:#B5B2AA;
+	}

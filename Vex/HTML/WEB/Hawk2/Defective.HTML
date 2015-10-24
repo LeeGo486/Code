@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>雅斓ERP-降级品管理</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.datagrid-detailview.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script language="javascript" src="../../JS/Lodop/LodopFuncs.js"></script>
+    <script src="../../JS/Hawk/Defective.JS?Date=20140201" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',split:false,border:false,height:100">
+        <form id="fSearch" method="post">
+            <table>
+                <tr>
+                    <td>款号&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <input id="txtStyle" name="txtStyle" maxlength="15" style="width:200px;" />
+                    </td>
+                    <td>申请人
+                        <input id="txtRgUser" name="txtRgUser" style="width:200px;"/>
+                    </td>
+                    <td>来源
+                        <select class="easyui-combobox" id="txtSour" name="txtSour" style="width:200px;">
+                            <option value=""></option>
+                            <option value="供应商">供应商</option>
+                            <option value="店铺">店铺</option>
+                        </select>
+                    </td>
+                    <td><a id="btnMainSearch" onclick="btnMainSearch()">查询</a></td>
+                </tr>
+                <tr>
+                    <td>申请日期
+                        <input id="txtdatStatDay" name="txtdatStatDay" style="width:200px;"/>
+                    </td>
+                    <td colspan="2">&nbsp&nbsp&nbsp至&nbsp&nbsp&nbsp
+                        <input id="txtdatEndDay" name="txtdatEndDay" style="width:200px;"/>
+                    </td>
+                    <td>
+                        <a id="btnMainCancel" onclick="btnClear()">清空</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a id="btnMainCreate" onclick="OpenWindow('Create')">申请</a>
+                        <a id="btnMainPrint" onclick="OpenWindow('Print')">打印标签</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div data-options="region:'center'">
+        <table id="mainTab_List"></table>
+    </div>
+
+    <div id="winCreate" class="easyui-layout">
+        <div data-options="region:'north',split:false,border:false,height:50">
+            <table>
+                <tr>
+                    <td>款号</td>
+                    <td><input id="txtWinStyle" maxlength="15" style="width:200px;"/></td>
+                    <td>
+                        <a id="btnWinSearch" onclick="btnWinSearch('')">查询</a>
+                        <a id="btnWinSave" onclick="btnWinSave()">保存</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div data-options="region:'center',fit:true">
+            <table id="winNew_List"></table>
+        </div>
+    </div>
+
+    <div>
+        <div id="winPrint">
+            <form id="fPrintSearch">
+                <table>
+                    <tr>
+                        <td>降级品类型&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input name="txtRadio" type="radio" value="供应商" checked="checked"/>供应商
+                            <input name="txtRadio" type="radio" value="店铺" />店铺 
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>正品SKU&nbsp&nbsp&nbsp
+                            <input id="txtPriStyCode" name="txtPriStyCode" style="width:200px;" onkeypress="disableEnter(event)" />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>降级品款号
+                            <input id="DemoteSKU" style="width:200px;" disabled="disabled"/>
+                        </td>
+                        <td>降级品条码
+                            <input id="DemoteBarcode" style="width:200px;" disabled="disabled"/>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td colspan =4><a id="btnWinPrint" onclick="btnPrint()">打印</a><a id="btnWinCancel" onclick="btnPrintSearch()">取消</a></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    
+    <object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width="0" height="0">
+        <embed id="LODOP_EM" type="application/x-print-lodop" width="0" height="0" pluginspage="../../JS/Lodop/install_lodop32.exe"/>
+    </object>
+</body>
+</html>

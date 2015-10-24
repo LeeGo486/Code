@@ -1,0 +1,333 @@
+﻿@{
+    ViewBag.Title = "商品助手";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <script src="~/Scripts/Rating/bootstrap-rating-input.min.js"></script>
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            $("#sgonewproduct").click(function () {
+                scrollTo("#snewproduct");
+            });
+            $("#sgotask").click(function () {
+                scrollTo("#stask");
+            });
+            $("#sgoskcinfo").click(function () {
+                scrollTo("#sskcinfo");
+            });
+        });
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+
+        //加载款式列表
+        function loadSkcList() {
+            Msg.show("款式列表加载中...", 3);
+            $.get("/S3/Assistant/SkcList", function (htmldata) {
+                Msg.hide();
+                showSkcList(htmldata);
+            });
+        }
+
+        //显示款式列表
+        function showSkcList(data) {
+            $("#sskclistarea").html(data);
+            scrollTo("#sskclistarea");
+        }
+
+        //加载款式信息
+        function loadSkcInfo() {
+            Msg.show("款式信息加载中...", 3);
+            $.get("/S3/Assistant/SkcInfo", function (htmldata) {
+                Msg.hide();
+                showSkcInfo(htmldata);
+            });
+        }
+
+        //显示款式信息
+        function showSkcInfo(data) {
+            $("#sskcinfoarea").html(data);
+            scrollTo("#sskcinfoarea");
+        }
+
+        //显示客户图片
+        function showCustomerFittingImg(img) {
+            bootbox.alert("<center><img src='/Areas/S3/Resources/images/" + img + "' width='160px' height='300px' /><br /><div>E12IDY006aG与E13AH1012aB搭配显得更修长</div></center>");
+        }
+
+        //加载客户评价
+        function loadCustomerEvaluate() {
+            Msg.show("客户评价加载中...", 3);
+            $.get("/S3/Assistant/CustomerEvaluate", function (htmldata) {
+                Msg.hide();
+                showCustomerEvaluate(htmldata);
+            });
+        }
+
+        //显示客户评价
+        function showCustomerEvaluate(data) {
+            $("#scustomerevaluatearea").html(data);
+            scrollTo("#scustomerevaluatearea");
+        }
+
+        //显示客户评价详细资料
+        function showCustomerEvaluateInfo(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).hide();
+                return;
+            }
+
+            $(".cusHideCustomerEvaluateArea").hide();
+            $("#" + id).show();
+            scrollTo($("#" + id).parent());
+        }
+
+        //加载增加客户评价
+        function loadAddCustomerEvaluate() {
+            Msg.show("客户评价加载中...", 3);
+            $.get("/S3/Assistant/AddCustomerEvaluate", function (htmldata) {
+                Msg.hide();
+                showAddCustomerEvaluate(htmldata);
+            });
+        }
+
+        //显示增加客户评价
+        function showAddCustomerEvaluate(data) {
+            $("#saddcustomerevaluatearea").html(data);
+            scrollTo("#saddcustomerevaluatearea");
+        }
+
+        //提交增加客户评价
+        function addRating(id) {
+            Msg.show("提交成功", 0);
+        }
+
+        //加载对客户评价
+        function loadDoCustomerEvaluate() {
+            Msg.show("客户评价加载中...", 3);
+            $.get("/S3/Assistant/DoCustomerEvaluate", function (htmldata) {
+                Msg.hide();
+                showDoCustomerEvaluate(htmldata);
+            });
+        }
+
+        //显示对客户评价
+        function showDoCustomerEvaluate(data) {
+            $("#sdocustomerevaluatearea").html(data);
+            scrollTo("#sdocustomerevaluatearea");
+        }
+
+        //提交对客户评价
+        function addDoCustomerEvaluate(id) {
+            Msg.show("提交成功", 0);
+        }
+
+        //加载问题反馈
+        function loadFeedback() {
+            Msg.show("问题反馈加载中...", 3);
+            $.get("/S3/Assistant/Feedback", function (htmldata) {
+                Msg.hide();
+                showFeedback(htmldata);
+            });
+        }
+
+        //显示问题反馈
+        function showFeedback(data) {
+            $("#sfeedbackarea").html(data);
+            scrollTo("#sfeedbackarea");
+        }
+
+        //显示问题反馈详细资料
+        function showFeedbackInfo(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).hide();
+                return;
+            }
+
+            $(".cusHideFeedbackArea").hide();
+            $("#" + id).show();
+            scrollTo($("#" + id).parent());
+        }
+
+        //提交问题反馈
+        function addFeedback(id) {
+            Msg.show("提交成功", 0);
+        }
+
+        //单击图标，加载客户数据
+        function loadCustomers() {
+            Msg.show("客户加载中...", 3);
+            $.get("/S3/Customer/CustomerList", function (htmldata) {
+                Msg.hide();
+                showCustomers(htmldata);
+                loadMyCustomerNum();
+            });
+        }
+
+        //显示客户资料信息
+        function showCustomers(data) {
+            $("#scustomerarea").html(data);
+            scrollTo("#scustomerarea");
+            $("li").click(function () {
+                $("li").removeClass("dataListSld");
+                $(this).addClass("dataListSld");
+            });
+        }
+
+        //显示客户的详细资料
+        function showCustomerInfo(id) {
+            Msg.show("加载资料中...", 3);
+            $.post("/S3/Customer/CustomerDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+
+        //显示客户的消费记录
+        function showCustomerConsume(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                return;
+            }
+            Msg.show("加载中...", 3);
+            $(".cusHideCsmArea").html("");
+            $(".cusHideCsmArea").hide();
+            $.post("/S3/Customer/CustomerConsume", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+
+        //显示客户订单信息
+        function showCustomerOrder(id) {
+            Msg.show("加载中...", 3);
+            $.post("/S3/Customer/CustomerOrderDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+
+        //加载库存
+        function loadDoTurnin() {
+            Msg.show("库存加载中...", 3);
+            $.get("/S3/Assistant/DoTurnin", function (htmldata) {
+                Msg.hide();
+                showDoTurnin(htmldata);
+            });
+        }
+
+        //显示库存
+        function showDoTurnin(data) {
+            $("#sdoturninarea").html(data);
+            scrollTo("#sdoturninarea");
+        }
+
+        //提交申请调入
+        function doTurnin(id) {
+            Msg.show("提交成功", 0);
+        }
+
+        //加载申请调出
+        function loadDoTurnout() {
+            Msg.show("申请调出加载中...", 3);
+            $.get("/S3/Assistant/DoTurnout", function (htmldata) {
+                Msg.hide();
+                showDoTurnout(htmldata);
+            });
+        }
+
+        //显示申请调出
+        function showDoTurnout(data) {
+            $("#sdoturnoutarea").html(data);
+            scrollTo("#sdoturnoutarea");
+        }
+
+        //提交申请调出
+        function doTurnout(id) {
+            Msg.show("提交成功", 0);
+        }
+
+        //加载申请召回
+        function loadDoRecall() {
+            Msg.show("申请召回加载中...", 3);
+            $.get("/S3/Assistant/DoRecall", function (htmldata) {
+                Msg.hide();
+                showDoRecall(htmldata);
+            });
+        }
+
+        //显示申请召回
+        function showDoRecall(data) {
+            $("#sdorecallarea").html(data);
+            scrollTo("#sdorecallarea");
+        }
+
+        //提交申请召回
+        function doRecall(id) {
+            Msg.show("提交成功", 0);
+        }
+
+        //加载申请促销
+        function loadDoPromotion() {
+            Msg.show("申请促销加载中...", 3);
+            $.get("/S3/Assistant/DoPromotion", function (htmldata) {
+                Msg.hide();
+                showDoPromotion(htmldata);
+            });
+        }
+
+        //显示申请促销
+        function showDoPromotion(data) {
+            $("#sdopromotionarea").html(data);
+            scrollTo("#sdopromotionarea");
+        }
+
+        //提交申请促销
+        function doPromotion(id) {
+            Msg.show("提交成功", 0);
+        }
+    </script>
+}
+@Html.Action("SkcChats")
+@Html.Action("NewProduct")
+@Html.Action("Task")
+<div id="sskclistarea">
+</div>
+<div id="sskcinfoarea">
+</div>
+<div id="sdoturninarea">
+</div>
+<div id="scustomerevaluatearea">
+</div>
+<div id="sfeedbackarea">
+</div>
+<div id="scustomerarea">
+</div>
+<div id="sdoturnoutarea">
+</div>
+<div id="sdorecallarea">
+</div>
+<div id="sdopromotionarea">
+</div>
+<div class="s3overlay">
+    <i id="stop" class="icon-arrow-up icon-2x"></i>
+    <hr />
+    <i id="sgonewproduct" class="icon-bullhorn icon-2x"></i>
+    <hr />
+    <i id="sgotask" class="icon-calendar icon-2x"></i>
+    <hr />
+    <i id="sgoskcinfo" class="icon-tags icon-2x"></i>
+    <hr />
+    <i id="ssearch" class="icon-search icon-2x"></i>
+</div>

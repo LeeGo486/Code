@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>损益表参数配置</title> 
+    <meta http-equiv="description" content="损益表参数配置">
+    <meta http-equiv="content-type" content="text/html">  
+    <meta charset="UTF-8" /> 
+
+    <script src="../../../jquery-easyui-1.3.4/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../../jquery-easyui-1.3.4/themes/peoa/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+ 	
+  </head> 
+  <body class="easyui-layout"  style="margin:0px; overflow-y: hidden" scroll="no" id="mybody">   
+    <div region="center" split="true"  style="width: 900px; " id="DLPanle"> 
+        <table>
+            <tr>
+                <td style="width:160px; text-align:left;">
+                    年 份：<input  id="cxYear" name="cxYear" class="easyui-combobox" style="width:90px;" /> 
+                </td> 
+                <td style="width:200px; text-align:left;">
+                    成本中心：<input  id="cxCenter" name="cxCenter"  type="text" style="width:100px;" /> 
+                </td> 
+                <td style="width:200px; text-align:left;">
+                    店铺大区：<input  id="cxBranch" name="cxBranch" class="easyui-combobox" style="width:120px;" /> 
+                </td> 
+                <td style="width:200px; text-align:left;">
+                    店铺类型：<input id="cxShopType" name="cxShopType" class="easyui-combobox" style="width:90px; " />  
+                </td> 
+			</tr> 
+            <tr>
+                <td style="text-align:left;">
+                    品 牌：<input id="cxBrand" name="cxBrand" class="easyui-combobox" style="width:90px; " />  
+                </td>  
+                <td style="text-align:left;">
+                    公&nbsp;&nbsp;&nbsp;&nbsp;司：&nbsp;&nbsp;<input id="cxCom" name="cxCom" class="easyui-combobox" style="width:105px; " />  
+                </td> 
+                <td style="text-align:left;">
+                    科目大类：<input  id="cxDLCode" name="cxDLCode" class="easyui-combogrid" style="width:120px;" /> 
+                </td> 
+                <td style="text-align:left;">
+                    科目小类：<input  id="cxXLCode" name="cxXLCode" class="easyui-combogrid" style="width:120px;" /> 
+                </td>
+				<td style="width:210px;"> 
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-search'" 
+			        onclick="searchByCons()">查询</a>
+                        &nbsp;&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-redo'" 
+			           	onclick="clearText()">清除</a> 
+				</td> 
+			</tr>      
+	    </table>	
+        <div class="easyui-pagination" id="cxpager" style="border:1px solid #ddd;"></div> 
+		<table id="BaseDatalb" class="easyui-datagrid"></table>	    
+    </div>  
+    <div style="display:none;"> 
+        <!--excel 内容复制窗 -->
+ 	    <div id="toEXCELdlg" class="easyui-dialog" title="介于浏览器原因，请将内容 复制+粘贴 到EXCEL即可！" 
+             style="width:445px;height:220px;padding:10px;top:10px; overflow-y:hidden;"
+		     data-options="resizable:true,modal:true,top:150" closed="true"> 
+		    <table>
+			    <tr>
+				    <td>
+                        <textarea id="toExceltext" name="toExceltext" style="width:400px;height:120px;"></textarea>  
+				    </td> 
+			    </tr>  
+		    </table>  
+	    </div> 	 
+    </div>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/dateUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/jsonUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/dataUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/peoa.js"></script>
+ 	<script type="text/javascript" src="../../../JS/PE_OA/Common/basedata.js"></script>    
+	<script type="text/javascript" src="../../../JS/PE_OA/BM/BM_ToExcel.js"></script>  
+	<script type="text/javascript" src="../../../JS/PE_OA/BM/BM_IncomeStatementReport.js"></script>  
+	<script type="text/javascript">
+		//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+	    function forbidBackSpace(e) {
+	        var ev = e || window.event; //获取event对象 
+	        var obj = ev.target || ev.srcElement; //获取事件源 
+	        var t = obj.type || obj.getAttribute('type'); //获取事件源类型 
+	        var vReadOnly = obj.readOnly;
+	        var vDisabled = obj.disabled;
+	        vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+	        vDisabled = (vDisabled == undefined) ? true : vDisabled;
+	        var flag1 = ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vDisabled == true);
+	        var flag2 = ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea";
+	        if (flag2 || flag1) return false;
+	    }
+	    document.onkeypress = forbidBackSpace;
+	    document.onkeydown = forbidBackSpace; 
+	  </script> 
+  </body>
+ 
+</html>

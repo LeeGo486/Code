@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+
+	<meta charset="UTF-8" />
+	<title>PE_OA 管理系统主界面</title>
+	
+    <link rel="stylesheet" href="css/bootstrap.min.css" /> 
+    <link rel="stylesheet" href="css/matrix-style.css" /> 
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />  
+    <link rel="stylesheet" href="css/skinManage.css" />  
+ 
+     <!-- easyui css   -->
+    <script src="../../../jquery-easyui-1.3.4/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../../jquery-easyui-1.3.4/themes/metro-gray/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+	 
+    
+	
+    <script type="text/javascript" src="../../../JS/PE_OA/Util/jsonUtil.js"></script>	  
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/peoa.js"></script> 
+    <script type="text/javascript"	src="menu.js"></script>
+    <script type="text/javascript" src="skinManage.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script> <!-- 主题风格 -->
+    <script type="text/javascript" src="js/matrix.js"></script> <!--下拉展示  -->
+    <script type="text/javascript" src="js/matrix.chat.js"></script> 
+
+</head>
+
+<script type="text/javascript">
+	var path=window.location.href;	
+	
+	var menuhtml='';
+	var userinfo='';
+	var loginurl='';
+	//userinfo = basedate_getUserInfo();
+    //alert(userinfo);
+	getMenuJson();//获取目录
+    /*
+	if(userinfo==null || userinfo==''){
+		alert("会话过期,请重新登陆!");
+		top.location.href = '../../../expense/Login/'+GetCookieloginurl();
+	}
+	else{
+		loginurl = userinfo.loginurl;
+		getMenuJson(userinfo);//获取目录
+	}
+    */
+
+    $(function(){
+		//$('#welcome').text(userinfo.comName);
+        var skinColor = getSkinFromCookie();//先从cookie中获取session，不存在则再从URL中获取
+        skinColor = '2F4F4F';
+		//alert(skinColor);
+		if(skinColor==undefined){ 
+			var pos=path.indexOf("=");	
+			var parm; 
+			if(pos > 0){	
+	       		parm=path.substring(pos+1,path.length); 
+				if(parm!='undefined'){
+				
+					$('#header').css('background','#'+parm);
+					$('#test2').css('background','#'+parm);
+					$('#main').css('background','#'+parm);
+					$('#footer').css('background','#'+parm);
+				}
+			} 
+		}else{
+			$('#header').css('background','#'+skinColor);
+			$('#test2').css('background','#'+skinColor);
+			$('#main').css('background','#'+skinColor);
+			$('#footer').css('background','#'+skinColor);
+		}
+	 
+	$('#logoutmain').hover(
+		 function () {
+    		$('#logout').show();
+    		$('#welcome').css('font-weight','bold');
+  		 },
+  		function () {
+   			$('#logout').hide();
+   			$('#welcome').css('font-weight','normal');
+  		}
+	
+	);
+	
+	
+ 
+	
+	 $('#tabs').tabs({//选项卡
+			//width:900, //height:400,
+			//plain : true,//简洁模式
+			fit : true,//铺满浏览器
+			border : true,//边框
+			//tools:'#tab-tools',
+			scrollIncrement : 100,
+			scrollDuration : 400,
+			onContextMenu : function(e, title) {
+				//alert(title);
+				e.preventDefault();//方法就是可以阻止它的默认行为的发生而发生其他的事情。
+				$('#mm').menu('show', {
+					left : e.pageX,
+					top : e.pageY
+				});
+			}
+		});
+	
+
+	bindTabEvent();
+	bindTabMenuEvent();
+
+});
+
+
+ 
+
+	function addTab(title, url) {
+		if ($('#tabs').tabs('exists', title)) {
+			$('#tabs').tabs('select', title);
+		} else {
+			if (url) {
+				var content = ' <div style="width: 100%;overflow: auto;-webkit-overflow-scrolling: touch; height: 98%;" > <iframe frameborder="0"  src="'
+						+ url + '" style="overflow:auto;width:100%;height:98%;"></iframe> </div>';
+			} else {
+				var content = '未实现';
+			}
+			$('#tabs').tabs('add', {
+				title : title,
+				content : content,
+				closable : true,
+				style: 'overflow: auto;-webkit-overflow-scrolling: touch',
+				tools:[{   
+	       		 	iconCls:'icon-mini-refresh',   
+	        		handler:function(){   
+	           			//$("#"+tabPanel).tabs('close','首页');     
+	        		}   
+	    		}]
+			});
+		}
+	}
+	 //绑定tab的双击事件、右键事件  
+	function bindTabEvent() {
+		$(".tabs-inner").live('dblclick', function() {
+			var subtitle = $(this).children("span").text();
+			if ($(this).next().is('.tabs-close')) {
+				$('#tabs').tabs('close', subtitle);
+			}
+		});
+		$(".tabs-inner").live('contextmenu', function(e) {
+			$('#mm').menu('show', {
+				left : e.pageX,
+				top : e.pageY
+			});
+			var subtitle = $(this).children("span").text();
+			$('#mm').data("currtab", subtitle);
+			return false;
+		});
+	}
+
+	//绑定tab右键菜单事件 
+	function bindTabMenuEvent() {
+		//关闭当前  
+		/* $('#mm-tabclose').click(function() {
+			var tab = $('#tabs').tabs('getSelected');
+			var currtab_title = $('#mm').data("currtab");
+			if (tab.panel('options').closable) {
+				$('#tabs').tabs('close', currtab_title);
+			}
+		}); */
+		
+		$('#mm-tabclose').live("click",function() {
+			var tab = $('#tabs').tabs('getSelected');
+			var currtab_title = $('#mm').data("currtab");
+			if (tab.panel('options').closable) {
+				$('#tabs').tabs('close', currtab_title);
+			}
+		});
+		
+		//全部关闭 
+		$('#mm-tabcloseall').click(function() {
+			$('.tabs-inner span').each(function(i, n) {
+				if ($(this).parent().next().is('.tabs-close')) {
+					var t = $(n).text();
+					$('#tabs').tabs('close', t);
+				}
+			});
+		});
+		//关闭除当前之外的TAB  
+		$('#mm-tabcloseother').click(function() {
+			var currtab_title = $('#mm').data("currtab");
+			$('.tabs-inner span').each(function(i, n) {
+				if ($(this).parent().next().is('.tabs-close')) {
+					var t = $(n).text();
+					if (t != currtab_title)
+						$('#tabs').tabs('close', t);
+				}
+			});
+		});
+		//关闭当前右侧的TAB  
+		$('#mm-tabcloseright').click(function() {
+			var nextall = $('.tabs-selected').nextAll();
+			if (nextall.length == 0) {
+				//alert('已经是最后一个了');  
+				//$.messager.alert("ok", '已经是最后一个了');
+				return false;
+			}
+			nextall.each(function(i, n) {
+				if ($('a.tabs-close', $(n)).length > 0) {
+					var t = $('a:eq(0) span', $(n)).text();
+					$('#tabs').tabs('close', t);
+				}
+			});
+			return false;
+		});
+		//关闭当前左侧的TAB
+		$('#mm-tabcloseleft').click(function() {
+			var prevall = $('.tabs-selected').prevAll();
+			if (prevall.length == 1) {
+				//alert('已经是第一个了');  
+				return false;
+			}
+			prevall.each(function(i, n) {
+				if ($('a.tabs-close', $(n)).length > 0) {
+					var t = $('a:eq(0) span', $(n)).text();
+					$('#tabs').tabs('close', t);
+				}
+			});
+			return false;
+		});
+	}
+	/***********************************************************************
+	 *  根据title关闭选项卡
+	 *  DLY
+	 *  2013-05-25
+	 */ 
+	function closeTab(title)  { 
+		//alert(title);
+		$('#tabs').tabs('close',title); 
+		document.getElementById('taskInfotab').contentWindow.actLoadData(1,20); 
+	}
+	  
+	  
+	 /***********************************************************************
+	 *  根据title关闭选项卡
+	 *  DLY
+	 *  2014-06-07
+	 */ 
+	function getUserName()  { 
+		//return userinfo.username;   
+	}
+
+
+
+	function logout() {
+	    $.ajax({
+	        async: true,
+	        cache: false,
+	        type: 'POST',
+	        dataType: "json",
+	        url: GetWSRRURL(peoa_GetWSRRURL(7)), // 请求的action路径
+	        error: function () {// 请求失败处理函数
+	            alert(GetErrorMsg('E0001'));
+	        },
+	        onSubmit: function () {
+
+	        },
+	        success: function (data) { // 请求成功后处理函数。 
+	            //var data = eval('(' + data + ')');
+	            if (data.Result != null) {
+	                //$("#login_msg").html("登录成功");
+	                window.location = "login.html";
+	            } else if (data.Error != null) {//后台异常处理
+	                alert(data.Error);
+	            }
+	        }
+	    });
+	}
+
+
+</script>
+
+
+    <body class="easyui-layout" > 
+	    <div id="header" data-options="region:'north',border:false" style="height:60px;background:#2E363F;">
+		    <table width="100%">
+			    <tr>
+                    <td  align="left" width="30%"><img alt="" src="img/FBIlogo0.png"></td>
+				 
+				    <td align="center">
+                        <!--
+					    <div class="styles1" style="vertical-align: middle;">
+	                	    <font color="white" size="2px">肤色选择:</font>
+	                	    <input class="BtnCss C3b3839" type="button" onclick="changeSkin('3b3839');" width="10%"></input>
+	                	    <input class="BtnCss C54c104" type="button" onclick="changeSkin('54c104');"></input>
+	                	    <input class="BtnCss C175e88" type="button" onclick="changeSkin('175e88');"></input>
+	                	    <input class="BtnCss C640f6c" type="button" onclick="changeSkin('640f6c');"></input>
+	                	    <input class="BtnCss Cd5002c" type="button" onclick="changeSkin('d5002c');"></input>
+	                	    <input class="BtnCss Cfe7906" type="button" onclick="changeSkin('fe7906');"></input>
+	                	    <input class="BtnCss CSite" type="button" onclick="changeSkin('00BEF2');"></input>
+	                	
+	 				    </div>
+                        --> 
+				    </td>
+				
+				
+				    <td  align="right"  width="30%" > 
+						     <i class="icon icon-user" style="color: white"></i> 
+						     <span id = "username" style="font-size: 9pt;color: white"></span> 
+						     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					         <a title="" onclick="logout();">
+					     	    <font color="white" size="3">
+					        	    <i class="icon icon-share-alt"></i> <span class="text" >退出</span>
+					            </font>
+					        </a> 
+				    </td>
+			    </tr>
+			
+		    </table>
+		
+		
+	    </div>
+	
+	    <div id="menulist" data-options="region:'west',split:true,title:'菜单'" style="width:288px;padding:10px;background-color:#2E363F ">
+		       <script type="text/javascript">
+			        //alert(menuhtml);
+			        //$.messager.alert('提示', menuhtml);
+			        document.write(menuhtml);
+		        </script>  
+	    </div>
+	 
+	    <div id="logoutmain" style="position:absolute;top:20px ;left:280px; width: 250px;z-index: 100;">
+			
+			<ul style="list-style:none;">
+	   		 	<li> <font color="white" size="3"> <span id="welcome" class="text">欢迎来PE_OA管理系统</span></font>  
+		    		
+		    		<div id="logout"  style=" background-color: white;display: none;text-align: left;width: 150px">
+		    		<ul  style="list-style:none;margin-left:0px; ">
+				        <!-- <li><a onclick="logout('login.html');"><i class="icon-key"></i>  请登陆  </a></li>  -->
+				        <!-- <li class="divider"></li>  -->
+				        <!--  <li style="border-bottom:1px solid #2E363F;"><a onclick="logout('login_dl.html');"><i class="icon-key"></i> 请登陆-贝爱</a></li>-->				     
+				        <!--   <li class="divider"></li>  -->
+				        <!--  <li><a title="" onclick="logout('login.html');"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li> -->
+		      		</ul>
+	   		 		</div>
+	   		 	</li>
+	  		</ul>
+ 		</div> 
+	
+	    <div id="main" data-options="region:'center',title:''"  style="height: 100px">
+		    <div id="tabs" class="easyui-tabs"  > 
+		 	     <div id="tabs" title="我的任务"   style="width: 100%;overflow: auto;-webkit-overflow-scrolling: touch; height: 98%;" >
+				         <iframe id="taskInfotab" name="taskInfotab" frameborder="0" style="width:100%;height:99%;" 
+                             src="../../../WEB/PE_OA/TaskCenter/TaskCenter.html" ></iframe>
+		 	    </div>   
+	        </div>
+	    
+	        <div id="mm" class="easyui-menu" style="width:150px;">
+		        <div id="mm-tabclose">关闭</div>
+		        <div id="mm-tabcloseall">关闭全部</div>
+		        <div id="mm-tabcloseother">关闭其他</div>
+		        <div class="menu-sep"></div>
+		        <div id="mm-tabcloseright">关闭右侧标签</div>
+		        <div id="mm-tabcloseleft">关闭左侧标签</div>
+	        </div>
+	    </div>
+
+	    <div id="footer" data-options="region:'south',border:false" style="height:35px;background:#2E363F;padding:10px;text-align: center;">
+		    <div><font color="white"> 2014 &copy; PE_OA管理系统 </font>  </div>
+	    </div>
+	    
+  
+	    <script type="text/javascript">
+	        //处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+	        function forbidBackSpace(e) {
+	            var ev = e || window.event; //获取event对象 
+	            var obj = ev.target || ev.srcElement; //获取事件源 
+	            var t = obj.type || obj.getAttribute('type'); //获取事件源类型 
+	            var vReadOnly = obj.readOnly;
+	            var vDisabled = obj.disabled;
+	            vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+	            vDisabled = (vDisabled == undefined) ? true : vDisabled;
+	            var flag1 = ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vDisabled == true);
+	            var flag2 = ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea";
+	            if (flag2 || flag1) return false;
+	        }
+	        document.onkeypress = forbidBackSpace;
+	        document.onkeydown = forbidBackSpace;
+	    </script>    
+	
+    </body>
+</html>

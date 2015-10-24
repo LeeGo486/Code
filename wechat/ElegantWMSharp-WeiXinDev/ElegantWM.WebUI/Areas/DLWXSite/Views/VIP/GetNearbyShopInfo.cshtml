@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "门店查询";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        var appId, ticket, timestamp, nonceStr, signature, latitude, longitude, speed, accuracy
+        $(function () {
+            //获取appid
+            $.post("/DLWXSite/VIP/GetAppId?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                if (rst.result == 0) {
+                    appId = rst.msg;
+                    //获取ticket
+                    $.post("/DLWXSite/VIP/GetTicket?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                        if (rst.result == 0) {
+                            ticket = rst.msg;
+                            timestamp = parseInt(new Date().getTime() / 1000) + '';
+                            nonceStr = Math.random().toString(36).substr(2, 15);
+
+                            //获取signature
+                            $.post("/DLWXSite/VIP/GetSignature?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&ticket=" + ticket + "&nonceStr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + window.location.href.replace(/&/g, '%26'), function (rst) {
+                                if (rst.result == 0) {
+                                    signature = rst.msg;
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: appId, // 必填，公众号的唯一标识
+                                        timestamp: timestamp, // 必填，生成签名的时间戳
+                                        nonceStr: nonceStr, // 必填，生成签名的随机串
+                                        signature: signature,// 必填，签名，见附录1
+                                        jsApiList: [
+                                            'getLocation',
+                                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                } else {
+                                    //alert("获取signature失败")
+                                }
+                            });
+                        } else {
+                            //alert("获取GetTicket失败")
+                        }
+                    });
+                } else {
+                    //alert("获取appid失败")
+                }
+            });
+            $('#searchAllShop').click(function () {
+                window.location.href = "/DLWXSite/VIP/GetAllShop?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            })
+
+
+        });
+
+        wx.ready(function () {
+            wx.getLocation({
+                success: function (res) {
+                    latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    speed = res.speed; // 速度，以米/每秒计
+                    accuracy = res.accuracy; // 位置精度
+
+                    var paramData = {
+                        latitude: latitude,
+                        longitude: longitude,
+                        type: 'single'
+                    };
+                    $.post("/DLWXSite/VIP/GetNearbyShopInfoPartial?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (data) {
+                        //rst = eval("(" + data + ")");
+                        $("#nearShop").html(data);
+                    });
+
+                }
+            })
+        });
+
+        wx.error(function (res) {
+            //alert(res);
+        });
+
+
+    </script>
+}
+<style>
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/shopbg.jpg" />
+    </li>
+</ul>
+
+<div style="margin: 20px">
+    <div style="border-bottom: 2px solid #808080; margin: 20px;">
+        <span>最近门店</span>
+    </div>
+    <div style="padding: 15px;" id="nearShop">
+    </div>
+</div>
+
+
+<div style="margin-top: -50px">
+    <table>
+        <tr>
+            <td>
+                <button id="searchAllShop" type="button" class="btn btn-default" style="width: 90%; margin: 10px; margin-bottom: 51px">查看所有店铺</button></td>
+        </tr>
+    </table>
+</div>
+

@@ -1,0 +1,3 @@
+D:\Document\Work\Code\Talent历史版本\HelpSelf\obj\Debug\Web.csprojResolveAssemblyReference.cache
+D:\Document\Work\Code\Talent历史版本\HelpSelf\obj\Debug\HelpSelf.Web.Global.resources
+D:\Document\Work\Code\Talent历史版本\HelpSelf\obj\Debug\Web.csproj.GenerateResource.Cache

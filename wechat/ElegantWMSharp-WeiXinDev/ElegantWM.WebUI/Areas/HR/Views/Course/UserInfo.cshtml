@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "用户资料";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#btnLogout").click(function () {
+                Msg.show("正在退出...", 3);
+                $(this).button('loading');
+                $.post("/HR/Course/LogOut", function (rst) {
+                    Msg.hide();
+                    $("#btnLogout").button('reset');
+                    if (rst.result == 0)
+                        window.location.reload();
+                });
+            });
+            $("li").click(function () {
+                $("li").removeClass("courseListSld");
+                $(this).addClass("courseListSld");
+            });
+        });
+        @*//显示积分规则
+        function scoreRole() {
+            //bootbox.alert("积分规则：<br />SUM（正常签到次数 x 对应课程对应课时的积分）<br />其中“缺勤、其他”无积分，“请假”扣除课时一半积分");
+            bootbox.alert(@ViewBag.ScoreInfo);
+        }*@
+
+        //显示考勤详细
+        function signDetail(num, type) {
+            if (num <= 0) {
+                Msg.show("没有“"+type+"”数据！", 1);
+                return;
+            }
+            window.location.href = '/HR/Course/SignDetail/' + type;
+        }
+    </script>
+}
+<div style="font-size: 14px; color: #5e6060;">
+    <div class="infoArea clearfix">
+        <div class="headimg">
+            <img src="/Areas/HR/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo">
+            <span>@ElegantWM.Tools.CookieHelper.GetCookie("HRWXUName")</span>
+        </div>
+    </div>
+
+    <div style="padding: 5px; margin: 10px 0px 0px 0px;">
+        <i class="glyphicon glyphicon-registration-mark"></i> 课程信息<br />
+        <span style="font-size:12px">您已学习 @ViewBag.CrsCount 课程，累计 @ViewBag.ClassHour 课时,累计 @ViewBag.Score 学分</span>
+    </div>
+    <ul class="list-group">
+
+        <li class="list-group-item" onclick="window.location.href='/HR/Course/History';"><i class="glyphicon glyphicon-book"></i> &nbsp;&nbsp;我的课程 ><span class="badge pull-right">@ViewBag.CrsCount</span></li>
+
+          <li class="list-group-item" onclick="window.location.href='/HR/Course/ScoreInfo';"><i class="glyphicon glyphicon-book"></i> &nbsp;&nbsp;我的积分 ><span class="badge pull-right">@ViewBag.Score</span></li>
+
+       @* <li class="list-group-item" onclick="scoreRole();"><i class="glyphicon glyphicon-usd"></i> &nbsp;&nbsp;我的积分 ><span class="badge pull-right">@ViewBag.Score</span></li>*@
+    </ul>
+
+    <div style="padding: 5px; margin: 10px 0px 0px 0px;">
+        <i class="glyphicon glyphicon-calendar"></i> &nbsp;&nbsp;个人考勤
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" onclick="signDetail(@ViewBag.Zc,'正常');"><i class="glyphicon glyphicon-ok"></i> &nbsp;&nbsp;正 常  ><span class="badge pull-right bm">@ViewBag.Zc</span></li>
+        <li class="list-group-item" onclick="signDetail(@ViewBag.Cd,'迟到');"><i class="glyphicon glyphicon-time"></i> &nbsp;&nbsp;迟 到 ><span class="badge pull-right cd">@ViewBag.Cd</span></li>
+        <li class="list-group-item" onclick="signDetail(@ViewBag.Zt,'早退');"><i class="glyphicon glyphicon-warning-sign"></i> &nbsp;&nbsp;早 退 ><span class="badge pull-right cd">@ViewBag.Zt</span></li>
+        <li class="list-group-item" onclick="signDetail(@ViewBag.Qq,'缺勤');"><i class="glyphicon glyphicon-remove"></i> &nbsp;&nbsp;缺 勤 ><span class="badge pull-right kkz">@ViewBag.Qq</span></li>
+        <li class="list-group-item" onclick="signDetail(@ViewBag.Qj,'请假');"><i class="glyphicon glyphicon-earphone"></i> &nbsp;&nbsp;请 假 ><span class="badge pull-right">@ViewBag.Qj</span></li>
+        <li class="list-group-item" onclick="signDetail(@ViewBag.Qt,'其他');"><i class="glyphicon glyphicon-unchecked"></i> &nbsp;&nbsp;其 他 ><span class="badge pull-right cd">@ViewBag.Qt</span></li>
+    </ul>
+</div>
+<button id="btnLogout" type="button" class="btn btn-danger" style="width: 100%; margin-top: 30px;" data-loading-text="退出中...">安全退出</button>

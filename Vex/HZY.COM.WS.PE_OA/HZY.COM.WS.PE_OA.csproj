@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30DCB52D-7D4C-44D7-9714-4EEDEA5A7A39}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZY.COM.WS.PE_OA</RootNamespace>
+    <AssemblyName>HZY.COM.WS.PE_OA</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HZY.COM.Common">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.Base">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.DBAccess.DBConn">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.DBAccess.DBConn.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.FTP">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.FTP.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PE_OA_BaseData.cs" />
+    <Compile Include="PE_OA_FA_POApply.cs" />
+    <Compile Include="PE_OA_TaskCenter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PE_OA_Employee.cs" />
+    <Compile Include="PE_OA_FA_Budget.cs" />
+    <Compile Include="PE_OA_FA_ITAppraisal.cs" />
+    <Compile Include="PE_OA_FA_ComputerCAS.cs" />
+    <Compile Include="PE_OA_OZ_Organization.cs" />
+    <Compile Include="PE_OA_EA_CashApp.cs" />
+    <Compile Include="PE_OA_Calendar.cs" />
+    <Compile Include="PE_OA_BM_ExpenseBudget.cs" />
+    <Compile Include="PE_OA_LV_POApply.cs" />
+    <Compile Include="PE_OA_HR_OverTimes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.WS.AM\HZY.COM.WS.AM.csproj">
+      <Project>{b8e97925-28d3-4001-b8bc-c9d49f69a15e}</Project>
+      <Name>HZY.COM.WS.AM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.CM\HZY.COM.WS.CM.csproj">
+      <Project>{fc1776f9-50fd-4db4-b2f1-586a5e91676e}</Project>
+      <Name>HZY.COM.WS.CM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{c12f1233-f7c6-45f7-8f22-8bac49fcbe62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.DRPESBCFG\HZY.COM.WS.DRPESBCFG.csproj">
+      <Project>{b653fe9c-9ce2-4225-b51f-0492865dceed}</Project>
+      <Name>HZY.COM.WS.DRPESBCFG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.EPAcount\HZY.COM.WS.EPAcount.csproj">
+      <Project>{598b9289-92cb-42a3-8560-38cbb69c2e90}</Project>
+      <Name>HZY.COM.WS.EPAcount</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.MDM2\HZY.COM.WS.MDM2.csproj">
+      <Project>{3181acaa-ffb4-4ad5-8f72-4198511eecd9}</Project>
+      <Name>HZY.COM.WS.MDM2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.MDM\HZY.COM.WS.MDM.csproj">
+      <Project>{2f709aaf-6eda-48b9-a630-133f4262befa}</Project>
+      <Name>HZY.COM.WS.MDM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS\HZY.COM.WS.CommonWS.csproj">
+      <Project>{600ca99d-8d55-4181-8164-18fcb9270a42}</Project>
+      <Name>HZY.COM.WS.CommonWS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

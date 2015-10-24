@@ -1,0 +1,8 @@
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\bin\Debug\HZY.COM.WS.AM.dll.config
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\bin\Debug\HZY.COM.WS.AM.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\bin\Debug\HZY.COM.WS.AM.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\bin\Debug\HZY.COM.Common.DBAccess.DBConn.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\bin\Debug\HZY.COM.Common.Base.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\bin\Debug\Interop.MSXML2.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\obj\Debug\HZY.COM.WS.AM.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.AM\obj\Debug\HZY.COM.WS.AM.pdb

@@ -1,0 +1,49 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $(".rating").rating();
+        $(".rating-input").addClass("input-group-addon").attr("style", "border-left:1px solid #ccc;width:100%");
+    });
+</script>
+
+<div class="ht" id="saddcustomerevaluate">
+    <i class="icon-pencil"></i>&nbsp;&nbsp;添加评价
+</div>
+
+<div class="dataDetail">
+    <div class="input-group">
+        <span class="input-group-addon" >设计</span>
+        <input type="number" id="designRating" class="rating" data-max="4" />
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon" >面料</span>
+        <input type="number" id="fabricRating" class="rating" data-max="4" />
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon" >尺码</span>
+        <input type="number" id="sizeRating" class="rating" data-max="4" />
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon" >舒适</span>
+        <input type="number" id="comfortRating" class="rating" data-max="4" />
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon" >效果</span>
+        <input type="number" id="effectRating" class="rating" data-max="4" />
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">客户基本情况</span>
+        <textarea class="form-control" placeholder="请输入基本情况"></textarea>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">评论</span>
+        <textarea class="form-control" placeholder="请输入评论"></textarea>
+    </div>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" data-loading-text="loading..." onclick="addRating();">提交</button>
+</div>

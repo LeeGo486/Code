@@ -1,0 +1,291 @@
+﻿@{
+    ViewBag.Title = "点星星赢旅费";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+@section script{
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/HZYTourismActivities.css?v3" />
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        var nCount = 1;//数据总数
+        var nPage = 1;//当前第几页
+        var startIndex = 0;//开始
+        var pageSize = 10;//结束
+        $(function () {
+            $.post("/Game/HZYTourismActivities/GetAppId?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                if (rst.result == 0) {
+                    appId = rst.msg;
+                    //获取ticket
+                    $.post("/Game/HZYTourismActivities/GetTicket?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                        if (rst.result == 0) {
+                            ticket = rst.msg;
+                            timestamp = parseInt(new Date().getTime() / 1000) + '';
+                            nonceStr = Math.random().toString(36).substr(2, 15);
+
+                            //获取signature
+                            $.post("/Game/HZYTourismActivities/GetSignature?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&ticket=" + ticket + "&nonceStr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + window.location.href.replace(/&/g, '%26'), function (rst) {
+                                if (rst.result == 0) {
+                                    signature = rst.msg;
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: appId, // 必填，公众号的唯一标识
+                                        timestamp: timestamp, // 必填，生成签名的时间戳
+                                        nonceStr: nonceStr, // 必填，生成签名的随机串
+                                        signature: signature,// 必填，签名，见附录1
+                                        jsApiList: [
+                                            'onMenuShareTimeline',
+                                            'onMenuShareAppMessage'
+                                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                } else {
+                                    //alert("获取signature失败")
+                                }
+                            });
+                        } else {
+                            //alert("获取GetTicket失败")
+                        }
+                    });
+                } else {
+                    //alert("获取appid失败")
+                }
+            });
+
+            $("#bg img").load(function () {
+                var bgWidth = $("#bg img").width();
+                $("#search_box").css("margin-left", (bgWidth - 201) / 2);
+
+                if (Url.get("typeall") == "1") {
+                    GetFreshImg();
+                } else {
+                    GetFineImg();
+                }
+
+                $(".Fine").click(function () { GetFineImg(); });
+                $(".Fresh").click(function () { GetFreshImg(); });
+            });
+        })
+
+        wx.ready(function () {
+            var url = "http://it.hwafashion.com/Game/HZYTourismActivities/index?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            var imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/HZYTourismActivities/1.png';
+            wx.onMenuShareTimeline({
+                title: '点星星赢旅费啦！', // 分享标题
+                link: url,// 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: '点星星赢旅费啦！', // 分享标题
+                desc: '世界那么大，终于可以出去玩了，竟然还有旅费拿……', // 分享描述
+                link: url, // 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+        });
+
+        wx.error(function (res) {
+            //alert(res);
+        });
+
+
+        //获取精美图片
+        function GetFineImg() {
+
+            var pdata = {
+                type: "1",
+                startIndex: "0",
+                pageSize: "8",
+                SerialNumber: 0
+            }
+            Msg.show("请稍等加载中...", 3);
+            $.post("/Game/HZYTourismActivities/GetImgPartial?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), pdata, function (data) {
+                $("#PicInfo").html(data); Msg.hide();
+            });
+
+            $.post("/Game/HZYTourismActivities/GetImgPartial?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), pdata, function (data) {
+                $("#PicInfo").html(data);
+            });
+
+            nPage = 1;
+            startIndex = 0;
+            pageSize = 10;
+            $('.SearchALLBtn').hide();
+        }
+
+        //获取新鲜
+        function GetFreshImg() {
+            Clear();
+            var pdata = {
+                type: "2",
+                startIndex: startIndex,
+                pageSize: pageSize,
+                SerialNumber: 0
+            }
+            $("#PicInfo").html("");
+            Msg.show('请稍等加载中...', 3);
+            $.post("/Game/HZYTourismActivities/GetImgPartial?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), pdata, function (data) {
+                Msg.hide();
+                $("#PicInfo").html(data);
+            });
+            if (parseInt(nCount % 10) > 0) {
+                $('.SearchALLBtn').show();
+            } else {
+                $('.SearchALLBtn').hide();
+            }
+            nPage = 1;//初始化加载完之后默认把页码变为1第一页
+        }
+
+        //加载更多
+        function GetMoreImg() {
+
+            startIndex += 10;
+            nPage += 1;
+            pageSize = pageSize;
+
+            var pdata = {
+                type: "2",
+                startIndex: startIndex,
+                pageSize: "10",
+                SerialNumber: 0
+            }
+            Msg.show('请稍等加载中...', 3);
+            $.post("/Game/HZYTourismActivities/GetImgPartial?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), pdata, function (data) {
+                Msg.hide();
+                $("#PicInfo").append(data);
+            });
+            if (nCount - pageSize * nPage < 0) {
+                $('.SearchALLBtn').hide();
+            } else {
+                $('.SearchALLBtn').show();
+            }
+        }
+        //查询
+        function Search() {
+            var pdata = {
+                type: "3",
+                startIndex: startIndex,
+                pageSize: pageSize,
+                SerialNumber: $("#s").val()
+            }
+
+            $("#PicInfo").html(""); Msg.show("请稍等加载中...", 3);
+            $.post("/Game/HZYTourismActivities/GetImgPartial?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), pdata, function (data) {
+                Msg.hide();
+                $("#PicInfo").html(data);
+            });
+            Clear();
+            $('.SearchALLBtn').hide();
+        }
+
+        function Clear() {
+            nCount = 1;//数据总数
+            nPage = 1;//当前第几页
+            startIndex = 0;//开始
+            pageSize = 10;//结束
+        }
+
+        function iwant() {
+            window.location.href = "/Game/HZYTourismActivities/iwant?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        }
+
+    </script>
+    <style type="text/css">
+        .bg1 .bg3 {
+        }
+
+        .bg2 {
+            background: #fffeba url(/Areas/Game/Resources/images/HZYTourismActivities/bg2.jpg) top center no-repeat;
+            background-size: 100%;
+            font-family: 'Microsoft YaHei',Arial;
+            margin: 0px;
+            background-attachment: scroll;
+        }
+
+        #search_box {
+            width: 201px;
+            height: 31px;
+            background: url(/Areas/Game/Resources/images/HZYTourismActivities/bg_search_box.png);
+        }
+
+        .swap_value {
+            float: left;
+            padding: 0;
+            margin: 6px 0 0 6px;
+            border: 0;
+            width: 159px;
+            background: none;
+            font-size: .8em;
+        }
+
+        .swap_image {
+            float: right;
+            margin: 3px 4px 0 0;
+        }
+    </style>
+}
+<body style="background-color: #fffeba">
+    <div>
+        <div id="bg">
+            <img class="bg1" src="~/Areas/Game/Resources/images/HZYTourismActivities/bg1.jpg" alt="head" style="width: 100%" />
+        </div>
+
+        <div class="bg2">
+
+            <div id="search_box">
+                <input type="number" id="s" class="swap_value" placeholder="请输入编号" />
+                <input type="image" onclick="Search()"
+                    class="swap_image" src="~/Areas/Game/Resources/images/HZYTourismActivities/btn_search_box.png"
+                    width="27" height="24" id="go" alt="Search" title="Search" />
+            </div>
+
+
+            <table style="margin-top: 15px">
+                <tr>
+                    <td>
+                        <img class="Fine" src="~/Areas/Game/Resources/images/HZYTourismActivities/jm.png" alt="head" style="width: 90%" /></td>
+                    <td>
+                        <img class="Fresh" src="~/Areas/Game/Resources/images/HZYTourismActivities/first.png" alt="head" style="width: 90%" /></td>
+                </tr>
+            </table>
+
+            <div id="PicInfo" style="margin: 5px">
+            </div>
+
+
+            <div class="SearchALLBtn" style="margin: 15px">
+                <img onclick="GetMoreImg()" src="~/Areas/Game/Resources/images/HZYTourismActivities/LoaddALL.png" alt="head" style="width: 45%" />
+            </div>
+
+            <div style="width: 100%; margin-top: 10px">
+                <table style="text-align: center; width: 100%">
+                    <tr>
+                        <td style="text-align: center; color: #4ab6ec">点击以上图片即可为它点亮星星</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <img onclick="iwant()" src="~/Areas/Game/Resources/images/HZYTourismActivities/iwant.png" alt="head" style="width: 50%" />
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+
+        <div>
+            <img class="bg3" src="~/Areas/Game/Resources/images/HZYTourismActivities/bg3.jpg" alt="head" style="width: 100%" />
+        </div>
+    </div>
+</body>

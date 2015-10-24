@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "人力资源";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <script src="~/Scripts/hightcharts/highcharts-more.js"></script>
+    <script src="~/Scripts/Rating/bootstrap-rating-input.min.js"></script>
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            $("#sgoinfo").click(function () {
+                scrollTo("#suserinfo");
+            });
+        });
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+
+        //加载培训履历
+        function loadTrainList(id) {
+            Msg.show("培训履历加载中...", 3);
+            $(".cusHideTrainListArea").html("");
+            $(".cusHideTrainListArea").hide();
+            $.post("/S3/HR/TrainList", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id));
+
+                $("li").click(function () {
+                    $("li").removeClass("dataListSld");
+                    $(this).addClass("dataListSld");
+                });
+            });
+        }
+
+        //显示培训履历详细资料
+        function showTrainInfo(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                return;
+            }
+            Msg.show("加载中...", 3);
+            $(".cusHideTrainArea").html("");
+            $(".cusHideTrainArea").hide();
+            $.post("/S3/Salary/Train", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+
+        //加载工作履历
+        function loadWorkList(id) {
+            Msg.show("工作履历加载中...", 3);
+            $(".cusHideWorkListArea").html("");
+            $(".cusHideWorkListArea").hide();
+            $.post("/S3/Salary/WorkList", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id));
+            });
+        }
+
+        //加载能力评价
+        function loadDoAbility(id) {
+            Msg.show("能力评价加载中...", 3);
+            $(".cusHideAbilityArea").html("");
+            $(".cusHideAbilityArea").hide();
+            $.post("/S3/HR/DoAbility", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id));
+            });
+        }
+
+        //单击图标，加载客户数据
+        function loadCustomers() {
+            Msg.show("客户加载中...", 3);
+            $.get("/S3/Customer/CustomerList", function (htmldata) {
+                Msg.hide();
+                showCustomers(htmldata);
+                loadMyCustomerNum();
+            });
+        }
+
+        //显示客户资料信息
+        function showCustomers(data) {
+            $("#scustomerarea").html(data);
+            scrollTo("#scustomerarea");
+            $("li").click(function () {
+                $("li").removeClass("dataListSld");
+                $(this).addClass("dataListSld");
+            });
+        }
+
+        //显示客户的详细资料
+        function showCustomerInfo(id) {
+            Msg.show("加载资料中...", 3);
+            $.post("/S3/Customer/CustomerDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+
+        //显示客户的消费记录
+        function showCustomerConsume(id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                return;
+            }
+            Msg.show("加载中...", 3);
+            $(".cusHideCsmArea").html("");
+            $(".cusHideCsmArea").hide();
+            $.post("/S3/Customer/CustomerConsume", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+
+        //显示客户订单信息
+        function showCustomerOrder(id) {
+            Msg.show("加载中...", 3);
+            $.post("/S3/Customer/CustomerOrderDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+
+        //提交能力评价
+        function submitAbility(data) {
+            Msg.show("提交成功", 0);
+        }
+
+        //加载考勤
+        function loadDoCheck(id) {
+            Msg.show("考勤加载中...", 3);
+            $(".cusHideCheckArea").html("");
+            $(".cusHideCheckArea").hide();
+            $.post("/S3/HR/DoCheck", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id));
+            });
+        }
+
+        //提交考勤
+        function submitCheck(data) {
+            Msg.show("提交成功", 0);
+        }
+    </script>
+}
+@Html.Action("AbilityList")
+@Html.Action("EntryDate")
+@Html.Action("TrainCount")
+@Html.Action("UserInfo")
+<div id="scustomerarea">
+</div>
+<div class="s3overlay">
+    <i id="stop" class="icon-arrow-up icon-2x"></i>
+    <hr />
+    <i id="sgoinfo" class="icon-user icon-2x"></i>
+    <hr />
+    <i id="ssearch" class="icon-search icon-2x"></i>
+</div>

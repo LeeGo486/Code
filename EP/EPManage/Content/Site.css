@@ -1,0 +1,106 @@
+﻿body {
+    background-image:url('../images/main_bodybg.png');
+    width: 1326px;
+    margin: 0px auto 0px auto;
+}
+.container {
+    width:100%;
+}
+.head {
+    width: 100%;
+    margin: 0 auto 0 auto;
+    background-color:#f8f6f9;
+    background-image:none;
+    height:auto;
+    min-height:109px;
+}
+
+    .head .left {
+        width: 220px;
+        float: left;
+    }
+
+    .head .center {
+        margin: 0 0 0 220px;
+        padding-top: 15px;
+        background-color:#f8f6f9;
+        min-height:94px;
+    }
+
+        .head .center .quickSearch .title {
+            font-family: 黑体;
+            padding: 9px 19px 9px 19px;
+            font-size: 22px;
+            background-color: rgb(167,130,60);
+            color: white;
+            font-weight: bold;
+            float: left;
+        }
+
+        .head .center .quickSearchBox {
+            margin-left: 250px;
+            padding-left: 5px;
+            padding-top: 5px;
+            width: 429px;
+            height: 41px;
+            min-height: 41px;
+            background-image: url(../Images/quickBoxBG.png);
+        }
+
+            .head .center .quickSearchBox input[type=text] {
+                border: none;
+                font-size: 22px;
+                width: 370px;
+            }
+
+        .head .center .nav {
+            margin-bottom: 0px;
+            margin-top: 2px;
+        }
+
+            .head .center .nav li {
+                width: 12%;
+                text-align: left;
+            }
+
+                .head .center .nav li.width50percent {
+                    width:50%;
+                }
+
+                .head .center .nav li.active {
+                    background:#f2f2f2;
+                }
+
+            .head .center .nav span {
+                font-family: 黑体;
+                font-size: 22px;
+                padding: 9px 13px 22px 13px;
+            }
+
+                .head .center .nav span.active {
+                    background-image: url(../Images/activeNavBg.png);
+                    background-position: bottom center;
+                    background-repeat: no-repeat;
+                }
+
+    .head .right {
+        width: 175px;
+        float: right;
+        background-image:url(../Images/AdminInfo.png);
+        padding-top:25px;
+        font-size:16px;
+        font-weight:900;
+    }
+
+.width1000Modal {
+    width: 1000px;
+    margin-left: -500px;
+}
+
+#addClothTemplate {
+    display: none;
+}
+
+table .nav {
+    margin-top:5px;
+}

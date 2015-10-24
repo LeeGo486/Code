@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/JOREALLanternFestival.css?v3" />
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#Bg img").load(function () {
+                var bgHeight = $("#Bg").height();
+                $("#btn").css("bottom", bgHeight * 0.12);
+                $("#logo").css("bottom", bgHeight * 0.01);
+            });
+            $("#btn").click(function () {
+                window.location.href = "/Game/JOREALLanternFestival/BeginGame?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            });
+            $("#Bg").fullpage({})
+        })
+
+    </script>
+}
+<div id="Bg">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/bg3.jpg" alt="head" style="width: 100%" />
+</div>
+<div id="btn">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/nobtn.png" alt="head" style="width:35%" />
+</div>
+<div id="logo">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/EP.png" alt="head" style="width: 100%" />
+</div>
+

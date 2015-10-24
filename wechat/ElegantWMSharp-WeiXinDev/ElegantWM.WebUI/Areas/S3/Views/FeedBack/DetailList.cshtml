@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.SHOP_CustomerFeedback>
+<div class="ht">
+    <i class="icon-list"></i>&nbsp;&nbsp;反馈列表
+</div>
+<ul class="list-group" style="color:#666;">
+    @foreach(ElegantWM.EntityModel.SHOP_CustomerFeedback fb in Model){
+    <li class="list-group-item">
+        <i class="icon-user"></i>&nbsp;&nbsp;@fb.CusName &nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-phone"></i> @fb.Mobile 
+        @if (fb.SKC!=null && fb.SKC.Length > 0)
+        {
+            <span class='badge pull-right hs'>@fb.SKC</span>
+        }
+        <div style="border-top:1px dashed #ccc;margin-top:12px;padding:12px 0;">
+        [@fb.CreateTime.ToString("yyyy-MM-dd HH:mm")]&nbsp;&nbsp;@fb.Remark 
+        </div>
+    </li>
+    }
+</ul>

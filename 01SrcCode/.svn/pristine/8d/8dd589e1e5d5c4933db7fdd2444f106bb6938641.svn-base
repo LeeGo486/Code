@@ -1,0 +1,21 @@
+1）URL参数传递，传入参数分别为depotid和USERID；
+
+2）收货店铺列表：
+a.列出同一机构下的店铺；select parentid,m_type from j_depot where depotid=@depotid
+select depotid from j_depot where parentid=@parentid and m_type=@m_type
+b.列出经营可以互调的经营品牌店铺
+SELECT depotid FROM dbo.j_branddepot WHERE drandid IN (SELECT drandid FROM j_branddepot WHERE depotid='N0004057')
+
+3）判断款式编号是否存在
+SELECT styleid FROM j_clothing WHERE clothingid='E09ADX030aH3' OR oldclothingid='E09ADX030aH3'
+若不存在，则弹出对话框提示“此款式不存在！
+
+4）判断是否有款式操作的权限
+a.SELECT * FROM sys_stylepower18ql WHERE userid='D001'
+若不存在，则弹出对话框提示“您没有操作此款式的权限！
+b.select brandid from j_style where styleid=@styleid
+输入第一个款号将品牌赋予到d_move主表字段loadplanid【品牌为J，赋予值为JL，其他的赋予值为EP】
+c.输入的第二个款号是否与主表品牌相同，若不同“单据货品品牌必须要相同”
+
+5）取价格表内相关数据
+t18tj_GetClothingPrice 3,'99102010','E12PB9127AM3','',3【其中99102010和E12PB9127AM3分别为发货地和款号，其他值为固定】；

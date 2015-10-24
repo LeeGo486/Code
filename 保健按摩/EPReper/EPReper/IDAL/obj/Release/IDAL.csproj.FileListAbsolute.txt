@@ -1,0 +1,16 @@
+C:\CodematicDemo\EPReper\IDAL\bin\Release\EPReper.IDAL.dll
+C:\CodematicDemo\EPReper\IDAL\bin\Release\EPReper.Model.dll
+C:\CodematicDemo\EPReper\IDAL\obj\Release\ResolveAssemblyReference.cache
+C:\CodematicDemo\EPReper\IDAL\obj\Release\EPReper.IDAL.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\IDAL\bin\Release\EPReper.IDAL.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\IDAL\bin\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\IDAL\obj\Release\ResolveAssemblyReference.cache
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\IDAL\obj\Release\EPReper.IDAL.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\IDAL\bin\Release\EPReper.IDAL.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\IDAL\bin\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\IDAL\obj\Release\ResolveAssemblyReference.cache
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\IDAL\obj\Release\EPReper.IDAL.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\IDAL\bin\Release\EPReper.IDAL.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\IDAL\bin\Release\EPReper.Model.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\IDAL\obj\Release\ResolveAssemblyReference.cache
+E:\C#代码\EPReper\EPReper-下拉\EPReper\IDAL\obj\Release\EPReper.IDAL.dll

@@ -1,0 +1,16 @@
+C:\CodematicDemo\EPReper\DALFactory\obj\Release\ResolveAssemblyReference.cache
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\DALFactory\bin\Release\EPReper.DALFactory.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\DALFactory\bin\Release\EPReper.IDAL.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\DALFactory\bin\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\DALFactory\obj\Release\ResolveAssemblyReference.cache
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\DALFactory\obj\Release\EPReper.DALFactory.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\DALFactory\bin\Release\EPReper.DALFactory.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\DALFactory\bin\Release\EPReper.IDAL.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\DALFactory\bin\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\DALFactory\obj\Release\ResolveAssemblyReference.cache
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\DALFactory\obj\Release\EPReper.DALFactory.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\DALFactory\bin\Release\EPReper.DALFactory.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\DALFactory\bin\Release\EPReper.IDAL.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\DALFactory\bin\Release\EPReper.Model.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\DALFactory\obj\Release\ResolveAssemblyReference.cache
+E:\C#代码\EPReper\EPReper-下拉\EPReper\DALFactory\obj\Release\EPReper.DALFactory.dll

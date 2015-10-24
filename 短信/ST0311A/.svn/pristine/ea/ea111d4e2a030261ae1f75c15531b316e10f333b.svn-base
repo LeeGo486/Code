@@ -1,0 +1,442 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.ServiceProcess;
+using System.Timers;
+using System.Text;
+using System.Threading;
+
+namespace LYMessageService
+{
+    public partial class Service1 : ServiceBase
+    {
+        //field
+        string strAcc = @"SELECT [Spid]
+                              ,[LoginName]
+                              ,[Password]
+                              ,[QueryCNT]
+                              ,[Aattribute]
+                              ,[SendStatus]
+                          FROM [dbo].[CFG_Account] WITH(NOLOCK)
+                          WHERE [SendStatus] = 1
+                          ORDER BY NEWID()";
+        private object sync = new object();
+
+        //当前服务的路径
+        public static readonly string strPath
+            = System.AppDomain.CurrentDomain.BaseDirectory;
+
+        Thread threadSend;
+        Thread threadGet;
+        Thread threadReport;
+
+        public Service1()
+        {
+            InitializeComponent();
+        }
+
+        protected override void OnStart(string[] args)
+        {
+            threadSend = new Thread(new ThreadStart(SendMsg));
+            threadGet = new Thread(new ThreadStart(GetMsg));
+            threadReport = new Thread(new ThreadStart(GetReport)); 
+
+            threadSend.Priority = ThreadPriority.Normal;//正常
+            threadGet.Priority = ThreadPriority.BelowNormal;//低
+            threadReport.Priority = ThreadPriority.BelowNormal;//低
+
+            threadSend.Start();
+            threadGet.Start();
+            threadReport.Start();
+        }
+
+        protected override void OnStop()
+        {
+            System.Threading.Thread.Sleep(2000);//这里要sleep
+            threadSend.Abort();
+            threadGet.Abort();
+            threadReport.Abort();
+        }
+
+        protected void SendMsg()
+        { 
+            
+            DbHandle dbH = new DbHandle();
+
+            while (true)
+            {
+                lock (sync)
+                {
+                    try  //增加错误捕获
+                    {
+
+                        //getAccounts
+                        DataTable dtAcc
+                            = dbH.GetData(this.strAcc);
+                        if (dtAcc == null)  //预判空跳过
+                        {
+                            continue;
+                        }
+                        int iCount = dtAcc.Rows.Count;
+
+                        if (iCount > 0)
+                        {
+                            for (int i = 0; i < iCount; i++)
+                            {
+
+                                string strSpid
+                                    = dtAcc.Rows[i]["Spid"].ToString();
+                                string strLgN
+                                    = dtAcc.Rows[i]["LoginName"].ToString();
+                                string strPwd
+                                    = dtAcc.Rows[i]["Password"].ToString();
+                                string strQNT
+                                    = dtAcc.Rows[i]["QueryCNT"].ToString();
+                                string strAatt
+                                    = dtAcc.Rows[i]["Aattribute"].ToString();
+
+                                string strDetailSQL
+                                    = @"SELECT TOP " + strQNT + @"
+                                     [ID]
+                                    ,[mobile]
+                                    ,[content]
+                                    ,[SubPort]
+                                    ,[SendTime]
+                                    ,[CreateTime]
+                                    ,[Aattribute]
+                                    FROM [dbo].[MobileSend_MT]
+                                    WHERE [Flag] = 0 AND SendTime <= GETDATE() AND [Spid] = '"
+                                    + strSpid + "' AND [Aattribute] = '" + strAatt + "'";
+
+                               
+                                DataTable dtDetail = dbH.GetData(strDetailSQL);
+
+                                int iLoop = dtDetail.Rows.Count;
+
+                                //发送短信
+
+                                if (iLoop > 0)
+                                {
+
+                                    for (int j = 0; j < iLoop; j++)
+                                    {
+                                        string strID
+                                            = dtDetail.Rows[j]["ID"].ToString();
+                                        string SendMobile
+                                            = dtDetail.Rows[j]["mobile"].ToString();
+                                        string SendContent
+                                            = dtDetail.Rows[j]["content"].ToString();
+                                        string SendTime
+                                            = dtDetail.Rows[j]["SendTime"].ToString();
+                                        string SubPort
+                                            = dtDetail.Rows[j]["SubPort"].ToString();
+                                        string CreateTime
+                                            = dtDetail.Rows[j]["CreateTime"].ToString();
+                                        string Aattribute
+                                            = dtDetail.Rows[j]["Aattribute"].ToString();
+
+                                        //调用接口
+
+                                        LYMessage.Sms LYSendMsg = new LYMessage.Sms();
+
+                                        string strRst
+                                            = LYSendMsg.CallSms(strSpid, strLgN, strPwd,
+                                            SendContent, SendMobile, SubPort, "", "", "");
+
+                                        using (System.IO.StreamWriter sw = new System.IO.StreamWriter(strPath + "SendMsgLog.txt", true))
+                                        {
+                                            sw.WriteLine(strRst);
+                                        };
+
+                                        string[] strArray = strRst.Split('&');
+
+                                        if (strArray.Length > 0)
+                                        {
+
+                                            string[] arrRst00 = strArray[0].Split('=');
+                                            string[] arrRst01 = strArray[1].Split('=');
+
+                                            List<string> field = new List<string>();
+                                            List<string> value = new List<string>();
+
+                                            if (arrRst00[1] == "1000")
+                                            {
+
+                                                string[] arrRst02
+                                                    = strArray[2].Split('=');
+
+                                                field.Add("Spid");
+                                                field.Add("Mobile");
+                                                field.Add("Content");
+                                                field.Add("SendTime");
+                                                field.Add("CreateTime");
+                                                field.Add("Result");
+                                                field.Add("Description");
+                                                field.Add("Smsid");
+                                                field.Add("Aattribute");
+
+                                                object[] obj = new object[]
+                                            {strSpid,SendMobile,SendContent,SendTime,CreateTime,
+                                                arrRst00[1],arrRst01[1],arrRst02[1],Aattribute};
+
+                                                string where = " ID = " + strID;
+
+                                                bool bRstIst = dbH.Delete("[dbo].[MobileSend_MT]", where);
+
+                                                if (bRstIst)
+                                                {
+                                                    dbH.Insert2("[dbo].[MobileSend_MT_Bak]", field, obj);
+                                                }
+                                                else
+                                                {
+                                                    field.Add("Flag");
+                                                    field.Add("Result");
+                                                    field.Add("Description");
+
+                                                    value.Add("2");
+                                                    value.Add(arrRst00[1]);
+                                                    value.Add(arrRst01[1]);
+
+                                                    where = "[ID] = " + strID;
+
+                                                    dbH.UpdateMany("[dbo].[MobileSend_MT]", field, value, where);
+
+                                                    field = null;
+                                                    value = null;
+                                                };
+
+                                            }
+                                            else
+                                            {
+                                                field.Add("Flag");
+                                                field.Add("Result");
+                                                field.Add("Description");
+
+                                                value.Add("2");
+                                                value.Add(arrRst00[1]);
+                                                value.Add(arrRst01[1]);
+
+                                                string where = "[ID] = " + strID;
+
+                                                dbH.UpdateMany("[dbo].[MobileSend_MT]", field, value, where);
+
+                                                field = null;
+                                                value = null;
+
+                                            };
+                                        };
+                                    };
+                                };
+
+                            };
+
+                            //线程休息200毫秒
+
+                            System.Threading.Thread.Sleep(200);
+                        };
+
+                    }
+                    catch (Exception ex)
+                    {
+                        using (System.IO.StreamWriter sw = new System.IO.StreamWriter(strPath + "SendMsgErrorLog.txt", true))
+                        {
+                            sw.WriteLine("日期："+DateTime.Now.ToString("G")+" 错误:"+ex.StackTrace.ToString());
+                        };
+                        throw ex;
+                    }
+
+                };
+
+            };
+
+        }
+
+        protected void GetReport()
+        {
+            List<string> field = new List<string>();
+            
+
+            field.Add("Spid");
+            field.Add("Smsid");
+            field.Add("mobile");
+            field.Add("Status");
+            field.Add("Statdesc");
+            field.Add("Arrive_time");
+            
+            while (true)
+            {
+                lock (sync)
+                {
+                    try //增加错误捕获
+                    {
+                        DbHandle dbH = new DbHandle();
+
+                        DataTable dtAcc
+                                = dbH.GetData(this.strAcc);
+                        if (dtAcc == null)  //预判空跳过
+                        {
+                            continue;
+                        }
+                        if (dtAcc.Rows.Count > 0)
+                        {
+                            for (int i = 0; i < dtAcc.Rows.Count; i++)
+                            {
+                                string Spid
+                                    = dtAcc.Rows[i]["Spid"].ToString();
+                                string LoginName
+                                    = dtAcc.Rows[i]["LoginName"].ToString();
+                                string Password
+                                    = dtAcc.Rows[i]["Password"].ToString();
+                                //string result = "",rstDetail = "";
+
+                                LYMessage.Sms LYMsg = new LYMessage.Sms();
+
+                                string strRst
+                                    = LYMsg.Report(Spid, LoginName, Password);
+                                int iMach = strRst.IndexOf('&');
+
+
+
+
+                                if (iMach > -1)
+                                {
+                                    string[] report = strRst.Split('&');
+                                    if (report[1].Length > 0)
+                                    {
+                                        int iHave = report[1].IndexOf('=');
+
+                                        if (iHave > -1)
+                                        {
+                                            string[] str = report[1].Split('=');
+                                            if (str[1].Length > 0)
+                                            {
+                                                string[] temp = str[1].Split(';');
+
+                                                if (temp.Length > 0)
+                                                {
+                                                    for (int j = 0; j < temp.Length; j++)
+                                                    {
+                                                        if (temp[j].Length > 0)
+                                                        {
+                                                            string msgid = temp[j].Split(',')[0];
+                                                            string mobile = temp[j].Split(',')[1];
+                                                            string status = temp[j].Split(',')[2];
+                                                            string statdesc = temp[j].Split(',')[3];
+                                                            string arrTime = temp[j].Split(',')[4];
+
+                                                            object[] obj
+                                                                   = new object[] { Spid, msgid, mobile, 
+                                                    status, statdesc, arrTime };
+
+                                                            dbH.Insert2("[dbo].[MobileSend_Report]", field, obj);
+                                                        };
+                                                    };
+                                                };
+                                            };
+
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    }
+                    catch (Exception ex)
+                    {
+                        using (System.IO.StreamWriter sw = new System.IO.StreamWriter(strPath + "SendMsgErrorLog.txt", true))
+                        {
+                            sw.WriteLine("日期：" + DateTime.Now.ToString("G") + " 错误:" + ex.StackTrace.ToString());
+                        };
+                        //throw;
+                    }
+
+                };
+                //线程需要休息20秒
+                System.Threading.Thread.Sleep(20000);
+
+
+            };
+        }
+
+        protected void GetMsg()
+        {
+            LYMessage.Sms LYMsg = new LYMessage.Sms();
+            LYMessage.Reply[] replys;
+            DbHandle dbH = new DbHandle();
+            List<string> field = new List<string>();
+            
+
+            field.Add("Spid");
+            field.Add("Confirm_time");
+            field.Add("Smsid");
+            field.Add("mobile");
+            field.Add("Content");
+            field.Add("Reply_time");
+
+            while (true) 
+            {
+                lock (sync)
+                {
+                    try //增加错误捕获
+                    {
+                        DataTable dtAcc
+                            = dbH.GetData(this.strAcc);
+
+                        if (dtAcc == null)  //预判空跳过
+                        {
+                            continue;
+                        }
+                        int iCount = dtAcc.Rows.Count;
+
+                        for (int i = 0; i < iCount; i++)
+                        {
+                            string Spid
+                                = dtAcc.Rows[i]["Spid"].ToString();
+                            string Password
+                                = dtAcc.Rows[i]["Password"].ToString();
+                            string LoginName
+                                = dtAcc.Rows[i]["LoginName"].ToString();
+                            string confirm_time, id;
+
+                            string result
+                                = LYMsg.Reply(Spid, LoginName, Password, "",
+                                out confirm_time, out id, out replys);
+
+                            if (result == "1000")
+                            {
+                                foreach (LYMessage.Reply reply in replys)
+                                {
+                                    string mdn = reply.mdn.ToString();
+                                    string content = reply.content.ToString();
+                                    string reply_time = reply.reply_time.ToString();
+
+                                    object[] obj = new object[] { Spid, confirm_time, id, mdn, content, reply_time };
+
+
+                                    dbH.Insert2("[dbo].[MobileSend_MO]", field, obj);
+
+
+                                };
+                            };
+                        };
+
+                    }
+                    catch (Exception ex)
+                    {
+                        using (System.IO.StreamWriter sw = new System.IO.StreamWriter(strPath + "SendMsgErrorLog.txt", true))
+                        {
+                            sw.WriteLine("日期：" + DateTime.Now.ToString("G") + " 错误:" + ex.StackTrace.ToString());
+                        };
+                        //throw;
+                    }
+                    
+                };
+                //线程休息
+                System.Threading.Thread.Sleep(20000);
+            };
+
+            
+        }
+    }
+}

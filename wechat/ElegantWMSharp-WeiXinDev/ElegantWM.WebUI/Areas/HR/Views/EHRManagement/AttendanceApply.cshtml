@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "补签考勤申请";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v6" rel="stylesheet" />
+    <script type="text/javascript">
+        var data1 = [];
+        $(function () {
+
+            //$("#dav").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dpay").css("background-color", "#2c3e50").css("border-bottom", "");
+
+            var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+                hydp.hide();
+            }).data('datepicker');
+
+            $.post("/HR/EHRManagement/ApplyInfo", function (rst) {
+                if (rst.result == 0) {
+                    data1 = eval(rst.msg);
+                } else {
+                    Msg.show(rst.msg, rst.result);
+                }
+            });
+        });
+
+        //变更审批人
+        function changeAP(approve, name) {
+            var $st1 = $("#" + approve);
+            var $st1add = $("#" + name);
+
+            var text1 = $st1.find("option:selected").val();   //获取Select选中项的Text一级审批人
+            $st1add.empty();
+
+            if (text1 == "0") {
+                return;
+            } else if (text1 == "1") {
+                for (var i = 0; i < data1.length; i++) {
+                    if (data1[i].type == text1) {
+                        $st1add.append("<option value='" + data1[i].sjC_OID + "'>" + data1[i].sjC_NAME + "</option>");
+                    }
+                }
+            } else if (text1 == "2") {
+                for (var i = 0; i < data1.length; i++) {
+                    if (data1[i].type == text1) {
+                        $st1add.append("<option value='" + data1[i].sjC_OID + "'>" + data1[i].sjC_NAME + "</option>");
+                    }
+                }
+            }
+        }
+        //确定提交
+        function btnSubmit() {
+
+            var addDate = $("#addDate").val();//申请时间
+            var addDate1 = $("#addDate1").val();//班次1$("#VipSex").val(),
+            var addDate2 = $("#addDate2").val();//班次2$("#VipSex").val(),
+            if (addDate1 == "") { addDate1 = ""; } else { addDate1 = addDate + " " + addDate1 + ":00"; }
+            if (addDate2 == "") { addDate2 = ""; } else { addDate2 = addDate + " " + addDate2 + ":00"; }
+            var addcause = $("#addcause").val();//申请原因
+            var addchangeAP1 = $("#addapprove1").val();//一级审批
+            var addchangeAP2 = $("#addapprove2").val();//二级审批
+            if (addchangeAP1 == null) { addchangeAP1 = ""; }
+            if (addchangeAP2 == null) { addchangeAP2 = ""; }
+            var addremarks = $("#addremarks").val();//备注
+
+
+            if (addDate == "") { Msg.show("请填写补签考勤时间", 1); return; }
+            if (addDate2 == "" && addDate1 == "") { Msg.show("请填写班段", 1); return; }
+            if (addcause == "") { Msg.show("请填写补签考勤原因!", 1); return; }
+            if (addchangeAP2 == "" && addchangeAP1 == "") { Msg.show("请选择审批人!", 1); return; }
+            var dataAV = {
+                adddate: addDate,
+                adddate1: addDate1,
+                adddate2: addDate2,
+                addcause: addcause,
+                addchangeap1: addchangeAP1,
+                addchangeap2: addchangeAP2,
+                addremarks: addremarks,
+            };
+            Msg.show("提交中请稍后...", 3);
+            $.post("/HR/EHRManagement/AttendanceSubmit", dataAV, function (rst) {
+                Msg.hide();
+                if (rst.result == 0) {
+                    Msg.show(rst.msg, rst.result);
+                    window.location.href = '/HR/EHRManagement/AvInfo'
+                } else {
+                    Msg.show(rst.msg, rst.result);
+                }
+                $("#btnSubmit").button("reset");
+            });
+        }
+
+    </script>
+}
+<div class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;漏打卡申请</span></h4>
+
+    <div class="input-group date form_date">
+        <span class="input-group-addon">补签日期</span>
+        <input class="form-control hzyDp" id="addDate" name="addDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间</span>
+        <input type="time" id="addDate1" name="addDate1" class="form-control" placeholder="类似08:00:00">
+        <input type="time" id="addDate2" name="addDate2" class="form-control" placeholder="类似17:00:00">
+    </div>
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">审批人(1)</span>
+        <select id="changeAP1" class="form-control" onchange="changeAP('changeAP1','addapprove1')">
+            <option value="0">- - - -</option>
+            <option value="1">一级审批人</option>
+            <option value="2">二级审批人</option>
+        </select>
+        <select id="addapprove1" class="form-control">
+        </select>
+    </div>
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;不需要2个审批人不用填写</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">审批人(2)</span>
+        <select id="changeAP2" class="form-control" onchange="changeAP('changeAP2','addapprove2')">
+            <option value="0">- - - -</option>
+            <option value="1">一级审批人</option>
+            <option value="2">二级审批人</option>
+        </select>
+        <select id="addapprove2" class="form-control">
+        </select>
+    </div>
+
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">&nbsp;补签原因</span>
+        <input type="text" id="addcause" name="addcause" class="form-control" placeholder="补签原因">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+        <input type="text" id="addremarks" name="addremarks" class="form-control" placeholder="备注">
+    </div>
+    <input id="btnSubmit" type="button" value="申请确定" class="btn btn-success" style="width: 100%; margin-top: 30px;" onclick="btnSubmit()" />
+</div>

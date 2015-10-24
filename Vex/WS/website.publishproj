@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+***********************************************************************************************
+website.publishproj
+
+警告: 请勿修改此文件，它将用于 Web 发布过程。
+
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+***********************************************************************************************
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.30319</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7ca1dced-60fe-43bc-9887-0dea5ff39001}</ProjectGuid>
+    <SourceWebPhysicalPath>$(MSBuildThisFileDirectory)</SourceWebPhysicalPath>
+    <SourceWebVirtualPath>/WS</SourceWebVirtualPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SourceWebProject>http://localhost:8083</SourceWebProject>
+    <SourceWebMetabasePath>/LM/W3SVC/4/ROOT</SourceWebMetabasePath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- for VS2010 we need to use 10.5 but for VS2012+ we should use VisualStudioVersion -->
+    <WebPublishTargetsVersion Condition=" '$(WebPublishTargetsVersion)' =='' and '$(VisualStudioVersion)' == 10.0 ">10.5</WebPublishTargetsVersion>
+    <WebPublishTargetsVersion Condition=" '$(WebPublishTargetsVersion)'=='' ">$(VisualStudioVersion)</WebPublishTargetsVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(WebPublishTargetsVersion)</VSToolsPath>
+    <_WebPublishTargetsPath Condition=" '$(_WebPublishTargetsPath)'=='' ">$(VSToolsPath)</_WebPublishTargetsPath>
+    <AssemblyFileVersion Condition="'$(AssemblyFileVersion)' == ''">1.0.0.0</AssemblyFileVersion>
+    <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">1.0.0.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AssemblyAttributes Include="AssemblyFileVersion">
+      <Value>$(AssemblyFileVersion)</Value>
+    </AssemblyAttributes>
+    <AssemblyAttributes Include="AssemblyVersion">
+      <Value>$(AssemblyVersion)</Value>
+    </AssemblyAttributes>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{C12F1233-F7C6-45F7-8F22-8BAC49FCBE62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.HZY_Joreal_CMT\HZY.COM.WS.HZY_Joreal_CMT.csproj">
+      <Project>{C8E00601-1D7A-43F1-9700-AAE800F168FC}</Project>
+      <Name>HZY.COM.WS.HZY_Joreal_CMT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.MDM2\HZY.COM.WS.MDM2.csproj">
+      <Project>{3181ACAA-FFB4-4AD5-8F72-4198511EECD9}</Project>
+      <Name>HZY.COM.WS.MDM2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.PLMAS\HZY.COM.WS.PLMAS.csproj">
+      <Project>{0F8D9FA3-683D-48C1-9F7A-367DD2E0F7EB}</Project>
+      <Name>HZY.COM.WS.PLMAS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.ST1005A\HZY.COM.WS.ST1005A.csproj">
+      <Project>{34406428-5A4B-417B-BFF1-60A7B5EA1493}</Project>
+      <Name>HZY.COM.WS.ST1005A</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.StoreBusinessSystem\HZY.COM.WS.StoreBusinessSystem.csproj">
+      <Project>{633BD542-4C6D-4E2C-A353-D87AD00D4DA9}</Project>
+      <Name>HZY.COM.WS.StoreBusinessSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.WSRR\HZY.COM.WS.WSRR.csproj">
+      <Project>{E7B12068-142A-43B2-8DCE-1F1EB5A82A00}</Project>
+      <Name>HZY.COM.WS.WSRR</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(_WebPublishTargetsPath)\Web\Microsoft.WebSite.Publishing.targets" />
+</Project>

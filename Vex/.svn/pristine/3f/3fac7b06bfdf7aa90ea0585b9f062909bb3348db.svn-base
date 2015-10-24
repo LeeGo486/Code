@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>薪资导入</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../JS/3S/EhrShopPayImport.js?Date=20131223" type="text/javascript"></script>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>选择文件</td>
+                <td>
+                    <input id="txtRoute" name="txtRoute" style="width: 120px" disabled="disabled">
+                    <button id="txtBrowseUp">浏览</button>
+                    &nbsp;&nbsp;&nbsp
+                    <button id="txtUp" onclick="Upload()">下载上传样式</button></td>
+                <td>&nbsp;&nbsp;&nbsp
+                    <button id="txtDelete" onclick="onDelete()">删除数据</button></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div iconcls="icon-cancel" title="删除" id="divEdit"  class="easyui-window"  data-options="closed:true" style="width: 400px; height: 160px; margin-right: 0px;">
+        <form id="form_Delete" title="删除" name="form_Delete" method="post">
+            <table style="font-size: 9pt;" cellpadding="5px;">
+                <tr>
+                    <td>年份：
+                    </td>
+                    <td>
+                        <input id="txtyear" name="txtyear" style="width: 100px">
+                    </td>
+                    <td>月份：
+                    </td>
+                    <td>
+                        <input id="txtmonth" name="txtmonth" style="width: 100px">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="4" align="center">
+                        <a href="#" id="A2" iconcls="icon-ok" data-options="plain:true" onclick="submit()" class="easyui-linkbutton">保存并提交</a>
+                        <a href="#" id="A1" iconcls="icon-undo" onclick="cancel()" data-options="plain:true"
+                            class="easyui-linkbutton">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

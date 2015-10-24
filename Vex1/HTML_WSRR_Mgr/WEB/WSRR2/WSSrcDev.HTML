@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>WS资源管理—开发库</title>
+
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../JS/WSRR2/WSSrcDev.js?Date=2013120d3" type="text/javascript"></script>
+    <script src="http://192.168.0.114:8001/MenuClick.js?data=24" language="JavaScript"></script>
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+
+    <div iconcls="icon-save" title="编辑WS参数信息" id="divEditWSParam" style="width: 600px;"  class="edit">
+        <form id="form_ParamEdit" name="form_ParamEdit" method="post">
+            <table>
+                <tr>
+                    <th>参数编号
+                    </th>
+                    <td>
+                        <input id="txtParamIDShow" name="txtParamIDShow" class="easyui-textbox" value="" disabled="true" style="width: 300px" />
+                        <input id="txtUpdateTime" name="txtUpdateTime" value="" type="hidden" />
+                        <input id="txtParamID" name="txtParamID" value="" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>参数序号
+                    </th>
+                    <td>
+                        <input id="txtParamIndex" name="txtParamIndex"  style="width: 50px" class="easyui-numberbox" required="required" data-options="min:1,max:99" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>说明
+                    </th>
+                    <td>
+                        <input id="txtParamContent" name="txtParamContent" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>参数名
+                    </th>
+                    <td>
+                        <input id="txtParamName" name="txtParamName" style="width: 150px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>参数类型
+                    </th>
+                    <td>
+                        <input id="txtParamType" name="txtParamType" style="width: 250px; height: 33px;" data-options="valueField:'id',textField:'text'">
+                    </td>
+                </tr>
+                <tr>
+                    <th>必须值
+                    </th>
+                    <td>
+                        <input id="txtParamMustFlag" name="txtParamMustFlag" style="width: 150px; height: 33px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>默认值
+                    </th>
+                    <td>
+                        <input id="txtDefaultValue" name="txtDefaultValue" class="easyui-textbox" style="width: 350px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Param_Submit" iconcls="icon-save" onclick="Edit_ParamSubmit()" class="easyui-linkbutton" data-options="plain:true">提交</a>
+                        <a href="#" id="A1" iconcls="icon-undo" onclick="WindowClose('#divEditWSParam')" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a></td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div title="编辑WS信息" id="divEditWSRR" style="width: 800px;" class="edit">
+        <form id="form_Edit" name="form_Edit" method="post">
+            <table>
+                <tr>
+                    <th>WS编号
+                    </th>
+                    <td>
+                        <input id="txtWSIDShow" name="txtWSIDShow" value="" disabled="true" style="width: 300px" class="easyui-textbox" />
+                        <input id="txtWSSrcIDCopy" name="txtWSSrcIDCopy" value="" type="hidden" />
+                        <input id="txtWSSrcID" name="txtWSSrcID" value="" type="hidden" />
+                        <input id="txtWSID" name="txtWSID" value="" type="hidden" />
+                        <input id="txtUpdateTime" name="txtUpdateTime" value="" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>服务路径
+                    </th>
+                    <td>
+                        <input id="txtServicePath" name="txtServicePath" style="width: 200px" class="easyui-validatebox"
+                            data-options="required:true,validType:'WSPath[200]'" missingmessage="必须英文，比如/系统大类/模块/产品名称/公司名称，比如/ERP/PO/M3/EP;" value="/ERP/PO/M3/EP">
+                    </td>
+                </tr>
+                <tr>
+                    <th>WS名称
+                    </th>
+                    <td>
+                        <input id="txtWSName" name="txtWSName" value="WSName" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>类型
+                    </th>
+                    <td>
+                        <input id="txtWSType" name="txtWSType" style="width: 250px; height: 33px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>说明
+                    </th>
+                    <td>
+                        <input id="txtWSHelp" name="txtWSHelp" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <!--                <tr>
+                    <td>正式库服务器：
+                    </td>
+                    <td>
+                        <input id="txtWSHostProd" name="txtWSHostProd" style="width: 350px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>-->
+                <tr>
+                    <th>服务器
+                    </th>
+                    <td>
+                        <input id="txtWSHost" name="txtWSHost" style="width: 350px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>访问地址
+                    </th>
+                    <td>
+                        <input id="txtWSURL" name="txtWSURL" style="width: 350px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>状态
+                    </th>
+                    <td>
+                        <input id="txtWSState" name="txtWSState" style="width: 250px; height: 33px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>版本
+                    </th>
+                    <td>
+                        <input id="txtWSVision" name="txtWSVision" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>函数或方法
+                    </th>
+                    <td style="width: 10px">
+                        <input id="txtWSMethod" name="txtWSMethod" style="width: 200px" class="easyui-validatebox" required="required" missingmessage="如果为WSDL填入具体的方法名，如果是Restful填入get或者post">
+                    </td>
+                </tr>
+                <tr>
+                    <th>是否需要登录
+                    </th>
+                    <td>
+                        <input id="txtNeedLogin" name="txtNeedLogin" style="width: 250px; height: 33px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>编码
+                    </th>
+                    <td>
+                        <input id="txtWSUnicode" name="txtWSUnicode" style="width: 250px; height: 33px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Vex接口
+                    </th>
+                    <td>
+                        <input id="txtIsVex" name="txtIsVex" style="width: 250px; height: 33px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>启动服务
+                    </th>
+                    <td>
+                        <div>
+                            <input type="checkbox" id="chkStartService" name="chkStartService" checked="true">
+                            接口运行时，自动启动服务
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>WSRR调用案例
+                    </th>
+                    <td>
+                        <textarea id="txtCallSample" name="txtCallSample" style="height: 300px; width: 430px"></textarea>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>是否Demo
+                    </th>
+                    <td>
+                        <input id="txtIsDemo" name="txtIsDemo" style="width: 250px; height: 33px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-save" onclick="Edit_Submit()" class="easyui-linkbutton" data-options="plain:true">提交</a>
+                        <a href="#" id="A2" iconcls="icon-undo" onclick="WindowClose('#divEditWSRR')" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div region="east" id="east" style="width: 400px;" style="background: #eee; overflow-y: hidden;">
+        <div id="mainTabs" class="easyui-tabs" fit="true" border="false" style="width: 600px;">
+            <div title="参数信息">
+                <table id="divParamInfo" style="width: 100%; height: 98%">
+                </table>
+            </div>
+            <div title="访问日志">
+                <table id="divViewList" style="width: 100%; height: 98%"></table>
+            </div>
+        </div>
+    </div>
+
+    <div region="center" split="true" style="width: 100%;" id="mainPanle">
+        <table id="tab_list" style="width: 100%; height: 98%">
+        </table>
+    </div>
+</body>
+</html>

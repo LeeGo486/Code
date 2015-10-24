@@ -1,0 +1,201 @@
+﻿/*- Page Structure */
+/*- edit by gj 2006-12-23 */
+
+html{
+	/* overflow-x: auto; fixes MSIE scrollbar bug DO NOT REMOVE, has no effect in Mozilla, or Opera */
+}
+
+body
+{ font-size:12px; scrollbar-arrow-color:#666; scrollbar-base-color:#ffffff; scrollbar-darkshadow-color:#ffffff; scrollbar-face-color:#ECF3F6; 
+    background-color:#ECF3F6;	
+     margin:0 0 0 0;
+}
+
+img {
+	border: none;   /* img has no border */
+}
+
+hr {
+	display: none;
+	clear: both;
+}
+
+a:link,
+a:visited,
+a:active {
+	color: #570;
+	text-decoration: none;
+}
+a:hover {
+	color: #333;
+	text-decoration: underline;
+}
+
+td
+{
+    font-family: Times New Roman, Serif;
+	font-size: 12px;
+	padding:2px 2px 2px 2px;	
+}
+/*----------------- Header ----------------------*/
+#header {
+	position: relative;
+	clear: both;
+	padding: 0;
+	margin: 0;
+	height: 60px;  /*----You can defined what you want to-----*/		
+    background: url("icon/header_bg.jpg") repeat-x;
+}
+#header .company
+{
+    position:relative;
+    color:#fff;
+    font-size:16px;
+    font-family:宋体;
+    padding:5px;
+}
+#header .title
+{
+     width:100%;    
+     color:#369;    
+     font-family:宋体;
+     font-size:14px;      
+     padding:5px;
+}
+#header .sitelink   /*-------The menu of header--------*/
+{
+    float: left;
+	padding: 0;
+	margin: 0px;
+	display: block;
+	background: #FFF6A3 url("icon/header_bg.jpg") bottom repeat-x;
+	border-bottom: 1px #ccb954 solid;
+	list-style-type: none;
+	width: 100%;
+	min-width: 960px;
+}
+
+#header .menu li {  
+	float: left;
+	padding: 0 1px;
+}
+
+#header .menu a,
+#header .menu a:visited,
+#header .menu a:active {
+	display: block;
+	padding: 2px 10px;
+	text-decoration: none;
+	color: #6F6F6F;
+}
+#header .menu a:hover {
+	text-decoration: underline;
+}
+
+/*-------The Main Body,--------*/
+
+#page 
+{
+    margin: 0 auto;
+	padding: 0 0  10px;
+	position: relative;
+	/* The entire template's width is set in this class. */
+	width: 960px;
+}
+
+    /*-------The left of the Main Body,--------*/
+    #left
+    {
+    width: 200px;
+	_width: 200px; /* IE Hack */
+	float: left;
+	padding: 5px 0 5px;
+	margin: 0 10px 0 0;
+	_margin: 20px 20px 0 0; /* IE Hack */
+	display: inline;
+    }
+    
+    #middle
+    {        
+	padding: 5px 0  10px;
+	width: 390px;
+	margin: 0 10px 0 10px;
+	position: relative;
+	
+	float: left;
+	/*The following are IE Fixes */
+	_padding: 30px 0 10px;
+	_margin: 0;
+	z-index: 100;
+     }
+        
+    #right
+    {
+    padding: 10px 20px 10px 5px;
+    margin:5px 0 0 10px;
+	width: 300px;
+	position: relative;
+	float:right;
+	/* The following are IE Fixes */
+	_padding: 30px 20px 10px 0;
+	_margin: 0;
+	display:inline;
+    }
+    
+#tabelMiddle
+{
+    padding:5px 0 0 0;
+    vertical-align:middle;
+    width:100%;
+    position:relative;
+}    
+
+#separator
+{
+    display:block;    
+    border-bottom:solid 1px #333;
+    background-color:#FFE;
+     height:25px;
+      width:99%; 
+}
+#separator .title
+{
+     color:#333;
+     font-family:宋体;
+     font-size:14px;      
+      padding:10px 0px 0px 10px;
+}
+
+#mainbody
+{
+    padding:10px;
+}
+/*---------General Controls definetion    ---------*/
+.tbinput
+{
+    border:solid 1px #eee;        
+}
+
+.btSubmit
+{
+    border:solid 1px #6699ff;
+    background-color:InfoBackground;
+    color:InfoText;
+    width:120px;
+}
+.tip
+{
+    color:Navy;
+    padding:5 5 5 5;
+}
+
+.title
+{
+ vertical-align:middle;
+	height:25px;
+	width:98%;
+	margin:1px 0px 2px 8px;
+	border-bottom:solid 1px #000;
+	font-family:黑体;
+	font-size:16px;
+}

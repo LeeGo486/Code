@@ -1,0 +1,42 @@
+﻿
+
+table
+{
+	border-right: #cccccc 1px solid; 
+	border-top: #cccccc 1px solid; 
+	border-left: #cccccc 1px solid; 
+	border-bottom: #cccccc 1px solid;
+	font-size  : small; 
+	vertical-align: middle; 
+	font-family: 宋体; 
+	border-collapse: collapse; 
+	text-align: left; 
+	font-variant: normal;
+
+}
+
+caption 
+{
+	vertical-align: text-top; 
+	text-align: center;
+	height:20px;
+	margin:1px 0px 2px 8px;
+	padding-top:20px;
+	border-bottom:solid 1px #000;
+	font-family:黑体;
+	font-size:16px;
+}
+
+td
+{
+    font-family: Times New Roman, Serif;
+	font-size: 12px;
+	padding:1px 1px 1px 1px;	
+	vertical-align  : middle;
+	text-align: left;
+	border-right: #cccccc 1px solid; 
+	border-top: #cccccc 1px solid; 
+	border-left: #cccccc 1px solid; 
+	border-bottom: #cccccc 1px solid;
+
+}

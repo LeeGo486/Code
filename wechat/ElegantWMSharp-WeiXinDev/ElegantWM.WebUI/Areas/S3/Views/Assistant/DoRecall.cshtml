@@ -1,0 +1,73 @@
+﻿<div class="ht" id="sdorecall">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;申请召回
+    <span onclick="$('#sdorecallarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <div>款号：E12IDY006aG</div>
+    <br />
+    <input type="search" class="form-control" id="searchRecall" placeholder="指定总仓">
+    <br />
+    <table class="dataTable recall">
+        <tr>
+            <td style="text-align:center;width:30%;">尺码</td>
+            <td style="text-align:center;width:30%;">库存数量</td>
+            <td style="text-align:center">召回数量</td>
+        </tr>
+        <tr>
+            <td style="text-align:center">2码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">3码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">4码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">5码</td>
+            <td style="text-align:center">2件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center">6码</td>
+            <td style="text-align:center">1件</td>
+            <td style="text-align:center">
+                <div class="input-group " style="width:100%;">
+                    <input type="text" class="form-control" value="" >
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="doRecall();">申请召回确认</button>
+</div>

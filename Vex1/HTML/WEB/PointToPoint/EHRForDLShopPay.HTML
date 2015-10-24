@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>贝爱店铺薪资报表</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default_PointToPoint/easyui.css?v=3" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/export.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../JS/PointToPoint/EHRForDLShopPay.js?Date=20131223" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/global.js?v=1.4"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true" style="width: 100%; height: 530px">
+    <!--<body class="easyui-layout" data-options="fit:true">-->
+    <div region="north" style="height: 35px; font-size: 14px; overflow: hidden" data-options="split:false,border:false">
+        <div class="com_toolbar">
+            <select id="txtyear" name="txtyear" class="com_select">
+            </select>
+            年
+            <select id="txtmonth" name="txtmonth" class="com_select" onchange="btnSearch()">
+            </select>
+            月
+            <!--<button class="com_btn" onclick="btnSearch();">加载报表</button>-->
+            <a onclick="btnaLL();" style="margin-top: 20px; margin-left: 20px">
+                <img src="../../jquery-easyui-1.3.4/themes/default_PointToPoint/images/所有列.png" align="absmiddle" />
+                所有列</a>
+            <a onclick="btnPart();" style="margin-top: 20px; margin-left: 20px">
+                <img src="../../jquery-easyui-1.3.4/themes/default_PointToPoint/images/隐藏列.png" align="absmiddle" />
+                隐藏列</a>
+            <!--<button class="com_btn" onclick="btnaLL();">所有列</button>-->
+            <!--  <button class="com_btn" onclick="btnPart();">隐藏列</button>-->
+        </div>
+    </div>
+
+    <div data-options="region:'center',border:false">
+        <table id="list" style="width: 100%; height: 98%">
+        </table>
+    </div>
+    <div style="position: absolute; top: 5px; right: 20px; z-index: 9999; font-size: 14px">
+        <a onclick="firstpage();" style="margin-top: 20px; margin-left: 20px">
+            <img src="../../jquery-easyui-1.3.4/themes/default_PointToPoint/images/首页.png" align="absmiddle" />
+        </a>
+        <a onclick="lastpage();" style="margin-top: 20px; margin-left: 20px">
+            <img src="../../jquery-easyui-1.3.4/themes/default_PointToPoint/images/上一页.png" align="absmiddle" />
+        </a>
+        <a onclick="nextpage();" style="margin-top: 20px; margin-left: 20px">
+            <img src="../../jquery-easyui-1.3.4/themes/default_PointToPoint/images/下一页.png" align="absmiddle" />
+        </a>
+
+        <!--        <button class="com_btn" onclick="firstpage();">首页</button>
+        <button class="com_btn" onclick="lastpage();">上一页</button>
+        <button class="com_btn" onclick="nextpage();">下一页</button>-->
+        <!--<input id="txtpage" name="txtpage"; hidden ="hidden">-->
+        <!--当前第-->
+        <input id="txtpage" name="txtpage" hidden="hidden" style="width: 20px">
+        <!--      页
+        一共-->
+        <input id="txttotal" name="txttotal" hidden="hidden" style="width: 20px">
+        <!--页-->
+    </div>
+</body>
+</html>

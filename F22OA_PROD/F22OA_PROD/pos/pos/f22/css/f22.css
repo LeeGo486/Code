@@ -1,0 +1,159 @@
+body { margin:0px;}
+form{margin:0;padding:0;}
+body,input,textarea,div,p,h1,h2,h3,h4,h5,span,form,table,td,ul,li{ font-size:12px; font-family:Arial, Helvetica, sans-serif}
+.btn{
+	background-color: #FFF;
+	background-image:url(../img/button_blue.gif);
+	background-repeat:no-repeat;
+	border: #FFF 0px solid;
+	color: #1652a3;
+	font-size:12px;
+	height: 21px;
+	width: 74px;
+	cursor: hand;	
+	text-align:center;
+}
+.btn_sm{
+	background-image:url(../img/btn_sm.gif);
+	width: 43px;
+}
+.btn_red{
+	background-image:url(../img/button_red.gif);
+	color: #cc0077;
+}
+.btn_yellow{
+	background-image:url(../img/button_yellow.gif);
+	color: #cc7700;
+}
+.box{border:solid 1px #99bbe8; font-size:12px;}
+
+/* --------------- end ----------------*/
+
+.f12 {font-size: 12px;}
+.bkf12 {
+	border: 1px solid #99bbe8;font-size: 12px;
+	background:#eff3fa;
+}
+.intra {font-size: 12px;color: #999999;}
+.intra13 {font-size: 13px;color: #333;}
+.tcontent{font-size: 12px;border: 1px solid #CECECE;
+	background-color:#f2fcfb;
+}
+.notice{
+    color:#FF0000;
+}
+.au{
+	font-size: 12px;
+    color:#0000FF;
+}
+.bar {
+	font-size: 12px;
+	background-image: url(../img/smbg_b.gif);
+	line-height:25px;
+	border-bottom: 1px solid #CECECE;
+	text-align:left;
+	padding-left:10px;
+}
+.label {
+	font-size: 12px;
+	background-color: #edf8f7;
+	border: none;
+}
+.Fbox{background:#ecf3f6;}
+.Fbox td{background:#FFF;}
+.label1 {
+	font-size: 12px;
+	background-color: #edf8f7;
+	border: none;
+}
+
+.bline {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #333333;
+}
+.bigbar {
+	
+}
+
+
+.tline {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+}
+.ts {
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF0000;
+}
+.box1{
+	BACKGROUND-COLOR: #ECE9D8;
+	/*BORDER:1px solid;*/
+	FONT-SIZE: 9pt
+}
+.broad {
+	overflow:auto;
+	width:100%;
+	height:70%;
+}
+.broadDbfh {
+	overflow:auto;
+	width:100%;
+	height:66%;
+}
+.broadDbfh1 {
+	overflow:auto;
+	width:100%;
+	height:82%;
+}
+
+#SearchTable {
+	font-size:12px;
+}
+#grid{
+width:100%;
+font-size:12px;
+font-family:tahoma;
+margin:10px 0 0 0;
+}
+#grid_body{
+height:280px;
+overflow-y:auto;
+overflow-x:hidden;
+}
+#grid ul{
+list-style:none;
+padding:0;margin:0;
+}
+#grid ul li{
+clear:both;
+border-bottom:solid 1px #bdc3d5;
+background:#FFF;
+line-height:20px;
+}
+#grid ul li:hover{
+background:#BFCAE6;
+}
+#grid ul li div{
+clear:right;
+float:left;
+}
+#grid #grid_body ul li{
+cursor:default;
+}
+#grid #grid_body ul li.gridSel{
+background:#BFCAE6;
+}
+#grid #grid_header, #grid #grid_body{
+clear:both;
+}
+#grid #grid_header li{
+background:#7388C1;
+font-weight:bold;
+text-align:center;
+line-height:25px;
+color:white;
+}

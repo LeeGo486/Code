@@ -1,0 +1,51 @@
+﻿<script type="text/javascript">
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+</script>
+
+<div class="ht" id="sdoemployeeplan">
+    <i class="glyphicon icon-pencil"></i>&nbsp;&nbsp;我的行动计划
+    <span onclick="$('#sdoplanarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div class="input-group ">
+        <span class="input-group-addon">客户手机</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">客户姓名</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">预约时间</span>
+        <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">预约目的</span>
+        <select class="form-control">
+            <option>看新款</option>
+            <option>微信维护</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">备注</span>
+        <textarea class="form-control" placeholder="请输入备注"></textarea>
+    </div>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submitEmployeeGoal();">设定目标</button>
+</div>

@@ -1,0 +1,39 @@
+﻿.fixedgrid
+{
+}
+.fixedgrid table
+{
+	border: none;
+}
+.fixedgrid td,.fixedgrid th
+{
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+	border-color: #ccc  #f5f5f5 #f5f5f5 #ccc;
+	overflow: hidden;
+}
+.fixedgrid-header
+{
+	background: #328aa4;
+	overflow: hidden;
+}
+.fixedgrid-body
+{
+	overflow: auto;
+	cursor: default;
+}
+.fixedgrid-header th,.fixedgrid-header td
+{
+	color: #fff;
+	padding: 8px 3px 3px 3px;
+	text-align: center;
+	font-weight:normal;
+}
+.fixedgrid-body td
+{
+	color: #5d5d5d	;
+	background: #ffffff;
+	padding: 3px;
+	white-space: nowrap;
+	overflow: hidden;
+}

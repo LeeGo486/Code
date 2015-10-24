@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+<script type="text/javascript">
+    window.location.href = "/Matrix/SSO/Index";
+</script>
+

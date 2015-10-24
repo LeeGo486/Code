@@ -1,0 +1,165 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.ITSM_Event>
+@{
+    ViewBag.Title = "事件列表";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+
+@helper GetEventStatus(int pdValue)
+{
+    string str = "";
+    switch (pdValue)
+    {
+        case 0:
+            str = "已提报";
+            break;
+        case 1:
+            str = "派单";
+            break;
+        case 2:
+            str = "转派";
+            break;
+        case 3:
+            str = "接收";
+            break;
+        case 4:
+            str = "完成";
+            break;
+        case 5:
+            str = "已评价";
+            break;
+        case 9:
+            str = "取消";
+            break;
+        default:
+            str = "Unknown";
+            break;
+    }
+    @(str);
+}
+
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/UiStep/step.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function showAttachment(fileUrl) {
+            bootbox.alert("<center><img src='" + fileUrl + "' width='100%' height='100%' /></center>");
+        }
+
+        var m_LastID = undefined;
+        function GetHisList(url, id) {
+            if (m_LastID == id) {
+                return;
+            }
+
+            Msg.show("请稍候...", 3);
+            $.post(url, function (data) {
+                Msg.hide();
+                $("#divHisList" + id).html(data);
+                $("#divHisList" + m_LastID).html("");
+                m_LastID = id;
+                $("#icon" + m_LastID).removeClass("icon-double-angle-down");
+                $("#icon" + m_LastID).addClass("icon-double-angle-up");
+                $('html, body').animate({ scrollTop: $("#E_" + id).offset().top }, 300, false);
+            });
+            return false;
+        }
+
+        function hideHisList() {
+            if (m_LastID != undefined) {
+                $("#divHisList" + m_LastID).html("");
+                $("#icon" + m_LastID).removeClass("icon-double-angle-up");
+                $("#icon" + m_LastID).addClass("icon-double-angle-down");
+                m_LastID = undefined;
+            }
+        }
+
+        function changeState(state) {
+            Msg.show("请稍后...", 3);
+            var url = "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            if (state == "ALL") {
+                url = url + "&state=ALL"
+            }
+            window.location.href = url;
+        }
+    </script>
+}
+
+<div class="ht">
+    <i class="icon-wrench"></i>&nbsp;&nbsp;事件列表
+   @if (Request["State"] == null || Request["State"].ToString().ToUpper() != "ALL")
+   {
+       <a href="#" onclick="changeState('ALL'); return false;"><span class="badge  pull-right">全部 @(ViewBag.AllEventCount)</span></a>  
+       
+       <span class="badge  pull-right hs" style="margin-left: 10px">待处理 @(ViewBag.EventCount)</span>
+   }
+   else
+   {
+       <span class="badge  pull-right hs">全部 @(ViewBag.AllEventCount)</span> 
+       <a href="#" onclick="changeState('');return false;"><span class="badge  pull-right" style="margin-left: 10px">待处理 @(ViewBag.EventCount)</span></a>
+   }
+</div>
+
+@if (ViewBag.EventCount == 0 && (Request["State"] == null || Request["State"].ToString().ToUpper() != "ALL"))
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，目前“故障报修”信息。<br />
+        <br />
+    </div>
+}
+
+
+@if (ViewBag.AllEventCount == 0 && (Request["State"] != null && Request["State"].ToString().ToUpper() == "ALL"))
+{
+    <div id="noEventMsgAll" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，截止目前还没有任何“故障报修”信息。<br />
+        <br />
+    </div>
+}
+
+
+@foreach (ElegantWM.EntityModel.ITSM_Event e in Model)
+{
+    <div class="eventSch clearfix" id="E_@e.Id" onclick="hideHisList()">
+        <ul class="list-group">
+            <li class="list-group-item"><span style="color: #969696">事件编号：</span><i class="icon-double-angle-down" id="icon@(e.Id)"></i>
+                <a href="#" onclick="return GetHisList('/IT/SM/DetailHisList/@e.Id?sid=@Request["sid"]&oid=@Request["oid"]','@(e.Id)');return false;" style="color:@((e.ProcessStatus == 5 || e.ProcessStatus == 9) ? "#969696" : "#39ac00")">
+                    @(e.Code)
+                </a>
+            </li>
+            <li class="list-group-item"><span style="color: #969696">请求内容：</span>
+                @if (!string.IsNullOrEmpty(e.FileUrl))
+                {
+                    <i class="glyphicon glyphicon-paperclip" onclick="showAttachment('/Content/Uploads/Event/@e.FileUrl');">@(e.EventDesc) </i>
+                }
+                else
+                {
+                    @(e.EventDesc)  
+                }
+            </li>
+
+            <li class="list-group-item"><span style="color: #969696">负&nbsp;&nbsp;责&nbsp;&nbsp;人：</span>
+                @if (e.Engineer != null)
+                {                  
+                    <span style="color: #FFF"><a href="tel:@(e.EngineerPhone)" style="text-decoration:none"><i class="icon-phone"></i>&nbsp;&nbsp;@(e.Engineer)</a></span>
+                }
+                else
+                {
+                    <span style="color: #FFF"><a href="tel:057383685660"><i class="icon-phone"></i>&nbsp;&nbsp;信息管理中心</a></span>
+                }
+            </li>
+
+            <li class="list-group-item"><span style="color: #969696">当前状态：</span>
+                @GetEventStatus(e.ProcessStatus)
+            </li>
+        </ul>
+
+        <div id='divHisList@(e.Id)' style="min-height:0px"></div>
+
+    </div>
+}
+
+
+

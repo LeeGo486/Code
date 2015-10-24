@@ -1,0 +1,34 @@
+﻿<div class="ht" id="scheck">
+    <i class="icon-thumbs-up"></i>&nbsp;&nbsp;考勤
+    <span onclick="$('.cusHideCheckArea').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div id="check"></div>
+<div class="dataDetail">
+    <div class="btn-group" data-toggle="buttons" style="width: 100%;">
+      <label class="btn btn-primary active" style="width: 20%;">
+        <input type="radio" name="options" id="option1" checked>正常
+      </label>
+      <label class="btn btn-primary" style="width: 20%;">
+        <input type="radio" name="options" id="option2">迟到
+      </label>
+      <label class="btn btn-primary" style="width: 20%;">
+        <input type="radio" name="options" id="option3">早退
+      </label>
+      <label class="btn btn-primary" style="width: 20%;">
+        <input type="radio" name="options" id="option4">请假
+      </label>
+        <label class="btn btn-primary" style="width: 20%;">
+        <input type="radio" name="options" id="option5">旷工
+      </label>
+    </div>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submitCheck();">提交</button>
+</div>

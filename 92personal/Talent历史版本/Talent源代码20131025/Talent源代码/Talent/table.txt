@@ -1,0 +1,95 @@
+create database EPTalents ;
+
+create table TB_RC_TalentClass   
+(	
+	TC_No INT NOT NULL IDENTITY ,
+	TC_Class varchar(100) ,
+	TC_Color varchar(10)
+);
+
+create table TB_RC_CompanyBasic  
+(	
+	CB_No	INT NOT NULL IDENTITY ,
+	CB_Des	text,
+	CB_Name	varchar(100),
+	CB_Position	varchar(400),
+	CB_Num	int,
+	CB_SetUp	DateTime,
+	CB_Je	varchar(50),
+	CB_Scale	varchar(400),
+	CB_BrandName	varchar(100),
+	CB_BrandStyle   varchar(200),
+	CB_PriceSection	varchar(200),
+	CB_Category	varchar(200),
+	CB_ModeOperation	varchar(400),
+	CB_ShopNum	int,
+	CB_Founder	text,
+	CB_Advantage	text,
+	CB_OrgStructure	text,
+	CB_KeyPerson	text,
+	CB_HumanSrc	text,
+	CB_CreatePer	varchar(20),
+	CB_CreateDate	DateTime,
+	CB_Province 	VARCHAR(50),
+	CB_X		varchar(50),
+	CB_Y		varchar(50),
+	CB_Img		varchar(200),
+	CB_Css		varchar(1000)
+);
+
+create table TB_RC_CompanyTalentClassRelate
+(	
+	CT_CB_No	int,
+	CT_TC_No	int,
+	primary key(CT_CB_No,CT_TC_No)
+);
+
+create table TB_RC_TalentInfor
+(	
+	TI_No	INT NOT NULL IDENTITY ,
+	TI_CB_No	int,
+	TI_BrandName	varchar(100),
+	TI_TalentClass	varchar(100),
+	TI_Name	varchar(50),
+	TI_Sex	varchar(10),
+	TI_Phone	varchar(100),
+	TI_Src	varchar(100),
+	TI_RecommendPost	varchar(100),
+	TI_Audition	varchar(10),
+	TI_AuditionResult	varchar(200),
+	TI_FollowUpPeople	varchar(200),
+	TI_MaintainDate	datetime,
+	TI_MaintainResult	varchar(200),
+	TI_CreatePer	varchar(20),
+	TI_CreateDate	DateTime,
+	TI_Mark		varchar(100)
+);
+
+create table TB_RC_TalentDocument
+(	
+	TD_No	INT NOT NULL IDENTITY ,
+	TD_CB_No	int,
+	TD_TI_No	int,
+	TD_DocName	varchar(200),
+	TD_docPath	varchar(500),
+	TD_CreatePer	varchar(20),
+	TD_CreateDate	DateTime
+);
+
+create table  TB_RC_Permission(
+	PM_No	INT NOT NULL IDENTITY ,
+	PM_Login	VARCHAR(50),
+	PM_Level	int,
+	PM_Province 	VARCHAR(50)
+);
+
+
+create table  TB_RC_UpkeepDate(
+	UD_No int	NOT NULL IDENTITY ,
+	UD_CB_No	int,
+	UD_TI_No	int,
+	UD_Date	DateTime,
+	UD_Result	varchar(1000),
+	UD_CreatePer	varchar(20),
+	UD_CreateDate	DateTime
+);

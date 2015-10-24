@@ -1,0 +1,5 @@
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Tools\bin\Debug\ElegantWM.Tools.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Tools\bin\Debug\ElegantWM.Tools.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Tools\bin\Debug\ThoughtWorks.QRCode.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Tools\obj\Debug\ElegantWM.Tools.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.Tools\obj\Debug\ElegantWM.Tools.pdb

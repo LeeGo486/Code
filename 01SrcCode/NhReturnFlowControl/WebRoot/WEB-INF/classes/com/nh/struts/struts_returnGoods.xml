@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+    <package name="returnGoods" extends="struts-default">
+    <!-- 注释： -->
+    	<action name="returnGoods" class="returnGoodAction" method="execute">
+    		<result name="success">/ReturnGoods.jsp</result>
+    		<result name="input">/index1.jsp</result>
+    	</action>
+ 		<action name="addColorid" class="returnGoodAction" method="addColorid">
+    		<result name="success">/ReturnGoods.jsp</result>
+    	</action>
+    	<action name="crmMethod" class="returnGoodAction" method="crmMethod">
+    		<result name="success">/crmMethod.jsp</result>
+    	</action>
+    	
+
+		<action name="testByJSP" class="returnGoodAction" method="testByJSP">
+    		<result name="success">/json.jsp</result>
+    	</action>
+    	
+    </package>
+   
+
+</struts>

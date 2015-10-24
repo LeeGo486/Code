@@ -1,0 +1,23 @@
+﻿<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge pull-right hs">1件 / ￥800.0</span>
+        <img src="/Areas/S3/Resources/images/E14PU6011aZ3.jpg" style="float:left;margin-right:8px;" width="40px" height="40px" />
+        E14PU6011aZ3
+        <br />
+        裤子
+    </li>
+    <li class="list-group-item">
+        <span class="badge pull-right hs">1件 / ￥1399.0</span>
+        <img src="/Areas/S3/Resources/images/E14PU6012aZ3.jpg" style="float:left;margin-right:8px;" width="40px" height="40px" />
+        E14PU6012aZ3
+        <br />
+        针织衫
+    </li>
+    <li class="list-group-item">
+        <span class="badge pull-right hs">1件 / ￥399.0</span>
+        <img src="/Areas/S3/Resources/images/E14PU6017aZ3.jpg" style="float:left;margin-right:8px;" width="40px" height="40px" />
+        E14PU6017aZ3
+        <br />
+        T恤
+    </li>
+</ul>

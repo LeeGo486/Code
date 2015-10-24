@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150505162350</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=178200", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-05 16:25:43:2767 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150505162350</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=178200", "", "", "", "120400010000")</instr>
+    <recodes>F5发卡行不能处理                                                                                      </recodes>
+    <info>刷卡失败，错误信息为：发卡行不能处理                                                                                      </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-05 16:26:31:9895 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150505162350</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=178200", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-05 16:27:02:0712 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150505162350</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=178200", "", "", "", "120400010000")</instr>
+    <recodes>0062284603480039711702015050516274800000500000015050510039566000100000017820012045691094210213767400C中国农业银行                           银联商户号(UNION PAY MERCHANT CODE):102335056911002
+发卡行(ISSUE BANK):中国农业银行
+总计(TOTAL):RMB 1782.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-05-05 16:27:33:4900 </crdate>
+  </log>
+</logs>

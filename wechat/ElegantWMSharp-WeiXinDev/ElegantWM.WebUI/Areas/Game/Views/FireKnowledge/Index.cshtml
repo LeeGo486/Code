@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "消防知识谁最强";
+    Layout = "~/Areas/Game/Views/Shared/_Layout.cshtml";
+}
+
+@section script{
+
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/fire.css?v3" />
+    <script src="~/Scripts/IosSlider/jquery.iosslider.min.js"></script>
+    <script src="~/Scripts/flowplayer/flowplayer-3.2.6.min.js"></script>
+         <script type="text/javascript">
+             // 需要分享的内容，请放到ready里
+             WeixinApi.ready(function (Api) {
+                 // 微信分享的数据
+                 var wxData = {
+                     "appId": "", // 服务号可以填写appId
+                     "imgUrl": 'http://it.hwafashion.com:8088/Areas/Game/Resources/images/fire/sharehead.png',
+                     "link": 'http://why.elegant-prosper.com/?weixin_redirect=http%3a%2f%2fit.hwafashion.com%3a8088%2fGame%2fFireKnowledge%3foid%3d%5bopenid%5d',
+                     "title": "消防活动页面",
+                     "desc": "多一点消防知识，就多一分生命保障，快来试试吧！"
+                 };
+                 // 分享的回调
+                 var wxCallbacks = {
+                 };
+                 // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+                 Api.shareToFriend(wxData, wxCallbacks);
+                 // 点击分享到朋友圈，会执行下面这个代码
+                 Api.shareToTimeline(wxData, wxCallbacks);
+             });
+    </script>
+    <script>
+        $(function () {
+            var isShow = 0;
+            $('.iosSlider').iosSlider({
+                scrollbar: true,
+                autoSlide: true,
+                snapVelocityThreshold: 2,
+                autoSlideTimer: 3000,
+                frictionCoefficient: 0.6,
+                elasticPullResistance: 0.6,
+                snapToChildren: true,
+                desktopClickDrag: true,
+                scrollbarLocation: 'top',
+                scrollbarMargin: '10px 10px 0 10px',
+                scrollbarBorderRadius: '0',
+                responsiveSlideWidth: true,
+                navSlideSelector: $('.iosSliderButtons .button'),
+                infiniteSlider: true,
+                startAtSlide: '1',
+                onSlideChange: slideContentChange,
+                onSliderLoaded: slideContentLoaded
+            });
+            function slideContentChange(args) {
+                $(args.sliderObject).parent().find('.iosSliderButtons .button').removeClass('selected');
+                $(args.sliderObject).parent().find('.iosSliderButtons .button:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+
+            }
+            function slideContentLoaded(args) {
+                $(args.sliderObject).parent().find('.iosSliderButtons .button').removeClass('selected');
+                $(args.sliderObject).parent().find('.iosSliderButtons .button:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+            }
+            var totalPlay = '@ViewBag.playCount';
+            if (parseInt(totalPlay) >= 2) {
+                window.location.href = "/Game/Quiz/Share?sid=CFE404EA-FE5B-4A85-87F0-B2701929462C&id=CFE404EA-FE5B-4A85-87F0-B2701929462C&oid=@(Request["oid"])";
+            }
+            $(window).bind("scroll", function () {
+                if (isShow == 0) {
+                    $(".pdown").hide();
+                    $(window).unbind("scroll");
+                } else {
+                    isShow = 1;
+                }
+            });
+
+            flowplayer("player", "/Scripts/flowplayer/flowplayer-3.2.7.swf", {
+                clip: {
+                    autoPlay: false
+                }
+            });
+        });
+
+        $("#beginGameBtn").click(function () {
+            $.post("/Game/FireKnowledge/goFireGamePage", function (data) { });
+        });
+    </script>
+}
+<div>
+    <img src="/Areas/Game/Resources/images/fire/head.png" alt="head" style="width: 100%" />
+</div>
+
+
+<iframe height="170" width="98%" src="http://v.qq.com/iframe/player.html?vid=u01425etlns&tiny=0&auto=0" frameborder=0 allowfullscreen></iframe>
+<div class="iosSlider">
+    <div class='slider'>
+        <div class='item' id='rollimg1'>
+            <img src="/Areas/Game/Resources/images/fire/fire01.jpg">
+        </div>
+        <div class='item' id='rollimg2'>
+            <img src="/Areas/Game/Resources/images/fire/fire02.jpg">
+        </div>
+        <div class='item' id='rollimg3'>
+            <img src="/Areas/Game/Resources/images/fire/fire03.jpg">
+        </div>
+        <div class='item' id='rollimg4'>
+            <img src="/Areas/Game/Resources/images/fire/fire04.jpg">
+        </div>
+        <div class='item' id='rollimg5'>
+            <img src="/Areas/Game/Resources/images/fire/fire05.jpg">
+        </div>
+        <div class='item' id='rollimg6'>
+            <img src="/Areas/Game/Resources/images/fire/fire06.jpg">
+        </div>
+        <div class='item' id='rollimg7'>
+            <img src="/Areas/Game/Resources/images/fire/fire07.jpg">
+        </div>
+        <div class='item' id='rollimg8'>
+            <img src="/Areas/Game/Resources/images/fire/fire08.jpg">
+        </div>
+        <div class='item' id='rollimg9'>
+            <img src="/Areas/Game/Resources/images/fire/fire09.jpg">
+        </div>
+        <div class='item' id='rollimg10'>
+            <img src="/Areas/Game/Resources/images/fire/fire10.jpg">
+        </div>
+        <div class='item' id='rollimg11'>
+            <img src="/Areas/Game/Resources/images/fire/fire11.jpg">
+        </div>
+        <div class='item' id='rollimg12'>
+            <img src="/Areas/Game/Resources/images/fire/fire12.jpg">
+        </div>
+    </div>
+    <div class="iosSliderButtons">
+        <div class="button"></div><div class="button"></div><div class="button"></div><div class="button"></div>
+        <div class="button"></div><div class="button"></div><div class="button"></div><div class="button"></div>
+        <div class="button"></div><div class="button"></div><div class="button"></div><div class="button"></div>
+    </div>
+</div>
+
+<div>
+    <img src="/Areas/Game/Resources/images/fire/end.png" style="width: 94%" alt="end" />
+    <a href="/Game/FireKnowledge/goFireGamePage">
+        <img src="/Areas/Game/Resources/images/fire/button.png" alt="button" /></a>
+</div>
+
+
+
+
+

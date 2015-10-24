@@ -1,0 +1,183 @@
+<HTML><HEAD>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<STYLE type=text/css>
+TD {
+	FONT-FAMILY: arial; FONT-SIZE: 12px; TEXT-ALIGN: center
+}
+TD.dt {
+	FONT-FAMILY: arial; FONT-SIZE: 11px; TEXT-ALIGN: center;font-weight: bold;
+}
+A {
+	COLOR: blue
+}
+A:hover {
+	COLOR: red;
+        
+}
+A.bt {
+	COLOR: blue;
+}
+</STYLE>
+
+<SCRIPT language=javascript>
+<!--//
+var str='',i,j,yy,mm,openbound,callback;
+var fld1,fld2;
+var wp=window.parent;
+var cf=wp.document.getElementById("CalFrame");
+var fld,curday,today=new Date();
+today.setHours(0);today.setMinutes(0);today.setSeconds(0);today.setMilliseconds(0);
+//var lastyear=today.getYear(),lastmonth=today.getMonth();
+function parseDate(s)
+{
+	var reg=new RegExp("[^0-9-]","")
+	if(s.search(reg)>=0)return today;
+	var ss=s.split("-");
+	if(ss.length!=3)return today;
+	if(isNaN(ss[0])||isNaN(ss[1])||isNaN(ss[2]))return today;
+	return new Date(parseInt(ss[0]),parseInt(ss[1]*1)-1,parseInt(ss[2]*1));
+}
+function resizeCalendar(){cf.width=144;cf.height=192;}
+function initCalendar()
+{
+	if(fld1&&fld1.value.length>0){curday=parseDate(fld1.value);}
+	else if(fld2&&fld2.value.length>0){curday=parseDate(fld2.value);}
+	else curday=today;
+	drawCalendar(curday.getFullYear(),curday.getMonth());
+}
+function drawCalendar(y,m)
+{
+	var x=new Date(y,m,1),mv=x.getDay(),d=x.getDay(),de;
+	yy=x.getFullYear();mm=x.getMonth();
+	document.getElementById("yyyymm").innerHTML=yy+"."+(mm+1>9?mm+1:"0"+(mm+1));
+	for(var i=1;i<=mv;i++)
+	{
+		de=document.getElementById("d"+i);
+		de.innerHTML="";
+		de.bgColor="";
+	}
+	while(x.getMonth()==mm)
+	{
+		de=document.getElementById("d"+(d+mv));
+		if(x.getTime()==curday.getTime())
+			de.bgColor="#dddddd";
+		else
+			de.bgColor="white";
+		if(x.getTime()==today.getTime())
+			de.innerHTML="<a href=javascript:setDate("+d+");><font color=red>"+d+"</font></a>";
+		else if(x.getTime()<today.getTime())
+			{de.innerHTML="<a href=javascript:setDate("+d+"); class=bt>"+d+"</a>";}
+		else
+			de.innerHTML="<a href=javascript:setDate("+d+");>"+d+"</a>";
+
+		x.setDate(++d);
+	}
+	while(d+mv<=42)
+	{
+		de=document.getElementById("d"+(d+mv));
+		de.innerHTML="";
+		de.bgColor="";
+		d++;
+	}
+}
+function setDate(d)
+{
+	var dstr=yy+"-"+appendZero((mm+1))+"-"+appendZero(d);
+//	var dstr=yy+""+appendZero((mm+1))+""+appendZero(d);
+//	var dstr=appendZero((mm+1))+"-"+appendZero(d);
+//	dstr = dstr.split("-");
+//fld1.value=dstr;
+	if(callback&&callback.length>0){eval("wp."+callback+"(\""+dstr+"\")");}
+	else{fld1.value=dstr;}
+	wp.hideCalendar();
+}
+function setToDay(){
+  var sToDay = new Date()
+  sy = sToDay.getFullYear()
+  sm = parseInt(sToDay.getMonth(),10) + 1
+  sd = sToDay.getDay()
+  //if (!fld1){parent.document.getElementById().value=sy +"-"+ appendZero(sm) +"-" + appendZero(sd)}
+  //else{fld1.value = sy +"-"+ appendZero(sm) +"-" + appendZero(sd)}
+//  fld1.value = sy +"-"+ appendZero(sm) +"-" + appendZero(sd)
+//  fld1.value = sy + appendZero(sm) + appendZero(sd)
+//  fld1.value = sy +""+ appendZero(sm)+"" + appendZero(sd)
+  fld1.value = appendZero(sy) + "-" +appendZero(sm)+"-" + appendZero(sd)
+  wp.hideCalendar();
+}
+
+function appendZero(s){
+  if (s.toString().length == 1){
+     return "0"+s
+  }
+  else{
+     return s
+  }
+}
+//-->
+</SCRIPT>
+
+<META content="MSHTML 5.00.3700.6699" name=GENERATOR></HEAD>
+<BODY bgColor=red bottomMargin=0 leftMargin=0 onload=resizeCalendar(); 
+rightMargin=0 topMargin=0>
+<TABLE bgColor=#336699 border=0 cellPadding=1 cellSpacing=0 id=tbl0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE bgColor=white border=0 cellPadding=2 cellSpacing=1 width="100%">
+        <TBODY>
+        <TR bgColor=gray>
+          <TD id=prev width=16 bgcolor="333399"> <A 
+            href="javascript:drawCalendar(yy,mm-1);"><!--IMG border=0 height=16 
+            src="calendar.files/prev.gif" width=16--><font color="#ffffff"><<</font></A>&nbsp;</TD>
+          <TD id=yyyymm style="COLOR: white; FONT-SIZE: 11px" width="99%" bgcolor="333399"></TD>
+          <TD id=next width=16 bgcolor="333399" style="COLOR: white; FONT-SIZE: 11px"><A 
+            href="javascript:drawCalendar(yy,mm+1);"><!--IMG border=0 height=16 
+            src="calendar.files/next.gif" width=16-->&nbsp;<font color="#ffffff">>></font> </A></TD></TR></TBODY></TABLE>
+      <TABLE bgColor=E0E0E0 border=0 cellPadding=0 cellSpacing=2 width=142 >
+        <TBODY>
+        <TR height=18 >
+          <TD width=18><FONT color=red>日</FONT></TD>
+          <TD width=18>一</TD>
+          <TD width=18>二</TD>
+          <TD width=18>三</TD>
+          <TD width=18>四</TD>
+          <TD width=18>五</TD>
+          <TD width=18><FONT color=green>六</FONT></TD></TR>
+        <TR height=1>
+          <TD bgColor=gray colSpan=7></TD></TR>
+          <!-- add new row by gm-->
+          <tr>
+            <td colspan=7>
+            <table bgColor=#ffffff border=0 cellPadding=0 cellSpacing=0 width=100% >
+            <tr><td height=11></td></tr>
+            
+            
+        <SCRIPT language=javascript>
+		<!--//
+		for(i=0;i<6;i++)
+		{
+			str+="<tr height=18>";
+			for(j=1;j<=7;j++)str+="<td id=d"+(i*7+j)+" class=dt></td>";
+			str+="</tr>";
+		}
+		document.write(str);
+		//-->
+		</SCRIPT>
+		       
+              </table>
+            </td>
+          </tr>
+          <!-- add new row by gm-->
+
+
+        <TR height=1>
+          <TD bgColor=gray colSpan=7></TD></TR>
+        <TR height=18>
+          <TD colSpan=7><a href="javascript:setToDay()">今天</a>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+          href="javascript:wp.hideCalendar();">关闭</FONT></A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<SCRIPT language=javascript>
+<!--//
+var bCalLoaded=true;
+//-->
+</SCRIPT>
+</BODY></HTML>

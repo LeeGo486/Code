@@ -1,0 +1,22 @@
+﻿<div class="ht" id="sdopromotion">
+    <i class="icon-pencil"></i>&nbsp;&nbsp;申请促销
+    <span onclick="$('#sdopromotionarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <div>款号：E12IDY006aG</div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">申请活动内容</span>
+        <textarea class="form-control" placeholder="请输入活动内容"></textarea>
+    </div>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" data-loading-text="loading..." onclick="doPromotion();">申请促销确认</button>
+</div>

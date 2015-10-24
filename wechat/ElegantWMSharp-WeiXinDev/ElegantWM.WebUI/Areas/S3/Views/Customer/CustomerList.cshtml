@@ -1,0 +1,27 @@
+﻿@model List<ElegantWM.WebUI.Areas.S3.Controllers.S3_Customer>
+<div id="scusInfo" class="ht">
+    <i class="icon-user"></i>&nbsp;&nbsp;客户资料
+    <span onclick="$('#scusInfo').fadeOut(1000);$('#scustomerarea ul').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<ul class="list-group">
+    @foreach (ElegantWM.WebUI.Areas.S3.Controllers.S3_Customer cus in Model)
+    {
+        <li class="list-group-item">
+            [@cus.lastbuy] &nbsp;&nbsp;&nbsp;&nbsp; @cus.name
+            <div class="cexp clearfix">
+                <span><a href="tel:@cus.telphone"><i class="icon-phone"></i></a></span>
+                <span><a href="sms:@cus.telphone"><i class="icon-envelope-alt"></i></a></span>
+                <span onclick="showCustomerConsume(this,'A_@cus.name');"><i class="cus icon-double-angle-down"></i></span>
+            </div>
+            <div id="A_@cus.name" class="cusHideCsmArea" style="display:none;"></div>
+        </li>
+    }
+</ul>

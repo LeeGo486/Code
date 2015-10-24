@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "人脉管理";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/calendar/lib/moment.min.js"></script>
+    <script src="~/Scripts/calendar/lib/jquery-ui.custom.min.js"></script>
+    <script src="~/Scripts/calendar/fullcalendar.min.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <link href="~/Scripts/calendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Scripts/calendar/fullcalendar.print.css" rel="stylesheet" media="print"/>
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            $("#sgocontacts").click(function () {
+                scrollTo("#scontacts");
+            });
+            $("#sgoemployeeplan").click(function () {
+                scrollTo("#semployeeplan");
+            });
+        });
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+
+        //显示个人信息
+        function showCustomerDetail(ths, id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                $(ths).children().removeClass("icon-double-angle-up");
+                $(ths).children().addClass("icon-double-angle-down");
+                return;
+            }
+            Msg.show("加载中...", 3);
+            $(".cusHideCdArea").html("");
+            $(".cusHideCdArea").hide();
+            $("ul li .cexp span .cus").removeClass("icon-double-angle-up");
+            $("ul li .cexp span .cus").addClass("icon-double-angle-down");
+
+            $(ths).children().removeClass("icon-double-angle-down");
+            $(ths).children().addClass("icon-double-angle-up");
+
+            $.get("/S3/Employee/CustomerInfo", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+
+        //加载计划设定
+        function doEmployeePlan() {
+            Msg.show("计划加载中...", 3);
+            $.get("/S3/Employee/DoEmployeePlan", function (htmldata) {
+                Msg.hide();
+                showEmployeePlan(htmldata);
+            });
+        }
+
+        //显示计划设定
+        function showEmployeePlan(data) {
+            $("#sdoplanarea").html(data);
+            scrollTo("#sdoplanarea");
+        }
+
+        //设定客户经理目标
+        function submitEmployeeGoal(data) {
+            Msg.show('提交成功', 0);
+        }
+    </script>
+}
+
+@Html.Action("EmployeeGoal")
+@Html.Action("Contacts")
+@Html.Action("EmployeePlan")
+<div id="sdoplanarea"></div>
+<div class="s3overlay">
+    <i id="stop" class="icon-arrow-up icon-2x"></i>
+    <hr />
+    <i id="sgocontacts" class="icon-user icon-2x"></i>
+    <hr />
+    <i id="sgoemployeeplan" class="icon-calendar icon-2x"></i>
+    <hr />
+    <i id="ssearch" class="icon-search icon-2x"></i>
+</div>

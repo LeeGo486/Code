@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <type>Basepage</type>
+    <data>menusubid=3999024&amp;para=%7b%22begdate%22%3a%222015-04-29%22%2c+%22enddate%22%3a%222015-05-03%22%2c+%22text%22%3a%22%22%7d&amp;_=1430650349703</data>
+    <url>/reportdesign/report/PreViewSub.aspx?menusubid=3999024&amp;para={"begdate":"2015-04-29",%20"enddate":"2015-05-03",%20"text":""}&amp;_=1430650349703</url>
+    <description>对象名 'f22nf.dbo.d_retail' 无效。   at F23Base.Tools.SqlHelper.getDataSet(String sql, String separator, SqlParameter[] param, CommandType commandtype, String strdbname, Progress pr) in E:\Zhx_Web\F23Web\F23Base.Tools\SqlHelper.cs:line 571
+   at F23Bll.ReportDesign.BllReportDesign.GetReportData(String dbname, String sql, AjaxParams aps) in E:\Zhx_Web\F23Web\F23Bll.ReportDesign\BllReportDesign.cs:line 367
+   at F23Web.ReportDesign.Report.PreViewSub.InitPage() in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Report\PreViewSub.aspx.cs:line 236
+   at F23Web.ReportDesign.Report.PreViewSub.Page_Load(Object sender, EventArgs e) in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Report\PreViewSub.aspx.cs:line 26
+   at System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at F23Web.ReportDesign.Page.SecurityPage.OnLoad(EventArgs e) in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Page\SecurityPage.cs:line 49
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)</description>
+    <crdate>2015/5/3 18:52:09</crdate>
+  </log>
+  <log>
+    <type>Basepage</type>
+    <data>menusubid=3999024&amp;para=%7b%22begdate%22%3a%222015-04-29%22%2c+%22enddate%22%3a%222015-05-03%22%2c+%22text%22%3a%22%22%7d&amp;_=1430650355671</data>
+    <url>/reportdesign/report/PreViewSub.aspx?menusubid=3999024&amp;para={"begdate":"2015-04-29",%20"enddate":"2015-05-03",%20"text":""}&amp;_=1430650355671</url>
+    <description>对象名 'f22nf.dbo.d_retail' 无效。   at F23Base.Tools.SqlHelper.getDataSet(String sql, String separator, SqlParameter[] param, CommandType commandtype, String strdbname, Progress pr) in E:\Zhx_Web\F23Web\F23Base.Tools\SqlHelper.cs:line 571
+   at F23Bll.ReportDesign.BllReportDesign.GetReportData(String dbname, String sql, AjaxParams aps) in E:\Zhx_Web\F23Web\F23Bll.ReportDesign\BllReportDesign.cs:line 367
+   at F23Web.ReportDesign.Report.PreViewSub.InitPage() in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Report\PreViewSub.aspx.cs:line 236
+   at F23Web.ReportDesign.Report.PreViewSub.Page_Load(Object sender, EventArgs e) in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Report\PreViewSub.aspx.cs:line 26
+   at System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at F23Web.ReportDesign.Page.SecurityPage.OnLoad(EventArgs e) in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Page\SecurityPage.cs:line 49
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)</description>
+    <crdate>2015/5/3 18:52:14</crdate>
+  </log>
+</logs>

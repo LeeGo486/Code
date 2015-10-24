@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "登入";
+    Layout = "~/Views/Shared/_HRPromiseWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HRBase.css?v3" rel="stylesheet" />
+    <script src="/Areas/HR/Resources/JS/jquery.md5.js"></script>
+    <script src="~/Scripts/cookieHelper.js"></script>
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var sfz = "@ElegantWM.Tools.CookieHelper.GetCookie("sfz")";
+            var UserName = "@ElegantWM.Tools.CookieHelper.GetCookie("UserName") ";
+            var passwordno = "@ElegantWM.Tools.CookieHelper.GetCookie("passwordno")";
+
+            if (sfz == null || sfz == undefined || sfz == "" || sfz == "0") {
+                $('#checkboxrem').removeAttr("checked");
+            } else {
+                $('#checkboxrem').attr("checked", "true");
+                $("#UserName").val(UserName)
+                $("#password").val(passwordno)
+            }
+
+            var checkboxrem = "";
+            $("#btnSubmit").click(function () {
+                if ($.trim($("#UserName").val()).length <= 0) {
+                    $("#UserName").focus();
+                    Msg.show('请输入员工号!', 1);
+                    return;
+                }
+                if ($.trim($("#password").val()).length <= 0) {
+                    $("#password").focus();
+                    Msg.show('请输入密码!', 1);
+                    return;
+                }
+
+                if ($("input[type='checkbox']").is(':checked')) {
+                    checkboxrem = "1";
+                }
+                else {
+                    checkboxrem = "2";
+                }
+
+                var data = {
+                    UserName: $("#UserName").val(),
+                    password: $.md5($("#password").val()),
+                    passwordno: $("#password").val(),
+                    checkboxrem: checkboxrem
+                };
+                var data1;
+
+                Msg.show("加载中...", 3);
+                $.post("/HR/EHRManagement/CheckLogin?", data, function (rst) {
+                    Msg.hide();
+                    if (rst.result == 0) {
+                        //data1 = eval(rst.msg);
+                        Cookies.set("c_idcard", rst.msg);
+                        window.location.href = "/HR/EHRManagement/PromiseIndex/";
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                    $("#btnSubmit").button("reset");
+                });
+            });
+        });
+    </script>
+}
+
+<div class="bg">
+    <center>
+    <div style="margin: 290px 0px 0px 0px;position:absolute  ">
+        <div class="input-group" style="margin: -10px 80px 0px 80px;">
+            <span class="input-group-addon" style="background-color:#fff"><img src="/Areas/HR/Resources/images/name.png" height="16"></span>
+            <input id="UserName" name="UserName" class="form-control" style="border:1px 0px 0px 0px; border-radius:0px 5px 5px 0px;width: 100%; height: 30px;padding-left:20px;" placeholder="请输入员工号">
+        </div>
+        <br />
+        <div class="input-group" style="margin: -10px 80px 0px 80px;">
+            <span class="input-group-addon" style="background-color:#fff"><img src="/Areas/HR/Resources/images/pas.png" height="16"></span>
+            <input type="password" id="password" name="password" class="form-control"style="border:1px 0px 0px 0px; border-radius:0px 5px 5px 0px; height: 30px;padding-left:20px;" placeholder="输入您的密码">
+        </div>
+        <div class="form-group">
+            <div class="glyphicon">
+                <div class="checkbox">
+                    <input type="checkbox" id="checkboxrem"><span style="line-height:20px" >点击记住账号密码</span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <button id="btnSubmit" type="button" class="btn btn-primary" style="width: 50%; height: 30px; margin-top: -50px;" data-loading-text="请稍后...">登录</button>
+    </div></center>
+</div>

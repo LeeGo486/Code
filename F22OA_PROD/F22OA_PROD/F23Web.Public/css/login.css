@@ -1,0 +1,95 @@
+﻿@import 'base.css';
+body,html
+{
+	background:#e2efef url(../images/login-background.gif) repeat-x top;
+	overflow:hidden;
+}
+#page{}
+#header
+{
+	position:absolute;
+	background:url(../images/login-banner.gif) no-repeat top right;
+	top:0;left:0;
+	width:100%;
+	height:300px;
+}
+#logo
+{
+	background-image: url(../images/login-logo.png)!important;/* FF IE7 */
+	background-repeat: no-repeat;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Public/images/login-logo.png'); /* IE6 */
+	_background-image: none; /* IE6 */
+	width:340px;height:70px;
+	position:absolute;
+	z-index:10;
+	top:220px;
+	left:20%;
+}
+#body
+{
+	position:absolute;
+	top:300px;
+	background:url(../images/login-boxbg.gif);
+	height:60px;
+	width:100%; 
+	text-align:center;
+}
+#loginbox
+{
+	margin:0 auto;
+	width:640px;
+	text-align:left;
+	padding:20px 0 0 0;
+
+}
+#loginbox label
+{
+	padding:0 10px 0 0;
+}
+
+#tipsbox
+{
+	position:absolute;
+	top:380px;
+	width:100%; 
+	text-align:center;
+}
+#tipsbox div
+{
+    color: #C00 ;
+    background-color: #ffdfdf;
+    border: solid 1px #f3afb5;
+    width:300px;
+    padding:10px;
+    margin:0 auto;
+    line-height:16px;
+
+    /* filter:alpha(opacity=50); IE */ 
+   /* -moz-opacity:0.5;  Moz + FF */ 
+    /*opacity: 0.5;  支持CSS3的浏览器（FF 1.5也支持）*/
+    
+}
+.input
+{
+	border:solid 1px #a7a6aa; padding:3px 0 3px 5px;
+	background:#fff url(../Images/input-background.gif) no-repeat 0 0;
+	width:90px;
+	ime-mode : disabled 
+
+}
+
+.button
+{
+	float:right;	
+}
+#footer
+{
+	position:absolute;
+	top:500px;
+	color:#5d5d5d;
+	width:100%;
+}
+#copyright
+{
+	text-align:center;
+}

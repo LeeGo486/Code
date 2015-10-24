@@ -1,0 +1,43 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "排班查询";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            var wd = "#s_星期" + "日一二三四五六".charAt(new Date().getDay());
+            var ud = "#u_星期" + "日一二三四五六".charAt(new Date().getDay())+" li";
+            $('html, body').animate({ scrollTop: $(wd).offset().top - 20 }, 300, false);
+            $(ud).addClass("liactive");
+        });
+    </script>
+}
+@foreach (System.Data.DataRow dr in ViewBag.XQ.Rows)
+{
+    <div class="ht" id="s_@dr["WD"]">
+        <i class="icon-calendar"></i>&nbsp;&nbsp;@dr["WD"]
+    </div>
+    <ul id="u_@dr["WD"]" class="list-group egrSchedule">
+        <li class="list-group-item">
+            <b>建议您通过我们的统一受理渠道（<a href="/IT/DC/NeedHelp?sid=@Request["sid"]&oid=@Request["oid"]">客户自助->请求服务</a>）来进行提报。</b><br /><br />
+            总部运维电话：<a href="tel:057383685660">0573-83685660</a><br />
+            门店运维电话：<a href="tel:18857399999">188-573-99999</a><br />
+            小翅膀请搜索：IT支持-总部运维，IT支持-门店运维
+        </li>
+        @foreach (System.Data.DataRow man in Model.Select("WD='" + dr["WD"].ToString() + "'"))
+        {
+            <li class="list-group-item clearfix">
+                @man["Area"]<br />
+                @foreach (string egr in man["EgrName"].ToString().Split(','))
+                {
+                    <div class="egrArea">
+                        <img src="/Areas/IT/Resources/images/EgrHead/@(egr).jpg" /><br />
+                        <span class="badge ls">@egr</span>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+}

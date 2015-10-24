@@ -1,0 +1,48 @@
+﻿@model  EPManageWeb.Entities.Models.ClothesType
+@{
+    ViewBag.Title = "EP基样检索库";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section head{
+    <link href="@Styles.Url("~/Content/jquery.multiselect.css")" rel="stylesheet"/>
+}
+@section searchbox{@{Html.RenderPartial("_searchbox");}}
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.multiselect.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/main.js")"></script>
+}
+
+<div class="searchBoxSelectedItem">
+    <div class="right">
+        @Html.ActionLink("搜索", "Search", "clothes", null, new { @class = "btn btn-info", id = "search" })
+        <button class="btn" id="btnResetSearch">重置</button>
+    </div>
+    <div>
+        <ul id="searchParameters" class="nav nav-pills">
+            <li>特征信息：</li>
+        </ul>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="searchResult">
+    <div id="container"></div>
+    <div class="clearfix"></div>
+    <img src="@Url.Content("~/Images/bottomBg.jpg")" />
+</div>
+<!-- Modal -->
+<div id="myModal" class="width1000Modal modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">
+            <img src="@Url.Content("~/Images/logo.gif")" />款式信息</h3>
+    </div>
+    <div class="modal-body" id="divAddClothes">
+    </div>
+    <div class="modal-footer">
+        <input type="hidden" name="clothesTypeId" id="clothesTypeId" value="@Model.Id" />
+        <button class="btn" id="btnClose" data-dismiss="modal" aria-hidden="true">关闭</button>
+        @Html.ActionLink(" 保存", "Add", null, new { @class = "btn btn-primary", id = "btnAddClothes" })
+    </div>
+</div>

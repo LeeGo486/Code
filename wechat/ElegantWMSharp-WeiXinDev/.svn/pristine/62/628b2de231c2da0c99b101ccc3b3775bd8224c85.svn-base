@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8" />
+    @*<title>@(ViewBag.Title + " - " + System.Configuration.ConfigurationManager.AppSettings["SysName"])</title>*@
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link href="~/Content/Plugin/Bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="~/Content/Plugin/Bootstrap/bootbox.min.js"></script>
+    <!--IOS Masker-->
+    <link href="~/Scripts/IosOverlay/css/iosOverlay.css" rel="stylesheet" />
+    <script src="~/Scripts/IosOverlay/js/spin.min.js"></script>
+    <script src="~/Scripts/IosOverlay/js/iosOverlay.js"></script>
+    <script src="~/Scripts/WeixinApi/WeixinApi.js"></script>
+    <script src="~/Scripts/MatrixGlobal.js"></script>
+    @*<link href="~/Areas/Matrix/Resources/Mobile.css" rel="stylesheet" />*@
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/IosSlider/jquery.iosslider.min.js"></script>
+
+    @RenderSection("script", false)
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="main" style="margin-top: 0px;">
+        @RenderBody()
+    </div>
+
+    <div style="position: fixed; bottom: 0; width: 100%; height: 50.5px; background-color: rgba(40, 39, 44, 1)">
+        <table>
+            <tr>
+                <td>
+                    <img id="navReservationRule" src="~/Areas/DLWXSite/Resources/images/Goods/ReservationRule.jpg" style="float: left; width: 70%;" />
+                </td>
+               <td style="text-align: center;">
+                    <img id="navHome" src="~/Areas/DLWXSite/Resources/images/Goods/home.png" style="width: 100%;" />
+                </td>
+                <td>
+                    <img id="navVipInfo" src="~/Areas/DLWXSite/Resources/images/Goods/VipInfo.jpg" style="float: right; width: 70%;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        $("#navReservationRule").click(function () {
+            window.location.href = 'http://mp.weixin.qq.com/s?__biz=MzA4NDc1MDc2Mw==&mid=207618632&idx=1&sn=459203ec8bcdb95b8a8001a1b271ea8a'
+        })
+        $("#navVipInfo").click(function () {
+            window.location.href = "/DLWXSite/VIP/VIPInformation?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+        $("#navHome").click(function () {
+            window.location.href = "/DLWXSite/DLGoods?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿<br />
+<div class="dataDetail">
+    <h4><span>&nbsp;&nbsp;个人信息</span></h4>
+    <div class="infoArea clearfix">
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/avastar.png" />
+        </div>
+        <div class="userinfo">
+            <span><i class="icon-user"></i>&nbsp;&nbsp;欧阳雪梅</span><br />
+            <span><i class="icon-trophy"></i> EP350602</span><br />
+            <span><i class="icon-phone"></i><a href="tel:15988381281"> 15988381281</a></span>
+        </div>
+    </div>
+    <table class="dataTable">
+        <tr>
+            <th>年龄：</th>
+            <td>42</td>
+        </tr>
+        <tr>
+            <th>职业：</th> 
+            <td>高级白领</td>
+        </tr>
+        <tr>
+            <th>顾客类型：</th>
+            <td>有主见型</td>
+        </tr>
+        <tr>
+            <th>着装风格：</th>
+            <td>素雅、简约</td>
+        </tr>
+        <tr>
+            <th>C级：</th>
+            <td>认可品牌产品、购买产品</td>
+        </tr>
+        <tr>
+            <th>B级：</th>
+            <td>定期回头</td>
+        </tr>
+        <tr>
+            <th>A级：</th>
+            <td>介绍朋友闺蜜、品牌代言人</td>
+        </tr>
+    </table>
+    <br />
+    <h4><span>&nbsp;&nbsp;客户反馈</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div>
+                <span>E14PU6011aZ3</span>
+                <span>&nbsp;&nbsp;裤子</span>
+                <span>&nbsp;&nbsp;系列11</span>
+            </div>
+            <div>
+                库管太松，容易钩丝
+            </div>
+            <div style="float:right;">
+                反馈时间：2014-05-12
+            </div>
+            <div style="clear:both;"></div>
+        </li>
+        <li class="list-group-item">
+            <div>
+                <span>N14PC9586aH4</span>
+                <span>&nbsp;&nbsp;连衣裙</span>
+                <span>&nbsp;&nbsp;系列12</span>
+            </div>
+            <div>
+                腰身太紧，无袖设计让人显胖
+            </div>
+            <div style="float:right;">
+                反馈时间：2014-06-12
+            </div>
+            <div style="clear:both;"></div>
+        </li>
+    </ul>
+    <br />
+    <h4><span>&nbsp;&nbsp;联络维护记录</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div>
+                您已经计划好怎样度过优雅的女人节了吗？亲爱的李瑞琴贵宾：诚邀您前来开启精致女……
+            </div>
+            <div>
+                维护人：岳艳芳
+            </div>
+            <div>
+                维护时间：2014-05-12
+            </div>
+            <div style="clear:both;"></div>
+        </li>
+        <li class="list-group-item">
+            <div>
+                您已经计划好怎样度过优雅的女人节了吗？亲爱的李瑞琴贵宾：诚邀您前来开启精致女……
+            </div>
+            <div>
+                维护人：岳艳芳
+            </div>
+            <div>
+                维护时间：2014-05-12
+            </div>
+            <div style="clear:both;"></div>
+        </li>
+    </ul>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="doEmployeePlan();"><i class="icon-pencil"></i>行动计划</span>
+    </div>
+</div>

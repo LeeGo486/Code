@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "查询别人的行动计划";
+    Layout = "~/Views/Shared/_HRPromiseWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+
+          
+            $('#PromiseSearch').hide();
+
+            $('#btnSubmitSearch').click(function () {
+
+                if ($("#txtc_unitname").val() == "" && $("#txtc_code").val() == "" && $("#txtc_name").val() == "") {
+                    alert("请输入条件！");
+                    return;
+                }
+
+                var data = {
+                    type: "2",
+                    c_unitname: $("#txtc_unitname").val(),
+                    c_code: $("#txtc_code").val(),
+                    c_jobname: "",
+                    UserNameC: $("#txtc_name").val()
+                };
+
+
+                Msg.show("加载中...", 3);
+                $.post("/HR/EHRManagement/PromiseSearch", data, function (rst) {
+                    Msg.hide();
+                    $('#PromiseSearch').show();
+                    $("#PromiseSearchInfo").html(rst);
+                });
+            });
+
+
+        });
+
+    </script>
+}
+
+<div class="mainArea" style="min-height: 0px">
+    <h4><span>&nbsp;&nbsp;查询 </span></h4>
+    <div class="input-group" style="margin-bottom: 10px;">
+        <span class="input-group-addon">&nbsp;&nbsp;工&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;</span>
+        <input id="txtc_code" type="number" class="form-control">
+    </div>
+    <div class="input-group" style="margin-bottom: 10px;">
+        <span class="input-group-addon">&nbsp;&nbsp;姓&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;</span>
+        <input id="txtc_name" class="form-control">
+    </div>
+    <div class="input-group ">
+        <span class="input-group-addon">&nbsp;&nbsp;部&nbsp;&nbsp;&nbsp;门&nbsp;&nbsp;</span>
+        <input id="txtc_unitname" class="form-control">
+    </div>
+    <button id="btnSubmitSearch" type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;">查询</button>
+
+</div>
+
+<div class="mainArea" style="min-height: 0px" id="PromiseSearch">
+    <div class="ht" id="resultTitle">
+        <h4><span><i class="icon-folder-open-alt"></i>&nbsp;&nbsp;查询结果</span></h4>
+    </div>
+    <div id="PromiseSearchInfo" style="margin-top: 5px">
+    </div>
+</div>

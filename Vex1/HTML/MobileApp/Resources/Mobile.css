@@ -1,0 +1,101 @@
+﻿body {
+    /*background:#2c3e50 url(images/EHRLogin.png) top center no-repeat;*/
+    background:#2c3e50;
+    background-size:100%;
+    font-family:'Microsoft YaHei',Arial;
+    margin:0px;
+    background-attachment:scroll;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+    .clearfix::after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+/*********主区域***************/
+.main {
+    margin: 8px;
+    text-align: left;
+}
+
+.mainArea {
+    color: #808080;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    font-size: small;
+    border-radius: 3px;
+    min-height: 300px;
+}
+/************页面底部****************/
+.footer {
+    background: url(/Areas/Matrix/Resources/images/line.jpg) top center repeat-x;
+    padding: 20px;
+    margin: 60px 0px 20px 0px;
+    text-align: center;
+    color: #999;
+}
+
+    .footer a {
+        color: #969696;
+        line-height: 200%;
+    }
+/**************badge样式*************/
+.ls {
+    background-color: #66CC33; /*柔和绿*/
+}
+
+.hs {
+    background-color: #FF6666; /*柔和红*/
+}
+
+.ys {
+    background-color: #FF9966; /*柔和黄*/
+}
+
+.badge {
+    font-weight: normal; /*禁用粗体*/
+}
+/**************星级评分*************/
+.rating-input span {
+    margin: 0px 4px;
+    color: #FF6666;
+}
+/***解决在Android浏览器左边有圆角问题*/
+select {
+    -webkit-appearance: none;
+}
+
+    select.form-control {
+        background: url(/Areas/Matrix/Resources/images/slt.png) center right no-repeat;
+    }
+/****分享，弹出层****/
+.shareTip {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    opacity: 0.8;
+    background: #000 url(jt.png) top right no-repeat;
+    background-size: 150px;
+    color: #fff;
+    padding-top: 80px;
+    text-align: right;
+}
+.shareTipTxt {
+    padding-right: 60px;
+    text-align: center;
+    width: 140px;
+    float: right;
+    opacity: 1;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 140%;
+}

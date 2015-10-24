@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>选择模版</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/table.css">
+			<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+			<style>
+.menulines{}
+		</style>
+			<SCRIPT>
+<!--
+
+var menu_enter="";
+
+function borderize_on(e)
+{
+ color="#708DDF";
+ source3=event.srcElement
+
+ if(source3.className=="menulines" && source3!=menu_enter)
+    source3.style.backgroundColor=color;
+}
+
+function borderize_on1(e)
+{
+ for (i=0; i<document.all.length; i++)
+ { document.all(i).style.borderColor="";
+   document.all(i).style.backgroundColor="";
+   document.all(i).style.color="";
+   document.all(i).style.fontWeight="";
+ }
+
+ color="#003FBF";
+ source3=event.srcElement
+
+ if(source3.className=="menulines")
+ { source3.style.borderColor="black";
+   source3.style.backgroundColor=color;
+   source3.style.color="white";
+   source3.style.fontWeight="bold";
+ }
+
+ menu_enter=source3;
+}
+
+function borderize_off(e)
+{
+ source4=event.srcElement
+
+ if(source4.className=="menulines" && source4!=menu_enter)
+    {source4.style.backgroundColor="";
+     source4.style.borderColor="";
+    }
+}
+
+//-->
+			</SCRIPT>
+			<script Language="JavaScript">
+var parent_window = parent.dialogArguments;
+
+function click_model(ID)
+{
+  targetelement=document.all(ID);
+  parent_window.getModel(targetelement.value);
+ 
+  window.close();
+}
+			</script>
+	</head>
+	<body>
+		<table border="1" cellspacing="0" width="100%" class="small" cellpadding="3" bordercolorlight="#000000"
+			bordercolordark="#FFFFFF" onMouseover="borderize_on(event)" onMouseout="borderize_off(event)"
+			onclick="borderize_on1(event)" ID="Table1">
+			<tr class="TableHeader">
+				<td bgcolor="#d6e7ef" align="center"><b>选择模版</b></td>
+			</tr>
+			<tr class="TableControl">
+				<td class="menulines" align="center" onclick="javascript:click_model('CONTENT_0')" style="cursor:hand">
+					当日工作重点.html <input type="hidden" name="CONTENT_0" value="<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN''http://www.w3.org/TR/html4/loose.dtd'><html><head><meta http-equiv='Content-Type' content='text/html; charset=gb2312'><title>无标题文档</title></head><body><DIV align=left><B><FONT size=3>  </FONT></B><H3 align=center><b><font size='3'>当日工作重点</font></b></H3>    <P align=justify><FONT size=3>月</FONT><FONT size=3>日</FONT></P>    <TABLE cellSpacing=1 cellPadding=7 width=700 align=center border=1>      <TBODY>        <TR>          <TD vAlign=top width='31%'><FONT size=3>□今天最重要的业务</FONT></TD>          <TD vAlign=top width='57%'>　</TD>          <TD vAlign=top width='12%'><FONT size=3>○×</FONT></TD>        </TR>        <TR>          <TD vAlign=top><FONT size=3>□今天最严重的问题点</FONT></TD>          <TD vAlign=top>　</TD>          <TD vAlign=top><FONT size=3>○×</FONT></TD>        </TR>        <TR>          <TD vAlign=top><FONT size=3>□今天最应注意的地方</FONT></TD>          <TD vAlign=top>　</TD>          <TD vAlign=top><FONT size=3>○×</FONT></TD>        </TR>        <TR>          <TD vAlign=top><FONT size=3>□今天最重要的指示命令</FONT></TD>          <TD vAlign=top>　</TD>          <TD vAlign=top><FONT size=3>○×</FONT></TD>        </TR>        <TR>          <TD vAlign=top><FONT size=3>□今天最好的构想</FONT></TD>          <TD vAlign=top>　</TD>          <TD vAlign=top><FONT size=3>○×</FONT></TD>        </TR>        <TR>          <TD vAlign=top><FONT size=3>□今天最该反省的事</FONT></TD>          <TD vAlign=top>　</TD>          <TD vAlign=top><FONT size=3>○×</FONT></TD>        </TR>        <TR>          <TD vAlign=top><FONT size=3>□明天最重要的课题</FONT></TD>          <TD vAlign=top>　</TD>          <TD vAlign=top><FONT size=3>○×</FONT></TD>        </TR>      </TBODY>    </TABLE>    <P align=justify><FONT face='Times New Roman' size=3>[ </FONT><FONT size=3>今日备忘重点</FONT><FONT face='Times New Roman' size=3> ]</FONT></P>    <TABLE cellSpacing=1 cellPadding=7 width=700 align=center border=1>      <TBODY>        <TR>          <TD vAlign=top width='87%'><FONT size=3></FONT><FONT face='Times New Roman' size=3>　</FONT></TD>          <TD width='13%'><FONT face='Times New Roman' size=3></FONT><FONT size=3>○×</FONT></TD>        </TR>      </TBODY>    </TABLE></DIV></body></html>"
+						ID="Hidden1">
+				</td>
+			</tr>
+			<tr class="TableControl">
+				<td class="menulines" align="center" onclick="javascript:click_model('CONTENT_1')" style="cursor:hand">
+					工作计划表.html <input type="hidden" name="CONTENT_1" value="<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN''http://www.w3.org/TR/html4/loose.dtd'><html><head><meta http-equiv='Content-Type' content='text/html; charset=gb2312'><title>无标题文档</title></head><body><DIV align=left><U><FONT lang=ZH-CN face=黑体 size=4>  <H3 align=center>工 作 计 划 表</H3>  </FONT></U><FONT size=3>  </FONT><FONT size=3><P align=justify></P>  </FONT>  <P align=right>  <TABLE cellSpacing=2 width=700 align=center border=1>    <TBODY>      <TR>        <TD vAlign=top width='12%'><P align=center><FONT size=3>计</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>划</FONT></P>            <P align=center><FONT size=3>名</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>称</FONT> </P></TD>        <TD vAlign=top width='51%' colSpan=3><FONT face='Times New Roman' size=3>          <P align=center>&nbsp;</P>        </FONT></TD>        <TD vAlign=top width='38%' colSpan=3><FONT size=3>          <P align=justify>单位</P>          <P align=justify>姓名 </P>        </FONT></TD>      </TR>      <TR>        <TD vAlign=top width='12%'><P align=center><FONT size=3>主</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>题</FONT></P>            <P align=center><FONT size=3>目</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>标</FONT> </P></TD>        <TD vAlign=top width='88%' colSpan=6>　</TD>      </TR>      <TR>        <TD vAlign=top width='12%'><FONT size=3>          <P align=center></P>          <P align=center>人员</P>          <P align=center></P>        </FONT></TD>        <TD vAlign=top width='51%' colSpan=3>　</TD>        <TD vAlign=top width='38%' colSpan=3><FONT size=3>          <P align=justify>　</P>          <P align=justify>组别</P>          <P align=justify></P>        </FONT></TD>      </TR>      <TR>        <TD vAlign=top width='12%'><FONT size=3>          <P align=center>　</P>          <P align=center>领导者</P>          <P align=center></P>        </FONT></TD>        <TD vAlign=top width='51%' colSpan=3>　</TD>        <TD vAlign=top width='38%' colSpan=3><P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>协助者</FONT></P>            <FONT size=3>            <P align=justify>（助理） </P>          </FONT></TD>      </TR>      <TR>        <TD vAlign=top width='12%'><P align=center><FONT size=3>行</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>动</FONT></P>            <P align=center><FONT size=3>计</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>划</FONT> </P></TD>        <TD vAlign=top width='88%' colSpan=6>　</TD>      </TR>      <TR>        <TD vAlign=top width='12%' height=52><FONT size=3>          <P align=center></P>          </FONT>            <P align=center><FONT size=3>步</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>骤</FONT></P>            <FONT size=3>            <P align=center></P>          </FONT></TD>        <TD vAlign=top width='88%' colSpan=6 height=52><FONT size=3>          <P align=justify>　</P>          <P align=justify>　</P>          <P align=justify>　 </P>        </FONT></TD>      </TR>      <TR>        <TD vAlign=top width='12%'><FONT size=3>          <P align=center>          <HR align=left width='4%' SIZE=1>          <HR align=left width='4%' SIZE=1>          <HR align=left width='4%' SIZE=1>          <HR align=left width='4%' SIZE=1>          <HR align=left width='4%' SIZE=1>          <P></P>          <P align=center></P>          <P align=center>日</P>          <P align=center></P>          <P align=center>程</P>          <P align=center></P>          <P align=center>表</P>          <P align=center></P>        </FONT></TD>        <TD vAlign=top width='88%' colSpan=6><P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>（记载进步状况）</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>完成率</FONT></P>            <P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>开始</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>月</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>日</FONT><FONT face='Times New Roman' size=3> 10</FONT></P>            <FONT face='Times New Roman' size=3>            <P align=justify>20</P>            </FONT>            <P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>中程目标</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□月</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>日</FONT><FONT face='Times New Roman' size=3> 30</FONT></P>            <FONT face='Times New Roman' size=3>            <P align=justify>40</P>            </FONT>            <P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>（修正目标）</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>月</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>日</FONT><FONT face='Times New Roman' size=3> 50</FONT></P>            <FONT face='Times New Roman' size=3>            <P align=justify>60</P>            </FONT>            <P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>（延长）</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>月</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>日</FONT><FONT face='Times New Roman' size=3> 70</FONT></P>            <FONT face='Times New Roman' size=3>            <P align=justify>80</P>            </FONT>            <P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>完成</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>月</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>□</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>日</FONT><FONT face='Times New Roman' size=3> 90</FONT></P>            <FONT face='Times New Roman' size=3>            <P align=justify>100 </P>          </FONT></TD>      </TR>      <TR>        <TD vAlign=top width='12%'><FONT size=3>          <P align=justify></P>          </FONT>            <P align=justify><FONT face='Times New Roman' size=3></FONT><FONT size=3>成</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>果</FONT> </P></TD>        <TD vAlign=top width='88%' colSpan=6>　</TD>      </TR>      <TR>        <TD vAlign=top width='12%'><FONT size=3>          <P align=center></P>          </FONT>            <P align=center><FONT size=3>检</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>测</FONT> </P></TD>        <TD vAlign=top width='41%' colSpan=2>　</TD>        <TD vAlign=top width='16%' colSpan=3><FONT size=3>          <P align=justify></P>          <P align=center>第二次展开 </P>        </FONT></TD>        <TD vAlign=top width='32%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='40%' colSpan=2><FONT size=3>          <P align=justify>预算</P>          <P align=justify></P>          <P align=justify>　</P>          <P align=justify>　 </P>        </FONT></TD>        <TD vAlign=top width='28%' colSpan=3><FONT size=3>          <P align=justify>修正预算 </P>        </FONT></TD>        <TD vAlign=top width='32%' colSpan=2><FONT size=3>          <P align=justify>结算 </P>        </FONT></TD>      </TR>    </TBODY>  </TABLE>  <p></P></DIV></body></html>"
+						ID="Hidden2">
+				</td>
+			</tr>
+			<tr class="TableControl">
+				<td class="menulines" align="center" onclick="javascript:click_model('CONTENT_2')" style="cursor:hand">
+					会议发言要点表.html <input type="hidden" name="CONTENT_2" value="<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN''http://www.w3.org/TR/html4/loose.dtd'><html><head><meta http-equiv='Content-Type' content='text/html; charset=gb2312'><title>无标题文档</title></head><body><DIV align=left><U><FONT lang=ZH-CN face=黑体 size=4>  <H3 align=center>会议发言要点表</H3>  </FONT></U><FONT size=3>  </FONT><FONT size=3><P align=justify></P>  </FONT>  <TABLE cellSpacing=2 cellPadding=7 width=700 align=center border=1>    <TBODY>      <TR>        <TD vAlign=top colSpan=4><FONT face='Times New Roman' size=3></FONT><FONT size=3>月</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>日</FONT><FONT face='Times New Roman' size=3> [ ]</FONT></TD>      </TR>      <TR>        <TD width='14%'><FONT size=3>发言者</FONT></TD>        <TD width='32%'><FONT size=3>主</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>旨</FONT></TD>        <TD width='36%'><FONT size=3>发言要点</FONT></TD>        <TD vAlign=top width='17%'><FONT size=3>重要程度</FONT></TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT face='Times New Roman' size=3>　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='14%'><FONT size=3>　　　</FONT></TD>        <TD vAlign=top width='32%'>　</TD>        <TD vAlign=top width='36%'>　</TD>        <TD vAlign=top width='17%'>　</TD>      </TR>      <TR>        <TD vAlign=top width='46%' colSpan=2><FONT face='Times New Roman' size=3>[ </FONT><FONT size=3>主要反对意见</FONT><FONT face='Times New Roman' size=3>]</FONT></TD>        <TD vAlign=top width='54%' colSpan=2><FONT face='Times New Roman' size=3>[ </FONT><FONT size=3>检讨事项</FONT><FONT face='Times New Roman' size=3> ]</FONT><FONT face='Times New Roman' size=3> </FONT></TD>      </TR>    </TBODY>  </TABLE>  <P align=center><FONT face='Times New Roman' size=3></FONT><FONT size=3>重要程度　</FONT><FONT face='Times New Roman' size=3> A</FONT><FONT size=3>重要</FONT><FONT face='Times New Roman' size=3> 　B</FONT><FONT size=3>要检讨　</FONT><FONT face='Times New Roman' size=3> C</FONT><FONT size=3>考虑</FONT></P></DIV></body></html>"
+						ID="Hidden3">
+				</td>
+			</tr>
+			<tr class="TableControl">
+				<td class="menulines" align="center" onclick="javascript:click_model('CONTENT_3')" style="cursor:hand">
+					演讲、研习会摘要录.html <input type="hidden" name="CONTENT_3" value="<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN''http://www.w3.org/TR/html4/loose.dtd'><html><head><meta http-equiv='Content-Type' content='text/html; charset=gb2312'><title>无标题文档</title></head><body><DIV align=left><U><FONT lang=ZH-CN face=黑体 size=4>  <H3 align=center>演讲、研习会摘要录</H3>  </FONT></U> <DIR><FONT lang=ZH-CN face=黑体 size=4></FONT> <DIR><FONT lang=ZH-CN face=黑体 size=4><U></U></FONT><FONT size=3>  <P align=justify></P>  </FONT></DIR><U>  <P align=justify><FONT face='Times New Roman' size=3>1</FONT><FONT size=3>．时</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>间</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>2</FONT><FONT size=3>．地</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>点</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>3</FONT><FONT size=3>．主</FONT><FONT face='Times New Roman' size=3> </FONT><FONT size=3>题</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>4</FONT><FONT size=3>．演讲者</FONT></P>  </U><FONT size=3>  <P align=justify></P>  </FONT><FONT size=3>  <P align=justify>学习重点</P>  </FONT><U>  <P align=justify><FONT face='Times New Roman' size=3>1</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>2</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>3</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>4</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>5</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>6</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>8</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>9</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>10</FONT><FONT size=3>．</FONT></P>  </U><FONT size=3>  <P align=justify></P>  <P align=justify>可供自己参考的事项</P>  </FONT><U>  <P align=justify><FONT face='Times New Roman' size=3>1</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>2</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>3</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>4</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>5</FONT><FONT size=3>．</FONT></P>  </U><FONT size=3>  <P align=justify></P>  <P align=justify>可供公司参考的事项</P>  </FONT><U>  <P align=justify><FONT face='Times New Roman' size=3>1</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>2</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>3</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>4</FONT><FONT size=3>．</FONT></P>  <P align=justify><FONT face='Times New Roman' size=3>5</FONT><FONT size=3>．</FONT></P></U></DIR></DIV></body></html>"
+						ID="Hidden4">
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

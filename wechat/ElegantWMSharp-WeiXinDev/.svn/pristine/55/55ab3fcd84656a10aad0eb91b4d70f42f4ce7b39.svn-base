@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "管理中心";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <script src="~/Application/MainFrame/app.js"></script>
+}
+<div id="WMS-loader">
+</div>

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>雅莹招聘</title>
+	<script type="text/javascript">
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideToolbar');
+        });
+    </script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            background: url(./resources/startup/eplogo.jpg) center center no-repeat #f8f8f8;
+        }
+    </style>
+    <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
+</head>
+<body>
+    <div id="appLoadingIndicator" style="background:url(./resources/images/loading.gif) center center no-repeat;top:60%;height:40px;width:100%;position:absolute;">
+    </div>
+</body>
+</html>

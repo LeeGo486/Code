@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.HR_Question>
+@{
+    ViewBag.Title = "满意度调查";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+
+            //var totalRadio = '@(Model.Where(f => f.QsnType == "radio").Count())';
+            //var totalRadio = '@ViewBag.QsnCount';
+            $("#btnSubmit").click(function () {
+                //判断是否所有题目都填写完整？
+                if ($('input[type="radio"]').length / 5 != $('input[type="radio"]:checked').length) {
+                    Msg.show("请完成所有题目！", 1);
+                    return;
+                }
+                var isCan = true;
+                var rstList = { rstList: [] };
+                $('textarea').each(function () {
+                    if ($.trim($(this).val()).length <= 0) {
+                        isCan = false;
+                        return;
+                    }
+                    rstList.rstList.push({
+                        "Qid": $(this).attr("name"),
+                        "Result": $(this).val()
+                    });
+                });
+                if (isCan == false) {
+                    Msg.show("请完成问答题目！", 1);
+                    return;
+                }
+
+                $('input[type="radio"]:checked').each(function () {
+                    rstList.rstList.push({
+                        "Qid": $(this).attr("name"),
+                        "Result": $(this).val()
+                    });
+                });
+                console.log(rstList);
+                //提交
+
+                $(this).button("loading");
+                Msg.show("提交中...", 3);
+                $.ajax({
+                    type: 'POST',
+                    url: "/HR/Course/SumitQA/@Html.ViewContext.RouteData.Values["id"]",
+                    data: JSON.stringify(rstList),
+                    contentType: "application/json; charset=utf-8",
+                    traditional: true,
+                    success: function (rst) {
+                        $("#btnSubmit").button("reset");
+                        Msg.hide();
+                        Msg.show(rst.msg, rst.result);
+                        //window.history.go(-1);
+                    }
+                });
+
+            });
+        });
+    </script>
+}
+<div class="survey">
+    <h3>课程满意度调查</h3>
+    @foreach (string category in ViewBag.CategoryRadio)
+    {
+        <h4><span>@category</span></h4>
+        <div style="font-size: 14px; margin: 15px 0px 20px 0px;">
+            @foreach (ElegantWM.EntityModel.HR_Question qst in Model)
+            {
+                if (qst.QsnCategory == category)
+                {
+                <span>@qst.QsnName</span>
+                <div style="margin: 0px 0px 16px 0px;">
+                    <input type="radio" name="@qst.Id" id="A_@(qst.Id)_1" value="5"  /><label for="A_@(qst.Id)_1">@qst.QsnAnswer1</label>
+                    <input type="radio" name="@qst.Id" id="A_@(qst.Id)_2" value="4" /><label for="A_@(qst.Id)_2">@qst.QsnAnswer2</label>
+                    <input type="radio" name="@qst.Id" id="A_@(qst.Id)_3" value="3" /><label for="A_@(qst.Id)_3">@qst.QsnAnswer3</label>
+                    <input type="radio" name="@qst.Id" id="A_@(qst.Id)_4" value="2" /><label for="A_@(qst.Id)_4">@qst.QsnAnswer4</label>
+                    <input type="radio" name="@qst.Id" id="A_@(qst.Id)_5" value="1" /><label for="A_@(qst.Id)_5">@qst.QsnAnswer5</label>
+                </div>
+                }
+            }
+        </div>
+    }
+
+    @foreach (string category in ViewBag.CategoryText)
+    {
+        <h4><span>@category</span></h4>
+        <div style="font-size: 14px; margin: 15px 0px 20px 0px;">
+            @foreach (ElegantWM.EntityModel.HR_Question qst in Model)
+            {
+                if (qst.QsnCategory == category)
+                {
+                <span>@qst.QsnName</span>
+                <div style="margin: 0px 0px 16px 0px;">
+                    <textarea class="form-control" maxlength="50" placeholder="50字内" name="@qst.Id"></textarea>
+                </div>
+                }
+            }
+        </div>
+    }
+
+</div>
+
+
+<button id="btnSubmit" type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="提交中...">提交</button>
+

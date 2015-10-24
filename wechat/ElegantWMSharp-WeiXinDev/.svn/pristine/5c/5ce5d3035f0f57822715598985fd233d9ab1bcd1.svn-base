@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "猜灯谜";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/JOREALLanternFestival.css?v4" />
+    <script type="text/javascript">
+        var questions;
+        var answers;
+        var curIndex = 0;
+
+        $(function () {
+            $("#bg img").load(function () {
+                var bgHeight = $("#bg").height();
+                $("#logo").css("bottom", bgHeight * 0.01);
+                $("#question").css("top", ($("#bg").height() * 0.04));
+                $("#question").css("margin-left", '10px');
+                $("#answers").css("top", ($("#bg").height() * 0.60));
+                $("#fish").css("bottom", bgHeight * 0.31);
+                $("#Bg").fullpage({})
+                $("#fish3").fadeIn("slow")
+            })
+            //$("#answers").css("top", ($("#main").height() * 0.63));
+            Msg.show("题目加载中...", 3);
+            $.get("/Game/JOREALLanternFestival/LoadQuestion?TntId=FEF432AF-D0AE-4876-8200-931F47BEF854", function (data) {
+                answers = data.A;
+                questions = data.Q;
+                loadQuestion();
+                Msg.hide();
+            });
+
+        });
+
+        function loadQuestion() {
+            var qst = questions[curIndex];
+            var qhtmldata = "";
+            var ahtmldata = "<table border='0px' style=' text-align:center'> <tr><th colspan='3'>【猜一个】</th></tr><tr>";
+            qhtmldata = '<img src="/Areas/Game/Resources/images/JOREALLanternFestival/' + qst.QImage + '"/>';
+
+            $.each(answers, function (index, item) {
+                if (item.Qid == qst.Id && item.AType == qst.QType) {
+                    ahtmldata += "<td " + (item.IsRight == 0 ? "" : " attr_data=1") + " onclick='checkAnswer(this);'>&nbsp;" + item.Answer + "&nbsp;</td>";
+                }
+            });
+            ahtmldata += "</tr></table>";
+            $(".qtitle").html(qhtmldata);
+            $(".answers").html(ahtmldata);
+        }
+
+        function checkAnswer(ths) {
+            if ($(ths).attr("attr_data") == 1) {
+                Msg.show("数据提交中...", 3);
+                $.post("/Game/JOREALLanternFestival/Submit?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&RightOrWrong=Right", function (data) {
+                    Msg.hide();
+                    if (data.result == 0)
+                        var data1 = eval(data.msg);
+                    window.location.href = "/Game/JOREALLanternFestival/Winning?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&awardId=" + data1[0].awardId + "&ticketid=" + data1[0].ticketid;
+                });
+            } else {
+                $.post("/Game/JOREALLanternFestival/Submit?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&RightOrWrong=Wrong", function (data) {
+                    Msg.hide();
+                    if (data.result == 0)
+                        window.location.href = "/Game/JOREALLanternFestival/Wrong?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                    //else
+                    //    Msg.show(data.msg, data.result);
+                });
+            }
+        }
+    </script>
+}
+
+<div id="bg">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/bg2.jpg" width='100%' />
+</div>
+
+<div class="question" id="question">
+    <div class="qtitle">
+        @*<img src="/Areas/Game/Resources/images/JOREALLanternFestival/1.png" />*@
+    </div>
+    @*<img src="/Areas/Game/Resources/images/JOREALLanternFestival/mi1.png" />*@
+</div>
+
+<div id="fish">
+    <img id="fish3" src="/Areas/Game/Resources/images/JOREALLanternFestival/1002.png" alt="head" style="width: 80%; display: none" />
+</div>
+
+<center>
+<div class="answers" id="answers">
+    <div class="atitle">
+    </div>
+</div></center>
+<div id="logo">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/EP.png" alt="head" style="width: 100%" />
+</div>
+
+
+

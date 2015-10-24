@@ -1,0 +1,270 @@
+﻿<script type="text/javascript">
+
+    $(function () {
+        //日历
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+
+    $(document).ready(function () {
+        //预约结果
+        var $select = $("#DICP_ID_Result@(ViewBag.CUSID)");
+        //预约结果所在DIV
+        var $select_Div = $("#comFruit@(ViewBag.CUSID)");
+        //反馈类型
+        var FBType = "@ViewBag.Type";
+
+        //------------选项-------------//
+        //有无价值
+        var $valueInfo = $("#valueInformation" + '@ViewBag.CUSID');
+        //反馈内容
+        var $feedBack = $("#feedBack" + '@ViewBag.CUSID');
+        //应邀时间
+        var $invitationDate = $("#invitationDate" + '@ViewBag.CUSID');
+        //提交按钮
+        var $button = $("#button" + '@ViewBag.CUSID');
+        //拒绝原因
+        var $DICP_ID_Reason = $("#dICP_ID_Reason" + '@ViewBag.CUSID');
+        //再次预约日期
+        var $reservationDateAgain = $("#reservationDateAgain" + '@ViewBag.CUSID');
+        //备注
+        var $remark = $("#remark" + '@ViewBag.CUSID');
+
+        //变更事件
+        $select.change(function () {
+
+            //选择结果
+            var selectText = $(this).children('option:selected').text();
+
+            //判断
+            if (FBType == "关怀反馈") {
+                
+                if (selectText == "接收关怀") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    //是否有价值
+                    $valueInfo.show();
+                    //备注
+                    $feedBack.show();
+                    //按钮
+                    $button.show();
+                }
+                else if (selectText == "拒绝") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    //是否有价值
+                    $valueInfo.show();
+                    //拒绝原因
+                    $DICP_ID_Reason.show();
+                    //价值信息
+                    $feedBack.show();
+                    //按钮
+                    $button.show();
+                }
+                else if (selectText == "空号/号码已更换") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    //按钮
+                    $button.show();
+                }
+                else if (selectText == "其他") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    $remark.show();
+                    $button.show();
+                }
+                else if (selectText == "") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                }
+                else {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    //再次预约时间
+                    $reservationDateAgain.show();
+                    //按钮
+                    $button.show();
+                }
+            } else if (FBType == "销售反馈") {
+                if (selectText == "应邀") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    //应邀日期
+                    $invitationDate.show();
+                    //按钮
+                    $button.show();
+                }
+                else if (selectText == "无应答") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    //再次时间
+                    $reservationDateAgain.show();
+                    //按钮
+                    $button.show();
+                }
+                else if (selectText == "其他") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                    $remark.show();
+                    $button.show();
+                }
+                else if (selectText == "空号/号码已更换") {
+                    $select_Div.nextAll("div").hide();
+                    //按钮
+                    $button.show();
+                }
+                else if (selectText == "") {
+                    //隐藏所有
+                    $select_Div.nextAll("div").hide();
+                }
+                else {
+                    //拒绝原因
+                    $DICP_ID_Reason.show();
+                    //再次时间
+                    $reservationDateAgain.show();
+                    //按钮
+                    $button.show();
+                }
+            }
+        });
+    });
+</script>
+
+<div id="FeedBackAll@(ViewBag.CUSID)">
+<div class="ht" style="background-color:#EEEEEE">
+    <i class="glyphicon icon-pencil"></i>&nbsp;&nbsp;我的任务反馈
+    <span onclick="$('#FeedBackAll@(ViewBag.CUSID)').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail" id="myFeedBack">
+
+        <div class="input-group" id ="comFruit@(ViewBag.CUSID)">
+            <span class="input-group-addon">预约结果</span>
+            <select class="form-control" id="DICP_ID_Result@(ViewBag.CUSID)" name="DICP_ID_Result" onchange="">
+                <option value="" selected="selected"></option>
+                @for (int i = 0; i < ViewBag.Select.Rows.Count; i++) { 
+                    <option  value = '@ViewBag.Select.Rows[i]["ID"]'>@ViewBag.Select.Rows[i]["Name"]</option>
+                }
+            </select>
+        </div>
+        
+        <div class="input-group" style="display:none;margin-top: 15px;" id="dICP_ID_Reason@(ViewBag.CUSID)">
+            <span class="input-group-addon">拒绝原因</span>
+            <select class="form-control" id="DICP_ID_Reason">
+                @for (int i = 0; i < ViewBag.Reason.Rows.Count; i++)
+                { 
+                    <option  value = '@ViewBag.Reason.Rows[i]["ID"]'>@ViewBag.Reason.Rows[i]["Name"]</option>
+                }
+            </select>
+        </div>
+        
+        <div class="input-group date form_date" style="display:none;margin-top: 15px;" id="invitationDate@(ViewBag.CUSID)">
+            <span class="input-group-addon">应邀日期</span>
+            <input class="form-control hzyDp" id="InvitationDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
+        
+        <div class="input-group date form_date" style="display:none;margin-top: 15px;" id="reservationDateAgain@(ViewBag.CUSID)">
+            <span class="input-group-addon">再约日期</span>
+            <input class="form-control hzyDp" id="ReservationDateAgain" type="text" data-date-format="yyyy-mm-dd" readonly="">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
+        
+        <div class="input-group" style="display:none;margin-top: 15px;" id="valueInformation@(ViewBag.CUSID)">
+            <span class="input-group-addon">有无价值</span>
+            <select class="form-control" id="ValueInformation">
+                <option  value = '是'>是</option>
+                <option  value = '否'>否</option>
+            </select>
+        </div>
+        
+        <div class="input-group" style="display:none;margin-top: 15px;" id="feedBack@(ViewBag.CUSID)">
+            <span class="input-group-addon">维护反馈</span>
+            <textarea id="Feedback" class="form-control" placeholder="请输入内容"></textarea>
+        </div>
+        
+        <div class="input-group" style="display:none;margin-top: 15px;" id="remark@(ViewBag.CUSID)">
+            <span class="input-group-addon">备注信息</span>
+            <textarea id="Remark" class="form-control" placeholder="请输入内容"></textarea>
+        </div>
+
+        <div style="display:none;" id="button@(ViewBag.CUSID)">
+            <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submit()">提交反馈</button>
+        </div>
+        <script>
+            //保存
+            function submit() {
+                var FBType = "@ViewBag.Type";
+                //预约结果
+                var $select = $("#DICP_ID_Result" + '@ViewBag.CUSID');
+                //提交数据
+                var data = {};
+                data.where = "<ID>@ViewBag.ID</ID><DICP_ID_Result>" + $select.val() + "</DICP_ID_Result><Status>已预约</Status>";
+
+                var selectText = $("#DICP_ID_Result").children('option:selected').text();
+
+                if (FBType == "销售反馈" && selectText == "应邀") {
+                    //验证应邀日期是否填写
+                    if ($("#InvitationDate").val() == "") {
+                        Msg.show("请选择应邀日期",1);
+                        return;
+                    }
+                    else {
+                        data.where += "<InvitationDate>" + $("#InvitationDate").val() + "</InvitationDate>";
+                    };
+                }
+                else if (FBType == "关怀反馈"){
+                    if ($("#InvitationDate").val() != "") {
+                        data.where += "<InvitationDate>" + $("#InvitationDate").val() + "</InvitationDate>";
+                    };
+                    //有无价值（客户关怀--接收/拒绝）
+                    if (selectText == "接收关怀" || selectText == "拒绝") {
+                        if ($("#ValueInformation").val() != "") {
+                            data.where += "<ValueInformation>" + $("#ValueInformation").val() + "</ValueInformation>";
+                        };
+                    };
+                };
+
+                if (selectText == "拒绝") {
+                    //验证拒绝原因
+                    if ($("#DICP_ID_Reason").val() == "") {
+                        Msg.show("请选择拒绝原因",1);
+                        return;
+                    }
+                    else {
+                        data.where += "<DICP_ID_Reason>" + $("#DICP_ID_Reason").val() + "</DICP_ID_Reason>";
+                    };
+                };
+
+
+                //反馈内容
+                if ($("#Feedback").val() != "") {
+                    data.where += "<Feedback>" + $("#Feedback").val() + "</Feedback>";
+                };
+                //备注信息
+                if ($("#Remark").val() != "") {
+                    data.where += "<Remark>" + $("#Remark").val() + "</Remark>";
+                }
+                //再次预约日期
+                
+                data.where += "<ReservationDateAgain>" + $("#ReservationDateAgain").val() + "</ReservationDateAgain>";
+
+                $.post("/S3/CMTFeedBack/FeedBackSumbit", data, function (data) {
+                    data = eval('(' + data + ')')[0];
+                    //debugger;
+                    var message = data.Message;
+                    $('#FeedBackAll' + '@ViewBag.CUSID').fadeOut(500);
+                    //$("#zt" + ViewBag.CusInfo).val("已预约");
+                    //$("#TaskDetail div:visible").attr("style","display:none");
+                    $("#taskFB" + '@ViewBag.CUSID').hide();
+                    Msg.show(message,0);
+                });
+            };
+        </script>
+        
+</div>
+
+</div>

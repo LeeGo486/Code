@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "用户登入";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script src="/Areas/Game/Resources/js/Questionnaire.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //单击按钮的时候
+            $("#btnLogin").click(function () {
+                $(this).button('loading');
+                if ($.trim($("#TxtName").val()).length <= 0) {
+                    Msg.show("姓名不能为空", 1);
+                    $("#TxtName").focus();
+                    $(this).button("reset");
+                    return;
+                } else if ($.trim($("#TxtPassWord").val()).length <= 0) {
+                    Msg.show("密码不能为空", 1);
+                    $("#TxtPassWord").focus();
+                    $(this).button("reset");
+                    return;
+                }
+                //到服务器验证
+                Msg.show("登录中...", 3);
+                $.post("/Game/Questionnaire/Login?password=" + encodeURI($.trim($("#TxtPassWord").val()) + "&name=" + $.trim($("#TxtName").val())), function (rst) {
+                    Msg.hide();
+                    if (rst.result == 0) {
+                        window.location.href = "/Game/Questionnaire/Start";
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                    $("#btnLogin").button("reset");
+                });
+            });
+        });
+    </script>
+}
+<div style="text-align: center; margin: 30px 0px 30px 0px;">
+    <img src="/Areas/HR/Resources/images/hzy.png" width="200px" />
+</div>
+<div class="input-group">
+    <span class="input-group-addon">姓名：</span>
+    <input id="TxtName" class="form-control" style="width: 100%" placeholder="输入姓名">
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">密码：</span>
+    <input id="TxtPassWord" type="password" class="form-control" style="width: 100%" placeholder="输入您的密码">
+</div>
+<br />
+<button id="btnLogin" type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="请稍后...">开始答题</button>

@@ -1,0 +1,250 @@
+﻿body {
+    background-color: #fff;
+}
+
+.ht {
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+    font-size: 14px;
+}
+
+.mainArea {
+    line-height: 180%;
+}
+
+    .mainArea h4 {
+        font-size: 14px;
+        margin: 0px 0px 8px 0px;
+        font-weight: normal;
+        color: #444;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 0px 8px 0px;
+    }
+
+        .mainArea h4 span {
+            padding: 4px 0px 7px 0px;
+            border-bottom: 2px solid #CC3333;
+        }
+
+
+
+/******************顶部导航****************/
+.navsHead {
+    height: 42px;
+    font-size: 0px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    
+}
+
+    .navsHead div {
+        height: 50px;
+        width: 100%;
+        background-color: #fff;
+        float: left;
+        border-bottom:1px solid #ccc
+    }
+
+    .navsHead img {
+        height: 30px;
+        margin: 10px;
+    }
+
+    .navsHead #navNavigationButton {
+        margin-left: -10px;
+    }
+
+/******************导航栏****************/
+.sidebar-wrapper {
+    position: relative;
+    height: 100%;
+    overflow: auto;
+    text-align: left;
+}
+
+#dowebok {
+    background-color: #000;
+}
+
+    #dowebok .nav {
+        margin-top: 50px;
+        line-height: 40px;
+        list-style-type: none;
+    }
+
+        #dowebok .nav a {
+            display: block;
+            padding: 0 20px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+            #dowebok .nav a:hover {
+                background-color: #0883fd;
+            }
+
+    #dowebok hr {
+        margin: 50px;
+        background-color: #444;
+        height: 1px;
+        border: none;
+        border-top: 0px solid #555555;
+        margin: 10px 20px -40px;
+    }
+
+[data-simplersidebar='active'] {
+    box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+
+
+/******************业务****************/
+
+
+
+.bg,
+ul li img {
+    width: 100%;
+}
+
+.split {
+    height: 10px;
+    background: url(/Areas/Matrix/Resources/images/line.jpg) center center repeat-x;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+
+
+#title {
+    height: 20%;
+    background: url(/Areas/NPaia/Resources/images/Goods/bgcolor.png) center center repeat-x;
+    color: #fff;
+}
+
+#per {
+    height: 100px;
+    background: url(/Areas/NPaia/Resources/images/Goods/per.png) center center repeat-x;
+    color: #fff;
+    text-align: left;
+    font-size: 16px;
+    padding: 20px;
+}
+
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 5px;
+    border: 1px solid #fff;
+}
+
+#name .btn,
+#sel .btn,
+#info .btn {
+    border-color: #ccc;
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(top,#fff 0,#fff 100%);
+    background-image: linear-gradient(to bottom,#fff 0,#fff 100%);
+    color: #000;
+    text-shadow: 0;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+    width: 54px;
+}
+
+    #name .btn.active,
+    #sel .btn.active,
+    #info .btn.active {
+        background-color: #2d6ca2;
+        border-color: #2b669a;
+        background-image: -webkit-linear-gradient(top,#428bca 0,#2d6ca2 100%);
+        background-image: linear-gradient(to bottom,#428bca 0,#2d6ca2 100%);
+        color: #fff;
+        text-shadow: 0;
+        text-shadow: 0 0 0 rgba(0,0,0,0);
+        width: 54px;
+    }
+
+
+table td {
+    border-width: 0px;
+}
+
+#skulist {
+    text-align: center;
+}
+
+    #skulist .name {
+        margin: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    #skulist td {
+        width: 50%;
+    }
+
+table#detail,
+table#bigImg {
+    width: 80%;
+    text-align: left;
+    margin: 0 10%;
+}
+
+    table#detail td,
+    table#bigImg td {
+        border-width: 0 0 1px 0;
+    }
+
+        table#bigImg td img {
+            width: 100%;
+        }
+
+table.cart {
+    border: 1px solid #ccc;
+    text-align: left;
+    background-color: #fff;
+}
+
+    table.cart td.smallImg {
+        width: 100px;
+        padding: 3px;
+    }
+
+    table.cart td.check {
+        width: 50px;
+        text-align: center;
+    }
+
+    table.cart td.count {
+        border-width: 1px 0 0 0;
+        border-color: #ccc;
+    }
+
+.tab-pane {
+    padding: 10px 10px 0;
+}
+
+
+
+/************页面底部****************/
+.footer {
+    background: url(/Areas/Matrix/Resources/images/line.jpg) top center repeat-x;
+    padding: 20px;
+    margin: 60px 0px 20px 0px;
+    text-align: center;
+    color: #999;
+}
+
+    .footer a {
+        color: #969696;
+        line-height: 200%;
+    }

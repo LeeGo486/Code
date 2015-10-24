@@ -1,0 +1,1226 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>F23Base.Entity</name>
+    </assembly>
+    <members>
+        <member name="T:F23Base.Entity.EnumNoteType">
+            <summary>
+            单据类型 枚举
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.IndentOrder">
+            <summary>
+            订单
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.IndentSupply">
+            <summary>
+            补货单
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.InvDiff">
+            <summary>
+            盘点差异
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.Inventory">
+            <summary>
+            盘点单
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.MoveGet">
+            <summary>
+            调拨收货
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.MoveSet">
+            <summary>
+            调拨发货
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.MsellSet">
+            <summary>
+            跨区发货
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.OutIndentApply">
+            <summary>
+            退货申请
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.EnumNoteType.OutIndentSet">
+            <summary>
+            退货发货
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.dbname">
+            <summary>
+            当前用户使用的数据库名
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.userid">
+            <summary>
+            用户编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.id">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.username">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.depotid">
+            <summary>
+            店铺编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.dptype">
+            <summary>
+            用户类型
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.usermain">
+            <summary>
+            是否管理员
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.mb">
+            <summary>
+            机构编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.regpc">
+            <summary>
+            是否验证电脑
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.regpcv">
+            <summary>
+            电脑验证码
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pexport">
+            <summary>
+            导出权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pprint">
+            <summary>
+            打印权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pchk">
+            <summary>
+            审核权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.psure">
+            <summary>
+            登账权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.padd">
+            <summary>
+            新增权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pedit">
+            <summary>
+            编辑权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pdel">
+            <summary>
+            删除权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.punchk">
+            <summary>
+            反审核权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.punsure">
+            <summary>
+            反登账权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pwr_cost">
+            <summary>
+            查看成本价权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pwr_price">
+            <summary>
+            查看原价权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pwr_sprice">
+            <summary>
+            查看结算价权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pos_mdzk">
+            <summary>
+            整单打折
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pos_mdsp">
+            <summary>
+            改结算价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pos_back">
+            <summary>
+            退货
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pwr_dis">
+            <summary>
+            最低折扣 
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pos_mdzdzk">
+            <summary>
+            整单最低折扣
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pos_return">
+            <summary>
+            退换货
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.UserInfoEntity.pwr_rdis">
+            <summary>
+            折上折最低折扣 
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.OperationType">
+            <summary>
+            操作类型
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.OperationType.Check">
+            <summary>
+            审核
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.OperationType.UnCheck">
+            <summary>
+            反审核
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.OperationType.Sure">
+            <summary>
+            登账
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.OperationType.UnSure">
+            <summary>
+            反登账
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.MenuPowerEntity">
+             <summary>
+            菜单权限
+             </summary>
+        </member>
+        <member name="M:F23Base.Entity.MenuPowerEntity.SetDefaultValue(System.Boolean)">
+            <summary>
+            设置默认值
+            </summary>
+            <param name="DefaultValue"></param>
+        </member>
+        <member name="M:F23Base.Entity.MenuPowerEntity.#ctor(System.Boolean)">
+            <summary>
+            菜单权
+            </summary>
+            <param name="DefaultValue">默认值</param>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pwrin">
+            <summary>
+            访问权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pexport">
+            <summary>
+            导出权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pprint">
+            <summary>
+            打印权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pchk">
+            <summary>
+            审核权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.psure">
+            <summary>
+            登账权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.padd">
+            <summary>
+            新增权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pedit">
+            <summary>
+            编辑权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pdel">
+            <summary>
+            删除权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.punchk">
+            <summary>
+            反审核权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.punsure">
+            <summary>
+            反登账权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pwr_cost">
+            <summary>
+            查看成本价权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pwr_price">
+            <summary>
+            查看原价权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.pwr_sprice">
+            <summary>
+            查看结算价权
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.edit_sprice">
+            <summary>
+            编辑结算价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.MenuPowerEntity.edit_cost">
+            <summary>
+            编辑成本价
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.Config.PrintConfigEntity">
+            <summary>
+            打印设置实体类
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.id">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.menuid">
+            <summary>
+            菜单编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.title">
+            <summary>
+            显示标题
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.url">
+            <summary>
+            打印地址
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.width">
+            <summary>
+            宽度 
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.height">
+            <summary>
+            高度
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.enabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.autoprint">
+            <summary>
+            自动打印
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.PrintConfigEntity.isdefault">
+            <summary>
+            默认打印格式
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.JsonTable">
+             <summary>
+            JsonTableTable 的摘要说明
+             </summary>
+        </member>
+        <member name="P:F23Base.Entity.JsonTable.limit">
+            <summary>
+            每页显示记录数 0为不限制
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.JsonTable.start">
+            <summary>
+            开始显示的记录数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.JsonTable.columns">
+            <summary>
+            列集合
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.JsonTable.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.JsonTable.foot">
+            <summary>
+            页脚数据
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.JsonTable.states">
+            <summary>
+            行状态
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.JsonTableData">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.JsonTableFoot">
+            <summary>
+            Footer
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.JsonTableRowStates">
+            <summary>
+            Row Status
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.JsonTableRowState">
+            <summary>
+            Row Status
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.JsonTableColumn">
+            <summary>
+            Column
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.JsonTableColumn.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            重构
+            </summary>
+            <param name="colspan"></param>
+            <param name="rowspan"></param>
+            <param name="width"></param>
+            <param name="name"></param>
+            <param name="caption"></param>
+        </member>
+        <member name="T:F23Base.Entity.AjaxResultData">
+            <summary>
+            AJAX返回数据（用于GRIDCONTROL）
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultData.#ctor(System.Data.DataTable)">
+            <summary>
+            重载
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultData.#ctor(System.Collections.ArrayList,System.String)">
+            <summary>
+            重载
+            </summary>
+            <param name="arrlist"></param>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultData.#ctor(System.Data.DataTable,System.String)">
+            <summary>
+            重载
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultData.GetColumns(System.Data.DataTable)">
+            <summary>
+            获取所有列
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultData.Import(System.String[])">
+            <summary>
+            导入
+            </summary>
+            <param name="properties"></param>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResultData.sEcho">
+            <summary>
+            请求次数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResultData.iTotalRecords">
+            <summary>
+            记录集总数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResultData.iTotalDisplayRecords">
+            <summary>
+            可显示记录集总数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResultData.aaData">
+            <summary>
+            记录集
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResultData.sColumns">
+            <summary>
+            列（STRING）
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.AjaxResultDataRowList">
+            <summary>
+            行集合（二维）
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultDataRowList.Add(System.Data.DataTable,System.String)">
+            <summary>
+            添加行
+            </summary>
+            <param name="dt"></param>
+            <param name="sColumns"></param>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultDataRowList.Add(System.Collections.ArrayList,System.String)">
+            <summary>
+            添加行
+            </summary>
+            <param name="arrlist"></param>
+            <param name="sColumns"></param>
+        </member>
+        <member name="T:F23Base.Entity.AjaxResultDataRow">
+            <summary>
+            行
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultDataRow.#ctor(System.Collections.Hashtable,System.String)">
+            <summary>
+            重载 
+            </summary>
+            <param name="ht"></param>
+            <param name="sColumns"></param>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultDataRow.#ctor(System.Data.DataRow,System.String)">
+            <summary>
+            重载 
+            </summary>
+            <param name="dr"></param>
+            <param name="sColumns"></param>
+        </member>
+        <member name="M:F23Base.Entity.AjaxResultDataRow.Add(System.String[])">
+            <summary>
+            添加（未实现）
+            </summary>
+            <param name="ls"></param>
+        </member>
+        <member name="T:F23Base.Entity.AjaxResult">
+            <summary>
+            AJAX处理
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResult.success">
+            <summary>
+            success：0：提示、-1：中断、1：成功
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResult.msg">
+            <summary>
+            提示信息
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResult.nextsetp">
+            <summary>
+            下一步操作
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxResult.obj">
+            <summary>
+            自定义对象
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.StyleColorSizeEntity">
+            <summary>
+            颜色尺码（用二维做单数据交互）
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.Ajax.TreeItemListEntity">
+            <summary>
+            树型实体
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.Ajax.TreeItemListEntity.Add(System.String,System.String,System.String)">
+            <summary>
+            添加未加载的目录 
+            </summary>
+            <param name="id"></param>
+            <param name="text"></param>
+            <param name="value"></param>
+            <param name="hasChildren"></param>
+        </member>
+        <member name="M:F23Base.Entity.Ajax.TreeItemListEntity.Add(System.String,System.String,System.String,System.String)">
+            <summary>
+            添加节点
+            </summary>
+            <param name="id"></param>
+            <param name="text"></param>
+            <param name="value"></param>
+            <param name="url"></param>
+            <param name="hasChildren"></param>
+            <param name="complete"></param>
+        </member>
+        <member name="T:F23Base.Entity.AjaxStyleEntity">
+            <summary>
+            款式档案实体
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.styleid">
+            <summary>
+            款式编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.s_name">
+            <summary>
+            款式名称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.sizegrpid">
+            <summary>
+            款式尺码组编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.j_cost">
+            <summary>
+            成本价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.j_price">
+            <summary>
+            原价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.x_price">
+            <summary>
+            现价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.s_price">
+            <summary>
+            结算价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.x_discount">
+            <summary>
+            折扣
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.j_price1">
+            <summary>
+            原价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.x_price1">
+            <summary>
+            现价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.s_price1">
+            <summary>
+            结算价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.x_discount1">
+            <summary>
+            折扣
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.id">
+            <summary>
+            单据编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.boxid">
+            <summary>
+            序号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxStyleEntity.comment">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.AjaxClothings">
+            <summary>
+            款式颜色尺码数量，用于二维做单组件传送数据
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxClothings.clothingid">
+            <summary>
+            款号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxClothings.colorid">
+            <summary>
+            色号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxClothings.sizeid">
+            <summary>
+            尺码
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.AjaxClothings.nums">
+            <summary>
+            数量 
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.DepotInfoEntity">
+            <summary>
+            店铺信息
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.depotid">
+            <summary>
+            店铺编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.depotname">
+            <summary>
+            店铺名称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.webprint">
+            <summary>
+            小票打印格式
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.depotphone">
+            <summary>
+            店铺电话
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.depotaddress">
+            <summary>
+            店铺地址
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.lockdate">
+            <summary>
+            锁账日期
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.area_py">
+            <summary>
+            店铺所在城市（拼音）用于获取天气
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_vipzsz">
+            <summary>
+            促销时，允许VIP折上折（未使用）
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_novip">
+            <summary>
+            VIP卡不打折
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_vipshow">
+            <summary>
+            VIP卡号显示为*号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_round">
+            <summary>
+            四舍五入方式
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.frounddec">
+            <summary>
+            四舍五入位数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.clothing_len">
+            <summary>
+            条码截取位数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_cxsy">
+            <summary>
+            促销时，若没赠送完货品不允许收银
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_jprice">
+            <summary>
+            收银界面显示原价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_cxvip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_nozs">
+            <summary>
+            不能使用赠送功能
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_apppro">
+            
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_proinc">
+            <summary>
+            按单金额促销扣减成倍增长
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_spxp">
+            <summary>
+            允许结算价大于现价
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_selcx">
+            <summary>
+            选择促销（未使用）
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_haveprn">
+            <summary>
+            收银需要自动打印
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_prncnt">
+            <summary>
+            打印次数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_ifkc">
+            <summary>
+            无库存不允许销售
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.onlybdkc">
+            <summary>
+            只能查本店库存(未使用)
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.zbget">
+            <summary>
+            允许向总部操作(未使用)
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.pos_sypwrdis">
+            <summary>
+            前台允许修改折扣(未使用)
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.qryday">
+            <summary>
+            允许查询销售天数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.DepotInfoEntity.vip_lookunit">
+            <summary>
+            允许查询当前机构所有VIP资料
+            </summary>
+        </member>
+        <member name="T:EnumDepotSelType">
+             <summary>
+            EnumDepotSelType 的摘要说明
+             </summary>
+        </member>
+        <member name="F:EnumDepotSelType.sd">
+            <summary>
+            收货仓
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.sm">
+            <summary>
+            发货仓
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.move">
+            <summary>
+            跨区
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.msell">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.sp">
+            <summary>
+            发货店权限
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.spdx">
+            <summary>
+            发货店权限dx
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.powerdepot">
+            <summary>
+            店铺权
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.zb">
+            <summary>
+            总部仓库
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.thsq">
+            <summary>
+            退货申请收货仓店
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.th">
+            <summary>
+            退货收货仓店
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.jgdh">
+            <summary>
+            机构订补铺供货仓店
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.moveset">
+            <summary>
+            调拨发货
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.moveget">
+            <summary>
+            调拨收货
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.tf">
+            <summary>
+            退货发货仓店
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.pd">
+            <summary>
+            盘点，零售
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.vip">
+            <summary>
+            VIP权限
+            </summary>
+        </member>
+        <member name="F:EnumDepotSelType.hmsell">
+            <summary>
+            分支机构外
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.Ajax.TreeItemEntity">
+            <summary>
+            树型项实体
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.id">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.text">
+            <summary>
+            显示文本
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.url">
+            <summary>
+            跳转地址
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.showcheck">
+            <summary>
+            是否显示checkbox
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.complete">
+            <summary>
+            AJAX是否加载完成
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.isexpand">
+            <summary>
+            是否展开
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.checkstate">
+            <summary>
+            CHECKBOX状态
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.hasChildren">
+            <summary>
+            是否有子项
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Ajax.TreeItemEntity.cascadecheck">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.VisitPowerEntity">
+            <summary>
+            页面访问权限枚举
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.VisitPowerEntity.View">
+            <summary>
+            查询权
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.VisitPowerEntity.Edit">
+            <summary>
+            编辑权
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.VisitPowerEntity.Check">
+            <summary>
+            审核权
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.VisitPowerEntity.UnCheck">
+            <summary>
+            反审核权
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.VisitPowerEntity.Sure">
+            <summary>
+            登账权
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.VisitPowerEntity.UnSure">
+            <summary>
+            反登账权
+            </summary>
+        </member>
+        <member name="F:F23Base.Entity.VisitPowerEntity.Print">
+            <summary>
+            打印权
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.BranchInfoEntity">
+            <summary>
+            分支档案
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.merchantid">
+            <summary>
+            机构编号
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.shutname">
+            <summary>
+            机构简称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.depotid">
+            <summary>
+            默认上级发货仓店
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.dptname">
+            <summary>
+            默认上级发货仓名称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.setdepotid">
+            <summary>
+            默认上级发货仓店
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.setdptname">
+            <summary>
+            默认上级发货仓名称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.jmdepotid">
+            <summary>
+            默认发货仓店
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.jmdptname">
+            <summary>
+            默认发货仓名称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.fullname">
+            <summary>
+            机构全称
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.fax">
+            <summary>
+            传真
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.backrate">
+            <summary>
+            退货率
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.ctrlback">
+            <summary>
+            退货率
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.rate">
+            <summary>
+            折扣
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.sums">
+            <summary>
+            目前余额
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.BranchInfoEntity.s_sums">
+            <summary>
+            目前可用金额
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.Config.UserConfigEntity">
+            <summary>
+            用户个性化设置枚举
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.Config.UserConfigEntity.#ctor">
+            <summary>
+            重构
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.Config.UserConfigEntity.#ctor(System.String)">
+            <summary>
+            重构
+            </summary>
+            <param name="userid"></param>
+        </member>
+        <member name="M:F23Base.Entity.Config.UserConfigEntity.Load">
+            <summary>
+            绑定配置配置文件值 
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.Config.UserConfigEntity.SetNodeValue(System.String,System.String)">
+            <summary>
+            保存值 
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:F23Base.Entity.Config.UserConfigEntity.SaveConfig">
+            <summary>
+            保存新的设置
+            </summary>
+        </member>
+        <member name="M:F23Base.Entity.Config.UserConfigEntity.SaveConfigTxt">
+            <summary>
+            TxT分箱扫描保存
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.pd_clothingid_beg">
+            <summary>
+            款号起始位
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.pd_clothingid_len">
+            <summary>
+            款号长度
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.pd_clothingid_loc">
+            <summary>
+            款号位置
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.pd_num_beg">
+            <summary>
+            数量起始位
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.pd_num_len">
+            <summary>
+            数量长度
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.pd_num_loc">
+            <summary>
+            数量位置
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.pd_separator">
+            <summary>
+            分隔符
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.sys_cutlenght">
+            <summary>
+            条码截取位数
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.txt_split">
+            <summary>
+            TxT分箱导入 分隔符
+            </summary>
+        </member>
+        <member name="P:F23Base.Entity.Config.UserConfigEntity.txt_cut">
+            <summary>
+            TxT分箱导入 截取位数
+            </summary>
+        </member>
+        <member name="T:F23Base.Entity.Config.DesktopConfigEntity">
+            <summary>
+            桌面配置文件
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,83 @@
+﻿@model PageList<EPManageWeb.Entities.Models.Clothes>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_AjaxLayout.cshtml";
+}
+@section css
+{
+    <link href="@Styles.Url("~/Content/searchresult.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/pager.css")" rel="stylesheet"/>
+}
+@section Js
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SearchResult.js")"></script>
+}
+@if (Model != null && Model.Count > 0)
+{
+    <ul class="nav">
+        @foreach (var t in Model)
+        {
+            <li class="span2">
+                <div class="row1">
+                    <div class="pic">
+                        <a href="/Clothes/Detail/@t.Id" target="_blank">
+                            <img src="@Url.Content(t.FirstClothesPic())" alt="pic" width="119" height="141"/></a>
+                    </div>
+                    <div class="right">
+                        <div>
+                            样衣图片
+                            <img src="@Url.Content("~/Images/detailLink.png")" data="@t.Id" data-type="clothes" class="detailIcon" />
+                        </div>
+                        <div>
+                            款式图
+                            <img src="@Url.Content("~/Images/detailLink.png")" data="@t.Id" data-type="style" class="detailIcon"  />
+                        </div>
+                        <div>
+                            版型图
+                            <img src="@Url.Content("~/Images/detailLink.png")" data="@t.Id" data-type="modelversion" class="detailIcon"  />
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+                <div class="clothesNO">
+                    <div class="left">
+                        <div>
+                            样板编号:@t.SampleNO
+                        </div>
+                        <div>
+                            大货编号：@t.ProductNO
+                        </div>
+                    </div>
+                    <div class="detailLink">
+                        <a href="/Clothes/Detail/@t.Id" target="_blank">
+                            <img src="@Url.Content("~/Images/detailLink1.png")" />
+                        </a>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+    <div class="clearfix"></div>
+    <div class="pager">
+        @Html.Raw(Html.Pager("page", Model.PageIndex, Model.PageSize, Model.TotalCount))
+    </div>
+
+}
+else
+{
+    <div class="alert">
+        未找到结果
+    </div>
+}
+<div id="viewPicsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="viewPicsModalLabel"><img src="@Url.Content("~/Images/logo.gif")" />图片预览</h3>
+    </div>
+    <div class="modal-body" id="viewPicsModalBody">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>

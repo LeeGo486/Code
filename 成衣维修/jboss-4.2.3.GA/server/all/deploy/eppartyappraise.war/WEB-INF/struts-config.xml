@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >
+    <form-bean name="loginForm" type="ep.org.eppartyappraise.form.LoginForm" />
+    <form-bean name="appraiseForm" type="ep.org.eppartyappraise.form.AppraiseForm" />
+    <form-bean name="personalInfoForm" type="ep.org.eppartyappraise.form.PersonalInfoForm" />
+    <form-bean name="viewAppraiseForm" type="org.apache.struts.action.DynaActionForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      attribute="loginForm"
+      name="loginForm"
+      path="/login"
+      scope="request"
+      type="ep.org.eppartyappraise.action.LoginAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toAppraise" path="/appraise.jsp" />
+      <forward name="toLogin" path="/index.jsp" />
+    </action>
+    
+    <action
+      attribute="appraiseForm"
+      name="appraiseForm"
+      parameter="method"
+      path="/appraise"
+      scope="request"
+      type="ep.org.eppartyappraise.action.AppraiseAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toAppraise" path="/appraise.jsp" />
+    </action>
+    <action
+      attribute="viewAppraiseForm"
+      name="viewAppraiseForm"
+      parameter="method"
+      path="/viewAppraise"
+      scope="request"
+      type="ep.org.eppartyappraise.action.ViewAppraiseAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toViewAppraise" path="/viewAppraise.jsp" />
+      <forward name="toViewVote" path="/viewVote.jsp"></forward>
+    </action>
+
+  </action-mappings>
+
+  <message-resources parameter="ep.org.eppartyappraise.ApplicationResources" />
+</struts-config>
+

@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+<TITLE>插入表格</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/css.css" rel="stylesheet" type="text/css">
+<script>
+function Ok(control,Name,Min,Max)
+{ 
+	var t= parseInt(control.value);
+	if (isNaN(t))
+	{ 
+		alert(Name+"必须由数字组成！");
+		control.select();
+		control.focus();
+		return(null);
+	}
+	if(t<Min)
+	{
+		alert(Name+"必须大于或等于"+Min);
+		control.select();
+		control.focus();
+		return(null);
+	}
+	if(t>Max) 
+	{
+		alert(Name+"必须小于或等于"+Max);
+		control.select();
+		control.focus();
+		return(null);
+	}
+	return(t); 
+}
+
+function ClickOk()
+{
+	var t=document.Edit;
+	var iHeight=Ok(t.iHeight,"表格行数",1,50);
+	if(iHeight==null)
+	{
+		return(false);
+	}
+	var iWidth=Ok(t.iWidth,"表格列数",1,50);
+	if(iWidth==null) 
+	{
+		return(false);
+	}
+	var CellPadding=Ok(t.CellPadding,"单元格边距",0,100);
+	if(CellPadding==null) 
+	{
+		return(false);
+	}
+	var CellSpacing=Ok(t.CellSpacing,"单元格间距",0,100);
+	if(CellSpacing==null) 
+	{
+		return(false);
+	}
+	var Width=Ok(t.Width,"表格宽度",1,2000);
+	if(Width==null) 
+	{
+		return(false);
+	}
+	var Border=Ok(t.Border,"表格边框",0,100);
+	if(Border==null) 
+	{
+		return(false);
+	}
+	var Unit=t.Unit.value;
+	s="<table width=" +Width+Unit+ " cellspacing="+CellSpacing+" cellpadding="+CellPadding+" border=" + Border +" style='border-collapse: collapse' bordercolor='#333333'>"
+	for(i=1 ;i<=iHeight;i++)
+	{ 
+		s=s+"<tr>";
+		for(j=1;j<=iWidth;j++)
+		s=s+"<td>&nbsp;</td>";
+		s=s+"</tr>"
+	}
+	s=s+"</table>";
+	window.returnValue=s;
+	window.close();
+} 
+
+function ClickCancel()
+{
+	window.returnValue="";
+	window.close();
+}
+</script>
+</HEAD>
+<BODY bgcolor=#f8f8f8 topmargin=10 leftmargin=0>
+<center>
+  <table width="274" border="0" align=center cellpadding="2" cellspacing=0 bgcolor="#f2f2f2">
+    <form name="Edit">
+      <tr> 
+        <td width="40" align="right">行数:</td>
+        <td width="40"><input type="text" name="iHeight" maxlength="3" style="width:35;height: 20" value="2" class="box2"></td>
+        <td width="80" align="right">单元格边距:</td>
+        <td width="40" colspan="2"> <input type="text" name="CellPadding" maxlength="3" style="width:35;height: 20" value="0" class="box2"> 
+        </td>
+        <td width="5" rowspan="4"></td>
+        <td width="70" align="right"><input style="width: 60; height: 21" type="button" name="bntOk" value="确认" onclick="ClickOk();" class="btn"></td>
+      </tr>
+      <tr> 
+        <td width="40" align="right">列数:</td>
+        <td width="40"> <input type="text" name="iWidth" size="3" style="width: 35; height: 20" value="2" class="box2"> 
+        </td>
+        <td width="80" align="right">单元格间距:</td>
+        <td width="40" colspan="2"> <input type="text" name="CellSpacing" maxlength="3" style="width:35;height: 20" value="0" class="box2"> 
+        </td>
+        <td width="70" align="right"> <input style="width: 60; height: 21" type="button" name="bntCancel" value="取消" onClick="ClickCancel();" class="btn"> 
+        </td>
+      </tr>
+      <tr> 
+        <td width="40" align="right">宽度:</td>
+        <td colspan="4"> <input type="text" name="Width" maxlength="3" style="width:35;height: 20" value="100" class="box2"> 
+          <select name="Unit" class="box2">
+            <option>px</option>
+            <option value="%" selected>%</option>
+          </select> </td>
+        <td width="70" align="center"></td>
+      </tr>
+      <tr> 
+        <td width="40" align="right">边框:</td>
+        <td width="40"> <input type="text" name="Border" maxlength="3" style="width:35;height: 20" value="1" class="box2"> 
+        </td>
+        <td colspan="3" align="right">&nbsp;</td>
+        <td width="70">&nbsp;</td>
+      </tr>
+    </form>
+  </table>
+</center>
+</BODY>
+</HTML>

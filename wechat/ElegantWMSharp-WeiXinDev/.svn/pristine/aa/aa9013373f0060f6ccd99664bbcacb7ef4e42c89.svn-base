@@ -1,0 +1,104 @@
+﻿<script type="text/javascript">
+    //显示任务明细
+    function showTaskDetail(ths, id) {
+        if ($("#" + id).is(":visible")) {
+            $(ths).children().removeClass("icon-double-angle-up");
+            $(ths).children().addClass("icon-double-angle-down");
+            $("#" + id).hide();
+        } else {
+            $(".taskDetail").hide();
+            $("ul li .cexp span .tsk").removeClass("icon-double-angle-up");
+            $("ul li .cexp span .tsk").addClass("icon-double-angle-down");
+            if (id == "task4") {
+                Msg.show("加载中...", 3);
+                $.post("/S3/Customer/CustomerRepair", function (htmldata) {
+                    Msg.hide();
+                    $("#" + id).html(htmldata);
+                    $(ths).children().removeClass("icon-double-angle-down");
+                    $(ths).children().addClass("icon-double-angle-up");
+                    $("#" + id).show();
+                    scrollTo($("#" + id).parent());
+                });  
+            } else if (id == "task6") {
+                Msg.show("加载中...", 3);
+                $.post("/S3/Customer/ServiceSupport", function (htmldata) {
+                    Msg.hide();
+                    $("#" + id).html(htmldata);
+                    $(ths).children().removeClass("icon-double-angle-down");
+                    $(ths).children().addClass("icon-double-angle-up");
+                    $("#" + id).show();
+                    scrollTo($("#" + id).parent());
+                });
+            } else {
+                Msg.show("加载中...", 3);
+                $.post("/S3/Customer/CustomerAppointment", function (htmldata) {
+                    Msg.hide();
+                    $("#" + id).html(htmldata);
+                    $(ths).children().removeClass("icon-double-angle-down");
+                    $(ths).children().addClass("icon-double-angle-up");
+                    $("#" + id).show();
+                    scrollTo($("#" + id).parent());
+                });
+            }
+        }
+    } 
+    $(function () {
+        $("li").click(function () {
+            $("li").removeClass("dataListSld");
+            $(this).addClass("dataListSld");
+        });
+    });
+</script>
+<div id="smytask" class="ht">
+    <i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;待办任务
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<ul class="list-group">
+    <li class="list-group-item"><i class="icon-time"></i>&nbsp;&nbsp;销售预约<span class="badge hs">6</span>
+        <div class="cexp clearfix">
+            <span onclick="showTaskDetail(this,'task1');"><i class="tsk icon-double-angle-down"></i></span>
+        </div>
+        <div id="task1" class="taskDetail" style="display:none;margin:10px 0px;">
+        </div>
+    </li>
+    <li class="list-group-item"><i class="icon-gift"></i>&nbsp;&nbsp;客户回访<span class="badge hs">6</span>
+        <div class="cexp clearfix">
+            <span onclick="showTaskDetail(this,'task2');"><i class="tsk icon-double-angle-down"></i></span>
+        </div>
+        <div id="task2" class="taskDetail" style="display:none;margin:10px 0px;">
+        </div>
+    </li>
+    <li class="list-group-item"><i class="icon-heart-empty"></i>&nbsp;&nbsp;客户关怀<span class="badge">0</span>
+        <div class="cexp clearfix">
+            <span><i class="tsk icon-double-angle-down"></i></span>
+        </div>
+        <div id="task3" class="taskDetail" style="display:none;">
+        </div>
+    </li>
+    <li class="list-group-item"><i class="icon-wrench"></i>&nbsp;&nbsp;成衣维修<span class="badge hs">6</span>
+        <div class="cexp clearfix">
+            <span onclick="showTaskDetail(this,'task4');"><i class="tsk icon-double-angle-down"></i></span>
+        </div>
+        <div id="task4" class="taskDetail" style="display:none;">
+        </div>
+    </li>
+    <li class="list-group-item"><i class="icon-cut"></i>&nbsp;&nbsp;客户定制<span class="badge">0</span>
+        <div class="cexp clearfix">
+            <span><i class="tsk icon-double-angle-down"></i></span>
+        </div>
+        <div id="task5" class="taskDetail" style="display:none;">
+        </div>
+    </li>
+    <li class="list-group-item"><i class="icon-group"></i>&nbsp;&nbsp;服务支持<span class="badge hs">2</span>
+        <div class="cexp clearfix">
+            <span onclick="showTaskDetail(this,'task6');"><i class="tsk icon-double-angle-down"></i></span>
+        </div>
+        <div id="task6" class="taskDetail" style="display:none;">
+        </div>
+    </li>
+</ul>

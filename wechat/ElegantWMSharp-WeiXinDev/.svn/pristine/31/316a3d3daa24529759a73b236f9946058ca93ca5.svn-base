@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = ViewBag.name;
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        $(".name").width($("body").width() / 2 - 32);
+
+        var evt = "onorientationchange" in window ? "orientationchange" : "resize";
+
+        window.addEventListener(evt, function () {
+            $(".name").width($("body").width() / 2 - 32);
+        }, false);
+    });
+</script>
+<ul class="skulistul">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/Goods/@(@ViewBag.styl_type).jpg" />
+    </li>
+</ul>
+
+<table id="skulist" class="skulisttable">
+    <tbody>
+        @for (int i = 0; i < ViewBag.StyleInfo.Rows.Count; i = i + 2)
+        {
+            if (@ViewBag.StyleInfo.Rows[i]["STYL_ID"] != "")
+            {
+            <tr>
+                <td>
+                    <div class="skulisttablediv">
+                        <div>
+                            <img class="bg" src="http://122.225.19.188:8090@{@ViewBag.StyleInfo.Rows[i]["STYL_PicturePath"].Split(',')[0].ToString()}" onerror="this.src='/Areas/DLWXSite/Resources/images/Goods/error.gif';"/>
+                        </div>
+                        <div class="name">@ViewBag.StyleInfo.Rows[i]["STYL_Name"]|<span class="code">@ViewBag.StyleInfo.Rows[i]["STYL_Code"]</span></div>
+                        <div>@ViewBag.StyleInfo.Rows[i]["STYL_Property1"]</div>
+                    </div>
+                </td>
+                @if (ViewBag.StyleInfo.Rows.Count == 1)
+                {
+                    <td></td>
+                }
+                @if (i + 1 < ViewBag.StyleInfo.Rows.Count)
+                {
+                    <td>
+                        <div class="skulisttablediv">
+                            <div>
+                                <img class="bg" src="http://122.225.19.188:8090@{@ViewBag.StyleInfo.Rows[i + 1]["STYL_PicturePath"].Split(',')[0].ToString()}" onerror="this.src='/Areas/DLWXSite/Resources/images/Goods/error.gif';"/>
+                            </div>
+                            <div class="name">@ViewBag.StyleInfo.Rows[i + 1]["STYL_Name"]|<span class="code">@ViewBag.StyleInfo.Rows[i + 1]["STYL_Code"]</span></div>
+
+                            @if (@ViewBag.StyleInfo.Rows[i + 1]["STYL_Property1"].Length < 10)
+                            {
+                                <div>@ViewBag.StyleInfo.Rows[i + 1]["STYL_Property1"]</div>
+                            }
+                            else
+                            {
+                                <div>@ViewBag.StyleInfo.Rows[i + 1]["STYL_Property1"].Substring(0, 10)</div>
+                            }
+                        </div>
+                    </td>
+                }
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $("#skulist td").click(function () {
+        if ($(this).find(".code").size() == 0)
+            return;
+        window.location.href = "/DLWXSite/DLGoods/SKUDetail?sku=" + $(this).find(".code").text() + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+</script>

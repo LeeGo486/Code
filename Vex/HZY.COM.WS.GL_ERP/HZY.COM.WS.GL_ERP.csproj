@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{641EB01A-5905-4BBA-81A0-8DEA10BAE2A0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZY.COM.GL_ERP</RootNamespace>
+    <AssemblyName>HZY.COM.GL_ERP</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GL_ERP_ArrivalPlanDetail_EditByXML.cs" />
+    <Compile Include="GL_ERP_ArrivalPlan_EditByXML.cs" />
+    <Compile Include="GL_ERP_AuditFlowDefine_EditByXML.cs" />
+    <Compile Include="GL_ERP_AuditFlow_EditByXML.cs" />
+    <Compile Include="GL_ERP_Brand_EditByXML.cs" />
+    <Compile Include="GL_ERP_Common.cs" />
+    <Compile Include="GL_ERP_Contract_EditByXML.cs" />
+    <Compile Include="GL_ERP_Dict_EditByXML.cs" />
+    <Compile Include="GL_ERP_OrderDetail_EditByXML.cs" />
+    <Compile Include="GL_ERP_Order_EditByXML.cs" />
+    <Compile Include="GL_ERP_PayApply_EditByXML.cs" />
+    <Compile Include="GL_ERP_Product_EditByXML.cs" />
+    <Compile Include="GL_ERP_Supplier_EditByXML.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.Common.JSON\HZY.COM.Common.JSON.csproj">
+      <Project>{F4784A75-015A-4874-B1EB-076627CB4699}</Project>
+      <Name>HZY.COM.JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{C12F1233-F7C6-45F7-8F22-8BAC49FCBE62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS\HZY.COM.WS.CommonWS.csproj">
+      <Project>{600CA99D-8D55-4181-8164-18FCB9270A42}</Project>
+      <Name>HZY.COM.WS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM\HZY.COM.csproj">
+      <Project>{B4B237BF-1FC0-4BC0-AC95-AB02613A5526}</Project>
+      <Name>HZY.COM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

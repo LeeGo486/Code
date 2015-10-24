@@ -1,0 +1,26 @@
+﻿
+<div class="ht">
+    <i class="icon-magic"></i>&nbsp;&nbsp;编辑形象品申请单
+</div>
+<div class="mainArea">
+    <div class="input-group">
+        <span class="input-group-addon">申请说明</span>
+        <textarea class="form-control" placeholder="请输入简短描述"></textarea>
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">报修时间</span>
+        <input class="form-control hzyDp" type="text" value="2014-07-04" data-date-format="yyyy-mm-dd" readonly="">
+    </div>
+    <br />
+    <table class="table table-striped">
+        <tr><th>类别</th><th>物料</th><th>数量</th></tr>
+        <tr><td>宣传</td><td>EP店铺生日礼盒</td><td>29</td></tr>
+        <tr><td>陈列</td><td>EP无纺布袋</td><td>18</td></tr>
+        <tr><td>物流</td><td>鞋模</td><td>300</td></tr>
+    </table>
+    <br />
+    <span class="label label-success">当前进度：总部已受理【2014-07-04】</span>
+    <br />
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="请稍后..." onclick="Msg.show('提报成功！',0)">提交申请</button>
+</div>

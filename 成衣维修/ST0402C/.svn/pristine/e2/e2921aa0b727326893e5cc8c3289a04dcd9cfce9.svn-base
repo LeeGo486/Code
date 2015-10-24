@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   http://www.springframework.org/schema/tx 
+	   http://www.springframework.org/schema/tx/spring-tx-2.0.xsd 
+	   http://www.springframework.org/schema/aop 
+	   http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+
+	default-autowire="byName" default-lazy-init="false">
+
+	<context:annotation-config />
+	<context:component-scan base-package="org.hy" />
+	<!-- -->
+
+
+	<!-- 数据库连接池 -->
+
+	<bean id="propertyConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:proxooldbTest.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="X6DB" />
+		<property name="driver">
+			<value>${jdbc-0.proxool.driver-class}</value>
+		</property>
+		<property name="driverUrl">
+			<value>${jdbc-0.proxool.driver-url}</value>
+		</property>
+		<property name="user" value="${jdbc-0.user}" />
+		<property name="password" value="${jdbc-0.password}"></property>
+		<property name="prototypeCount">
+			<value>5</value>
+		</property>
+		<property name="maximumConnectionCount" value="${jdbc-0.proxool.maximum-connection-count}" />
+		<property name="minimumConnectionCount" value="${jdbc-0.proxool.minimum-connection-count}" />
+		
+		<property name="trace">
+			<value>true</value>
+		</property>
+		<property name="verbose">
+			<value>true</value>
+		</property>
+
+
+ 
+
+	</bean>
+ 
+	<bean id="sessionFactoryX6"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	
+	</bean>
+	
+	
+	<bean id="dataSourceDRP" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="DRPDB" />
+		<property name="driver">
+			<value>${jdbc-2.proxool.driver-class}</value>
+		</property>
+		<property name="driverUrl">
+			<value>${jdbc-2.proxool.driver-url}</value>
+		</property>
+		<property name="user" value="${jdbc-2.user}" />
+		<property name="password" value="${jdbc-2.password}"></property>
+		<property name="prototypeCount">
+			<value>5</value>
+		</property>
+		<property name="maximumConnectionCount" value="${jdbc-2.proxool.maximum-connection-count}" />
+		<property name="minimumConnectionCount" value="${jdbc-2.proxool.minimum-connection-count}" />
+		
+		<property name="trace">
+			<value>true</value>
+		</property>
+		<property name="verbose">
+			<value>true</value>
+		</property>
+	</bean>
+ 
+	<bean id="sessionFactoryDRP"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceDRP" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	
+	</bean>
+	
+ <bean id="dataSourceDRPTBF" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="DRPDBTBF" />
+		<property name="driver">
+			<value>${jdbc-3.proxool.driver-class}</value>
+		</property>
+		<property name="driverUrl">
+			<value>${jdbc-3.proxool.driver-url}</value>
+		</property>
+		<property name="user" value="${jdbc-3.user}" />
+		<property name="password" value="${jdbc-3.password}"></property>
+		<property name="prototypeCount">
+			<value>5</value>
+		</property>
+		<property name="maximumConnectionCount" value="${jdbc-3.proxool.maximum-connection-count}" />
+		<property name="minimumConnectionCount" value="${jdbc-3.proxool.minimum-connection-count}" />
+		
+		<property name="trace">
+			<value>true</value>
+		</property>
+		<property name="verbose">
+			<value>true</value>
+		</property>
+	</bean>
+ 
+	<bean id="sessionFactoryDRPTBF"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceDRPTBF" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+ 
+
+ <bean id="dataSourceDRPNF" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="DRPDBNF" />
+		<property name="driver">
+			<value>${jdbc-4.proxool.driver-class}</value>
+		</property>
+		<property name="driverUrl">
+			<value>${jdbc-4.proxool.driver-url}</value>
+		</property>
+		<property name="user" value="${jdbc-4.user}" />
+		<property name="password" value="${jdbc-4.password}"></property>
+		<property name="prototypeCount">
+			<value>5</value>
+		</property>
+		<property name="maximumConnectionCount" value="${jdbc-4.proxool.maximum-connection-count}" />
+		<property name="minimumConnectionCount" value="${jdbc-4.proxool.minimum-connection-count}" />
+		
+		<property name="trace">
+			<value>true</value>
+		</property>
+		<property name="verbose">
+			<value>true</value>
+		</property>
+	</bean>
+ 
+	<bean id="sessionFactoryDRPNFtest"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceDRPNF" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+
+ 	<bean id="sessionFactory" class="org.hy.spring.MultiSessionFactory">
+ 	<property name="sessionFactory" ref="sessionFactoryX6"></property>
+ 	</bean> 
+ 	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="get*" read-only="false" propagation="NOT_SUPPORTED"/>
+		   <tx:method name="find*" read-only="false" propagation="NOT_SUPPORTED"/>
+		   <tx:method name="save*" propagation="REQUIRED"/> 
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+ 
+	<aop:config>
+		<aop:pointcut id="allManagerMethod" expression="execution(* org.hy.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" />
+	</aop:config>
+
+
+
+	<bean id="RestEasyDemoService" class="org.hy.resteasyservice.RestEasyDemoService">
+	</bean>
+	<!-- MANAGER -->
+
+
+</beans>

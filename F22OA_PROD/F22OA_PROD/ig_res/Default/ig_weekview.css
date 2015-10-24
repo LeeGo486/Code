@@ -1,0 +1,124 @@
+.igwv_Control
+{
+	border-width:0px;
+	margin-top:2px;
+}
+
+
+.igwv_CaptionHeader
+{
+	background-color:#BFDAFF;
+	background-repeat:repeat-x;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:11px;
+	border:solid 1px Gainsboro;
+	border-bottom-width:0px;
+	padding-top:3px;
+	padding-bottom:2px;
+	line-height: 16px;
+	height: 17px;
+	color:White;
+	text-align:center;
+}
+
+
+.igwv_DayHeader
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/dayheader.jpg);
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	padding:0px 2px 0px 0px;
+	height: 18px;
+	cursor:default;
+	color:DimGray;
+	text-align:right;
+}
+
+
+.igwv_Day
+{
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	border-top:solid 1px LightGrey;
+	padding-top:1px;
+	overflow-x: hidden;
+	cursor:hand;
+}
+
+
+.igwv_Appointment
+{
+	margin:0px 1px 0px 1px;
+	padding:2px;
+	line-height: 150%;
+	white-space: nowrap;
+	cursor:pointer;
+}
+
+
+.igwv_AllDayEvent
+{
+	background-color:#FAFAFA;
+	border:solid 1px Silver;
+}
+
+
+.igwv_NavigationButton
+{
+	background-color:Transparent;
+	border-width:0px;
+	cursor:hand;
+}
+
+
+.igwv_DayArea
+{
+	border:solid 1px LightGrey;
+}
+
+
+.igwv_TodayHeader
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-image: url(images/header_hover.gif);
+	color:White;
+}
+
+
+.igwv_Today
+{
+}
+
+
+.igwv_SelectedAppointment
+{
+	background-color:#DAEAFF;
+	margin-top:1px;
+	margin-right:1px;
+	margin-left:1px;
+	padding:1px;
+	cursor:pointer;
+	color:Black;
+}
+
+
+.igwv_ActiveDayHeader
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-image: url(images/header_hover.gif);
+	color:White;
+}
+
+
+.igwv_ActiveDay
+{
+	background-color:Gainsboro;
+}
+
+

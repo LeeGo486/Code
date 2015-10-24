@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans>
+  	<form-bean name="customerAnalysisForm" type="ep.org.crm.form.CustomerAnalysisForm"></form-bean>
+  	<form-bean name="baseActionForm" type="ep.org.crm.form.BaseActionForm"></form-bean>
+    <form-bean name="customerInfoForm" type="ep.org.crm.form.CustomerInfoForm" />
+    <form-bean name="vipCustomerApproveForm" type="ep.org.crm.form.VipCustomerApproveForm" />
+    <form-bean name="customSMSBatchForm" type="ep.org.crm.form.CustomerSMSBatchForm" />
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      input="/index.jsp"
+      name="customerAnalysisForm"
+      parameter="method"
+      path="/customerAnalysis"
+      scope="request"
+      type="ep.org.crm.action.CustomerAnalysisAction">
+      <forward name="tocustomeranalysis" path="/index.jsp" />
+    </action>
+    
+    
+    
+    <action path="/customersInfo" type="ep.org.crm.action.CustomersInfoAction" >
+    <forward name="tocustomerinfo" path="/CustomerAnalysisDetail.jsp"></forward>
+    </action>
+    
+    
+    <action path="/vipConsumeOderAnalysis/vipConsumeOderAnalysis" 
+    		parameter="method"
+    		name="baseActionForm"
+    		scope="request"
+    		type="ep.org.crm.action.VipConsumeOderAnalysisAction">
+      <forward name="vipConsumeOderAnalysis" path="/vipConsumeOderAnalysis/vipConsumeOderAnalysis.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipConsumePeriodAnalysis" 
+    		parameter="method"
+    		name="baseActionForm"
+    		scope="request"
+    		type="ep.org.crm.action.VipConsumePeriodAnalysisAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipConsumePeriodAnalysis" path="/vipConsumeAnalysis/vipConsumePeriodAnalysis.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipConsumeDiscountAnalysis" 
+    		parameter="method"
+    		name="baseActionForm"
+    		scope="request"
+    		type="ep.org.crm.action.VipConsumeDiscountAnalysisAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipConsumeDiscountAnalysis" path="/vipConsumeAnalysis/vipConsumeDiscountAnalysis.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipConsumeSituation" 
+    		parameter="method"
+    		name="baseActionForm"
+    		scope="request"
+    		type="ep.org.crm.action.VipConsumeSituationAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipConsumeSituation" path="/vipConsumeAnalysis/vipConsumeSituation.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipConsumeSituationDetail" type="ep.org.crm.action.VipConsumeSituationDetailAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipConsumeSituationDetail" path="/vipConsumeAnalysis/vipConsumeSituationDetail.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipLevelContributionAnaysis" 
+    		parameter="method"
+    		name="baseActionForm"
+    		scope="request"
+    		type="ep.org.crm.action.VipLevelContributionAnaysisAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipLevelContributeAnalysis" path="/vipConsumeAnalysis/vipLevelContributeAnalysis.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipLevelContributionDetail" type="ep.org.crm.action.VipLevelContributionDetailAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipLevelContributionDetail" path="/vipConsumeAnalysis/vipLevelContributeDetail.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipBuyProdSortAnalysis" 
+    		parameter="method"
+    		name="baseActionForm"
+    		scope="request"
+    		type="ep.org.crm.action.VipBuyProdSortAnalysisAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipBuyProdSortAnalysis" path="/vipConsumeAnalysis/vipBuyProdSortAnalysis.jsp" />
+    </action>
+    
+    
+    <action path="/vipConsumeAnalysis/vipBuyProdSortDetail" type="ep.org.crm.action.VipBuyProdSortDetailAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="vipBuyProdSortDetail" path="/vipConsumeAnalysis/vipBuyProdSortAnalysisDetail.jsp" />
+    </action>
+    <action
+      attribute="customerInfoForm"
+      name="customerInfoForm"
+      parameter="method"
+      path="/vipConsumeAnalysis/customerFullyInfo"
+      scope="request"
+      type="ep.org.crm.action.CustomerFullyInfoAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toCustomerInfo" path="/vipConsumeAnalysis/CustomerInfo.jsp" />
+    </action>
+    <action
+      attribute="vipCustomerApproveForm"
+      name="vipCustomerApproveForm"
+      parameter="method"
+      path="/vipCustomerApprove"
+      scope="request"
+      type="ep.org.crm.action.VipCustomerApproveAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="approve" path="/vipCustomerApprove/vipCustomerApprove.jsp" />
+    </action>
+    <action
+      attribute="customSMSBatchForm"
+      name="customSMSBatchForm"
+      parameter="method"
+      path="/customerSMSBatchSend"
+      scope="request"
+      type="ep.org.crm.action.CustomerSMSBatchSendAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="msgBatchSend" path="/sendMsg/batchSendCustomerSMS.jsp" />
+    </action>
+
+  </action-mappings>
+
+  <message-resources parameter="ep.org.crm.ApplicationResources" />
+</struts-config>
+

@@ -1,0 +1,1254 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //销售达成率及增长率
+        $('#skc1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '滞销品库存及SKC数（品牌）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['GL', 'DL', 'E.Prosper', 'EP']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [3105, 5505, 7239, 14607],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [7, 13, 26, 38],
+                tooltip: {
+                    valueSuffix: null
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#skc2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '滞销品库存及SKC数（系列）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['名流', '公务', '时尚', '办公', '日常', '度假']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [1105, 1505, 2239, 2607, 3984, 4006],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [7, 13, 16, 18, 18, 20],
+                tooltip: {
+                    valueSuffix: null
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#skc3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '滞销品库存及SKC数（品类）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['毛衫', '连衣裙', '裤子', '针织衫', '衬衫', '外套', '风衣']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [3105, 3505, 4239, 4607, 4984, 5006, 5534],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [7, 13, 6, 8, 8, 10, 15],
+                tooltip: {
+                    valueSuffix: null
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#skc4').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '滞销品库存及SKC数（价格带）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['0-2K', '2K-5K', '5K-10K', '10K-16K', '16K以上']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [2105, 3505, 5239, 4607, 2984],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [7, 13, 16, 8, 8],
+                tooltip: {
+                    valueSuffix: null
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        //库存占比
+        $('#stock1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250
+            },
+            title: {
+                text: '库存占比（品牌）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            tooltip: {
+                pointFormat: '占比：{point.percentage:.1f}%'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: false,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        distance: -30,
+                        format: '{point.name}{point.y}',
+                        style: {
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '库存占比',
+                data: [
+                    ['EP', 300],
+                    ['E.Prosper', 81],
+                    ['DL', 53],
+                    ['GL', 405]
+                ]
+            }]
+        });
+
+        $('#stock2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250
+            },
+            title: {
+                text: '库存占比（系列）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            tooltip: {
+                pointFormat: '占比：{point.percentage:.1f}%'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: false,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        distance: -30,
+                        format: '{point.name}{point.y}',
+                        style: {
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '库存占比',
+                data: [
+                    ['名流', 226],
+                    ['公务', 287],
+                    ['时尚', 316],
+                    ['办公', 378],
+                    ['日常', 405],
+                    ['度假', 457]
+                ]
+            }]
+        });
+
+        $('#stock3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250
+            },
+            title: {
+                text: '库存占比（品类）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            tooltip: {
+                pointFormat: '占比：{point.percentage:.1f}%'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: false,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        distance: -30,
+                        format: '{point.name}{point.y}',
+                        style: {
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '库存占比',
+                data: [
+                    ['毛衫', 226],
+                    ['连衣裙', 287],
+                    ['裤子', 316],
+                    ['针织衫', 378],
+                    ['衬衫', 405],
+                    ['外套', 457],
+                    ['风衣',488]
+                ]
+            }]
+        });
+
+        $('#stock4').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250
+            },
+            title: {
+                text: '库存占比（价格带）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            tooltip: {
+                pointFormat: '占比：{point.percentage:.1f}%'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: false,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        distance: -30,
+                        format: '{point.name}{point.y}',
+                        style: {
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '库存占比',
+                data: [
+                    ['1-2K', 526],
+                    ['2K-5K', 787],
+                    ['5K-10K', 916],
+                    ['10K-16K', 678],
+                    ['16K以上', 205]
+                ]
+            }]
+        });
+
+        //动销率及库存
+        $('#rate1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '动销率及库存（品牌）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['GL', 'DL', 'E.Prosper', 'EP']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [3105, 5505, 7239, 14607],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [54, 68, 63, 72],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#rate2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '动销率及库存（系列）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['名流', '公务', '时尚', '办公', '日常', '度假']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [1105, 1505, 2239, 2607, 3984, 4006],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [70, 71, 76, 82, 84, 73],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#rate3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '动销率及库存（品类）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['毛衫', '连衣裙', '裤子', '针织衫', '衬衫', '外套', '风衣']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [3105, 3505, 4239, 4607, 4984, 5006, 5534],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [77, 73, 76, 78, 78, 80, 75],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#rate4').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '动销率及库存（价格带）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['0-2K', '2K-5K', '5K-10K', '10K-16K', '16K以上']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [2105, 3505, 5239, 4607, 2984],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [82, 84, 72, 71, 69],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        //产销率及库存
+        $('#product1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '产销率及库存（品牌）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['GL', 'DL', 'E.Prosper', 'EP']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [3105, 5505, 7239, 14607],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [52, 66, 61, 70],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#product2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '产销率及库存（系列）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['名流', '公务', '时尚', '办公', '日常', '度假']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [1105, 1505, 2239, 2607, 3984, 4006],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [68, 69, 74, 80, 82, 71],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#product3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '产销率及库存（品类）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['毛衫', '连衣裙', '裤子', '针织衫', '衬衫', '外套', '风衣']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [3105, 3505, 4239, 4607, 4984, 5006, 5534],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [75, 71, 74, 76, 76, 78, 73],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $('#product4').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '产销率及库存（价格带）',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示详细数据'
+            },
+            xAxis: [{
+                categories: ['0-2K', '2K-5K', '5K-10K', '10K-16K', '16K以上']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: null
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadSkcList();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '库存',
+                color: '#B22222',
+                type: 'column',
+                yAxis: 0,
+                data: [2105, 3505, 5239, 4607, 2984],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: 'SKC数',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [80, 82, 70, 69, 67],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    });
+</script>
+<input type="search" class="form-control" id="searchSkc" placeholder="搜索">
+<br />
+<div class="ht" id="sskcchats">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;滞销款提醒
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="skc1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="skc2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="skc3" style="margin:30px 0px 0px 0px;"></div>
+    <div id="skc4" style="margin:30px 0px 0px 0px;"></div>
+</div>
+
+<div class="ht" id="sstockchats">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;库存占比
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="stock1"></div>
+    <div id="stock2"></div>
+    <div id="stock3"></div>
+    <div id="stock4"></div>
+</div>
+
+<div class="ht" id="sratechats">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;动销率及库存
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="rate1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="rate2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="rate3" style="margin:30px 0px 0px 0px;"></div>
+    <div id="rate4" style="margin:30px 0px 0px 0px;"></div>
+</div>
+
+<div class="ht" id="sproductchats">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;产销率及库存
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="product1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="product2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="product3" style="margin:30px 0px 0px 0px;"></div>
+    <div id="product4" style="margin:30px 0px 0px 0px;"></div>
+</div>

@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="description" content="HR登录页">
+        <title>HR登录页</title>  	 
+        <script src="../../../jquery-easyui-1.3.4/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="../../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script> 
+        <script src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+        <script src="../../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+        <script src="../../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script> 
+	    <script type="text/javascript" src="../../../JS/PE_OA/Util/dataUtil.js"></script> 	   
+	    <script type="text/javascript" src="../../../JS/PE_OA/Util/peoa.js"></script>   	 
+        <script type="text/javascript" src="../../../JS/PE_OA/Common/basedata.js"></script> 
+        <script type="text/javascript" src="../../../JS/PE_OA/HR/basedatahr.js" ></script>   
+        <script type="text/javascript"> 
+            $(function () {
+                //top.location.href = hr_getServUrl(1);
+                //return ture;
+                var oid = dataUtil_undefinedOrNull(basedata_getUrlParam("c_oid"), '');
+                var code = dataUtil_undefinedOrNull(basedata_getUrlParam("name"), '');
+                var name = dataUtil_undefinedOrNull(basedata_getUrlParam("namec"), '');
+                var type = dataUtil_undefinedOrNull(basedata_getUrlParam("type"), '');
+                var shopcode = dataUtil_undefinedOrNull(basedata_getUrlParam("shopcode"), '');
+                if (type == 'pos') {
+                    //获取POS店铺对应的EHR店铺
+                    var cons = ' AND HR9_PosShopCode = \'' + shopcode + '\' ';
+                    var res = hr_getSYSConfig1(cons, '1', '1', ''); 
+                    if (res == '' || res.total == 0 || res.rows[0].hr9_ehrunitid=='') {
+                        alert('该店铺未做系统参数配置，请联系相关人资负责人！');
+                        top.location.href = hr_getServUrl(1);
+                        return false;
+                    } else if (res.total == 1) {
+                        var flag = 0;
+                        //获取店铺对应的店长 
+                        var row = { type: '2', c_employeestatus: '', c_orgunitid: res.rows[0].hr9_ehrunitid};
+                        var pers = hr_getShopPers(row);
+                        for (var i = 0; i < pers.length; i++) { 
+                            if ('店长' == pers[i].c_jobname && pers[i].c_employeestatus != '3') {
+                                oid = pers[i].c_oid;
+                                code = pers[i].c_code;
+                                name = pers[i].c_name;
+                                flag = 1;
+                                break;
+                            }
+                        }
+                        if (flag == 0) {
+                            for (var i = 0; i < pers.length; i++) {
+                                if ('中阶店长' == pers[i].c_jobname && pers[i].c_employeestatus != '3') {
+                                    oid = pers[i].c_oid;
+                                    code = pers[i].c_code;
+                                    name = pers[i].c_name;
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if (flag == 0) {
+                            for (var i = 0; i < pers.length; i++) {
+                                if ('高阶店长' == pers[i].c_jobname && pers[i].c_employeestatus != '3') {
+                                    oid = pers[i].c_oid;
+                                    code = pers[i].c_code;
+                                    name = pers[i].c_name;
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if (flag == 0) {
+                            for (var i = 0; i < pers.length; i++) {
+                                if ('大店长' == pers[i].c_jobname && pers[i].c_employeestatus != '3') {
+                                    oid = pers[i].c_oid;
+                                    code = pers[i].c_code;
+                                    name = pers[i].c_name;
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if (flag == 0) {
+                            for (var i = 0; i < pers.length; i++) {
+                                if ('临时店长' == pers[i].c_jobname && pers[i].c_employeestatus != '3') {
+                                    oid = pers[i].c_oid;
+                                    code = pers[i].c_code;
+                                    name = pers[i].c_name;
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if (flag == 0) {
+                            for (var i = 0; i < pers.length; i++) {
+                                if ('初阶店长' == pers[i].c_jobname && pers[i].c_employeestatus != '3') {
+                                    oid = pers[i].c_oid;
+                                    code = pers[i].c_code;
+                                    name = pers[i].c_name;
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if (flag == 0) {
+                            for (var i = 0; i < pers.length; i++) {
+                                if ('见习店长' == pers[i].c_jobname && pers[i].c_employeestatus != '3') {
+                                    oid = pers[i].c_oid;
+                                    code = pers[i].c_code;
+                                    name = pers[i].c_name;
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                        }  
+                    }
+                }
+                $.cookie('oid', oid, { expires: 1 });
+                $.cookie('code', code, { expires: 1 });
+                $.cookie('name', name, { expires: 1 });
+                top.location.href = hr_getServUrl(2);
+            });
+	    </script>   
+    </head>
+  
+    <body id="body" style="margin:0px; width:100%; height:900px; font-family: Arial, Helvetica; 
+        overflow-x:hidden; overflow-y:scroll;" >    
+    </body> 
+</html>

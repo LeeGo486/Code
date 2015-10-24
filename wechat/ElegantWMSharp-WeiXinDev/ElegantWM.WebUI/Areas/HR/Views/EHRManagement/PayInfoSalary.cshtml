@@ -1,0 +1,132 @@
+﻿@foreach (System.Data.DataRow dr in ViewBag.PayInfo.Rows)
+{
+    <table class="salaryTable">
+        <tr>
+            <th colspan="2">公司承担住房公积金</th>
+            <td colspan="2">@dr["公司承担住房公积金"]</td>
+        </tr>
+        <tr>
+            <th colspan="2">公司承担生育保险</th>
+            <td colspan="3">@dr["公司承担生育保险"]</td>
+        </tr>
+        <tr>
+            <th colspan="2">公司承担工伤保险</th>
+            <td colspan="3">@dr["公司承担工伤保险"]</td>
+        </tr>
+        <tr>
+            <th colspan="2">公司承担失业保险</th>
+            <td colspan="3">@dr["公司承担失业保险"]</td>
+        </tr>
+        <tr>
+            <th colspan="2">公司承担医疗保险</th>
+            <td colspan="3">@dr["公司承担医疗保险"]</td>
+        </tr>
+        <tr>
+            <th colspan="2">公司承担养老保险</th>
+            <td colspan="3">@dr["公司承担养老保险"]</td>
+        </tr>
+
+        <tr>
+            @*<th style="font-weight: bold;">公司承担福利合计</th>*@
+            <th colspan="2">公司承担福利合计</th>
+            <td colspan="3">@dr["公司承担福利合计"]</td>
+        </tr>
+
+        <tr style="border-top: 1px solid #CC3333">
+            <th>应出勤天数</th>
+            <td>@dr["应出勤天数"]</td>
+            <th>出勤天数</th>
+            <td>@dr["出勤天数"]</td>
+        </tr>
+        <tr>
+            <th>月基薪</th>
+            <td>@dr["月基薪"]</td>
+            <th>岗位津贴</th>
+            <td>@dr["岗位津贴"]</td>
+        </tr>
+        <tr>
+            <th>全勤奖</th>
+            <td>@dr["全勤奖"]</td>
+            <th>保密费及物价补贴</th>
+            <td>@dr["保密费及物价补贴"]</td>
+        </tr>
+
+        <tr>
+            <th>加班费1</th>
+            <td>@dr["加班费1"]</td>
+            <th>加班费2</th>
+            <td>@dr["加班费2"]</td>
+        </tr>
+        <tr>
+            <th>绩效工资</th>
+            <td>@dr["绩效工资"]</td>
+            <th>通讯费</th>
+            <td>@dr["通讯费"]</td>
+        </tr>
+        <tr>
+            <th>代发现金福利</th>
+            <td>@dr["代发现金福利"]</td>
+            <th>驻外补贴</th>
+            <td>@dr["驻外补贴"]</td>
+        </tr>
+        <tr>
+            <th>请假工资</th>
+            <td>@dr["请假工资"]</td>
+            <th>常规扣款</th>
+            <td>@dr["常规扣款"]</td>
+        </tr>
+        <tr>
+            <th>应补应扣</th>
+            <td>@dr["应补应扣"]</td>
+            <th>考勤奖</th>
+            <td>@dr["考勤奖"]</td>
+        </tr>
+
+        <tr>
+            <th>其他</th>
+            <td>@dr["其他"]</td>
+            <th>薪资调整扣补</th>
+            <td>@dr["薪资调整扣补"]</td>
+        </tr>
+        <tr>
+            <th>缺勤扣款</th>
+            <td  colspan="3">@dr["缺勤扣款"]</td>
+        </tr>
+        <tr>
+            <th style="font-weight: bold;">应发合计</th>
+            <td colspan="3">@dr["应发合计"]</td>
+        </tr>
+
+        <tr>
+            <th>代扣失业金</th>
+            <td>@dr["代扣失业金"]</td>
+            <th>代扣基本医疗</th>
+            <td>@dr["代扣基本医疗"]</td>
+        </tr>
+
+        <tr>
+            <th>代扣住房公积金</th>
+            <td>@dr["代扣住房公积金"]</td>
+             <th>代扣养老金</th>
+            <td>@dr["代扣养老金"]</td>
+        </tr>
+        <tr>
+            <th>互助金</th>
+            <td>@dr["互助金"]</td>
+            <th>扣餐费</th>
+            <td>@dr["扣餐费"]</td>
+        </tr>
+
+        <tr>
+            <th>代扣个税</th>
+            <td>@dr["代扣个税"]</td>
+            <th>其他扣款</th>
+            <td>@dr["其他扣款"]</td>
+        </tr>
+
+        <tr>
+            <th style="font-weight: bold;">实发合计</th>
+            <td colspan="3">@dr["实发合计"]</td>
+        </tr>
+    </table>
+}

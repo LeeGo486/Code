@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <type>Basepage</type>
+    <data>menusubid=3999001&amp;para=%7b%22clothingid%22%3a%22A15PS2501AR2%22%7d&amp;_=1428992979000</data>
+    <url>/reportdesign/report/PreViewSub.aspx?menusubid=3999001&amp;para={"clothingid":"A15PS2501AR2"}&amp;_=1428992979000</url>
+    <description>A severe error occurred on the current command.  The results, if any, should be discarded.
+A severe error occurred on the current command.  The results, if any, should be discarded.   at F23Base.Tools.SqlHelper.getDataSet(String sql, SqlParameter[] param, CommandType commandtype, SqlConnection conn) in E:\Zhx_Web\F23Web\F23Base.Tools\SqlHelper.cs:line 152
+   at F23Base.Tools.SqlHelper.getTable(String sql, SqlParameter[] param, CommandType commandtype, SqlConnection conn) in E:\Zhx_Web\F23Web\F23Base.Tools\SqlHelper.cs:line 110
+   at F23Bll.Foundation.BllFoundation.GetMenuPowerNew(String userid, String menuid) in E:\Zhx_Web\F23Web\F23Bll.Foundation\BllFoundation.cs:line 305
+   at F23Web.ReportDesign.Report.PreViewSub.InitPage() in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Report\PreViewSub.aspx.cs:line 215
+   at F23Web.ReportDesign.Report.PreViewSub.Page_Load(Object sender, EventArgs e) in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Report\PreViewSub.aspx.cs:line 26
+   at System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at F23Web.ReportDesign.Page.SecurityPage.OnLoad(EventArgs e) in E:\Zhx_Web\F23Web\F23Web.ReportDesign\Page\SecurityPage.cs:line 49
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)</description>
+    <crdate>2015/4/14 14:58:58</crdate>
+  </log>
+</logs>

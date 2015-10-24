@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>播放器</title>
+    <script src="flowplayer-3.2.6.min.js"></script>
+    <style type="text/css">
+        body {
+            margin:0px;
+            padding:0px;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    var reg = new RegExp("(^|&)src=([^&]*)(&|$)");
+    var r = location.search.substr(1).match(reg);
+    document.write('<a href="/Content/Uploads/Pdts/' + unescape(r[2]) + '" style="display:block;width:300px; height:440px" id="player"></a>');
+    flowplayer("player", "flowplayer-3.2.7.swf");
+</script>
+</body>
+</html>

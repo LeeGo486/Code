@@ -1,0 +1,17 @@
+C:\CodematicDemo\EPReper\Model\bin\Release\EPReper.Model.dll
+C:\CodematicDemo\EPReper\Model\obj\Release\ResolveAssemblyReference.cache
+C:\CodematicDemo\EPReper\Model\obj\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\Model\bin\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\Model\obj\Release\ResolveAssemblyReference.cache
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper-导航\Model\obj\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\Model\bin\Release\EPReper.Model.dll
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\Model\obj\Release\ResolveAssemblyReference.cache
+C:\Users\shijs\Desktop\EPReper\EPReper-下拉\EPReper\Model\obj\Release\EPReper.Model.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\Model\bin\Release\EPReper.Model.dll
+E:\C#代码\EPReper\EPReper-下拉\EPReper\Model\obj\Release\ResolveAssemblyReference.cache
+E:\C#代码\EPReper\EPReper-下拉\EPReper\Model\obj\Release\EPReper.Model.dll
+F:\C#测试\EPReper\Model\bin\Release\EPReper.Model.dll
+F:\C#测试\EPReper\Model\obj\Release\ResolveAssemblyReference.cache
+F:\C#测试\EPReper\Model\obj\Release\EPReper.Model.dll
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\Model\bin\Release\EPReper.Model.dll
+F:\回收站\08个人项目\项目\EPReper20120904\EPReper20120630\Model\obj\Release\EPReper.Model.dll

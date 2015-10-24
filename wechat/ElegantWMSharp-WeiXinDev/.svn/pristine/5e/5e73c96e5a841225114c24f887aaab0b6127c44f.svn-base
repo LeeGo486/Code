@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "用户绑定";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            //单击按钮的时候
+            $("#btnLogin").click(function () {
+                $(this).button('loading');
+                if ($.trim($("#TxtName").val()).length <= 0) {
+                    Msg.show("姓名不能为空", 1);
+                    $("#TxtName").focus();
+                    $(this).button("reset");
+                    return;
+                } else if ($.trim($("#TxtCardNo").val()).length <= 0) {
+                    Msg.show("工号不能为空", 1);
+                    $("#TxtCardNo").focus();
+                    $(this).button("reset");
+                    return;
+                }
+                //到服务器验证
+                Msg.show("登录中...", 3);
+                $.post("/HR/Course/Login?code=" + $.trim($("#TxtCardNo").val()) + encodeURI("&name=" + $.trim($("#TxtName").val())), function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0 && Url.get("ReturnUrl")!=null) {
+                        //跳转回去
+                        window.location.href = Url.get("ReturnUrl");
+                    }
+                    $("#btnLogin").button("reset");
+                });
+            });
+        });
+    </script>
+}
+<div style="text-align:center;margin:30px 0px 30px 0px;">
+    <img src="/Areas/HR/Resources/images/hzy.png" width="200px" />
+</div>
+<div class="input-group">
+    <span class="input-group-addon">姓名：</span>
+    <input id="TxtName" class="form-control" style="width:100%" placeholder="输入姓名">
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">工号：</span>
+    <input id="TxtCardNo" class="form-control" style="width:100%" placeholder="输入您的工号">
+</div>
+<br />
+<button id="btnLogin" type="button" class="btn btn-success" style="width: 100%;margin-top:30px;" data-loading-text="请稍后...">登录</button>

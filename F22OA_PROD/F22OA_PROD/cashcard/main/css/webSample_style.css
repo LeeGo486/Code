@@ -1,0 +1,119 @@
+.footer
+{
+	font-size: 8pt;
+	color: #666666;
+	font-family: Verdana, helvetica, tahoma;
+}
+.tdHeader
+{
+	font-size: 8pt;
+	color: #333333;
+	font-family: Verdana, Helvetica, Tahoma;
+}
+
+.border
+{
+	border-right: 1px solid;
+	border-top: 1px solid;
+	font-size: 8pt;
+	border-left: 1px solid;
+	color: white;
+	border-bottom: 1px solid;
+	font-family: Verdana;
+	background-color: #396799;
+}
+TD
+{
+	font-size: 8pt;
+	font-family: Verdana, helvetica, Tahoma;
+}
+BODY
+{
+	font-size: 8pt;
+	font-family: Verdana, Helvetica, Tahoma;
+	background-image: url(images/body_grayBottom_bg.jpg);
+	background-repeat: repeat-x;
+	background-position: bottom left;
+	background-color: #FFFFFF;
+	margin: 0;
+	margin-left: 0px;
+	padding: 0px;
+}
+
+.header
+{
+	font-size: 8pt;
+	color: #333333;
+	font-weight:bold;
+}
+
+.labelStyle
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	font-size: 8pt;
+	font-family: Verdana;
+	height: 20px;
+}
+
+.columnListbox
+{
+	border-right: #666666 1px solid;
+	border-top: #666666 1px solid;
+	border-left: #666666 1px solid;
+	border-bottom: #666666 1px solid;
+}
+
+.error
+{
+	font-weight: normal;
+	font-size: 8pt;
+	color: #cc0000;
+	font-family: verdana;
+	text-decoration: none;
+}
+.descriptionPanel 
+{
+	FONT-SIZE: x-small;
+	font-weight:normal;
+	PADDING-TOP: 2px; 
+	BACKGROUND-COLOR: #FAFAFA;
+	width:100%;
+	height:100px;
+	padding-left:5px;
+	padding-top:5px;
+	padding-bottom:2px;
+	padding-right:5px;
+	color: #3C7FD1; /* royalblue; */
+	cursor:default;
+}
+.descriptionPanelContent
+{
+	border: solid 1px silver;
+	BACKGROUND-COLOR: #FDFDFD;
+}
+.descriptionPanelHeader 
+{ 
+	FONT-FAMILY: verdana,helvetica,arial;
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: x-small; 
+	BACKGROUND-IMAGE: url(images/silverglass.gif); 
+	COLOR: dimgray; 
+	PADDING-TOP: 2px; 
+	PADDING-BOTTOM: 1px; 
+	PADDING-LEFT: 3px; 
+	BORDER-LEFT: silver 1px solid; 
+	BORDER-RIGHT: silver 1px solid; 
+}
+.content
+{
+	/*background-color:F9F9F9; */
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #FF0000;
+}
+
+.chartGalleryPanel
+{
+	float:left;	
+}

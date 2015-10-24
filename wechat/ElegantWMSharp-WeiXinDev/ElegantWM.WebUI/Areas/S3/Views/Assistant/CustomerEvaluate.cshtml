@@ -1,0 +1,32 @@
+﻿<div class="ht" id="scustomerevaluate">
+    <i class="icon-pencil"></i>&nbsp;&nbsp;评价建议
+    <span onclick="$('#scustomerevaluatearea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+    <span onclick="loadAddCustomerEvaluate();">
+        <i class="icon-plus icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div>[2014年06月28日]&nbsp;&nbsp;武汉东湖万达百货<span onclick="showCustomerEvaluateInfo('customer1');" style="float:right;"><i class="cus icon-double-angle-down"></i></span><div style="text-align: right;"><span class="btnarea" onclick="loadDoCustomerEvaluate();" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(2)</span><span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span></div></div>
+            <div id="customer1" class="cusHideCustomerEvaluateArea" style="display:none;">衣服很好看</div>
+        </li>
+        <li class="list-group-item">
+            <div>[2014年06月28日]&nbsp;&nbsp;上海新世界<span onclick="showCustomerEvaluateInfo('customer2');" style="float:right;"><i class="cus icon-double-angle-down"></i></span><div style="text-align: right;"><span class="btnarea" onclick="loadDoCustomerEvaluate();" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i> 建议(2)</span><span class="btnarea" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(7)</span></div></div>
+            <div id="customer2" class="cusHideCustomerEvaluateArea" style="display:none;">做工非常好</div>
+        </li>
+    </ul>
+    <div id="sdocustomerevaluatearea">
+    </div>
+    <div id="saddcustomerevaluatearea">
+    </div>
+</div>

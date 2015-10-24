@@ -1,0 +1,193 @@
+﻿<script type="text/javascript">
+    $(function () {
+        checkGlobal($(".seTheme").val());
+    })
+
+    function checkGlobal(id) {
+        $.post("/S3/Calendar/GetGlobal?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&id=" + id, function (data) {
+            if (data.length == 0) {
+                $(".seGlobal").val("");
+                $(".seGlobal").removeAttr("readonly");
+            }
+            else {
+                $(".seGlobal").val(data[0].Global);
+                $(".seGlobal").attr("readonly", "");
+            }
+        });
+    }
+
+    $(".seTheme").change(function () {
+        checkGlobal($(this).val());
+    })
+</script>
+@if(ViewBag.Count >0 || ViewBag.Date != "Before")
+{
+<div class="ht" id="sdetail">
+    <i class="icon-file-alt"></i>&nbsp;&nbsp;我要反馈
+    <span onclick="$('#sdetailarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="mainArea">
+    @if (ViewBag.Count > 0) 
+    {
+        foreach (ElegantWM.EntityModel.Shop_EventFeedback se in ViewBag.Detail)
+        {
+            <div class="input-group">
+                <input class="form-control seId" type="hidden" value="@(se.Id)">
+            </div>
+             <br />
+            <div class="input-group date form_date">
+                <span class="input-group-addon">日期</span>
+                <input class="form-control hzyDp seDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon">活动主题</span>
+                <select class="form-control seTheme" disabled="">
+                    <option value="@(se.Theme)">@(se.Name)</option>
+                </select>
+            </div>
+            <br />
+            <div class="input-group ">
+                <span class="input-group-addon">活动目标</span>
+                <input type="text" pattern="[0-9]*" class="form-control seGlobal" value="@(se.Global)" readonly="">
+            </div>
+            <br />
+            <div class="input-group ">
+                <span class="input-group-addon">计划预约人数</span>
+                @if(ViewBag.Date == "After")
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control sePlan" value="@(se.PlanNum)">
+                }
+                else
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control sePlan" value="@(se.PlanNum)" readonly="">
+                }
+            </div>
+            <br />
+            <div class="input-group ">
+                <span class="input-group-addon">答应到店人数</span>
+                @if(ViewBag.Date == "After")
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control seRespond" value="@(se.RespondNum)">
+                }
+                else
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control seRespond" value="@(se.RespondNum)" readonly="">
+                }
+            </div>
+            <br />
+            <div class="input-group ">
+                <span class="input-group-addon">实际到店人数</span>
+                @if(ViewBag.Date == "Before")
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control seFact" value="@(se.FactNum)" readonly="">
+                }
+                else
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control seFact" value="@(se.FactNum)">
+                }
+            </div>
+            <br />
+            <div class="input-group ">
+                <span class="input-group-addon">实际购买人数</span>
+                @if (ViewBag.Date == "Before")
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control seBuy" value="@(se.BuyNum)" readonly="">
+                }
+                else
+                {
+                    <input type="text" pattern="[0-9]*" class="form-control seBuy" value="@(se.BuyNum)">
+                }
+            </div>
+            <br />
+            <div class="input-group ">
+                <span class="input-group-addon">购买金额</span>
+                @if (ViewBag.Date == "Before")
+                {
+                    <input type="text" pattern="[0-9.]*" class="form-control sePrice" value="@(se.Price)" readonly="">
+                }
+                else
+                {
+                    <input type="text" pattern="[0-9.]*" class="form-control sePrice" value="@(se.Price)">
+                }
+            </div>
+            <br />
+            
+            if (ViewBag.Date != "Before")
+            {
+                <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="updateDetail();">修改</button>
+            }
+        }
+    } 
+    else 
+    {
+        <div class="input-group">
+            <input class="form-control seId" type="hidden">
+        </div>
+        <br />
+        <div class="input-group date form_date">
+            <span class="input-group-addon">日期</span>
+            <input class="form-control hzyDp seDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
+        <br />
+        <div class="input-group">
+            <span class="input-group-addon">活动主题</span>
+            <select class="form-control seTheme">
+                @foreach (ElegantWM.EntityModel.Shop_Event s in ViewBag.Theme)
+                {
+                <option value="@(s.EventId)">@(s.EventName)</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div class="input-group ">
+            <span class="input-group-addon">活动目标</span>
+            <input type="text" pattern="[0-9]*" class="form-control seGlobal" value="">
+        </div>
+        <br />
+        <div class="input-group ">
+            <span class="input-group-addon">计划预约人数</span>
+            <input type="text" pattern="[0-9]*" class="form-control sePlan" value="">
+        </div>
+        <br />
+        <div class="input-group ">
+            <span class="input-group-addon">答应到店人数</span>
+            <input type="text" pattern="[0-9]*" class="form-control seRespond" value="">
+        </div>
+        <br />
+        <div class="input-group ">
+            <span class="input-group-addon">实际到店人数</span>
+            <input type="text" pattern="[0-9]*" class="form-control seFact" value="">
+        </div>
+        <br />
+        <div class="input-group ">
+            <span class="input-group-addon">实际购买人数</span>
+            <input type="text" pattern="[0-9]*" class="form-control seBuy" value="">
+        </div>
+        <br />
+        <div class="input-group ">
+            <span class="input-group-addon">购买金额</span>
+            <input type="text" pattern="[0-9.]*" class="form-control sePrice" value="">
+        </div>
+        <br />
+    
+        <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submitDetail();">提交</button>
+    }
+</div>
+}
+else
+{
+    <script type="text/javascript">
+        Msg.show("不能在之前的日期新建活动反馈！", 1);
+    </script>
+}

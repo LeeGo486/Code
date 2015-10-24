@@ -1,0 +1,22 @@
+
+$(document).ready(function(){
+
+	var param 
+		= window.location.href.split('?');
+	var wxno 
+		= param[1].split('=')[1];
+	
+	if(wxno.length != 0)
+	{
+		var url = GetWSRRURL("3a9cf88e-fc42-485d-9dff-96c35a8a1750")
+			+"&XML="+ GetGetJson([{"name":"txtWxno","value":wxno}], 'getWXList');
+
+		$.post(url,function(data){
+			
+		})
+		alert(wxno);
+	};
+	
+})
+
+

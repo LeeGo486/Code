@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C636AE97-6AF2-4ADF-926A-A78556B7DAB8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZY.COM.WS.WSRR2</RootNamespace>
+    <AssemblyName>HZY.COM.WS.WSRR2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HZY.COM.Common">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.Base">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.DBAccess.DBConn">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.DBAccess.DBConn.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authority.cs" />
+    <Compile Include="MenuManage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Route.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="User_Authority.cs" />
+    <Compile Include="Web References\AMSendWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WSCfgList.cs" />
+    <Compile Include="WSScheduling_UpdateExecuteLog.cs" />
+    <Compile Include="WSScheduling_GetCurrentExecuteList.cs" />
+    <Compile Include="WSServiceCall_Delete.cs" />
+    <Compile Include="WSServiceCall_Edit.cs" />
+    <Compile Include="WSServiceCall_ForEasyUI.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="WSServiceCall_GetList.cs" />
+    <Compile Include="WSServiceCall_Log_GetListByTaskID.cs" />
+    <Compile Include="WSServiceCall_Param_Delete.cs" />
+    <Compile Include="WSServiceCall_Param_Edit.cs" />
+    <Compile Include="WSServiceCall_Param_Edit_ForEasyUI.cs" />
+    <Compile Include="WSServiceCall_Param_GetListByTaskID.cs" />
+    <Compile Include="WSSrc.cs" />
+    <Compile Include="WSSrcParam.cs" />
+    <Compile Include="WSServiceInfo.cs" />
+    <Compile Include="WSServiceFunction.cs" />
+    <Compile Include="Login.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="WSRRManagerUserAdmin.cs" />
+    <Compile Include="Logout.cs" />
+    <Compile Include="WSRRDebugLog.cs" />
+    <Compile Include="WS_GetAllList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{c12f1233-f7c6-45f7-8f22-8bac49fcbe62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://192.168.0.89/MsgCenter.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AMSendWS\</RelPath>
+      <UpdateFromURL>http://192.168.0.89/MsgCenter.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>HZY_COM_WS_WSRR2_AMSendWS_MsgCenter</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AMSendWS\MsgCenter.disco" />
+    <None Include="Web References\AMSendWS\MsgCenter.wsdl" />
+    <None Include="Web References\AMSendWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

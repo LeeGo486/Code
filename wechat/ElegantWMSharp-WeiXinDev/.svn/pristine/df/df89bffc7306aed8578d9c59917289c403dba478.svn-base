@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "会员绑定";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <script src="~/Application/WXLKRegMemberFans/app.js"></script>
+}

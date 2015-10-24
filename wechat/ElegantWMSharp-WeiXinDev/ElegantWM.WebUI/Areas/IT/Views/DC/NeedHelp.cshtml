@@ -1,0 +1,295 @@
+﻿@{
+    ViewBag.Title = "请求服务";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <script src="~/Areas/IT/Resources/jquery.ajaxupload.js"></script>
+    <script type="text/javascript">
+        function CheckCommon() {
+            if ($("#sltCompany").val() == '') {
+                Msg.show("请选择公司", 1);
+                $("#sltCompany").focus();
+                return false;
+            } 
+            if ($("#sltDept").val() == '') {
+                Msg.show("请选择部门", 1);
+                $("#sltDept").focus();
+                return false; 
+            }
+            if ($("#sltAddress").val() == '') { 
+                Msg.show("请选择办公地点", 1);
+                $("#sltAddress").focus();
+                return false;
+            }
+            return true;
+        }
+        $(function () {
+            //提交需求
+            $("#btnSubmitRequest").click(function () {
+                if (!CheckCommon()) return;
+                var oprationType = "880 ";
+                var com = $("#sltCompany").val();
+                var dept = $("#sltDept").val();
+                var orderRespDate = $("#txtOrderRespDate").val().replace("-", "").replace("-", "");
+                var username = $("#txtUserName").val();
+                var reqImg = $("#txtRequestFile").val();
+                if (orderRespDate == "") {
+                    Msg.show("拟完成日必须填写", 1);
+                    return;
+                }
+                if (reqImg == "") {
+                    Msg.show("请上传需求附件", 1);
+                    return;
+                }
+                url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(oprationType + " |" + com + "|" + dept + "|" + username + "|" + orderRespDate + "|无|" + reqImg + "|");
+                Msg.show("请稍候...", 3);
+                $.post(url, function (rst) {
+                    Msg.hide();
+                    if (rst.indexOf("成功") > -1) {
+                        $("#optArea").hide();
+                        $("#btnSubmitRequest").hide();
+                        $("#rstRequestMsg p").append("<br />" + rst);
+                        $("#rstRequestMsg").fadeIn(500);
+                    }
+                    else {
+                        Msg.show(rst, 1);
+                    }
+                })
+            });
+            //提交报修申请
+            $("#btnSubmitRepair").click(function () {
+                if (!CheckCommon()) return;
+                if ($.trim($("#txtEventContent").val()).length < 5) {
+                    Msg.show("故障内容必须>5个字", 1);
+                    $("#txtEventContent").focus();
+                    return false;
+                }
+                //构造提交json的格式
+                var paramData = {
+                    ReqCom: $("#sltCompany").val(),
+                    ReqDept: $("#sltDept").val(),
+                    ReqManPhone: $("#txtPhone").val(),
+                    ReqIncident: $("#sltAddress").val(),
+                    FileUrl: $("#txtEventFile").val(),
+                    EventDesc: $("#txtEventContent").val()
+                };
+
+                Msg.show("提交中...", 3);
+                $(this).button('loading');
+                $.post("/IT/SM/SubmitEvent?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (rst) {
+                    Msg.hide();
+                    $("#btnSubmitRepair").button('reset');
+                    if (rst.result == 0) {
+                        $("#btnSubmitRepair").hide();
+                        $("#optArea").hide();
+                        $("#rstEventMsg p").append("<br />" + rst.msg);
+                        $("#rstEventMsg").fadeIn(500);
+                    } else
+                        Msg.show(rst.msg, rst.result);
+                });
+            });
+            
+            //初始化文件上传
+            initUploadFile("#btnFileEvent", "#txtEventFile", "#pEventImg", 0);
+            initUploadFile("#btnFileRequest", "#txtRequestFile", "#pRequestImg", 1);
+
+            //设置需求和事件的切换事件
+            $(".btn-group button[name=eventRepair]").click(function () {
+                $(".btn-group button[name=eventRepair]").removeClass("btn-default");
+                $(".btn-group button[name=eventRepair]").addClass("btn-warning");
+                $(".btn-group button[name=eventRepair]").attr("disabled", true);
+
+                $(".btn-group button[name=requestApply]").removeClass("btn-warning");
+                $(".btn-group button[name=requestApply]").addClass("btn-default");
+                $(".btn-group button[name=requestApply]").attr("disabled", false);
+
+                $("#aRequest").hide();
+                $("#aEvent").fadeIn(500);
+            });
+            $(".btn-group button[name=requestApply]").click(function () {
+                $(".btn-group button[name=requestApply]").removeClass("btn-default");
+                $(".btn-group button[name=requestApply]").addClass("btn-warning");
+                $(".btn-group button[name=requestApply]").attr("disabled", true);
+
+                $(".btn-group button[name=eventRepair]").removeClass("btn-warning");
+                $(".btn-group button[name=eventRepair]").addClass("btn-default");
+                $(".btn-group button[name=eventRepair]").attr("disabled", false);
+
+                $("#aEvent").hide();
+                $("#aRequest").fadeIn(500);
+            });
+            //拟需求完成日设置
+            var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+                hydp.hide();
+            }).data('datepicker');
+
+            /**********当页面加载的时候，自动带出申请人的信息，事件申请人************/
+            Msg.show("请稍候...", 3);
+            var hisCom = "@(ViewBag.ReqMan == null ? "" : ViewBag.ReqMan.ReqCom)";
+            var hisDept = "@(ViewBag.ReqMan == null ? "" : ViewBag.ReqMan.ReqDept)";
+            var hisIncident = "@(ViewBag.ReqMan == null ? "" : ViewBag.ReqMan.ReqIncident)";
+            var hisPhone = "@(ViewBag.ReqMan == null ? "" : ViewBag.ReqMan.ReqManPhone)";
+            $("#txtPhone").val(hisPhone);
+            var dataDept = {};
+
+            $.post("/IT/SM/CompanyDept?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+                Msg.hide();
+                var rst = eval("(" + data + ")");
+                dataDept = rst.Dept;
+                $.each(rst.Company, function (index, value) {
+                    $("#sltCompany").append("<option value='" + value.AM_Company_Name.replace(new RegExp("\\d", "g"),"") + "'>" + value.AM_Company_Name.replace(new RegExp("\\d", "g"), "") + "</option>");
+                });
+                
+                //赋值
+                if (hisCom != '') {
+                    $("#sltCompany").val(hisCom);
+                    
+                    loadDept(hisCom.replace(new RegExp("\\d", "g"), ""), hisDept);
+                } else {
+                    loadDept(rst.Company[0].AM_Company_Name.replace(new RegExp("\\d", "g"), ""), "");
+                }
+
+                if (hisIncident != '')
+                    $("#sltAddress").val(hisIncident);
+
+            });
+            $("#sltCompany").change(function () {
+                
+                loadDept($("#sltCompany").find("option:selected").text(), "");
+            });
+            //根据公司加载部门
+            function loadDept(com, slt) {
+                 
+                $("#sltDept option").remove();
+                $.each(dataDept, function (index, value) {
+                    if (value.AM_Company_Name.replace(new RegExp("\\d", "g"),"") == com) {
+                        $("#sltDept").append("<option value='" + value.AM_Dept_NAME_AllNoCom.replace(new RegExp("\\d", "g"), "") + "' " + (value.AM_Dept_NAME_AllNoCom.replace(new RegExp("\\d", "g"), "") == slt ? "SELECTED" : "") + ">" + value.AM_Dept_NAME_AllNoCom.replace(new RegExp("\\d", "g"), "") + "</option>");
+                    }
+                });
+            }
+            /*************初始化完成****************/
+        });
+        function initUploadFile(id,txt,img, type) {
+            new AjaxUpload($(id), {
+                action: '/IT/DC/UploadFile?sid=' + Url.get("sid") + "&oid=" + Url.get("oid")+"&type="+type,
+                name: 'hzyfile',
+                responseType:'json',
+                onSubmit: function (file, ext) {
+                    if (!(ext && /^(jpg|JPG|PNG|png)$/.test(ext))) {
+                        Msg.show('仅支持jpg,png格式的图片', 1);
+                        return false;
+                    }
+                    Msg.show("上传中,请稍候...", 3);
+                    this.disable();
+                },
+                onComplete: function (file, rst) {
+                    Msg.hide();
+                    this.enable();
+                    console.log(file);
+                    if (rst.result == 0) {
+                        Msg.show("上传成功", 0);
+                        $(txt).val(rst.msg);
+                        $(img).html("<img onclick=showImgDetail('" + (type == 0 ? "Event/" : "Request/") + rst.msg + "') src='/Content/Uploads/" + (type == 0 ? "Event" : "Request") + "/Thumbnail/" + rst.msg + "' />");
+                    } else
+                        Msg.show(rst.msg, rst.result);
+                }
+            });
+        }
+        function showImgDetail(u) {
+            var imgUrl = "http://it.hwafashion.com/Content/Uploads/" + u;
+            WeixinApi.imagePreview(imgUrl, [imgUrl]);
+        }
+    </script>
+}
+
+<div id="optArea" class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;提报人信息 </span></h4>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">&nbsp;&nbsp;姓&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;</span>
+        <input class="form-control" id="txtUserName" readonly="true" value="@ViewBag.UserName">
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">&nbsp;&nbsp;公&nbsp;&nbsp;&nbsp;司&nbsp;&nbsp;</span>
+        <select id="sltCompany" class="form-control">
+        </select>
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">&nbsp;&nbsp;部&nbsp;&nbsp;&nbsp;门&nbsp;&nbsp;</span>
+        <select id="sltDept" class="form-control">
+        </select>
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">办公地点</span>
+        <select id="sltAddress" class="form-control">
+            <option>华之毅园区</option>
+            <option>雅莹商业园区</option>
+            <option>时尚园区</option>
+            <option>店铺终端</option>
+            <option>其他</option>
+        </select>
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">联系电话</span>
+        <input id="txtPhone" type="telephone" class="form-control">
+    </div>
+    <h4><span><i class="glyphicon glyphicon-info-sign"></i>&nbsp;&nbsp;请选择请求类型</span></h4>
+    <div class="btn-group" style="width: 100%;">
+        <button type="button" name="eventRepair" class="btn btn-default" style="width: 50%;">故障报修</button>
+        <button type="button" name="requestApply" class="btn btn-default" style="width: 50%;">系统需求</button>
+    </div>
+    <br />
+    <div id="aEvent" style="display: none">
+        <h4><span><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;故障信息输入 </span></h4>
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">故障描述</span>
+            <textarea id="txtEventContent" maxlength="400" placeholder="请输入不少于5个字的故障描述" class="form-control"></textarea>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">图片附件
+            </span>
+            <input type="text" class="form-control" id="txtEventFile" readonly="true">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="btnFileEvent">浏览</button>
+            </span>
+        </div>
+        <p id="pEventImg" class="thumbImg"></p>
+        <button id="btnSubmitRepair" type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="请稍后...">确认报修</button>
+
+    </div>
+    <div id="aRequest" style="display: none">
+        <h4><span><i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;需求信息输入 </span></h4>
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">拟完成日</span>
+            <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" placeholder="点击选择日期" readonly="true" id="txtOrderRespDate">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">需求附件
+            </span>
+            <input type="text" class="form-control" id="txtRequestFile" readonly="true">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="btnFileRequest">浏览</button>
+            </span>
+        </div>
+        <p style="color:#f00;">注：请上传由部门领导签字的工作联络单照片</p>
+        <p id="pRequestImg" class="thumbImg"></p>
+
+        <button id="btnSubmitRequest" type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="请稍后...">确认申请</button>
+    </div>
+    <p id="sRst" style="color: #FF6666; text-align: center; font-size: 14px;"></p>
+</div>
+
+<div id="rstEventMsg" class="mainArea" style="min-height:0px;display:none;">
+    <p style="text-align:center;color:#66CC33;"><i class="icon-info-sign icon-4x"></i></p>
+    <br />
+    我们的服务经理将尽快安排工程师与您联系，并根据情况决定是否安排现场服务。您可以通过菜单<a href="/IT/DC/MyRequest?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->我的请求”</a>中查看实时进展。<br /><br />
+    <i class="icon-caret-right"></i> 如果工程师已经服务完成，请您在<a href="/IT/DC/MyRequest?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->我的请求”</a>中对服务进行评价。<br />
+    <i class="icon-caret-right"></i> 如果有任何投诉或者建议，请联系“用户服务”总部调度经理：<a href="tel:15888352131"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;王樑</a>
+</div>
+<div id="rstRequestMsg" class="mainArea" style="min-height:0px;display:none;">
+    <p style="text-align:center;color:#66CC33;"><i class="icon-info-sign icon-4x"></i></p>
+    <br />
+    我们的销售经理（<a href="tel:18905736555"><i class="glyphicon glyphicon-earphone"></i>宋凯</a>）将会与您电话联系并确认需求。此订单一旦确认后，您可以在<a href="/IT/DC/MyRequest?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->我的请求”</a>中查看实时进展。
+</div>

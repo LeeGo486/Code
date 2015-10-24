@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "圣诞小游戏";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            $(".bg").load(function () {
+                var height = $(".bg").height();
+                $("#main").css("margin-top", height * 0.05);
+                $("#username").height(height * 0.05);
+                $("#tel").height(height * 0.05);
+                $("#address").height(height * 0.1);
+            })
+
+            $(".btn").load(function () {
+                $(".btn").css("margin-top", $(".btn").height() * 0.3);
+            })
+        })
+    </script>
+}
+<img class="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/infobg.png" style="width:100%;"/>
+<div id="main" style="position:absolute;top:0;left:0;width:100%;">
+    <img class="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/nameButton.png" style="width:50%;left:23%;margin-top:5%;"/>
+    <div class="input-group" style="width:80%;left:10%;">
+      <input type="text" id="username" class="form-control" value="@ViewBag.Name" style="border-radius: 4px;text-align:center;">
+    </div>
+    <img class="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/telButton.png" style="width:50%;left:23%;"/>
+    <div class="input-group" style="width:80%;left:10%;">
+      <input type="text" id="tel" class="form-control" value="@ViewBag.Tel" style="border-radius: 4px;text-align:center;">
+    </div>
+    <img class="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/addressButton.png" style="width:50%;left:23%;"/>
+    <div class="input-group" style="width:80%;left:10%;">
+        <textarea class="form-control" id="address" style="border-radius: 4px;"></textarea>
+    </div>
+    <img class="btn" id="submit" src="~/Areas/Game/Resources/images/NpaiaChristmas/submitButton.png" style="width:50%;left:23%;"/>
+</div>
+<script type="text/javascript">
+    var flag = false;
+    $("#submit").click(function () {
+        if ($("#username").val() == "") {
+            Msg.show("请输入姓名", 1);
+            return;
+        }
+        if ($("#tel").val() == "") {
+            Msg.show("请输入手机号", 1);
+            return;
+        }
+        if ($("#address").val() == "") {
+            Msg.show("请输入收货地址", 1);
+            return;
+        }
+
+        //构造提交json的格式
+        var paramData = {
+            Oid: Url.get("oid"),
+            Name: $("#username").val(),
+            Tel: $("#tel").val(),
+            Address: $("#address").val()
+        };
+
+        if (flag)
+        {
+            return;
+        } 
+        else {
+            flag = true;
+            Msg.show("提交中...", 3);
+            $.post("/Game/NpaiaChristmas/Submit?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+                
+                if (rst.result == 0) {
+                    setTimeout("goToShare()", 1000);
+                } else {
+                    flag = false;
+                }
+            });
+        }
+    })
+
+    function goToShare() {
+        window.location.href = "/Game/NpaiaChristmas/Share?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    }
+</script>

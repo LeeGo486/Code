@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="gb2312"?>
+<BBSXP>
+	<Category Url="Cookies.asp?menu=Themes" Name="风格">
+		<Menu Url="Cookies.asp?menu=Themes&amp;style=Default">BBSXP2007</Menu>
+		<Menu Url="Cookies.asp?menu=Themes&amp;style=a">灰石风格</Menu>
+		<Menu Url="Cookies.asp?menu=Themes&amp;style=b">清淡风格</Menu>
+		<Menu Url="Cookies.asp?menu=Themes&amp;style=c">淡蓝风格</Menu>
+	</Category>
+	<Category Url="#" Name="社区服务">
+		<Menu Url="Gambling.asp">社区赌场</Menu>
+		<Menu Url="Bank.asp">社区银行</Menu>
+		<Menu Url="Prison.asp">社区监狱</Menu>
+	</Category>
+</BBSXP>

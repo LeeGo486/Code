@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "雅斓魔法圣诞季";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+<img class="bg" src="~/Areas/Game/Resources/images/GLChristmas/end.jpg" style="width:100%;"/>

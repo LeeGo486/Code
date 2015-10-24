@@ -1,0 +1,88 @@
+﻿.msg .x-box-mc {
+    font-size: 14px;
+}
+
+#msg-div {
+    position: absolute;
+    left: 35%;
+    top: 10px;
+    width: 300px;
+    z-index: 20000;
+}
+
+    #msg-div .msgOk {
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        background: #a1fca1;
+        border: 2px solid #24d824;
+        margin-top: 2px;
+        padding: 10px 15px;
+        color: #047a04;
+    }
+
+        #msg-div .msgOk h3 {
+            margin: 0 0 8px;
+            font-weight: bold;
+            font-size: 15px;
+            color: #047a04;
+        }
+
+        #msg-div .msgOk p {
+            margin: 0;
+            color: #047a04;
+        }
+
+    #msg-div .msgError {
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        background: #fecaca;
+        border: 2px solid #fb9f9f;
+        margin-top: 2px;
+        padding: 10px 15px;
+    }
+
+        #msg-div .msgError h3 {
+            margin: 0 0 8px;
+            font-weight: bold;
+            font-size: 15px;
+            color: #bd0303;
+        }
+
+        #msg-div .msgError p {
+            margin: 0;
+            color: #bd0303;
+        }
+
+    #msg-div .msgException {
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        background: #fee345;
+        border: 2px solid #eace2c;
+        margin-top: 2px;
+        padding: 10px 15px;
+    }
+
+        #msg-div .msgException h3 {
+            margin: 0 0 8px;
+            font-weight: bold;
+            font-size: 15px;
+            color: #cb3a03;
+        }
+
+        #msg-div .msgException p {
+            margin: 0;
+            color: #cb3a03;
+        }
+#WMS-loader {
+    font-size: 12px;
+    position: absolute;
+    padding-top: 32px;
+    margin-left: -64px;
+    margin-top: -7px;
+    width: 128px;
+    height: 132px;
+    left: 50%;
+    top: 40%;
+    background: url(../images/loading.gif) center top no-repeat;
+    text-align: center;
+}

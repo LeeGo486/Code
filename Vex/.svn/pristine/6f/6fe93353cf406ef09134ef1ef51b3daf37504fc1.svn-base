@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>主题管理</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../JS/DLWXSite/Theme.JS?Date=20150413" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div region="center" split="true" style="width: 100%;" id="mainPanle">
+        <table id="theme_tab_list" style="width: 100%; height: 98%"></table>
+    </div>
+
+    <div title="编辑主题信息" id="divEditTheme" class="easyui-window" data-options="closed:true" style="width: 800px;" class="edit">
+        <form id="form_EditTheme" name="form_EditTheme" method="post">
+            <table>
+                <tr>
+                    <th>年份
+                    </th>
+                    <td>
+                        <select class="easyui-combobox" id="txtYear" name="txtYear" style="width: 100px;" data-options="panelHeight:'auto',editable:false">
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>主题编号
+                    </th>
+                    <td>
+                        <input id="txtTID" name="txtVID" style="width: 300px" hidden="hidden" class="easyui-textbox" />
+                        <input id="txtCode" name="txtCode" style="width: 300px" hidden="hidden" class="easyui-textbox" />
+                        <input id="txtCodeShow" name="txtCodeShow" disabled="disabled" value="" style="width: 300px" class="easyui-textbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>主题名称
+                    </th>
+                    <td>
+                        <input class="easyui-validatebox" id="txtName" name="txtName" style="width: 300px;" required="required" missingmessage="必须填写" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" iconcls="icon-save" onclick=" ThemeEdit_Submit() " class="easyui-linkbutton" data-options="plain:true">提交</a>
+                        <a href="#" iconcls="icon-undo" onclick=" WindowClose('#divEditTheme') " class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

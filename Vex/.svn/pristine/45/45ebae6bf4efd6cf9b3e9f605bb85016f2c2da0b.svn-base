@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>登录页面</title>
+    <meta charset="UTF-8">
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/JS_PrintArea.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/base/login_PLMAS.js?Date=20131212" type="text/javascript"></script>
+    <style>
+        input {
+            width: 250px;
+            font-size: 22pt;
+            border: none;
+            color: #000;
+        }
+
+        :focus:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body style="background-color: #F5F8F7" fit="true">
+    <center>
+        <div style="margin: -240px auto 0px -400px; border: 0px solid red; border-image: none; left: 50%; top: 50%; width: 800px; height: 460px; position: absolute; background: url('../../image/PLM_BG.png') no-repeat center" onkeypress="if ( event.keyCode == 13 ){doLogin();return false;}">
+            <div id="login" style="left: 50%; top: 98px; width: 350px; height: 260px; position: absolute;">
+                <!-- <div id="login" style="left: 700px; top: 210px; width: 350px; height: 260px; position: absolute;">-->
+
+                <div>
+                    <form id="form_Login" method="post">
+
+                        <table id="loginTable" style="margin: auto;" cellpadding="23px" border="0">
+                            <tr>
+                                <td>
+                                    <input type="text" id="UserName" name="UserName" style="background: no-repeat; border-style: none" maxlength="20" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="Password" id="Password" name="Password" style="background: no-repeat" maxlength="20" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!-- <select id="txtzt" name="txtzt" class="com_select"  >
+                                        <option selected>EP</option>"
+                                        <option >DL</option>"
+                                    </select>-->
+                                        <span id="sleHid">
+                                            <select  class="select1" id="zt" >
+                                                <option value="EP" selected="selected">EP正式环境</option>
+                                                <option value="DL">DL正式环境</option>
+                                            </select>
+                                        </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <!--<div style="color: red; font: 12px; padding: 2px;">
+                    &nbsp;-->
+                </div>
+                <div style="left: 10%; width: 131px; height: 55px; position: absolute;" onclick="doLogin();">
+                </div>
+                <div style="left: 59%; width: 130px; height: 55px; position: absolute;" onclick="doReset();">
+                </div>
+                <div id="login_msg" style="text-align: center; color: red; font: 12px; padding: 2px; position: absolute; left: 20px; width: 310px; top: 240px;">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿<div class="ht" id="sworklist">
+    <i class="icon-briefcase"></i>&nbsp;&nbsp;工作履历
+    <span onclick="$('#sworkarea div').fadeOut(1000);$('.cusHideWorkListArea').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <ul class="list-group">
+        <li class="list-group-item">
+            20120504-20130506&nbsp;&nbsp;&nbsp;&nbsp;马斯菲尔&nbsp;&nbsp;&nbsp;&nbsp;客户经理
+        </li>
+        <li class="list-group-item">
+            20130506-20140306&nbsp;&nbsp;&nbsp;&nbsp;哥弟&nbsp;&nbsp;&nbsp;&nbsp;客户经理
+        </li>
+    </ul>
+</div>

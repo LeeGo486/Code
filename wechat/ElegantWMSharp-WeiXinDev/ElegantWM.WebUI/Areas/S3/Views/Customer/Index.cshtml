@@ -1,0 +1,564 @@
+﻿@{
+    ViewBag.Title = "销售机会";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script src="~/Scripts/hightcharts/highcharts.js"></script>
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <style type="text/css">
+        label {
+            font-weight: normal;
+        }
+    </style>
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            $("#stask").click(function () {
+                scrollTo("#smytask");
+            });
+            $("#scus").click(function () {
+                scrollTo("#scustomerarea");
+            }); 
+            $("#ssearch").click(function () { 
+                bootbox.prompt("请输入客户姓名", function (result) {
+                    if (result === null || result == '') {
+
+                    } else {
+                        SearchCustomer(result);
+                    }
+                });
+            });
+            $("#sgps").click(function () {
+                bootbox.prompt("请输入要搜索的文字", function (result) {
+                    if (result === null || result == '') {
+
+                    } else {
+
+                    }
+                });
+            });
+            var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+                hydp.hide();
+            }).data('datepicker');
+        });
+        //搜索客户
+        function SearchCustomer(name) {
+            Msg.show("客户加载中...", 3);
+            $.get("/S3/Customer/CustomerList?name=" + name, function (htmldata) {
+                Msg.hide();
+                showCustomers(htmldata);
+            });
+        }
+        //服务支持
+        function ShopServiceSupport() {
+            $("#winSupport button.btn-primary").on("click", function (e) {
+                $("#winSupport").modal('hide');
+            });
+            $("#winSupport button.btn-danger").on("click", function (e) {
+                Msg.show("保存成功", 0);
+                $("#winSupport").modal('hide');
+            });
+            $("#winSupport").modal({
+                "backdrop": "static",
+                "keyboard": true,
+                "show": true
+            });
+        }
+        //请求下发
+        function ShopServiceAllot() {
+            $("#winCheckSupport button.btn-primary").on("click", function (e) {
+                $("#winCheckSupport").modal('hide');
+            });
+            $("#winCheckSupport button.btn-danger").on("click", function (e) {
+                Msg.show("请求已下发", 0);
+                $("#winCheckSupport").modal('hide');
+            });
+            $("#winCheckSupport").modal({
+                "backdrop": "static",
+                "keyboard": true,
+                "show": true
+            });
+        }
+        //客户反馈
+        function ShopServiceCustomerFeedBack() {
+            $("#winCustomerFeedBack button.btn-primary").on("click", function (e) {
+                $("#winCustomerFeedBack").modal('hide');
+            });
+            $("#winCustomerFeedBack button.btn-danger").on("click", function (e) {
+                Msg.show("保存成功", 0);
+                $("#winCustomerFeedBack").modal('hide');
+            });
+            $("#winCustomerFeedBack").modal({
+                "backdrop": "static",
+                "keyboard": true,
+                "show": true
+            });
+        }
+        //客户预约关怀
+        function AddNewWarmTask(type) {
+            if (type == 1 || type == 2) {
+                $("#winAddWarmTask button.btn-primary").on("click", function (e) {
+                    $("#winAddWarmTask").modal('hide');
+                });
+                $("#winAddWarmTask button.btn-danger").on("click", function (e) {
+                    Msg.show("任务添加成功", 0);
+                    $("#winAddWarmTask").modal('hide');
+                });
+                $("#winAddWarmTask").modal({
+                    "backdrop": "static",
+                    "keyboard": true,
+                    "show": true
+                });
+            }
+            else if (type == 3) {
+                $("#winClothRepair button.btn-primary").on("click", function (e) {
+                    $("#winClothRepair").modal('hide');
+                });
+                $("#winClothRepair button.btn-danger").on("click", function (e) {
+                    Msg.show("任务添加成功", 0);
+                    $("#winClothRepair").modal('hide');
+                });
+                $("#winClothRepair").modal({
+                    "backdrop": "static",
+                    "keyboard": true,
+                    "show": true
+                });
+            } else if (type == 4) {
+                $("#winCothRequire button.btn-primary").on("click", function (e) {
+                    $("#winCothRequire").modal('hide');
+                });
+                $("#winCothRequire button.btn-danger").on("click", function (e) {
+                    Msg.show("任务添加成功", 0);
+                    $("#winCothRequire").modal('hide');
+                });
+                $("#winCothRequire").modal({
+                    "backdrop": "static",
+                    "keyboard": true,
+                    "show": true
+                });
+            }
+        }
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+        //显示客户资料信息
+        function showCustomers(data) {
+            $("#scustomerarea").html(data);
+            scrollTo("#scustomerarea");
+            $("li").click(function () {
+                $("li").removeClass("dataListSld");
+                $(this).addClass("dataListSld");
+            });
+        }
+        //显示客户的详细资料
+        function showCustomerInfo(id) {
+            Msg.show("加载资料中...", 3);
+            $.post("/S3/Customer/CustomerDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+        //单击图标，加载客户数据
+        function loadCustomers(cdn, type) {
+            Msg.show("客户加载中...", 3);
+            $.get("/S3/Customer/CustomerList", function (htmldata) {
+                Msg.hide();
+                showCustomers(htmldata);
+            });
+        }
+        //显示客户的消费记录
+        function showCustomerConsume(ths, id) {
+            if ($("#" + id).is(":visible")) {
+                $("#" + id).html("");
+                $("#" + id).hide();
+                $(ths).children().removeClass("icon-double-angle-up");
+                $(ths).children().addClass("icon-double-angle-down");
+                return;
+            }
+            $(".cusHideCsmArea").html("");
+            $(".cusHideCsmArea").hide();
+            $("ul li .cexp span .cus").removeClass("icon-double-angle-up");
+            $("ul li .cexp span .cus").addClass("icon-double-angle-down");
+
+            $(ths).children().removeClass("icon-double-angle-down");
+            $(ths).children().addClass("icon-double-angle-up");
+            Msg.show("加载中...", 3);
+
+            $.post("/S3/Customer/CustomerConsume", function (htmldata) {
+                Msg.hide();
+                $("#" + id).html(htmldata);
+                $("#" + id).show();
+                scrollTo($("#" + id).parent());
+            });
+        }
+        //显示客户订单信息
+        function showCustomerOrder(id) {
+            Msg.show("加载中...", 3);
+            $.post("/S3/Customer/CustomerOrderDetail", function (htmldata) {
+                Msg.hide();
+                bootbox.alert(htmldata);
+            });
+        }
+        //显示客户图片
+        function showCustomerFittingImg(img) {
+            bootbox.alert("<center><img src='/Areas/S3/Resources/images/CustomerFitting/" + img + "' width='300px' height='400px' /></center>");
+        }
+
+    </script>
+}
+<div class="dataDetail clearfix">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-map-marker icon-large"></i> 工作点<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">保存当前工作点</a></li>
+            <li><a href="#">恢复：2014-07-03 22:31</a></li>
+            <li><a href="#">恢复：2014-07-03 17:03</a></li>
+            <li><a href="#">恢复：2014-07-03 12:18</a></li>
+            <li><a href="#">恢复：2014-07-02 23:49</a></li>
+        </ul>
+    </div>
+    <span onclick="Msg.show('分享到社区',0);" style="margin-top:7px;float:right;font-size:14px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);" style="margin-top:7px;float:right;font-size:14px;">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<!--OverView-->
+<div class="ht">
+    <i class="icon-globe"></i>&nbsp;&nbsp;OverView
+</div>
+<ul class="list-group">
+    <li class="list-group-item">
+        <i class="icon-list-ol"></i>&nbsp;&nbsp;本年发展会员数<span class="badge pull-right hs">1932</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-adjust"></i>&nbsp;&nbsp;新会员消费占比<span class="badge pull-right ls">25%</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-money"></i>&nbsp;&nbsp;最高单<span class="badge pull-right ys">35671</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-coffee"></i>&nbsp;&nbsp;预约次数<span class="badge pull-right hs">527</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-screenshot"></i>&nbsp;&nbsp;预约成功率<span class="badge pull-right ls">57.5%</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-user"></i>&nbsp;&nbsp;客户关怀数<span class="badge pull-right hs">3219</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-user"></i>&nbsp;&nbsp;客户人均关怀数<span class="badge pull-right hs">1.3</span>
+    </li>
+    <li class="list-group-item">
+        <i class="icon-credit-card"></i>&nbsp;&nbsp;会员资料完整率<span class="badge pull-right ls">54%</span>
+    </li>
+</ul>
+@Html.Action("SaleAnalysisCharts")
+@Html.Action("MyTasks")
+<div id="scustomerarea">
+</div>
+<br />
+<br />
+<br />
+<div class="s3overlay">
+    <i id="stop" class="icon-arrow-up icon-2x"></i>
+    <hr />
+    <i id="stask" class="icon-calendar icon-2x"></i>
+    <hr />
+    <i id="scus" class="icon-user icon-2x"></i>
+    <hr />
+    <i id="ssearch" class="icon-search icon-2x"></i>
+    <hr />
+    <i id="sgps" class="icon-screenshot icon-2x"></i>
+</div>
+<!--新增任务，成衣维修等等-->
+<div id="winAddWarmTask" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon">关怀类型：</span>
+                    <select class="form-control">
+                        <option>生日</option>
+                        <option>结婚</option>
+                    </select>
+                </div>
+                <br />
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">预约时间：</span>
+                    <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <br />
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">截止时间：</span>
+                    <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <br />
+                <textarea class="form-control" placeholder="关怀内容"></textarea>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="winClothRepair" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon">维修单号：</span>
+                    <input class="form-control" readonly="true" value="03001" />
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon">客户姓名：</span>
+                    <input class="form-control" value="周敏" />
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon">衣服款号：</span>
+                    <input class="form-control" value="E13AC4001aZ3" />
+                </div>
+                <br />
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">销售时间：</span>
+                    <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <br />
+                <textarea class="form-control" placeholder="问题描述"></textarea>
+                <br />
+                物流：[顺丰：43455599] 2014-06-17
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="winCothRequire" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">颜色：</span>
+                                <input class="form-control" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">尺码：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">胸围：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">腰围：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">肩宽：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">臀围：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">衣长：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">袖长：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">袖笼：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">袖肥：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-group">
+                                <span class="input-group-addon">大腿围：</span>
+                                <input class="form-control" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <textarea class="form-control" placeholder="描述"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--店内服务支持-->
+<div id="winSupport" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">到店时间：</span>
+                    <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon">预约备注：</span>
+                    <textarea class="form-control" placeholder="备注内容"></textarea>
+                </div>
+                <br />
+                服务支持：<br />
+                <table width="100%">
+                    <tr>
+                        <td><input type="checkbox"  checked id="spt1" /><label for="spt1">停车位</label></td>
+                        <td><input type="checkbox" id="spt2" /><label for="spt2">代客泊车</label></td>
+                        <td><input type="checkbox" id="spt3" /><label for="spt3">VIPRoom</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="spt4" /><label for="spt4">家属接待</label></td>
+                        <td><input type="checkbox" checked id="spt5" /><label for="spt5">饮品</label></td>
+                        <td><input type="checkbox" id="spt6" /><label for="spt6">宣传册</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="spt7" /><label for="spt7">氛围布置</label></td>
+                        <td><input type="checkbox" id="spt8" /><label for="spt8">货品准备</label></td>
+                        <td><input type="checkbox" id="spt9" /><label for="spt9">收银服务</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="spt10" /><label for="spt10">物品寄送</label></td>
+                        <td><input type="checkbox" checked id="spt11" /><label for="spt11">物品寄存</label></td>
+                        <td><input type="checkbox" checked id="spt12" /><label for="spt12">上门服务</label></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input type="checkbox" id="spt13" /><label for="spt13">本地话服务</label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--支持请求-->
+<div id="winCheckSupport" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon">服务类型：</span>
+                    <select class="form-control">
+                        <option>饮品</option>
+                        <option>停车位</option>
+                        <option>VIPRoom</option>
+                        <option>本地话服务</option>
+                    </select>
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon">负责人员：</span>
+                    <input class="form-control" value="李欣馨" />
+                </div>
+                <br />
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">完成时间：</span>
+                    <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <br />
+                <div class="input-group date form_date">
+                    <span class="input-group-addon">细节要求：</span>
+                    <textarea class="form-control">该客户喜欢现磨咖啡，少糖。给客户的女儿准备2瓶旺仔牛奶</textarea>
+                </div>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">请求下发</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--客户反馈-->
+<div id="winCustomerFeedBack" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <textarea class="form-control" placeholder="客户反馈内容"></textarea>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消</button>
+                <button type="button" class="btn btn-danger">保 存</button>
+            </div>
+        </div>
+    </div>
+</div>

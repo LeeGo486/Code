@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+.f35grid{
+	background:#fff;
+	font-size:12px;
+	font-family:Verdana, Geneva, sans-serif;
+	table-layout:fixed;
+}
+.f35grid td{
+	border-top:solid 1px #fff;
+	border-left:solid 1px #fff;
+}
+.f35grid thead td{
+	background:#036;
+	font-weight:bold;
+	text-align:center;
+	color:#fff;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.f35grid tbody tr{
+	color:#036;
+}
+.f35grid tbody tr.odd{
+	color:#4f6b72;
+	background:#f4f4f4;
+}
+.f35grid tbody tr.even{
+	color:#036;
+	background:#FFF;
+}
+.f35grid tfoot tr{
+	height:30px;
+}
+.f35grid tbody td{
+	overflow:hidden;
+	padding-top:3px;
+	padding-bottom:3px;
+}
+
+.f35grid tbody tr.selected,.f35grid tbody tr.selected a{
+	background:highlight;
+	color:white;
+}
+.f35grid .choosebox{
+	width:13px;
+	text-align:center;
+	padding-left:5px;
+	padding-right:5px;
+}
+.f35grid .hidden{
+	display:none;
+}
+
+.f35grid tbody tr span.checkbox, .f35grid tbody tr span.radio, span.checkbox-on, span.radio-on
+{
+	width:13px;
+	height:13px;
+	display:block;
+	background-image:url(../images/Plex_checkbox.png);
+	overflow:hidden;
+}
+.f35grid tbody tr span.checkbox:hover,.f35grid tbody tr span.radio:hover, span.checkbox-on:hover, span.radio-on:hover
+{
+	background-position:-39px 0;
+}
+
+.f35grid tbody tr.selected span.checkbox, span.checkbox-off
+{
+	background-position:-78px 0;
+}
+.f35grid tbody tr.selected span.checkbox:hover, span.checkbox-off:hover
+{
+	background-position:-65px 0;
+}
+
+.f35grid tbody tr.selected span.radio, span.radio-off
+{
+	background-position:-104px 0;
+}
+.f35grid tbody tr.selected span.radio:hover, span.radio-off:hover
+{
+	background-position:-117px 0;
+}
+
+

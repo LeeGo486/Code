@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://yj.chinacloudtech.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://yj.chinacloudtech.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://yj.chinacloudtech.com/">
+      <s:element name="SendMsg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="System" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Receiver" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMsgResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMsgResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMsgByCom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="System" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Receiver" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Com" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMsgByComResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMsgByComResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSubjectMsg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="System" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Receiver" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Com" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSubjectMsgResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSubjectMsgResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSubjectMsgImmediately">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="System" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Receiver" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Com" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSubjectMsgImmediatelyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSubjectMsgImmediatelyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSQL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SQL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendSQLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSQLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendMsgSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMsg" />
+  </wsdl:message>
+  <wsdl:message name="SendMsgSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMsgResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMsgByComSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMsgByCom" />
+  </wsdl:message>
+  <wsdl:message name="SendMsgByComSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMsgByComResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSubjectMsgSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSubjectMsg" />
+  </wsdl:message>
+  <wsdl:message name="SendSubjectMsgSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSubjectMsgResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSubjectMsgImmediatelySoapIn">
+    <wsdl:part name="parameters" element="tns:SendSubjectMsgImmediately" />
+  </wsdl:message>
+  <wsdl:message name="SendSubjectMsgImmediatelySoapOut">
+    <wsdl:part name="parameters" element="tns:SendSubjectMsgImmediatelyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSQLSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSQL" />
+  </wsdl:message>
+  <wsdl:message name="SendSQLSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSQLResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MsgCenterSoap">
+    <wsdl:operation name="SendMsg">
+      <wsdl:input message="tns:SendMsgSoapIn" />
+      <wsdl:output message="tns:SendMsgSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMsgByCom">
+      <wsdl:input message="tns:SendMsgByComSoapIn" />
+      <wsdl:output message="tns:SendMsgByComSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSubjectMsg">
+      <wsdl:input message="tns:SendSubjectMsgSoapIn" />
+      <wsdl:output message="tns:SendSubjectMsgSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSubjectMsgImmediately">
+      <wsdl:input message="tns:SendSubjectMsgImmediatelySoapIn" />
+      <wsdl:output message="tns:SendSubjectMsgImmediatelySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSQL">
+      <wsdl:input message="tns:SendSQLSoapIn" />
+      <wsdl:output message="tns:SendSQLSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MsgCenterSoap" type="tns:MsgCenterSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMsg">
+      <soap:operation soapAction="http://yj.chinacloudtech.com/SendMsg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMsgByCom">
+      <soap:operation soapAction="http://yj.chinacloudtech.com/SendMsgByCom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSubjectMsg">
+      <soap:operation soapAction="http://yj.chinacloudtech.com/SendSubjectMsg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSubjectMsgImmediately">
+      <soap:operation soapAction="http://yj.chinacloudtech.com/SendSubjectMsgImmediately" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSQL">
+      <soap:operation soapAction="http://yj.chinacloudtech.com/SendSQL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MsgCenterSoap12" type="tns:MsgCenterSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMsg">
+      <soap12:operation soapAction="http://yj.chinacloudtech.com/SendMsg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMsgByCom">
+      <soap12:operation soapAction="http://yj.chinacloudtech.com/SendMsgByCom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSubjectMsg">
+      <soap12:operation soapAction="http://yj.chinacloudtech.com/SendSubjectMsg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSubjectMsgImmediately">
+      <soap12:operation soapAction="http://yj.chinacloudtech.com/SendSubjectMsgImmediately" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSQL">
+      <soap12:operation soapAction="http://yj.chinacloudtech.com/SendSQL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MsgCenter">
+    <wsdl:port name="MsgCenterSoap" binding="tns:MsgCenterSoap">
+      <soap:address location="http://192.168.0.89/MsgCenter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MsgCenterSoap12" binding="tns:MsgCenterSoap12">
+      <soap12:address location="http://192.168.0.89/MsgCenter.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

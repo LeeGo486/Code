@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section script{
+    <style type="text/css">
+      #brandBg img {
+            width:100%;
+        }
+
+      #goWriteWish {
+            position: absolute; 
+            left: 35%;
+            z-index:1;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#brandBg img").load(function () {
+                var bgHeight = $("#brandBg").height();
+                $("#goWriteWish").css("top", bgHeight * 0.51);
+            });
+            $("#linkWish").click(function () {
+                window.location.href = "WriteWish";
+            });
+        });
+        // 需要分享的内容，请放到ready里
+        WeixinApi.ready(function (Api) {
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://it.hwafashion.com:8088/Areas/Game/Resources/images/OneOneWish/small.jpg',
+                "link": 'http%3a%2f%2fit.hwafashion.com%3a8088%2fGame%2fOneOneWish%2fSharePage%3foid%3d%5bopenid%5d',
+                "title": "2015新年愿望",
+                "desc": "我的新年愿望:" + $("#wish textarea").val()
+            };
+            // 分享的回调
+            var wxCallbacks = {
+            };
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+        });
+    </script>
+}
+
+<div id="brandBg">
+    <img src="/Areas/Game/Resources/images/OneOneWish/brandBg.png" />
+</div>
+
+<div id="goWriteWish">
+    <a id="linkWish">
+        <img src="/Areas/Game/Resources/images/OneOneWish/goWriteWish.png" alt="button"/>
+    </a>
+</div>

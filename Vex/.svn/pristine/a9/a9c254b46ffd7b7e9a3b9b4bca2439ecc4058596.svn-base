@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0"/>
+    <httpRuntime requestValidationMode="2.0" maxRequestLength="2147482624" executionTimeout="3600"/>
+    <sessionState mode="StateServer" stateConnectionString="tcpip=127.0.0.1:42424" timeout="3000"/>
+  </system.web>
+  <appSettings>
+    <add key="WSRR.WSRR" value="http://192.168.0.114/WSRR.asmx"/>
+    <!--<add key="WSRR.WSRR" value="http://172.16.205.57:8080/WSRR.asmx"/>-->
+    <!--  <add key="WSRR.wsrr" value="http://localhost:8083/wsrr.asmx"/>-->
+  </appSettings>
+  <system.webServer>
+    <directoryBrowse enabled="true"/>
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="2147483647"/>
+      </requestFiltering>
+    </security>
+  </system.webServer>
+</configuration>

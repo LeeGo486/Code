@@ -1,0 +1,106 @@
+﻿@model List<ElegantWM.WebUI.Areas.S3.Controllers.StoreCheckController.S3_CheckList>
+
+<script>
+    function addCheck() {
+        $("#checkAdd").show();
+        scrollTo("#checkAdd");
+    }
+
+    function checkSuggestSumbit() {
+        Msg.show("提交成功，感谢您宝贵的建议", 0);
+        $("#checkAdd").hide();
+        scrollTo("#checkList");
+
+    }
+</script>
+
+
+<div class="ht">
+    <i class="glyphicon glyphicon-check"></i>&nbsp;&nbsp;巡店记录
+   
+    <span onclick="$('#checkList').fadeOut(1000);scrollTo('#storeCheckSubmit');">
+        <i class="icon-remove icon-large"></i></span>
+
+    <span onclick="addCheck();">
+        <i class="icon-plus  icon-large"></i></span>
+</div>
+
+@foreach (ElegantWM.WebUI.Areas.S3.Controllers.StoreCheckController.S3_CheckList checklist in Model)
+{
+    <div class="eventSch clearfix">
+        <ul class="list-group">
+            <li class="list-group-item">巡店人员：@checklist.Employee &nbsp;&nbsp;&nbsp;&nbsp;巡店时间：@checklist.CheckTime</li>
+            <li class="list-group-item">@(new HtmlString(checklist.Suggest))</li>
+            <li class="list-group-item">&nbsp;
+                    <span class="btnarea pull-right" onclick="Msg.show('谢谢支持',0);"><i class="icon-thumbs-up"></i>(17)</span>
+                <span class="btnarea pull-right" onclick="$('#jy').fadeIn(800);$('#fk').fadeOut(100);scrollTo($('#jy'));" style="border-right: 1px solid #ccc;">
+                    <i class="icon-comment-alt"></i>建议(2)</span>
+                <span class="btnarea pull-right" style="border-right: 1px solid #ccc;">
+                    <a href="tel:13888888888" style="color: #CC3333;">
+                        <i class="glyphicon glyphicon-earphone"></i>@checklist.Employee</a></span>
+
+            </li>
+
+        </ul>
+
+
+    </div>
+    <br />
+}
+
+<div id="checkAdd" style="display: none;">
+
+    <div class="ht">
+        <i class="icon-user"></i>&nbsp;&nbsp;巡店结果（建议）
+
+    <span onclick="$('#checkAdd').fadeOut(1000);scrollTo('#checkList');">
+        <i class="icon-remove icon-large"></i></span>
+
+    </div>
+    <div class="mainArea  clearfix">
+
+        <div class="input-group">
+            <span class="input-group-addon">巡&nbsp;&nbsp;店&nbsp;&nbsp;人：
+            </span>
+            <input class="form-control" readonly="true" value="@ViewBag.UserName">
+        </div>
+        <br />
+
+
+        <div class="input-group">
+            <span class="input-group-addon">巡店日期：
+            </span>
+            <input class="form-control" readonly="true" value="@(DateTime.Now.ToString("yyyy-MM-dd"))">
+        </div>
+
+
+        <br />
+        <div class="input-group ">
+            <span class="input-group-addon">建&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;议：</span>
+            <textarea maxlength="1000" placeholder="请输入您巡店后的建议" class="form-control" style="height: 80px"></textarea>
+        </div>
+        <br />
+
+        <button type="button" class="btn btn-success" style="width: 100%; margin-top: 20px;" data-loading-text="提交建议"
+            id="btnSubmitSuggest" onclick="checkSuggestSumbit()">
+            提交建议</button>
+    </div>
+</div>
+
+<div id="jy" style="display: none;">
+    <div class="ht">
+        <i class="icon-comment"></i>&nbsp;&nbsp;建议信息
+    </div>
+    <div class="mainArea" style="min-height: 0px">
+        <div style="border-bottom: 1px dashed #ccc; margin-bottom: 4px; padding: 4px 0px;">[2014-07-11，李秋水]&nbsp;建议提到了点子上，请店铺人员及时跟进解决</div>
+        <div style="border-bottom: 1px dashed #ccc; margin-bottom: 4px; padding: 4px 0px;">[2014-07-03，黄秋娜]&nbsp;需要更加细致进行巡检。</div>
+
+        <div class="input-group">
+            <span class="input-group-addon">建议</span>
+            <textarea class="form-control" placeholder="请输入建议内容"></textarea>
+        </div>
+        <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="请稍后..." onclick="Msg.show('建议提交成功！',0)">提交建议</button>
+    </div>
+</div>
+
+

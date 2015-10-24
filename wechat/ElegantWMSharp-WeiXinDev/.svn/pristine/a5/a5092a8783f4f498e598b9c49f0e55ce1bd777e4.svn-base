@@ -1,0 +1,69 @@
+﻿@model ElegantWM.EntityModel.ITSM_Event
+<script>
+    function showBigImg(fileUrl) {
+        bootbox.alert("<center><img src='" + fileUrl + "' width='100%' height='100%' /></center>");
+        if (window.event) {
+            event.cancelBubble = true;
+        } else if (evt) {
+            evt.stopPropagation();
+        }
+    }
+</script>
+
+<div class="mainArea" style="background-color: #F6F6F6">
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;提报人信息 </span></h4>
+    提报员工：@Model.ReqMan<br />
+    所属部门：@Model.ReqCom，@Model.ReqDept<br />
+    提报时间：@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")<br />
+    办公地点：@Model.ReqIncident<br />
+    联系电话：@Model.ReqManPhone<br />
+    <br />
+    <h4><span><i class="icon-wrench"></i>&nbsp;事件信息 </span></h4>
+    @if (Model.ProcessStatus == 0)
+    {
+        <span class="badge pull-right hs">已提报</span>
+    }
+    else if (Model.ProcessStatus == 1)
+    {
+        <span class="badge pull-right ls">已派工</span>
+    }
+    else if (Model.ProcessStatus == 2)
+    {
+        <span class="badge pull-right ls">已接收</span>
+    }
+    else if (Model.ProcessStatus == 3)
+    {
+        <span class="badge pull-right ls">处理中</span>
+    }
+    else if (Model.ProcessStatus == 4)
+    {
+        <span class="badge pull-right ls">待评价</span>
+    }
+    else if (Model.ProcessStatus == 5)
+    {
+        <span class="badge pull-right">已完结</span>
+    }
+    else if (Model.ProcessStatus == 9)
+    {
+        <span class="badge pull-right">已取消</span>
+    }
+    @Model.EventDesc<br />
+    <br />
+
+    @if (!string.IsNullOrEmpty(Model.FileUrl))
+    {
+        <h4><span><i class="icon-file-alt"></i>&nbsp;事件附件</span></h4>
+        <p id="pRequestImg" class="thumbImg">
+            <img  src="/Content/Uploads/Event/Thumbnail/@Model.FileUrl" border="0" onclick="showBigImg('/Content/Uploads/Event/@Model.FileUrl');" /><br />
+            (点击查看大图)
+        </p>
+    }
+    <h4><span><i class="icon-file-alt"></i>&nbsp;处理日志 </span></h4>
+    @foreach (ElegantWM.EntityModel.ITSM_EventLog log in ViewBag.EventLog)
+    {
+        <div class="eventlog" style="margin: 0px 0px 4px 0px; padding: 0px">
+            <div>@log.CreateUser 在 @log.CreateTime.ToString("yyyy-MM-dd HH:mm:ss") &nbsp;&nbsp; @log.Reason </div>
+            @log.Remark
+        </div>
+    }
+</div>

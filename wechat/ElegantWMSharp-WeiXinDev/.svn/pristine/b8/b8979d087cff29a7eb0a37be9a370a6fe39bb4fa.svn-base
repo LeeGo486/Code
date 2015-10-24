@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>雅莹招聘</title>
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="/Scripts/Ratchet/css/ratchet.min.css" rel="stylesheet" />
+    <link href="/Scripts/Ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet" />
+    <!-- Include the compiled Ratchet JS -->
+    <script src="/Scripts/Ratchet/js/ratchet.min.js"></script>
+</head>
+<body>
+    <!-- Make sure all your bars are the first things in your <body> -->
+    <header class="bar bar-nav">
+        <h1 class="title">职位预览</h1>
+        <button class="btn pull-right">
+            点击查看
+        </button>
+    </header>
+    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+    <div class="content">
+        @*<a href="#myModalexample" class="btn">Open modal</a>*@
+        <div id="myModalexample" class="modal">
+            <header class="bar bar-nav">
+                <a class="icon icon-close pull-right" href="#myModalexample"></a>
+                <h1 class="title">Modal</h1>
+            </header>
+            <div class="content">
+                <p class="content-padded">The conten<br /><br /><br /><br />ts of my modal go here. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

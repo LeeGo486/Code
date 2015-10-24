@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Notice";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/NPaia/Resources/Mobile.css" rel="stylesheet" />
+}
+<div class="mainArea">
+    <div style="text-align: center">
+        <img src="~/Areas/NPaia/Resources/images/纵向版本.png" style="max-width:100%;">
+    </div>
+</div>

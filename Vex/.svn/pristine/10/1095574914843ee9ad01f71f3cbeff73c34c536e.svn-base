@@ -1,0 +1,653 @@
+﻿<!DOCTYPE html>
+<html>
+ <head> 
+    <title>日历管理</title>
+	<script type="text/javascript">parent.Mask.Show("页面加载中...");</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link id="easyuiTheme" href="Resources/css/main.css"rel="stylesheet" type="text/css" />  
+    <!--<script src="http://code.jquery.com/jquery.js"></script>-->   
+    <script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="Resources/js/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="Resources/js/jquery.cookie.js" type="text/javascript"></script> 
+    <script src="Resources/js/changeEasyuiTheme.js" type="text/javascript"></script>
+    <script src="Resources/js/js_hzycfg.js" type="text/javascript"></script>
+    <script src="Resources/js/js_hzyCommon.js" type="text/javascript"></script>
+     <!--公共方法global类，会校验当前页面是否有权限访问-->
+    <script type="text/javascript" src="/Scripts/global.js?v=1.4"></script>
+    <script type="text/javascript" src="Resources/js/main_cp.js?v=2.0" charset="UTF-8"></script> 
+     <style type="text/css">
+		/*这里你可以设置自己的样式*/  
+        /*<![CDATA[*/  
+          #header {left:0; top:0; width:100%; position:absolute; padding:2px;  background:#f8f9f9; z-index:997;}  
+          #header_cp {left:0; top:0; width:100%;   position:absolute;  background:#e8e6e6; z-index:997;}    
+        /*]]>*/ 
+    </style>
+    <script type="text/javascript">   
+    </script>
+
+</head>
+<body  style="width:100%;"> 
+    <div id="bgdiv" class="bgdiv" ></div>
+    <!-- toolIPad 部分 begin-->
+    <div id="toolIPad">
+    <div id="header" style="text-align:center; height:66px; border-bottom:1px solid #808080" >  
+        <div style="font-size:22px; height:40px; color:#ff4600;">
+            <div style="display:inline; float:left; font-size:16px; color:#808080; width:40%; text-align:left;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span id="pers" >关注人员：</span> 
+                  <span id="selectshowpers"></span>  
+            </div>  
+            <div style="display:inline; float:left; font-size:22px; color:#ff4600; width:20%;" >
+                日历管理
+            </div>  
+            <div style="display:inline; float:left; font-size:16px; color:#808080; width:38%; text-align:right;" >
+                  <span id="loginuser" ></span>
+            </div>  
+        </div> 
+        <div style="margin-left:4px;">
+             <div style="display:inline; "> 
+                 <div style="display:inline; float:left; font-size:18px; color:#ff4600; width:30%;" >
+                     <div id="btnweek" style="display:inline;" class="btn3" onclick="setMainDiv('week')"> 
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;周&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                     </div>&nbsp;
+                     <div id="btnmonth" style="display:inline;" class="btn3" onclick="setMainDiv('month')">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                     </div>
+                 </div>  
+                 <div id="weekInfo" style="display:inline; float:left; font-size:18px; color:#ff4600; width:40%; " >
+                    <div style="display:inline;" class="btn1" onclick="loadData('previous','week')">&nbsp;&nbsp;< &nbsp;&nbsp;</div> 
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 &nbsp;&nbsp;
+                     <input class="input1" id="weekNO" name="weekNO" 
+                         style="width:30px; text-align:center; color:#ff4600; "  onkeydown="if(event.keyCode==13){loadData('current','week');};"/>
+                     &nbsp;&nbsp;周 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div style="display:inline;" class="btn1" onclick="loadData('next','week')">&nbsp;&nbsp;>&nbsp;&nbsp;</div> 
+                 </div>  
+                 <div id="monthInfo" style="display:inline; float:left; font-size:18px; color:#ff4600; width:40%; " >
+                     <select id="monthSelect" class="select1" style="height:25px;" onchange="loadData(this.options[this.options.selectedIndex].value,'month')" >
+                         <option value="01">01</option><option value="02">02</option><option value="03">03</option>
+                         <option value="04">04</option><option value="05">05</option><option value="06">06</option>
+                         <option value="07">07</option><option value="08">08</option><option value="09">09</option>
+                         <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                       </select>&nbsp;月
+                 </div>  
+                 <div style="display:inline; float:left; font-size:16px; color:#ff4600; width:28%;  text-align:right;" > 
+                     <span id="spannow" ></span>
+                 </div>  
+            </div>
+        </div>  
+    </div>   
+
+    <!-- 日历窗体 week-->
+    <div id="mainWeek" > 
+        <table id="weekstable" class="table1" style="display:none">  
+            <tr class="tr1" >
+                <td class="td2" style="width:110px;" colspan="2">Week</td>
+                <td class="td2">周一<br><span id="spanday1"></span><input id="btdate1" type="hidden"></td>
+                <td class="td2">周二<br><span id="spanday2"></span><input id="btdate2" type="hidden"></td>
+                <td class="td2">周三<br><span id="spanday3"></span><input id="btdate3" type="hidden"></td>
+                <td class="td2">周四<br><span id="spanday4"></span><input id="btdate4" type="hidden"></td>
+                <td class="td2">周五<br><span id="spanday5"></span><input id="btdate5" type="hidden"></td>
+                <td class="td2">周六<br><span id="spanday6"></span><input id="btdate6" type="hidden"></td> 
+                <td class="td2">周日<br><span id="spanday7"></span><input id="btdate7" type="hidden"></td> 
+            </tr>
+            <tr  class="tr2">  
+                <td style="width:30px;" rowspan="2"><span id="spanperw">dly</span></td> 
+                <td class="td2" style="width:80px;">上午</td>
+                <td class="td1" id="tdam1" onclick="show1(1,'tdam1')"></td>
+                <td class="td1" id="tdam2" onclick="show1(2,'tdam2')"></td>
+                <td class="td1" id="tdam3" onclick="show1(3,'tdam3')"></td>
+                <td class="td1" id="tdam4" onclick="show1(4,'tdam4')"></td>
+                <td class="td1" id="tdam5" onclick="show1(5,'tdam5')"></td>
+                <td class="td1" id="tdam6" onclick="show1(6,'tdam6')"></td> 
+                <td class="td1" id="tdam7" onclick="show1(7,'tdam7')"></td> 
+            </tr> 
+            <tr class="tr2">
+                <td class="td2" style="width:80px;">下午</td>
+                <td class="td1" id="tdpm1" onclick="show1(1,'tdpm1')"></td>
+                <td class="td1" id="tdpm2" onclick="show1(2,'tdpm2')"></td>
+                <td class="td1" id="tdpm3" onclick="show1(3,'tdpm3')"></td>
+                <td class="td1" id="tdpm4" onclick="show1(4,'tdpm4')"></td>
+                <td class="td1" id="tdpm5" onclick="show1(5,'tdpm5')"></td>
+                <td class="td1" id="tdpm6" onclick="show1(6,'tdpm6')"></td> 
+                <td class="td1" id="tdpm7" onclick="show1(7,'tdpm7')"></td> 
+            </tr>
+        </table>  
+        <span id="spanWeeksInfo"></span> 
+    </div>   
+
+    <!-- 日历窗体month -->
+    <div id="mainMonth" style="display:none;" > 
+        <table id="monthtable" class="table1" style="display:none;">  
+            <tr class="tr1" >
+                <td class="td2" style="width:100px;">Month</td>
+                <td class="td2">周一</td>
+                <td class="td2">周二</td>
+                <td class="td2">周三</td>
+                <td class="td2">周四</td>
+                <td class="td2">周五</td>
+                <td class="td2">周六</td>
+                <td class="td2">周日</td>
+            </tr>
+            <tr class="tr2_m">  
+                <td rowspan="6"><div style="width:20px;margin-left:30px">邓乐韵</div></td>  
+                <td class="td1" id="tdm00" onclick="show2('tdm00')"></td>
+                <td class="td1" id="tdm01" onclick="show2('tdm01')"></td>
+                <td class="td1" id="tdm02" onclick="show2('tdm02')"></td>
+                <td class="td1" id="tdm03" onclick="show2('tdm03')"></td>
+                <td class="td1" id="tdm04" onclick="show2('tdm04')"></td>
+                <td class="td1" id="tdm05" onclick="show2('tdm05')"></td> 
+                <td class="td1" id="tdm06" onclick="show2('tdm06')"></td> 
+            </tr> 
+            <tr class="tr2_m"> 
+                <td class="td1" id="tdm10" onclick="show2('tdm10')"></td>
+                <td class="td1" id="tdm11" onclick="show2('tdm11')"></td>
+                <td class="td1" id="tdm12" onclick="show2('tdm12')"></td>
+                <td class="td1" id="tdm13" onclick="show2('tdm13')"></td>
+                <td class="td1" id="tdm14" onclick="show2('tdm14')"></td>
+                <td class="td1" id="tdm15" onclick="show2('tdm15')"></td> 
+                <td class="td1" id="tdm16" onclick="show2('tdm16')"></td> 
+            </tr>
+            <tr class="tr2_m"> 
+                <td class="td1" id="tdm20" onclick="show2('tdm20')"></td>
+                <td class="td1" id="tdm21" onclick="show2('tdm21')"></td>
+                <td class="td1" id="tdm22" onclick="show2('tdm22')"></td>
+                <td class="td1" id="tdm23" onclick="show2('tdm23')"></td>
+                <td class="td1" id="tdm24" onclick="show2('tdm24')"></td>
+                <td class="td1" id="tdm25" onclick="show2('tdm25')"></td> 
+                <td class="td1" id="tdm26" onclick="show2('tdm26')"></td> 
+            </tr>
+            <tr class="tr2_m"> 
+                <td class="td1" id="tdm30" onclick="show2('tdm30')"></td>
+                <td class="td1" id="tdm31" onclick="show2('tdm31')"></td>
+                <td class="td1" id="tdm32" onclick="show2('tdm32')"></td>
+                <td class="td1" id="tdm33" onclick="show2('tdm33')"></td>
+                <td class="td1" id="tdm34" onclick="show2('tdm34')"></td>
+                <td class="td1" id="tdm35" onclick="show2('tdm35')"></td> 
+                <td class="td1" id="tdm36" onclick="show2('tdm36')"></td> 
+            </tr>
+            <tr class="tr2_m"> 
+                <td class="td1" id="tdm40" onclick="show2('tdm40')"></td>
+                <td class="td1" id="tdm41" onclick="show2('tdm41')"></td>
+                <td class="td1" id="tdm42" onclick="show2('tdm42')"></td>
+                <td class="td1" id="tdm43" onclick="show2('tdm43')"></td>
+                <td class="td1" id="tdm44" onclick="show2('tdm44')"></td>
+                <td class="td1" id="tdm45" onclick="show2('tdm45')"></td> 
+                <td class="td1" id="tdm46" onclick="show2('tdm46')"></td> 
+            </tr>
+            <tr class="tr2_m"> 
+                <td class="td1" id="tdm50" onclick="show2('tdm50')"></td>
+                <td class="td1" id="tdm51" onclick="show2('tdm51')"></td>
+                <td class="td1" id="tdm52" onclick="show2('tdm52')"></td>
+                <td class="td1" id="tdm53" onclick="show2('tdm53')"></td>
+                <td class="td1" id="tdm54" onclick="show2('tdm54')"></td>
+                <td class="td1" id="tdm55" onclick="show2('tdm55')"></td> 
+                <td class="td1" id="tdm56" onclick="show2('tdm56')"></td> 
+            </tr>
+        </table> 
+        <span id="spanMonthsInfo"></span>   
+    </div>   
+     
+    <!-- 事件编辑窗 -->
+    <div id="eventModal" class="eventModal" style="display:none;" >  
+        <input type="hidden" id="curtdid"/>
+        <div class="eventModal_head">
+            <div style="display:inline; font-size:20px; ">
+                <div style="display:inline; float:left; width:20%;margin-left:5px; margin-top:5px;">
+                    <div id="btnEventClose" style="display:inline; " class="btn1" onclick="hideEventModal()"  >取消</div> 
+                </div> 
+                <div style="display:inline; float:left; width:56%; margin-top:5px; text-align:center; ">
+                    <span id ="labelEdit">编辑事件</span>
+                </div>
+                <div style="display:inline; float:left; width:20%; margin-top:5px;margin-left:7px;" > 
+                    <div id="btnEventSave" style="display:inline;" class="btn1" onclick="saveEvent(m_divid)" >完成</div>  
+                </div>
+            </div>
+        </div>
+        <div class="div2" style="height:3px;"></div>
+        <div class="div2" style="height:40px;"> 
+            <div style="margin-left:15px;  padding-top:5px; " >
+                <font style="font-weight:600;">行程</font> 
+                <input class="input1" id="theme" name="theme" 
+                    style="margin-left:20px;" value=""/>
+            </div> 
+        </div>
+        <div class="div2" style="height:auto; "> 
+            <div style="margin-left:15px;  padding-top:5px; padding-bottom:5px;" > 
+                <font style="font-weight:600;">约见</font> 
+                <input class="input1" id="persons" name="persons" 
+                    style="margin-left:20px; width:180px" value=""/>
+                 <div id="btnchoosePers" style="display:inline; font-size:26px" class="btn1" onclick="
+                     if($('#choosePers').is(':hidden')){ 
+                        $('#choosePers').show(); 
+                        $('#eventModal').height(455+175);
+                      
+                     } else{ 
+                        $('#choosePers').hide();
+                        $('#eventModal').height(455);
+                     }  
+                     ">
+                      &nbsp;¤&nbsp;   
+                 </div> 
+            </div>  
+            <div id="choosePers" style="display:none">
+                <table id="perstable" class="table3" style="width:240px">
+                    <tr class="tr3">
+                        <td class="td3">张华明</td>
+                        <td class="td3">戴雪明</td>
+                        <td class="td3">顾海明</td>
+                        <td class="td3">马莉艳</td>
+                    </tr> 
+                    <tr class="tr3">
+                        <td class="td3">陈伟健</td>
+                        <td class="td3">王翔</td>
+                        <td class="td3">邓联东</td>
+                        <td class="td3">高鹰</td>
+                    </tr> 
+                    <tr class="tr3">
+                        <td class="td3">倪美华</td>
+                        <td class="td3">仇瑛</td>
+                        <td class="td3">张金明</td>
+                        <td class="td3">李炜中</td>
+                    </tr> 
+                    <tr class="tr3">
+                        <td class="td3">郑杰</td>
+                        <td class="td3">王文毅</td>
+                        <td class="td3">吕虹</td>
+                        <td class="td3">罗佳</td>
+                    </tr> 
+                    <tr class="tr3">  
+                        <td class="td3">刘友为</td>
+                        <td class="td3">...</td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="div1">
+            <div style="margin-left:15px; padding-top:15px;" >
+                事件时间 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="font-size:22px;" id="date"></span> 
+            </div>
+        </div>
+        <div class="div2" style="height:80px;"> 
+            <div style="margin-left:15px; border-bottom:2px solid #e8e6e6; height:35px; margin-top:8px;" >
+                <font style="font-weight:600;">开始</font>  
+                <span id="xsbgtime" style="display:none; padding-left:40px; color:#a09e9e;" ></span> 
+                <select id="bgtime1" style="margin-left:20px; width:80px;" class="select1"> 
+                     <option value="06">06</option>
+                     <option value="07">07</option>
+                     <option value="08">08</option>
+                     <option value="09">09</option>
+                     <option value="10">10</option>
+                     <option value="11">11</option>
+                     <option value="12">12</option>
+                     <option value="13">13</option>
+                     <option value="14">14</option>
+                     <option value="15">15</option>
+                     <option value="16">16</option>
+                     <option value="17">17</option>
+                     <option value="18">18</option>
+                     <option value="19">19</option>
+                     <option value="20">20</option>
+                     <option value="21">21</option>
+                     <option value="22">22</option>
+                     <option value="23">23</option>
+                </select> <span class="spanmh">:</span>
+                <select id="bgtime2" class="select1" >
+                     <option value="00">00</option>
+                     <option value="15">15</option>
+                     <option value="30">30</option>
+                     <option value="45">45</option>
+                </select>
+                 
+                <!--<input class="input1" id="bgTime" name="bgTime" 
+                    style="margin-left:20px;" value="11:11:11"/> -->
+            </div> 
+            <div style="margin-left:15px; padding-top:5px; height:38px;" >
+                <font style="font-weight:600;">结束</font>   
+                <span id="xsedtime" style="display:none; padding-left:40px; color:#a09e9e;" ></span> 
+                <select id="edtime1" class="select1" style="margin-left:20px;"> 
+                     <option value="06">06</option>
+                     <option value="07">07</option>
+                     <option value="08">08</option>
+                     <option value="09">09</option>
+                     <option value="10">10</option>
+                     <option value="11">11</option>
+                     <option value="12">12</option>
+                     <option value="13">13</option>
+                     <option value="14">14</option>
+                     <option value="15">15</option>
+                     <option value="16">16</option>
+                     <option value="17">17</option>
+                     <option value="18">18</option>
+                     <option value="19">19</option>
+                     <option value="20">20</option>
+                     <option value="21">21</option>
+                     <option value="22">22</option>
+                     <option value="23">23</option> 
+                </select> <span class="spanmh">:</span>
+                <select id="edtime2" class="select1" > 
+                     <option value="00">00</option>
+                     <option value="15">15</option>
+                     <option value="30">30</option>
+                     <option value="45">45</option>
+                </select>
+            </div>   
+        </div>
+        <div class="div1">
+            <div style="margin-left:15px; padding-top:23px;" >备注:</div>
+        </div>
+        <div class="div2" style="height:105px; width:300px;"> 
+            <div style="margin-left:15px; " >
+                <textarea class="textarea1" id="remark" name="remark"></textarea>
+            </div>
+        </div>
+        <div class="eventModal_bottom" style="text-align:center;">
+            <div style="display:inline;"  > 
+                <div id="btnEventDelete" style="width:300px; margin:3px auto" class="btn1" onclick="deleteEvent(m_divid)" >删除事件</div>  
+            </div>
+        </div>
+        <div style="background:none; height:100px"> 
+                 
+        </div>
+    </div>  
+    </div> 
+    <!-- toolIPad 部分 end-->
+    
+    <!-- cellphone 部分 begin-->
+    <div id="cellphone" style="display:none;  color:#808080;">
+    <div id="header_cp" style="font-size:18px; border-bottom:1px solid #808080" >  
+        <div style="font-size:16px; color:#808080; text-align:left; height:38px;" >
+             &nbsp;<span id="pers_cp" >关注人员：</span><span id="selectshowpers_cp"></span>  
+        </div>  
+        <div style=" margin-left:10px; color:#808080; text-align:left; height:35px;" >
+            <div id="btnweek_cp" style="display:inline;" class="btn3" onclick="setMainDiv_cp('week')"> 
+                &nbsp;&nbsp;周&nbsp;&nbsp;
+            </div>&nbsp; 
+            <div id="weekInfo_cp" style="display:inline; height:30px; ">      
+                <div style="display:inline;" class="btn3" onclick="loadData_cp('previous','week')"> &nbsp;< &nbsp;</div>  
+                <input class="input1" id="weekNO_cp" name="weekNO_cp" style ="display:inline; width:50px; text-align:center; color:#ff4600; "  
+                        onkeydown="if(event.keyCode==13){loadData_cp('current','week');};"/>
+                <div style="display:inline;" class="btn3" onclick="loadData_cp('next','week')"> &nbsp;>&nbsp;</div>  
+            </div>&nbsp;&nbsp;
+            <div id="btnmonth_cp" style="display:inline;" class="btn3" onclick="setMainDiv_cp('month')">
+                &nbsp;&nbsp;月&nbsp;&nbsp;
+            </div>&nbsp;&nbsp;&nbsp;
+            <div id="monthInfo_cp" style="color:#ff4600; display:inline;" >
+                <select id="monthSelect_cp" class="select1" style="width:60px; height:28px;" onchange="loadData_cp(this.options[this.options.selectedIndex].value,'month')" >
+                    <option value="01">01</option><option value="02">02</option><option value="03">03</option>
+                    <option value="04">04</option><option value="05">05</option><option value="06">06</option>
+                    <option value="07">07</option><option value="08">08</option><option value="09">09</option>
+                    <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                </select>&nbsp;月
+            </div>   
+        </div>    
+     </div>   
+
+
+    <!-- 日历窗体week_cp -->
+    <div id="mainWeek_cp" >  
+        <table id="weekstable_cp" class="table2"  style="display:none;">   
+            <tr class="tr2_m_cp">  
+                <td rowspan="8" style="width:20px"><div style="width:15px; background:#e8e6e6;">邓乐韵</div></td>  
+                <td class="td6_cp" style="width:50px" id="td33" onclick="show2('tdm00')">周一</td>
+                <td id="td34" onclick="show2('tdm01')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td6_cp" id="td37" onclick="show2('tdm00')">周二</td>
+                <td id="td38" onclick="show2('tdm01')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td6_cp" id="td41" onclick="show2('tdm00')">周三</td>
+                <td id="td42" onclick="show2('tdm01')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td6_cp" id="td45" onclick="show2('tdm00')">周四</td>
+                <td id="td46" onclick="show2('tdm01')"></td> 
+            </tr> 
+            <tr class="tr2_m_cp">   
+                <td class="td6_cp" id="td49" onclick="show2('tdm00')">周五</td>
+                <td id="td50" onclick="show2('tdm01')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td6_cp" id="td53" onclick="show2('tdm00')">周六</td>
+                <td id="td54" onclick="show2('tdm01')"></td> 
+            </tr> 
+            <tr class="tr2_m_cp">   
+                <td class="td6_cp" id="td57" onclick="show2('tdm00')">周日</td>
+                <td id="td58" onclick="show2('tdm01')"></td> 
+            </tr>   
+        </table>  
+        <span id="spanWeeksInfo_cp"></span>   
+    </div>  
+
+    <!-- 日历窗体month_cp -->
+    <div id="mainMonth_cp" style="display:none;">  
+        <table id="monthstable_cp" class="table2" style="display:none;">   
+            <tr class="tr2_m_cp">  
+                <td rowspan="8"><div style="width:15px; background:#e8e6e6;">邓乐韵</div></td>  
+                <td class="td1_cp" id="td1" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td2" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td3" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td4" onclick="show2('tdm03')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td1_cp" id="td5" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td6" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td7" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td8" onclick="show2('tdm03')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td1_cp" id="td9" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td10" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td11" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td12" onclick="show2('tdm03')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td1_cp" id="td13" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td14" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td15" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td16" onclick="show2('tdm03')"></td> 
+            </tr> 
+            <tr class="tr2_m_cp">   
+                <td class="td1_cp" id="td17" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td18" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td19" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td20" onclick="show2('tdm03')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td1_cp" id="td21" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td22" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td23" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td24" onclick="show2('tdm03')"></td> 
+            </tr> 
+            <tr class="tr2_m_cp">   
+                <td class="td1_cp" id="td25" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td26" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td27" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td28" onclick="show2('tdm03')"></td> 
+            </tr>  
+            <tr class="tr2_m_cp">   
+                <td class="td1_cp" id="td29" onclick="show2('tdm00')"></td>
+                <td class="td1_cp" id="td30" onclick="show2('tdm01')"></td>
+                <td class="td1_cp" id="td31" onclick="show2('tdm02')"></td>
+                <td class="td1_cp" id="td32" onclick="show2('tdm03')"></td> 
+            </tr> 
+        </table> 
+        <span id="spanMonthsInfo_cp"></span>   
+    </div>   
+     
+    <!-- 内容单元格模拟放大div -->
+    <div id="div5_cp" class="div5_cp" style="display:none;"> 
+        <img id="imgadd" src="Resources/img/add.png" style="float:left;" onclick="show1_cp();" />
+        <img id="imgclose" src="Resources/img/close.png" style="float:right;" onclick="hidediv5_cp()" />
+        <br><br>
+        <div id="divcurdate" style="font-size:16px"></div>
+        <div id="div5Big_cp" style="overflow:auto; height:150px"></div>
+    </div>
+
+     <!-- 事件编辑窗 -->
+    <div id="eventModal_cp" class="eventModal_cp" style="display:none;" >  
+        <input type="hidden" id="curtdid_cp"/>
+        <div class="eventModal_head_cp">
+            <div style="display:inline; font-size:20px; ">
+                <div style="display:inline; float:left; width:20%;margin-left:5px; margin-top:5px;">
+                    <div id="btnEventClose_cp" style="display:inline; " class="btn1" onclick="hideEventModal_cp()"  >取消</div> 
+                </div> 
+                <div style="display:inline; float:left; width:56%; margin-top:5px; text-align:center; ">
+                    <span id ="labelEdit_cp">编辑事件</span>
+                </div>
+                <div style="display:inline; float:left; width:20%; margin-top:5px;margin-left:7px;" > 
+                    <div id="btnEventSave_cp" style="display:inline;" class="btn1" onclick="saveEvent_cp(m_divid)" >完成</div>  
+                </div>
+            </div>
+        </div>
+        <div class="div2" style="height:3px;"></div>
+        <div class="div2" style="height:40px;"> 
+            <div style="margin-left:15px;  padding-top:5px; " >
+                <font style="font-weight:600;">行程</font> 
+                <input class="input1" id="theme_cp" name="theme_cp" 
+                    style="margin-left:20px;" value=""/>
+            </div> 
+        </div>
+        <div class="div2" style="height:auto; "> 
+            <div style="margin-left:15px;  padding-top:5px; padding-bottom:5px;" > 
+                <font style="font-weight:600;">约见</font> 
+                <input class="input1" id="persons_cp" name="persons_cp" 
+                    style="margin-left:20px; width:180px" value=""/>
+                 <div id="btnchoosePers_cp" style="display:inline; font-size:26px" class="btn1" onclick="
+                     if($('#choosePers_cp').is(':hidden')){ 
+                        $('#choosePers_cp').show(); 
+                        $('#eventModal_cp').height(455+175);
+                      
+                     } else{ 
+                        $('#choosePers_cp').hide();
+                        $('#eventModal_cp').height(455);
+                     }  
+                     ">
+                      &nbsp;¤&nbsp;   
+                 </div> 
+            </div>  
+            <div id="choosePers_cp" style="display:none">
+                <table id="perstable_cp" class="table3" style="width:240px">
+                    <tr class="tr3">
+                        <td class="td3">张华明</td>
+                        <td class="td3">戴雪明</td>
+                        <td class="td3">顾海明</td>
+                        <td class="td3">马莉艳</td>
+                    </tr> 
+                    <tr class="tr3">
+                        <td class="td3">陈伟健</td>
+                        <td class="td3">王翔</td>
+                        <td class="td3">邓联东</td>
+                        <td class="td3">高鹰</td>
+                    </tr> 
+                    <tr class="tr3">
+                        <td class="td3">倪美华</td>
+                        <td class="td3">仇瑛</td>
+                        <td class="td3">张金明</td>
+                        <td class="td3">李炜中</td>
+                    </tr> 
+                    <tr class="tr3">
+                        <td class="td3">郑杰</td>
+                        <td class="td3">王文毅</td>
+                        <td class="td3">吕虹</td>
+                        <td class="td3">罗佳</td>
+                    </tr> 
+                    <tr class="tr3">  
+                        <td class="td3">刘友为</td>
+                        <td class="td3">...</td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="div1">
+            <div style="margin-left:15px; padding-top:15px;" >
+                事件时间 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="font-size:22px;" id="date_cp"></span> 
+            </div>
+        </div>
+        <div class="div2" style="height:80px;"> 
+            <div style="margin-left:15px; border-bottom:2px solid #e8e6e6; height:35px; margin-top:8px;" >
+                <font style="font-weight:600;">开始</font>  
+                <span id="xsbgtime_cp" style="display:none; padding-left:40px; color:#a09e9e;" ></span> 
+                <select id="bgtime1_cp" style="margin-left:20px; width:80px;" class="select1"> 
+                     <option value="06">06</option>
+                     <option value="07">07</option>
+                     <option value="08">08</option>
+                     <option value="09">09</option>
+                     <option value="10">10</option>
+                     <option value="11">11</option>
+                     <option value="12">12</option>
+                     <option value="13">13</option>
+                     <option value="14">14</option>
+                     <option value="15">15</option>
+                     <option value="16">16</option>
+                     <option value="17">17</option>
+                     <option value="18">18</option>
+                     <option value="19">19</option>
+                     <option value="20">20</option>
+                     <option value="21">21</option>
+                     <option value="22">22</option>
+                     <option value="23">23</option>
+                </select> <span class="spanmh">:</span>
+                <select id="bgtime2_cp" class="select1" >
+                     <option value="00">00</option>
+                     <option value="15">15</option>
+                     <option value="30">30</option>
+                     <option value="45">45</option>
+                </select> 
+            </div> 
+            <div style="margin-left:15px; padding-top:5px; height:38px;" >
+                <font style="font-weight:600;">结束</font>   
+                <span id="xsedtime_cp" style="display:none; padding-left:40px; color:#a09e9e;" ></span> 
+                <select id="edtime1_cp" class="select1" style="margin-left:20px;"> 
+                     <option value="06">06</option>
+                     <option value="07">07</option>
+                     <option value="08">08</option>
+                     <option value="09">09</option>
+                     <option value="10">10</option>
+                     <option value="11">11</option>
+                     <option value="12">12</option>
+                     <option value="13">13</option>
+                     <option value="14">14</option>
+                     <option value="15">15</option>
+                     <option value="16">16</option>
+                     <option value="17">17</option>
+                     <option value="18">18</option>
+                     <option value="19">19</option>
+                     <option value="20">20</option>
+                     <option value="21">21</option>
+                     <option value="22">22</option>
+                     <option value="23">23</option> 
+                </select> <span class="spanmh">:</span>
+                <select id="edtime2_cp" class="select1" > 
+                     <option value="00">00</option>
+                     <option value="15">15</option>
+                     <option value="30">30</option>
+                     <option value="45">45</option>
+                </select>
+            </div>   
+        </div>
+        <div class="div1">
+            <div style="margin-left:15px; padding-top:23px;" >备注:</div>
+        </div>
+        <div class="div2" style="height:105px; width:300px;"> 
+            <div style="margin-left:15px; " >
+                <textarea class="textarea1" id="remark_cp" name="remark_cp"></textarea>
+            </div>
+        </div>
+        <div class="eventModal_bottom_cp" style="text-align:center;">
+            <div style="display:inline;"  > 
+                <div id="btnEventDelete_cp" style="width:300px; margin:3px auto" class="btn1" onclick="deleteEvent_cp(m_divid)" >删除事件</div>  
+            </div>
+        </div>
+        <div style="background:none; height:100px"> 
+                 
+        </div>
+    </div>  
+
+    </div>
+     <!-- cellphone 部分 end-->
+</body>
+</html>

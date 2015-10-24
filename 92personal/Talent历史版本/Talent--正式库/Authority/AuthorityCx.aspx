@@ -1,0 +1,83 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AuthorityCx.aspx.cs" Inherits="Talent.Web.Authority.AuthorityCx" %>
+
+<form id="pagerForm" method="post" action="Authority/AuthorityCx.aspx">
+<input type="hidden" name="pageNum" value="1" />
+<input type="hidden" name="numPerPage" value="20" />
+
+</form>
+
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" rel="pagerForm" action="Authority/AuthorityCx.aspx" method="post">
+	<div class="searchBar">
+		<ul class="searchContent">
+			<li>
+				<label>姓名：</label>
+                <input   type="text" name="PM_Login" value='<%=Request["PM_Login"] %>' size=25 class="medium"  />
+            </li>
+            <li>
+				<label>区域：</label>
+                <input   type="text" name="PM_Province" value='<%=Request["PM_Province"] %>' size=25 class="medium"  />
+            </li>
+            <li>
+				<label>权限：</label>
+                <select name="PM_Level" >
+                    <option value=""></option>
+                    <option value="-1" <%=Request["PM_Level"]=="-1"?"selected=selected":"" %> >无权限</option>
+                    <option value="0" <%=Request["PM_Level"]=="0"?"selected=selected":"" %> >查看权限</option>
+                    <option value="1" <%=Request["PM_Level"]=="1"?"selected=selected":"" %> >管理权限</option>
+                </select>
+            </li>
+
+        </ul>
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit" >查询</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+		<ul class="toolBar">
+            <li><a class="add" href="Authority/EditAuthority.aspx" target="dialog" rel="editauthority" width="530" height="300" ><span>新增</span></a></li>
+            <li><a class="edit" href="Authority/EditAuthority.aspx?PM_No={sid_authority}"  target="dialog" rel="editauthority" width="530" height="300" ><span>编辑</span></a></li>
+            <li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" posttype="string" href="ajaxWebServices.ashx?webmethod=delAuthorityList" class="delete"><span>删除</span></a></li>
+           <!-- <li><a  href="" src="javascript:void(0)" onclick="return false" target="_blank"  name="" ><span>导出</span></a></li> 
+            <li class="line">line</li>
+			<li><a class="icon" href="ajaxWebServices.ashx?webmethod=addAddressBook" target="ajaxTodo" title="确定增加小翅膀人员吗？" ><span>导入</span></a></li>-->
+        </ul>
+	</div>
+
+    <table class="table" width="100%"  layouth="136">
+        <thead>
+            <tr>
+                <th width="50">
+                    <input type="checkbox" group="ids" class="checkboxCtrl">
+                </th>
+                <th width="100">
+                    姓名
+                </th> 
+                <th width="200">
+                    区域
+                </th>
+                <th width="50">
+                    权限
+                </th>
+            </tr>
+        </thead>
+           
+        <tbody >
+         <%=permissionList %>
+        </tbody>
+    </table>
+
+    <div class="panelBar">
+        <div class="pages">
+            <span>每页显示20条，共<%=total %>条</span>
+        </div>
+        <div class="pagination" targettype="navTab" totalcount="<%=total %>" numperpage="20" pagenumshown="10"
+            currentpage="<%=index %>">
+        </div>
+    </div>
+</div>

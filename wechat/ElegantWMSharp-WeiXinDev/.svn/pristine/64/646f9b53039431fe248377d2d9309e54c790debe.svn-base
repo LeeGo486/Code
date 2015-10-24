@@ -1,0 +1,38 @@
+﻿<div class="ht">
+    <i class="icon-edit"></i>&nbsp;&nbsp;我的陈列
+</div>
+<div class="dataDetail">
+    <div class="input-group">
+        <span class="input-group-addon">类型</span>
+         <select class="form-control">
+             <option>橱窗</option>
+             <option>店内</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">楼层</span>
+        <input class="form-control" value="一楼" />
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">区域</span>
+        <input class="form-control" value="正门右侧" />
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">图片
+        </span>
+        <input type="text" class="form-control" readonly="true">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button">浏览</button>
+        </span>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">说明</span>
+        <textarea class="form-control" placeholder="请输入陈列说明">北京华贸橱窗主题甜蜜生活</textarea>
+    </div>
+    <button type="button" class="btn btn-success" style="width: 49%; margin-top: 10px;" data-loading-text="请稍后..." onclick="Msg.show('提交成功！',0)"> 提 交 </button>
+    <button type="button" class="btn btn-success" style="width: 49%; margin-top: 10px;" data-loading-text="请稍后..." onclick="Msg.show('提交并分享成功！',0)"> 提交并分享 </button>
+</div>

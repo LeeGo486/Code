@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>[[PasteAsHTML]] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			&nbsp; </title>
+		
+		<meta http-equiv="Page-Enter" content="blendTrans(Duration=0.1)" />
+		<meta http-equiv="Page-Exit" content="blendTrans(Duration=0.1)" />
+		<link href="Load.ashx?type=style&file=dialog.css" type="text/css" rel="stylesheet" />
+		<!--[if IE]>
+			<link href="Load.ashx?type=style&file=IE.css" type="text/css" rel="stylesheet" />
+		<![endif]-->
+		<script type="text/javascript" src="Load.ashx?type=dialogscript&file=DialogHead.js"></script>
+	</head>
+	<body>
+		<table border="0" cellpadding="0" cellspacing="2" style="height:100%" width="100%" id="Table1">
+        <tr>
+            <td class="title">[[PasteAsHTML]]</td>
+            <td align="right" style="white-space:nowrap" >
+            </td> 
+        </tr>
+        <tr>
+            <td colspan="2">[[UseCtrl_VtoPaste]]</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="height:100%" >
+               <iframe id="idSource" name="idSource" src="Template.aspx" scrolling="auto" style="border:1px solid #999999; WIDTH: 100%; HEIGHT: 100%;background-color:#ffffff;"></iframe>
+			</td>
+        </tr>
+        <tr>
+            <td style="width:50%" align="left">
+                <input type="button" id="insert" name="insert" value="[[Insert]]" onclick="insertContent();" />
+            </td>
+            <td style="width:50%" align="right">
+                <input type="button" value="[[Cancel]]" onclick="cancel();" id="Button1" />
+            </td>
+        </tr>
+    </table>
+	</body>
+	<script type="text/javascript" src="Load.ashx?type=dialogscript&file=DialogFoot.js"></script>
+	
+		<script type="text/javascript">		
+			var OxOc58f=["onload","contentWindow","idSource","innerHTML","body","document","","designMode","on","contentEditable","fontFamily","style","Tahoma","fontSize","11px","color","black","background","white","length","\x3C$1B\x3E ","\x3C$1I\x3E ","\x0A\x3CT","\x3Ctd\x3E","\x0A\x3C/TR\x3E","\x3C/TR\x3E","\x26amp;","\x26lt;","\x26gt;","\x26#39;","\x26quot;"];var editor=Window_GetDialogArguments(window); function cancel(){ Window_CloseDialog(window) ;}  ; window[OxOc58f[0x0]]=function (){var iframe=document.getElementById(OxOc58f[0x2])[OxOc58f[0x1]]; iframe[OxOc58f[0x5]][OxOc58f[0x4]][OxOc58f[0x3]]=OxOc58f[0x6] ; iframe[OxOc58f[0x5]][OxOc58f[0x7]]=OxOc58f[0x8] ; iframe[OxOc58f[0x5]][OxOc58f[0x4]][OxOc58f[0x9]]=true ; iframe[OxOc58f[0x5]][OxOc58f[0x4]][OxOc58f[0xb]][OxOc58f[0xa]]=OxOc58f[0xc] ; iframe[OxOc58f[0x5]][OxOc58f[0x4]][OxOc58f[0xb]][OxOc58f[0xd]]=OxOc58f[0xe] ; iframe[OxOc58f[0x5]][OxOc58f[0x4]][OxOc58f[0xb]][OxOc58f[0xf]]=OxOc58f[0x10] ; iframe[OxOc58f[0x5]][OxOc58f[0x4]][OxOc58f[0xb]][OxOc58f[0x11]]=OxOc58f[0x12] ; iframe.focus() ;}  ; function insertContent(){var iframe=document.getElementById(OxOc58f[0x2])[OxOc58f[0x1]];var Ox95=iframe[OxOc58f[0x5]][OxOc58f[0x4]][OxOc58f[0x3]];if(Ox95&&Ox95[OxOc58f[0x13]]>0x0){if(Ox95.match(/<*>/g)){ Ox95=String_HtmlEncode(Ox95) ;} ; editor.PasteHTML(Ox95) ; Window_CloseDialog(window) ;} ;}  ; function _CleanCode(Ox29){ Ox29=Ox29.replace(/<st1:.*>/g,OxOc58f[0x6]) ; Ox29=Ox29.replace(/<(\/)?strong>/ig,OxOc58f[0x14]) ; Ox29=Ox29.replace(/<(\/)?em>/ig,OxOc58f[0x15]) ; Ox29=Ox29.replace(/<\\?\??xml[^>]>/gi,OxOc58f[0x6]) ; Ox29=Ox29.replace(/<\/?\w+:[^>]*>/gi,OxOc58f[0x6]) ; Ox29=Ox29.replace(/<span[^>]*>/gi,OxOc58f[0x6]) ; Ox29=Ox29.replace(/<\/SPAN>/gi,OxOc58f[0x6]) ; Ox29=Ox29.replace(/<TBODY>/gi,OxOc58f[0x6]) ; Ox29=Ox29.replace(/<\/TBODY>/gi,OxOc58f[0x6]) ; Ox29=Ox29.replace(/<T/gi,OxOc58f[0x16]) ; Ox29=Ox29.replace(/<td>\n/gi,OxOc58f[0x17]) ; Ox29=Ox29.replace(/<\/TR>/gi,OxOc58f[0x18]) ; Ox29=Ox29.replace(/<\/TR>\n/gi,OxOc58f[0x19]) ;return Ox29;}  ; function String_HtmlEncode(Ox98){if(Ox98==null){return OxOc58f[0x6];} ; Ox98=Ox98.replace(/&/g,OxOc58f[0x1a]) ; Ox98=Ox98.replace(/</g,OxOc58f[0x1b]) ; Ox98=Ox98.replace(/>/g,OxOc58f[0x1c]) ; Ox98=Ox98.replace(/'/g,OxOc58f[0x1d]) ; Ox98=Ox98.replace(/\x22/g,OxOc58f[0x1e]) ;return Ox98;}  ;
+		</script>
+</html>

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "CMT活动反馈";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/calendar/lib/moment.min.js"></script>
+    <script src="~/Scripts/calendar/lib/jquery-ui.custom.min.js"></script>
+    <script src="~/Scripts/calendar/fullcalendar.min.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <link href="~/Scripts/calendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Scripts/calendar/fullcalendar.print.css" rel="stylesheet" media="print"/>
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#stop").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 300, false);
+            });
+            $("#sgoemployeeplan").click(function () {
+                scrollTo("#calendar");
+            });
+        });
+
+        //定位位置
+        function scrollTo(elem) {
+            $('html, body').animate({ scrollTop: $(elem).offset().top }, 300, false);
+        }
+    </script>
+}
+@Html.Action("Calender")
+
+<div class="s3overlay">
+    <i id="stop" class="icon-calendar icon-2x"></i>
+    <hr />
+   @* <i id="sgoemployeeplan" class="icon-calendar icon-2x"></i>
+    <br />*@
+</div>
+

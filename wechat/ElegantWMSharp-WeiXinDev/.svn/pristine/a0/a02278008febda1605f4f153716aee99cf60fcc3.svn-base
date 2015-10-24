@@ -1,0 +1,178 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.ITSM_Event>
+@{
+    ViewBag.Title = "派给我的事件";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/UiStep/step.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //事件处理
+        function hdlEvent(id,type) {
+            Msg.show("请稍后...", 3);
+            $.post("/IT/SM/HandleEvent/" + id + "?type="+type+"&sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                Msg.hide();
+                if (rst.result == 0) { 
+                    //转派成功，修改状态
+                    $("#E_" + id + " ol li").removeClass("ui-step-active");
+                    $("#E_" + id + " ol li").removeClass("ui-step-undone");
+                    $("#E_" + id + " ol li").removeClass("ui-step-done");
+                    if (type == 2) {
+                        $("#E_" + id + " ol li:eq(0)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(1)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(2)").addClass("ui-step-active");
+                        $("#E_" + id + " ol li:eq(3)").addClass("ui-step-undone");
+                        $("#E_" + id + " ol li:eq(4)").addClass("ui-step-undone");
+                    } else if (type == 3) {
+                        $("#E_" + id + " ol li:eq(0)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(1)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(2)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(3)").addClass("ui-step-undone");
+                        $("#E_" + id + " ol li:eq(4)").addClass("ui-step-undone");
+                    } else if (type == 4) {
+                        $("#E_" + id + " ol li:eq(0)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(1)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(2)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(3)").addClass("ui-step-active");
+                        $("#E_" + id + " ol li:eq(4)").addClass("ui-step-undone");
+                    }
+                }
+                Msg.show(rst.msg, rst.result);
+            });
+        }
+        //转派
+        function shiftEvent(id) {
+            console.log($("#E_" + id + " ol li"));
+            $("#winEid").val(id);
+
+            $("#winShiftEvent button.btn-primary").on("click", function (e) {
+                $("#winShiftEvent").modal('hide');
+            });
+            $("#winShiftEvent button.btn-danger").on("click", function (e) {
+                var eid = $("#winEid").val();
+                if ($("#sltEgr").val() == null) {
+                    Msg.show("请选择转派对象！", 1);
+                    return;
+                }
+                var data = {
+                    id: eid,
+                    egr: $("#sltEgr").val(),
+                    remark: $("#txtReason").val()
+                };
+                $.post("/IT/SM/ShiftEvent?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), data, function (rst) {
+                    if (rst.result == 0) {
+                        $("#winShiftEvent").modal('hide');
+                        $("#E_" + eid).fadeOut(1000);
+                        $("#E_" + eid).remove();
+                    }
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+            $("#winShiftEvent").modal({
+                "backdrop": "static",
+                "keyboard": true,
+                "show": true
+            });
+        }
+    </script>
+}
+
+@foreach (ElegantWM.EntityModel.ITSM_Event e in Model)
+{
+    <div class="eventSch clearfix" id="E_@e.Id">
+        <span class="badge pull-right">@e.CreateTime.ToString("yyyy-MM-dd")</span>
+        <h4>
+            <a href="/IT/SM/Detail/@e.Id?sid=@Request["sid"]&oid=@Request["oid"]" style="color:@((e.ProcessStatus==5||e.ProcessStatus==9)?"#969696":"#39ac00")">
+                <i class="icon-stethoscope"></i> 【@e.ReqMan,@e.ReqIncident】@(e.EventDesc.Length > 20 ? e.EventDesc.Substring(0, 20) + "..." : e.EventDesc)
+            </a>
+        </h4>
+        <ol class="ui-step ui-step-5">
+            <li class="ui-step-start @if(e.ProcessStatus==0){@("ui-step-active")} else if (e.ProcessStatus == 9 || e.ProcessStatus == 5)
+                                     {@("ui-step-undone")}
+                                     else if (e.ProcessStatus != 9 && e.ProcessStatus>0){@("ui-step-done")}
+                                     else {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">1</i>
+                    <span class="ui-step-text">提报</span>
+                </div>
+            </li>
+            <li class="@if(e.ProcessStatus==1){@("ui-step-active")} 
+                        else if (e.ProcessStatus == 9 || e.ProcessStatus == 5)
+                        {@("ui-step-undone")}
+                        else if (e.ProcessStatus != 9 && e.ProcessStatus>1){@("ui-step-done")}
+                        else {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">2</i>
+                    <span class="ui-step-text">派工</span>
+                </div>
+            </li>
+            <li class="@if(e.ProcessStatus==2){@("ui-step-active")} else if (e.ProcessStatus == 9 || e.ProcessStatus == 5)
+                        {@("ui-step-undone")}
+                        else if (e.ProcessStatus != 9 && e.ProcessStatus>2){@("ui-step-done")}
+                        else {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">3</i>
+                    <span class="ui-step-text">接收</span>
+                </div>
+            </li>
+            <li class="@if(e.ProcessStatus==4){@("ui-step-active")} else if (e.ProcessStatus == 9 || e.ProcessStatus == 5)
+                        {@("ui-step-undone")}
+                        else if (e.ProcessStatus != 9 && e.ProcessStatus>4){@("ui-step-done")}
+                        else {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">4</i>
+                    <span class="ui-step-text">完成</span>
+                </div>
+            </li>
+            <li class="ui-step-end ui-step-undone">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">5</i>
+                    <span class="ui-step-text">评价</span>
+                </div>
+            </li>
+        </ol>
+
+        <div class="operate">
+            <div class="btnOpt" onclick="hdlEvent('@e.Id',4);"><i class="icon-ok"></i>&nbsp;完成</div>
+            <div class="btnOpt" onclick="hdlEvent('@e.Id',3);" style="border-right: 1px solid #ccc;"><i class="icon-wrench"></i>&nbsp;处理</div>
+            <div class="btnOpt" onclick="hdlEvent('@e.Id',2);" style="border-right: 1px solid #ccc;"><i class="icon-signin"></i>&nbsp;接收</div>
+            <div class="btnOpt" onclick="shiftEvent('@e.Id');" style="border-right: 1px solid #ccc;"><i class="icon-signout"></i>&nbsp;转派</div>
+        </div>
+    </div>
+}
+<div id="winShiftEvent" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <input id="winEid" type="hidden" />
+                <div class="input-group">
+                    <span class="input-group-addon">转给：</span>
+                    <select id="sltEgr" class="form-control">
+                        @foreach(ElegantWM.EntityModel.ITSM_Engineer egr in ViewBag.Engineer){
+                            <option value="@egr.EgrAmName">@egr.EgrName</option>
+                        }
+                    </select>
+                </div>
+                <br />
+                <textarea id="txtReason" class="form-control" placeholder="请输入转派原因"></textarea>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>

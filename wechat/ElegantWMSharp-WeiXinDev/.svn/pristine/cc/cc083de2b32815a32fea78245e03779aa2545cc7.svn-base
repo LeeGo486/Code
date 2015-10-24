@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html class="no-js admin    ui-viewport-640" lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="斑斓盛会！" />
+    <meta name="description" content="斑斓盛会！" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+
+    <title>斑斓盛会</title>
+
+    <!-- _global -->
+    <script>
+        var _global = { "kdt_id": 15, "user_id": 0, "run_mode": "online", "debug": false, "project": "default", "online_debug": true, "js": { "js_compress": true, "css_compress": true, "use_js_cdn": true, "use_css_cdn": true, "message_report": true, "checkbrowser": true, "hide_wx_nav": true, "qn_public": "kdt_img", "qn_private": "kdt-private" }, "query_path": "\/showcase\/feature", "module": "showcase", "controller": "Showcase_Feature_Controller", "action": "index", "full_action": "getIndexHtml", "method": "get", "format": "html", "platform": "unknown", "is_mobile": true, "page_size": 320, "isShopDomain": false, "share": { "title": "", "desc": "", "cover": "", "link": "http:\/\/it.hwafashion.com\/Game\/GLAnniversary\/?sid=ff25138f-08f0-49c8-8768-83efaddb2618&oid=oloPUjkzSLyHPqAM5kW6DRzZzc74" }, "source": "", "track": "", "mp_changed": false, "team_certificate": true, "hide_shopping_cart": 0, "mp_data": { "logo": "http:\/\/it.hwafashion.com\/Areas\/Game\/Resources\/images\/GLAnniversary\/index.jpg", "team_name": "\u9ea6\u5305\u5305", "intro": "", "is_display_footbar": "1", "is_display_suffix_name": "1", "suffix_name": "\u9ea6\u5305\u5305", "mp_id": "15", "kdt_id": "15", "mp_weixin": "mbaobaovip", "mp_nickname": "\u9ea6\u5305\u5305", "quick_subscribe": "0", "quick_subscribe_url": null }, "alipay_env": true, "wxpay_env": false, "wxaddress_env": false, "is_owner_team": true, "mp_id": "15", "title": "", "ajaxURL": { "isFans": "http:\/\/koudaitong.com\/v1\/api\/fans\/check?fans_mi=15" }, "logURL": "", "no_sidebar": 0, "url": { "base": "http:\/\/koudaitong.com", "domain": "koudaitong.com", "cp": "http:\/\/cp.koudaitong.com", "pay": "http:\/\/pay.koudaitong.com", "trade": "http:\/\/trade.koudaitong.com", "wdp_wap": "http:\/\/m.wdianpu.com", "wdp": "http:\/\/www.wdianpu.com", "api": "http:\/\/api.koudaitong.com", "img": "http:\/\/img.koudaitong.com", "static": "http:\/\/static.koudaitong.com\/v2", "cdn_static": "http:\/\/kdt-static.qiniudn.com\/v2", "www": "http:\/\/koudaitong.com\/v2", "v1": "http:\/\/koudaitong.com\/v1", "short_url": "http:\/\/koudaitong.com", "v1_static": "http:\/\/static.koudaitong.com\/v1", "wap": "http:\/\/wap.koudaitong.com\/v2", "imgqn": "http:\/\/imgqn.koudaitong.com", "goods_search": "http:\/\/10.6.5.28:8899", "callback_queue": "http:\/\/10.6.5.28:8899\/queue", "log_url": "http:\/\/tj.koudaitong.com\/1.gif", "cron": "http:\/\/10.6.5.28:1934\/", "taobao_item": "http:\/\/item.taobao.com", "scv": "http:\/\/scv.koudaitong.com", "open": "http:\/\/open.koudaitong.com", "qrcode": "http:\/\/10.6.5.28:8080\/qr?", "taobao_wap_item": "http:\/\/a.m.taobao.com", "v2": "http:\/\/koudaitong.com\/v2", "kdtim": "http:\/\/kdt.im", "static_host": "http:\/\/static.koudaitong.com", "wxcode": "http:\/\/open.weixin.qq.com\/qr\/code\/?username=", "shop": "http:\/\/detail.koudaitong.com", "vip": "http:\/\/vip.koudaitong.com", "bbs": "http:\/\/bbs.koudaitong.com", "fuwu": "http:\/\/fuwu.koudaitong.com", "cloud": "http:\/\/kdt-cloud.qiniudn.com" } };
+
+        _global.spm = { logType: "f", logId: "1318301" };
+
+        //base_head_script.js
+        function viewportMeta() { var e = parseInt(window.screen.width), t = e / 640, i = navigator.userAgent; if (/Android (\d+\.\d+)/.test(i)) { var a = parseFloat(RegExp.$1); document.write(a > 2.3 ? '<meta name="viewport" content="width=640, minimum-scale = ' + t + ", maximum-scale = " + t + ', target-densitydpi=device-dpi">' : '<meta name="viewport" content="width=640, target-densitydpi=device-dpi">') } else document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">') } function _cdnFallback(e) { var t = e.nodeName.toLowerCase(), i = document.createElement(t), a = { script: "src", link: "href" }, n = a[t], o = e[n]; o = o.replace("kdt-static.qiniudn.com", "static.koudaitong.com"), "link" == t && (i.rel = "stylesheet"), i[n] = o, document.body.appendChild(i) } !function (e) { var t = document.documentElement; e.match(/micromessenger\/5/gi) ? t.className = t.className + " mobile wx_mobile wx_mobile_5" : e.match(/micromessenger/gi) ? t.className = t.className + " mobile wx_mobile" : window._global.is_mobile && (t.className = t.className + " mobile") }(navigator.userAgent || navigator.vendor || window.opera);
+    </script>
+
+    <!-- meta viewport -->
+    <script type="text/javascript">
+        viewportMeta && viewportMeta();
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/Scripts/Scene/css/base_a38ad9d68e.css" onerror="_cdnFallback(this)">
+    <link rel="stylesheet" href="~/Scripts/Scene/css/showcase_admin_0662f16f4d.css" onerror="_cdnFallback(this)">
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .shareTip {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+            opacity: 0.8;
+            z-index: 9999;
+            background: #000 url(/wxapi/jt.png) top right no-repeat;
+            background-size: 150px;
+            color: #fff;
+            padding-top: 90px;
+            text-align: right;
+        }
+
+        .shareTipTxt {
+            padding-right: 60px;
+            text-align: center;
+            width: 240px;
+            float: right;
+            opacity: 1;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 140%;
+        }
+    </style>
+</head>
+
+<body class=" ">
+    <!-- container -->
+    <div class="container ">
+        <div class="header">
+            <div class="headerbar">
+                <div class="headerbar-wrap clearfix">
+                    <div class="headerbar-reedit" style="display: none;">
+                        <a href="http://koudaitong.com/v2/showcase/feature#edit/1318301" class="js-no-follow">重新编辑</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content js-mini-height">
+            <div class="content-body">
+
+                <div class="ui-loading" id="js-loading">
+                    <div class="loading-animate"></div>
+                </div>
+                <div class="tpl-scroll js-tpl-scroll-container">
+                    <div class="swiper-container js-tpl-scroll" data-loop="false">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-hash="slide_first">
+                                <i id="wxcover" data-wxcover="background-image:url(/Areas/Game/Resources/images/GLAnniversary/001.jpg" style="background-image: url(/Areas/Game/Resources/images/GLAnniversary/001.jpg);"></i>
+                                <div class="ui-up-arrow js-up-arrow">
+                                    <img src="/Areas/Game/Resources/images/GLAnniversary/gesture_mini.png" alt="滑动提示" width="230" height="280">
+                                </div>
+                            </div>
+                            <div class="swiper-slide" data-hash="slide_2">
+                                <i style="background-image: url(/Areas/Game/Resources/images/GLAnniversary/002.jpg);"></i>
+                            </div>
+                            <div class="swiper-slide" data-hash="slide_3">
+                                <i style="background-image: url(/Areas/Game/Resources/images/GLAnniversary/003.jpg);"></i>
+                            </div>
+                            <div class="swiper-slide" data-hash="slide4">
+                                <i style="background-image: url(/Areas/Game/Resources/images/GLAnniversary/004.jpg);"></i>
+                            </div>
+                            <div class="swiper-slide" data-hash="slide_5">
+                                <i style="background-image: url(/Areas/Game/Resources/images/GLAnniversary/005.jpg);"></i>
+                            </div>
+                            <div class="swiper-slide" data-hash="slide_6">
+                                <i style="background-image: url(/Areas/Game/Resources/images/GLAnniversary/006.jpg);"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hide" id="wxdesc"></div>
+                    <div class="ui-right-btns js-beta-coffee js-audio" data-src="/Areas/Game/Resources/MP3/music.mp3">
+                        <i class="ui-music-btn js-music-btn"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content-sidebar" style="display: none;">
+                <div class="sidebar-section qrcode-info">
+                    <div class="section-detail">
+                        <p class="text-center shop-detail"><strong></strong></p>
+                        <p class="text-center weixin-title"></p>
+                        <p class="text-center qr-code">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div id="js-fuck-taobao" class="fullscreen-guide fuck-taobao hide">
+            <span class="js-close-taobao guide-close">&times;</span>
+            <span class="guide-arrow"></span>
+            <div class="guide-inner">
+                <div class="step step-1"></div>
+                <div class="js-step-2 step"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="~/Scripts/Scene/js/jquery-2.0.3.min.js" onerror="_cdnFallback(this)"></script>
+    <script src="~/Scripts/Scene/js/idangerous.swiper.2.6.1.min.js" onerror="_cdnFallback(this)"></script>
+    <script src="~/Scripts/Scene/js/index_6ac28e66fe.js" onerror="_cdnFallback(this)"></script>
+    <script src="~/Scripts/Scene/js/base.js" onerror="_cdnFallback(this)"></script>
+    <script src="~/Scripts/Scene/js/scroll_e462598603.js" onerror="_cdnFallback(this)"></script>
+
+    <script type="text/javascript">
+        
+
+        var appId, ticket, timestamp, nonceStr, signature;
+
+        $(function () {
+            //获取appid
+            $.post("/Game/GLTicket/GetAppId?sid=ff25138f-08f0-49c8-8768-83efaddb2618&oid=oloPUjkzSLyHPqAM5kW6DRzZzc74", function (rst) {
+                if (rst.result == 0) {
+                    appId = rst.msg;
+                    //获取ticket
+                    $.post("/Game/GLTicket/GetTicket?sid=ff25138f-08f0-49c8-8768-83efaddb2618&oid=oloPUjkzSLyHPqAM5kW6DRzZzc74", function (rst) {
+                        if (rst.result == 0) {
+                            ticket = rst.msg;
+                            timestamp = parseInt(new Date().getTime() / 1000) + '';
+                            nonceStr = Math.random().toString(36).substr(2, 15);
+
+                            //获取signature
+                            $.post("/Game/GLTicket/GetSignature??sid=ff25138f-08f0-49c8-8768-83efaddb2618&oid=oloPUjkzSLyHPqAM5kW6DRzZzc74" + "&ticket=" + ticket + "&nonceStr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + window.location.href.replace(/&/g, '%26'), function (rst) {
+                                if (rst.result == 0) {
+                                    signature = rst.msg;
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: appId, // 必填，公众号的唯一标识
+                                        timestamp: timestamp, // 必填，生成签名的时间戳
+                                        nonceStr: nonceStr, // 必填，生成签名的随机串
+                                        signature: signature,// 必填，签名，见附录1
+                                        jsApiList: [
+                                            'onMenuShareTimeline',
+                                            'onMenuShareAppMessage'
+                                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                } else {
+                                    //alert("获取signature失败")
+                                }
+                            });
+                        } else {
+                            //alert("获取GetTicket失败")
+                        }
+                    });
+                } else {
+                    //alert("获取appid失败")
+                }
+            });
+        });
+
+        wx.ready(function () {
+
+            var url = "http://it.hwafashion.com/Game/GLAnniversary/?sid=ff25138f-08f0-49c8-8768-83efaddb2618&oid=oloPUjkzSLyHPqAM5kW6DRzZzc74";
+            var imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/GLAnniversary/index1.jpg';
+            wx.onMenuShareTimeline({
+                title: '斑斓盛会', // 分享标题
+                link: url,// 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: '斑斓盛会', // 分享标题
+                desc: '感恩有你，分享赢2899元包包，礼遇更美的你', // 分享描述
+                link: url, // 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

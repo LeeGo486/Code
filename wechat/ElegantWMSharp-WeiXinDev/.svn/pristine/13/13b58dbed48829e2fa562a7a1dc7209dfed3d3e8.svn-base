@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B64C9DA2-1491-41D7-AEAB-5D09B6CA308D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElegantWM.BLL</RootNamespace>
+    <AssemblyName>ElegantWM.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseService.cs" />
+    <Compile Include="CMTTaskDetailService.cs" />
+    <Compile Include="GameLinkService.cs" />
+    <Compile Include="GameTicketService.cs" />
+    <Compile Include="Game_LittleModelService.cs" />
+    <Compile Include="ITDCService.cs" />
+    <Compile Include="OO_IndustryService.cs" />
+    <Compile Include="OO_MenuTemplateService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HRJobsService.cs" />
+    <Compile Include="HRJobSeekerService.cs" />
+    <Compile Include="WsrrService.cs" />
+    <Compile Include="WXAccountService.cs" />
+    <Compile Include="HRCourseService.cs" />
+    <Compile Include="HRCourseAttendService.cs" />
+    <Compile Include="HRCourseLessonService.cs" />
+    <Compile Include="HRCourseUserService.cs" />
+    <Compile Include="HRLKCourseUserService.cs" />
+    <Compile Include="WXFansService.cs" />
+    <Compile Include="WXKeyWordService.cs" />
+    <Compile Include="WXMenuService.cs" />
+    <Compile Include="HRWXEmployeeService.cs" />
+    <Compile Include="HRQuestionService.cs" />
+    <Compile Include="HRQARstService.cs" />
+    <Compile Include="WXLKFansC3AMService.cs" />
+    <Compile Include="ITSMEngineerService.cs" />
+    <Compile Include="ITSMEventService.cs" />
+    <Compile Include="ITSMEventLogService.cs" />
+    <Compile Include="ITSMEgrScheduleService.cs" />
+    <Compile Include="ITSMBasicInfoService.cs" />
+    <Compile Include="WXContactsService.cs" />
+    <Compile Include="S3DictionaryService.cs" />
+    <Compile Include="SHOPCustomerFeedbackService.cs" />
+    <Compile Include="NPaiaVipUserService.cs" />
+    <Compile Include="WXRespImgTxtService.cs" />
+    <Compile Include="WXArticleLogService.cs" />
+    <Compile Include="WXLKRegMemberFansService.cs" />
+    <Compile Include="SHOPEventService.cs" />
+    <Compile Include="SHOPEventFeedbackService.cs" />
+    <Compile Include="CUS1_CustomerDocService.cs" />
+    <Compile Include="GameAwardService.cs" />
+    <Compile Include="GameRecordService.cs" />
+    <Compile Include="GameQuestionService.cs" />
+    <Compile Include="GameAnswerService.cs" />
+    <Compile Include="GameQARstService.cs" />
+    <Compile Include="GameQAVolunteerService.cs" />
+    <Compile Include="Fire_QuestionService.cs" />
+    <Compile Include="GameUserInfoService.cs" />
+    <Compile Include="GLGameUserInfoService.cs" />
+    <Compile Include="GLGameRecordService.cs" />
+    <Compile Include="GLGameAwardService.cs" />
+    <Compile Include="GLGameLinkService.cs" />
+    <Compile Include="HRSpecificService.cs" />
+    <Compile Include="WX_Account_USER_AUZService.cs" />
+    <Compile Include="Game_QrstService.cs" />
+    <!--DHELPERBLL-->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElegantWM.Common\ElegantWM.Common.csproj">
+      <Project>{be6f28a9-f914-4735-ba71-e280b6361ae5}</Project>
+      <Name>ElegantWM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.DAL\ElegantWM.DAL.csproj">
+      <Project>{bbe4ada7-5340-4e57-a851-73a10fdb29e7}</Project>
+      <Name>ElegantWM.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.DTO\ElegantWM.DTO.csproj">
+      <Project>{9e93760c-361e-41d0-9195-8eabeba3abd9}</Project>
+      <Name>ElegantWM.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.EntityModel\ElegantWM.EntityModel.csproj">
+      <Project>{c403bce8-d507-4a38-bf7c-2f76efaf0db4}</Project>
+      <Name>ElegantWM.EntityModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.IBLL\ElegantWM.IBLL.csproj">
+      <Project>{77a6f903-31aa-4986-a567-7788666328b3}</Project>
+      <Name>ElegantWM.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.IDAL\ElegantWM.IDAL.csproj">
+      <Project>{3a6ac61d-916a-49d0-8cf3-e7fbeda777b0}</Project>
+      <Name>ElegantWM.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.Tools\ElegantWM.Tools.csproj">
+      <Project>{b3722cd5-c75b-4080-a3da-67611b07286e}</Project>
+      <Name>ElegantWM.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

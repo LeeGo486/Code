@@ -1,0 +1,32 @@
+﻿<div class="ht" id="sfeedback">
+    <i class="icon-pencil"></i>&nbsp;&nbsp;问题反馈
+    <span onclick="$('#sfeedbackarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div onclick="showFeedbackInfo('f1');">[2014年06月28日]&nbsp;&nbsp;武汉东湖万达百货</div>
+            <div id="f1" class="cusHideFeedbackArea" style="display:none;">衣服上面的珠子容易脱落</div>
+        </li>
+        <li class="list-group-item">
+            <div onclick="showFeedbackInfo('f2');">[2014年06月28日]&nbsp;&nbsp;上海新世界</div>
+            <div id="f2" class="cusHideFeedbackArea" style="display:none;">衣服上面的珠子容易脱落</div>
+        </li>
+    </ul>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">问题反馈</span>
+        <textarea class="form-control" placeholder="请输入问题反馈"></textarea>
+    </div>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" data-loading-text="loading..." onclick="addFeedback();">提交</button>
+</div>

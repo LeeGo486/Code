@@ -1,0 +1,179 @@
+
+body {
+    background-image:url(/Areas/Game/Resources/images/LittleModel/head.jpg);
+    background-repeat:no-repeat;
+    background-position-x:center;
+    background-size:100%;
+    background-color:#fff;
+
+    font-family:SimHei;
+    font-size:small;
+}
+
+.characters {
+    margin-top:60px;
+    width:100%;
+}
+.search {
+    margin-top:20px;
+}
+.a-button {
+   margin-top:10px; 
+}
+    .a-button a {
+        color:#fff;
+        background-color:#000;
+        margin-left:20px;
+        border-radius: 0px !important; /*取消圆角*/
+    }
+        .a-button a:active {
+            color:#fff;
+            background-color:#000;
+        }
+        .a-button a:hover {
+            color:#fff;
+            background-color:#000;
+        }
+        .a-button a:visited  {
+            color:#fff;
+            background-color:#000;
+        }
+/*公告*/
+.notice {
+    margin-top:40px;
+    float:left;
+}
+/*正文*/
+.block {
+    margin-top:10px;
+}
+/*NOTICE*/
+.ruleTig {
+    width:100%;
+}
+/*标题*/
+.title {
+    font-size:20px;
+    float:left;
+    line-height:20px;
+}
+/*文本*/
+.text {
+    /*line-height:20px;*/
+    float:left;
+    text-align:left;
+}
+
+.ul-lv1 {
+    float:left;
+    text-align:left;
+}
+ol {
+    float:left;
+    text-align:left;
+}
+.font-color {
+    color:#ff3e6f !important;
+}
+dl {
+    margin-bottom:10px !important;
+}
+hr {
+    border-color:#ff3e6f;
+    float:left;
+    width:100%;
+}
+
+.GroupButton {
+    color:#fff;
+    background-color:#ff3e6f;
+    width:45%;
+    font-size:0.95em;
+    padding:2px;
+    line-height:20px;
+    margin-bottom:10px;
+}
+    .GroupButton:hover {
+        color:#fff;
+    }
+    .GroupButton:active {
+        color:#fff;
+    }
+
+.picInfo-left {
+    width:50%;
+    float:left;
+    background-color:#ff3e6f;
+    text-align:left;
+}
+    .picInfo-left p {
+        margin-bottom:1px; 
+        padding-left:5px;
+        color:#fff
+    }
+.picInfo-right {
+    width:50%;
+    height:100%;
+    float:right;
+    background-color:#ff86a0;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+    .picInfo-right a {
+        color:#fff;
+        text-decoration:none;
+    }
+    .picInfo-right a:link {
+        color:#fff;
+    }
+    .picInfo-right a:hover {
+        color:#fff;
+    }
+    .picInfo-right a:active {
+        color:#fff;
+    }
+    .picInfo-right a:invalid {
+        color:#fff;
+    }
+
+
+/*小模特信息按钮*/
+.i-button {
+
+}
+    .i-button a:link  {
+        background-color:#fff;
+        text-decoration:none;
+    }
+    .i-button a:hover {
+        background-color:#fff;
+        text-decoration:none;
+    }
+    .i-button a:active {
+        background-color:#fff;
+        text-decoration:none;
+    }
+    .i-button a:visited {
+        background-color:#fff;
+        text-decoration:none;
+    }
+
+/*结果页按钮*/
+.resultButton {
+    width:100%;
+    background-color:#ff86a0;
+    padding-top:10px;
+    padding-bottom:10px;
+    color:#fff;
+    margin-left:auto;
+    margin-right:auto;
+}
+    .resultButton button:active {
+            width:100%;
+    background-color:#ff86a0;
+    padding-top:10px;
+    padding-bottom:10px;
+    color:#fff;
+    margin-left:auto;
+    margin-right:auto;
+    }

@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "全部商品";
+    Layout = "~/Views/Shared/_NPaiaLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/NPaia/Resources/Mobile.css" rel="stylesheet" />
+}
+
+<div id="title">
+    <h4 style="margin: 0;">N.PAIA</h4>
+    <h6 style="margin: 0;">2014&nbsp;AUTUMN & WINTER</h6>
+</div>
+<div class="input-group" style="width: 250px;margin: 10px 20px;">
+    <input type="text" class="form-control" placeholder="输入商品关键字">
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button">搜索</button>
+    </span>
+</div>
+<ul style="padding: 0;">
+    @*<li><img id="overcoat" src="~/Areas/NPaia/Resources/images/Goods/overcoat.png"/></li>
+    <li class="split"></li>
+    <li><img id="coat" src="~/Areas/NPaia/Resources/images/Goods/coat.png"/></li>
+    <li class="split"></li>
+    <li><img id="jacket" src="~/Areas/NPaia/Resources/images/Goods/jacket.png"/></li>
+    <li class="split"></li>
+    <li><img id="knitwear" src="~/Areas/NPaia/Resources/images/Goods/knitwear.png"/></li>
+    <li class="split"></li>
+    <li><img id="sweater" src="~/Areas/NPaia/Resources/images/Goods/sweater.png"/></li>
+    <li class="split"></li>
+    <li><img id="trousers" src="~/Areas/NPaia/Resources/images/Goods/trousers.png"/></li>
+    <li class="split"></li>
+    <li><img id="dress" src="~/Areas/NPaia/Resources/images/Goods/dress.png"/></li>*@
+    @*<li><img id="" src="~/Areas/NPaia/Resources/images/Goods/ssNewArrival.jpg"/></li>
+    <li class="split"></li>*@
+    <li><img id="new" src="~/Areas/NPaia/Resources/images/Goods/2015SS.jpg"/></li>
+    <li class="split"></li>
+    <li><img id="merryFeathers" src="~/Areas/NPaia/Resources/images/Goods/merryFeathers.jpg"/></li>
+    <li class="split"></li>
+    <li><img id="merryOvercoat" src="~/Areas/NPaia/Resources/images/Goods/merryOvercoat.jpg"/></li>
+    <li class="split"></li>
+    <li><img id="merryKnit" src="~/Areas/NPaia/Resources/images/Goods/merryKnit.jpg"/></li>
+    <li class="split"></li>
+    <li><img id="merrySweater" src="~/Areas/NPaia/Resources/images/Goods/merrySweater.jpg"/></li>
+    <li class="split"></li>
+    <li><img id="merryFur" src="~/Areas/NPaia/Resources/images/Goods/merryFur.jpg"/></li>
+     <li class="split"></li>
+    <li><img id="merryTrousers" src="~/Areas/NPaia/Resources/images/Goods/merryTrousers.jpg"/></li>
+</ul>
+<script type="text/javascript">
+    $("#new").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=新品&name=2015新品&p=1501&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#overcoat").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=大衣&name=大衣&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#coat").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=外套&name=外套&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#fleece").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=卫衣&name=卫衣&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#jacket").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=羽绒服&name=羽绒服&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#knitwear").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=针织衫&name=针织衫&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#trousers").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=裤子&name=裤子&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#sweater").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=毛衫&name=毛衫&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#dress").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=裙子&name=裙装&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#merryFeathers").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=羽绒服&name=摩登羽绒&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#merryOvercoat").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=大衣&name=廓形大衣&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#merryKnit").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=针织衫&name=优雅针织&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#merrySweater").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=毛衫&name=柔暖毛衣&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#merryTrousers").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=裤子&name=塑形裤装&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("#merryFur").click(function () {
+        window.location.href = "/NPaia/Goods/SKUList?category=裘皮&name=新派裘皮&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $("button").click(function () {
+        //WeixinApi.scanQRCode({
+        //    success: function (resp) {
+                
+        //    },
+        //    fail: function (resp) {
+        //        alert('扫描器无法打开');
+        //    }
+        //});
+        if ($("input").val() == "") {
+            Msg.show("请输入商品关键字", 1);
+            return;
+        }
+        window.location.href = "/NPaia/Goods/SKUList?category=所有&name=搜索结果&code=" + $("input").val() + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+</script>

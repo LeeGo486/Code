@@ -1,0 +1,19 @@
+body{cursor:url('img/pen_i.cur');
+background-image:url('img/zhx.jpg');
+background-attachment: fixed;}
+a:link {color: #0000FF;text-decoration: none;}
+a:visited {color: #0000FF;text-decoration: none;}
+a:hover {color: #FF0000;text-decoration: none;}
+.box{BACKGROUND-COLOR: #FFFFFF; BORDER-BOTTOM: 1px solid; BORDER-LEFT: 1px solid; BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; FONT-SIZE: 9pt}
+.box1{BACKGROUND-COLOR: #FFEEEE; BORDER-BOTTOM: 1px solid; BORDER-LEFT: 1px solid; BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; FONT-SIZE: 9pt}
+.editbox1 {BACKGROUND: #ffffff; BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; COLOR: #0000cc; CURSOR: text; FONT-FAMILY: "Arial"; FONT-SIZE: 9pt; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; PADDING-TOP: 1px}
+.editbox2 {BACKGROUND: #ffffff; BORDER-BOTTOM: 1px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; COLOR: #000000; CURSOR: text; FONT-FAMILY: "Arial"; FONT-SIZE: 9pt; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; PADDING-TOP: 1px}
+.t1{border-right:1pt solid #000000;border-left:1pt solid #000000;border-bottom:1pt solid #000000;border-top:1pt solid #000000}
+.f1{color:#0000FF}
+.f2{font-size:12px}
+.a1:link {color: #0000FF;text-decoration: none;}
+.a1:visited {color: #0000FF;text-decoration: none;}
+.a1:hover {color: #FF0000;text-decoration: none;}
+.a2:link {color: #000000;text-decoration: none;}
+.a2:visited {color: #000000;text-decoration: none;}
+.a2:hover {color: #FF0000;text-decoration: none;}

@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>会员信息</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/export.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../JS/Mat/VIPPersonnel.js?Date=20131223" type="text/javascript"></script>
+</head>
+<body >
+<div class="easyui-layout" style="width:100px;height:100px" data-options="fit:true"> 
+    <div title="新增会员" id="DivVIPPersonnel" class="easyui-window"  style="padding: 5px;" split="true"  data-options="closed:true">
+            <form id="formVIPPersonnel" title="新增会员" name="formVIPPersonnel" method="post">
+                <table style="font-size: 9pt;" cellpadding="2px;">
+                    <tr>
+                        <td>必填项资料:</td>
+                        <td>姓名</td>
+                        <td>
+                            <input id="txtvipname" name="txtvipname" style="width: 100px" class="easyui-validatebox" data-options="required:true"></td>
+                        <td>VIP卡号</td>
+                        <td>
+                            <input id="txtvipcode" name="txtvipcode" style="width: 100px" disabled="disabled"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>出生日期：
+                        </td>
+                        <td>
+                            <input id="txtvipbirth" name="txtvipbirth" style="width: 100px" />
+                        </td>
+                        <td>性别：
+                        </td>
+                        <td>
+                            <input id="txtvipsex" name="txtvipsex" style="width: 100px">
+                        </td>
+                        <td>移动电话：
+                        </td>
+                        <td>
+                            <input id="txtmobtel" name="txtmobtel" style="width: 100px" class="easyui-numberbox" data-options="required:true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>职业：
+                        </td>
+                        <td>
+                            <input id="txtvipoccupation" name="txtvipoccupation" style="width: 100px">
+                        </td>
+                        <td>客户经理：
+                        </td>
+                        <td>
+                            <input id="txttz_name" name="txttz_name" style="width: 100px">
+                        </td>
+                        <td>客户经理ID：
+                        </td>
+                        <td>
+                            <input id="txtemployeeid" name="txtemployeeid" style="width: 100px" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>省：
+                        </td>
+                        <td>
+                            <input id="txtadd_province" name="txtadd_province" style="width: 100px">
+                        </td>
+                        <td>市：
+                        </td>
+                        <td>
+                            <input id="txtcity" name="txtcity" style="width: 100px">
+                        </td>
+                        <td colspan="2">地址：<input id="txtvipadd" name="txtvipadd" style="width: 150px" class="easyui-validatebox" data-options="required:true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>个性化信息:</td>
+                        <td>QQ账号</td>
+                        <td>
+                            <input id="txtqq" name="txtqq" style="width: 100px" class="easyui-numberbox">
+                        </td>
+                        <td>微博账号
+                        </td>
+                        <td>
+                            <input id="txtweibo" name="txtweibo" style="width: 100px">
+                        </td>
+                        <td>电子邮件：
+                        </td>
+                        <td>
+                            <input id="txtvipemail" name="txtvipemail" style="width: 100px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>喜好的品牌：
+                        </td>
+                        <td>
+                            <input id="txtvipbrand1" name="txtvipbrand1" style="width: 100px">
+                        </td>
+                        <td>个人爱好：
+                        </td>
+                        <td>
+                            <input id="txtviplove" name="txtviplove" style="width: 100px" />
+                        </td>
+                        <td>喜好的沟通方式：
+                        </td>
+                        <td>
+                            <input id="txtliketalktype" name="txtliketalktype" style="width: 100px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" align="center">
+                            <a href="#" id="A5" iconcls="icon-ok" data-options="plain:true" onclick="save()" class="easyui-linkbutton">确认</a>
+                            <a href="#" id="A6" iconcls="icon-undo" onclick="calcel()" data-options="plain:true"
+                                class="easyui-linkbutton">取消</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    <div region="north" title="高级筛选" split="true" style="width: 200px; padding: 0px; height: 80px; overflow: hidden" onkeypress="if ( event.keyCode == 13 ){btnSearch();return false;}">
+        <form id="formselect" name="formselect" method="post">
+            <table cellpadding="1px;">
+                <tr>
+                    <td>姓名/手机号：
+                    </td>
+                    <td>
+                        <input id="txtParm" name="txtParm" style="width: 100px" />
+                    </td>
+                    <td>
+                        <input type="button" id="Bseacher" value="查询" onclick="btnSearch()"></input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div data-options="region:'center',border:false">
+        <table id="viplist" style="width: 100%; height: 98%">
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

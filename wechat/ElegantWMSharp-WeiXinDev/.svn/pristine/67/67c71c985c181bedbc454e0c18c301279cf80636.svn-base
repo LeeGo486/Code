@@ -1,0 +1,170 @@
+﻿using System;
+using System.Linq;
+using ElegantWM.EntityModel;
+using ElegantWM.IDAL;
+using System.Data;
+using System.Data.SqlClient;
+
+/**
+ * 作者：LeeGo
+ * 时间：2015-06-24 17:42:31
+ * 功能：数据访问层
+ * 版本：V1.0
+ * 网站：http://www.chinacloudtech.com
+ * ------------------------------------
+ * 修改人：
+ * 修改时间：
+ * 修改内容：
+ * 版本： 
+ **/
+
+namespace ElegantWM.DAL
+{
+    public class Game_LittleModelDAL : EFRepository<Game_LittleModelInfo>, IGame_LittleModelDAL
+    {
+        /* 如果是多数据库，请开启        */
+        public Game_LittleModelDAL()
+            : base("Activities")
+        {
+
+        }
+
+        #region 获取小模特信息
+        public DataTable GetLittleModelInfo(string strWhere, int iPage, int iGroup)
+        {
+
+            
+
+            string strSQL = @"SELECT [L_ID]
+                                    ,[L_No]
+                                    ,[L_Name]
+                                    ,[L_Group]
+                                    ,[L_PicPath]
+                                    ,ISNULL(SUM([R_Ticket]),0) AS Result
+                             FROM [dbo].[Game_LittleModelInfo] T1
+                             LEFT JOIN [dbo].[Game_LittleModelResult] T2 ON T1.L_Id = T2.R_LID
+                             WHERE 1=1 ";
+            //if (iGroup != 0)
+            //{
+            //    strSQL += "AND L_Group = " + iGroup;
+            //};
+            if (strWhere != "") {
+                strSQL += "AND" + strWhere;
+            };
+            if (iPage > 0) {
+                DataTable dtPageLID = getPgID(iPage, iGroup);
+                string strID = " AND L_ID IN (";
+                for (int i = 0; i < dtPageLID.Rows.Count; i++) {
+                    if (i < dtPageLID.Rows.Count -1)
+                    {
+                        strID += "'" + dtPageLID.Rows[i][0].ToString() + "',";
+                    } else if (i ==dtPageLID.Rows.Count-1 ){
+                        strID += "'" + dtPageLID.Rows[i][0].ToString() + "'";
+                    };
+                };
+                strID += ") ";
+                strSQL += strID;
+            };
+
+
+            //if (iGroup != 0 && iPage != 0) {
+            //    strSQL += "AND L_ID NOT IN (SELECT TOP "+10 * (iPage - 1) + " L_ID FROM dbo.Game_LittleModelInfo WHERE L_Group = " + iGroup + ")";
+            //};
+            strSQL += @"GROUP BY L_ID,L_No,L_Name,L_Group,L_PicPath";
+            strSQL += @"ORDER BY Result DESC,L_ID ASC";
+            return Query(strSQL, null);
+        }
+        #endregion  
+
+        #region 获取行数
+
+        public DataTable GetLittleModelCount(int iGroup) {
+
+            string strSQL = @"SELECT COUNT(1) 
+                              FROM [dbo].[Game_LittleModelInfo]
+                              WHERE L_Group = " + iGroup;
+            return Query(strSQL, null);
+        }
+        #endregion
+
+        #region 验证是否投票
+        public DataTable CheckVote(string Oid,string LId) {
+
+            DataTable dtResult = new DataTable();
+            DataRow dr = dtResult.NewRow();
+            dtResult.Columns.Add("Result");
+            dtResult.Columns.Add("Overplus");
+            dtResult.Rows.Add(dr);
+
+            
+            string strSQL = @"SELECT R_LID FROM [dbo].[Game_LittleModelResult]
+                              WHERE R_Oid = '" + Oid + "'";
+
+            DataTable dt = Query(strSQL, null);
+
+            int iCount = dt.Rows.Count;
+            int iOverplus = 3 - (iCount + 1);
+            if (iCount == 3)
+            {
+                //投票已经超过三票，无法继续投票。
+                dtResult.Rows[0][0] = 2;
+                dtResult.Rows[0][1] = -1;
+                return dtResult;
+            }
+            else if (iCount > 0 && iCount < 3) {
+                while (iCount != 0) {
+                    string checkLid = dt.Rows[iCount - 1]["R_LID"].ToString();
+                    if (checkLid == LId) {
+                        //已为该小模特投过票，无法重复投票
+                        dtResult.Rows[0][0] = 1;
+                        dtResult.Rows[0][1] = -1;
+                        return dtResult;
+                    };
+                    iCount--;
+                };
+            };
+
+            dtResult.Rows[0][0] = Vote(Oid, LId);
+            
+            dtResult.Rows[0][1] = iOverplus;
+            return dtResult;
+
+        }
+        #endregion
+
+        #region 投票
+        private int Vote(string Oid, string LId) {
+            int iResult = 0;
+            int iLid = Int32.Parse(LId);
+
+            string strSQL = @"INSERT INTO [Game_LittleModelResult](R_Oid,R_LID,R_Ticket,CreateUser,CreateTime)
+                              VALUES('" + Oid + "'," + iLid + "," + 1 + ",'" + Oid + "', GETDATE())";
+
+            DataTable dt = Query(strSQL, null);
+
+            return iResult;
+        }
+        #endregion
+
+
+        #region 获取分页L_ID
+        private DataTable getPgID(int iPage,int iGroup){
+
+            string strSQL = @"SELECT L_ID FROM ( 
+                            SELECT L_ID,row_number() over (order by Result desc) as rownum FROM 
+                                (SELECT [L_ID],ISNULL(T2.Result,0) AS Result
+                                    FROM [dbo].[Game_LittleModelInfo] T1
+                                    LEFT JOIN (
+                                            SELECT [R_LID]
+                                                ,SUM([R_Ticket]) AS Result
+                                             FROM [dbo].[Game_LittleModelResult] T1
+                                             GROUP BY [R_LID]
+                                    ) T2 ON T1.L_ID = T2.R_LID
+                            WHERE L_Group = " + iGroup + @") T3) T4
+                            WHERE rownum between (" + iPage + "-1) * 10 + 1 AND 10* "+iPage;
+            return Query(strSQL, null);
+        }
+        #endregion
+
+    }
+}

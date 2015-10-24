@@ -1,0 +1,18 @@
+[
+    {
+        "text": "华之毅时尚集团00",
+        "id": 1,
+        "children": [
+            {
+                "text": "华之毅时尚集k团",
+                "state": "open",
+                "id": 21
+            }
+          ]
+    },
+            {
+                "text": "浙江贝爱服装有hhhhhh限公司",
+                "state": "closed",
+                "id":23
+            }
+]

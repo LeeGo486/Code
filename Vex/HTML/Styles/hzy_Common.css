@@ -1,0 +1,21 @@
+﻿
+.hzyTable table {
+    font-size: 9pt;
+    vertical-align: top;
+    table-layout: fixed;
+}
+
+.hzyTable td {
+    padding: 5px;
+}
+
+.hzyTable .right {
+    text-align: right;
+}
+
+.hzyTable th {
+    padding: 5px;
+    text-align: right;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}

@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "券";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".search").click(function () {
+                window.location.href = "/Game/GLAllTheChips/IndexNotice?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid");
+            })
+        });
+    </script>
+    <style type="text/css">
+        .bg {
+            background: url(/Areas/Game/Resources/images/GLAllTheChips/bg.jpg) top center no-repeat;
+            background-size: 100%;
+            font-family: 'Microsoft YaHei',Arial;
+            margin: 0px;
+            background-attachment: scroll;
+        }
+
+            .bg table {
+                position: absolute;
+                top: 80px;
+                text-align: center;
+                width: 100%;
+            }
+    </style>
+}
+
+<div class="bg">
+    <div>
+        <img class="bg1" src="~/Areas/Game/Resources/images/GLAllTheChips/quan.png" alt="head" style="width: 100%" />
+        <table>
+            <tr>
+                <td style="font-weight: bold; color: #000; font-size: 16px">现金券编号
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; color: #000; font-size: 14px">
+                    <i>@ViewBag.Ticket</i>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <img class="notice" src="~/Areas/Game/Resources/images/GLAllTheChips/notice.png" alt="head" style="width: 100%" />
+    </div>
+    <div style="margin-top: 20px">
+        <img class="search" src="~/Areas/Game/Resources/images/GLAllTheChips/search.png" alt="head" style="width: 100%" />
+        <img class="wu" src="~/Areas/Game/Resources/images/GLAllTheChips/wu.png" alt="head" style="width: 100%" />
+    </div>
+</div>

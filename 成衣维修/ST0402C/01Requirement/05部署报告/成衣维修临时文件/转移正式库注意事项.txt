@@ -1,0 +1,2 @@
+数据库
+DRP 中  存储过程 t18tj_GetClothingPrice 开始第一句加上SET NOCOUNT ON

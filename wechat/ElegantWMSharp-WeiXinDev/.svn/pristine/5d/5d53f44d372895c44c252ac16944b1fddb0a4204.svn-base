@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "薪资查询二次签权";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+
+            //$("#dpay").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dav").css("background-color", "#2c3e50").css("border-bottom", "");
+
+
+            $("#btnSubmit").click(function () {
+                if ($.trim($("#password").val()).length <= 0) {
+                    $("#password").focus();
+                    Msg.show('请输入身份证后4位!', 1);
+                    return;
+                }
+                else if ($.trim($("#password").val()).length > 4) {
+                    $("#password").focus();
+                    Msg.show('请输入身份证后4位!', 1);
+                    return;
+                }
+
+                var data = {
+                    sfz: $("#password").val(),
+                };
+
+                Msg.show("加载中...", 3);
+                $.post("/HR/EHRManagement/PayInfoCheck?", data, function (rst) {
+                    Msg.hide();
+                    if (rst.result == 0) {
+                        window.location.href = "/HR/EHRManagement/PayInfo/";
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                    $("#btnSubmit").button("reset");
+                });
+            });
+        });
+    </script>
+}
+
+<div style="text-align:center;margin:30px 0px 30px 0px;">
+    @*<img src="/Areas/HR/Resources/images/hzykq.png" style="width: 100%; height: 100%;" />*@
+    <img src="/Areas/HR/Resources/images/hzykq.png" style="margin-top:30px;width:200px" />
+</div>
+
+<br />
+<div class="input-group">
+    <span class="input-group-addon">身份证后4位：</span>
+    <input type="password" id="password" name="password" class="form-control" style="width: 100%; height: 45px" placeholder="身份证后4位">
+</div>
+<br />
+<button id="btnSubmit" type="button" class="btn btn-success" style="width: 100%; height: 45px; margin-top: 30px;" data-loading-text="请稍后...">确定</button>

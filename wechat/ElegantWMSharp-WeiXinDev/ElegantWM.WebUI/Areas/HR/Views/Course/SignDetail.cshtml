@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.HR_Course>
+
+@{
+    ViewBag.Title = "签到记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+}
+@foreach(ElegantWM.EntityModel.HR_Course course in Model){
+<div class="courseDetail" style="margin-bottom:12px;">
+    <h3><a href="/HR/Course/Detail/@course.Id"><i class="glyphicon glyphicon-book"></i> @course.CourseName</a></h3>
+    <h4><span><i class="glyphicon glyphicon-time"></i> 课 时 </span></h4>
+    @foreach (ElegantWM.EntityModel.V_HR_CourseSignRst rst in ((IEnumerable<ElegantWM.EntityModel.V_HR_CourseSignRst>)ViewBag.SignList).Where(f=>f.Cid==course.Id).OrderBy(o=>o.StartTime))
+    {
+        <div class="lesson">
+            <div style="margin-bottom:6px;"><span class="label @(rst.SignRst=="正常"?"label-success":"label-danger")">@rst.SignRst</span> <span class="label label-warning">@rst.LessonName</span></div>
+            时间： @rst.StartTime.ToString("yyyy-MM-dd") （@rst.StartTime.ToString("HH:mm") ~ @rst.EndTime.ToString("HH:mm")）<br />
+            签到： @(rst.CreateTime==null?"":rst.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss"))
+        </div>
+    }
+</div>
+}

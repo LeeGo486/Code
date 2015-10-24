@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/cashExpenseApply.do" location="150,60" dimension="194,88" />
+  <StrutsActivity path="/login.do" location="75,165" dimension="127,88" />
+  <StrutsActivity path="/expenseMainFlow.do" location="45,300" dimension="305,88" />
+  <StrutsActivity path="/tripExpenseApply.do" location="60,795" dimension="306,88" />
+  <StrutsActivity path="/specialPaymentApply.do" location="90,450" dimension="322,88" />
+  <StrutsActivity path="/wagePaymentApply.do" location="15,645" dimension="322,88" />
+  <StrutsActivity path="/purposeCostMergeQuery.do" location="975,900" dimension="223,88" />
+  <StrutsActivity path="/shopExpenseApportion.do" location="60,1005" dimension="332,88" />
+  <StrutsActivity path="/refuseRecordQuery.do" location="960,1050" dimension="318,88" />
+  <StrutsActivity path="/expense/cashExpensePrint.jsp" location="735,-30" dimension="181,49" />
+  <StrutsActivity path="/expense/cashExpenseApply.jsp" location="720,105" dimension="186,49" />
+  <StrutsActivity path="/expense/cashExpenseApplyRead.jsp" location="675,30" dimension="211,49" />
+  <StrutsActivity path="/index.jsp" location="645,210" dimension="77,49" />
+  <StrutsActivity path="/mainframe.jsp" location="405,165" dimension="101,49" />
+  <StrutsActivity path="/expense/expenseMainFlowInfo.jsp" location="660,315" dimension="201,49" />
+  <StrutsActivity path="/expense/tripExpenseApplyPrint.jsp" location="60,915" dimension="202,49" />
+  <StrutsActivity path="/expense/tripExpenseApplyRead.jsp" location="585,855" dimension="205,49" />
+  <StrutsActivity path="/expense/tripExpenseApply.jsp" location="810,795" dimension="180,49" />
+  <StrutsActivity path="/expense/specialPaymentApplyPrint.jsp" location="1035,450" dimension="219,49" />
+  <StrutsActivity path="/expense/specialPaymentApply.jsp" location="675,450" dimension="197,49" />
+  <StrutsActivity path="/expense/specialPaymentApplyRead.jsp" location="1005,525" dimension="222,49" />
+  <StrutsActivity path="/expense/wagePaymentApplyRead.jsp" location="1005,660" dimension="216,49" />
+  <StrutsActivity path="/expense/wagePaymentApply.jsp" location="675,615" dimension="191,49" />
+  <StrutsActivity path="/expense/wagePaymentApplyPrint.jsp" location="1020,720" dimension="213,49" />
+  <StrutsActivity path="/expense/purposeCostMergeQuery.jsp" location="1605,915" dimension="217,49" />
+  <StrutsActivity path="/expense/shopExpenseApportion.jsp" location="675,1020" dimension="207,49" />
+  <StrutsActivity path="/expense/refuseRecordInfo.jsp" location="1635,1065" dimension="181,49" />
+  <StrutsActivity path="" location="950,350" dimension="29,49" />
+  <StrutsTransition id="/login.do,toLogin,/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="202,234" />
+      <AbsolutePoint location="645,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/tripExpenseApply.do,toTripExpenseApplyPrint,/expense/tripExpenseApplyPrint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="161,883" />
+      <AbsolutePoint location="161,915" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/cashExpenseApply.do,toCashExpenseApplyRead,/expense/cashExpenseApplyRead.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="344,75" />
+      <AbsolutePoint location="675,75" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/refuseRecordQuery.do,toRefuseRecord,/expense/refuseRecordInfo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1278,1089" />
+      <AbsolutePoint location="1635,1089" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/expenseMainFlow.do,toExpenseMainFlow,/expense/expenseMainFlowInfo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,339" />
+      <AbsolutePoint location="660,339" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/wagePaymentApply.do,toWagePaymentApplyPrint,/expense/wagePaymentApplyPrint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="176,733" />
+      <AbsolutePoint location="176,748" />
+      <AbsolutePoint location="1020,748" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/wagePaymentApply.do,toWagePaymentApply,/expense/wagePaymentApply.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="337,660" />
+      <AbsolutePoint location="675,660" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/specialPaymentApply.do,toSpecialPaymentApply,/expense/specialPaymentApply.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="412,474" />
+      <AbsolutePoint location="675,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/specialPaymentApply.do,toSpecialPaymentApplyRead,/expense/specialPaymentApplyRead.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="251,538" />
+      <AbsolutePoint location="251,553" />
+      <AbsolutePoint location="1005,553" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/shopExpenseApportion.do,toShopExpenseApportion,/expense/shopExpenseApportion.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="392,1044" />
+      <AbsolutePoint location="675,1044" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/tripExpenseApply.do,toTripExpenseApplyRead,/expense/tripExpenseApplyRead.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="366,868" />
+      <AbsolutePoint location="585,868" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/specialPaymentApply.do,toSpecialPaymentApplyPrint,/expense/specialPaymentApplyPrint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="412,514" />
+      <AbsolutePoint location="1144,514" />
+      <AbsolutePoint location="1144,499" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/tripExpenseApply.do,toTripExpenseApply,/expense/tripExpenseApply.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="366,819" />
+      <AbsolutePoint location="810,819" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/cashExpenseApply.do,toCashExpenseApply,/expense/cashExpenseApply.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="344,129" />
+      <AbsolutePoint location="720,129" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/wagePaymentApply.do,toWagePaymentApplyRead,/expense/wagePaymentApplyRead.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="337,684" />
+      <AbsolutePoint location="1005,684" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/cashExpenseApply.do,toCashExpenseApplyPrint,/expense/cashExpensePrint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="247,60" />
+      <AbsolutePoint location="247,-5" />
+      <AbsolutePoint location="735,-5" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,LoginSucess,/mainframe.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="202,189" />
+      <AbsolutePoint location="405,189" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/purposeCostMergeQuery.do,toPurposeCostMergeQuery,/expense/purposeCostMergeQuery.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1198,939" />
+      <AbsolutePoint location="1605,939" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

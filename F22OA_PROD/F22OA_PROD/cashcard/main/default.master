@@ -1,0 +1,25 @@
+<%@ master language="C#" autoeventwireup="true" inherits="_default, App_Web_default.master.b10cd3ef" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head runat="server">
+    <title>zhxit web</title>
+	<link href="css/default.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" type="text/javascript" src="js/check.js" ></script>
+                  
+    
+	<link rel="Shortcut Icon" href="favicon.ico" />
+
+</head>
+<body>
+    <form id="frmMain" runat="server" style="margin:0;">
+    
+        <asp:contentplaceholder id="CPHdefault" runat="server">
+        </asp:contentplaceholder>
+    
+    </form>
+</body>
+</html>

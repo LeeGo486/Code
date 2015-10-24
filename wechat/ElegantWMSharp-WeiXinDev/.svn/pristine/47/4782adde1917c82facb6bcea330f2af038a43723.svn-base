@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section script{
+
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/JOREALLanternFestival.css?v4" />
+    <script type="text/javascript">
+
+        $(function () {
+            if ('@ViewBag.quantype' == "000") {
+                window.location.href = "/Game/JOREALLanternFestival/Wish?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            }
+            else {
+                $("#bg img").load(function () {
+                    var bgHeight = $("#bg").height();
+                    $("#logo").css("bottom", bgHeight * 0.01);
+                    $("#quanbg").css("bottom", bgHeight * 0.1);
+                })
+                $("#Bg").fullpage({})
+            }
+        });
+    </script>
+}
+
+<div id="bg">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/winbg.jpg" width='100%' />
+</div>
+
+<div class="deng">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/deng.png" width='100%' />
+</div>
+
+<div id="quanbg">
+    @if (@ViewBag.quantype == "58")
+    {
+        <img src="/Areas/Game/Resources/images/JOREALLanternFestival/quan58.png" width='75%' />
+    }
+    else if (@ViewBag.quantype == "88")
+    {
+        <img src="/Areas/Game/Resources/images/JOREALLanternFestival/quan88.png" width='75%' />
+    }
+    else if (@ViewBag.quantype == "128")
+    {
+        <img src="/Areas/Game/Resources/images/JOREALLanternFestival/quan128.png" width='75%' />
+    }
+    <span class="quan">@ViewBag.Ticketid</span>
+</div>
+<div id="logo">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/EP.png" alt="head" style="width: 100%" />
+</div>
+

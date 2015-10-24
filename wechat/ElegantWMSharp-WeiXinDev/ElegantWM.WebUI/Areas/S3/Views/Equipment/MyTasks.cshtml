@@ -1,0 +1,91 @@
+﻿
+<script type="text/javascript">
+    //显示详细和报修
+    function Edit(type) {
+        if (type == 0) {
+            Msg.show("请稍后...", 3);
+            $.post("/S3/Equipment/EditFacility", function (htmldata) {
+                Msg.hide();
+                $("#editArea").html(htmldata);
+                scrollTo($("#editArea"));
+            });
+        } else if (type == 1) {
+            Msg.show("请稍后...", 3);
+            $.post("/S3/Equipment/EditVivid", function (htmldata) {
+                Msg.hide();
+                $("#editArea").html(htmldata);
+                scrollTo($("#editArea"));
+            });
+        } else {
+            Msg.show("请稍后...", 3);
+            $.post("/S3/Equipment/EditIT", function (htmldata) {
+                Msg.hide();
+                $("#editArea").html(htmldata);
+                scrollTo($("#editArea"));
+            });
+        }
+    }
+    $(function () {
+        $("li").click(function () {
+            $("li").removeClass("dataListSld");
+            $(this).addClass("dataListSld");
+        });
+    });
+</script>
+<div class="ht">
+    <i class="icon-lightbulb"></i>&nbsp;&nbsp;店铺设施
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+    <span onclick="Edit(0);">
+        <i class="icon-plus icon-large"></i>
+    </span>
+</div>
+<ul class="list-group">
+    <li class="list-group-item"><a href="javascript:Edit(0);"><i class="icon-lightbulb"></i> 试衣间门的镜子碎裂</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(0);"><i class="icon-lightbulb"></i> 试衣间的帘子掉下来了</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(0);"><i class="icon-lightbulb"></i> 包间小射灯坏了8个</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(0);"><i class="icon-lightbulb"></i> 厅房内两个轨道射灯坏了</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(0);"><i class="icon-lightbulb"></i> 试衣间灯镇流器已坏，需更换</a></li>
+</ul>
+<div class="ht">
+    <i class="icon-magic"></i>&nbsp;&nbsp;形象品
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+    <span onclick="Edit(1);">
+        <i class="icon-plus icon-large"></i>
+    </span>
+</div>
+<ul class="list-group">
+    <li class="list-group-item"><a href="javascript:Edit(1);"><i class="icon-magic"></i> 高级系列裤架20个</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(1);"><i class="icon-magic"></i> 鞋模1台</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(1);"><i class="icon-magic"></i> EP无纺布袋300个</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(1);"><i class="icon-magic"></i> 厅房内两个轨道射灯坏了</a></li>
+</ul>
+<div class="ht">
+    <i class="icon-desktop"></i>&nbsp;&nbsp;IT类报修 
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+    <span onclick="Edit(2);">
+        <i class="icon-plus icon-large"></i>
+    </span>
+</div>
+<ul class="list-group">
+    <li class="list-group-item"><a href="javascript:Edit(2);"><i class="icon-print"></i> IP电话电源坏了</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(2);"><i class="icon-print"></i> 电脑主机无法开机</a></li>
+    <li class="list-group-item"><a href="javascript:Edit(2);"><i class="icon-print"></i> Wifi无法上网</a></li>
+</ul>
+<div id="editArea">
+
+</div>

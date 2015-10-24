@@ -1,0 +1,470 @@
+﻿
+$(document).ready(function(){
+
+    //隐藏客户信息
+    $("#clientInfo").hide();
+    $("#selldatetr").hide();
+
+    //初始化控件，基础信息
+    initPlugin();
+
+})
+
+function initPlugin() {
+
+    //店铺信息
+    getDepotInfo();
+
+    //导购信息
+    getSalesman();
+
+    //客户信息开关
+    switchClient();
+
+    //获取紧急程度
+    getUrgentLeve();
+
+    //VipId
+    initVipId();
+
+    //SKU光标离开事件
+    initSKU();
+
+    //快递公司
+    getExpressInfo();
+
+    //按钮
+    initButton();
+
+    //只读字段backspance事件
+    screenBackspace();
+
+    //初始化必填项
+    initValidate();
+}
+
+function getDepotInfo() {
+
+    var depotInfo = null;
+    var data = $.cookie('depotInfo');
+    var mydate = new Date();
+    var now = mydate.getFullYear()
+        + "-" +
+        (mydate.getMonth() + 1)
+        + "-" +
+        mydate.getDate();
+
+    if (data != null) {
+
+        depotInfo = eval("(" + data + ")");
+    };
+
+    if(depotInfo != null){
+
+        //basicInfo
+        $("#DepotId").append(depotInfo.rows[0].j_depotid);
+        $("#DepotName").append(depotInfo.rows[0].j_name);
+        $("#DepotPhone").append(depotInfo.rows[0].m_shoptel);
+        $("#wxID").append(depotInfo.rows[0].j_wxid);
+        $("#wxName").append(depotInfo.rows[0].j_wxname);
+        $("#Date").append(now);
+        $("#admin").append(depotInfo.rows[0].j_name);
+
+        $("#shopadmin").textbox('setValue', depotInfo.rows[0].m_shopadmin);
+        $("#shopadminmob").textbox('setValue', depotInfo.rows[0].m_shopadminmob);
+        $("#depotaddress").textbox('setValue', depotInfo.rows[0].g_address);
+        $("#wxaddress").textbox('setValue', depotInfo.rows[0].j_wxaddress);
+        $("#wxadmin").textbox('setValue', depotInfo.rows[0].j_wxadmin);
+        $("#wxshoptel").textbox('setValue', depotInfo.rows[0].m_wxshoptel);
+    };
+}
+
+function getSalesman(){
+
+    var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([], 'getSalesman');
+
+    $.post(url, function (data) {
+       var json = eval ("("+data+")");
+
+       $("#supervisor").combobox({
+            valueField: 'employeeid',
+            textField:'names',
+            required:true,
+            width:200,
+            height:32,
+            panelHeight:"auto",
+            data: json.rows,
+            onLoadSuccess:function(){
+                $("#supervisor").combobox('setValue',json.rows[0].employeeid);
+                $("#supervisormob").textbox('setValue',json.rows[0].telephone);
+            },
+            onSelect:function(record){
+                $("#supervisor").combobox('setValue',record.employeeid);
+                $("#supervisormob").textbox('setValue',record.telephone);
+            }
+       })
+
+    });
+}
+
+function getUrgentLeve(){
+    var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([], 'getUrgentLeve');
+
+    $.post(url, function (data) {
+       var json = eval ("("+data+")");
+
+       $("#UrgentLeve").combobox({
+            valueField: 'value',
+            textField:'name',
+            required: true,
+            editable: false,
+            width:200,
+            height:32,
+            panelHeight:"auto",
+            data: json.rows,
+            onLoadSuccess:function(){
+                $("#UrgentLeve").combobox('setValue',json.rows[2].value);
+            }
+       })
+
+    });
+}
+
+function switchClient(){
+
+    $("#switch").switchbutton({
+        width:100,
+        height:30,
+        onText:"顾客维修",
+        offText:"未售维修",
+        onChange: function(checked){
+            if(checked){
+                $("#VipId").textbox('setValue',"");
+                $("#VipName").textbox('setValue',"");
+                $("#VipPhone").textbox('setValue',"");
+                $("input[name='pay']").attr("checked",false);
+                $("#clientInfo").show();
+                $("#selldatetr").show();
+            }else{
+                $("#VipId").textbox('setValue',"");
+                $("#VipName").textbox('setValue',"");
+                $("#VipPhone").textbox('setValue',"");
+                $("input[name='pay']").attr("checked",false);
+                $("#clientInfo").hide();
+                $("#selldatetr").hide();
+            };
+        }
+    });
+}
+
+function initVipId(){
+
+     $("#VipId").textbox({
+        width:200,
+        height:32,
+        required:true
+     });
+
+     $("#VipId").textbox('textbox')
+         .unbind('keydown',function(e){
+            return;
+         })
+         .bind('keydown', function (e) {
+             if (e.keyCode == 13) {   // when press ENTER key, accept the inputed value.
+                 getVipInfo();
+             }
+         });
+}
+
+function getVipInfo(){
+
+    var vipid = $("#VipId").textbox('getValue');
+
+    if(vipid.length == 0){
+        alert("请输入VIP卡号");
+        
+        return;
+    };
+
+    var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson(
+            [{"name":"txtVipId","value":vipid}], 'getVipInfo');
+    $.messager.progress({ title: '请稍后', msg: '处理中' });
+    $.post(url,function(data){
+        $.messager.progress('close');
+        var json = eval("(" + data + ")");
+
+        if (json.rows.length > 0) {
+
+            //判断是否为空
+            if (json.rows[0].mobtel.length == 0) {
+                alert("无会员信息，请核对VIP卡号！");
+                return;
+            };
+
+            $("#VipName").textbox('setValue',"")
+                .textbox("setValue",json.rows[0].vipname);
+            $("#VipPhone").textbox('setValue',"")
+                .textbox("setValue",json.rows[0].mobtel);
+        };
+    })
+}
+
+function getExpressInfo(){
+
+    var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([], 'getExpressInfo');
+
+    $.post(url,function(data){
+        var json = eval("(" + data + ")");
+
+        if (json.rows.length > 0) {
+
+            $("#express").combobox({
+                valueField:'value',
+                textField:'name',
+                width:200,
+                height:32,
+                panelHeight:'auto',
+                required:true,
+                data:json.rows,
+                onLoadSuccess:function(){
+                    $("#express").combobox('setValue',json.rows[0].value);
+                }
+            })
+        };
+    })
+}
+
+function initSKU(){
+     $("#sku").textbox('textbox')
+         .unbind('blur', function (e) {
+             return;
+         })
+         .bind('blur', function (e) {
+             verifySKU();
+        });
+}
+
+function verifySKU() {
+
+   var sku = $("#sku").textbox("getValue");
+
+   if(sku.length == 0){
+        return;
+   };
+
+   
+   var vipId = $("#VipId").textbox("getValue");
+
+   //Vip卡号为空，则代表不是顾客维修。
+   if (vipId.length == 0) {
+       //店铺自己维修，保存按钮激活。
+       return;
+   }else{
+       $("#wait").empty().append("请等待,正在验证...");
+       var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson(
+            [{"name":"txtVipId","value":vipId},
+            {"name":"txtSKU","value":sku}], 'getSKUCheck');
+        $.messager.progress("提示","正在验证");
+        $.post(url,function(data){
+            $.messager.progress('close');
+            var json = eval("("+data+")");
+
+            if(json.rows[0].result == "ok"){
+                //按钮可以亮起，提示可以维系
+                $("#wait").append("").append("可以维修");
+            }
+            else if (json.rows[0].result == "no"){
+                $("#wait").append("").append("无法维修，已经超过维修年限。");
+            }
+            else if (json.rows[0].result == "null"){
+                $("#wait").append("").append("无法维修，该SKU不存在。");
+            }
+
+        });
+   };
+}
+
+function initButton(){
+    $("#submit").linkbutton({
+        width:80,
+        height:30,
+        iconCls: 'icon-ok',
+        onClick: function(){
+            submit();
+        }
+    });
+
+}
+
+function screenBackspace(){
+    $("input[readonly]").keydown(function(e) {
+        if (e.keyCode == 8) {
+            e.preventDefault();
+        };
+    });
+}
+
+
+/*
+    保存的逻辑
+    0.必填字段检查
+    1.确定是什么维修类型
+    2.再次验证必填项
+    3.组织提交的数据
+    4.提交
+    3.成功关闭，并刷新主页面
+    4.失败，等待再次提交
+*/
+function submit(){
+    var data = [];
+
+    //检验必填项
+    if(!isVaild("formDepot","店铺信息")){
+        return;
+    };
+    if(!isVaild("formWXInfo","维修产品信息")){
+        return;
+    };
+    if(!isVaild("formExpress","快递信息")){
+        return;
+    };
+
+    var cookie = $.cookie("depotInfo");
+    cookie = eval("(" + cookie + ")");
+
+    data.push({"name":"txtDepotId","value":cookie.rows[0].j_depotid});
+    data.push({"name":"txtDepotName","value":cookie.rows[0].j_name});
+    data.push({"name":"txtDepotPhone","value":cookie.rows[0].m_shoptel});
+    data.push({"name":"txtDepotTye","value":cookie.rows[0].j_form});
+    data.push({"name":"txtDepotArea","value":cookie.rows[0].j_dq});
+    data.push({"name": "txtRespName", "value": cookie.rows[0].m_shopadmin });
+    data.push({ "name": "txtWarehouseNo", "value": cookie.rows[0].j_wxid });
+    data.push({ "name": "txtWarehouseName", "value": cookie.rows[0].j_wxname });
+
+    var dataDepot = $("#formDepot").serializeArray();
+    data = eachJson(data,dataDepot);
+    //受理导购名字
+    data.push({"name":"txtStaffName","value":
+        $("#supervisor").combobox("getText")});
+
+    var switchOpt 
+        = $("#switch").switchbutton('options');
+    
+    //false:未售维修,true:顾客维修
+    var switchStatus = switchOpt.checked;
+
+    if(switchStatus){
+        if(!isVaild("formClient","顾客信息")){
+            return;
+        };
+        
+        var dataVip = $("#formClient").serializeArray();
+        data = eachJson(data,dataVip);
+        //售出时间
+        data.push({"name":"txtSellDate",
+            "value":$("#SellDate").datebox('getValue')});
+    };
+
+    var dataWX = $("#formWXInfo").serializeArray();
+    data = eachJson(data,dataWX);
+
+    var dataExpress = $("#formExpress").serializeArray();
+    data = eachJson(data, dataExpress);
+
+    var remark = $("#Remark").textbox('getValue');
+
+    if(remark.length != 0){
+        data.push({"name":"txtRemark","value":remark});
+    };
+
+    $.messager.confirm('提示框', "提交后无法修改，请确认？", function (e) {
+        if(e){
+
+            var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+                + "&XML=" + escape(GetFormJson(data, 'crtNewWX'));
+            $.messager.progress({ title: '请稍后', msg: '处理中' });
+            $.post(url,function(data){
+                $.messager.progress('close');
+
+                var rst = eval("("+data+")");
+                if (rst.Error) {
+                    
+                    $.messager.alert("系统错误", rst.Error, 'error');
+                }
+                else if (rst.rows[0].result == "False") {
+                  
+                    $.messager.alert("提示", rst.rows[0].message, 'error');
+                }
+                else {
+                    $.messager.alert("提示", rst.rows[0].message, 'ok');
+                    $("#submit").linkbutton('disable');
+                    //关闭成衣维修登记
+                    window.parent.$('#mainTabs').tabs('close', '总部维修登记');
+                };
+
+            });
+        };
+    });
+
+}
+
+function isVaild(formName, msg) {
+
+    var isVaild 
+        = $('#'+ formName).form('validate');
+
+    if (!isVaild) {
+        alert("请将" + msg + "填写完整");
+        isVaild = false;
+        
+    };
+
+    return isVaild;
+}
+
+function initValidate(){
+   $("#sku").textbox({required:true});
+   $("#Question").textbox({
+        multiline:true,
+        required:true
+    });
+   $("#expressNo").textbox({required:true});
+}
+
+function eachJson(data, jsonObj) {
+
+    for (var o in jsonObj) {
+        data.push(
+            {"name":jsonObj[o].name
+            ,"value":jsonObj[o].value}
+        );
+    };
+    return data;
+}
+
+
+//日期格式化
+function myformatter(date){
+    var y = date.getFullYear();
+    var m = date.getMonth()+1;
+    var d = date.getDate();
+    return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+}
+
+function myparser(s){
+    if (!s) return new Date();
+    var ss = (s.split('-'));
+    var y = parseInt(ss[0],10);
+    var m = parseInt(ss[1],10);
+    var d = parseInt(ss[2],10);
+    if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+        return new Date(y,m-1,d);
+    } else {
+        return new Date();
+    }
+}

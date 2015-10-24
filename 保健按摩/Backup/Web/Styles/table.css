@@ -1,0 +1,22 @@
+﻿.tabledata
+{
+    width:100%;
+    margin:8px auto;
+    border:0 ;
+    background-color:#CBD8AC;
+}
+.tabledata tr
+{
+    background-color:#FFFFFF ;   
+}
+.tabledata thead td
+{
+    height:20px;
+    background-image: url(../Images/content-bg.gif);   
+}
+.tabledata tbody .bold
+{
+    font-weight:bold ;
+}
+.tr_bg { background-color: #CEFFFF; font-size: 12px; }
+.tr_bg_sel { background-color: #bcc7d8; font-size: 12px; }

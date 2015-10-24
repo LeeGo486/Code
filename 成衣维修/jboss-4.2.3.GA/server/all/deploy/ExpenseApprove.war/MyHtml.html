@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>MyHtml.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+  </head>
+  <script type="text/javascript">
+  	function changeArea(){
+  		if($("#barImg").attr("src")=='img/changebar.JPG'){
+  			$("#leftFrame").css("width","0");
+  			$("#barFrame").css("left","0");
+  			$("#mainFrame").css("width","99.5%");
+  			$("#mainFrame").css("left","0.5%");
+  			$("#barImg").attr("src","img/changebar2.JPG");
+  		}else{
+  			$("#leftFrame").css("width","9.5%");
+  			$("#barFrame").css("left","9.5%");
+  			$("#mainFrame").css("left","10%");
+  			$("#mainFrame").css("width","90%");
+  			$("#barImg").attr("src","img/changebar.JPG");
+  		}
+  		
+  	}
+  </script>
+  <body bgcolor="#EFF8FF">
+     当前登录人：俞晓东
+     <div style="position: relative; display: inline-block; width: 100%; height: 100%;">
+     	<div id="leftFrame" style="position: absolute;top:0;left:0; width: 120;height: 100%;background-color: #EFF8FF" >
+    	
+    					<img src="img/cashicon.JPG" style="position: absolute;top:20;left:10;width=80;"  />
+    					
+    					<div style="position: absolute;top:75;left:15;width=80;">现金报销</div>
+    					
+    			
+    		
+    	</div>
+    	
+    	<div id="barFrame" style="position: absolute;top:0;left:9.5%; width: 0.5%;height: 100%;background-color: #EFF8FF">
+    		<img id='barImg' alt=""  src="img/changebar.JPG" onclick="changeArea()" style="position: absolute;top:40%;">
+    	</div>
+    	
+    	<div id="mainFrame" style="position: absolute;top:0;left:10%;width: 90%;height: 100%;background-color: blue">
+    		<iframe width="100%" height="100%" frameborder="0" src=""></iframe>
+    	</div>
+    </div>
+  </body>
+</html>

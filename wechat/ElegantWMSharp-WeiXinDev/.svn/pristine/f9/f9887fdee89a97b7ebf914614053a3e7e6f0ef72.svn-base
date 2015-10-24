@@ -1,0 +1,446 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.ITSM_Event>
+@{
+    ViewBag.Title = "事件汇报";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@helper GetStar(decimal pdValue)
+{
+    string str = "";
+    int index = 0;
+
+    while (index < 5)
+    {
+        if (index <= pdValue)
+        {
+            str += "★";
+        }
+        else 
+        {
+            str += "☆";
+        }
+        index++;
+    }
+    @(str);
+}
+
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/UiStep/step.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        function showAttachment(fileUrl) {
+            bootbox.alert("<center><img src='" + fileUrl + "' width='100%' height='100%' /></center>");
+        }
+
+        var m_LastID = undefined;
+        function GetHisList(url, id) {
+
+            if (m_LastID == id) {
+                return;
+            }
+
+            Msg.show("请稍候...", 3);
+            $.post(url, function (data) {
+                Msg.hide();
+                $("#divHisList" + id).html(data);
+                $("#divHisList" + m_LastID).html("");
+                m_LastID = id;
+                $("#icon" + m_LastID).removeClass("icon-double-angle-down");
+                $("#icon" + m_LastID).addClass("icon-double-angle-up");
+                $('html, body').animate({ scrollTop: $("#E_" + id).offset().top }, 300, false);
+            });
+            return false;
+        }
+
+
+        function hideHisList() {
+            if (m_LastID != undefined) {
+                $("#divHisList" + m_LastID).html("");
+                $("#icon" + m_LastID).removeClass("icon-double-angle-up");
+                $("#icon" + m_LastID).addClass("icon-double-angle-down");
+                m_LastID = undefined;
+            }
+        }
+
+        function changeState(state) {
+            Msg.show("请稍后...", 3);
+            var url = "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            if (state == "ALL") {
+                url = url + "&state=ALL"
+            }
+            window.location.href = url;
+        }
+
+        function getAllEvent() {
+            url = "/IT/SM/AllEventList?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            window.location.href = url;
+        }
+
+        //事件处理
+        function hdlEvent(id, type) {
+            Msg.show("请稍后...", 3);
+            $.post("/IT/SM/HandleEvent/" + id + "?type=" + type + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                Msg.hide();
+                if (rst.result == 0) {
+                    //转派成功，修改状态
+                    $("#E_" + id + " ol li").removeClass("ui-step-active");
+                    $("#E_" + id + " ol li").removeClass("ui-step-undone");
+                    $("#E_" + id + " ol li").removeClass("ui-step-done");
+                    if (type == 2) {
+                        $("#E_" + id + " ol li:eq(0)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(1)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(2)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(3)").addClass("ui-step-undone");
+                        $("#E_" + id + " ol li:eq(4)").addClass("ui-step-undone");
+                    } else if (type == 3) {
+                        $("#E_" + id + " ol li:eq(0)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(1)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(2)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(3)").addClass("ui-step-active");
+                        $("#E_" + id + " ol li:eq(4)").addClass("ui-step-undone");
+                    } else if (type == 4) {
+                        $("#E_" + id + " ol li:eq(0)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(1)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(2)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(3)").addClass("ui-step-done");
+                        $("#E_" + id + " ol li:eq(4)").addClass("ui-step-active");
+                    }
+                }
+                Msg.show(rst.msg, rst.result);
+            });
+        }
+
+        //完成
+        function completeEvent(id) {
+
+            $("#winEventId").val(id);
+
+            $("#winhdlEvent button.btn-primary").on("click", function (e) {
+                $("#winhdlEvent").modal('hide');
+            });
+            $("#winhdlEvent button.btn-danger").on("click", function (e) {
+                var eid = $("#winEventId").val();
+                if ($("#sltEqu").val() == null) {
+                    Msg.show("请选择设备！", 1);
+                    return;
+                }
+                if ($("#sltApp").val() == null) {
+                    Msg.show("请选择应用！", 1);
+                    return;
+                }
+                var data = {
+                    Id: eid,
+                    EventEquipment: $("#sltEqu").val(),
+                    EventApp: $("#sltApp").val(),
+                    EventSolution: $("#txtSolution").val()
+                };
+                $.post("/IT/SM/CompleteEvent?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), data, function (rst) {
+                    if (rst.result == 0) {
+                        $("#winhdlEvent").modal('hide');
+                        $("#E_" + eid + " ol li").removeClass("ui-step-active");
+                        $("#E_" + eid + " ol li").removeClass("ui-step-undone");
+                        $("#E_" + eid + " ol li").removeClass("ui-step-done");
+                        $("#E_" + eid + " ol li:eq(0)").addClass("ui-step-done");
+                        $("#E_" + eid + " ol li:eq(1)").addClass("ui-step-done");
+                        $("#E_" + eid + " ol li:eq(2)").addClass("ui-step-done");
+                        $("#E_" + eid + " ol li:eq(3)").addClass("ui-step-done");
+                        $("#E_" + eid + " ol li:eq(4)").addClass("ui-step-active");
+                    }
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+            $("#winhdlEvent").modal({
+                "backdrop": "static",
+                "keyboard": true,
+                "show": true
+            });
+        }
+
+        //转派
+        function shiftEvent(id) {
+            console.log($("#E_" + id + " ol li"));
+            $("#winEid").val(id);
+
+            $("#winShiftEvent button.btn-primary").on("click", function (e) {
+                $("#winShiftEvent").modal('hide');
+            });
+            $("#winShiftEvent button.btn-danger").on("click", function (e) {
+                var eid = $("#winEid").val();
+                if ($("#sltEgr").val() == null) {
+                    Msg.show("请选择转派对象！", 1);
+                    return;
+                }
+                var data = {
+                    id: eid,
+                    egr: $("#sltEgr").val(),
+                    remark: $("#txtReason").val()
+                };
+                $.post("/IT/SM/ShiftEvent?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), data, function (rst) {
+                    if (rst.result == 0) {
+                        $("#winShiftEvent").modal('hide');
+                        $("#E_" + eid).fadeOut(1000);
+                        $("#E_" + eid).remove();
+                    }
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+            $("#winShiftEvent").modal({
+                "backdrop": "static",
+                "keyboard": true,
+                "show": true
+            });
+        }
+    </script>
+}
+
+<div class="ht">
+    <i class="icon-wrench" onclick="getAllEvent();"></i>&nbsp;&nbsp;派给我的事件 
+   @if (Request["State"] == null || Request["State"].ToString().ToUpper() != "ALL")
+   {
+       <a href="#" onclick="changeState('ALL'); return false;"><span class="badge  pull-right">全部 @(ViewBag.AllEventCount)</span></a>  
+       
+       <span class="badge  pull-right hs" style="margin-left: 10px">待处理 @(ViewBag.EventCount)</span>
+   }
+   else
+   {
+       <span class="badge  pull-right hs">全部 @(ViewBag.AllEventCount)</span> 
+       <a href="#" onclick="changeState('');return false;"><span class="badge  pull-right" style="margin-left: 10px">待处理 @(ViewBag.EventCount)</span></a>
+   }
+</div>
+
+@if (ViewBag.EventCount == 0 && (Request["State"] == null || Request["State"].ToString().ToUpper() != "ALL"))
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，目前没有需要您处理的“故障报修”信息。<br />
+        <br />
+    </div>
+}
+
+
+@if (ViewBag.AllEventCount == 0 && (Request["State"] != null && Request["State"].ToString().ToUpper() == "ALL"))
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，截止目前，Mgr还没有指派过您任何“故障报修”信息。<br />
+        <br />
+    </div>
+}
+
+
+@foreach (ElegantWM.EntityModel.ITSM_Event e in Model)
+{
+    <div class="eventSch clearfix" id="E_@e.Id" onclick="hideHisList()">
+        <ul class="list-group">
+            <li class="list-group-item"><span style="color: #969696">事件编号：</span><i class="icon-double-angle-down" id="icon@(e.Id)"></i>
+                <a href="#" onclick="return GetHisList('/IT/SM/DetailHisList/@e.Id?sid=@Request["sid"]&oid=@Request["oid"]','@(e.Id)');return false;" style="color:@((e.ProcessStatus == 5 || e.ProcessStatus == 9) ? "#969696" : "#39ac00")">
+                    @(e.Code)
+                </a>
+
+                @if (e.Engineer != null)
+                {
+                    <span class="badge ls"><a href="tel:@(e.EngineerPhone)" style="text-decoration:none"><span style="color: #FFF"><i class="icon-phone"></i>&nbsp;&nbsp;@(e.Engineer)</span></a></span>
+                }
+                else
+                {
+                    <span class="badge ls"><a href="tel:057383685660"><span style="color: #FFF"><i class="icon-phone"></i>&nbsp;&nbsp;信息管理中心</span></a></span>
+                }
+
+            </li>
+            <li class="list-group-item"><span style="color: #969696">请求内容：</span>
+                @if (!string.IsNullOrEmpty(e.FileUrl))
+                {
+                    <i class="glyphicon glyphicon-paperclip" onclick="showAttachment('/Content/Uploads/Event/@e.FileUrl');">@(e.EventDesc) </i>
+                }
+                else
+                {
+                    @(e.EventDesc)
+                }
+            </li>
+        </ul>
+
+        <ol class="ui-step ui-step-5">
+            <li class="ui-step-start @if (e.ProcessStatus == 9)
+                                     {@("ui-step-undone")}
+                                     else if (e.ProcessStatus != 9 && e.ProcessStatus >= 0)
+                                     {@("ui-step-done")}
+                                     else
+                                     {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">1</i>
+                    <span class="ui-step-text">提报</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 0)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 0)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">2</i>
+                    <span class="ui-step-text">派工</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 1)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 1)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">3</i>
+                    <span class="ui-step-text">接收</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 3)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 2)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 3)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">4</i>
+                    <span class="ui-step-text">完成</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 4)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 4)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")} ui-step-end ">
+
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">5</i>
+                    <span class="ui-step-text">评价</span>
+                </div>
+            </li>
+        </ol>
+
+        <div id='divHisList@(e.Id)' style="min-height:0px"></div>
+
+        @if (e.ProcessStatus != 5 && e.ProcessStatus != 9)
+        {
+            <div class="operate">
+                <div class="btnOpt" onclick="shiftEvent('@e.Id');"><i class="icon-signout"></i>&nbsp;转派</div>
+                @*<div class="btnOpt" onclick="hdlEvent('@e.Id',4);" style="border-right: 1px solid #ccc;"><i class="icon-ok"></i>&nbsp;完成</div>*@
+                <div class="btnOpt" onclick="completeEvent('@e.Id',4);" style="border-right: 1px solid #ccc;"><i class="icon-ok"></i>&nbsp;完成</div>
+                <div class="btnOpt" onclick="hdlEvent('@e.Id',3);" style="border-right: 1px solid #ccc;"><i class="icon-wrench"></i>&nbsp;处理</div>
+                <div class="btnOpt" onclick="hdlEvent('@e.Id',2);" style="border-right: 1px solid #ccc;"><i class="icon-signin"></i>&nbsp;接收</div>
+            </div>
+        }
+        else if (e.ProcessStatus == 5)
+        {
+            <div style="margin: 10px"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;评价信息</div>
+            <ul class="list-group">
+
+                <li class="list-group-item"><span style="color: #969696">响应时间：</span>
+                    @GetStar(e.ElvTime - 6)
+                </li>
+                <li class="list-group-item"><span style="color: #969696">服务态度：</span>
+                    @GetStar(e.ElvAtude - 6)
+                </li>
+                <li class="list-group-item"><span style="color: #969696">服务结果：</span>
+                    @GetStar(e.ElvRst - 6)
+                </li>
+                <li class="list-group-item"><span style="color: #969696">其它反馈：</span>
+                    @(e.ElvDesc)
+                </li>
+            </ul> 
+        }
+
+    </div>
+}
+
+
+<div id="winShiftEvent" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <input id="winEid" type="hidden" />
+                <div class="input-group">
+                    <span class="input-group-addon">转给</span>
+                    <select id="sltEgr" class="form-control">
+                        @foreach (ElegantWM.EntityModel.ITSM_Engineer egr in ViewBag.Engineer)
+                        {
+                            <option>@egr.EgrName</option>
+                        }
+                    </select>
+                </div>
+                <br />
+                <textarea id="txtReason" class="form-control" placeholder="请输入转派原因"></textarea>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="winhdlEvent" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <input id="winEventId" type="hidden" />
+                <div class="input-group">
+                    <span class="input-group-addon">设备</span>
+                    <select id="sltEqu" class="form-control">
+                        @foreach (ElegantWM.EntityModel.ITSM_BasicInfo bi in ViewBag.BasicInfo)
+                        {
+                            if (bi.BIType == "设备")
+                            {
+                            <option>@bi.BIValue</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon">应用</span>
+                    <select id="sltApp" class="form-control">
+                        @foreach (ElegantWM.EntityModel.ITSM_BasicInfo bi in ViewBag.BasicInfo)
+                        {
+                            if (bi.BIType == "应用")
+                            {
+                            <option>@bi.BIValue</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <br />
+                <textarea id="txtSolution" class="form-control" placeholder="请输入解决方案"></textarea>
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">取 消 </button>
+                <button type="button" class="btn btn-danger">确 定 </button>
+            </div>
+        </div>
+    </div>
+</div>

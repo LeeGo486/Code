@@ -1,0 +1,429 @@
+﻿body {
+    background-color: #fff;
+    font-family: Microsoft YaHei;
+}
+
+.ht {
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+    font-size: 14px;
+}
+
+.mainArea {
+    line-height: 180%;
+}
+
+    .mainArea h4 {
+        font-size: 14px;
+        margin: 0px 0px 8px 0px;
+        font-weight: normal;
+        color: #444;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 0px 8px 0px;
+    }
+
+        .mainArea h4 span {
+            padding: 4px 0px 7px 0px;
+            border-bottom: 2px solid #CC3333;
+        }
+
+
+
+/******************底部导航****************/
+.navsHead {
+    height: 42px;
+    font-size: 0px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+
+    .navsHead div {
+        height: 50px;
+        width: 100%;
+        background-color: #fff;
+        float: left;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .navsHead img {
+        height: 30px;
+        margin: 10px;
+    }
+
+    .navsHead #navNavigationButton {
+        margin-left: -10px;
+    }
+
+/******************导航页fullpage****************/
+.sidebar-wrapper {
+    position: relative;
+    height: 100%;
+    overflow: auto;
+    text-align: left;
+}
+
+#dowebok {
+    background-color: #000;
+}
+
+    #dowebok .nav {
+        margin-top: 50px;
+        line-height: 40px;
+        list-style-type: none;
+    }
+
+        #dowebok .nav a {
+            display: block;
+            padding: 0 20px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+            #dowebok .nav a:hover {
+                background-color: #0883fd;
+            }
+
+    #dowebok hr {
+        margin: 50px;
+        background-color: #444;
+        height: 1px;
+        border: none;
+        border-top: 0px solid #555555;
+        margin: 10px 20px -40px;
+    }
+
+[data-simplersidebar='active'] {
+    box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+/******************首页轮播图****************/
+
+
+.iosSlider {
+    width: 100%;
+    /*min-height: 150px;*/
+    /*min-height: 150px;*/
+    position: relative;
+    overflow: hidden;
+    background: #ccc;
+}
+
+    .iosSlider .slider {
+        min-height: 150px;
+        width: 100%;
+        height: 100%;
+    }
+
+        .iosSlider .slider .item {
+            height: auto;
+            width: 100%;
+        }
+
+            .iosSlider .slider .item img {
+                width: 100%;
+            }
+
+.iosSliderButtons {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 200px;
+    height: 10px;
+}
+
+    .iosSliderButtons .button {
+        float: left;
+        width: 9px;
+        height: 9px;
+        background: #666;
+        margin: 0 10px 0 0;
+        opacity: 0.25;
+        filter: alpha(opacity:25);
+        border: 1px solid #000;
+        border-radius: 10px;
+    }
+
+    .iosSliderButtons .selected {
+        background: #fff;
+        opacity: 1;
+        filter: alpha(opacity:100);
+    }
+
+/******************业务****************/
+
+.bg,
+ul li img {
+    width: 100%;
+}
+
+.split {
+    /*height: 10px;*/
+    height: 5px;
+    /*background: url(/Areas/Matrix/Resources/images/line.jpg) center center repeat-x;*/
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.indexul {
+    padding: 0px;
+    margin-bottom: 45px;
+}
+
+.skulistul {
+    padding: 5px;
+    margin-top: 51px;
+}
+
+.skulisttable {
+    margin-top: -12px;
+    /*margin-bottom: 51px;*/
+}
+
+    .skulisttable .skulisttablediv {
+        border: 1px solid #ccc;
+    }
+
+.section img {
+    width: 100%;
+}
+
+.skudetailsc {
+    position: fixed;
+    z-index: 999;
+    bottom: 10%;
+    left: 10%;
+}
+
+    .skudetailsc span {
+        padding: 15px;
+        letter-spacing: 10px;
+    }
+
+        .skudetailsc span img {
+            width: 40%;
+        }
+
+.SKUDetailInfo {
+    position: absolute;
+    top: 0px;
+    margin: 0px 0px 0px 0px;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0.9;
+    border: 5px solid #000;
+}
+
+    .SKUDetailInfo p {
+        font-weight: bold;
+        color: #000;
+    }
+
+#CancelSKUDetail {
+}
+
+    #CancelSKUDetail table {
+        text-align: right;
+        font-size: 30px;
+    }
+
+
+.OrderInfo {
+    /*margin-top: 53px;*/
+    background-color: #f0f0f0;
+}
+
+    .OrderInfo textarea {
+        background-color: #e3e3e3;
+        border: 1px solid #9e9e9e;
+        width: 100%;
+    }
+
+.OrderInfoDiv {
+    padding: 25px 25px 0px 25px;
+}
+
+.OrderInfotable {
+    text-align: right;
+    border-bottom: 1px dashed #7f7f7f;
+}
+
+    .OrderInfotable td {
+        font-weight: bold;
+        color: #000;
+    }
+
+    .OrderInfotable input {
+        background-color: #e3e3e3;
+        border: 1px solid #9e9e9e;
+        width: 100%;
+        height: 30px;
+        padding: 10px;
+    }
+
+    .OrderInfotable select {
+        background-color: #e3e3e3;
+        border: 1px solid #9e9e9e;
+        width: 100%;
+        height: 30px;
+    }
+
+.OrderInfo .OrderInfoDivStyle {
+    background-color: #fff;
+    /*margin-top: -25px;*/
+}
+
+.OrderInfoul {
+    padding: 20px 20px 20px 20px;
+    /*margin:-25px 35px 0px 35px*/
+}
+
+    .OrderInfoul img {
+        width: 100%;
+    }
+
+.OrderButton {
+    margin-top: 0px;
+}
+
+.VIP img {
+    width: 20px;
+    float: left;
+}
+.VIP ul {
+    margin-top:-10px
+}
+#title {
+    height: 20%;
+    background: url(/Areas/NPaia/Resources/images/Goods/bgcolor.png) center center repeat-x;
+    color: #fff;
+}
+
+#per {
+    height: 100px;
+    background: url(/Areas/NPaia/Resources/images/Goods/per.png) center center repeat-x;
+    color: #fff;
+    text-align: left;
+    font-size: 16px;
+    padding: 20px;
+}
+
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 5px;
+    border: 1px solid #fff;
+}
+
+#name .btn,
+#sel .btn,
+#info .btn {
+    border-color: #ccc;
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(top,#fff 0,#fff 100%);
+    background-image: linear-gradient(to bottom,#fff 0,#fff 100%);
+    color: #000;
+    text-shadow: 0;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+    width: 54px;
+}
+
+    #name .btn.active,
+    #sel .btn.active,
+    #info .btn.active {
+        background-color: #e1b7b8;
+        border-color: #e1b7b8;
+        background-image: -webkit-linear-gradient(top,#e1b7b8 0,#e1b7b8 100%);
+        background-image: linear-gradient(to bottom,#e1b7b8 0,#e1b7b8 100%);
+        color: #fff;
+        text-shadow: 0;
+        text-shadow: 0 0 0 rgba(0,0,0,0);
+        width: 54px;
+    }
+
+
+table td {
+    border-width: 0px;
+}
+
+#skulist {
+    text-align: center;
+}
+
+    #skulist .name {
+        margin: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    #skulist td {
+        width: 50%;
+    }
+
+table#detail,
+table#bigImg {
+    width: 80%;
+    text-align: left;
+    margin: 0 10%;
+}
+
+    table#detail td,
+    table#bigImg td {
+        border-width: 0 0 1px 0;
+    }
+
+        table#bigImg td img {
+            width: 100%;
+        }
+
+table.cart {
+    /*border: 1px solid #ccc;*/
+    text-align: left;
+    background-color: #fff;
+}
+
+    table.cart td.smallImg {
+        width: 100px;
+        padding: 3px;
+    }
+
+    table.cart td.check {
+        border-radius:25px;
+        width: 50px;
+        vertical-align:top;
+    }
+
+    table.cart td.count {
+        /*border-width: 1px 0 0 0;*/
+        /*border-color: #ccc;*/
+    }
+
+.tab-pane {
+    padding: 10px 10px 0;
+}
+
+
+
+/************页面底部****************/
+.footer {
+    background: url(/Areas/Matrix/Resources/images/line.jpg) top center repeat-x;
+    padding: 20px;
+    margin: 60px 0px 20px 0px;
+    text-align: center;
+    color: #999;
+}
+
+    .footer a {
+        color: #969696;
+        line-height: 200%;
+    }

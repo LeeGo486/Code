@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = "完善个人信息";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+<script type="text/javascript">
+    var flag = "0";
+    function updateTimeLabel(time) {
+        var btn = $("#getAuthCode");
+        btn.fadeIn(1000);
+        //  $("#getAuthCode")[0].innerHTML
+        btn[0].innerHTML = (time <= 0 ? "获取验证码" : ((time) + "秒后重试"));
+        var hander = setInterval(function () {
+            if (time <= 0) {
+                clearInterval(hander);
+                btn[0].innerHTML = ("获取验证码");
+                btn.attr("disabled", false);
+
+            }
+            else {
+                btn[0].innerHTML = ((time--) + "秒后重试"); btn
+                btn.attr("disabled", true);
+            }
+        }, 1000);
+    }
+
+
+    /**********校验表单信息***********/
+    $(function () {
+
+        $("#VipName").val('@ViewBag.dtpCentumInfo.Rows[0]["name"]');
+        $("#VipTel").val('@ViewBag.dtpCentumInfo.Rows[0]["phone"]');
+        $("#VipSex").val('@ViewBag.dtpCentumInfo.Rows[0]["sex"]');
+        $("#VipBirthday").val('@ViewBag.dtpCentumInfo.Rows[0]["Birthday"]');
+        $("#VipOccupation").val('@ViewBag.dtpCentumInfo.Rows[0]["Occupation"]');
+
+        $("#Vipadd").val('@ViewBag.dtpCentumInfo.Rows[0]["vipadd"]');
+
+        $.post("/DLWXSite/DLGoods/GetProvince?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+            var rst = eval("(" + data + ")");
+
+            var html = "<option></option>";
+            for (var i = 0; i < rst.length; i++) {
+                html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+            }
+            $("#province select").html(html);
+            $("#province select").attr("value", "浙江省");
+
+            if (flag == "0") {
+                var Options = $("#province select");
+                var i = 0;
+                for (i = 0; i < Options[0].length; i++) {
+                    if ('@ViewBag.dtpCentumInfo.Rows[0]["province"]' == Options[0][i].innerText) {
+                        $("#province select").get(0).options[i].selected = true;
+                        getCity();
+                    }
+                }
+            }
+        });
+
+        $("#province select").change(function () {
+            getCity();
+        })
+
+        $("#city select").change(function () {
+            getCounty();
+        })
+
+        /***********发送验证短信************/
+        $("#getAuthCode").click(function () {
+            var strMobileNumber = $("#VipTel").val();
+            if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                $("#VipTel").focus();
+                Msg.show('手机号码无效', 1);
+                return;
+            }
+            $("#txtAuthenticode").focus();
+            //按钮倒计时
+            updateTimeLabel(60);
+            Msg.show("短信发送中...", 3);
+            var url = "/DLWXSite/VIP/SendSms?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&tel=" + strMobileNumber;
+            $.post(url, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+            });
+        });
+
+        //申请注册
+        $("#btnSubmit").click(function () {
+            var strMobileNumber = $("#VipTel").val();
+            if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                $("#VipTel").focus();
+                Msg.show('手机号码无效!', 1);
+                return;
+            }
+            if ($.trim($("#txtAuthenticode").val()).length <= 0) {
+                $("#txtAuthenticode").focus();
+                Msg.show('请输入验证码!', 1);
+                return;
+            }
+
+            if ($.trim($("#VipName").val()).length <= 0) {
+                $("#VipName").focus();
+                Msg.show('请输入姓名!', 1);
+                return;
+            }
+
+            if ($.trim($("#VipBirthday").val()).length <= 0) {
+                $("#VipBirthday").focus();
+                Msg.show('请选择生日!', 1);
+                return;
+            }
+
+            if ($.trim($("#VipOccupation").val()).length <= 0) {
+                $("#VipOccupation").focus();
+                Msg.show('请选择职业!', 1);
+                return;
+            }
+
+            if ($.trim($("#province select").val()).length <= 0) {
+                $("#province").focus();
+                Msg.show('请选择省份!', 1);
+                return;
+            }
+
+            if ($.trim($("#city select").val()).length <= 0) {
+                $("#city").focus();
+                Msg.show('请选择城市!', 1);
+                return;
+            }
+
+            if ($.trim($("#county select").val()).length <= 0) {
+                $("#county").focus();
+                Msg.show('请选择县区!', 1);
+                return;
+            }
+            if ($.trim($("#Vipadd").val()).length <= 0) {
+                $("#Vipadd").focus();
+                Msg.show('请输入地址!', 1);
+                return;
+            }
+
+            //验证手机验证码是否正确
+            var url = "/DLWXSite/VIP/CheckAuthCode?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") +
+                        "&VipTel=" + $("#VipTel").val() + "&AuthCode=" + $("#txtAuthenticode").val();
+            $(this).button("loading");
+            Msg.show("注册中...", 3);
+            var flag = false;
+            $.ajax({
+                url: url,
+                method: "POST",
+                async: false,
+                success: function (rst) {
+                    if (rst.result == 1) {
+                        Msg.hide();
+                        $("#btnSubmit").button("reset");
+                        Msg.show(rst.msg, rst.result);
+                        flag = true;
+                        return;
+                    }
+                },
+                failure: function (rst) {
+                    Msg.hide();
+                    $("#btnSubmit").button("reset");
+                    Msg.show("网络异常！", 1);
+                },
+                error: function () {
+                    Msg.hide();
+                    $("#btnSubmit").button("reset");
+                    Msg.show("请求异常！", 1);
+                }
+            });
+            if (flag) return;
+
+            var data = {
+                VipTel: $("#VipTel").val(),
+                VipSex: $("#VipSex").val(),
+                VipName: $("#VipName").val(),
+                VipBirthday: $("#VipBirthday").val(),
+                VipOccupation: $("#VipOccupation").val(),
+                province: $("#province select").find("option:selected").text(),
+                city: $("#city select").find("option:selected").text(),
+                county: $("#county select").find("option:selected").text(),
+                VipAdd: $("#Vipadd").val()
+            };
+
+            $.post("/DLWXSite/VIP/UpdateCustomerInfo?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), data, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+                if (rst.result == 0) {
+                    setTimeout(window.location.href = "/DLWXSite/VIP/VIPInformation/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), 1000);
+                }
+                $("#btnSubmit").button("reset");
+            });
+        });
+    });
+
+    function getCity() {
+        $.post("/DLWXSite/DLGoods/GetCity?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&pid=" + $("#province option:selected").val(), function (data) {
+            var rst = eval("(" + data + ")");
+
+            var html = "<option></option>";
+            for (var i = 0; i < rst.length; i++) {
+                html = html + "<option value='" + rst[i].Body_ID_0015 + "'>" + rst[i].名称 + "</option>";
+            }
+            $("#city select").html(html);
+            if (flag == "0") {
+                var Options = $("#city select");
+                var i = 0;
+                for (i = 0; i < Options[0].length; i++) {
+                    if ('@ViewBag.dtpCentumInfo.Rows[0]["city"]' == Options[0][i].innerText) {
+                    $("#city select").get(0).options[i].selected = true;
+                }
+            }
+        }
+            getCounty();
+        });
+}
+
+function getCounty() {
+    $.post("/DLWXSite/DLGoods/GetCounty?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&cid=" + $("#city option:selected").val(), function (data) {
+        var rst = eval("(" + data + ")");
+
+        var html = "<option></option>";
+        for (var i = 0; i < rst.length; i++) {
+            html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+        }
+        $("#county select").html(html);
+
+        if (flag == "0") {
+            var Options = $("#county select");
+            var i = 0;
+            for (i = 0; i < Options[0].length; i++) {
+                if ('@ViewBag.dtpCentumInfo.Rows[0]["region"]' == Options[0][i].innerText) {
+                    $("#county select").get(0).options[i].selected = true;
+                    flag = "1";
+                }
+            }
+        }
+    });
+}
+</script>
+
+<div style="margin: 20px; margin-bottom: 52px">
+
+    <div class="input-group">
+        <span class="input-group-addon" style="background-color: #ffcbe2">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/name.png" height="20"></span>
+        <input id="VipName" name="VipName" class="form-control" style="border: 1px 0px 0px 0px; border-radius: 0px 5px 5px 0px; width: 100%; padding-left: 20px;" maxlength="11" placeholder="请输入姓名">
+    </div>
+
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/tel.png" height="20"></span>
+        <input id="VipTel" name="VipTel" type="number" class="form-control" style="border: 1px 0px 0px 0px; border-radius: 0px 5px 5px 0px; width: 100%; padding-left: 20px;"
+            placeholder="请填写手机号码">
+    </div>
+
+    <div class="input-group" style="margin-top: 10px">
+        <input id="txtAuthenticode" name="txtAuthenticode" type="number" class="form-control" maxlength="4" placeholder="填写验证码">
+        <span class="input-group-btn">
+            <button id="getAuthCode" class="btn" type="button" style="background-color: #000000; color: #f9b2d1">获取验证码</button>
+        </span>
+    </div>
+
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2;">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/sex.png" height="20"></span>
+        <select id="VipSex" class="form-control">
+            <option>男</option>
+            <option selected>女</option>
+        </select>
+    </div>
+
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/birthday.png" height="20"></span>
+        <input type='date' id="VipBirthday" class="form-control" style="border: 1px 0px 0px 0px; font-size: 14px; line-height: 40px; border-radius: 0px 5px 5px 0px; width: 100%; padding-left: 20px;">
+    </div>
+
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2;">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/Occupation.png" height="20"></span>
+        <select id="VipOccupation" class="form-control">
+            <option>法律工作者</option>
+            <option>私营业主</option>
+            <option>企业老总</option>
+            <option>企业高管</option>
+            <option>白领</option>
+            <option>国家公务员</option>
+            <option>全职太太</option>
+            <option>学生</option>
+            <option>自由职业</option>
+            <option>退休人员</option>
+            <option>法律工作者</option>
+            <option>媒体工作者</option>
+            <option>医疗工作者</option>
+            <option>教育工作者</option>
+            <option>金融工作者</option>
+            <option>专业技术人员</option>
+            <option>其他</option>
+        </select>
+    </div>
+
+    <div class="input-group" id="province" style="margin-top: 10px">
+        <span class="input-group-addon" style="background-color: #ffcbe2;">
+            <img src="~/Areas/DLWXSite/Resources/images/VIP/add.png" height="20"></span>
+        <select class="form-control">
+        </select>
+        <span class="input-group-addon">省</span>
+    </div>
+    <div class="input-group" id="city" style="margin-top: 10px">
+        <select class="form-control">
+        </select>
+        <span class="input-group-addon">市</span>
+    </div>
+    <div class="input-group" id="county" style="margin-top: 10px">
+        <select class="form-control">
+        </select>
+        <span class="input-group-addon">区</span>
+    </div>
+    <input id="Vipadd" name="Vipadd" class="form-control" style="margin-top: 10px; border: 1px 0px 0px 0px; border-radius: 0px 5px 5px 0px; width: 100%; height: 40px; padding-left: 20px;" placeholder="请输入地址">
+    <br />
+    <span id="btnSubmit">
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/ChangePersonInfobutton.png" height="40" width="100%">
+    </span>
+</div>

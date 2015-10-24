@@ -1,0 +1,23 @@
+﻿<div class="ht" id="saddskill">
+    <i class="icon-pencil"></i>&nbsp;&nbsp;销售技巧建议
+</div>
+
+<div class="dataDetail">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div>[2014年06月28日]&nbsp;&nbsp;武汉东湖万达百货<span onclick="showSkillInfo('s1');" style="float:right;"><i class="cus icon-double-angle-down"></i></span></div>
+            <div id="s1" class="cusHideSkillArea" style="display:none;">重点说明此款衣服的面料</div>
+        </li>
+        <li class="list-group-item">
+            <div>[2014年06月28日]&nbsp;&nbsp;上海新世界<span onclick="showSkillInfo('s2');" style="float:right;"><i class="cus icon-double-angle-down"></i></span></div>
+            <div id="s2" class="cusHideSkillArea" style="display:none;">重点说明此款衣服的材质</div>
+        </li>
+    </ul>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">销售技巧建议</span>
+        <textarea class="form-control" placeholder="请输入建议内容"></textarea>
+    </div>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" data-loading-text="loading..." onclick="addSkill();">提交</button>
+</div>

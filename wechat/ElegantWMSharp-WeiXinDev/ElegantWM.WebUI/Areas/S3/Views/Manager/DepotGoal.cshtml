@@ -1,0 +1,66 @@
+﻿<div class="ht" id="sdepotgoal">
+    <i class="glyphicon icon-tag"></i>&nbsp;&nbsp;年度店铺目标
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div class="input-group ">
+        <span class="input-group-addon">忠诚客户目标</span>
+        <input type="text" class="form-control" value="" >
+        <span class="input-group-addon">%</span>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">目标完成时间</span>
+        <input type="text" class="form-control" value="" >
+        <span class="input-group-addon">月份达成！</span>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">新客户招募目标</span>
+        <input type="text" class="form-control" value="" >
+        <span class="input-group-addon">（人次）</span>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">新客户三个月内二次回头率目标</span>
+        <input type="text" class="form-control" value="" >
+        <span class="input-group-addon">%</span>
+    </div>
+    <br />
+    <h4 style="border-bottom:0px;"><span>&nbsp;&nbsp;店铺目标</span></h4>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="input-group ">
+                <span class="input-group-addon">C级客户</span>
+                <input type="text" class="form-control" value="" >
+                <span class="input-group-addon">%</span>
+            </div>
+            <br />
+            <div>陌生/新顾客（第一次接触）</div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group ">
+                <span class="input-group-addon">B级客户</span>
+                <input type="text" class="form-control" value="" >
+                <span class="input-group-addon">%</span>
+            </div>
+            <br />
+            <div>定期来店消费（每年消费2-4次）</div>
+        </li>
+        <li class="list-group-item">
+            <div class="input-group ">
+                <span class="input-group-addon">A级客户</span>
+                <input type="text" class="form-control" value="" >
+                <span class="input-group-addon">%</span>
+            </div>
+            <br />
+            <div>忠诚客户（每年消费5次或5万以上）</div>
+        </li>
+    </ul>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submitDepotGoal();">设定目标</button>
+</div>

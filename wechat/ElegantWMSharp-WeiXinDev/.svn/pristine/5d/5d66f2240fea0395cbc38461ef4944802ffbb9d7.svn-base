@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+       
+        $(function () {
+            $("#indexBg img").load(function () {
+                var bgHeight = $("#indexBg").height();
+                $("#greeting").css("top", bgHeight * 0.58);
+            });
+        });
+
+        window.onload = function () {
+
+            $("#greeting").fadeIn(10000, function () {
+                $("#greeting").fadeOut(5000, function () {
+                    window.location.href = "Brand";
+                });
+            });
+        };
+        
+    </script>
+    <style type="text/css">
+        #indexBg img{
+            width:100%;
+        }
+        
+        #loading{
+            position: absolute; 
+            color:#fff;
+            left: 40%;
+            z-index:1;
+            text-align:center;
+            letter-spacing:2px;
+        }
+
+        i{
+            color:#ad172b;
+            margin-right:5px;
+        }
+        #greeting{
+            position: absolute; 
+            left: 24%;
+            z-index:1;
+            text-align:center;
+            font-size:16px;
+            color:#fff;
+        }
+    </style>
+}
+
+
+<div id="indexBg">
+    <img alt="bg" src="/Areas/Game/Resources/images/OneOneWish/loading.png"/>
+</div>
+
+<div id="greeting">
+    <p>
+        于此刻，为爱许愿；<br />
+        在路上，用心实现；<br />
+        美好2015，与HWA一起走进！<br />
+    </p>
+</div>
+

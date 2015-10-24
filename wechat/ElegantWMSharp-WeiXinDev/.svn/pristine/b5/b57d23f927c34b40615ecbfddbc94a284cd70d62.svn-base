@@ -1,0 +1,120 @@
+﻿<script type="text/javascript">
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+</script>
+
+<div class="ht" id="sdosubscribe">
+    <i class="icon-laptop"></i>&nbsp;&nbsp;固定资产申购
+    <span onclick="$('#sdosubscribearea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="mainArea">
+    <div class="input-group">
+        <span class="input-group-addon">单据状态</span>
+        <select class="form-control" disabled="disabled">
+            <option selected="selected">填写</option>
+            <option>已提交</option>
+            <option>完结</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">单号</span>
+        <input type="text" class="form-control" value="FA20140715001" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">申请日期</span>
+        <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" value="2014-07-15">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">申请人</span>
+        <input type="text" class="form-control" value="徐艳琼" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">部门名称</span>
+        <input type="text" class="form-control" value="深圳深国投广场MALL" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">资产类别</span>
+        <select class="form-control">
+            <option>信息类</option>
+            <option>非信息类</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">员工代码</span>
+        <input type="text" class="form-control" value="0740382" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">成本中心代码</span>
+        <input type="text" class="form-control" value="HN1045" readonly="readonly">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">预算内外</span>
+        <select class="form-control">
+            <option>内</option>
+            <option>外</option>
+        </select>
+    </div>
+    <br />
+    <h5><span> 申购明细 </span><span onclick="loadDoSubscribesub();" style="float:right;margin-left: 5px;padding: 0px 10px;border-bottom:0;"><i class="icon-plus icon-large"></i></span></h5>
+    <br />
+    <ul class="list-group" id="subscribesub">
+        <li class="list-group-item">
+            <div style="font-size:14px;">001<span onclick="showSubscribeInfo('sub1');" style="float:right;"><i class="cus icon-double-angle-down"></i></span></div>
+            <div id="sub1" class="cusHideSubscribeArea" style="display:none;">
+                @Html.Action("DoSubscribesub")
+            </div>
+        </li>
+    </ul>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">申购总金额</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">确认总金额</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <h5><span> 资产主要用途（原因） </span></h5>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">附件
+        </span>
+        <input type="text" class="form-control" readonly="true">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button">浏览</button>
+        </span>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">主要用途</span>
+        <textarea class="form-control" placeholder="请输入主要用途"></textarea>
+    </div>
+    <br />
+
+    <h5><span> 备注 </span></h5>
+    <div>1、预算内固定资产的购置，由行政总监审核，财务总监批准</div>
+    <div>2、预算外固定资产的购置，由财务总监审核，总裁批准</div>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="doSubscribe();">提交</button>
+</div>

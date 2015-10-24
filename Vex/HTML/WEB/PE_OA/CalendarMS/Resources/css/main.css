@@ -1,0 +1,357 @@
+﻿ .btn1 {    
+    padding: 4px 10px;
+    background:none;
+    color:#ff6a00;   
+    border-radius: 5px; /*按钮圆角*/   
+    -webkit-border-radius:5px;
+}
+
+.btn1:hover,
+.btn1:active { 
+    color:#fff;
+    background-color: #ff6a00; 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6a00', endColorstr='#ff6a00', GradientType=0);
+  
+} 
+         
+.btn1:focus  { 
+    color:#f6f9fb;
+    background-color: #fff;  
+} 
+
+.div1 { 
+    font-size:14px;
+    color:#808080;
+    height:45px;  
+    background-color:#f5fef9; 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#e3ffd7', GradientType=1);
+    border-bottom:1px solid #e8e6e6;
+}
+
+.div2 { 
+    height:60px;   
+    border-bottom:1px solid #e8e6e6;
+}
+
+.div3 { 
+    font-size:12px;   
+    padding-top:5px; 
+    padding-bottom:5px; 
+    background-color:#c5dff7; /*c1f1b8*/ 
+    margin-top:6px;
+}
+  
+.bgdiv { 
+    width:100%;   
+    height:100%; 
+    top:0;
+    left:0px;
+    margin:0; 
+    padding:0;
+    z-index:998;
+    position:fixed;  
+    background-color:rgba(0,0,0,0.1); 
+    display:none;
+    overflow:hidden; 
+}    
+
+.eventModal { 
+    width:330px; 
+    height:455px; 
+    font-size:20px;   
+    border:1px solid #fbc59f; 
+    background-color: #fff;  
+    border-radius: 5px; /*按钮圆角*/    
+    position:absolute;
+    top:150px;    
+    left:35%;    
+    z-index:999;  
+} 
+        
+.eventModal_head {  
+    height:35px; 
+    border-bottom:1px solid #b9b8b8; 
+    background-color:#fef7ee; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+} 
+
+.eventModal_bottom {  
+    height:40px; 
+    border-top:1px solid #b9b8b8; 
+    background-color:#fef7ee; 
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.table1 {   /*日历列表*/
+    width:99%; 
+    font-size:16px;   
+    margin: 70px auto; 
+	border: 1px solid #b9b8b8;   
+	border-collapse:collapse;  
+    border-spacing:0px; 
+    z-index:1; 
+}
+        
+.tr1 {    /*日历列表-表头*/
+    background-color:#e8e6e6; 
+    font-size:16px; 
+    height:45px;   
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#e3ffd7', GradientType=1);
+           
+}
+
+.tr2 {   /*日历列表-内容行 周*/
+    font-size:16px; 
+    height:240px;   
+    border-bottom:1px solid #e8e6e6;
+}
+
+.tr2_m {   /*日历列表-内容行 月*/
+    font-size:16px; 
+    height:106px;   
+    border-bottom:1px solid #e8e6e6;
+}
+
+          
+.td1,   /*日历列表-事件单元格*/  
+.td2 {  /*日历列表-标签单元格*/
+    font-size:16px;  
+    width:160px;
+    border:1px solid #e8e6e6; 
+    text-align:center;
+    position:relative;
+}
+
+
+
+.td1:hover,
+.td1:active {  
+    background-color: #f6f9fb;   
+} 
+          
+.table3 {   /*约见人员列表*/
+    width:100%; 
+    font-size:14px;   
+    margin: 12px auto; 
+	border: 1px solid #b9b8b8;   
+	border-collapse:collapse; 
+}
+        
+.tr3 {  
+    color:#fff; /*656363*/
+    background-color:#cac6c6;  
+    height:30px;   
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#e3ffd7', GradientType=1);
+           
+}
+         
+.td3 {  
+    width:60px;
+    border:1px solid #fafafa; 
+    text-align:center;
+}
+
+.td3:hover,
+.td3:active {  
+    color:#656363;
+    background-color: #fef7ee;  
+} 
+
+    .input1{
+	font-size: 16px;   
+    border:none; 
+    width:200px; 
+    height:21px;
+}
+
+.textarea1{
+	font-size: 14px;  
+    border:0px solid #fff;   
+    width: 260px;   
+    height: 60px;  
+    overflow:auto;   
+}
+
+
+.btn3 {   
+    font-size:16px;
+    padding: 4px 10px;
+    background:none;
+    color:#ff6a00;   
+    border-radius: 5px; /*按钮圆角*/   
+    -webkit-border-radius:5px;
+    border: 1px solid #808080;
+}
+
+.btn3:hover,
+.btn3:active { 
+     color:#fff;
+     background-color: #ff6a00;   
+}
+
+.select1 {
+    background:#fff; 
+    width:80px; 
+    height:30px; 
+    line-height:38px;
+    font-size:18px; 
+    border:1px solid #fba86d; 
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px; 
+}
+
+ 
+.table2 {   /*日历表*/
+    width:100%; 
+    font-size:16px;   
+    margin: 70px auto 50px auto;  
+    left:0px; 
+	border: 2px solid #b9b8b8;   
+	border-collapse:collapse;  
+    border-spacing:0px; 
+    z-index:1; 
+}
+
+        
+.tr2_cp {    /*日历列表-表头*/
+    background-color:#e8e6e6; 
+    font-size:16px; 
+    height:15px;   
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#e3ffd7', GradientType=1);
+           
+}
+.tr2_m_cp {   /*日历列表-内容行 月*/
+    font-size:16px; 
+    height:70px;   
+    border-bottom:1px solid #e8e6e6;
+}
+
+ .td1_cp,   /*日历列表-事件单元格*/  
+.td2_cp {  /*日历列表-标签单元格*/
+    font-size:16px;   
+    width:24%; /*140px*/
+    border:1px solid #e8e6e6; 
+    text-align:center;
+}
+  
+
+.td1_cp:hover,
+.td1_cp:active {  
+    background-color: #f6f9fb;  
+} 
+
+
+
+
+.div3_cp { 
+    font-size:9px;   
+    padding-top:3px; 
+    padding-bottom:3px; 
+    background-color:#c5dff7; /*c1f1b8*/ 
+    margin-top:6px;
+}
+
+.div3big_cp { 
+    font-size:14px;   
+    padding-top:3px; 
+    padding-bottom:5px; 
+    background-color:#c5dff7; /*c1f1b8*/ 
+    margin-top:10px;
+}
+
+
+.div4_cp { 
+    font-size:7px;   
+    padding-top:3px; 
+    padding-bottom:3px; 
+    background-color:#c5dff7; /*c1f1b8*/ 
+    margin-top:6px; 
+    border-radius: 5px; /*按钮圆角*/   
+    -webkit-border-radius:5px;
+}
+
+
+ .eventModal_cp { 
+    width:100%;  
+    height:100%;  
+    font-size:18px;   
+    border:1px solid #fbc59f; 
+    background-color: #fff;  
+    border-radius: 5px; /*按钮圆角*/  
+    -webkit-border-radius:5px;  
+    position:fixed;
+    top:0px;    
+    left:0px;    
+    z-index:999; 
+    overflow:auto;
+} 
+        
+.eventModal_head_cp {  
+    height:35px; 
+    border-bottom:1px solid #b9b8b8; 
+    background-color:#fef7ee; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+} 
+
+.eventModal_bottom_cp {  
+    height:40px; 
+    border-top:1px solid #b9b8b8; 
+    background-color:#fef7ee; 
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/*模拟放大div用*/
+.div5_cp {    
+    width:200px;
+    height:220px;
+    position:fixed;
+    top:30%;    
+    left:20%;    
+    z-index:999; 
+    font-size:18px;    
+    border:1px solid #fbc59f;
+    background-color:#fefcfc;  
+    border-radius:20px; /*圆角*/  
+    -webkit-border-radius:20px;   
+    padding:10px 10px 10px 10px;    
+}
+
+
+.td6_cp {  /*周几列-标签单元格*/
+    font-size:16px;  
+    width:60px;
+    border:1px solid #e8e6e6; 
+    text-align:center;
+    background-color:rgba(0,0,0,0.1);
+}
+
+ .td7_cp   /*周几列-内容单元格*/  
+{   
+    font-size:16px;    
+    border:1px solid #e8e6e6; 
+    text-align:center;
+}
+  
+
+.td7_cp:hover,
+.td7_cp:active {  
+    background-color: #f6f9fb;  
+} 
+
+
+.div8 {   /*日期号，替代图片*/  
+    width:20px;
+    height:20px;
+    color:#535252;
+    font-size:14px;  
+    font-family:Arial;   
+    background-color:rgba(255,255,255,0);  
+    position:absolute;right:5px;top:5px; 
+    text-align:right;
+    vertical-align:top;
+}

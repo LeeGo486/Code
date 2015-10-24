@@ -1,0 +1,77 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //销售目标达成率
+        $('#myfinished').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '销售目标达成率',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示明细数据'
+            },
+            xAxis: [{
+                categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }],
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                }
+            },
+            plotOptions: {
+                column: {
+                    events: {
+                        click: function (e) {
+                            loadAllFinished();
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    }
+                }
+            },
+            series: [{
+                name: '达成率',
+                color: '#4F94CD',
+                type: 'column',
+                yAxis: 0,
+                data: [90, 92, 99, 100, 104, 98, 87, 110, 106, 102, 88, 89],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    });
+</script>
+
+<div class="ht" id="smyfinished">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;销售目标
+    <span onclick="$('#smyfinishedarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="myfinished" style="margin:30px 0px 36px 0px;"></div>
+</div>

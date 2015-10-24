@@ -1,0 +1,262 @@
+.igmv_Control
+{
+	font-size:x-small;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border:solid 1px Gainsboro;
+	overflow: auto;
+	position: relative;
+}
+
+
+.igmv_CaptionHeader
+{
+	background-repeat:repeat-x;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:11px;
+	border:solid 1px Gainsboro;
+	border-bottom-width:0px;
+	padding-top:3px;
+	padding-bottom:2px;
+	line-height: 16px;
+	height: 22px;
+	color:White;
+	text-align:center;
+}
+
+
+.igmv_DayHeader
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/dayheader.jpg);
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	border:solid 1px LightGrey;
+	border-right-width:0px;
+	border-left-width:0px;
+	padding:0px 2px 0px 0px;
+	cursor:default;
+	color:DimGray;
+	text-align:right;
+}
+
+
+.igmv_Day
+{
+	border:solid 1px LightGrey;
+	border-bottom-width:0px;
+	height: 10%;
+	overflow-x: hidden;
+	cursor:hand;
+	color:Black;
+}
+
+
+.igmv_Appointment
+{
+	background-color:Transparent;
+	background-repeat:repeat-x;
+	font-size:xx-small;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	margin-top:1px;
+	margin-right:1px;
+	margin-left:1px;
+	padding-left:1px;
+	line-height: 15px;
+	cursor:hand;
+	text-align:left;
+}
+
+
+.igmv_AllDayEvent
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	font-size:xx-small;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	border:solid 1px #000000;
+	margin-top:1px;
+	margin-right:1px;
+	margin-left:1px;
+	line-height: 15px;
+	cursor:hand;
+	text-align:left;
+}
+
+
+.igmv_NavigationButton
+{
+	background-color:Transparent;
+	border-width:0px;
+	margin:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+	position: absolute;
+	top: 2px;
+	width: 25px;
+	cursor:hand;
+}
+
+
+.igmv_WeekNumber
+{
+	background-color:WhiteSmoke;
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	border-right:solid 0px #666666;
+	border-top-width:0px;
+	border-top-style:outset;
+	border-bottom-width:0px;
+	border-bottom-style:outset;
+	width: 18px;
+	text-align:center;
+}
+
+
+.igmv_CompressedDay
+{
+	border-left:solid 1px Silver;
+	height: 4%;
+	vertical-align:top;
+}
+
+
+tr.igmv_CaptionHeader td.igmv_WeekNumber
+{
+	background-color:#BFDAFF;
+	background-repeat:repeat-x;
+	background-image: url(images/header.gif);
+	border-width:0px;
+	line-height: 19px;
+}
+
+
+.igmv_MonthDayOfWeekHeader
+{
+	background-color:#EFF5F8;
+	background-repeat:repeat-x;
+	background-position:bottom ;
+	background-image: url(images/groupbyheader.gif);
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	border-style:solid;
+	border-width:1px;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	border-bottom-color:#ACA899;
+	border-left-width:0px;
+	margin-top:1px;
+	margin-right:1px;
+	margin-left:1px;
+	padding:3px 2px 1px 0px;
+	height: 30px;
+	top:;
+	cursor:default;
+	color:#315B9B;
+	text-align:center;
+}
+
+
+.igmv_OtherMonthDayHeader
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/dayheader.jpg);
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	border:solid 1px LightGrey;
+	border-left-width:0px;
+	padding:0px 2px 0px 0px;
+	cursor:default;
+	color:DimGray;
+	text-align:right;
+}
+
+
+.igmv_OtherMonthDay
+{
+	background-color:White;
+	border:solid 1px LightGrey;
+	cursor:hand;
+	color:Black;
+}
+
+
+.igmv_OtherCompressedDay
+{
+	border-left:solid 1px Silver;
+	height: 4%;
+	vertical-align:top;
+}
+
+
+.igmv_TodayHeader
+{
+	background-color:#FFFFD5;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/header_hover.gif);
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	border-bottom:solid 0px #6693C0;
+	margin-top:0px;
+	padding:0px 2px 0px 0px;
+	height: 16px;
+	line-height: 16px;
+	color:White;
+	text-align:right;
+}
+
+
+.igmv_Today
+{
+	background-color:#CAE5F8;
+	border:solid 1px LightGrey;
+}
+
+
+.igmv_SelectedAppointment
+{
+	background-color:#316AC5;
+	color:White;
+}
+
+
+.igmv_ActiveDayHeader
+{
+	background-repeat:repeat-x;
+	background-image: url(images/header_hover.gif);
+	font-size:8pt;
+	font-family: Arial, Helvetica, sans-serif;
+	color:White;
+	text-align:right;
+}
+
+
+.igmv_ActiveDay
+{
+	background-color:Gainsboro;
+}
+
+
+.igmv_NavigationButtonPrev
+{
+	left: 3px;
+}
+
+
+.igmv_NavigationButtonNext
+{
+	right: 3px;
+}
+
+
+.igmv_Control table
+{
+	border-collapse:Collapse;
+}
+
+

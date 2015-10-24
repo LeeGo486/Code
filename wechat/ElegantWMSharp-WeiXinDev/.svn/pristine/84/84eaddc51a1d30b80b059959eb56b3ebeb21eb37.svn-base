@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "礼品介绍";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           
+        });
+    </script>
+    <style type="text/css">
+        .button {
+            position: absolute;
+            bottom: 10px;
+            z-index: 2;
+        }
+    </style>
+}
+
+@*<div id="bg">
+    <img class="bg1" src="~/Areas/Game/Resources/images/GLAllTheChips/index1.jpg" alt="head" style="width: 100%" />
+</div>*@
+
+<div id="bg1">
+    <img class="bg1" src="~/Areas/Game/Resources/images/GLAllTheChips/index2.jpg" alt="head" style="width: 100%" />
+</div>

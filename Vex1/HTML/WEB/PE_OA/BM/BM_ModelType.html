@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>预算科目模板</title> 
+    <meta http-equiv="description" content="预算科目模板">
+    <meta http-equiv="content-type" content="text/html">  
+    <meta charset="UTF-8" /> 
+
+    <script src="../../../jquery-easyui-1.3.4/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../../jquery-easyui-1.3.4/themes/peoa/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+ 	
+  </head> 
+  <body class="easyui-layout"  style="margin:0px; overflow-y: hidden" scroll="no" id="mybody">   
+    <div region="center" split="true"  style="width: 300px; " id="DLPanle"> 
+        <table>
+            <tr style="display:none">
+                <td style="width:80px; text-align:right;">模板：</td>
+				<td> <input id="cxMDType" name="cxMDType" type="text" style="width:145px; " onkeydown="if(event.keyCode==13){};"/> </td>
+				<td style="width:110px;"> 
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-search'" 
+			        onclick="">查询</a>
+                    &nbsp;&nbsp;&nbsp;
+				</td>
+			</tr>  
+             <tr> 
+                <td style="width:200px;" colspan="3">  
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-add'" 
+			            onclick="actADD()">添加</a> 
+                    &nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-save'" 
+			            onclick="actSave()">保存</a> 
+			    </td>
+		    </tr>    
+	    </table>	
+		<table id="ModelTypelb" class="easyui-datagrid"></table>	    
+    </div> 
+	<div region="east" id="XLPanle" split="true" style="width: 700px;" style="overflow-y: hidden;" >    
+		<table style="border-color:red;"> 
+            <tr> 
+                <td style="width:180px;">  
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-add'" 
+			        onclick="actADD1()">添加</a>
+                    &nbsp;&nbsp; 
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-save'" 
+			        onclick="actSave1()">保存</a> 
+			    </td> 
+                <td>关键字：</td> 
+			    <td> <input id="cxDXLName" name="cxDXLName" type="text" style="width:145px; " onkeydown="if(event.keyCode==13){actMDDQuery()};"/> </td>
+			    <td style="width:110px;"> 
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-search'" 
+			        onclick="actMDDQuery()">查询</a>
+                    &nbsp;&nbsp;&nbsp;
+			    </td>
+		    </tr>    
+		</table>   	
+		<table id="ModelDetaillb" class="easyui-datagrid"></table>	
+	</div>   
+      <!-- 大小类选择窗 -->
+ 	<div id="dxlxzdlg" class="easyui-dialog" title="大小类选择窗" 
+         style="width:700px;height:410px;padding:10px;top:10px; overflow-y:hidden;"
+		 data-options="resizable:true,modal:true,top:80" closed="true"> 
+         <table style="border-color:red;"> 
+            <tr>  
+                <td>关键字：</td>
+			    <td> <input id="cxDXLkey" name="cxDXLkey" type="text" style="width:145px; " 
+                    onkeydown="if(event.keyCode==13){actDXLQuery()};"/> </td>
+			    <td style="width:110px;"> 
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options=" plain:true,iconCls:'icon-search'" 
+			        onclick="actDXLQuery()">查询</a>
+                    &nbsp;&nbsp;&nbsp;
+			    </td>
+		    </tr>    
+		</table>   	
+		<table id="TypeDXLlb" class="easyui-datagrid"></table>	
+		<table style="text-align:center;width:98%"> 
+			<tr>
+				<td style="text-align:center;">
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+                         onclick="$('#dxlxzdlg').dialog('close'); actSave1(undefined, 'adds')">确定</a>  
+                </td> 
+			</tr> 
+		</table>  
+	</div> 	
+	        
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/dateUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/jsonUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/dataUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/peoa.js"></script>
+ 	<script type="text/javascript" src="../../../JS/PE_OA/Common/basedata.js"></script>   
+	<script type="text/javascript" src="../../../JS/PE_OA/BM/BM_ModelType.js"></script>  
+	<script type="text/javascript">
+		//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+	    function forbidBackSpace(e) {
+	        var ev = e || window.event; //获取event对象 
+	        var obj = ev.target || ev.srcElement; //获取事件源 
+	        var t = obj.type || obj.getAttribute('type'); //获取事件源类型 
+	        var vReadOnly = obj.readOnly;
+	        var vDisabled = obj.disabled;
+	        vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+	        vDisabled = (vDisabled == undefined) ? true : vDisabled;
+	        var flag1 = ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vDisabled == true);
+	        var flag2 = ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea";
+	        if (flag2 || flag1) return false;
+	    }
+	    document.onkeypress = forbidBackSpace;
+	    document.onkeydown = forbidBackSpace; 
+	  </script> 
+  </body>
+ 
+</html>

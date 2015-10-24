@@ -1,0 +1,118 @@
+
+维修登记 save00
+发到总部 save10
+品检判定 save20
+重新判定 save020
+维修完成 save07
+总部发货 save08
+批量发货 save18
+
+店铺打印   printdp
+快递单打印 printkd
+总部打印  printzb
+
+
+
+=======================
+
+
+
+	<bean id="dataSourceDRPEP" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="DRPDB" />
+		<property name="driver">
+			<value>${jdbc-2.proxool.driver-class}</value>
+		</property>
+		<property name="driverUrl">
+			<value>${jdbc-2.proxool.driver-url}</value>
+		</property>
+		<property name="user" value="${jdbc-2.user}" />
+		<property name="password" value="${jdbc-2.password}"></property>
+		<property name="prototypeCount">
+			<value>5</value>
+		</property>
+		<property name="maximumConnectionCount" value="${jdbc-2.proxool.maximum-connection-count}" />
+		<property name="minimumConnectionCount" value="${jdbc-2.proxool.minimum-connection-count}" />
+		
+		<property name="trace">
+			<value>true</value>
+		</property>
+		<property name="verbose">
+			<value>true</value>
+		</property>
+	</bean>
+ 
+	<bean id="sessionFactoryDRPEP"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceDRPEP" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+	
+	<bean id="dataSourceDRPTBF" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="DRPDBTBF" />
+		<property name="driver">
+			<value>${jdbc-3.proxool.driver-class}</value>
+		</property>
+		<property name="driverUrl">
+			<value>${jdbc-3.proxool.driver-url}</value>
+		</property>
+		<property name="user" value="${jdbc-3.user}" />
+		<property name="password" value="${jdbc-3.password}"></property>
+		<property name="prototypeCount">
+			<value>5</value>
+		</property>
+		<property name="maximumConnectionCount" value="${jdbc-3.proxool.maximum-connection-count}" />
+		<property name="minimumConnectionCount" value="${jdbc-3.proxool.minimum-connection-count}" />
+		
+		<property name="trace">
+			<value>true</value>
+		</property>
+		<property name="verbose">
+			<value>true</value>
+		</property>
+	</bean>
+ 
+	<bean id="sessionFactoryDRPTBF"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceDRPTBF" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+	
+	<bean id="dataSourceDRPNF" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="DRPDBNF" />
+		<property name="driver">
+			<value>${jdbc-4.proxool.driver-class}</value>
+		</property>
+		<property name="driverUrl">
+			<value>${jdbc-4.proxool.driver-url}</value>
+		</property>
+		<property name="user" value="${jdbc-4.user}" />
+		<property name="password" value="${jdbc-4.password}"></property>
+		<property name="prototypeCount">
+			<value>5</value>
+		</property>
+		<property name="maximumConnectionCount" value="${jdbc-4.proxool.maximum-connection-count}" />
+		<property name="minimumConnectionCount" value="${jdbc-4.proxool.minimum-connection-count}" />
+		
+		<property name="trace">
+			<value>true</value>
+		</property>
+		<property name="verbose">
+			<value>true</value>
+		</property>
+	</bean>
+ 
+	<bean id="sessionFactoryDRPNF"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceDRPNF" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.hy.spring.MultiSessionFactory">
+ 	<property name="sessionFactory" ref="sessionFactoryX6"></property>
+ 	</bean>

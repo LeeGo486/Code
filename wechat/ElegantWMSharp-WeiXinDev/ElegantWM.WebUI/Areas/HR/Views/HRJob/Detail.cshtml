@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "岗位介绍";
+    Layout = "~/Views/Shared/_WeiXinBaseLayoutYes.cshtml";
+}
+@section script{
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("#submit").click(function () {
+                window.location.href = "/HR/HRJob/JobApply?id=" + '@ViewBag.jobid' + "&jobname=" + '@ViewBag.JobName';
+            });
+        });
+
+    </script>
+}
+
+
+<body style="background-color: #f8f8f8">
+    <h4 style="text-align: center; font-family: SimHei">岗位介绍</h4>
+    <div style="margin-left: 0px; background-color: #fff; font-family: SimHei; border-top: 1px solid #c8c8c8">
+        <div style="margin-left: 15px; line-height: 30px">
+            <span style="font-size: 20px;">@ViewBag.JobName </span>
+            <br />
+            <span style="font-size: 14px; color: #d4d4d4">招聘人数：@ViewBag.NeedNum &nbsp;&nbsp;&nbsp;&nbsp;发布时间:  @ViewBag.CreateTime</span>
+            <br />
+            <span style="font-size: 14px; color: #d4d4d4">应聘邮箱：@ViewBag.Email </span>
+        </div>
+    </div>
+
+    <div id="Responsibilities" style="margin-top: 0px; background-color: #fff; font-family: SimHei; border-top: 1px solid #c8c8c8">
+        <div style="margin-left: 10px">
+            <h3>岗位职责</h3>
+            <span style="font-size: 14px">@ViewBag.Responsibilities</span>
+            <h3>任职要求</h3>
+            <br />
+            <span style="font-size: 14px">@ViewBag.Skills</span>
+        </div>
+        <center>
+        <button id="submit" type="button"  style="width: 80%; height: 30px; text-align: center;background-color:#fff;border:1px solid #b79647;border-radius:3px
+               ;margin-top:30px;margin-bottom:10px;color:#b79647">申请该岗位</button></center>
+    </div>
+</body>
+

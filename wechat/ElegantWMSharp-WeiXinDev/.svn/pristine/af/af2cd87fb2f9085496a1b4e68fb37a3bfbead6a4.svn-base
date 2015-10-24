@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "岗位申请";
+    Layout = "~/Views/Shared/_WeiXinBaseLayoutYes.cshtml";
+}
+
+@section script{
+    <script type="text/javascript">
+
+        $(function () {
+            //申请注册
+            $("#submit").click(function () {
+                var strTelphone = $("#Telphone").val();
+                if (!/^1[34587]\d{9}$/.test(strTelphone)) {
+                    $("#Telphone").focus();
+                    Msg.show('手机号码无效!', 1);
+                    return;
+                }
+                if ($.trim($("#SkrName").val()).length <= 0) {
+                    $("#SkrName").focus();
+                    Msg.show('请输入姓名!', 1);
+                    return;
+                }
+
+                var data = {
+                    jobid: '@ViewBag.id',
+                    Telphone: $("#Telphone").val(),
+                    SkrName: $("#SkrName").val(),
+                    SkrSex: $("#SkrSex").val(),
+                    Remark: $("#Remark").val(),
+                    EmployeeId: $("#EmployeeId").val()
+                };
+                $(this).button("loading");
+                Msg.show("申请中...", 3);
+
+                $.post("/HR/HRJob/SaveJob", data, function (rst) {
+                    Msg.hide();
+                    $("#btnSubmit").button("reset");
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        setTimeout(" window.location.href = '/HR/HRJob/Index'", 1000);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<body>
+    <h4 style="text-align: center; font-family: SimHei">应聘岗位：@ViewBag.jobname</h4>
+
+    <div style="background-color: #fff; margin: 10px">
+        <div style="margin-left: 0px; font-family: SimHei; border-radius: 2px">
+            <div style="padding: 10px; font-size: 16px; text-align: left; line-height: 150%;">
+                <div class="input-group requestQuery">
+                    <span class="input-group-addon">姓&nbsp;&nbsp;&nbsp;名*&nbsp;</span>
+                    <input class="form-control" id="SkrName" value="" />
+                </div>
+                <br />
+
+                <div class="input-group requestQuery">
+                    <span class="input-group-addon">手机号码*</span>
+                    <input class="form-control" type="number" id="Telphone" value="" />
+                </div>
+                <br />
+
+                <div class="input-group">
+                    <span class="input-group-addon">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;</span>
+                    <select id="SkrSex" class="form-control">
+                        <option selected>男</option>
+                        <option>女</option>
+                    </select>
+                </div>
+                <br />
+                <div class="input-group requestQuery">
+                    <span class="input-group-addon">申请理由&nbsp;</span>
+                    <textarea id="Remark" maxlength="200" placeholder="" class="form-control"></textarea>
+                </div>
+                <br />
+                <div class="input-group requestQuery">
+                    <span class="input-group-addon">推&nbsp;&nbsp;荐&nbsp;&nbsp;人&nbsp;</span>
+                    <input class="form-control" id="EmployeeId" placeholder="内部员工姓名" />
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <h4 style="text-align: center; font-size: 10px">请保证上面信息真实可靠</h4>
+    <center>
+            
+        <button id="submit" type="button"  style="width: 80%; height: 30px; text-align: center;background-color:#fff;border:1px solid #b79647;border-radius:3px
+               ;margin-top:30px;margin-bottom:10px;color:#b79647">提交申请</button></center>
+</body>
+

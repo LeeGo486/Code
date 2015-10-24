@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.turbocrm.com/webservice" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.turbocrm.com/webservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.turbocrm.com/webservice">
+      <xsd:complexType name="WSO_SOAPHeader">
+        <xsd:all>
+          <xsd:element name="PHPSESSID" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="processRequest">
+    <wsdl:part name="queryXml" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="processHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="processResponse">
+    <wsdl:part name="processReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="processNCRequest">
+    <wsdl:part name="queryXml" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="processNCHeader">
+    <wsdl:part name="WSO_SOAPHeader" type="tns:WSO_SOAPHeader" />
+  </wsdl:message>
+  <wsdl:message name="processNCResponse">
+    <wsdl:part name="processNCReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="WS_EAIPortType">
+    <wsdl:operation name="process">
+      <wsdl:input message="tns:processRequest" />
+      <wsdl:output message="tns:processResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="processNC">
+      <wsdl:input message="tns:processNCRequest" />
+      <wsdl:output message="tns:processNCResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_EAIBinding" type="tns:WS_EAIPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="process">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_EAI&amp;method=process" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:processHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processNC">
+      <soap:operation soapAction="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_EAI&amp;method=processNC" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:processNCHeader" part="WSO_SOAPHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.turbocrm.com/webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_EAI">
+    <wsdl:port name="WS_EAIPort" binding="tns:WS_EAIBinding">
+      <soap:address location="http://192.168.0.138/webservice/service.php?orgcode=&amp;class=WS_EAI" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

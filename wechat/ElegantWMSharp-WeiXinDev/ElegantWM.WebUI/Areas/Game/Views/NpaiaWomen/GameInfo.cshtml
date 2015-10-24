@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = "恩派雅-集红包送美衣";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        var appId, ticket, timestamp, nonceStr, signature;
+
+        $(function () {
+            //获取appid
+            $.post("/Game/NpaiaWomen/GetAppId?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                if (rst.result == 0) {
+                    appId = rst.msg;
+                    //获取ticket
+                    $.post("/Game/NpaiaWomen/GetTicket?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                        if (rst.result == 0) {
+                            ticket = rst.msg;
+                            timestamp = parseInt(new Date().getTime() / 1000) + '';
+                            nonceStr = Math.random().toString(36).substr(2, 15);
+
+                            //获取signature
+                            $.post("/Game/NpaiaWomen/GetSignature?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&ticket=" + ticket + "&nonceStr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + window.location.href.replace(/&/g, '%26'), function (rst) {
+                                if (rst.result == 0) {
+                                    signature = rst.msg;
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: appId, // 必填，公众号的唯一标识
+                                        timestamp: timestamp, // 必填，生成签名的时间戳
+                                        nonceStr: nonceStr, // 必填，生成签名的随机串
+                                        signature: signature,// 必填，签名，见附录1
+                                        jsApiList: [
+                                            'onMenuShareTimeline',
+                                            'onMenuShareAppMessage'
+                                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                } else {
+                                    alert("signature获取失败！")
+                                }
+                            });
+                        } else {
+                            alert("ticket获取失败！")
+                        }
+                    });
+                } else {
+                    alert("appId获取失败！")
+                }
+            });
+        });
+
+        wx.ready(function () {
+            var imgUrl;
+            if (Url.get("id") == 1) {
+                imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/NpaiaWomen/cloth1again.png';
+            } else if (Url.get("id") == 2) {
+                imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/NpaiaWomen/cloth2again.png';
+            } else if (Url.get("id") == 3) {
+                imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/NpaiaWomen/cloth3again.png';
+            } else if (Url.get("id") == 4) {
+                imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/NpaiaWomen/cloth4again.png';
+            }
+
+            var url = "http://it.hwafashion.com/Game/NpaiaWomen/GameInfo?level=" + Url.get("level") + "&lid=" + Url.get("oid") + "&sid=" + Url.get("sid"); // 分享链接
+
+            wx.onMenuShareTimeline({
+                title: '恩派雅-送美衣', // 分享标题
+                link: url,// 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: '恩派雅-送美衣', // 分享标题
+                desc: '快来帮小伙伴赢取开年幸运美衣吧！', // 分享描述
+                link: url, // 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数window.location.href = "/Game/NpaiaWomen/GameInfo?level=" + level + "&lid=" + Url.get("oid") + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        });
+
+        wx.error(function (res) {
+            //alert(res);
+        });
+    </script>
+}
+<div style="width:100%;">
+    <div id="clothInfo" style="position:relative;">
+        <img class="bg" src="~/Areas/Game/Resources/images/NpaiaWomen/gameBgagain.jpg" style="width:100%;"/>
+        <img class="head" src="@ViewBag.AVATAR" style="width: 10%;position: absolute;top: 3%;left: 10%;"/><span style="color:#000;position: absolute;top: 5%;left: 25%;font-size: 16px;font-weight: bold;">@ViewBag.NAME 的心愿美衣</span>
+        @if (ViewBag.LEVEL == 1)
+        {
+            <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/cloth1again.png" style="width:90%;position:absolute;left:5%;top:20%;"/>
+            <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/price1again.png" style="width:20%;position:absolute;left:75%;top:20%;"/>
+        }
+        else if (ViewBag.LEVEL == 2)
+        {
+            <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/cloth2again.png" style="width:90%;position:absolute;left:5%;top:20%;"/>
+             <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/price2again.png" style="width:20%;position:absolute;left:75%;top:20%;"/>
+        }
+        else if (ViewBag.LEVEL == 3)
+        {
+            <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/cloth3again.png" style="width:90%;position:absolute;left:5%;top:20%;"/>
+             <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/price3again.png" style="width:20%;position:absolute;left:75%;top:20%;"/>
+        }
+        else
+        {
+            <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/cloth4again.png" style="width:90%;position:absolute;left:5%;top:20%;"/>
+             <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/price4again.png" style="width:20%;position:absolute;left:75%;top:20%;"/>
+        }
+        <img class="cloth" src="~/Areas/Game/Resources/images/NpaiaWomen/getPrice.png" style="width:20%;position:absolute;left:75%;top:40%;"/>
+        @if (ViewBag.MONEY / 1000 == 1)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-1.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 2)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-2.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 3)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-3.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 4)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-4.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 5)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-5.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 6)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-6.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 7)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-7.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 8)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-8.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY / 1000 == 9)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-9.png" style="width:3%;position:absolute;left:78%;top:47%;"/>
+        }
+
+        @if (ViewBag.MONEY >= 1000 && (ViewBag.MONEY % 1000) / 100 == 0)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-0.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 1)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-1.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 2)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-2.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 3)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-3.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 4)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-4.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 5)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-5.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 6)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-6.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 7)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-7.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 8)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-8.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 1000) / 100 == 9)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-9.png" style="width:3%;position:absolute;left:81%;top:47%;"/>
+        }
+        
+        @if (ViewBag.MONEY >= 100 && (ViewBag.MONEY % 100) / 10 == 0)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-0.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 1)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-1.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 2)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-2.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 3)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-3.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 4)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-4.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 5)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-5.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 6)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-6.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 7)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-7.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 8)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-8.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+        else if ((ViewBag.MONEY % 100) / 10 == 9)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-9.png" style="width:3%;position:absolute;left:84%;top:47%;"/>
+        }
+
+        @if (ViewBag.MONEY % 10 == 0)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-0.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 1)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-1.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 2)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-2.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 3)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-3.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 4)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-4.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 5)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-5.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 6)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-6.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 7)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-7.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 8)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-8.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+        else if (ViewBag.MONEY % 10 == 9)
+        {
+            <img class="num" src="~/Areas/Game/Resources/images/NpaiaWomen/number-9.png" style="width:3%;position:absolute;left:87%;top:47%;"/>
+        }
+    </div>
+    @if (ViewBag.TYPE == 2)
+    {
+        if (ViewBag.BTN == 1)
+        {
+            <img class="addBtn" src="~/Areas/Game/Resources/images/NpaiaWomen/addBtnagain.png" style="width:50%;margin:10px;"/>
+            <img class="doGameBtn" src="~/Areas/Game/Resources/images/NpaiaWomen/doGameBtnagain.png" style="width:50%;display:none;margin:10px;"/>
+        }
+        else
+        {
+            <img class="doGameBtn" src="~/Areas/Game/Resources/images/NpaiaWomen/doGameBtnagain.png" style="width:50%;margin:10px;"/>
+        }
+    }
+    <table style="width: 80%;margin-left: 10%;">
+        @foreach (ElegantWM.EntityModel.Game_Link gl in @ViewBag.LIST)
+        {
+            <tr style="height: 5px;"></tr>
+            <tr>
+                <td style="width: 10%;padding: 0px;"><img class="head" src="@gl.Avatar" style="width:100%;"/></td>
+                <td style="width: 40%;text-align: left;border-bottom: 1px solid #444;">@gl.NickName</td>
+                <td style="width: 40%;text-align: right;border-bottom: 1px solid #444;">@gl.Oper 元</td>
+            </tr>
+        }
+    </table>
+</div>
+<script type="text/javascript">
+    var flag = false;
+    $(".addBtn").click(function () {
+        if (flag) {
+            return;
+        } else {
+            flag = true;
+            $.post("/Game/NpaiaWomen/addMoney?lid=" + Url.get("lid") + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                if (rst.result == 0) {
+                    Msg.show(rst.msg, 0);
+                    $(".addBtn").hide();
+                    $(".doGameBtn").show();
+                    window.location.reload();
+                } else {
+                    Msg.show(rst.msg, 1);
+                    flag = false;
+                }
+            });
+        }
+    })
+
+    $(".doGameBtn").click(function () {
+        window.location.href = "/Game/NpaiaWomen/NPWomenIndex?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+</script>

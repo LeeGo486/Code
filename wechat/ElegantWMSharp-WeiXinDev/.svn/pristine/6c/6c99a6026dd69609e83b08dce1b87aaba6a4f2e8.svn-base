@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "积分明细";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+}
+
+
+@*@foreach (System.Data.DataRow dr in ViewBag.ScoreInfo.Rows)
+{
+   课程：@dr["LessonName"]; 积分：@dr["Integration"];
+}*@
+
+
+
+
+<div class="ht">
+    <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;积分明细：
+</div>
+<div class="courseHis clearfix">
+    <table class="detailTable">
+        <thead>
+            <tr>
+                <th style="width: 60%">课程</th>
+                <th style="width: 40%">积分</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (System.Data.DataRow dr in ViewBag.ScoreInfo.Rows)
+            {
+                <tr>
+                    <td>@dr["LessonName"]</td>
+                    <td>@dr["Integration"]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

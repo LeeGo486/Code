@@ -1,0 +1,223 @@
+﻿/// JS名：StyleProgressTracking.js
+/// 说明：款式进度跟踪表
+/// 创建人：黄异 
+/// 创建日期：2014-12-23
+
+var m_DDHComboxData = null;//订货会季节
+var m_columns = null;//动态列
+var m_data1;//订货会重加载数据
+var columns;//easyui 框架自己的动态列属性
+var m_cmbdhhjj ;//订货会季节
+var m_zt;
+var txtBeginDate;
+var txtEndDate;
+
+
+
+$(function () {
+    //默认附上时间今天往前面推3个月，开始时间和结束时间
+    m_Username = window.m_UserID;//取登入姓名
+    m_zt = $.cookie('m_zt')
+
+    //查询方式
+    $('#cmbSelectType').combobox({
+        data: [{ "id": "date", text: "日期", selected: true }, { "id": "orderPlacing", text: "订货会季节" }],
+        valueField: 'id',
+        textField: 'text',
+        panelHeight: 'auto',
+        editable: false,
+        onSelect: function (record) {
+            slectTypeChange(record);
+
+        }
+    });
+    //m_Nowdate = (new Date()).DateAdd('d', -0).format("yyyy-MM-dd");//今天时间
+    $("#txtBeginDate").datebox("setValue", (new Date()).DateAdd('m', -1).format("yyyy-MM-dd"));//今天往前面退一个月
+    $("#txtEndDate").datebox("setValue", (new Date()).DateAdd('d', 0).format("yyyy-MM-dd"));///今天时间
+
+    //取该人的品牌USERINFO表OwnedBrand字段判断品牌
+    var xmlData = GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetOwnedBrand');
+    htmlobj = $.ajax({
+        url: GetWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9'),
+        data: { "XML": xmlData },
+        type: 'post',
+        async: false
+    });
+    var result = $.parseJSON(htmlobj.responseText);
+    $("#txtbrand").val(result.rows[0]['ownedbrand'])//把品牌赋值给HTML品牌
+    //初始化订货会下拉数据
+    $('#txtcmbdhhjj').combobox({
+        url: GetComboxWSRRURL('bd4c0ca6-42c7-4e5c-a432-515b63f5cc16', "", "orderseason", "orderseason") + "&DIVI=" + m_zt,
+        valueField: 'id',
+        textField: 'text',
+        panelHeight: '200',
+        editable: false,
+        required: true,
+        async: true, //异步
+        onLoadSuccess: function (data) {
+            if (m_DDHComboxData == null) {
+                m_DDHComboxData = data;
+                changeDHHJJ();//按照品牌控制季节下拉
+            }
+            m_data1 = $('#txtcmbdhhjj').combobox('getData');
+            $('#txtcmbdhhjj').combobox('setValue', m_data1[m_data1.length - 1].text);
+        }
+    });
+});
+
+//查询条件改变
+function slectTypeChange(type) {
+    $("#date")[0].style.display = "none";
+    $("#orderPlacing")[0].style.display = "none";
+    $("#" + type.id)[0].style.display = "inline-block";
+
+}
+//点击查询
+function SearchClick() {
+    selectType = $('#cmbSelectType').combobox("getValue");
+    initGird();//加载数据
+
+
+
+}
+//加载数据
+function initGird() {
+    m_cmbdhhjj = "";
+    txtBeginDate = "";
+    txtEndDate = "";
+    ClearGrid("#tabList");//清除表单数据
+    if (selectType == "orderPlacing") {//订货会
+        m_cmbdhhjj = $('#txtcmbdhhjj').combobox('getValue');//获取订货会季节
+    }
+    else if (selectType == "date") {
+        txtBeginDate = $('#txtBeginDate').datebox('getValue');//取开始时间
+        txtEndDate = $('#txtEndDate').datebox('getValue');//取结束时间
+    }
+
+    var brandCON = $('#txtbrand').val()//取品牌数据
+
+
+
+    var data = [];
+    data[data.length] = { "name": "txt操作类型", "value": "GET" };
+    data[data.length] = { "name": "txt实体", "value": "GetStyleProgressInfo" };
+    data[data.length] = { "name": "txt返回内容", "value": "成功" };
+    data[data.length] = { "name": "txtCONO", "value": "HFYG" };
+    data[data.length] = { "name": "txtDIVI", "value": m_zt };
+    data[data.length] = { "name": "txt订货会季节", "value": m_cmbdhhjj };
+    data[data.length] = { "name": "txt标识", "value": "1" };
+    data[data.length] = { "name": "txt品牌", "value": brandCON };
+    data[data.length] = { "name": "txt开始时间", "value": txtBeginDate };
+    data[data.length] = { "name": "txt结束时间", "value": txtEndDate };
+   
+    XMLData = GetDBFrameAML(data);
+    var urlCol = GetGridColumnsWSRRURL('bff330e1-b869-46ef-a54c-bb410b91f172', "60", "false", "false") + XMLData
+    //ajax取动态列
+    var htmlobj = $.ajax({
+        url: urlCol,
+        async: false
+    });
+    var Text = $.parseJSON(htmlobj.responseText);
+    m_columns = Text.Col;
+
+    var data1 = [];
+    data1[data1.length] = { "name": "txt操作类型", "value": "GET" };
+    data1[data1.length] = { "name": "txt实体", "value": "GetStyleProgressInfo" };
+    data1[data1.length] = { "name": "txt返回内容", "value": "成功" };
+    data1[data1.length] = { "name": "txtCONO", "value": "HFYG" };
+    data1[data1.length] = { "name": "txtDIVI", "value": m_zt };
+    data1[data1.length] = { "name": "txt订货会季节", "value": m_cmbdhhjj };
+    data1[data1.length] = { "name": "txt标识", "value": "2" };
+    data1[data1.length] = { "name": "txt品牌", "value": brandCON };
+    data1[data1.length] = { "name": "txt开始时间", "value": txtBeginDate };
+    data1[data1.length] = { "name": "txt结束时间", "value": txtEndDate };
+
+
+    XMLdata1 = GetDBFrameAML(data1);
+    var url = GetWSRRURL('bff330e1-b869-46ef-a54c-bb410b91f172') + XMLdata1
+    $('#tabList').datagrid(
+         {
+             url: url,
+             nowrap: true, //是否换行，True 就会把数据显示在一行里
+             striped: true, //True 奇偶行使用不同背景色
+             collapsible: false, //可折叠
+             fit: true,
+             columns: eval(m_columns),
+             rownumbers: true,//行号
+             singleSelect: true,//单行选择
+             toolbar: "#tab_toolbar",
+             //showFooter: true,
+             toolbar: [
+             {
+                 id: 'btn_print',
+                 text: '打印',
+                 iconCls: 'icon-print',
+                 handler: function () {
+                     pring();//HTML打印
+                 }
+             }]
+         });
+    //取动态列,格式化列属性
+    var columns = eval(m_columns);
+    if (columns.length != "0") {
+        var col = $('#tabList').datagrid('getColumnOption', columns[0][0].field);
+        col.width = 50;
+        col.align = "center";
+        for (var i = 1; i < columns[0].length; i++) {
+            var col = $('#tabList').datagrid('getColumnOption', columns[0][i].field);
+            col.formater = Formater.Nums;
+            col.align = "center";
+            col.title = col.title.toUpperCase();
+        }
+    }
+    $('#tabList').datagrid();//reload
+
+}
+
+
+//按照品牌控制季节下拉数据
+function changeDHHJJ() {
+    var brandType = $('#txtbrand').val();
+    if (brandType.substr(0, 2) == "EP") {
+        brandType = "EP"
+    }
+    else if (brandType.substr(0, 2) == "E.P") {
+        brandType = "E.Prosper"
+    }
+    else if (brandType.substr(0, 2) == "Do") {
+        brandType = "Do"
+    }
+    else if (brandType.substr(0, 2) == "Ki") {
+        brandType = "Kids"
+    }
+
+    if (m_DDHComboxData == null) {
+        return;
+    }
+    var data = m_DDHComboxData;
+    var data1 = [];
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].id.toString().indexOf(brandType) > 0) {
+            data1.push(data[i]);
+        }
+    }
+    $('#txtcmbdhhjj').combobox({ url: "" });
+    $('#txtcmbdhhjj').combobox("loadData", data1);//重加载季节下拉数据
+}
+
+
+//打印
+function pring() {
+    var endDate = $('#txtEndDate').combobox('getValue');//获取结束时间
+    //var tableString =
+    CreateFormPage("datagrid", $("#tabList"), m_cmbdhhjj, endDate, m_epjbs, m_epjjbs, m_eptbs, m_epjtbs, m_epwjbs, m_epjwjbs, m_eprosperbjbs, m_eprospercjbs, m_eprosperfjbs, m_eprosperbtbs, m_eprosperctbs, m_eprosperftbs, m_eprosperbwjbs, m_eprospercwjbs, m_eprosperfwjbs, m_DLjbs, m_DLtbs, m_DLwjbs);
+    ////document.write(tableString);
+    //$("#divPrint").html(tableString);
+    //$('#divPrint').window({
+    //    title: "111",
+    //    top: 20,
+    //    maximized: true,
+    //    modal: true
+    //});
+    //$("#divPrint").printArea();
+}

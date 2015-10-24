@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "我的积分";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#showRecordsOfConsumption").click(function () {
+            $("#RecordsOfConsumption").show();
+            $("#IntegralExchange").hide();
+            $("#Notice").hide();
+        });
+        $("#showIntegralExchange").click(function () {
+            $("#RecordsOfConsumption").hide();
+            $("#IntegralExchange").show();
+            $("#Notice").hide();
+        });
+        $("#showNotice").click(function () {
+            $("#RecordsOfConsumption").hide();
+            $("#IntegralExchange").hide();
+            $("#Notice").show();
+        });
+
+    });
+    stateDetail('@ViewBag.dtpCentumInfo.Rows[0]["state"]');
+
+    function stateDetail(state) {
+        var paramData = {
+            state: state
+        };
+        $.post("/DLWXSite/VIP/GetNextVIPState?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (data) {
+            $("#stateInfo").html(data.msg);
+        });
+    }
+
+    function TicketByExchangeIntegral(type) {
+
+        bootbox.confirm("您确定要兑换么?", function (result) {
+            if (result) {
+                var paramData = {
+                    type: type
+                };
+                Msg.show("兑换中请稍后...", 3);
+                $.post("/DLWXSite/VIP/TicketByExchangeIntegral?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        setTimeout(function () { window.location.reload(), 3000 });
+                        //setTimeout(function () { window.location.href = "/DLWXSite/VIP/GetMyTicket/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") }, 3000);
+                    }
+                });
+            }
+        });
+    }
+</script>
+
+<style>
+    .noticList {
+        border: 1px solid #e5e5e5;
+        background-color: #fff;
+        padding: 10px 10px 14px 10px;
+        margin-bottom: 12px;
+        border-radius: 3px;
+    }
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/VipBg.jpg" />
+    </li>
+</ul>
+<h5 style="text-align: center">我的积分：@ViewBag.dtpCentumInfo.Rows[0]["points"]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 即将过期积分：@ViewBag.dtpCentumInfo.Rows[0]["Exp_Points"]</h5>
+<table>
+    <tr>
+        <td style="text-align: center">
+            <div id="info" class="btn-group" data-toggle="buttons">
+                <label class="btn active" id="showRecordsOfConsumption" style="width: 100px;">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                    消费记录
+                </label>
+                <label class="btn" id="showIntegralExchange" style="width: 100px;">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    积分兑换
+                </label>
+                <label class="btn" id="showNotice" style="width: 100px;">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    特权说明
+                </label>
+            </div>
+        </td>
+    </tr>
+</table>
+@*dtpVIPCustomerRetail*@
+<table id="RecordsOfConsumption">
+    <tr>
+        <td colspan="2">
+            <div class="noticList">
+                <span>消费时间：@ViewBag.dtpVIPCustomerRetail.Rows[0]["sale_date"]</span><br />
+                <span>消费金额：@ViewBag.dtpVIPCustomerRetail.Rows[0]["zs_price"]</span><br />
+                <span style="color: red">获得积分：@ViewBag.dtpVIPCustomerRetail.Rows[0]["centum"]</span><br />
+            </div>
+        </td>
+    </tr>
+</table>
+<table id="IntegralExchange" style="display: none;">
+    <tr>
+        <td>
+            <a onclick="TicketByExchangeIntegral('1')">
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/ticketbg.jpg" width="100%" /></a>
+        </td>
+    </tr>
+</table>
+
+<table id="Notice" style="display: none; text-align: center">
+    <tr>
+        <td>你目前尊享：<a style="text-decoration: none;" onclick="stateDetail('@ViewBag.dtpCentumInfo.Rows[0]["state"]')">@ViewBag.dtpCentumInfo.Rows[0]["state"]</a>
+        </td>
+    </tr>
+    <tr>
+        <td>你下一级别：
+            @if (@ViewBag.Info == 1)
+            {
+                @ViewBag.state
+            }
+            else
+            {
+                <a style="text-decoration: none;" onclick="stateDetail('@ViewBag.state')">@ViewBag.state</a>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left">
+            <div style="padding: 10px; border-top: 2px solid #808080; margin: 10px">
+                <table>
+                    <tr>
+                        <td id="stateInfo"></td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+
+

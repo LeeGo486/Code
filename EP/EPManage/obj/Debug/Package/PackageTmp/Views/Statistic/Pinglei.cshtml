@@ -1,0 +1,25 @@
+﻿@model List<IGrouping<string, EPManageWeb.Entities.Models.Clothes>>
+@{
+    ViewBag.Title = "Pinglei";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section head{}
+
+<div class="alert alert-success">
+    <h3>在本页面，你可统计每个品类的使用次数 </h3><br />
+    <a href="/Statistic/index" class="btn btn-primary btn-large">我想按衣服统计</a>
+
+</div>
+<table class="table table-striped table-bordered">
+    <tr>
+        <td>品类</td>
+        <td>使用次数</td>
+    </tr>
+    @foreach (var t in Model)
+    {
+        <tr>
+            <td>@t.Key</td>
+            <td>@t.Sum(t1 => t1.ViewCount)</td>
+        </tr>
+    }
+</table>

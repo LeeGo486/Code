@@ -1,0 +1,110 @@
+﻿		body
+        {
+            margin: 0px;
+            font-size: 12px;
+        }
+        h4
+        {
+			font-size:1.0em;
+			color:Red;	
+        }
+        #pos_subContent
+        {
+        }
+        #changeColorSize
+        {
+            position: absolute;
+            top: 55px;
+            left: 90px;
+            background-color: White;
+            border: solid 2px #ECD4D0;
+            min-height: 300px;
+            min-width: 450px;
+            display: none;
+        }
+        #changeColorSize .showimg
+        {
+			height:100px;
+			width:100px;	
+		}
+		
+        #changeColorSize .cMainTab
+        {
+            min-width: 450px;
+            min-height: 300px;
+            display:none;
+        }
+        #changeColorSize .cMainTab .cMainOneTd
+        {
+            height: 20px;
+            padding-left: 30px;
+            border-bottom: solid 1px #ECD4D0;
+        }
+        #changeColorSize .cMainTab .cMainTwoTd
+        {
+            min-height: 280px;
+            padding-top: 3px;
+        }
+        #changeColorSize .cMainTab .cMainFoot
+        {
+        	margin-top:5px;
+            height: 30px;
+            text-align: center;
+            border-top: solid 1px #ECD4D0;
+        }
+        #changeColorSize .cMainTab .cMainTwoTd .intersectionTab
+        {
+            min-height: 280px;
+            min-width: 450px;
+        }
+        #changeColorSize .cMainTab .cMainTwoTd .intersectionTab .leftTopTd
+        {
+            width: 30px;
+            height: 30px;
+        }
+        #changeColorSize .cMainTab .cMainTwoTd .intersectionTab .rightTopTd
+        {
+            min-width: 400px;
+            height: 30px;
+            background-color: #A5CEEA;
+        }
+        #changeColorSize .cMainTab .cMainTwoTd .intersectionTab .leftBottomTd
+        {
+            width: 30px;
+            min-height: 230px;
+            background-color: #A5CEEA;
+        }
+        #changeColorSize .cMainTab .cMainTwoTd .intersectionTab .rightBottomTd
+        {
+            min-width: 400px;
+            min-height: 230px;
+        }
+        .conTdStyle
+        {
+            width: 30px;
+            height:30px;
+            text-align: center;
+        }
+        #colorTr
+        {
+            min-width: 400px;
+            height: 30px;
+        }
+        #pos_subContent .titleTd
+        {
+            text-align: right;
+            font-size: 1.0em;
+            width: 80px;
+            min-height: 20px;
+            padding: 3px;
+        }
+        #pos_subContent td
+        {
+            text-align: left;
+            min-height: 20px;
+            padding: 3px;
+        }
+        #pos_subContent .txtBox
+        {
+            border: solid 1px #B9CDE6;
+        }

@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>集团DRP配置工具</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+
+    <script src="../../JS/DRPESBCFG/CFG.js?date=20130110" type="text/javascript"></script>
+
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+    <div iconcls="icon-save" title="编辑REF信息" id="divEditRef" style="width: 600px;">
+        <form id="form_RefEdit" name="form_RefEdit" method="post">
+            <table style="font-size: 9pt" cellpadding="5px">
+                <tr>
+                    <td>RefID：
+                    </td>
+                    <td>
+                        <input id="txtRequestType_JobList_Ref_ID_Show" name="txtRequestType_JobList_Ref_ID_Show"
+                            value="" disabled="true" style="width: 300px" />
+                        <input id="txtRequestType_JobList_Ref_ID" name="txtRequestType_JobList_Ref_ID" value=""
+                            type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>列类型：
+                    </td>
+                    <td>
+                        <input id="txtColumn_Type" name="txtColumn_Type" style="width: 250px" class="easyui-validatebox"
+                            required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <td>列名：
+                    </td>
+                    <td>
+                        <input id="txtColumn_Name" name="txtColumn_Name" style="width: 250px" class="easyui-validatebox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>SQL值：
+                    </td>
+                    <td>
+                        <textarea id="txtColumn_Value" name="txtColumn_Value" style="height: 300px; width: 450px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="A1" iconcls="icon-save" onclick="Edit_RefSubmit()" class="easyui-linkbutton"
+                            data-options="plain:true">提交</a>
+
+                        <a href="#" id="A2" iconcls="icon-undo" onclick="Edit_RefCancel()" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div iconcls="icon-save" title="编辑WS参数信息" id="divEditJobList" style="width: 1200px;">
+        <form id="form_JobListEdit" name="form_JobListEdit" method="post">
+            <table style="font-size: 9pt" cellpadding="5px">
+                <tr>
+                    <td>JobListID：
+                    </td>
+                    <td>
+                        <input id="txtRequestType_job_ID_Show" name="txtRequestType_job_ID_Show" value=""
+                            disabled="true" style="width: 300px" />
+                        <!--<input id="txtRequestType_ID" name="txtRequestType_ID" value="" type="hidden" />-->
+                        <input id="txtRequestType_job_ID" name="txtRequestType_job_ID" value="" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>序号：
+                    </td>
+                    <td>
+                        <input id="txtSeq_ID" name="txtSeq_ID" style="width: 50px" class="easyui-numberbox"
+                            required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <td>目标系统：
+                    </td>
+                    <td>
+                        <input id="txtDST_App" name="txtDST_App" style="width: 150px" class="easyui-validatebox"
+                            required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <td>目标表：
+                    </td>
+                    <td>
+                        <input id="txtDST_Table_Name" name="txtDST_Table_Name" style="width: 150px" class="easyui-validatebox"
+                            required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <td>目标决定列：
+                    </td>
+                    <td>
+                        <input id="txtDST_Decision_Column" name="txtDST_Decision_Column" style="width: 130px"
+                            class="easyui-validatebox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>目标决定表：
+                    </td>
+                    <td>
+                        <input id="txtDST_Decision_Table_Name" name="txtDST_Decision_Table_Name" style="width: 150px"
+                            class="easyui-validatebox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>类型：
+                    </td>
+                    <td>
+
+                        <input id="txtJob_Type" name="txtJob_Type" style="width: 350px" data-options="valueField:'id',textField:'text'">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_JobList_Submit" iconcls="icon-save" onclick="Edit_JobListSubmit()"
+                            class="easyui-linkbutton" data-options="plain:true">提交</a>
+                        <a href="#" id="A3" iconcls="icon-undo" onclick="Edit_JobListCancel()" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div iconcls="icon-save" title="编辑RequestType信息" id="divEditType" style="width: 1200px;">
+        <form id="form_Edit" name="form_Edit" method="post">
+            <table style="font-size: 9pt" cellpadding="5px;">
+                <tr style="display: none;">
+                    <td>Type编号：
+                    </td>
+                    <td>
+                        <input id="txtRequestType_ID_SHOW" name="txtRequestType_ID_SHOW" value="" disabled="true"
+                            style="width: 300px" />
+                        <input id="txtRequestType_ID" name="txtRequestType_ID" type="hidden" style="width: 300px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>名称：
+                    </td>
+                    <td>
+                        <input id="txtName" name="txtName" style="width: 250px" class="easyui-validatebox"
+                            required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <td>说明：
+                    </td>
+                    <td>
+                        <!--  <input id="txtContent" name="txtContent" style="width: 250px" class="easyui-validatebox" required="required" missingmessage="必须填写">-->
+                        <textarea id="txtContent" name="txtContent" style="height: 100px; width: 350px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>表名：
+                    </td>
+                    <td>
+                        <input id="txtTable_Name" name="txtTable_Name" style="width: 250px" class="easyui-validatebox"
+                            required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <td>SQL语句：
+                    </td>
+                    <td>
+                        <!--<input id="txtSQL" name="txtSQL" style="width: 350px" class="easyui-validatebox" required="required" missingmessage="必须填写">-->
+                        <textarea id="txtSQL" name="txtSQL" style="height: 300px; width: 450px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>生效：
+                    </td>
+                    <td>
+                        <input id="txtEnabled" name="txtEnabled" style="width: 350px" data-options="valueField:'id',textField:'text'">
+                    </td>
+                </tr>
+                <tr>
+                    <td>类型：
+                    </td>
+                    <td>
+                        <input id="txtType" name="txtType" style="width: 350px" data-options="valueField:'id',textField:'text'">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-save" onclick="Edit_Submit()" class="easyui-linkbutton"
+                            data-options="plain:true">提交</a>
+                        <a href="#" id="A4" iconcls="icon-undo" onclick="Edit_Cancel()" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div region="center" split="true" id="mainPanle">
+        <table id="tab_list">
+        </table>
+    </div>
+    <div region="east" id="east" split="true" style="width: 600px;">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',title:'JobList信息',split:true,collapsible:false" style="height: 400px;">
+                <table id="divJobListInfo">
+                </table>
+            </div>
+            <div data-options="region:'center',title:'Ref信息'">
+                <table id="divRefInfo">
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

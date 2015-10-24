@@ -1,0 +1,14 @@
+
+wj
+6051/lfzm123
+
+
+--------------------------------------
+INSERT 语句与 FOREIGN KEY 约束"FK_d_inventorysub_d_inventory"冲突。该冲突发生于数据库"F22"，表"dbo.d_Inventory", column 'inventoryid'。
+
+
+exec SP_Y_Inventory 'PD0651-2013-07-27-001','E11PK1038AC2',1
+
+
+消息 547，级别 16，状态 0，过程 SP_Y_Inventory，第 15 行
+INSERT 语句与 FOREIGN KEY 约束"FK_d_inventorysub_d_inventory"冲突。该冲突发生于数据库"F22"，表"dbo.d_Inventory", column 'inventoryid'。

@@ -1,0 +1,251 @@
+﻿@{
+    ViewBag.Title = "订单确认";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+
+        $.post("/DLWXSite/DLGoods/GetProvince?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+            var rst = eval("(" + data + ")");
+
+            var html = "<option></option>";
+            for (var i = 0; i < rst.length; i++) {
+                html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+            }
+            $("#province select").html(html);
+        });
+    });
+</script>
+<div style="padding: 10px; background-color: #fff;">
+    <div class="input-group ">
+        <span class="input-group-addon">预购人</span>
+        <input type="text" class="form-control" id="username" value="@ViewBag.UserName" readonly="">
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">手机号</span>
+        <input type="text" class="form-control" id="tel" value="@ViewBag.Tel" readonly="">
+    </div>
+    <br />
+    <div class="input-group" id="province">
+        <span class="input-group-addon">预购店铺</span>
+        <select class="form-control">
+        </select>
+        <span class="input-group-addon">省</span>
+    </div>
+    <br />
+    <div class="input-group" id="city">
+        <select class="form-control">
+        </select>
+        <span class="input-group-addon">市</span>
+    </div>
+    <br />
+    <div class="input-group">
+        <select class="form-control hzyDepot">
+        </select>
+        <span class="input-group-addon">店</span>
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">取货日期</span>
+        <input class="form-control hzyDp seDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+       @* <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>*@
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">取货时间</span>
+        <select class="form-control hzyTime">
+            <option>9:00-10:00</option>
+            <option>10:00-11:00</option>
+            <option>11:00-12:00</option>
+            <option>12:00-13:00</option>
+            <option>13:00-14:00</option>
+            <option>14:00-15:00</option>
+            <option>15:00-16:00</option>
+            <option>16:00-17:00</option>
+            <option>17:00-18:00</option>
+            <option>18:00-19:00</option>
+            <option>19:00-20:00</option>
+            <option>20:00-21:00</option>
+        </select>
+    </div>
+    <div class="split"></div>
+    <ul style="padding: 0;">
+        @{float count = 0;}
+        @foreach (System.Data.DataRow dr in ViewBag.Order.Rows)
+        {
+            if (@dr["ID"] != "")
+            {
+                { count = count + float.Parse(dr["Amount"].ToString()); }
+            <li class="@dr["ID"]">
+                <table class="cart">
+                    <tr>
+                        <td class="smallImg" rowspan="3">
+                            <img style="width: 100%" src="http://122.225.19.188:8090@{@dr["STYL_PicturePath"].ToString().Split(',')[0].ToString()}" onerror="this.src='/Areas/NPaia/Resources/images/Goods/error.gif';"/>
+                        </td>
+                        <td>
+                            <span class="sku" style="display: none;">@dr["STL2_ID"]</span>
+                            <span>@dr["STYL_Name"]</span>|<span>@dr["STYL_Code"]</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>@float.Parse(dr["Number"].ToString()).ToString("0") 件</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>@dr["STL2_Color"]</span>|<span>@dr["STL2_Size"]</span>
+                        </td>
+                    </tr>
+                    <tr style="display: none">
+                        <td>
+                            <span style="color: red;" class="sellprice">@float.Parse(dr["STYL_SellPrice"].ToString()).ToString("0.00")</span>/<span style="text-decoration: line-through;" class="price">@float.Parse(dr["STYL_Price"].ToString()).ToString("0.00")</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="count" colspan="2" style="text-align: right;">
+                            <span>共 <span class="number">@float.Parse(dr["Number"].ToString()).ToString("0")</span> 件<span class="amount" style="display: none">@dr["Amount"]</span></span>
+                            <button id="@dr["ID"]" type="button" class="btn btn-danger" style="width: 54px;margin-left: 20px;">删除</button>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            }
+        }
+    </ul>
+    <div class="split"></div>
+    <div class="input-group">
+        <span class="input-group-addon">留言</span>
+        <textarea class="form-control" placeholder="请输入留言"></textarea>
+    </div>
+    <div class="split"></div>
+    <div style="text-align: right; padding: 10px; display: none">
+        合计：<span id="count">@count.ToString("0.00")</span>
+    </div>
+</div>
+<div class="split"></div>
+<button id="order" type="button" class="btn btn-success" style="width: 90%; margin: 10px; margin-bottom: 53px">提交订单</button>
+<script type="text/javascript">
+    $("td button").click(function () {
+        Msg.show("删除中...", 3);
+        var id = $(this).attr("id");
+        $.post("/DLWXSite/DLGoods/DelShoppingCart?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&id=" + id, function (data) {
+            Msg.hide();
+            var rst = eval("(" + data + ")");
+
+            if (rst[0].Result == "True") {
+                $("#count").text(parseInt($("#count").text()) - parseInt($("." + id).find(".amount").text()));
+                $("." + id).remove();
+                Msg.show(rst[0].Message, 0);
+                window.history.go(-1);
+            }
+            else {
+                Msg.show(rst[0].Message, 1);
+            }
+        });
+    })
+
+    $("#order").click(function () {
+        if ($("ul li").size() == 0) {
+            Msg.show("请先选择款式", 1);
+            return;
+        }
+        if ($(".hzyDepot option:selected").val() == "") {
+            Msg.show("请选择取货店铺", 1);
+            return;
+        }
+        if ($(".hzyDp").val() == "") {
+            Msg.show("请选择取货日期", 1);
+            return;
+        }
+        var date = new Date();
+        var date1 = date.getFullYear() + "-" + ((date.getMonth() + 1).toString().length == 1 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "-" + (date.getDate().toString().length == 1 ? "0" + date.getDate() : date.getDate());
+
+        if ($(".hzyDp").val() < date1) {
+            Msg.show("取货日期不能小于当前日期", 1);
+            return;
+        }
+        //构造提交json的格式
+        var paramData = {
+            RgUser: $("#username").val(),
+            Tel: $("#tel").val(),
+            Deliverydate: $(".hzyDp").val() + " " + $(".hzyTime option:selected").text(),
+            Amount: $("#count").text(),
+            Depotid: $(".hzyDepot option:selected").val(),
+            Desp: $("textarea").val(),
+            Detail: []
+        };
+        $("ul li").each(function (i) {
+            var subData = {
+                id: $(this).attr("class"),
+                Stlid: $(this).find(".sku").text(),
+                Deliverydate: $(".hzyDp").val() + " " + $(".hzyTime option:selected").text(),
+                Number: $(this).find(".number").text(),
+                Price: $(this).find(".price").text(),
+                SellPrice: $(this).find(".sellprice").text(),
+                Amount: $(this).find(".amount").text()
+            }
+            paramData.Detail.push(subData);
+        })
+
+        Msg.show("提交中...", 3);
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(paramData),
+            dataType: 'json',
+            contentType: 'application/json',
+            url: "/DLWXSite/DLGoods/AddOrder?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"),
+            success: function (data) {
+                Msg.hide();
+                var rst = eval("(" + data + ")");
+
+                if (rst[0].Result == "True") {
+                    Msg.show(rst[0].Message, 0);
+                    window.location.href = "/DLWXSite/DLGoods/GetOrder?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                }
+                else {
+                    Msg.show(rst[0].Message, 1);
+                }
+            }
+        });
+    })
+
+    $("#province select").change(function () {
+        getCity();
+    })
+
+    $("#city select").change(function () {
+        getDepot();
+    })
+
+    function getCity() {
+        $.post("/DLWXSite/DLGoods/GetCity?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&pid=" + $("#province option:selected").val(), function (data) {
+            var rst = eval("(" + data + ")");
+
+            var html = "<option></option>";
+            for (var i = 0; i < rst.length; i++) {
+                html = html + "<option value='" + rst[i].Body_ID + "'>" + rst[i].名称 + "</option>";
+            }
+            $("#city select").html(html);
+            getDepot();
+        });
+    }
+
+    function getDepot() {
+        $.post("/DLWXSite/DLGoods/GetDepot?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&pid=" + $("#province option:selected").text() + "&cid=" + $("#city option:selected").text(), function (data) {
+            var rst = eval("(" + data + ")");
+
+            var html = "<option></option>";
+            for (var i = 0; i < rst.length; i++) {
+                html = html + "<option value='" + rst[i].j_depotid + "'>" + rst[i].j_name + "</option>";
+            }
+            $(".hzyDepot").html(html);
+        });
+    }
+</script>

@@ -1,0 +1,59 @@
+﻿<script type="text/javascript">
+    $(function () {
+        var html = "";
+        for (var i = 2013; i < 2015; i++) {
+            html = html + "<option>" + i + "</option>";
+        }
+        $("#checkYear").html(html);
+
+        html = "";
+        for (var j = 1; j < 13; j++) {
+            html = html + "<option>" + j + "</option>";
+        }
+        $("#checkMonth").html(html);
+    });
+</script>
+
+<div class="ht" id="smycheck">
+    <i class=" icon-check"></i>&nbsp;&nbsp;我的考勤
+    <span onclick="$('#smycheckarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <div class="input-group">
+        <select id="checkYear" class="form-control">
+        </select>
+        <span class="input-group-addon">年</span>
+    </div>
+    <br />
+    <div class="input-group">
+        <select id="checkMonth" class="form-control">
+        </select>
+        <span class="input-group-addon">月</span>
+    </div>
+    <br />
+    <table class="dataTable myCheck">
+        <tr>
+            <td style="text-align:center">正常</td>
+            <td style="text-align:center">迟到</td>
+            <td style="text-align:center">早退</td>
+            <td style="text-align:center">请假</td>
+            <td style="text-align:center">旷工</td>
+        </tr>
+        <tr>
+            <td style="text-align:right">28</td>
+            <td style="text-align:right">1</td>
+            <td style="text-align:right">0</td>
+            <td style="text-align:right">1</td>
+            <td style="text-align:right">0</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "圣诞小游戏";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/NpaiaChristmas.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $(".bg").load(function () {
+                $("#bag").css("top", $(".bg").height() * 0.55);
+                $("#toy").css("top", $(".bg").height() * 0.4);
+                $("#umbrella").css("top", $(".bg").height() * 0.5);
+                $("#card").css("top", $(".bg").height() * 0.5);
+                $(".itemName").css("top", $(".bg").height() * 0.65);
+                $(".bottom").css("top", $(".bg").height() * 0.69);
+                $(".btn").css("top", $(".bg").height() * 0.8);
+
+                $(".btnLeft").css("top", $(".bg").height() * 0.75);
+                $(".btnRight").css("top", $(".bg").height() * 0.75);
+            })
+        })
+
+        WeixinApi.ready(function (Api) {
+            // 微信分享的数据
+            var wxData = {
+                "appId": "", // 服务号可以填写appId
+                "imgUrl": 'http://it.hwafashion.com/Areas/Game/Resources/images/NpaiaChristmas/icon.png',
+                "link": 'http://it.hwafashion.com/Game/NpaiaChristmas/?sid=FF25138F-08F0-49C8-8768-83EFADDB2618',
+                "desc": $(".desc").html(),
+                "title": "恩派雅-就是如此任性"
+            };
+
+            // 分享的回调
+            var wxCallbacks = {
+            
+            };
+
+            // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+            Api.shareToFriend(wxData, wxCallbacks);
+
+            // 点击分享到朋友圈，会执行下面这个代码
+            Api.shareToTimeline(wxData, wxCallbacks);
+        });
+    </script>
+}
+@if (ViewBag.Info == new Guid("4BB08554-65A4-42EA-8CD8-47175138E722"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningbg.png"/>
+    <img class="winning" id="bag" src="~/Areas/Game/Resources/images/NpaiaChristmas/bagbg.png" draggble="true" ondragstart="drag(event);"/>
+    <img class="itemName" src="~/Areas/Game/Resources/images/NpaiaChristmas/baglabel.png"/>
+    <img class="bottom" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningBottom.png"/>
+    <img class="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningButton.png" style="z-index:30;"/>
+    <div class="desc" style="display:none;">哇~太幸运了！快看圣诞老人送了你什么？</div>
+}
+else if (ViewBag.Info == new Guid("2576D77C-1D72-4F8B-8DF9-FDD8D1B37C31"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningbg.png"/>
+    <img class="winning" id="toy" src="~/Areas/Game/Resources/images/NpaiaChristmas/toybg.png" draggble="true" ondragstart="drag(event);"/>
+    <img class="itemName" src="~/Areas/Game/Resources/images/NpaiaChristmas/toylabel.png"/>
+    <img class="bottom" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningBottom.png"/>
+    <img class="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningButton.png" style="z-index:30;"/>
+    <div class="desc" style="display:none;">哇~太幸运了！快看圣诞老人送了你什么？</div>
+}
+else if (ViewBag.Info == new Guid("F7DF8E97-AC84-4081-88E0-0AEB086A9C16"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningbg.png"/>
+    <img class="winning" id="umbrella" src="~/Areas/Game/Resources/images/NpaiaChristmas/umbrellabg.png" draggble="true" ondragstart="drag(event);"/>
+    <img class="itemName" src="~/Areas/Game/Resources/images/NpaiaChristmas/umbrellalabel.png"/>
+    <img class="bottom" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningBottom.png"/>
+    <img class="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningButton.png" style="z-index:30;"/>
+    <div class="desc" style="display:none;">哇~太幸运了！快看圣诞老人送了你什么？</div>
+}
+else if (ViewBag.Info == new Guid("A34EB9F5-4893-4D95-9766-5E5BFD933119"))
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningbg.png"/>
+    <img class="winning" id="card" src="~/Areas/Game/Resources/images/NpaiaChristmas/cardbg.png" draggble="true" ondragstart="drag(event);"/>
+    <img class="itemName" src="~/Areas/Game/Resources/images/NpaiaChristmas/cardlabel.png"/>
+    <img class="bottom" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningBottom.png"/>
+    <img class="btn" src="~/Areas/Game/Resources/images/NpaiaChristmas/winningButton.png" style="z-index:30;"/>
+    <div class="desc" style="display:none;">哇~太幸运了！快看圣诞老人送了你什么？</div>
+}
+else
+{
+    <img class="bg" src="~/Areas/Game/Resources/images/NpaiaChristmas/sorrybg.png"/>
+    <img class="btnLeft" src="~/Areas/Game/Resources/images/NpaiaChristmas/oneMore.png" style="width:30%;position:absolute;left:17%;"/>
+    <img class="btnRight" src="~/Areas/Game/Resources/images/NpaiaChristmas/share.png" style="width:30%;position:absolute;left:53%;"/>
+    <div class="desc" style="display:none;">SORRY~虽然没中奖，但是圣诞老人还是祝福你，快乐的心改变生活，圣诞喜乐！</div>
+}  
+
+<script type="text/javascript">
+    $(".btn").click(function () {
+        window.location.href = "/Game/NpaiaChristmas/Info?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $(".btnLeft").click(function () {
+        window.location.href = "/Game/NpaiaChristmas/CountDown?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+    })
+
+    $(".btnRight").click(function () {
+        WeixinApi.shareTip();
+    })
+
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    document.ondragover = function (evt) {
+        // 取消事件的默认行为
+        return false;
+    }
+
+    document.ondragleave = function (evt) {
+        //取消被拖动的元素离开本元素时触发该事件
+        return false;
+
+    }
+
+    document.ondrop = function (evt) {
+        // 取消事件的默认行为
+        return false;
+    }
+
+    var startX, startY, touchX, touchY;
+
+    function touchStart(event) {
+        event.preventDefault();
+        if (!event.touches.length || (event.touches.length > 1))
+            return;
+        var touch = event.touches[0];
+        startX = event.target.offsetLeft;
+        startY = event.target.offsetTop;
+        touchX = touch.pageX;
+        touchY = touch.pageY;
+    }
+
+    function touchMove(event) {
+        event.preventDefault();
+        if (!event.touches.length || (event.touches.length > 1))
+            return;
+        var touch = event.touches[0];
+
+        event.target.style.left = (touch.pageX - (touchX - startX)) + "px";
+        event.target.style.top = (touch.pageY - (touchY - startY)) + "px";
+    }
+
+    function touchEnd(event) {
+        event.target.style.left = startX + "px";
+        event.target.style.top = startY + "px";
+    }
+</script>
+
+@if (ViewBag.Info == new Guid("4BB08554-65A4-42EA-8CD8-47175138E722"))
+{
+    <script type="text/javascript">
+        document.getElementById("bag").addEventListener("touchstart", touchStart);
+        document.getElementById("bag").addEventListener("touchmove", touchMove);
+        document.getElementById("bag").addEventListener("touchend", touchEnd);
+    </script>
+}
+else if (ViewBag.Info == new Guid("2576D77C-1D72-4F8B-8DF9-FDD8D1B37C31"))
+{
+    <script type="text/javascript">
+        document.getElementById("toy").addEventListener("touchstart", touchStart);
+        document.getElementById("toy").addEventListener("touchmove", touchMove);
+        document.getElementById("toy").addEventListener("touchend", touchEnd);
+    </script>
+}
+else if (ViewBag.Info == new Guid("F7DF8E97-AC84-4081-88E0-0AEB086A9C16"))
+{
+    <script type="text/javascript">
+        document.getElementById("umbrella").addEventListener("touchstart", touchStart);
+        document.getElementById("umbrella").addEventListener("touchmove", touchMove);
+        document.getElementById("umbrella").addEventListener("touchend", touchEnd);
+    </script>
+}
+else if (ViewBag.Info == new Guid("A34EB9F5-4893-4D95-9766-5E5BFD933119"))
+{
+    <script type="text/javascript">
+        document.getElementById("card").addEventListener("touchstart", touchStart);
+        document.getElementById("card").addEventListener("touchmove", touchMove);
+        document.getElementById("card").addEventListener("touchend", touchEnd);
+    </script>
+}

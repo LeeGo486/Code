@@ -1,0 +1,33 @@
+
+$(document).ready(function(){
+	
+	getWXInfo();
+	getWXHistory();
+	
+})
+
+
+function getWXInfo(){
+
+	var parameter = location.search;
+	var wxno = parameter.split('=')[1]; 
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([{"name":"txtWxno","value":wxno}], 'getWXDetailInfo');
+
+    $.post(url,function(data){
+    	
+    });
+}
+
+function getWXHistory(){
+	var parameter = location.search;
+	var wxno = parameter.split('=')[1]; 
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([{"name":"txtWxno","value":wxno}], 'getHistory');
+
+    $.post(url,function(data){
+    	
+    });
+}

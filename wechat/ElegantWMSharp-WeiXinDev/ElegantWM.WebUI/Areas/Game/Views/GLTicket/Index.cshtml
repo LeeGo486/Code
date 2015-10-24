@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/GLTicket.css?v8" />
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        var appId, ticket, timestamp, nonceStr, signature;
+
+        $(function () {
+            //获取appid
+            $.post("/Game/GLTicket/GetAppId?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                if (rst.result == 0) {
+                    appId = rst.msg;
+                    //获取ticket
+                    $.post("/Game/GLTicket/GetTicket?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (rst) {
+                        if (rst.result == 0) {
+                            ticket = rst.msg;
+                            timestamp = parseInt(new Date().getTime() / 1000) + '';
+                            nonceStr = Math.random().toString(36).substr(2, 15);
+
+                            //获取signature
+                            $.post("/Game/GLTicket/GetSignature?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&ticket=" + ticket + "&nonceStr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + window.location.href.replace(/&/g, '%26'), function (rst) {
+                                if (rst.result == 0) {
+                                    signature = rst.msg;
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: appId, // 必填，公众号的唯一标识
+                                        timestamp: timestamp, // 必填，生成签名的时间戳
+                                        nonceStr: nonceStr, // 必填，生成签名的随机串
+                                        signature: signature,// 必填，签名，见附录1
+                                        jsApiList: [
+                                            'onMenuShareTimeline',
+                                            'onMenuShareAppMessage'
+                                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                } else {
+                                    //alert("获取signature失败")
+                                }
+                            });
+                        } else {
+                            //alert("获取GetTicket失败")
+                        }
+                    });
+                } else {
+                    //alert("获取appid失败")
+                }
+            });
+
+            var Ticket = '@ViewBag.Ticketid';
+            if (Ticket == "") {
+                $("#Winning").hide();
+            } else {
+                $("#Winning").show();
+            }
+        });
+
+        wx.ready(function () {
+
+            var url = "http://it.hwafashion.com/Game/GLTicket/Index?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+            var imgUrl = 'http://it.hwafashion.com/Areas/Game/Resources/images/GLTicket/1.png';
+            wx.onMenuShareTimeline({
+                title: '【会员尊享】雅斓名店春日出游礼券', // 分享标题
+                link: url,// 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: '【会员尊享】雅斓名店春日出游礼券', // 分享标题
+                desc: '春日出游礼券！', // 分享描述
+                link: url, // 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+        });
+
+        wx.error(function (res) {
+            //alert(res);
+        });
+
+        function goToNotice() {
+            window.location.href = "/Game/GLTicket/Notice?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        };
+        function share() {
+            
+            var share = "<div class='share'><img src=\"/Areas/Game/Resources/images/GLTicket/share2.png\"</div>";
+            //var share1 = "<div class='share1'><img src=\"/Areas/Game/Resources/images/GLTicket/sharebg.png\"</div>";
+
+            var share1 = "<div class=\"share1\"><img src=\"/Areas/Game/Resources/images/GLTicket/sharebg.png\"</div>";
+
+            $(".mainArea").append(share)
+            $(".mainArea").append(share1)
+            
+            var bgHeight = document.body.clientHeight;
+            $(".share1").css("top", 0);
+        } 
+    </script>
+}
+
+<div class="mainArea">
+
+    <div style="text-align: center">
+        <img src="~/Areas/Game/Resources/images/GLTicket/index.gif" style="width: 100%;">
+    </div>
+
+    <h3>
+        <span>[粉丝专享 | 出游时尚攻略]
+        </span>
+    </h3>
+
+    <span>4月，与雅斓名店的春装一起，
+    <br />
+        像恋爱一样去出行。<br />
+        2015S/S全新春夏新品，<br />
+        装扮那个准备出游的你。<br />
+        在行旅中展现最美的你。<br />
+        <br />
+    </span>
+
+    <div class="ticket">
+        @* <img src="/Areas/Game/Resources/images/GLTicket/ticketbg.jpg" width='80%' />*@
+        <span>@ViewBag.Content1
+            <br />
+            @ViewBag.Content2
+        </span>
+    </div>
+
+    <div id="Winning">
+        活动中出示以上礼券代码，即可尊享88元立减。<br /><br />
+        <img src="/Areas/Game/Resources/images/GLTicket/share.gif" width='50%' onclick="share()" />
+        <br />  <br />
+        <a onclick="goToNotice()">礼券使用说明及约束条款</a>
+    </div>
+</div>

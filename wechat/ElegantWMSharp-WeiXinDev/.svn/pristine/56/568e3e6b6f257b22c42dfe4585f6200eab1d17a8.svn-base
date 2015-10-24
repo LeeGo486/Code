@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "会员查询";
+    Layout = "~/Views/Shared/_NPaiaLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/NPaia/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            $("#Bg img").load(function () {
+                var bgHeight = $("#Bg").height();
+                var bgWeith = $("#Bg").width();
+                $("#vipinfo").css("bottom", bgHeight * 0.1);
+                $("#vipinfo").css("width", bgWeith);
+                $("#btntwo").css("top", bgHeight * 0.12);
+                $("#btntwo").css("left", (bgWeith - 100) * 0.5);
+            });
+        })
+        function vipInformation() {
+            window.location.href = "/NPaia/VIP/VIPInformation/?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&tel=" + '@ViewBag.dtpCentum.Rows[0]["mobtel"]'
+        }
+    </script>
+}
+
+<div id="Bg">
+    <img src="~/Areas/NPaia/Resources/images/VIP/vipbg.jpg" alt="head" width='100%'>
+</div>
+
+<div id="btntwo" style="position: absolute" onclick="vipInformation()">
+    <img src="~/Areas/NPaia/Resources/images/VIP/btntwo.png" alt="head" width='100%'>
+</div>
+<div id="vipinfo" style="position: absolute; text-align: center; font-family: 'Microsoft YaHei'">
+    <table style="padding: 0">
+        <tr style="font-size: 20px;">
+            <td colspan="1">@ViewBag.dtpCentum.Rows[0]["vipname"] </td>
+        </tr>
+        <tr style="font-size: 14px">
+            <td colspan="1">@ViewBag.dtpCentum.Rows[0]["vipcode"]</td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px;">@ViewBag.dtpCentum.Rows[0]["centum"]分</td>
+            @*<td style="font-size: 12px; text-align: left">分</td>*@
+        </tr>
+    </table>
+</div>

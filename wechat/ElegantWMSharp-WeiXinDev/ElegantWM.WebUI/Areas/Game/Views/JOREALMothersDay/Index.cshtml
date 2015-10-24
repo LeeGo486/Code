@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "填写联系方式";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+
+@section script{
+    <script type="text/javascript">
+
+        function updateTimeLabel(time) {
+            var btn = $("#getAuthCode");
+            btn.fadeIn(1000);
+            //  $("#getAuthCode")[0].innerHTML
+            btn[0].innerHTML = (time <= 0 ? "获取验证码" : ((time) + "秒"));
+            var hander = setInterval(function () {
+                if (time <= 0) {
+                    clearInterval(hander);
+                    btn[0].innerHTML = ("获取验证码");
+                    btn.attr("disabled", false);
+
+                }
+                else {
+                    btn[0].innerHTML = ((time--) + "秒"); btn
+                    btn.attr("disabled", true);
+                }
+            }, 1000);
+        }
+
+        $(function () {
+            $("#getAuthCode").click(function () {
+                var strMobileNumber = $("#phone").val();
+
+                if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                    $("#phone").focus();
+                    Msg.show('手机号码无效', 1);
+                    return;
+                }
+                $("#txtAuthenticode").focus();
+                //按钮倒计时
+                updateTimeLabel(60);
+                Msg.show("短信发送中...", 3);
+                var url = "/Game/JOREALMothersDay/SendSms?tel=" + strMobileNumber;
+                $.post(url, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+
+            $("#submit").click(function () {
+                if ($("#areainstant").val() == "") {
+                    Msg.show("请输入与母亲最难忘的瞬间", 1);
+                    return;
+                }
+                if ($("#areawords").val() == "") {
+                    Msg.show("请输入最想对她说名", 1);
+                    return;
+                }
+                if ($("#name").val() == "") {
+                    Msg.show("请输入姓名", 1);
+                    return;
+                }
+                if ($("#phone").val() == "") {
+                    Msg.show("请输入手机号", 1);
+                    return;
+                }
+                if ($("#areaadd").val() == "") {
+                    Msg.show("请输入收货地址", 1);
+                    return;
+                }
+
+                ////验证手机验证码是否正确
+                //var url = "/Game/JOREALMothersDay/CheckAuthCode?Tel=" + $("#phone").val() + "&AuthCode=" + $("#txtAuthenticode").val();
+                //$(this).button("loading");
+                //Msg.show("验证中...", 3);
+                //var flag = false;
+                //$.ajax({
+                //    url: url,
+                //    method: "POST",
+                //    async: false,
+                //    success: function (rst) {
+                //        if (rst.result == 1) {
+                //            Msg.hide();
+                //            $("#submit").button("reset");
+                //            Msg.show(rst.msg, rst.result);
+                //            flag = true;
+                //            return;
+                //        } else {
+                //            Msg.hide();
+
+                //        }
+                //    }
+                //});
+
+                //if (flag) return;
+
+                //构造提交json的格式
+                var paramData = {
+                    Height: $("#areainstant").val(),
+                    Weight: $("#areawords").val(),
+                    Name: $("#name").val(),
+                    Tel: $("#phone").val(),
+                    Address: $("#areaadd").val()
+                };
+
+                Msg.show("提交中...", 3);
+                $.post("/Game/JOREALMothersDay/Submit", paramData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    $("#submit").button("reset");
+                    if (rst.result == 0) {
+                        Msg.show(rst.msg, rst.result);
+                        window.history.go(-1);
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                });
+            });
+        })
+    </script>
+}
+<style type="text/css">
+</style>
+<center>
+
+    <img class="bg" src="~/Areas/Game/Resources/images/JOREALMothersDay/bg.jpg" style="width: 100%;" />
+
+    <div style="position: absolute; width: 100%; top: 0px">
+
+        <div class="input-group">
+            <img src="/Areas/Game/Resources/images/JOREALMothersDay/head.png" style="width: 100%">
+        </div>
+
+    <div>
+        <textarea class="form-control" id="areainstant" style="width: 80%; height: 60px; color:#bf4576; background-color: rgba(225, 219, 219, 0.85);" maxlength="50" placeholder="与母亲最难忘的瞬间..."></textarea>
+    </div>
+    <br />
+
+    <div>
+        <textarea class="form-control" id="areawords" style="width: 80%; margin-top: -10px; color:#bf4576;background-color: rgba(225, 219, 219, 0.85);" maxlength="50" placeholder="最想对她说..."></textarea>
+    </div>
+    <br />
+    <div>
+        <input type="text" class="form-control" id="name" style="width: 80%; margin-top: -10px;color:#bf4576; background-color: rgba(225, 219, 219, 0.85);"  placeholder="你的姓名...">
+    </div>
+    <br />
+      <div>
+        <input type="number" class="form-control" id="phone" style="width: 80%; margin-top: -10px; color:#bf4576;background-color: rgba(225, 219, 219, 0.85);"  placeholder="你的手机...">
+    </div>
+    <br />
+
+@*    <div class="input-group" style="width: 80%; margin-top: -10px;">
+           
+        <input  class="form-control" id="txtAuthenticode" name="txtAuthenticode" type="number"  
+             style="color:#bf4576;background-color: rgba(225, 219, 219, 0.90);" maxlength="4" placeholder="填写验证码。">
+            <span class="input-group-btn">
+            <button id="getAuthCode" class="btn btn-default"   type="button">获取验证码</button>
+        </span>
+    </div>
+        <br />*@
+
+   
+    <div>
+        <textarea class="form-control" id="areaadd" style="width: 80%; margin-top: -10px;color:#bf4576; background-color: rgba(225, 219, 219, 0.85);" maxlength="50" placeholder="地址..."></textarea>
+    </div>
+    
+
+        <div>
+            <button id="submit" type="button" class="btn btn-default" style="width: 30%; height: 30px; margin-top: 10px; text-align: center">提交</button>
+        </div>
+
+        <div class="input-group">
+            <img src="/Areas/Game/Resources/images/JOREALMothersDay/di.png" style="width: 100%;">
+        </div>
+
+    </div>
+     </center>

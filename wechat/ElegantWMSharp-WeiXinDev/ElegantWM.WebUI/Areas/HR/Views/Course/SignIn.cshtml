@@ -1,0 +1,36 @@
+﻿@model ElegantWM.Common.ResultMsg
+@{
+    ViewBag.Title = "课程签到";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+}
+<div class="courseDetail">
+
+    <h6 style='color:@(Model.result == 1 ? "#CC3333" : "#66CC33")'>
+        <i class="icon-info-sign"></i>@Model.msg
+    </h6>
+    <h4><span><i class="glyphicon glyphicon-time"></i>课 程 </span></h4>
+    @if (ViewBag.Crs != null)
+    {
+        <div>
+            <span class="badge pull-right kkz">已签到：@ViewBag.LsnSigned</span>
+            <h3><i class="glyphicon glyphicon-book"></i>@ViewBag.Crs.CourseName</h3>
+            @*讲师：@ViewBag.Crs.Teacher&nbsp;&nbsp;*@
+            @*积分：@ViewBag.Crs.Integration&nbsp;&nbsp;*@
+            总报名：@ViewBag.CrsAttended<br />
+            地点：@ViewBag.Crs.Venue<br />
+            日期：@ViewBag.Crs.StartDate.ToString("yyyy-MM-dd") ~ @ViewBag.Crs.EndDate.ToString("yyyy-MM-dd")<br />
+            描述：@ViewBag.Crs.CourseDesc
+        </div>
+    }
+    <h4><span><i class="glyphicon glyphicon-time"></i>课 时 </span></h4>
+    @if (ViewBag.Lsn != null)
+    {
+        <div class="lesson">
+            <div style="margin-bottom: 6px;"><span class="label label-warning">@ViewBag.Lsn.LessonName</span></div>
+            时间： @ViewBag.Lsn.StartTime.ToString("yyyy-MM-dd") （@ViewBag.Lsn.StartTime.ToString("HH:mm") ~ @ViewBag.Lsn.EndTime.ToString("HH:mm")）
+        </div>
+    }
+</div>

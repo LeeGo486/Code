@@ -1,0 +1,46 @@
+{
+   "identifier": "wishId",
+   "label": "description",
+   "items": [ {  
+  "wishId": 4455, "description": "Don Pepin Garcia Delicias", "size": "7-50",
+   "origin": "Nicaragua", "wrapper": "Corojo", "shape": "Straight", 
+   "amount": "Straight" ,"price": "1","totalprice": "1"
+  }, {
+   "wishId": 4456, "description": "601 Habano Robusto", "size": "5-50",  
+  "origin": "Nicaragua", "wrapper": "Natural", "shape": "Straight",
+  "amount": "Straight" ,"price": "2","totalprice": "2"
+   }, {
+   "wishId": 4457, "description": "Black Pearl Rojo Robusto", "size": "4 3/4-52",  
+  "origin": "Nicaragua", "wrapper": "Natural", "shape": "Straight" ,
+  "amount": "Straight" ,"price": "3","totalprice": "3"
+  }, {
+   "wishId": 4458, "description": "Padron Churchill", "size": "6 7/8-46",
+   "origin": "Nicaragua", "wrapper": "Natural", "shape": "Straight" ,
+   "amount": "Straight" ,"price": "4","totalprice": "4" 
+  }, {
+   "wishId": 4459, "description": "Davidoff Aniversario No. 2", "size": "7-48",  
+  "origin": "Dominican Republic", "wrapper": "Natural", "shape": "Straight" ,
+  "amount": "Straight" ,"price": "5","totalprice": "5"  
+  }, {
+   "wishId": 4460, "description": "Cohiba Churchill", "size": "7-49",  
+  "origin": "Dominican Republic", "wrapper": "Sungrown", "shape": "Straight" ,
+  "amount": "Straight" ,"price": "6","totalprice": "6"  
+  }, {
+   "wishId": 4461, "description": "Gurkha Legend Torpedo", "size": "6 3/4-53",
+   "origin": "Honduras", "wrapper": "Colorado Maduro", "shape": "Straight" ,
+   "amount": "Straight" ,"price": "7","totalprice": "7"  
+  }, {
+   "wishId": 4462, "description": "Cohiba Black Supremo", "size": "6-54",  
+  "origin": "Dominican Republic", "wrapper": "Sungrown", "shape": "Straight" ,
+  "amount": "Straight" ,"price": "8","totalprice": "8"  
+  }, {
+   "wishId": 4463, "description": "La Flor Dominicana Ligero Mysterio", "size": "6 1/8-54",  
+  "origin": "Dominican Republic", "wrapper": "Natural", "shape": "Perfecto" ,
+  "amount": "Straight" ,"price": "9","totalprice": "9"  
+  }, {
+   "wishId": 4464, "description": "Camacho Triple Maduro Torpedo", "size": "6-54",  
+  "origin": "Honduras", "wrapper": "Cameroon", "shape": "Torpedo" ,
+  "amount": "Straight" ,"price": "10","totalprice": "10"  
+  }
+   ]
+}

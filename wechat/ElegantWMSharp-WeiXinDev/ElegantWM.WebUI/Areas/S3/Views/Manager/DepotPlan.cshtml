@@ -1,0 +1,140 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+            dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+            today: ["今天"],
+            firstDay: 1,
+            buttonText: {
+                today: '今天',
+                month: '月',
+                week: '周',
+                day: '日'
+            },
+            titleFormat: {
+                month: 'MMMM',
+                week: "MMMM",
+                day: 'MMMM'
+            },
+            weekMode: "liquid",
+            events: [
+                {
+                    title: 13,
+                    em1: "李菲菲：4",
+                    em2: "周琳：5",
+                    em3: "单玲：2",
+                    em4: "张欣：2",
+                    start: '2014-08-28'
+                },
+                {
+                    title: 16,
+                    em1: "李菲菲：5",
+                    em2: "周琳：4",
+                    em3: "单玲：3",
+                    em4: "张欣：4",
+                    start: '2014-09-01'
+                },
+                {
+                    title: 14,
+                    em1: "李菲菲：3",
+                    em2: "周琳：5",
+                    em3: "单玲：4",
+                    em4: "张欣：2",
+                    start: '2014-09-03'
+                }
+            ],
+            dayClick: function (date, allDay, jsEvent, view) {
+                loadDetail(date.format("YYYY-MM-DD"));
+            },
+            eventClick: function (event) {
+                loadDetail(event.start.format("YYYY-MM-DD"));
+            },
+            loading: function (bool) {
+                if (bool) $('#loading').show();
+                else $('#loading').hide();
+            },
+            eventMouseover: function (calEvent, jsEvent, view) {
+                $(this).attr('title', calEvent.EventDay);
+                $(this).css('font-weight', 'normal');
+                $(this).tooltip({
+                    effect: 'toggle',
+                    cancelDefault: true
+                });
+            },
+            eventMouseout: function (calEvent, jsEvent, view) {
+                $(this).css('font-weight', 'normal');
+            },
+            eventAfterRender: function (event, element, view) {
+                var fstart = event.EventDay;
+                var confbg = '';
+                var confbg = confbg + '<span class="fc-event-bg"></span>';
+                var titlebg = '<span class="fc-event-conf">' + event.title + '</span>';
+
+                if (view.name == "month") {
+                    var evtcontent = '<div class="fc-event-vert">';
+                    evtcontent = evtcontent + confbg;
+                    evtcontent = evtcontent + '<span class="fc-event-titlebg" style="color:#4181BB;">' + titlebg + '</span></br>';
+                    evtcontent = evtcontent + '<div class="ui-resizable-handle ui-resizable-e"></div></div>';
+                    element.html(evtcontent);
+                } else if (view.name == "basicWeek") {
+                    var evtcontent = '<div class="fc-event-vert">';
+                    evtcontent = evtcontent + confbg;
+                    evtcontent = evtcontent + '<span style="color:#4181BB;">' + event.em1 + '</span></br>';
+                    evtcontent = evtcontent + '<span style="color:#D96B27;">' + event.em2 + '</span></br>';
+                    evtcontent = evtcontent + '<span style="color:#7030A0;">' + event.em3 + '</span></br>';
+                    evtcontent = evtcontent + '<span style="color:#00A44A;">' + event.em4 + '</span></br>';
+                    evtcontent = evtcontent + '<div class="ui-resizable-handle ui-resizable-e"></div></div>';
+                    element.html(evtcontent);
+                } else if (view.name == "basicDay") {
+                    var evtcontent = '<div class="fc-event-vert">';
+                    evtcontent = evtcontent + confbg;
+                    evtcontent = evtcontent + '<span style="color:#4181BB;">' + event.em1 + '</span></br>';
+                    evtcontent = evtcontent + '<span style="color:#D96B27;">' + event.em2 + '</span></br>';
+                    evtcontent = evtcontent + '<span style="color:#7030A0;">' + event.em3 + '</span></br>';
+                    evtcontent = evtcontent + '<span style="color:#00A44A;">' + event.em4 + '</span></br>';
+                    evtcontent = evtcontent + '<div class="ui-resizable-handle ui-resizable-e"></div></div>';
+                    element.html(evtcontent);
+                }
+            }
+        });
+
+        //加载活动明细
+        function loadDetail(eventday) {
+            Msg.show("计划明细加载中...", 3);
+            $.get("/S3/Manager/DepotPlanDetail", function (htmldata) {
+                Msg.hide();
+                showDetail(htmldata);
+                $(".seDate").val(eventday);
+            });
+        }
+
+        //显示活动明细
+        function showDetail(data) {
+            $("#sdetailarea").html(data);
+            scrollTo("#sdetailarea");
+        }
+    });
+</script>
+
+<div class="ht" id="sdepotplan">
+    <i class="icon-calendar"></i>&nbsp;&nbsp;客户经理行动计划
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <div id="calendar"></div>
+    <div id="sdetailarea">
+    </div>
+</div>

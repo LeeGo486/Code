@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>WS服务申请</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/JS_PrintArea.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/WSRR/WSApplay.js?Date=20131203" type="text/javascript"></script>
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+    <div region="center" split="true" id="mainPanle">
+        <table id="tab_list">
+        </table>
+    </div>
+    <div iconcls="icon-save" title="编辑服务申请" id="divPrint" style="width: 850px; height: 500px;">
+        <table style="font-size: 9pt; vertical-align: top; table-layout: fixed" cellpadding="5px;"
+            border="1" cellspacing="0">
+            <tr>
+                <td colspan="4" align="center">
+                    <b style="font-size: 24pt">华之毅服务申请单</b>
+                </td>
+            </tr>
+            <tr>
+                <td>申请编号：
+                </td>
+                <td colspan="3">
+                    <span id="lblWS_Applay_ID"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 150px">申请人：
+                </td>
+                <td style="width: 250px">
+                    <span id="lblAppliay_User"></span>
+                </td>
+                <td style="width: 150px">申请日期：
+                </td>
+                <td style="width: 350px">
+                    <span id="lblApplay_Time"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>服务路径：
+                </td>
+                <td>
+                    <span id="lblService_Path"></span>
+                </td>
+                <td>服务名称：
+                </td>
+                <td>
+                    <span id="lblWS_Name"></span>
+                </td>
+
+            </tr>
+            <tr>
+                <td>方法名称：
+                </td>
+                <td>
+                    <span id="lblFunction_Name"></span>
+                </td>
+                <td>
+                    <!--服务部署：-->
+                </td>
+                <td>
+                    <!-- <span id="lblWS_DeployServer"></span>-->
+                </td>
+            </tr>
+            <tr>
+                <td>正式路由：
+                </td>
+                <td>
+                    <span id="lblRouteDev"></span>
+                </td>
+                <td>测试路由：
+                </td>
+                <td>
+                    <span id="lblRouteProd"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>SP名称
+                </td>
+                <td>
+                    <span id="lblWS_SPName"></span>
+                </td>
+                <td>SP&nbsp;&nbsp;部 署：
+                </td>
+                <td>
+                    <span id="lblWS_SP_Server"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>服务说明：
+                </td>
+                <td colspan="3">
+                    <span id="lblWS_Content"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>输入格式：
+                </td>
+                <td colspan="3">
+                    <span id="lblInput_Format"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>返回格式：
+                </td>
+                <td colspan="3">
+                    <span id="lblReturn_Format"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>基本逻辑：
+                </td>
+                <td colspan="3">
+                    <span id="lblLogic_Content"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>SP代码：
+                </td>
+                <td colspan="3">
+                    <span id="lblCode"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div iconcls="icon-save" title="编辑服务申请" id="divEditType" style="width: 850px; height: 500px;">
+        <form id="form_Edit" name="form_Edit" method="post">
+            <table style="font-size: 9pt;" cellpadding="5px;">
+                <tr style="display: none;">
+                    <td>申请编号：
+                    </td>
+                    <td>
+                        <input id="txtWS_Applay_ID" name="txtWS_Applay_ID" type="hidden" style="width: 300px" />
+                    </td>
+                </tr>
+                <tr id='trUserTime'>
+                    <td>申请人：
+                    </td>
+                    <td>
+                        <input id="txtAppliay_User" name="txtAppliay_User" style="width: 200px" disabled="disabled">
+                        &nbsp;&nbsp;&nbsp;&nbsp;申请日期：
+                    <input id="txtApplay_Time" name="txtApplay_Time" style="width: 200px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td>服务路径：
+                    </td>
+                    <td>
+                        <input id="txtService_Path" name="txtService_Path" style="width: 200px" class="easyui-validatebox"
+                            data-options="required:true,validType:'WSPath[200]'" missingmessage="必须英文，比如/系统大类/模块/产品名称/公司名称，比如/ERP/PO/M3/EP;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;服务名称：
+                        <input id="txtWS_Name" name="txtWS_Name" style="width: 200px" class="easyui-validatebox"
+                            data-options="required:true,validType:'SN[4,100]'" missingmessage="必须英文，比如CustomerInfo">
+                    </td>
+                </tr>
+                <tr>
+                    <td>方法名称：
+                    </td>
+                    <td>
+                        <input id="txtFunction_Name" name="txtFunction_Name" style="width: 200px" class="easyui-validatebox"
+                            data-options="required:true,validType:'SNC[4,100]'" missingmessage="必须英文，如：GetList">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <!--服务部署：
+                    <input id="txtWS_DeployServer" name="txtWS_DeployServer" style="width: 150px" class="easyui-validatebox"
+                        data-options="required:true,validType:'SNC[4,100]'" missingmessage="输入应用服务器地址和应用服务器名称，比如192.168.0.35 WSRR">-->
+                        WSID：&nbsp;&nbsp;&nbsp;&nbsp;<input id="txtWS_ID" name="txtWS_ID" style="width: 250px" disabled="disabled">
+                    </td>
+                </tr>
+
+                <!-- <tr>
+                    <td>正式路由：
+                    </td>
+                    <td>
+                        <input id="cmbRouteProd" name="cmbRouteProd" style="width: 200px">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        服务部署：
+                    <input id="txtWS_DeployServer" name="txtWS_DeployServer" style="width: 150px" class="easyui-validatebox"
+                        data-options="required:true,validType:'SNC[4,100]'" missingmessage="输入应用服务器地址和应用服务器名称，比如192.168.0.35 WSRR">
+                        测试路由：<input id="cmbRouteTest" name="cmbRouteTest" style="width: 200px">
+                    </td>
+                </tr>-->
+                <tr>
+                    <td>SP名称：
+                    </td>
+                    <td>
+                        <input id="txtWS_SPName" name="txtWS_SPName" style="width: 200px" class="easyui-validatebox"
+                            data-options="required:true,validType:'SNC[4,100]'" missingmessage="必须英文，比如[API_Customer].[CustomerInfo]">
+                        &nbsp;&nbsp;&nbsp;&nbsp;SP&nbsp;部 署：
+                    <input id="txtWS_SP_Server" name="txtWS_SP_Server" style="width: 200px" class="easyui-validatebox"
+                        data-options="required:true,validType:'SNC[4,100]'" missingmessage="输入数据库IP地址和库名，比如192.168.0.135 MVXCDTPROD">
+                    </td>
+                </tr>
+                <tr>
+                    <td>服务说明：
+                    </td>
+                    <td>
+                        <textarea id="txtWS_Content" name="txtWS_Content" style="height: 60px; width: 660px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>输入格式：
+                    </td>
+                    <td>
+                        <textarea id="txtInput_Format" name="txtInput_Format" style="height: 300px; width: 660px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>返回格式：
+                    </td>
+                    <td>
+                        <textarea id="txtReturn_Format" name="txtReturn_Format" style="height: 300px; width: 660px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>基本逻辑：
+                    </td>
+                    <td>
+                        <textarea id="txtLogic_Content" name="txtLogic_Content" style="height: 400px; width: 660px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SP代码：
+                    </td>
+                    <td>
+                        <textarea id="txtCode" name="txtCode" style="height: 400px; width: 660px"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-save" onclick="Edit_Submit()" class="easyui-linkbutton"
+                            data-options="plain:true">提交</a> <a href="#" id="A1" iconcls="icon-print" onclick="Print()"
+                                class="easyui-linkbutton" data-options="plain:true">打印</a> <a href="#" id="btn_UpdateState"
+                                    onclick="UpdateState()" class="easyui-linkbutton" data-options="plain:true">审核</a>
+                        <a href="#" id="A2" iconcls="icon-undo" onclick="Cancel_Click()" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <a href="#" id="btn_Delete" iconcls="icon-cancel" onclick="Delete_Click()" class="easyui-linkbutton"
+                            data-options="plain:true">删除</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div id="divRouteDev" title="待下发的路由选择" style="width: 350px; height: 250px;">
+
+        <form id="formRouteDev" name="formRouteDev" method="post">
+            <table style="font-size: 9pt;" cellpadding="15px;">
+                <tr style="display: none;">
+                    <td>
+                    </td>
+                    <td>
+                        <input id="txtWS_Applay_ID" name="txtWS_Applay_ID" type="hidden" style="width: 300px" />
+                    </td>
+                </tr>
+
+                 <tr >
+                    <td>&nbsp;
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr id='tr1'>
+                    <td>开发路由：
+                    </td>
+                    <td>
+                        <input id="cmbRouteDev" name="cmbRouteDev" style="width: 200px">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="A3" iconcls="icon-save" onclick="RouteDev_Submit()" class="easyui-linkbutton"
+                            data-options="plain:true">提交</a>
+                        <a href="#" id="A6" iconcls="icon-undo" onclick="RouteDevCancel_Click()" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+</div>
+
+       <div id="divRouteProd" title="待下发的路由选择" style="width: 350px; height: 250px;">
+
+        <form id="formRouteProd" name="formRouteDev" method="post">
+            <table style="font-size: 9pt;" cellpadding="15px;">
+                <tr style="display: none;">
+                    <td>
+                    </td>
+                    <td>
+                        <input id="txtWS_Applay_ID" name="txtWS_Applay_ID" type="hidden" style="width: 300px" />
+                    </td>
+                </tr>
+
+                 <tr >
+                    <td>&nbsp;
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr id='tr2'>
+                    <td>开发路由：
+                    </td>
+                    <td>
+                        <input id="cmbRouteProd" name="cmbRouteProd" style="width: 200px">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="A4" iconcls="icon-save" onclick="RouteProd_Submit()" class="easyui-linkbutton"
+                            data-options="plain:true">提交</a>
+                        <a href="#" id="A5" iconcls="icon-undo" onclick="RouteProdCancel_Click()" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+.styles {
+    width: 400px;
+  /*   background-color: rgb(255, 255, 255); */
+    padding: 4px 10px 2px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+
+.styles1 {
+    position: absolute;
+    top:9px;
+    left:35%;
+    width: 400px;
+  /*   background-color: rgb(255, 255, 255); */
+    text-align: center;
+}
+
+.C3b3839 {
+    background-color: rgb(59, 56, 57);
+}
+
+.C54c104 {
+    background-color: rgb(84, 193, 4);
+}
+
+.C175e88 {
+    background-color: rgb(23, 94, 136);
+}
+
+.C640f6c {
+    background-color: rgb(100, 15, 108);
+}
+
+.Cd5002c {
+    background-color: rgb(213, 0, 44);
+}
+
+.Cfe7906 {
+    background-color: rgb(254, 121, 6);
+}
+
+
+
+.CSite {
+    background-color: rgb(0,190,242);
+}
+
+.BtnCss {
+    border: 0px solid rgb(255, 255, 255);
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+}

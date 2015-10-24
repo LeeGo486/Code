@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>导购锁帐日期</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js"></script>
+    <script src="../../jquery-easyui-1.3.4/export.js" type="text/javascript"></script>
+    <script src="../../JS/SBS/percentageDistributionLockData.js?Date=20140719" type="text/javascript"></script>
+    <link href="../../Styles/hzy_Common.css" rel ="stylesheet" />
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div region="north" style="height: 50px" data-options="split:true,border:false">
+        <div style="padding-left: 10px; padding-top: 10px;">
+            <form id="frmSeach">
+                 月份：<input id="txtmonth" name="txtmonth" style="width: 100px">
+                 <a href="#" id="btn_Add" iconcls="icon-search" onclick="searchClick()" class="easyui-linkbutton"
+                    data-options="plain:true">加载</a>
+                 设置锁帐日期：<input class="easyui-datebox" id="txtDate" name="txtDate" data-options="formatter:Formater.Date" style="width: 150px" />
+                 <a href="#" id="btn_Save" iconcls="icon-save" onclick="saveClick()" class="easyui-linkbutton"
+                    data-options="plain:true">设置保存</a>
+            </form>
+        </div>
+    </div>
+    <div region="center" split="true" id="mainPanle">
+        <table id="tab_list">
+        </table>
+    </div>
+</body>
+</html>

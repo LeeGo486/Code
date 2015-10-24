@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/WSServiceCall/ServiceCallManage.js"></script>
+</head>
+<body class="easyui-layout" style="width: 100%; height: 100%;">
+        <div iconcls="icon-save" title="编辑WS参数信息" id="divEditWSParam" style="width: 600px;"  class="edit">
+        <form id="form_ParamEdit" name="form_ParamEdit" method="post">
+            <table>
+                <tr>
+                    <th>参数编号
+                    </th>
+                    <td>
+                        <input  name="txtTask_ID" value=""  style="width: 300px" hidden="hidden" class="easyui-textbox" />
+                        <input id="txtParamIDShow" name="txtParamIDShow" class="easyui-textbox" value="" disabled="true" style="width: 300px" />
+                        <input id="txtParam_ID" name="txtParam_ID" value="" type="hidden" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>参数名
+                    </th>
+                    <td>
+                        <input id="txtParam_Name" name="txtParam_Name" style="width: 150px" class="easyui-validatebox" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>参数值
+                    </th>
+                    <td>
+                        <input id="txtParam_Value" name="txtParam_Value" class="easyui-textbox" style="width: 350px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Param_Submit" iconcls="icon-save" onclick="Edit_ParamSubmit()" class="easyui-linkbutton" data-options="plain:true">提交</a>
+                        <a href="#" id="A1" iconcls="icon-undo" onclick="WindowClose('#divEditWSParam')" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a></td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div title="编辑任务信息" id="divEditWSRR" style="width: 800px;" class="edit">
+        <form id="form_Edit" name="form_Edit" method="post">
+            <table>
+                <tr>
+                    <th>任务编号
+                    </th>
+                    <td>
+                        <input id="txtTask_ID" name="txtTask_ID"  hidden="hidden" />
+                        <input id="txtTaskIDShow" name="txtTaskIDShow" disabled="disabled" value=""  style="width: 300px" class="easyui-textbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>WS编号
+                    </th>
+                    <td>
+                        <input  class="easyui-combobox"  id="txtWS_ID" name="txtWS_ID" style="width: 300px; height: 33px;"  required="required"  missingmessage="必须填写" />
+                    </td>
+                </tr>
+                <tr  id="trShowWSName" style="display:none">
+                    <th>WS名称
+                    </th>
+                    <td>
+                        <input  class="easyui-textbox"  id="txtShowWSName" name="txtShowWSName" style="width:300px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>路由服务
+                    </th>
+                    <td>
+
+                        <input id="cmbRoute" name="cmbRoute" style="width: 200px;height:33px;">
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>任务名称
+                    </th>
+                    <td>
+                        <input id="txtWS_Name" name="txtWS_Name" value="" style="width: 300px" class="easyui-validatebox" required="required" missingmessage="必须填写"/>
+                    </td>
+                </tr>
+<!--                <tr>
+                    <th>执行类
+                    </th>
+                    <td>
+                        <input id="txtWS_LogicName" name="txtWS_LogicName" value="" style="width: 300px" />
+                    </td>
+                </tr>-->
+                <tr>
+                    <th>执行类别
+                    </th>
+                    <td>
+                        <select class="easyui-combobox" id="comExecute_Type" name="comExecute_Type" style="width: 100px;height:33px" data-options="panelHeight:'auto',onSelect:ExecuteType_OnSelect,editable:false">
+                            <option value="day">天</option>
+                            <option value="week">周</option>
+                            <option value="month">月</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="trWeekTime" style="display:none">
+                    <th>执行周时间
+                    </th>
+                    <td>
+                        <input type="checkbox"  name="chkExecute_WeekTime" value="MON"  />星期一
+                        <input type="checkbox"  name="chkExecute_WeekTime" value="TUE" />星期二
+                        <input type="checkbox"  name="chkExecute_WeekTime" value="WED" />星期三
+                        <input type="checkbox"  name="chkExecute_WeekTime" value="THU" />星期四
+                        <br />
+                        <input type="checkbox"  name="chkExecute_WeekTime" value="FRI" />星期五
+                        <input type="checkbox"  name="chkExecute_WeekTime" value="SAT" />星期六
+                        <input type="checkbox"  name="chkExecute_WeekTime" value="SUN" />星期日
+                    </td>
+                </tr>
+                <tr id="trMonthTime"  style="display:none">
+                    <th>执行月时间
+                    </th>
+                    <td>
+                        <input id="txtExecute_MonthTime" name="txtExecute_MonthTime"  class="easyui-validatebox" data-options="validType:'MonthExecute'" style="width: 150px; height: 33px;" >
+                    </td>
+                </tr>
+                <tr>
+                    <th>执行开始时间
+                    </th>
+                    <td>
+                        <input class="easyui-timespinner" id="txtExecute_StartTime" name="txtExecute_StartTime" value="00:00:00"  style="width: 140px; height: 33px;" data-options="min:'00:00',showSeconds:true" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>执行结束时间
+                    </th>
+                    <td>
+                        <input class="easyui-timespinner" id="txtExecute_EndTime" name="txtExecute_EndTime"  value="23:59:59" style="width: 140px; height: 33px;" data-options="min:'00:00',showSeconds:true" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                 <tr>
+                    <th>执行周期
+                    </th>
+                    <td>
+                          <select class="easyui-combobox" id="comExecute_CycleType" name="comExecute_CycleType"  style="width: 100px; height: 33px;" data-options="panelHeight:'auto',onSelect:ExecuteCycleType_OnSelect,editable:false">
+                            <option value="sec">秒</option>
+                            <option value="min">分钟</option>
+                            <option value="hou">小时</option>
+                        </select>
+                        <select class="easyui-combobox" id="comExecute_Time" name="comExecute_Time" style="width: 100px; height: 33px; " data-options="panelHeight:'auto',editable:false">
+                        </select>
+                        <!--<input id="txtExecute_Cycle" name="txtExecute_Cycle" value="" style="width: 100px" class="easyui-validatebox" required="required" missingmessage="必须填写">-->
+                    </td>
+                </tr>
+                 <tr>
+                    <th>执行开始日期
+                    </th>
+                    <td>
+                        <input id="txtExecute_DayStartTime" name="txtExecute_DayStartTime" style="width: 140px; height: 33px; "  class="easyui-datebox" data-options="formatter:DateFormatter,parser:DateParser,editable:false" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>执行结束日期
+                    </th>
+                    <td>
+                        <input id="txtExecute_DayEndTime" name="txtExecute_DayEndTime" style="width: 140px; height: 33px; " class="easyui-datebox" data-options="formatter:DateFormatter,parser:DateParser,editable:false" required="required" missingmessage="必须填写">
+                    </td>
+                </tr>
+                <tr>
+                    <th>是否可用
+                    </th>
+                    <td>
+                        <input id="chkEnabled" name="chkEnabled" type="checkbox"  checked="checked" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>执行错误次数
+                    </th>
+                    <td>
+                        <input class="easyui-numberspinner" id="txtError_Count" name="txtError_Count" data-options="min:0" style="width: 100px; height: 33px" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>提醒错误次数
+                    </th>
+                    <td>
+                        <input class="easyui-numberspinner" id="txtRemind_ErrorCount" name="txtRemind_ErrorCount" data-options="min:1" style="width: 100px; height: 33px" required="required" missingmessage="必须填写"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>提醒用户
+                    </th>
+                    <td>
+                        <input id="txtRemind_UserName" name="txtRemind_UserName" style="width: 300px" class="easyui-validatebox" required="required" missingmessage="必须填写"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-save" onclick="Edit_Submit()" class="easyui-linkbutton" data-options="plain:true">提交</a>
+                        <a href="#" id="A2" iconcls="icon-undo" onclick="WindowClose('#divEditWSRR')" class="easyui-linkbutton"
+                            data-options="plain:true">取消</a>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div region="east" id="east" style="width: 400px;" style="background: #eee; overflow-y: hidden;">
+        <div id="mainTabs" class="easyui-tabs" fit="true" border="false" style="width: 600px;">
+            <div title="参数信息">
+                <table id="divParamInfo" style="width: 100%; height: 98%">
+                </table>
+            </div>
+            <div title="执行日志">
+                <table id="tblLogInfo" style="width: 100%; height: 98%">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div region="center" split="true" style="width: 100%;" id="mainPanle">
+        <table id="tab_list" style="width: 100%; height: 98%">
+        </table>
+    </div>
+</body>
+</html>

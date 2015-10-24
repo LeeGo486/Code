@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>toogle</title>
+		<meta name="vs_defaultClientScript" content="JavaScript">
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+		<meta name="ProgId" content="VisualStudio.HTML">
+		<meta name="Originator" content="Microsoft Visual Studio .NET 7.1">
+		<script type="text/javascript">
+<!--
+
+var iniCols, noCols, o_mf, o_ms, s;
+function ini() {
+	o_mf = parent.document.getElementById("fset");
+	o_ms = document.getElementById("menuSwitch");
+	noCols = iniCols = o_mf.cols;
+	if ((pos = noCols.indexOf(",")) != -1) {
+		noCols = "0" + noCols.substring(pos);
+	}	
+	s = false;
+}
+
+function changeLeft(){
+	s = !s;
+	o_mf.cols = s ? noCols : iniCols;
+	o_ms.innerHTML = s ? '<img border="0" alt="展开" src="icon/button_right.gif" style="position:absolute;top:36%;" />' : '<img border="0" alt="缩进" src="icon/button_left.gif" style="position:absolute;top:36%;" />';
+}
+
+//-->
+		</script>
+	</head>
+	<body onload="ini();" style="height:100%" bgcolor="#ECF3F6">
+		<table style="width:100%;height:100%;" border="0" cellpadding="0" cellspacing="0" ID="Table1">
+			<tr>
+				<td><a href="javascript:changeLeft();" id="menuSwitch"><img border="0" alt="缩进" src="icon/button_left.gif" style="position:absolute;top:36%;" /></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

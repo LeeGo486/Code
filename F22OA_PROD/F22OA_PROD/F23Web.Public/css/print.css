@@ -1,0 +1,124 @@
+﻿/* screen mode*/
+body, td, span, h1, h2, h3, p
+{
+	font-family:Arial;
+	margin: 0;
+	padding: 0;
+}
+h1
+{
+	font-size: 24px;
+	line-height: 45px;
+}
+h2
+{
+	font-size: 22px;
+	line-height: 40px;
+}
+h3
+{
+	font-size: 20px;
+	line-height: 30px;
+}
+h4
+{
+	font-size: 16px;
+	line-height: 22px;
+}
+h5
+{
+	font-size: 12px;
+	line-height: 22px;
+}
+#pagetoolbar
+{
+}
+#pageheader
+{
+}
+#pagecontent
+{
+	/*height: 400px;*/
+}
+#pagefooter
+{
+}
+
+table.display
+{
+	border: solid 1px #000;
+}
+table.display
+{
+}
+table
+{
+	border-collapse: collapse;
+	border-color: Black;
+}
+table td
+{
+	border-color: Black !important;
+}
+table td.center
+{
+	text-align:center;
+}
+table td.right
+{
+	text-align:right;
+}
+table th
+{
+	border-color: Black !important;
+}
+#pageheader table td
+{
+	font-size: 12px;
+	line-height: 20px;
+}
+#pagecontent table td, #pagecontent table th
+{
+	font-size: 12px;
+}
+#pagefooter table td, #pagefooter table th
+{
+	line-height: 22px;
+	font-size: 12px;
+}
+div.space
+{
+	overflow: hidden;
+	height: 5px;
+}
+/* screen */
+/*
+@media screen
+{
+	body
+	{
+		overflow: hidden;
+	}
+	#pagecontent
+	{
+		overflow: auto;
+	}
+}
+*/
+/* print */
+@media print
+{
+	#pagetoolbar
+	{
+		display: none !important;
+	}
+	#pagecontent
+	{
+		overflow: inherit !important;
+		height: inherit !important;
+	}
+	#pagefooter
+	{
+		/*position:absolute; 		 bottom:0;*/
+	}
+}

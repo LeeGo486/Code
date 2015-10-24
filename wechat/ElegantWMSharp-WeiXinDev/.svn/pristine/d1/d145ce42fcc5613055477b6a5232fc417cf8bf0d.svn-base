@@ -1,0 +1,236 @@
+﻿@{
+    ViewBag.Title = "商品详细";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+    <link href="~/Scripts/fullPage/jquery.fullPage.css" rel="stylesheet" />
+    <script src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script src="~/Scripts/fullPage/fullPage.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#fullpage').fullpage({
+                'verticalCentered': false,
+                'navigation': true,
+                'navigationPosition': 'right',
+                'continuousVertical': true
+            })
+
+            $('#SKUDetail').hide();
+            $('#MaterialDeatil').hide();
+
+            $("#CancelSKUDetail").click(function () {
+                $('#SKUDetail').hide();
+            });
+
+            $("#addTry").click(function () {
+                $('#SKUDetail').show();
+            });
+
+            $("#Material").click(function () {
+                $('#MaterialDeatil').show();
+            });
+
+            $("#Cancel").click(function () {
+                $('#MaterialDeatil').hide();
+            });
+
+            //我要预购
+            $("#order").click(function () {
+                if (!$("#color button").hasClass("active")) {
+                    Msg.show("请选择颜色", 1);
+                    return;
+                }
+                if (!$("#size button").hasClass("active")) {
+                    Msg.show("请选择尺寸", 1);
+                    return;
+                }
+
+                window.location.href = "/DLWXSite/DLGoods/Order?sid=" + Url.get("sid") + "&oid=" + Url.get("oid")
+                    + "&styleid=" + $("#styleid").text()
+                    + "&color=" + $("#color button.active").text()
+                    + "&size=" + $("#size button.active").val()
+                    + "&number=" + $("#number input").val();
+            })
+
+            //加入购物车
+            $("#add").click(function () {
+                if (!$("#color button").hasClass("active")) {
+                    Msg.show("请选择颜色", 1);
+                    return;
+                }
+                if (!$("#size button").hasClass("active")) {
+                    Msg.show("请选择尺寸", 1);
+                    return;
+                }
+                //构造提交json的格式
+                var paramData = {
+                    styleid: $("#styleid").text(),
+                    color: $("#color button.active").text(),
+                    size: $("#size button.active").val(),
+                    number: $("#number input").val(),
+                    price: $("#price").text(),
+                    sellprice: $("#sellprice").text()
+                };
+
+                Msg.show("提交中...", 3);
+                $.post("/DLWXSite/DLGoods/AddShoppingCart?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (data) {
+                    Msg.hide();
+                    var rst = eval("(" + data + ")");
+
+                    if (rst[0].Result == "True") {
+                        Msg.show(rst[0].Message, 0);
+                    }
+                    else {
+                        Msg.show(rst[0].Message, 1);
+                    }
+                });
+            })
+
+
+            //颜色按钮
+            $("#color button").click(function () {
+                $.post("/DLWXSite/DLGoods/GetSize?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&styleid=" + $("#styleid").text() + "&color=" + $(this).text(), function (data) {
+                    var rst = eval("(" + data + ")");
+
+                    $("#size button").removeClass("do");
+                    for (var i = 0; i < rst.length; i++) {
+                        $("#size button[name='" + rst[i].STL2_Size + "']").addClass("do");
+                    }
+                    $("#size button").not(".do").removeClass("active");
+                    $("#size button").not(".do").attr("disabled", "disabled");
+                });
+
+                $("#color button").removeClass("active");
+            });
+            //尺码点击验证有没有存库
+            $("#size button").click(function () {
+                $.post("/DLWXSite/DLGoods/GetColor?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&styleid=" + $("#styleid").text() + "&size=" + $(this).val(), function (data) {
+                    var rst = eval("(" + data + ")");
+
+                    $("#color button").removeClass("do");
+                    for (var i = 0; i < rst.length; i++) {
+                        $("#color button[name='" + rst[i].STL2_Color + "']").addClass("do");
+                    }
+                    $("#color button").not(".do").removeClass("active");
+                    $("#color button").not(".do").attr("disabled", "disabled");
+                });
+
+                $("#size button").removeClass("active");
+            });
+            //减1
+            $("#oMin").click(function () {
+                if (parseInt($(this).parent().parent().find("input").val()) <= 1) {
+                    $(this).parent().parent().find("input").val("1");
+                } else {
+                    $(this).parent().parent().find("input").val(parseInt($(this).parent().parent().find("input").val()) - 1);
+                }
+            });
+            //加1
+            $("#oPlus").click(function () {;
+                if ($.trim($(this).parent().parent().find("input").val()) == "") {
+                    $(this).parent().parent().find("input").val("1");
+                } else {
+                    $(this).parent().parent().find("input").val(parseInt($(this).parent().parent().find("input").val()) + 1);
+                }
+            });
+
+        })
+    </script>
+}
+
+<div id="fullpage">
+
+    @foreach (string s in ViewBag.BigImg)
+    {
+        <div class="section">
+            <img src="http://122.225.19.188:8090@{@s}" >
+        </div>
+    }
+</div>
+
+<div class="skudetailsc">
+    <span id="addTry" style="">
+        <img style="" src="/Areas/DLWXSite/Resources/images/Goods/sc.jpg" />
+    </span>
+</div>
+
+<div id="SKUDetail" style="position: absolute; bottom: 45px; margin: 0px 0px 0px 0px; background-color: #fff; width: 100%; height: 70%; z-index: 9999">
+    <div style="border: 0px solid #28282a; width: 90%; height: 90%; margin: 5% 5% 5% 5%">
+        <div id="CancelSKUDetail" style="position: absolute; float: right; z-index: 999; top: 1%; right: 7%; border: 0px solid #28282a; font-size: 50px">×</div>
+        <div id="name" style="margin: 10px; line-height: 15px">
+            <div id="styleid" style="display: none;">@ViewBag.StyleInfo.Rows[0]["STYL_ID"]</div>
+            <div id="price" style="display: none;">@ViewBag.StyleInfo.Rows[0]["STYL_price"]</div>
+            <div id="sellprice" style="display: none;">@ViewBag.StyleInfo.Rows[0]["STYL_sellprice"] </div>
+            <p>品名：@ViewBag.StyleInfo.Rows[0]["STYL_name"] </p>
+            <p>编号：@ViewBag.StyleInfo.Rows[0]["STYL_Code"] </p>
+            <p>价格：@float.Parse(ViewBag.StyleInfo.Rows[0]["STYL_sellprice"]).ToString("0.00") </p>
+            @*<a style="list-style-type: none" id="Material">材料及保养 >></a>*@
+            <hr style="border: 1px solid #28282a; margin: 10px 0px 10px 0px" />
+            <div id="sel">
+                <table style="text-align: left;">
+                    <tr>
+                        <td style="width: 54px;">颜色:</td>
+                        <td id="color">
+                            @foreach (System.Data.DataRow dr in ViewBag.Color.Rows)
+                            {
+                                if (@dr["STL2_Color"] != "")
+                                {
+                                <button name="@dr["STL2_Color"]" type="button" class="btn" data-toggle="button">@dr["STL2_Color"]</button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>尺码:</td>
+                        <td id="size">
+                            @foreach (System.Data.DataRow dr in ViewBag.Size.Rows)
+                            {
+                                if (@dr["STL2_Size"].ToString() != "" && @dr["STL2_Size"].ToString() != "1" && @dr["STL2_Size"].ToString() != "6")
+                                {
+                                    if (@dr["STL2_Size"].ToString() == "2")
+                                    {
+                                <button name="@dr["STL2_Size"]" type="button" value="@dr["STL2_Size"]"  class="btn" data-toggle="button" style="width: 100px;" >@dr["STL2_Size"]#155cm</button>
+                                    }
+                                    else if (@dr["STL2_Size"].ToString() == "3")
+                                    {
+                                <button name="@dr["STL2_Size"]" type="button" value="@dr["STL2_Size"]" class="btn" data-toggle="button" style="width: 100px;">@dr["STL2_Size"]#160cm</button>
+                                    }
+                                    else if (@dr["STL2_Size"].ToString() == "4")
+                                    {
+                                <button name="@dr["STL2_Size"]" type="button"  value="@dr["STL2_Size"] "class="btn" data-toggle="button" style="width: 100px;">@dr["STL2_Size"]#165cm</button>
+                                    }
+                                    else if (@dr["STL2_Size"].ToString() == "5")
+                                    {
+                                <button name="@dr["STL2_Size"]" type="button"  value="@dr["STL2_Size"]" class="btn" data-toggle="button" style="width: 100px;">@dr["STL2_Size"]#170cm</button>
+                                    }
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>数量:</td>
+                        <td id="number">
+                            <div class="input-group" style="width: 170px;">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" id="oMin">-</button>
+                                </span>
+                                <input style="text-align: center;" type="text" pattern="[0-9]*" class="form-control" value="1">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" id="oPlus">+</button>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="oper">
+                <button id="add" type="button" class="btn btn-success" style="width: 40%; margin: 10px 4%;">加入购物车</button>
+                <button id="order" type="button" class="btn btn-success" style="width: 40%; margin: 10px 4%;">我要试穿</button>
+            </div>
+        </div>
+    </div>
+</div>
+

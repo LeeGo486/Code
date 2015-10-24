@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>D0003048-5044-20141125160143</tempretailid>
+    <depotid>D0003048</depotid>
+    <depotname>TBF嘉兴旗舰店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=99900", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>DL店铺测试</crname>
+    <crdate>2014-11-25 16:03:00:2343 </crdate>
+  </log>
+  <log>
+    <tempretailid>D0003048-5044-20141125160143</tempretailid>
+    <depotid>D0003048</depotid>
+    <depotname>TBF嘉兴旗舰店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=99900", "", "", "", "120400010000")</instr>
+    <recodes>F5POS/PINPAD没有准备就绪                                                                              </recodes>
+    <info>调刷卡失败</info>
+    <crname>DL店铺测试</crname>
+    <crdate>2014-11-25 16:03:07:5625 </crdate>
+  </log>
+  <log>
+    <tempretailid>D0003048-5044-20141125160143</tempretailid>
+    <depotid>D0003048</depotid>
+    <depotname>TBF嘉兴旗舰店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=100", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>DL店铺测试</crname>
+    <crdate>2014-11-25 16:10:00:2812 </crdate>
+  </log>
+  <log>
+    <tempretailid>D0003048-5044-20141125160143</tempretailid>
+    <depotid>D0003048</depotid>
+    <depotname>TBF嘉兴旗舰店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=100", "", "", "", "120400010000")</instr>
+    <recodes>004270203300183469   2014112516102500000100000014112570007015181200000000010012045699000613000000000S牡丹贷记卡                             银联商户号(UNION PAY MERCHANT CODE):102335056990005
+发卡行(ISSUE BANK):中国工商银行
+总计(TOTAL):RMB 1.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>DL店铺测试</crname>
+    <crdate>2014-11-25 16:10:50:4375 </crdate>
+  </log>
+</logs>

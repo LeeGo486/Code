@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<configuration>
+	<appSettings>
+		<!--测试库-->
+		<add key="TFG_infoguard" value="udE6xhVXCwllQLID7CW4h6hJdM6kATEofrjTK3smWizAihoHaaJ6ivJaU7Pn8IL4SLhXDMACUIDinp4XQ7MV7ip3VDDBIrP10bDr9hg3isCl+RDcQYs1xg=="/>
+		
+    <add key="MDM1" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyBUprNV8ZsbohD3AjsMAlQe4mno+bD4rintyaY3KefjdZDthPzddvHZGuyOgtZ8VX8="/>
+    <add key="WS_log" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyBUprNV8ZsbohD3AjsMAlQe4mno+bD4rintyaY3KefjdZDthPzddvHZ4P0WHBwhozLsjAX+fiA55Q=="/>
+
+    <add key="API_Package" value="udE6xhVXCwl9IhjMGo4Y3MKcQDAedQD32cSFQMLVv4PXL1zJQ6DmBqqDTwcA3RYitEUnsFVs9JHJ2ojnOj3WxGT6sxNva6FkI1WvU2Du3po="/>
+    
+    <add key="F22" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyBUprNV8ZsbohD3AjsMAlQe4mno+bD4rintyaY3KefjdZDthPzddvHZjbx7uk/xi3eu7IyWUPptYQ=="/>
+		<add key="AM" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyBUprNV8ZsbohD3AjsMAlQe4mno+bD4rintyaY3KefjdZDthPzddvHZYVEl2girUxw="/>
+		<add key="iCollecter" value="yXSYF3giGnH8FFtAJ7xNE1w16H19zR9nwtci9FePH9cTb+Ac9KinbrWy8CWTJW9c8kSkHlgKPomHB0/+Kwha1S/rwvWU1HXCdp7pVADJHcXhnZu/7Hn07Q=="/>
+		<add key="DBDict" value="yXSYF3giGnFhyT2Dx5jGlrtPfRwMt7tRXrxp9bTbEev68Jcgvd4xgQthfqwxeKaKYYJfGNcPG1QonFY+K+KEMHzdXbbPvM0w"/>
+		<add key="EPSysAccounts" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyBUprNV8ZsbohD3AjsMAlQe4mno+bD4rintyaY3KefjdZDthPzddvHZRQz6lvdptT9n5vaBlHLjug=="/>
+		<add key="X6_EPApp" value="udE6xhVXCwnngVwu8lxJEyk9iy3tNoyhtDMiQ1ONDUfQ0ShVhzr0nltpI0lLeOwDrcReJQMn4jC50KDIIDIHFcMvPykvVAIk"/>
+		<add key="ServerMDM" value="udE6xhVXCwnngVwu8lxJE6DYYtn1Lmb4RO5xLzUU8eUuw5KN9lq4RUFfJUzHgV/3KrxTG+D/Nr7R2dNXtpg3ptQ8t5UR4/Ml"/>
+		<add key="WSRR" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyBUprNV8ZsbohD3AjsMAlQe4mno+bD4rintyaY3KefjdZDthPzddvHZ3M0MR6kpdno="/>
+		<add key="WSRR_log" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyAGVkie62EIIubePqPBiGKx6KoylZSqpVV5Xz7Mdst8VJclrTdDXF/TV4wX5hN7I0I="/>
+    
+		<add key="MDM_Master" value="udE6xhVXCwl9IhjMGo4Y3MKcQDAedQD32cSFQMLVv4OhLVwFn6KvggmKOT4DDsqwVhtL9Y5872dDQ7VWjrwlMXGSJnvEAPJCuKW5DTS5fMg="/>
+		<add key="MDM_Market" value="udE6xhVXCwl9IhjMGo4Y3MKcQDAedQD32cSFQMLVv4OhLVwFn6KvggmKOT4DDsqwVhtL9Y5872dDQ7VWjrwlMVeRimULO7Oo1AfiOmTvvng="/>
+		<add key="HZY_ITSM" value="udE6xhVXCwnngVwu8lxJE6MX2BPW1KbK81iIHbZF65ZJL8tneLJtAfDgVvV7ZLACFL1EEfHvu+1y2lUVU/32VJ6l1uD8rk9T"/>
+		<add key="DpPrint_ESB" value="udE6xhVXCwnngVwu8lxJE7/KBiBcegb3lAKzIixuYinB1OqXTjIlFVeWghDQxKZcEyAr5EJsuniAqbwf5WTpCa2LcK9e77wfm30W5pWfw14="/>
+		<add key="PLM_AS" value="udE6xhVXCwnngVwu8lxJE9GbK5Ew7cm/kdjjowf5Wm6WJNPWimu3s038TfBeYcOtFL22DBQUQSjgUrdb4V/wPX/ReIseWgpQz7ZfWqRHeRk="/>
+                <add key="AMSendWS.MsgCenter" value="http://192.168.0.89/MsgCenter.asmx"/>
+		<add key="ESB_TEST" value="udE6xhVXCwl9IhjMGo4Y3MKcQDAedQD33oN8k/5xYNki6adqXfHAmNIb2uyMQSoVERzI3iOQ+gj68tNzmsD3Mjc+E9poJRFj601vw6xZYd/40RF6h0778A=="/>
+		<add key="BI_CustomerFlow" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyBUprNV8ZsbohD3AjsMAlQe4mno+bD4rintyaY3KefjdZDthPzddvHZKUhNtxmK2lJFVtFKWwt5ATRjxWSeIbeX"/>
+   
+		<add key="PMC" value="udE6xhVXCwl9IhjMGo4Y3L7Zj3k+AzNFJed6Wdanyu3O1kAGQb4W9t4zpRpiMbm8nvdgzPLvdVvPenQjpo9fX/G39FqNI5vLiO6d379mzQI="/>
+    	        <add key="CUSCRM" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLXh5vavtq6NLydQM9SoFjwY1FhTdo0swwzoNFDuP+JjlgMBmVa1JgwKdSoCNlgI0E2Pndcw4ya+g="/>
+                <add key="F22GP_ForSalesPlan" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitL/daEYd0VIPmN+E9VReS+gwEimrTSO/p733BclA2PPxjiEYN4zOIP9jCb0W+dM8Koc0HBezayYwg="/>
+   	        <add key="GL_ERP" value="udE6xhVXCwl9IhjMGo4Y3MKcQDAedQD3wyrC3wXlR1kWS32lwS/a3z+Lyr+Ri4WAs5WPCrcuTAUOSs1wZ3LzBoWhwa40xLxX4gY353kYHsnj+88bG/Ongw=="/>
+     		<add key="SMS" value="udE6xhVXCwnngVwu8lxJE+HvIx7mplbt1Uco/ViayJkQtMTCfrjC2G8cid/pN0O2phPxANzH3BXpVHzqerOGbuv58/eyUgNJ"/>
+   		 <add key="F22XY" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLgcXgz7vxwSpXBjv9iSK5/2di+8PyfT/1qiyq1Sjixda60pqSpS4Mp9SYPrBJePmNC0ZSTn8SCmI="/>
+    		<add key="F22XY_TEST" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLgcXgz7vxwSpXBjv9iSK5/2di+8PyfT/1qiyq1Sjixda60pqSpS4Mp9SYPrBJePmNC0ZSTn8SCmI="/>
+    <add key="F22XY_TEST_DRP_REPORT" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLgcXgz7vxwSpXBjv9iSK5/2di+8PyfT/1qiyq1Sjixda60pqSpS4Mp7xGcQrVgjeFJNXb9cNAIv4="/>
+    <add key="HZY_CMT_PROD" value="udE6xhVXCwl9IhjMGo4Y3EOaW0en2iYkPWdRG6wpBiT2PoeeWsKs0LCv0m4TrrL7fKtVMTbmSCgbskjtJgGPkhEoJ9/3yOU+qxPQFJm9wtk="/>
+                <add key="VexSSO" value="udE6xhVXCwl9IhjMGo4Y3FbzRbAIUitLT5AfkaBRDyAGVkie62EIIubePqPBiGKx6KoylZSqpVV5Xz7Mdst8VPu8Brq0YYXz4jDXV0KNdW0="/>
+
+    <!--正式库-->
+    <!--<add key="MDM" value="udE6xhVXCwnngVwu8lxJE1rrpafiw5PELSduEpvsoSODJ1lW04rCkdR4FoMSru+KQqkA6h5YLTutpDCmmm7pkiu3UUAKwPSz"/>
+    <add key="MDM_log" value="udE6xhVXCwnngVwu8lxJE1rrpafiw5PELSduEpvsoSODJ1lW04rCkdR4FoMSru+KQqkA6h5YLTutpDCmmm7pkhHp1eyvxaAci16GHrYhFYk="/>
+    <add key="API_Package" value="udE6xhVXCwl9IhjMGo4Y3EOaW0en2iYkPkwi6FZHQA0hJApHJwAf7pUtcs/cCUbXpu1isjPCgMGdNgRJqFvhnxAG0WOsl0/NH/K3uuKFt214ObewFwUYcA=="/>-->
+    
+  </appSettings>
+	<connectionStrings>
+		<add name="BI_CustomerFlowConnectionString" connectionString="Data Source=172.16.205.105;Initial Catalog=BI_CustomerFlow;Persist Security Info=True;User ID=sa;Password=nokia13867386635" providerName="System.Data.SqlClient"/>
+	</connectionStrings>
+	<system.web>
+		<compilation debug="true" defaultLanguage="c#" targetFramework="4.0">
+			<assemblies>
+				<add assembly="System.DirectoryServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+				<add assembly="System.DirectoryServices.Protocols, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+				<add assembly="Microsoft.JScript, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+				<add assembly="System.Data.OracleClient, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/></assemblies>
+		</compilation>
+		<httpRuntime executionTimeout="300000"/>
+		<authentication mode="Windows"/>
+		<pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID"/>
+	</system.web>
+	<system.webServer>
+		<directoryBrowse enabled="true"/>
+	</system.webServer>
+</configuration>

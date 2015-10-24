@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>退货管理</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/gray/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../JS/Hawk/ReturnGoods.js?Date=20131225" type="text/javascript"></script>   
+    <script>
+         $.fn.datebox.defaults.formatter = function (date) {
+             var y = date.getFullYear();
+             var m = date.getMonth() + 1;
+             var d = date.getDate();
+             return y + '-' + (m < 10 ? ('0' + m) : m) + '-' + (d < 10 ? ('0' + d) : d);
+         }
+         $.fn.datebox.defaults.parser = function (s) {
+             if (!s) return new Date();
+             var ss = (s.split('-'));
+             var y = parseInt(ss[0], 10);
+             var m = parseInt(ss[1], 10);
+             var d = parseInt(ss[2], 10);
+             if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
+                 return new Date(y, m - 1, d);
+             } else {
+                 return new Date();
+             }
+         }
+    </script>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',split:true" title="筛选" style="height:80px">
+        <form id="mainForm">
+            <table>
+                <tr>
+                    <td>仓库名称</td>
+                    <td><select id="mainWarehouse" name="txtwarehouse"></select></td>
+                    <td>供应商名称</td>
+                    <td><input type="text" name="txtsuppName" /></td>
+                    <td>款号</td>
+                    <td><input type="text" name="txtstyle" style="width:100px" /></td>
+                    <td>退货日期</td>
+                    <td>
+                        <input id="txtBeginDate" name="txtBeginDate" class="easyui-datebox" style="width: 100px" />
+                        —
+                        <input id="txtEndDate" name="txtEndDate" class="easyui-datebox" style="width: 100px" />
+                    </td>
+                    <td>
+                        <input id="mainsearch" type="button" value="查询" />
+                        <input id="mainundo" type="button" value="取消" />
+                    </td>
+                </tr>
+            </table>
+       </form>
+
+    </div>
+
+    <div data-options="region:'center',split:true" title="返品列表">
+        <table id="main_list"></table>
+    </div>
+       
+   <div id="window" class="easyui-window" data-options="closed:true">
+       <div class="easyui-layout" data-options="fit:true">
+           <div data-options="region:'north'" style="height:50px">
+               <form id="winForm">
+                   <table>
+                       <tr>
+                           <td>仓库名称</td>
+                           <td><select id="winWarehouse" name="txtwarehouse"></select></td>
+                           <td>供应商名称</td>
+                           <td><input type="text" id="suppName" name="txtsuppName" /></td>
+                           <td>款号</td>
+                           <td><input id="style" type="text" name="txtstyle" /></td>
+                           <td>SKU</td>
+                           <td><input id="sku" type="text" name="txtsku" /></td>
+                           <td>
+                               <input id="winsearch" type="button" value="查询" />
+                               <input id="winundo" type="button" value="取消" />
+                           </td>
+                       </tr>
+                   </table>         
+                </form>
+           </div>
+
+           <div data-options="region:'center'">
+                <table id="win_list"></table>
+            </div>
+       </div>
+   </div>
+
+    <div id="winReturnGoods" class="easyui-window" data-options="closed:true,plain:true" title="返品明细表">
+        <table id="tabReturnGoodsList">
+
+        </table>
+    </div>
+</body>
+</html>

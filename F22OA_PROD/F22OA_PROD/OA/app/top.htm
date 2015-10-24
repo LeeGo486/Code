@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+			<script>
+var menu_id=0;
+
+function setPointer(theRow, thePointerColor,menu_id_over)
+{
+  if(menu_id!=menu_id_over)
+     theRow.className=thePointerColor;
+}
+
+function view_menu1()
+{
+  if(menu_id!=0)
+     parent.menu_main.location="length.htm";
+   menu_id=1;
+   menu_1.className='menu_top_mouse1';
+   menu_2.className='menu_top_mouse2';
+   menu_3.className='menu_top_mouse2';
+   menu_4.className='menu_top_mouse2';
+   menu_5.className='menu_top_mouse2';    
+}
+
+function view_menu2()
+{
+   parent.menu_main.location="acreage.htm";
+   menu_id=2;
+   menu_1.className='menu_top_mouse2';
+   menu_2.className='menu_top_mouse1';
+   menu_3.className='menu_top_mouse2';
+   menu_4.className='menu_top_mouse2';
+   menu_5.className='menu_top_mouse2'; 
+}
+
+function view_menu3()
+{
+   parent.menu_main.location="capacity.htm";
+   menu_id=3;
+   menu_1.className='menu_top_mouse2';
+   menu_2.className='menu_top_mouse2';
+   menu_3.className='menu_top_mouse1';
+   menu_4.className='menu_top_mouse2';
+   menu_5.className='menu_top_mouse2'; 
+}
+
+function view_menu4()
+{
+   parent.menu_main.location="weight.htm";
+   menu_id=4;
+   menu_1.className='menu_top_mouse2';
+   menu_2.className='menu_top_mouse2';
+   menu_3.className='menu_top_mouse2';
+   menu_4.className='menu_top_mouse1';
+   menu_5.className='menu_top_mouse2';   
+}
+
+function view_menu5()
+{
+   parent.menu_main.location="temperature.htm";
+   menu_id=5;
+   menu_1.className='menu_top_mouse2';
+   menu_2.className='menu_top_mouse2';
+   menu_3.className='menu_top_mouse2';
+   menu_4.className='menu_top_mouse2';
+   menu_5.className='menu_top_mouse1';   
+}
+			</script>
+	</head>
+	<body class="bodycolor2" topmargin="1" leftmargin="1" onselectstart="return false" onload="view_menu1()">
+		<TABLE width="100%" border="0" cellpadding="1" cellspacing="0" bordercolorlight="#000000"
+			bordercolordark="#FFFFFF" class="title" ID="Table1">
+			<TR>
+				<TD width="20%" id="menu_1" style="cursor:hand" title="长度换算" onclick="view_menu1()"
+					onmouseover="setPointer(this,'menu_top_mouse3',1)" onmouseout="setPointer(this,'menu_top_mouse2',1)">
+					<div align="center"><img src="../icon/convert.gif" WIDTH="16" HEIGHT="16"><b> 长度换算</b></div>
+				</TD>
+				<TD width="20%" id="menu_2" style="cursor:hand" title="面积换算" onclick="view_menu2()"
+					onmouseover="setPointer(this,'menu_top_mouse3',2)" onmouseout="setPointer(this,'menu_top_mouse2',2)">
+					<div align="center"><img src="../icon/convert.gif" WIDTH="16" HEIGHT="16"><b> 面积换算</b></div>
+				</TD>
+				<TD width="20%" id="menu_3" style="cursor:hand" title="体积和容量" onclick="view_menu3()"
+					onmouseover="setPointer(this,'menu_top_mouse3',3)" onmouseout="setPointer(this,'menu_top_mouse2',3)">
+					<div align="center"><img src="../icon/convert.gif" WIDTH="16" HEIGHT="16"><b> 体积和容量</b>
+					</div>
+				</TD>
+				<TD width="20%" id="menu_4" style="cursor:hand" title="重量换算" onclick="view_menu4()"
+					onmouseover="setPointer(this,'menu_top_mouse3',4)" onmouseout="setPointer(this,'menu_top_mouse2',4)">
+					<div align="center"><img src="../icon/convert.gif" WIDTH="16" HEIGHT="16"><b> 重量换算</b>
+					</div>
+				</TD>
+				<TD width="20%" id="menu_5" style="cursor:hand" title="温度换算" onclick="view_menu5()"
+					onmouseover="setPointer(this,'menu_top_mouse3',5)" onmouseout="setPointer(this,'menu_top_mouse2',5)">
+					<div align="center"><img src="../icon/convert.gif" WIDTH="16" HEIGHT="16"><b> 温度换算</b>
+					</div>
+				</TD>
+			</TR>
+		</TABLE>
+		<table width="100%" height="3" border="0" align="center" cellpadding="1" cellspacing="0"
+			class="menu_top_mouse1" ID="Table2">
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "填写联系方式";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            $(".bg").load(function () {
+                var height = $(".bg").height();
+                $("#main").css("top", height * 0.3);
+            })
+
+
+            $("#submit").click(function () {
+                if ($("#username").val() == "") {
+                    Msg.show("请输入姓名", 1);
+                    return;
+                }
+                if ($("#tel").val() == "") {
+                    Msg.show("请输入手机号", 1);
+                    return;
+                }
+                if ($("#address").val() == "") {
+                    Msg.show("请输入收货地址", 1);
+                    return;
+                }
+
+                //构造提交json的格式
+                var paramData = {
+                    Oid: Url.get("oid"),
+                    Name: $("#username").val(),
+                    Tel: $("#tel").val(),
+                    Address: $("#address").val()
+                };
+
+                Msg.show("提交中...", 3);
+                $.post("/Game/RedTemple/Submit?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), paramData, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0) {
+                        // window.history.go(-1);
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                    }
+                });
+            });
+            function onBridgeReady() {
+                WeixinJSBridge.call('hideOptionMenu');
+            }
+
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            } else {
+                onBridgeReady();
+            }
+        })
+    </script>
+}
+
+
+<img class="bg" src="~/Areas/Game/Resources/images/RedTemple/infobg.jpg" style="width: 100%;" />
+
+<div id="main" style="position: absolute; width: 97%; margin-top:20px;font-family: Microsoft YaHei ">
+
+    <div class="input-group" style="margin: 0px 26px 0px 26px;">
+        <span class="input-group-addon" style="border: 0px; background-color: rgba(254, 237, 189, 0) ">
+            <img src="/Areas/Game/Resources/images/RedTemple/name.png" height="25"></span>
+        <input id="username" name="username" class="form-control" style="border-radius: 5px 5px 5px 5px; background-color: rgba(254, 237, 189, 0); border: 0px; width: 100%; height: 30px;" placeholder="请输入姓名">
+    </div>
+
+    <div class="input-group" style="margin: 0px 26px 0px 26px;">
+        <span class="input-group-addon" style="border: 0px;background-color: rgba(254, 237, 189, 0)">
+            <img src="/Areas/Game/Resources/images/RedTemple/tel.png" height="25"></span>
+        <input type="number" id="tel" name="tel" class="form-control" style="border-radius: 5px 5px 5px 5px; background-color: rgba(254, 237, 189, 0); border: 0px; height: 30px;" placeholder="输入您的电话">
+    </div>
+
+    <div class="input-group" style="margin: 0px 26px 0px 26px;">
+        <span class="input-group-addon" style="border: 0px; background-color: rgba(254, 237, 189, 0)">
+            <img src="/Areas/Game/Resources/images/RedTemple/add.png" height="25"></span>
+        <input type="number" id="" name="" style="background-color: rgba(254, 237, 189, 0); border: 0px; height: 0px; width: 0px">
+    </div>
+
+    <div class="input-group" style="margin: 0px 5px 0px 5px;background-color: rgba(254, 237, 189, 0)">
+        <span class="input-group-addon" style="border: 0px;  background-color: rgba(254, 237, 189, 0)"></span>
+        <textarea class="form-control" id="address" style="border: 0px; height: 60px; border-radius: 5px 5px 5px 5px; width: 100%; 
+         background-color: rgba(254, 237, 189, 0);" maxlength="50" placeholder="输入您的地址"></textarea>
+    </div>
+
+    <br />
+    <br />
+    <center>
+    <div>
+        <button id="submit" type="button" class="btn btn-default" style="width: 30%; height: 30px; margin-top: -25px; text-align: center">提交</button>
+    </div></center>
+</div>

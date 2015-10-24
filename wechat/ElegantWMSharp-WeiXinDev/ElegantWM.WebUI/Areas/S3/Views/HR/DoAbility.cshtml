@@ -1,0 +1,80 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $('#ability').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                width: 280,
+                backgroundColor: null,
+                polar: true,
+                type: 'line'
+            },
+            title: {
+                text: '能力模型',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['货品知识', '销售技巧', '客户服务技巧'],
+                tickmarkPlacement: 'on',
+                lineWidth: 0
+            },
+            yAxis: {
+                gridLineInterpolation: 'polygon',
+                lineWidth: 0,
+                min: 0
+            },
+            tooltip: {
+                shared: true
+            },
+            series: [{
+                name: '能力模型',
+                data: [5, 50, 500],
+                pointPlacement: 'on'
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        $(".rating").rating();
+        $(".rating-input").addClass("input-group-addon").attr("style", "border-left:1px solid #ccc;width:100%");
+    });
+</script>
+
+<div class="ht" id="sability">
+    <i class="icon-thumbs-up"></i>&nbsp;&nbsp;能力评价
+    <span onclick="$('.cusHideAbilityArea').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    <div id="ability"></div>
+    <div>
+        <div class="input-group" style="width:100%;">
+            <span class="input-group-addon" >货品</span>
+            <input type="number" id="goodSkill" class="rating" data-max="4" />
+        </div>
+        <br />
+        <div class="input-group" style="width:100%;">
+            <span class="input-group-addon" >销售</span>
+            <input type="number" id="saleSkill" class="rating" data-max="4" />
+        </div>
+        <br />
+        <div class="input-group" style="width:100%;">
+            <span class="input-group-addon" >服务</span>
+            <input type="number" id="customerSkill" class="rating" data-max="4" />
+        </div>
+    </div>
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="submitAbility();">提交</button>
+</div>

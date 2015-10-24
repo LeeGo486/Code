@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "我的承诺";
+    Layout = "~/Views/Shared/_HRPromiseWeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+           
+        });
+    </script>
+}
+<body style="background: url(/Areas/HR/Resources/images/Promisebg.jpg)  no-repeat; background-size: 100%; margin: 0px 0px 0px 0px;">
+
+    <div class="noticList">
+
+        <span style="font-size: 14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们5000人要做的事情，并非空泛地口号，我们坚持从身边做起，真正感动顾客，为人们服务，
+            感动周边，感动中国，感动世界，一起编织一个美丽的中国梦，一起为美丽中国助力！            
+        </span>
+    </div>
+
+
+    <div style="padding: 10px; margin: 10px 0px 0px 0px; font-size: 20px">
+        <i class="glyphicon glyphicon-calendar"></i>行动计划
+    </div>
+
+    <ul class="list-group" style="font-size: 20px">
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/PromiseAdd';"><i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;我的行动计划</li>
+        <li class="list-group-item" onclick="window.location.href='/HR/EHRManagement/PromiseSearchOther';">
+            <i class="glyphicon glyphicon-book"></i>&nbsp;&nbsp;查看小伙伴的行动计划</li>
+    </ul>
+</body>
+
+
+

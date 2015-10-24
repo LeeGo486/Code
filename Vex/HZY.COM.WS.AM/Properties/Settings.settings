@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HZY.COM.WS.AM.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HZY_COM_WS_AM_AMSendWS_MsgCenter" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://192.168.0.89/MsgCenter.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "我的反馈";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/S3/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Msg.show("数据加载中...", 3);
+            $.get("/S3/FeedBack/DetailList?sid="+Url.get("sid")+"&oid="+Url.get("oid"), function (htmlData) {
+                Msg.hide();
+                $("#myFbList").html(htmlData);
+            });
+            //拟需求完成日设置
+            var hydp = $('#txtStart').datepicker().on('changeDate', function (ev) {
+                hydp.hide();
+            }).data('datepicker');
+            var hydp2 = $('#txtEnd').datepicker().on('changeDate', function (ev) {
+                hydp2.hide();
+            }).data('datepicker');
+
+            $("#btnSearch").click(function () {
+                var start=$("#txtStart").val();
+                var end = $("#txtEnd").val();
+                if (start == '' || end == '') {
+                    Msg.show("开始和结束时间必填", 1);
+                    return;
+                }
+                var days = GetDateDiff(start, end, "day");
+                if (days >= 0 && days <= 30) {
+                    Msg.show("数据加载中...", 3);
+                    $.get("/S3/FeedBack/DetailList?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), { start: start, end: end }, function (htmlData) {
+                        Msg.hide();
+                        $("#myFbList").html(htmlData);
+                    });
+                } else {
+                    Msg.show("日期区间不能超过30天", 1);
+                    return;
+                }
+            });
+        });
+        function GetDateDiff(startTime, endTime, diffType) {
+            //将xxxx-xx-xx的时间格式，转换为 xxxx/xx/xx的格式 
+            startTime = startTime.replace(/-/g, "/");
+            endTime = endTime.replace(/-/g, "/");
+            //将计算间隔类性字符转换为小写 
+            diffType = diffType.toLowerCase();
+            var sTime = new Date(startTime); //开始时间 
+            var eTime = new Date(endTime); //结束时间 
+            //作为除数的数字 
+            var divNum = 1;
+            switch (diffType) {
+                case "second":
+                    divNum = 1000;
+                    break;
+                case "minute":
+                    divNum = 1000 * 60;
+                    break;
+                case "hour":
+                    divNum = 1000 * 3600;
+                    break;
+                case "day":
+                    divNum = 1000 * 3600 * 24;
+                    break;
+                default:
+                    break;
+            }
+            return parseInt((eTime.getTime() - sTime.getTime()) / parseInt(divNum)); //17jquery.com 
+        }
+        function createFB() {
+            window.location.href = '/S3/FeedBack/Create?sid=' + Url.get('sid') + '&oid=' + Url.get('oid');
+        }
+    </script>
+}
+<div class="ht">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;我的反馈 
+    <span onclick="createFB();">
+        <i class="icon-plus"></i>&nbsp;&nbsp;新建
+    </span>
+    <span onclick="$('#dSearch').fadeIn(500);">
+        <i class="icon-search"></i>&nbsp;&nbsp;查询
+    </span>
+</div>
+<ul class="list-group">
+    <li class="list-group-item">
+        <i class="icon-list-ol"></i>&nbsp;&nbsp;今日总反馈数量<span class="badge pull-right hs">@ViewBag.CurTotal 件</span>
+    </li>
+</ul>
+<div id="dSearch" style="display:none;">
+    <div class="ht">
+        <i class="icon-search"></i>&nbsp;&nbsp;高级查询
+        <span onclick="$('#dSearch').fadeOut(500);">
+            <i class="icon-remove"></i>
+        </span>
+    </div>
+    <div class="dataDetail">
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">开始日期</span>
+            <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" placeholder="点击选择日期" readonly="true" id="txtStart">
+        </div>
+        <br />
+        <div class="input-group requestQuery">
+            <span class="input-group-addon">结束日期</span>
+            <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" placeholder="点击选择日期" readonly="true" id="txtEnd">
+        </div>
+        <br />
+        <button id="btnSearch" type="button" class="btn btn-success" style="width: 100%;" data-loading-text="查询中..."> 查询 </button>
+    </div>
+</div>
+<div id="myFbList">
+</div>

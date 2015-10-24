@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>采购单</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <!--<script language="javascript" src="../../JS/Lodop/LodopFuncs.js"></script>-->
+    <script src="../../jquery-easyui-1.3.4/myPrint/jquery.jqprint-0.3.js"></script>
+    <script src="../../JS/Hawk/Purchase.js?Date=20141223" type="text/javascript"></script>
+
+    
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'center',iconCls:'icon-ok'">
+        <div class="easyui-layout" data-options="fit:true">
+            <div region="north" title="高级筛选" split="true" style="width: 200px; padding: 0px; height: 100px; overflow: hidden">
+                <form id="formselect" name="formselect" method="post">
+                    <table cellpadding="1px;">
+                        <tr>
+                            <td>采购单编号：
+                            </td>
+                            <td>
+                                <input id="txtpo1_pocode" name="txtpo1_pocode" style="width: 100px" />
+                            </td>
+                            <td>供应商编号简称
+                            </td>
+                            <td>
+                                <input id="txtpo1_suppliercode" name="txtpo1_suppliercode" style="width: 100px" />
+                            </td>
+                            <td>合同编号
+                            </td>
+                            <td>
+                                <input id="txtpo1_pc1_contractcode" name="txtpo1_pc1_contractcode" style="width: 100px" />
+                            </td>
+                            <td></td>
+                            <td>
+                                <input type="button" id="Bseacher" value="查询" onclick="InitGird_PO1_POHeadSelect()"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>品牌：
+                            </td>
+                            <td>
+                                <input id="txtbr1_name" name="txtbr1_name" style="width: 100px" />
+                            </td>
+                            <td>年份
+                            </td>
+                            <td>
+                                <input id="txtpd1_years" name="txtpd1_years" style="width: 100px" />
+                            </td>
+                            <td>季节
+                            </td>
+                            <td>
+                                <input id="txtpd1_season" name="txtpd1_season" style="width: 100px" />
+                            </td>
+                            <td></td>
+                            <td>
+                                <input type="button" id="Bcancel" value="取消" onclick="CancelSelectParam()"></input>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div data-options="region:'center',border:false">
+                <table id="PO1_POHeadList" style="width: 100%; height: 98%">
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-options="region:'south',height:220" title="采购单明细" split="true">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'center',border:false">
+                <table id="PO2_PODetailList" style="width: 100%; height: 100%">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div title="采购单" id="DivEdit" style="padding: 5px" split="true">
+        <div class="easyui-layout" data-options="fit:true" split="true">
+            <div data-options="region:'north',height:195" split="true">
+                <form id="formAddEdit" title="采购单" name="formAddEdit" method="post">
+                    <table style="font-size: 9pt;" cellpadding="2px;">
+                        <tr>
+                            <td align="left"><a href="#" id="A2" iconcls="icon-ok" data-options="plain:true" onclick="FormAddEditSubmit()" class="easyui-linkbutton">保存</a></td>
+                            <td colspan="8" align="right">
+                                <a href="#" id="A3" iconcls="icon-undo" onclick="Cancel('A1')" data-options="plain:true"
+                                    class="easyui-linkbutton">取消</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>采购单编号：
+                            </td>
+                            <td>
+                                <input id="txtpo1_pocode" name="txtpo1_pocode" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>采购类型：
+                            </td>
+                            <td>
+                                <input id="txtpo1_potypename" name="txtpo1_potypename" style="width: 130px">
+                                <input id="txtpo1_potypecode" name="txtpo1_potypecode" type="hidden">
+                            </td>
+                            <td>最高状态：
+                                <input id="txtpo1_hstate" name="txtpo1_hstate" style="width: 40px" disabled="disabled">
+                            </td>
+                            <td>最低状态：<input id="txtpo1_lstate" name="txtpo1_lstate" style="width: 45px" disabled="disabled">
+                            </td>
+                            <td>合同编号：
+                            </td>
+                            <td>
+                                <input id="txtpo1_pc1_contractcode" name="txtpo1_pc1_contractcode" style="width: 130px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>供应商简称编号：
+                            </td>
+                            <td>
+                                <input id="txtpo1_suppliercode" name="txtpo1_suppliercode" style="width: 130px">
+                            </td>
+                            <td>供应商分类：
+                            </td>
+                            <td>
+                                <input id="txtsp1_regionname" name="txtsp1_regionname" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>品牌名称：
+                            </td>
+                            <td>
+                                <input id="txtpo1_br1_brandcode" name="txtpo1_br1_brandcode" style="width: 130px">
+                            </td>
+                            <td>供应商采购单号：
+                            </td>
+                            <td>
+                                <input id="txtpo1_sppocode" name="txtpo1_sppocode" style="width: 130px">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>预计出货时间：
+                            </td>
+                            <td>
+                                <input id="txtpo1_plandeliverydate" name="txtpo1_plandeliverydate" style="width: 130px">
+                            </td>
+                            <td>采购总数：
+                            </td>
+                            <td>
+                                <input id="txtpo1_pznumber" name="txtpo1_pznumber" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>采购原币金额：
+                            </td>
+                            <td>
+                                <input id="txtpo1_ocurrencysums" name="txtpo1_ocurrencysums" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>采购本币金额：
+                            </td>
+                            <td>
+                                <input id="txtpo1_dcurrencysums" name="txtpo1_dcurrencysums" style="width: 130px" disabled="disabled">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>结算币种：
+                            </td>
+                            <td>
+                                <input id="txtpo1_currency" name="txtpo1_currency" style="width: 130px">
+                            </td>
+                            <td>汇率：
+                            </td>
+                            <td>
+                                <input id="txtpo1_exchangerate" name="txtpo1_exchangerate" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>供应商税率：
+                            </td>
+                            <td>
+                                <input id="txtpo1_supplytax" name="txtpo1_supplytax" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>关联上货计划：
+                            </td>
+                            <td>
+                                <input id="txtpo1_sourcepocode" name="txtpo1_sourcepocode" style="width: 130px">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>付款方式：
+                            </td>
+                            <td>
+                                <input id="txtpo1_paymenttypename" name="txtpo1_paymenttypename" style="width: 130px">
+                            </td>
+                            <td>支付方式：
+                            </td>
+                            <td>
+                                <input id="txtpo1_paymentchannelname" name="txtpo1_paymentchannelname" style="width: 130px">
+                            </td>
+                            <td>增值税：<input id="txtpo1_increaseratio" name="txtpo1_increaseratio" style="width: 40px">
+                            </td>
+                            <td>关税： 
+                                <input id="txtpo1_tariffratio" name="txtpo1_tariffratio" style="width: 40px">
+                            </td>
+                            <td>运费：
+                                <input id="txtpo1_transportratio" name="txtpo1_transportratio" style="width: 40px">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div data-options="region:'center',height:250" title="采购单明细" split="true">
+                <table id="PO2_PODetailList_A" style="width: 100%;">
+                </table>
+            </div>
+
+            <div data-options="region:'south',height:200" title="到货计划" split="true">
+                <table id="AP1_APOHeadList" style="width: 100%;">
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div title="新增采购明细" id="DivAddPODetail" style="padding: 5px" onkeypress="
+ 
+     if ( event.keyCode == 13 )
+     {
+         document.all ( 'Bselect' ).click();
+         return false;
+     }
+">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',height:100" split="true">
+                <form id="formAddPODetail" title="新增采购单明细" name="formAddPODetail" method="post">
+                    <table style="font-size: 9pt;" cellpadding="2px;">
+                        <tr>
+                            <td>年份：
+                            </td>
+                            <td>
+                                <input id="txtpd1_years" name="txtpd1_years" style="width: 130px">
+                            </td>
+                            <td>季节：
+                            </td>
+                            <td>
+                                <input id="txtpd1_season" name="txtpd1_season" style="width: 130px">
+                            </td>
+                            <td>
+                                <input id="Bselect" type="button" value="查询" onclick="SearchStyle()" />
+                            </td>
+
+                            <td>供应商名称：
+                            </td>
+                            <td>
+                                <input id="txtsp1_name" name="txtsp1_name" style="width: 130px" disabled="disabled">
+                                <input id="txtsp1_suppliercode" type="hidden">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>供应商款号：
+                            </td>
+                            <td>
+                                <input id="txtpo2_pd1_supperierstyle" name="po2_pd1_supperierstyle" style="width: 130px">
+                            </td>
+                            <td>款号：
+                            </td>
+                            <td>
+                                <input id="txtpd1_stylecode" name="txtpd1_stylecode" style="width: 130px">
+                            </td>
+
+                            <td>
+                                <input id="Bcancel" type="button" value="取消" onclick="SelectStyeCancel()" />
+                            </td>
+
+                            <td>品牌：
+                            </td>
+                            <td>
+                                <input id="txtbr1_name" name="txtbr1_name" style="width: 130px" disabled="disabled">
+                                <input id="txtbr1_brandcode" type="hidden">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div data-options="region:'center',height:200" split="true" title="选择款式信息">
+                <table id="selectstylelist" style="width: 100%; height: 98%">
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div title="按参考订单新增" id="Divsourcepocode" style="padding: 5px" onkeypress="
+ 
+     if ( event.keyCode == 13 )
+     {
+         document.all ( 'Bselectsourcepocod' ).click();
+         return false;
+     }
+">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',height:50" split="true">
+                <form id="formsourcepocode" title="按参考订单新增" name="formsourcepocode" method="post">
+                    <table style="font-size: 9pt;" cellpadding="2px;">
+                        <tr>
+                            <td>订单编号：
+                            </td>
+                            <td>
+                                <input id="txtcode" name="txtcode" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>客户编号：
+                            </td>
+                            <td>
+                                <input id="txtcus1_code" name="txtcus1_code" style="width: 130px" disabled="disabled">
+                            </td>
+                            <td>
+                                <input id="Bselectsourcepocod" type="button" value="查询" onclick="SearchSourcepocode()" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div data-options="region:'center',height:200" split="true" title="按参考订单新增">
+                <table id="sourcepocod_list" style="width: 100%; height: 98%">
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div title="生成到货计划时间确定" id="DivAddDeliveryplan" style="padding: 5px">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',height:100" split="true">
+
+                <form id="formAddDeliveryplan" title="生成到货计划时间确定" name="formAddDeliveryplan" method="post">
+                    <table style="font-size: 9pt;" cellpadding="2px;">
+                        <tr>
+                            <td>本次计划到货时间：
+                            </td>
+                            <td>
+                                <input id="txtDeliveryplanData" name="txtDeliveryplanData" style="width: 130px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left"><a href="#" id="A1" iconcls="icon-ok" data-options="plain:true" onclick="FormAddDeliveryplanSubmit()" class="easyui-linkbutton">保存</a></td>
+                            <td colspan="8" align="right">
+                                <a href="#" id="A4" iconcls="icon-undo" onclick="Cancel('A2')" data-options="plain:true"
+                                    class="easyui-linkbutton">取消</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="DivPODetail" iconCls="icon-print" title="采购单明细打印" style="text-align:center">
+        <table id="DivPrint" align="center" id="gridPOdetail" cellspacing="0" cellpadding="2" border="1"></table>
+    </div>
+
+
+</body>
+</html>

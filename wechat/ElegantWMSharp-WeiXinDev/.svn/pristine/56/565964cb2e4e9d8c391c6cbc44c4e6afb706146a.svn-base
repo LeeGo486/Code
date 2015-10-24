@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "关于我们";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+}
+
+<div class="mainArea">
+    <h4>
+        <span>
+            <i class="glyphicon glyphicon-info-sign"></i>
+            关于我们
+        </span>
+    </h4>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本 <b>“ITDC交付中心”</b> 微信服务号，是由<b>“浙江华之毅时尚集团信息管理中心”</b>提供。<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们提倡高品质、人性化、透明化的服务治理理念，服务包括：<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>需求管理</b>：1、需求提报 2、需求处理协同 3、进度跟踪 4、评价 5、需求分析；<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>事件管理</b>：1、报修提报 2、事件处理协同 3、进度跟踪 4、评价 5、事件分析；<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>系统站点服务</b>：点一点门户、系统站点列表、产品分布图；<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>社区</b>：IT社区；<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有关本服务号的功能建议，请联系：<a href="tel:18905736555"><i class="glyphicon glyphicon-earphone"></i>&nbsp;宋凯</a>。
+    <br />
+    <br />
+    <h4>
+        <span>
+            <i class="glyphicon glyphicon-phone"></i>
+            联系方式
+        </span>
+    </h4>
+    <b>联系方式一</b>:扫描二维码关注我们官方微信
+    <div style="text-align: center">
+        <img src="~/Areas/IT/Resources/images/QrCode.jpg" style="width: 200px; height: 200px;" alt="ITDC二维码">
+    </div>
+    <br /> 
+    <b>联系方式二</b>:热线电话
+    <br />
+    总部桌面服务热线：<a href="tel:057383685660">0573-83685660</a>
+    <br />
+    终端店铺服务热线：<a href="tel:18857399999">188-573-99999</a> 按“1”
+    <br />
+    <br />
+    <b>联系方式三</b>:内部通讯工具“小翅膀”<br />
+    <div style="text-align: center; margin: 10px;">
+        <img src="~/Areas/IT/Resources/images/AM.png" style="width: 200px; height: 300px;" alt="小翅膀">
+    </div>
+    总部桌面服务受理账号：IT支持-总部运维
+    <br />
+    终端店铺服务受理账号：IT支持-门店运维
+</div>
+
+
+

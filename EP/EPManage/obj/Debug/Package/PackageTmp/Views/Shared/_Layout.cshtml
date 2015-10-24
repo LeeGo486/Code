@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - EP基样检索库</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Styles.Url("~/Content/bootstrap/css/bootstrap.min.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/bootstrap/css/bootstrap-responsive.min.css")" rel="stylesheet"/>
+    <link href="@Styles.Url("~/Content/themes/base/jquery-ui.css")" rel="stylesheet"/>
+    @RenderSection("Css",false)
+   
+</head>
+<body>
+
+    @RenderBody()
+
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    @RenderSection("Js", false)
+    
+</body>
+</html>

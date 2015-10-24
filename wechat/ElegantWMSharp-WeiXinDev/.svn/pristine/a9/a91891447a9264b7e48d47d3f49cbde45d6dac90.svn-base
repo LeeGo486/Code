@@ -1,0 +1,28 @@
+﻿@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+
+    </script>
+}
+
+<table class="dataPromiseSearchInfoDetail">
+    <thead>
+        <tr>
+            <th style="width: 25%">工号</th>
+            <th style="width: 25%">姓名</th>
+            <th style="width: 25%">部门</th>
+            <th style="width: 25%">查看</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (System.Data.DataRow dr in ViewBag.PromiseSearchInfo.Rows)
+        {
+            <tr>
+                <th>@dr["c_code"]</th>
+                <th>@dr["UserNameC"]</th>
+                <td>@dr["c_unitname"]</td>
+                <td onclick="window.location.href='/HR/EHRManagement/PromiseSearchOtherInfo?c_code=@dr["c_code"]';">查看</td>
+            </tr>
+        }
+    </tbody>
+</table>

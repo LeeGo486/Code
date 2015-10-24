@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "找回密码";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <style type="text/css">
+        .mainArea {
+            min-height:100px;
+        }
+        .mainArea h4{
+            font-size:14px;
+            margin:0px 0px 8px 0px;
+            font-weight:normal;
+            color:#444;
+            border-bottom:1px solid #ddd;
+            padding:0px 0px 8px 0px;
+        }
+        .mainArea h4 span{
+            padding:7px 0px 7px 0px;
+            border-bottom:2px solid #CC3333;
+        }
+    </style>
+    <script type="text/javascript">
+        function updateTimeLabel(time) {
+            var btn = $("#getAuthCode");
+            btn.fadeIn(500);
+            btn[0].innerHTML = (time <= 0 ? "获取验证码" : ((time) + "秒后重试"));
+            var hander = setInterval(function () {
+                if (time <= 0) {
+                    clearInterval(hander);
+                    btn[0].innerHTML = ("获取验证码");
+                    btn.attr("disabled", false);
+                }
+                else {
+                    btn[0].innerHTML = ((time--) + "秒后重试"); btn
+                    btn.attr("disabled", true);
+                }
+            }, 1000);
+        }
+        $(function () {
+            //宽度控制4Ipad
+            if ($(window).width() >= 1000) {
+                $(".mainArea").css("margin", "auto");
+                $(".mainArea").width("30%");
+            }
+            /***********发送验证短信************/
+            $("#getAuthCode").click(function () {
+                var strMobileNumber = $("#txtPhone").val();
+                if (!/^1[34587]\d{9}$/.test(strMobileNumber)) {
+                    $("#txtPhone").focus();
+                    Msg.show('手机号码无效', 1);
+                    return;
+                }
+                $("#txtAuthenticode").focus();
+                //按钮倒计时
+                updateTimeLabel(60);
+                Msg.show("短信发送中...", 3);
+                var url = "/Matrix/AMLogin/VexSSOGetPwdCode?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&tel=" + $("#txtPhone").val();
+                $.post(url, function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                });
+            });
+
+            //找回密码
+            $("#btnSubmit").click(function () {
+                var phone = $("#txtPhone").val();
+                if (!/^1[34587]\d{9}$/.test(phone)) {
+                    $("#txtPhone").focus();
+                    Msg.show('手机号码无效', 1);
+                    return;
+                }
+                var AuthCode = $("#txtAuthenticode").val();
+                if ($.trim(AuthCode).length <= 0) {
+                    $("#txtAuthenticode").focus();
+                    Msg.show('请输入短信验证码', 1);
+                    return;
+                }
+
+                var postData = {
+                    tel: phone,
+                    code: AuthCode
+                };
+                Msg.show("请稍候...", 3);
+                $(this).button('loading');
+                var url = "/Matrix/AMLogin/VexSSOSendPwd2Phone?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+                $.post(url, postData, function (rst) {
+                    Msg.hide();
+                    if (rst.result == 0) {
+                        $("#rstMsg").html("密码已找回，您的密码为：" + rst.msg + (Url.get("ReturnUrl") == "" ? "" : "<br /><br /><a href='" + Url.get("ReturnUrl") + "'>返回</a>"));
+                        $("#rstMsg").show();
+                        $("#btnSubmit").hide();
+                    } else {
+                        Msg.show(rst.msg, rst.result);
+                        $("#btnSubmit").button("reset");
+                    }
+                });
+
+            });
+
+            $("#getAuthCode").attr("disabled", false);
+        });
+    </script>
+}
+
+<div class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;找回密码</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">手机号码</span>
+        <input id="txtPhone" name="txtPhone" type="number" class="form-control" maxlength="11" placeholder="请填写您注册的手机号码">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">验&ensp;证&ensp;码</span>
+        <input id="txtAuthenticode" name="txtAuthenticode" type="number" class="form-control" maxlength="4" placeholder="请查收短信验证码">
+        <span class="input-group-btn">
+            <button id="getAuthCode" class="btn btn-default" type="button">获取验证码</button>
+        </span>
+    </div>
+
+    <input id="btnSubmit" type="button" value="找回我的密码" class="btn btn-success" data-loading-text="请稍后..." style="width: 100%; margin-top: 30px;" />
+    <p id="rstMsg" style="text-align: center; margin-top: 40px; color: #66CC33;padding:10px;display:none;"></p>
+</div>
+
+
+
+

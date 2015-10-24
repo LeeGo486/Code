@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "工程师排班";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section head{
+    <link rel="stylesheet" type="text/css" href="~/Application/ITSMEgrSchedule/resources/css/calendar.css" />
+    <script type="text/javascript">
+        Ext.Loader.setConfig({
+            enabled: true,
+            paths: {
+                'Ext.calendar': '/Application/ITSMEgrSchedule/src'
+            }
+        });
+        Ext.require([
+            'Ext.calendar.App'
+        ]);
+        Ext.onReady(function () {
+            Ext.create('Ext.calendar.App');
+        });
+    </script>
+}

@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "恩派雅-集红包送美衣";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+<img class="bg" src="~/Areas/Game/Resources/images/NpaiaWomen/ending.jpg" style="width:100%;"/>

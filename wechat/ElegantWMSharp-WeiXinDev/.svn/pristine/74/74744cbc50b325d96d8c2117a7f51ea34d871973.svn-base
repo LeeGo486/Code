@@ -1,0 +1,50 @@
+﻿<script type="text/javascript">
+    //加载增加培训履历
+    function loadAddTrain() {
+        Msg.show("增加培训履历加载中...", 3);
+        $.get("/S3/HR/AddTrain", function (htmldata) {
+            Msg.hide();
+            showAddTrain(htmldata);
+        });
+    }
+
+    //显示增加培训履历
+    function showAddTrain(data) {
+        $("#saddtrainarea").html(data);
+        scrollTo("#saddtrainarea");
+    }
+
+    //提交增加培训履历
+    function submitTrain(data) {
+        Msg.show("提交成功", 0);
+    }
+</script>
+<div class="ht" id="strainlist">
+    <i class="icon-pencil"></i>&nbsp;&nbsp;培训履历
+    <span onclick="$('.cusHideTrainListArea').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div onclick="showTrainInfo('1');">20140504-20140506&nbsp;&nbsp;&nbsp;&nbsp;销售技巧培训&nbsp;&nbsp;&nbsp;&nbsp;分公司办事处</div>
+            <div id="1" class="cusHideTrainArea" style="display:none;"></div>
+        </li>
+        <li class="list-group-item">
+            <div onclick="showTrainInfo('2');">20140301-20140306&nbsp;&nbsp;&nbsp;&nbsp;货品知识培训&nbsp;&nbsp;&nbsp;&nbsp;雅莹总部</div>
+            <div id="2" class="cusHideTrainArea" style="display:none;"></div>
+        </li>
+    </ul>
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" data-loading-text="loading..." onclick="loadAddTrain();">增加培训履历</button>
+
+    <div id="saddtrainarea">
+    </div>
+</div>

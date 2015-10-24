@@ -1,0 +1,838 @@
+﻿/// JS名：StyleProgressTracking.js
+/// 说明：款式进度跟踪表
+/// 创建人：黄异 
+/// 创建日期：2014-12-23
+/// 修改人:俞佳伟
+/// 修改日期:2015-07-15
+
+//var m_DDHComboxData = null;//订货会季节
+//var m_columns = null;//动态列
+//var m_data1;//订货会重加载数据
+//var columns;//easyui 框架自己的动态列属性
+//var m_cmbdhhjj;//订货会季节
+var m_zt;
+//var txtBeginDate;
+//var txtEndDate;
+var m_url = '';
+var m_index = '';
+
+
+$(function () {
+    //默认附上时间今天往前面推3个月，开始时间和结束时间
+    m_Username = window.m_UserID;//取登入姓名
+    m_zt = $.cookie('m_zt');
+
+    $('#txtDesigner').combobox();
+    $('#txtPattern').combobox();
+    //$('.Designer').css('display', 'none');
+    $('.Pattern').css('display', 'none');
+
+    $('#txtSeason').combobox({ panelHeight: 'auto' });
+    $('#txtExhibitGoodsDate').combobox();
+    $('#txtSeries').combobox();
+
+    //yjw 2015-07-14 修改筛选条件
+    //产品线下拉数据加载
+    $('#txtProductLine').combobox({
+        url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "cbtx40", "cbtx40") + "&XML=" + GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetBrandProductLine'),
+        valueField: 'id',
+        textField: 'text',
+        async: false,
+        onSelect: function (productLine) {
+            var txtSeason = $('#txtSeason').combobox('getValue');
+            if (txtSeason != '' && txtSeason != undefined) {
+                //加载上货日期数据
+                initCombobox_ExhibitGoodsDate(productLine.id, txtSeason);
+                //加载系列数据
+                initCombobox_Series(productLine.id, txtSeason);
+            }
+            //季节下拉数据加载
+            $('#txtSeason').combobox({
+                url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "cbtx40", "cbtx40") + "&XML=" + GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetFlexPLMSeason') + "&Where=CBSTKY='" + escape(productLine.id) + "'",
+                valueField: 'id',
+                textField: 'text',
+                panelHeight: 'auto',
+                async: false,
+                onSelect: function (season) {
+                    var txtProductLine = $('#txtProductLine').combobox('getValue');
+                    if (txtProductLine != '' && txtProductLine != undefined) {
+                        //加载上货日期数据
+                        initCombobox_ExhibitGoodsDate(txtProductLine, season.id);
+                        //加载系列数据
+                        initCombobox_Series(txtProductLine, season.id);
+                    }
+                }
+            });
+
+            //加载查询方式
+            var searchName = $('#cmbSelectType').combobox('getValue');
+            if (searchName != '' && searchName != undefined) {
+                if (searchName == '设计师') {
+                    //显示设计师
+                    initCombobox_Designer('show', productLine.id);
+                    //隐藏版师
+                    initCombobox_Patterner('hide', '');
+                }
+                else {
+                    //显示版师
+                    initCombobox_Designer('hide', '');
+                    //隐藏设计师
+                    initCombobox_Patterner('show', productLine.id);
+                }
+            }
+        }
+    });
+
+    //品类下拉数据加载
+    $('#txtCategory').combobox({
+        url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "category", "category") + "&XML=" + GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetCategory'),
+        valueField: 'id',
+        textField: 'text',
+        multiple: true,
+        editable: false,
+        panelHeight: 120
+    });
+
+    //样衣数下拉数据加载
+    $('#txtSampleNum').combobox({
+        data: [{ "id": "", "text": "--", selected: true }, { "id": "1", "text": "1" }, { "id": "2", "text": "2" }, { "id": "3", "text": "3" }, { "id": "4", "text": "4" }, { "id": "5", "text": "5" }, { "id": "6", "text": "6" }, { "id": "7", "text": "7" }, { "id": "8", "text": "8" }, { "id": "9", "text": "9" }],
+        valueField: 'id',
+        textField: 'text'
+    });
+
+    //上货日期数据加载
+    function initCombobox_ExhibitGoodsDate(brand, plmSeason) {
+        $('#txtExhibitGoodsDate').combobox({
+            url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "boduan", "boduan") + "&XML=" + GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetExhibitGoodsDate') + "&Where=Brand='" + escape(brand) + "' AND PlmSeason='" + escape(plmSeason) + "'",
+            valueField: 'id',
+            textField: 'text',
+            multiple: true,
+            editable: false,
+            panelHeight: 120
+        });
+    }
+
+    //系列数据加载
+    function initCombobox_Series(brand, plmSeason) {
+        $('#txtSeries').combobox({
+            url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "boduanseries", "boduanseries") + "&XML=" + GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetBoDuanSeries') + "&Where=Brand='" + escape(brand) + "' AND PlmSeason='" + escape(plmSeason) + "'",
+            valueField: 'id',
+            textField: 'text',
+            multiple: true,
+            editable: false,
+            panelHeight: 120
+        });
+    }
+
+    //initBrand();
+
+    //查询方式
+    $('#cmbSelectType').combobox({
+        data: [{ "id": "设计师", "text": "设计师", selected: true }, { "id": "版师", text: "版师" }],
+        valueField: 'id',
+        textField: 'text',
+        panelHeight: 'auto',
+        editable: false,
+        onSelect: function (record) {
+            var productLine = $('#txtProductLine').combobox('getValue');
+            if (record.id == '设计师') {
+
+                if (productLine != '' && productLine != undefined) {
+                    //显示设计师
+                    initCombobox_Designer('show', productLine);
+                    //隐藏版师
+                    initCombobox_Patterner('hide', '');
+                }
+                else {
+                    $.messager.alert('提示', '请先选择产品线', 'warning');
+                }
+
+
+            } else {
+                if (productLine != '' && productLine != undefined) {
+                    //显示设计师
+                    initCombobox_Designer('hide', '');
+                    //隐藏版师
+                    initCombobox_Patterner('show', productLine);
+                }
+                else {
+                    $.messager.alert('提示', '请先选择产品线', 'warning');
+                }
+            }
+        }
+    });
+
+    //设计师数据加载
+    function initCombobox_Designer(type, value) {
+        if (type == 'show') {
+            $('.Designer').css('display', 'block');
+            $('#txtDesigner').combobox({
+                //url: GetComboxWSRRURL('3090fcec-e79e-49e3-a64d-2c3eac0bbdfb', "", "cbtx40", "cbtx40") + "&XML=" + escape(GetFormJson([{ "name": "txtzt", "value": m_zt }, { "name": "txtOwnBrand", "value": value }], 'GETComboxBySession')),
+                url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "cbtx40", "cbtx40") + "&XML=" + GetFormJson([{ "name": "txtzt", "value": m_zt }, { "name": "txtOwnBrand", "value": value }], 'GetDesigner'),
+                valueField: 'id',
+                textField: 'text',
+                multiple: true,
+                editable: false,
+                panelHeight: 120
+            });
+        }
+        else {
+            $('#txtDesigner').combobox('clear');
+            $('.Designer').css('display', 'none');
+        }
+    }
+
+    //版师数据加载
+    function initCombobox_Patterner(type, value) {
+        if (type == 'show') {
+            $('.Pattern').css('display', 'block');
+            $('#txtPattern').combobox({
+                url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "usernamec", "usernamec") + "&XML=" + escape(GetFormJson([{ "name": "txtzt", "value": m_zt }, { "name": "txtBrand", "value": value }], 'GetPattern')),
+                valueField: 'id',
+                textField: 'text',
+                multiple: true,
+                editable: false,
+                panelHeight: 120
+            });
+        }
+        else {
+            $('#txtPattern').combobox('clear');
+            $('.Pattern').css('display', 'none');
+        }
+    }
+
+    InitGrid('');
+});
+
+//主页 加载按钮事件
+function btnLoad() {
+
+    if ($('#txtSeason').combobox('getValue') == '' || $('#txtSeason').combobox('getValue') == undefined) {
+        $.messager.alert('提示', '季节不能为空', 'warning');
+        return;
+    }
+
+    var designers = $('#txtDesigner').combobox('getValues');
+    if (designers.length > 0 && designers[0] != '') {
+        designers = '#' + designers.join('#,#') + '#';
+    }
+    var patterns = $('#txtPattern').combobox('getValues');
+    if (patterns.length > 0 && patterns[0] != '') {
+        patterns = '#' + patterns.join('#,#') + '#';
+    }
+    var series = $('#txtSeries').combobox('getValues');
+    if (series.length > 0 && series[0] != '') {
+        series = '#' + series.join('#,#') + '#';
+    }
+    var exhibitGoodsDate = $('#txtExhibitGoodsDate').combobox('getValues');
+    if (exhibitGoodsDate.length > 0 && exhibitGoodsDate[0] != '') {
+        exhibitGoodsDate = '#' + exhibitGoodsDate.join('#,#') + '#';
+    }
+    var categories = $('#txtCategory').combobox('getValues');
+    if (categories.length > 0 && categories[0] != '') {
+        categories = '#' + categories.join('#,#') + '#';
+    }
+    var txtProductName = $('#txtProductName').val();
+
+    var columns = [[]];
+    var ordername = '';
+    if ($('#cmbSelectType').combobox('getValue') == '设计师') {
+        ordername = 'designer';
+        columns[0][columns[0].length] = { field: "designer", title: "设计师" };
+        columns[0][columns[0].length] = { field: "category", title: "品类" };
+        columns[0][columns[0].length] = { field: "createdate", title: "上稿时间" };
+        columns[0][columns[0].length] = { field: "measurementsid", title: "样版号" };
+        columns[0][columns[0].length] = { field: "muser", title: "版师" };
+    } else {
+        ordername = 'muser';
+        columns[0][columns[0].length] = { field: "muser", title: "版师" };
+        columns[0][columns[0].length] = { field: "category", title: "品类" };
+        columns[0][columns[0].length] = { field: "createdate", title: "上稿时间" };
+        columns[0][columns[0].length] = { field: "measurementsid", title: "样版号" };
+        columns[0][columns[0].length] = { field: "designer", title: "设计师" };
+    }
+    columns[0][columns[0].length] = { field: "recdate", title: "收版时间" };
+    columns[0][columns[0].length] = { field: "deliverdate", title: "交版时间" };
+    columns[0][columns[0].length] = { field: "主面料", title: "主面料" };
+    columns[0][columns[0].length] = { field: "配料1", title: "配料1" };
+    columns[0][columns[0].length] = { field: "配料2", title: "配料2" };
+    columns[0][columns[0].length] = { field: "samplenum", title: "样衣数" };
+    columns[0][columns[0].length] = { field: "pmremark", title: "备注", width: 250, editor: { type: 'text' } };
+    columns[0][columns[0].length] = { field: "activesample", title: "当前样衣号" };
+    columns[0][columns[0].length] = { field: "dycrdt", title: "结构组发版时间" }
+    columns[0][columns[0].length] = { field: "dyjbdt", title: "样衣开始时间" };
+    columns[0][columns[0].length] = { field: "endtime", title: "样衣完成时间" };
+    columns[0][columns[0].length] = { field: "dyjbpe", title: "样衣师" };
+
+
+    var data = [];
+    data[data.length] = { "name": "txt操作类型", "value": "GETPRODUCTPROGRESS_WHOLE" };
+    data[data.length] = { "name": "txt实体", "value": "GetStyleProgressInfo" };
+    data[data.length] = { "name": "txt返回内容", "value": "成功" };
+    data[data.length] = { "name": "txtCONO", "value": "HFYG" };
+    data[data.length] = { "name": "txtDIVI", "value": m_zt };
+    data[data.length] = { "name": "txt标识", "value": "1" };
+    data[data.length] = { "name": "txt品牌", "value": $('#txtProductLine').combobox('getValue') };
+    data[data.length] = { "name": "txt季节", "value": $('#txtSeason').combobox('getValue') };
+    data[data.length] = { "name": "txt品类", "value": categories };
+    data[data.length] = { "name": "txt样衣数", "value": $('#txtSampleNum').combobox('getValue') };
+    data[data.length] = { "name": "txt设计师", "value": designers };
+    data[data.length] = { "name": "txt版师", "value": patterns };
+    data[data.length] = { "name": "txt上货日期", "value": exhibitGoodsDate };
+    data[data.length] = { "name": "txt系列", "value": series };
+    data[data.length] = { "name": "txt款号", "value": txtProductName };
+    data[data.length] = { "name": "txt备注", "value": '' };
+    data[data.length] = { "name": "txt排序", "value": ordername };
+
+    XMLData = GetDBFrameAML(data);
+    var url = GetWSRRURL('bff330e1-b869-46ef-a54c-bb410b91f172') + XMLData;
+    m_url = url;
+    InitGrid(url, columns, ordername);
+}
+
+//加载主页列表
+function InitGrid(url, columns, orderName) {
+    $('#tabList').datagrid({
+        url: url,
+        remoteSort: true,
+        nowrap: true, //是否换行，True 就会把数据显示在一行里
+        striped: true, //True 奇偶行使用不同背景色
+        collapsible: false, //可折叠
+        fit: true,
+        showFooter: true,
+        rownumbers: true,//行号
+        singleSelect: true,//单行选择
+        onDblClickRow: onDblClickRow,
+        onClickCell: onClickCell,
+        onSelect: onSelect,
+        columns: columns,
+        toolbar: [
+            {
+                id: 'btn_export',
+                text: '导出',
+                iconCls: 'icon-print',
+                handler: function () {
+                    excelExport();
+                }
+            },
+            '-',
+            {
+                id: 'btn_save',
+                text: '保存',
+                iconCls: 'icon-save',
+                handler: function () {
+                    btnSave();
+                }
+            }
+        ],
+        onLoadSuccess: function (data) {
+            if (data.rows.length == 1 && data.rows[0].category == '') {
+                ClearGrid('#tabList');
+                $.messager.alert('提示', '无相关数据', 'info');
+            } else {
+                var sumSample = 0;
+                for (var i = 0; i < data.rows.length; i++) {
+                    sumSample += IsNull(data.rows[i].samplenum);
+                }
+                var footer = [{
+                    "category": "<font color='red' size='2'>合计</font>",
+
+                    "samplenum": "<font color='red' size='2'>" + sumSample + "</font>"
+                }];
+                $('#tabList').datagrid('reloadFooter', footer);
+            }
+        },
+        onLoadError: function () {
+            $.messager.alert('提示', '加载失败', 'error');
+        }
+    });
+}
+//主页双击事件
+function onDblClickRow(index, row) {
+    var productName = row.productname;
+    var season = $('#txtSeason').combobox('getValue');
+    if (season == '') {
+        $.messager.alert('提示', '请选择季节', 'warning');
+    }
+
+    var data = [];
+    data[data.length] = { "name": "txt操作类型", "value": "GETPRODUCTPROGRESS_DETAIL" };
+    data[data.length] = { "name": "txt实体", "value": "GetStyleProgressInfo" };
+    data[data.length] = { "name": "txt返回内容", "value": "成功" };
+    data[data.length] = { "name": "txtCONO", "value": "HFYG" };
+    data[data.length] = { "name": "txtDIVI", "value": m_zt };
+    data[data.length] = { "name": "txt标识", "value": "1" };
+    data[data.length] = { "name": "txt品牌", "value": $('#txtProductLine').combobox('getValue') };
+    data[data.length] = { "name": "txt季节", "value": season };
+    data[data.length] = { "name": "txt品类", "value": '' };
+    data[data.length] = { "name": "txt样衣数", "value": '' };
+    data[data.length] = { "name": "txt设计师", "value": '' };
+    data[data.length] = { "name": "txt版师", "value": '' };
+    data[data.length] = { "name": "txt上货日期", "value": '' };
+    data[data.length] = { "name": "txt系列", "value": '' };
+    data[data.length] = { "name": "txt款号", "value": productName };
+    data[data.length] = { "name": "txt备注", "value": '' };
+    data[data.length] = { "name": "txt排序", "value": '' };
+    var XMLData = GetDBFrameAML(data);
+    var url = GetWSRRURL('bff330e1-b869-46ef-a54c-bb410b91f172') + XMLData;
+
+    $('#winDetail').window('open');
+    $('#tabDetail').datagrid({
+        url: url,
+        nowrap: true, //是否换行，True 就会把数据显示在一行里
+        striped: true, //True 奇偶行使用不同背景色
+        collapsible: false, //可折叠
+        fit: true,
+        rownumbers: true,//行号
+        singleSelect: true,//单行选择
+        columns: [[
+            { field: "dyyyno", title: "样衣号", width: 100 },
+            { field: "dycrdt", title: "结构组发版时间", width: 100 },
+            { field: "dyjbdt", title: "样衣开始时间", width: 100 },
+            { field: "endtime", title: "样衣完成时间", width: 100 },
+            { field: "dyjbpe", title: "样衣师", width: 100 }
+        ]]
+    });
+}
+
+//保存备注事件
+function btnSave() {
+    $('#tabList').datagrid('endEdit', m_index);
+    $('#tabList').datagrid('selectRow', m_index);
+    var getRow = $('#tabList').datagrid('getSelected');
+    if (getRow.productname != '') {
+        var data = [];
+        data[data.length] = { "name": "txt操作类型", "value": "UPDATEPRODUCTPROGRESS_REMARK" };
+        data[data.length] = { "name": "txt实体", "value": "GetStyleProgressInfo" };
+        data[data.length] = { "name": "txt返回内容", "value": "成功" };
+        data[data.length] = { "name": "txtCONO", "value": "HFYG" };
+        data[data.length] = { "name": "txtDIVI", "value": m_zt };
+        data[data.length] = { "name": "txt标识", "value": "1" };
+        data[data.length] = { "name": "txt品牌", "value": '' };
+        data[data.length] = { "name": "txt季节", "value": '' };
+        data[data.length] = { "name": "txt品类", "value": '' };
+        data[data.length] = { "name": "txt样衣数", "value": '' };
+        data[data.length] = { "name": "txt设计师", "value": '' };
+        data[data.length] = { "name": "txt版师", "value": '' };
+        data[data.length] = { "name": "txt上货日期", "value": '' };
+        data[data.length] = { "name": "txt系列", "value": '' };
+        data[data.length] = { "name": "txt款号", "value": getRow.productname };
+        data[data.length] = { "name": "txt备注", "value": getRow.pmremark };
+        data[data.length] = { "name": "txt排序", "value": '' };
+
+        var XMLData = GetDBFrameAML(data);
+        var url = GetWSRRURL('bff330e1-b869-46ef-a54c-bb410b91f172') + XMLData;
+        $.ajax({
+            url: url,
+            //data: { "XML": XMLData },
+            //type: 'post',
+            async: false, //同步,
+            success: function (result) {
+                try {
+                    var result = eval("[" + result + "]");
+                    if (result[0].Error) {
+                        $.messager.progress('close');
+                        $.messager.alert("系统错误", result[0].Error, 'error');
+                    }
+                    else if (result[0].rows[0].result == "0") {
+                        $.messager.progress('close');
+                        $.messager.alert("提示", result[0].rows[0].msg, 'info');
+                    }
+                    else {
+                        $.messager.progress('close');
+                    }
+                } catch (ex) {
+                    $.messager.alert("提示", ex, 'error');
+                }
+            },
+            error: function () {
+                $.messager.alert("提示", "提交错误了！", 'error');
+            }
+        });
+    }
+}
+
+//单击修改备注事件
+function onClickCell(index, field, value) {
+    if (m_index != index) {
+        $('#tabList').datagrid('endEdit', m_index);
+        m_index = index;
+    }
+    if (field == 'pmremark') {
+        $('#tabList').datagrid('beginEdit', index);
+    }
+}
+
+//单击选择行事件
+function onSelect(index, row) {
+    if (m_index != index) {
+        $('#tabList').datagrid('endEdit', m_index);
+    }
+    m_index = index;
+}
+
+//导出方法
+function excelExport() {
+
+    var listData = $('#tabList').datagrid('getRows');
+
+    if (listData.length <= 1 || listData == undefined) {
+        $.messager.alert('提示', '请先加载数据', 'warning');
+        return;
+    }
+
+    EasyUI_DataGrid_ExcelExport1($('#tabList'), $('#tabList'));
+}
+
+//导出Exel主函数
+function EasyUI_DataGrid_ExcelExport1(pgrid, pagination) {
+    var btnExcel = null;
+    pagination.find('a.l-btn').each(function () {
+        if ($(this).find('span.icon-excel').length) {
+            btnExcel = $(this);
+            btnExcel.linkbutton('disable');
+            btnExcel.linkbutton({ iconCls: "pagination-loading" });
+
+        }
+    });
+    //if (btnExcel == null) {
+    //    return;
+    //}
+
+    var dataOptions = pgrid.datagrid("options");
+
+
+    var strUrl = m_url;
+
+    //var strUrl = dataOptions.url;
+    var dataColumns = dataOptions.columns;
+    var dataColumnsFrozen = dataOptions.frozenColumns;
+    var dataParam = dataOptions.queryParams;
+    var pageSize = dataOptions.pageSize;
+    var pageNumber = dataOptions.pageNumber;
+    //var title = dataOptions.title;
+    var title = "款式进度跟踪表";
+
+    var strXMLCol = "<Root><List>";
+
+    if (dataColumnsFrozen != null && dataColumnsFrozen.length > 0) {
+        for (var i = 0; i < dataColumnsFrozen[0].length; i++) {
+
+            if (dataColumnsFrozen[0][i].checkbox == true) {
+                continue;
+            }
+
+            strXMLCol += "<Rows>";
+            strXMLCol += "<field>" + dataColumnsFrozen[0][i].field + "</field>";
+
+            if (dataColumnsFrozen[0][i].title) {
+                strXMLCol += "<title>" + dataColumnsFrozen[0][i].title + "</title>";
+            }
+            else {
+                strXMLCol += "<title>" + dataColumnsFrozen[0][i].field + "</title>";
+
+            }
+            if (dataColumnsFrozen[0][i].width) {
+                strXMLCol += "<width>" + dataColumnsFrozen[0][i].width + "</width>";
+            }
+            else {
+                strXMLCol += "<width></width>";
+
+            }
+
+            if (dataColumnsFrozen[0][i].hidden) {
+                strXMLCol += "<hidden>true</hidden>";
+            }
+            else {
+                strXMLCol += "<hidden>false</hidden>";
+            }
+
+            if (dataColumnsFrozen[0][i].formatDataType) {
+                strXMLCol += "<formatDataType>" + dataColumnsFrozen[0][i].formatDataType + "</formatDataType>";
+            }
+            else {
+                strXMLCol += "<formatDataType></formatDataType>";
+            }
+            strXMLCol += "</Rows>";
+        }
+    }
+    if (dataColumns != null && dataColumns.length > 0) {
+        for (var i = 0; i < dataColumns[0].length; i++) {
+
+            if (dataColumns[0][i].checkbox == true) {
+                continue;
+            }
+
+            strXMLCol += "<Rows>";
+            strXMLCol += "<field>" + (dataColumns[0][i].field) + "</field>";
+
+            if (dataColumns[0][i].title) {
+                strXMLCol += "<title>" + (dataColumns[0][i].title) + "</title>";
+            }
+            else {
+                strXMLCol += "<title>" + (dataColumns[0][i].field) + "</title>";
+
+            }
+
+            if (dataColumns[0][i].width) {
+                strXMLCol += "<width>" + dataColumns[0][i].width + "</width>";
+            }
+            else {
+                strXMLCol += "<width></width>";
+
+            }
+
+            if (dataColumns[0][i].hidden) {
+                strXMLCol += "<hidden>true</hidden>";
+            }
+            else {
+                strXMLCol += "<hidden>false</hidden>";
+            }
+
+            if (dataColumns[0][i].formatDataType) {
+                strXMLCol += "<formatDataType>" + dataColumns[0][i].formatDataType + "</formatDataType>";
+            }
+            else {
+                strXMLCol += "<formatDataType></formatDataType>";
+            }
+            strXMLCol += "</Rows>";
+        }
+    }
+
+    strXMLCol += "</List></Root>";
+
+    strXMLCol = strXMLCol.replace(/\(/g, "").replace(/\)/g, "");
+    dataParam.ExcelExportColumns = strXMLCol;
+
+    $.messager.confirm('提示框', "是否导出", function (e) {
+        if (e) {
+            $.messager.progress({ title: '请稍后', msg: '处理中' });
+
+            $.ajax({
+                url: strUrl + "&pagerows=0&pageNumber=1&ExcelExport=true&title=" + escape(title) + "&rd=" + Math.random(),
+                data: dataParam,
+                type: 'POST',
+                options: "JSON",
+                success: function (data) {
+                    if (btnExcel != null) {
+                        btnExcel.linkbutton('enable');
+
+                        btnExcel.linkbutton({ iconCls: "icon-excel" });
+                    }
+                    if (eval("[" + data + "]")[0].Error) {
+                        $.messager.alert("导出Excel出错了", eval("[" + data + "]")[0].Error, 'error');
+                        return;
+                    }
+                    $.messager.progress('close');
+                    var strFileName = eval("[" + data + "]")[0].FileName;
+                    //strFileName = strFileName.substring(0, 29) + FileName.substring(4);
+                    window.location.href = strFileName;
+                },
+                error: function (date) {
+                    $.messager.alert('提示', '错误!', 'error');
+                    $.messager.progress('close');
+                }
+
+            });
+            return false;
+        }
+    });
+}
+
+//isnull函数
+function IsNull(num) {
+    if (num == '' || num == undefined || num == null) {
+        return 0;
+    }
+    else {
+        return parseInt(num);
+    }
+}
+
+
+/*
+function initBrand() {
+    //品牌
+    $("#txtbrand").combobox({
+        url: GetComboxWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9', "", "cbstky", "cbstky") + "&XML=" + GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetBrand'),
+        valueField: 'id',
+        textField: 'text',
+        width: '100',
+        panelHeight: 'auto',
+        editable: false,
+        required: true,
+        async: false,//同步
+        onSelect: function (record) {
+            changeDHHJJ();
+        }
+    });
+
+    //取该人的品牌USERINFO表OwnedBrand字段判断品牌
+    var xmlData = GetFormJson([{ "name": "txtzt", "value": m_zt }], 'GetOwnedBrand');
+    htmlobj = $.ajax({
+        url: GetWSRRURL('d763e76a-f7e0-4fbc-a2f2-9a9956ecccb9'),
+        data: { "XML": xmlData },
+        type: 'post',
+        async: false
+    });
+    var result = $.parseJSON(htmlobj.responseText);
+    $("#txtbrand").combobox('setValue', result.rows[0].message);//把品牌赋值给HTML品牌
+}
+
+//查询条件改变
+function slectTypeChange(type) {
+    $("#date")[0].style.display = "none";
+    $("#orderPlacing")[0].style.display = "none";
+    $("#" + type.id)[0].style.display = "inline-block";
+
+}
+//点击查询
+function SearchClick() {
+    selectType = $('#cmbSelectType').combobox("getValue");
+    initGird();//加载数据
+
+
+
+}
+//加载数据
+function initGird() {
+    m_cmbdhhjj = "";
+    txtBeginDate = "";
+    txtEndDate = "";
+    ClearGrid("#tabList");//清除表单数据
+    if (selectType == "orderPlacing") {//订货会
+        m_cmbdhhjj = $('#txtcmbdhhjj').combobox('getValue');//获取订货会季节
+    }
+    else if (selectType == "date") {
+        txtBeginDate = $('#txtBeginDate').datebox('getValue');//取开始时间
+        txtEndDate = $('#txtEndDate').datebox('getValue');//取结束时间
+    }
+
+    var brandCON = $('#txtbrand').val()//取品牌数据
+
+
+
+    var data = [];
+    data[data.length] = { "name": "txt操作类型", "value": "GET" };
+    data[data.length] = { "name": "txt实体", "value": "GetStyleProgressInfo" };
+    data[data.length] = { "name": "txt返回内容", "value": "成功" };
+    data[data.length] = { "name": "txtCONO", "value": "HFYG" };
+    data[data.length] = { "name": "txtDIVI", "value": m_zt };
+    data[data.length] = { "name": "txt订货会季节", "value": m_cmbdhhjj };
+    data[data.length] = { "name": "txt标识", "value": "1" };
+    data[data.length] = { "name": "txt品牌", "value": brandCON };
+    data[data.length] = { "name": "txt开始时间", "value": txtBeginDate };
+    data[data.length] = { "name": "txt结束时间", "value": txtEndDate };
+
+    XMLData = GetDBFrameAML(data);
+    var urlCol = GetGridColumnsWSRRURL('bff330e1-b869-46ef-a54c-bb410b91f172', "60", "false", "false") + XMLData
+    //ajax取动态列
+    var htmlobj = $.ajax({
+        url: urlCol,
+        async: false
+    });
+    var Text = $.parseJSON(htmlobj.responseText);
+    m_columns = Text.Col;
+
+    var data1 = [];
+    data1[data1.length] = { "name": "txt操作类型", "value": "GET" };
+    data1[data1.length] = { "name": "txt实体", "value": "GetStyleProgressInfo" };
+    data1[data1.length] = { "name": "txt返回内容", "value": "成功" };
+    data1[data1.length] = { "name": "txtCONO", "value": "HFYG" };
+    data1[data1.length] = { "name": "txtDIVI", "value": m_zt };
+    data1[data1.length] = { "name": "txt订货会季节", "value": m_cmbdhhjj };
+    data1[data1.length] = { "name": "txt标识", "value": "2" };
+    data1[data1.length] = { "name": "txt品牌", "value": brandCON };
+    data1[data1.length] = { "name": "txt开始时间", "value": txtBeginDate };
+    data1[data1.length] = { "name": "txt结束时间", "value": txtEndDate };
+
+
+    XMLdata1 = GetDBFrameAML(data1);
+    var url = GetWSRRURL('bff330e1-b869-46ef-a54c-bb410b91f172') + XMLdata1
+    $('#tabList').datagrid(
+         {
+             url: url,
+             nowrap: true, //是否换行，True 就会把数据显示在一行里
+             striped: true, //True 奇偶行使用不同背景色
+             collapsible: false, //可折叠
+             fit: true,
+             columns: eval(m_columns),
+             rownumbers: true,//行号
+             singleSelect: true,//单行选择
+             toolbar: "#tab_toolbar",
+             //showFooter: true,
+             toolbar: [
+             {
+                 id: 'btn_print',
+                 text: '打印',
+                 iconCls: 'icon-print',
+                 handler: function () {
+                     pring();//HTML打印
+                 }
+             }]
+         });
+    //取动态列,格式化列属性
+    var columns = eval(m_columns);
+    if (columns.length != "0") {
+        var col = $('#tabList').datagrid('getColumnOption', columns[0][0].field);
+        col.width = 50;
+        col.align = "center";
+        for (var i = 1; i < columns[0].length; i++) {
+            var col = $('#tabList').datagrid('getColumnOption', columns[0][i].field);
+            col.formater = Formater.Nums;
+            col.align = "center";
+            col.title = col.title.toUpperCase();
+        }
+    }
+    $('#tabList').datagrid();//reload
+
+}
+
+
+//按照品牌控制季节下拉数据
+function changeDHHJJ() {
+    var brandType = $('#txtbrand').combobox("getValue");
+    if (brandType.substr(0, 2) == "EP") {
+        brandType = "EP"
+    }
+    else if (brandType.substr(0, 2) == "E.P") {
+        brandType = "E.Prosper"
+    }
+    else if (brandType.substr(0, 2) == "Do") {
+        brandType = "Do"
+    }
+    else if (brandType.substr(0, 2) == "Ki") {
+        brandType = "Kids"
+    }
+
+    if (m_DDHComboxData == null) {
+        return;
+    }
+    var data = m_DDHComboxData;
+    var data1 = [];
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].id.toString().indexOf(brandType) > 0) {
+            data1.push(data[i]);
+        }
+    }
+    $('#txtcmbdhhjj').combobox({ url: "" });
+    $('#txtcmbdhhjj').combobox("loadData", data1);//重加载季节下拉数据
+}
+
+
+//打印
+function pring() {
+    var endDate = $('#txtEndDate').combobox('getValue');//获取结束时间
+    //var tableString =
+    CreateFormPage("datagrid", $("#tabList"), m_cmbdhhjj, endDate, m_epjbs, m_epjjbs, m_eptbs, m_epjtbs, m_epwjbs, m_epjwjbs, m_eprosperbjbs, m_eprospercjbs, m_eprosperfjbs, m_eprosperbtbs, m_eprosperctbs, m_eprosperftbs, m_eprosperbwjbs, m_eprospercwjbs, m_eprosperfwjbs, m_DLjbs, m_DLtbs, m_DLwjbs);
+    ////document.write(tableString);
+    //$("#divPrint").html(tableString);
+    //$('#divPrint').window({
+    //    title: "111",
+    //    top: 20,
+    //    maximized: true,
+    //    modal: true
+    //});
+    //$("#divPrint").printArea();
+}
+*/

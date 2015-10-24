@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<!--  
+			<property name="url"
+				value="jdbc:sqlserver://192.168.0.151:1433;DatabaseName=dorsys"></property>
+			<property name="username" value="sa"></property>
+			<property name="password" value="x6test@2011@it"></property>
+		-->
+	
+		  <property name="url"
+			value="jdbc:sqlserver://192.168.2.221:1433;DatabaseName=F22YY"></property>
+			<property name="username" value="sa"></property>
+			<property name="password" value="neofeel"></property>
+		
+
+	</bean>
+	
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource"> <ref bean="dataSource" /> </property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql"> false </prop>
+				<prop key="hibernate.format_sql"> false </prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/nh/hibernate/JSupplierNh.hbm.xml</value>
+				<value>com/nh/hibernate/JSupplier.hbm.xml</value>
+				<value>com/nh/hibernate/JDepot.hbm.xml</value>
+				
+				<value>com/nh/hibernate/DOutindentSet.hbm.xml</value>	
+				<value>com/nh/hibernate/DOutindentSetsub.hbm.xml</value>
+				
+				<value>com/nh/hibernate/DOutindentChk.hbm.xml</value>				
+				<value>com/nh/hibernate/DOutindentChksub.hbm.xml</value>
+				
+				<value>com/nh/hibernate/DIndepot.hbm.xml</value>				
+				<value>com/nh/hibernate/DIndepotsub.hbm.xml</value>
+				
+				<value>com/nh/hibernate/JClothing.hbm.xml</value>
+				<value>com/nh/hibernate/SysStylepower18ql.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 配置实体类 -->
+	<bean id="jSupplierNh" class="com.nh.model.JSupplierNh" scope="prototype"></bean>
+	
+
+</beans>

@@ -1,0 +1,43 @@
+﻿@model ElegantWM.EntityModel.ITSM_Event
+@{
+    ViewBag.Title = "事件详细";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+}
+<div class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-user"></i> 提报人信息 </span></h4>
+    提报员工：@Model.ReqMan<br />
+    所属部门：@Model.ReqCom，@Model.ReqDept<br />
+    提报时间：@Model.CreateTime<br />
+    办公地点：@Model.ReqIncident<br />
+    联系电话：@Model.ReqManPhone<br /><br />
+    <h4><span><i class="icon-wrench"></i> 事件信息 </span></h4>
+    @if(Model.ProcessStatus==0){
+        <span class="badge pull-right hs">已提报</span>
+    }else if(Model.ProcessStatus==1){
+        <span class="badge pull-right ls">已派工</span>
+    }else if(Model.ProcessStatus==2){
+        <span class="badge pull-right ls">已接收</span>
+    }else if(Model.ProcessStatus==3){
+        <span class="badge pull-right ls">处理中</span>
+    }else if(Model.ProcessStatus==4){
+        <span class="badge pull-right ls">待评价</span>
+    }else if(Model.ProcessStatus==5){
+        <span class="badge pull-right">已完结</span>
+    }else if(Model.ProcessStatus==9){
+        <span class="badge pull-right">已取消</span>
+    }
+    @Model.EventDesc
+    <br />
+    工程师：@Model.Engineer<br /><br />
+    <h4><span><i class="icon-file-alt"></i> 处理日志 </span></h4>
+    @foreach (ElegantWM.EntityModel.ITSM_EventLog log in ViewBag.EventLog)
+    {
+        <div class="eventlog">
+            <div style="margin-bottom: 6px;">@log.CreateUser @@ @log.CreateTime &nbsp;&nbsp; @log.Reason </div>
+            @log.Remark
+        </div>
+    }
+</div>

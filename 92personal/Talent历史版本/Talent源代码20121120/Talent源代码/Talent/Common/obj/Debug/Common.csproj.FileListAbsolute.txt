@@ -1,0 +1,14 @@
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\Talent.Common.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\Talent.Common.pdb
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\COM.Excel.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\Excel.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\Innovate.DBUtility.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\OpenSmtp.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\OWC10Chart.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\IBatisNet.DataMapper.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\IBatisNet.Common.dll
+C:\Users\luobin\Desktop\Talent\Common\bin\Debug\Innovate.DBUtility.pdb
+C:\Users\luobin\Desktop\Talent\Common\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\luobin\Desktop\Talent\Common\obj\Debug\Talent.Common.dll
+C:\Users\luobin\Desktop\Talent\Common\obj\Debug\Talent.Common.pdb
+D:\Document\Work\Code\Talent历史版本\Talent源代码20121120\Talent源代码\Talent\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

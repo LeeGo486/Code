@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>@(ViewBag.Title)</title>
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!--IOS Masker-->
+    <link href="~/Scripts/IosOverlay/css/iosOverlay.css" rel="stylesheet" />
+    <script src="~/Scripts/IosOverlay/js/spin.min.js"></script>
+    <script src="~/Scripts/IosOverlay/js/iosOverlay.js"></script>
+    <script src="~/Scripts/WeixinApi/WeixinApi.js"></script>
+    <script src="~/Scripts/MatrixGlobal.js"></script>
+    <link href="~/Areas/Matrix/Resources/Mobile.css" rel="stylesheet" />
+    @RenderSection("script", false)
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

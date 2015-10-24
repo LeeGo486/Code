@@ -1,0 +1,501 @@
+﻿@model System.Data.DataTable
+@{
+    int status = 0;
+}
+
+@helper GetStar(decimal pdValue)
+{
+    string str = "";
+    int index = 0;
+
+    while (index < 5)
+    {
+        if (index <= pdValue)
+        { 
+            str += "★";
+        }
+        else
+        {
+            str += "☆";
+        }
+        index++;
+    }
+    @(str);
+}
+
+@{
+    System.Data.DataRow[] drList = Model.Select("");
+    int order = int.Parse(@ViewBag.Order);
+    int orderAll = int.Parse(@ViewBag.orderAll);
+}
+
+<script>
+    var orderTotal = '@ViewBag.order';
+    var orderAllTotal = '@ViewBag.orderAll';
+
+    var m_LastOpratorDiv = undefined;
+    var m_LastClickBtn = undefined;
+    var m_NoHide = false;
+
+    var m_UserName = "";
+    $(function () {
+        $.post("/IT/Request/GetUserName?sid=" + Url.get("sid") + "&oid=" + Url.get("oid"), function (data) {
+            m_UserName = data;
+        });
+    });
+
+    function hideReqHisList() {
+        if (m_NoHide) { return; }
+        $("#divLastOperate" + m_LastOpratorDiv).html("");
+        $("#divLastOperate" + m_LastOpratorDiv).hide();
+        $("#iconReq" + m_LastOpratorDiv).removeClass("icon-double-angle-up");
+        $("#iconReq" + m_LastOpratorDiv).addClass("icon-double-angle-down");
+        m_LastOpratorDiv = undefined;
+        m_NoHide = false;
+    }
+
+    function GetReqHisList(orderID, orderCode) {
+        Msg.show("请稍候...", 3);
+        m_NoHide = false;
+        var url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题,870A】【订单号," + orderCode + "】")
+        //alert(url);
+        $.post(url, function (data) {
+            Msg.hide();
+            m_LastOpratorDiv = orderID;
+            $("#divLastOperate" + orderID).show();
+            $("#divLastOperate" + orderID).html("<span style=color:red>点击屏幕任何区域，可收起详细信息...</span><br />" + data);
+            $("#iconReq" + m_LastOpratorDiv).removeClass("icon-double-angle-down");
+            $("#iconReq" + m_LastOpratorDiv).addClass("icon-double-angle-up");
+            $('html, body').animate({ scrollTop: $("#iconReq" + orderID).offset().top }, 300, false);
+        });
+        return false;
+    }
+
+    function GetReqHisListAll(orderCode, orderID) {
+        Msg.show("请稍候...", 3);
+        var url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题,870A】【订单号," + orderCode + "】【显示,ALL】")
+        //alert(url);
+
+        $.post(url, function (data) {
+            m_NoHide = false;
+            Msg.hide();
+            m_LastOpratorDiv = orderID;
+            $("#divLastOperate" + orderID).show();
+            $("#divLastOperate" + orderID).html("<span style=color:red>点击屏幕任何区域，可收起详细信息...</span><br />" + data);
+            $("#iconReq" + m_LastOpratorDiv).removeClass("icon-double-angle-down");
+            $("#iconReq" + m_LastOpratorDiv).addClass("icon-double-angle-up");
+            $('html, body').animate({ scrollTop: $("#iconReq" + orderID).offset().top }, 300, false);
+        });
+        m_NoHide = true;
+        return false;
+    }
+
+    function changeReqState(state) {
+        Msg.show("请稍候...", 3);
+        var url = "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        if (state == "ALL") {
+            url = url + "&reqState=ALL"
+        }
+        window.location.href = url;
+    }
+
+
+    //提交评价信息
+    function submitStaff(orderID, orderCode, staffType) {
+        Msg.show("请稍候...", 3);
+
+        var url = "/IT/Request/SurveySubmit?orderCode=" + escape(orderCode) + "&surveyType=" + staffType + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+
+        m_LastClickBtn = "btn" + staffType + orderID;
+
+        //$(lastClickBtn).hide();
+
+        $.post(url, function (data) {
+            Msg.hide();
+            $("#divLastOperate" + m_LastOpratorDiv).html('');
+            $("#divLastOperate" + m_LastOpratorDiv).hide();
+            m_NoHide = true;
+
+            m_LastOpratorDiv = orderID;
+            $("#divLastOperate" + orderID).html(data);
+            $("#divLastOperate" + orderID).show();
+            $('html, body').animate({ scrollTop: $("#iconReq" + orderID).offset().top }, 300, false);
+        });
+        return false;
+    }
+
+
+    function submit(strSurveyType) {
+        var rat1 = parseInt($("#txtRat1").val()) + 6;
+        var rat2 = parseInt($("#txtRat2").val()) + 6;
+        var rat3 = parseInt($("#txtRat3").val()) + 6;
+        var rat4 = parseInt($("#txtRat4").val()) + 6;
+
+        var orderDesc = $("#txtOrderDesc").val();
+
+        if (isNaN(rat1) || isNaN(rat2) || isNaN(rat3)) {
+            Msg.show("请完成所有的评价", 1);
+            return;
+        }
+
+        if ('@Request["SurveyType"]' == "Customer" && isNaN(rat4)) {
+            Msg.show("请完成所有的评价", 1);
+            return;
+        }
+
+        if ('@Request["SurveyType"]' == "Customer") {
+            var url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题,889】"
+                    + "【评价类型," + strSurveyType + "】【订单号," + orderCode + "】"
+                    + "【评分," + rat1 + "," + rat2 + "," + rat3 + "," + rat4 + "】【评价描述," + orderDesc + "】【评价人," + m_UserName + "】");
+        }
+        else {
+            var url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape("【操作类型,微信】【问题,889】"
+                    + "【评价类型," + strSurveyType + "】【订单号," + orderCode + "】"
+                    + "【评分," + rat1 + "," + rat2 + "," + rat3 + "】【评价描述," + orderDesc + "】【评价人," + m_UserName + "】");
+        }
+        //alert(url);
+        Msg.show("请稍候...", 3);
+
+        $.post(url, function (data) {
+            Msg.hide();
+            if (data.indexOf("成功") > -1) {
+                Msg.show("评分成功,谢谢参与！", 0);
+                $(m_LastOpratorDiv).hide();
+                $("#divLastOperate" + m_LastOpratorDiv).hide();
+
+                //添加本次评分值
+                if ('@Request["SurveyType"]' == "Customer") {
+                    var avgRat = ((rat1 + rat2 + rat3 + rat4) / 4).toFixed(1);
+                }
+                else {
+                    var avgRat = ((rat1 + rat2 + rat3) / 3).toFixed(1);
+                }
+                $("#divLastOperate" + m_LastOpratorDiv).hide();
+                $("#liStaff" + m_LastOpratorDiv)[0].innerHTML = $("#liStaff" + m_LastOpratorDiv)[0].innerHTML + "<span style=color:red>" + strSurveyType + ":" + avgRat + "</span>";
+                $("#liStaff" + m_LastOpratorDiv).attr("style", "");
+
+                var p = $("#" + m_LastClickBtn).parent();
+                $("#" + m_LastClickBtn).remove(); //隐藏按钮
+
+                if (p.children().length == 0) {
+                    p.hide();  //当按钮没有了，隐藏操作区
+                };
+
+                orderTotal = parseInt(orderTotal) - 1;
+                orderAllTotal = parseInt(orderAllTotal) + 1;
+                $("#order")[0].innerHTML = "待评价 " + orderTotal;  //刷角标
+                $("#orderAll")[0].innerHTML = "已评价 " + orderAllTotal;
+
+                $('html, body').animate({ scrollTop: $("#iconReq" + m_LastOpratorDiv).offset().top }, 300, false);
+
+                m_LastClickBtn = undefined;
+            }
+            else {
+                Msg.show(data, 1);
+            }
+
+        });
+
+    }
+
+    function noSubmitStaff() {
+        m_NoHide = false;
+        $("#divLastOperate" + m_LastOpratorDiv).html = "";
+        $("#divLastOperate" + m_LastOpratorDiv).hide();
+    }
+
+
+    function agreeDelivery(orderID, orderCode, staffType) {
+        Msg.show("请稍候...", 3);
+        m_LastClickBtn = "btn" + staffType + orderID;
+        var url = "/IT/Request/GetQueryData?sid=" + Url.get("sid") + "&oid=" + Url.get("oid")
+            + "&key=" + escape("【操作类型,微信】【问题,890】【订单号," + orderCode + "】【用户,@ViewBag.UserName】");
+
+        $.post(url, function (data) {
+            Msg.hide();
+            if (data.indexOf("成功") > -1) {
+                Msg.show("交付成功,谢谢参与！", 0);
+                var p = $("#" + m_LastClickBtn).parent();
+                $("#" + m_LastClickBtn).remove(); //隐藏按钮
+
+                if (p.children().length == 0) {
+                    p.hide();  //当按钮没有了，隐藏操作区
+                };
+                $('html, body').animate({ scrollTop: $("#iconReq" + m_LastOpratorDiv).offset().top }, 300, false);
+
+                m_LastClickBtn = undefined;
+
+            }
+            else {
+                Msg.show(data, 1);
+            }
+        })
+    }
+
+</script>
+
+<div class="ht">
+    <i class="icon-copy"></i>&nbsp;&nbsp;我的订单
+   @if (Request["reqState"] == null || Request["reqState"].ToString().ToUpper() != "ALL")
+   {
+       <a href="#" onclick="changeReqState('ALL'); return false;"><span id="orderAll" class="badge  pull-right">已结束  @ViewBag.OrderAll</span></a>  
+       
+       <span id="order" class="badge  pull-right hs" style="margin-left: 10px">未结束 @ViewBag.Order</span>
+   }
+   else
+   {
+       <span id="orderAll" class="badge  pull-right hs">已结束   @ViewBag.OrderAll</span> 
+       <a href="#" onclick="changeReqState('');return false;"><span id="order" class="badge  pull-right" style="margin-left: 10px">未结束 @ViewBag.Order</span></a>
+   }
+</div>
+
+
+@if (order == 0 && (Request["reqState"] == null || Request["reqState"].ToString().ToUpper() != "ALL"))
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，您目前没有“未结束”的“订单”信息。<br />
+        您可以通过菜单<a href="/IT/DC/MyRequest?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->我的请求”</a>查看实时进展。<br />
+        <br />
+    </div>
+}
+
+@if (orderAll == 0 && (Request["reqState"] != null && Request["reqState"].ToString().ToUpper() == "ALL"))
+{
+    <div id="noEventMsgAll" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，您目前没有“已结束”的“订单”信息。<br />
+        您可以通过菜单<a href="/IT/DC/MyRequest?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->我的请求”</a>查看实时进展。<br />
+        <br />
+    </div>
+}
+
+
+@for (int i = 0; i < drList.Length; i++)
+{
+    <div class="eventSch clearfix" onclick="hideReqHisList()">
+        <ul class="list-group">
+            <li class="list-group-item"><span style="color: ##000000">订单编号：</span><i class="icon-double-angle-down" id="iconReq@(drList[i]["OrderID"])"></i>
+                <a href="#" onclick="return GetReqHisList('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])');" style="color: ##000000">[@(drList[i]["OrderType"])]  @(drList[i]["OrderCode"])
+                </a>
+                @if (drList[i]["OrderResp"] != null)
+                {
+                    <span class="badge ls"><a href="tel:@(drList[i]["phone"])" style="text-decoration:none"><span style="color: #FFF"><i class="icon-phone"></i>&nbsp;&nbsp;@(drList[i]["OrderActor"])</span></a></span>
+                }
+                else
+                {
+                    <span class="badge ls"><a href="tel:057383685660"><span style="color: #FFF"><i class="icon-phone"></i>&nbsp;&nbsp;信息管理中心</span></a></span>
+                }
+            </li>
+            <li class="list-group-item"><span style="color: ##000000">订单内容：</span>
+               <span style="color: #000000"> @(drList[i]["OrderDesp"])</span>
+            </li>
+        </ul>
+        @{status = Convert.ToInt32(drList[i]["NodeStatus"]);       }
+
+        @if (Convert.ToInt32(drList[i]["OrderLvl"]) == 0 || Convert.ToInt32(drList[i]["OrderLvl"]) == 1)
+        {
+            <ol class="ui-step ui-step-5">
+                <li class="ui-step-start @if (status == 1)
+                                         {@("ui-step-active")}
+                                         else if (status == 0)
+                                         {@("ui-step-undone")}
+                                         else
+                                         {@("ui-step-done")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">1</i>
+                        <span class="ui-step-text">调研</span>
+                    </div>
+                </li>
+                <li class="ui-step-start @if (status == 2)
+                                         {@("ui-step-active")}
+                                         else if (status > 2)
+                                         {@("ui-step-done")}
+                                         else
+                                         {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">2</i>
+                        <span class="ui-step-text">方案设计</span>
+                    </div>
+                </li>
+                <li class="ui-step-start @if (status == 3)
+                                         {@("ui-step-active")}
+                                         else if (status > 3)
+                                         {@("ui-step-done")}
+                                         else
+                                         {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">3</i>
+                        <span class="ui-step-text">代码开发</span>
+                    </div>
+                </li>
+                <li class="ui-step-start @if (status == 4)
+                                         {@("ui-step-active")}
+                                         else if (status > 4)
+                                         {@("ui-step-done")}
+                                         else
+                                         {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">4</i>
+                        <span class="ui-step-text">测试</span>
+                    </div>
+                </li>
+
+                <li class="ui-step-end @if (status == 5)
+                                       {@("ui-step-active")}
+                                       else if (status > 5)
+                                       {@("ui-step-done")}
+                                       else
+                                       {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">5</i>
+                        <span class="ui-step-text">交付</span>
+                    </div>
+                </li>
+            </ol>
+        }
+        @if (Convert.ToInt32(drList[i]["OrderLvl"]) == 2)
+        {
+            //开发单
+            <ol class="ui-step ui-step-5">
+                <li class="ui-step-start @if (status == 1)
+                                         {@("ui-step-active")}
+                                         else if (status == 0)
+                                         {@("ui-step-undone")}
+                                         else
+                                         {@("ui-step-done")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">1</i>
+                        <span class="ui-step-text">服务设计</span>
+                    </div>
+                </li>
+                <li class="ui-step-start @if (status == 2)
+                                         {@("ui-step-active")}
+                                         else if (status > 2)
+                                         {@("ui-step-done")}
+                                         else
+                                         {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">2</i>
+                        <span class="ui-step-text">UI设计</span>
+                    </div>
+                </li>
+                <li class="ui-step-start @if (status == 3)
+                                         {@("ui-step-active")}
+                                         else if (status > 3)
+                                         {@("ui-step-done")}
+                                         else
+                                         {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">3</i>
+                        <span class="ui-step-text">开发</span>
+                    </div>
+                </li>
+                <li class="ui-step-start @if (status == 4)
+                                         {@("ui-step-active")}
+                                         else if (status > 4)
+                                         {@("ui-step-done")}
+                                         else
+                                         {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">4</i>
+                        <span class="ui-step-text">测试</span>
+                    </div>
+                </li>
+
+                <li class="ui-step-end @if (status == 5)
+                                       {@("ui-step-active")}
+                                       else if (status > 5)
+                                       {@("ui-step-done")}
+                                       else
+                                       {@("ui-step-undone")}">
+                    <div class="ui-step-line">-</div>
+                    <div class="ui-step-icon">
+                        <i class="iconfont"></i>
+                        <i class="ui-step-number">5</i>
+                        <span class="ui-step-text">部署</span>
+                    </div>
+                </li>
+            </ol>
+        }
+
+
+        @if (drList[i]["OrderCode"].ToString().IndexOf("Demo") < 0)
+        {
+            if (drList[i]["PJ"] == null || drList[i]["PJ"] == "")
+            {
+            <ul class="list-group">
+                <li class="list-group-item" style="display:none ;" id='liStaff@(drList[i]["OrderID"])'><span style="color: ##000000">评价信息：</span></li>
+            </ul>
+            }
+            else
+            {
+            <ul class="list-group">
+                <li class="list-group-item"  style=""  id='liStaff@(drList[i]["OrderID"])'><span style="color: ##000000">评价信息：</span> @drList[i]["PJ"]</li>
+            </ul>
+            }
+
+            if (drList[i]["OrderPJ"].ToString().IndexOf("评价") > -1 || ((drList[i]["dev_Agreed"].ToString() != "1" && drList[i]["OrderLvl"].ToString() == "0")))   //已经评价
+            {
+            <div class="operate">
+                @if (drList[i]["OrderPJ"].ToString().IndexOf("客户评价") > -1)
+                {
+                    <div class="btnOpt" id='btnCustomer@(drList[i]["OrderID"])' onclick="submitStaff('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','Customer');" style="color:#F75000;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;客户评价</div>
+                }
+                @if (drList[i]["dev_Agreed"].ToString() != "1" && drList[i]["OrderLvl"].ToString() == "0")
+                {
+                    <div class="btnOpt" id='btnAgreeDelivery@(drList[i]["OrderID"])'   onclick="agreeDelivery('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','AgreeDelivery');" style="color:#000066;"><i class="glyphicon glyphicon-ok"></i>&nbsp;同意交付</div>
+                }
+                @if (drList[i]["OrderPJ"].ToString().IndexOf("项目评价") > -1)
+                {
+                    <div class="btnOpt"  id='btnProject@(drList[i]["OrderID"])' onclick="submitStaff('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','Project');" style="color:#F75000;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;项目评价</div>
+                }
+
+                @if (drList[i]["OrderPJ"].ToString().IndexOf("销售评价") > -1)
+                {
+                    <div class="btnOpt" id='btnSales@(drList[i]["OrderID"])' onclick="submitStaff('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','Sales');" style="color:#F75000;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;销售评价</div>
+                }
+                @if (drList[i]["OrderPJ"].ToString().IndexOf("PM评价") > -1)
+                {
+                    <div class="btnOpt" id='btnPM@(drList[i]["OrderID"])' onclick="submitStaff('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','PM');" style="color:#F75000;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;PM评价</div>
+                }
+
+                @if (drList[i]["OrderPJ"].ToString().IndexOf("规范评价") > -1)
+                {
+                    <div class="btnOpt" id='btnSpecs@(drList[i]["OrderID"])'  onclick="submitStaff('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','Specs');" style="color:#F75000;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;规范评价</div>
+                }
+                @if (drList[i]["OrderPJ"].ToString().IndexOf("运维评价") > -1)
+                {
+                    <div class="btnOpt" id='btnOperation@(drList[i]["OrderID"])' onclick="submitStaff('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','Operation');" style="color:#F75000;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;运维评价</div>
+                }
+                @if (drList[i]["OrderPJ"].ToString().IndexOf("技术评价") > -1)
+                {
+                    <div class="btnOpt" id='btnTechnology@(drList[i]["OrderID"])' onclick="submitStaff('@(drList[i]["OrderID"])','@(drList[i]["OrderCode"])','Technology');" style="color:#F75000;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;技术评价</div>
+                }
+            </div>
+            }
+        }
+
+    </div>
+    <div class="mainArea" id='divLastOperate@(drList[i]["OrderID"])' style="padding:4px;min-height: 0px; background-color: #F6F6F6; display: none" onclick="hideReqHisList()"></div>
+
+
+}

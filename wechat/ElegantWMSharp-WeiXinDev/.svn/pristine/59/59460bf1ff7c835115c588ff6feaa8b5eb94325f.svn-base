@@ -1,0 +1,67 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //显示全店客户数
+        $('#customernum').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 300,
+                backgroundColor: null
+            },
+            title: {
+                text: '客户数比比看'
+            },
+            xAxis: {
+                categories: ['徐艳琼', '陈慧珊', '黄秋娜', '陈小芳'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '客户数',
+                color: '#4F94CD',
+                data: [32, 19, 8, 6]
+            }]
+        });
+    });
+</script>
+<div class="ht" id="smycustomernum">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;客户数比比看
+    <span onclick="$('#scustomernumarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <div id="customernum" style="margin:30px 0px 0px 0px;"></div>
+</div>

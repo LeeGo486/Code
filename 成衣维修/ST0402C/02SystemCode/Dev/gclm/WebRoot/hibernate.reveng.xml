@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="SCFX_TYBMB" schema="dbo" catalog="epapp"
+		class="Tybmb">
+	</table>
+<table name="EP_PurchaseDetail" schema="dbo" catalog="x5app_x6">
+	<primary-key>
+		<key-column name="fid" />
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

@@ -1,0 +1,39 @@
+﻿<div class="ht" id="saddmatch">
+    <i class="icon-pencil"></i>&nbsp;&nbsp;搭配建议
+</div>
+
+<div class="dataDetail">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div>[2014年06月28日]&nbsp;&nbsp;武汉东湖万达百货<span onclick="showMatchInfo('m1');" style="float:right;"><i class="cus icon-double-angle-down"></i></span></div>
+            <div id="m1" class="cusHideMatchArea" style="display:none;">
+                <div>与外套搭配整体效果更佳</div>
+                <img src="/Areas/S3/Resources/images/u280.png" />
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div>[2014年06月28日]&nbsp;&nbsp;上海新世界<span onclick="showMatchInfo('m2');" style="float:right;"><i class="cus icon-double-angle-down"></i></span></div>
+            <div id="m2" class="cusHideMatchArea" style="display:none;">
+                <div>与长衫搭配整体效果更佳</div>
+                <img src="/Areas/S3/Resources/images/u282.png" />
+            </div>
+        </li>
+    </ul>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">图片上传
+        </span>
+        <input type="text" class="form-control" id="txtIMG" readonly="true">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="fileUpload">浏览</button>
+        </span>
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">搭配建议</span>
+        <textarea class="form-control" placeholder="请输入建议内容"></textarea>
+    </div>
+    
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" data-loading-text="loading..." onclick="addMatch();">提交</button>
+</div>

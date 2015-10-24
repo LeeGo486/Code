@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "结束";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section script{
+
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/JOREALLanternFestival.css?v3" />
+    <script type="text/javascript" src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            
+            $("#Bg img").load(function () {
+                var bgHeight = $("#Bg").height();
+                $("#logo").css("bottom", bgHeight * 0.01);
+                $("#btn").css("bottom", bgHeight * 0.155);
+                $("#fish").css("bottom", bgHeight * 0.1);
+                $("#logo").css("bottom", bgHeight * 0.01);
+            });
+            $("#fish1").fadeIn("slow")
+            $("#Bg").fullpage({})
+        })
+
+    </script>
+}
+<div id="Bg">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/endbg.jpg" alt="head" style="width: 100%" />
+</div>
+
+<div id="btn">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/endbtn.png" alt="head" style="width: 50%" />
+</div>
+
+<div id="fish">
+    <img id="fish1" src="/Areas/Game/Resources/images/JOREALLanternFestival/1003.png" alt="head" style="width: 50%;display:none" />
+</div>
+
+<div id="logo">
+    <img src="/Areas/Game/Resources/images/JOREALLanternFestival/EP.png" alt="head" style="width: 100%" />
+</div>

@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "用户绑定";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <script type="text/javascript">
+        $(function () {
+            //单击按钮的时候
+            $("#btnLogin").click(function () {
+                $(this).button('loading');
+                if ($.trim($("#TxtName").val()).length <= 0) {
+                    Msg.show("姓名不能为空", 1);
+                    $("#TxtName").focus();
+                    $(this).button("reset");
+                    return;
+                } else if ($.trim($("#TxtPwd").val()).length <= 0) {
+                    Msg.show("密码不能为空", 1);
+                    $("#TxtPwd").focus();
+                    $(this).button("reset");
+                    return;
+                }
+                if (Url.get("sid") == null || Url.get("oid") == null) {  
+                    Msg.show("参数非法！", 1);
+                    $(this).button("reset");
+                    return;
+                }
+                //到服务器验证
+                Msg.show("登录中...", 3);
+                $.post("/Matrix/AMLogin/Binding?pwd=" + escape($.trim($("#TxtPwd").val())) + "&name=" + $.trim($("#TxtName").val() + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid")), function (rst) {
+                    Msg.hide();
+                    Msg.show(rst.msg, rst.result);
+                    if (rst.result == 0 && Url.get("ReturnUrl") != "") {
+                        //跳转回去
+                        window.location.href = Url.get("ReturnUrl");
+                    } else if (rst.result == 0) {
+                        //绑定成功
+                        window.location.href = "/Matrix/AMLogin/WarningMsg/98";
+                    } else {
+                        Msg.hide();
+                        if (rst.msg == "NEEDTELPHONE") {
+                            window.location.href = "/Matrix/AMLogin/VexSSOReg?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&ReturnUrl=" + Url.get("ReturnUrl");
+                            return;
+                        }
+                        Msg.show(rst.msg, rst.result);
+                        $("#btnLogin").button("reset");
+                    }
+                });
+            });
+        });
+        function forgetPwd() {
+            window.location.href = "/Matrix/AMLogin/VexSSOGetPwd?name=" + $.trim($("#TxtName").val()) + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&ReturnUrl=" + Url.get("ReturnUrl");
+        }
+    </script>
+}
+<div style="text-align:center;margin:30px 0px 30px 0px;">
+    <img src="/Areas/Matrix/Resources/images/hzy.png" width="200px" />
+</div>
+<div class="input-group">
+    <span class="input-group-addon">账号</span>
+    <input id="TxtName" class="form-control" placeholder="手机号码" value="" />
+</div>
+<br />
+<div class="input-group">
+    <span class="input-group-addon">密码</span>
+    <input id="TxtPwd" type="password" class="form-control" placeholder="请输入密码" />
+</div>
+<p style="text-align:right;color:#808080;padding:4px;" onclick="forgetPwd();">忘记密码？</p>
+<br />
+<button id="btnLogin" type="button" class="btn btn-danger" style="width: 100%;margin-top:0px;" data-loading-text="请稍后..."> 登 录 </button>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/JS_PrintArea.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../JS/base/loginAndRedirect.js?Date=20130204" type="text/javascript"></script>
+
+</head>
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no" id="mybody">
+    <noscript>
+        <div style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px; width: 100%; background: white; text-align: center;">
+            <img src="images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+        </div>
+    </noscript>
+
+
+    <form id="form_Login" method="post">
+        <table onkeydown="if(event.keyCode==13){doLogin();}" id="loginTable" style="margin: auto; display: none;"
+            cellpadding="8px">
+            <tr>
+                <td align="right">
+                    <b style="font: 12px">帐户：</b>
+                </td>
+                <td>
+                    <input type="text" class="easyui-validatebox" id="UserName" name="UserName" style="width: 200px;"
+                        maxlength="20" data-options="required:true"></input>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <b style="font: 12px">密码：</b>
+                </td>
+                <td>
+                    <input type="Password" class="easyui-validatebox" id="Password" name="Password" style="width: 200px;"
+                        maxlength="20" data-options="required:true"></input>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div id="login_msg" style="color: red; font: 12px; padding: 6px; text-align: center; width: 100%">
+        &nbsp;
+    </div>
+
+    <!--  <a href="#" class="easyui-linkbutton" icon="icon-ok" onclick="doLogin();">确定</a>
+                <a href="#" re class="easyui-linkbutton" icon="icon-redo" onclick="doReset();">重置</a></div>-->
+    <!--var test = "http://localhost:8084/WEB/Base/LoginAndRedirect.html?EnvID=HZY_SBS&UserName=1700&PassWord=3c928bf98162167d4d7d8c1f52ef98d0&URL=../base/main.html?openmenu=/WEB/Mat/Mat_bill.html";-->
+   
+</body>
+</html>

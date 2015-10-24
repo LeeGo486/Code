@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3181ACAA-FFB4-4AD5-8F72-4198511EECD9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HZY.COM.WS.MDM2</RootNamespace>
+    <AssemblyName>HZY.COM.WS.MDM2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HZY.COM.Common">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.Base">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="HZY.COM.Common.DBAccess.DBConn">
+      <HintPath>..\DLL\00最新\HZY.COM.Common.DBAccess.DBConn.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MDM2_Depot_Info.cs" />
+    <Compile Include="MDM2_GetEntityPropertyList.cs" />
+    <Compile Include="MDM2_Lib_MDM_Config_GetListForEeayUITree.cs" />
+    <Compile Include="MDM2_Lib_ExdPropertyList_GetListByEnitity.cs" />
+    <Compile Include="MDM2_Depot_Info_Fuzzy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MDM2_GetEntityBYName.cs" />
+    <Compile Include="MDM2_Com_Edit.cs" />
+    <Compile Include="MDM2_EntityPropertyValue_Edit.cs" />
+    <Compile Include="MDM2_EntityCreatedBodyID_Edit.cs" />
+    <Compile Include="MDM2_Supplier_Edit.cs" />
+    <Compile Include="MDM2_Merchant_Edit.cs" />
+    <Compile Include="MDM2_BodyIDCheck.cs" />
+    <Compile Include="MDM2_GetCombox_ByEntityPropertyName.cs" />
+    <Compile Include="MDM2_DepotBrand_Edit.cs" />
+    <Compile Include="MDM2_SaleArea_Edit.cs" />
+    <Compile Include="MDM2_Depot_Edit.cs" />
+    <Compile Include="MDM2_EntityDeleteBodyID_Edit.cs" />
+    <Compile Include="MDM2_GetCombox_AreaInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="MDM2_Personl.cs" />
+    <Compile Include="MDM2_Organization_Personl_CostCenterInfo.cs" />
+    <Compile Include="MDM2_Depot_Info_forGW.cs" />
+    <Compile Include="Web References\AMSendWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="MDM2_Province_Edit.cs" />
+    <Compile Include="MDM2_District_Edit.cs" />
+    <Compile Include="MDM2_City_Edit.cs" />
+    <Compile Include="MDM2_DEPOT_Clothing_Info.cs" />
+    <Compile Include="MDM2_Organization.cs" />
+    <Compile Include="MDM2_Organization_CostCenter_Edit.cs" />
+    <Compile Include="MDM2_Personl_CostCenter_Edit.cs" />
+    <Compile Include="MDM2_Organization_Personl_CostCenterEdit.cs" />
+    <Compile Include="MDM2_BaseInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.COM.WS.DataSets\HZY.COM.WS.DataSets.csproj">
+      <Project>{C12F1233-F7C6-45F7-8F22-8BAC49FCBE62}</Project>
+      <Name>HZY.COM.WS.DataSets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HZY.COM.WS.ST1005A\HZY.COM.WS.ST1005A.csproj">
+      <Project>{34406428-5a4b-417b-bff1-60a7b5ea1493}</Project>
+      <Name>HZY.COM.WS.ST1005A</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://192.168.0.89/MsgCenter.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AMSendWS\</RelPath>
+      <UpdateFromURL>http://192.168.0.89/MsgCenter.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>HZY_COM_WS_MDM2_AMSendWS_MsgCenter</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AMSendWS\MsgCenter.disco" />
+    <None Include="Web References\AMSendWS\MsgCenter.wsdl" />
+    <None Include="Web References\AMSendWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

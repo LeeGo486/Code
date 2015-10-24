@@ -1,0 +1,22 @@
+[USER]
+USER     =wumj
+password =e10adc3949ba59abbe56e057f20f883e
+loadHJ   =雅莹正式环境
+AutoLoad =0
+
+[ROOT]
+RootNodeIP=192.168.0.194
+RootNodePort=5880
+RootNodeID=HYFG
+RootNodeStandbyIP=192.168.0.74
+RootNodeStandbyPort=5880
+UserID=d3sys
+UserNodeIP=192.168.0.194
+UserNodeID=HYFG
+UserNodeMsgPort=5882
+UserNodeTaskPort=5881
+UserPassword=FA2739C444D436DD59C3
+TargetDatabaseId=
+
+
+

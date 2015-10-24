@@ -1,0 +1,737 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate" media="handheld" href="#" />
+<title>PORTS宝姿中文官方网站-成立于1961年</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name="keywords" content="宝姿,宝姿服装,宝姿女装, 宝姿连衣裙,宝姿男装,宝姿品牌,宝姿国际,宝姿专卖,PORTS,Ports,宝姿专柜正品, PORTS宝姿官网,PORTS时装,Ports,女装,男装, 配饰,贵宾俱乐部,品牌服饰,名牌服饰, PORTS品牌店,PORTS专卖店,时尚潮流,好莱坞明星,摩登潮流, 米歇尔·奥巴马,北京遇上西雅图,经典形象,Luke Tanabe ,纯手工制作, 精良面料,完美的设计,时尚名流,Natasa Cagalj, Milan Vukmirovic,简约优雅" />
+<meta name="description" content="PORTS宝姿网上商店，拥有最新男、女装，配饰。品牌创意总监Natasa Cagalj作品于Milan时装周深受国际名流钟爱，全球商店有巴黎Rue Saint-Honoré、伦敦Harvey Nichols等。" />
+<link href="common.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+<link href="layout.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+<link href="cn.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jquery.min.js?v=201209051438307887"></script>
+<script type="text/javascript" src="common.js?v=201209051438307887"></script>
+<script type="text/javascript" src="jquery.d.imagechange.min.js"></script>
+<script type="text/javascript" src="screenshot_map.js"></script>
+
+<script type="text/javascript">
+//发展历程的JS代码
+$(function(){
+	$(".right").click(function(){
+		turnright();
+	});
+	
+	$(".left").click(function(){
+		turnleft();
+	});
+	//$(".show a").bind('click',function(){turnright();return false;});
+});
+var total = 5;
+var cur = 0;
+function turnleft(){
+	pid = parseInt(cur)-1;
+	if(pid<=total && pid>=0){
+		getn(pid);
+	}
+/*	if(pid<total){
+		$(".right").removeClass("gray");
+	}
+	if(pid==1){
+		$(".left").addClass("gray");
+	}
+*/}
+
+function turnright(){
+
+
+	
+	pid = parseInt(cur)+1;
+	if(pid<=total && pid>0){
+		getn(pid);
+	}
+}
+
+function getn(pid){
+
+	if(pid==total){
+		$(".right").addClass("gray");
+	}else{
+		$(".right").removeClass("gray");
+	}
+	if(pid==0){
+		$(".left").addClass("gray");
+	}else{
+		$(".left").removeClass("gray");
+	}	
+
+	var data = [
+	{src:'/theme/orange/images/index/201401/zl-slider-1.jpg',target:'blank',href:'http://www.ports-intl.com/mens/product/shopbycategory/new/7703/new'},
+	{src:'/theme/orange/images/index/201401/zl-slider-2.jpg',target:'blank',href:'http://www.ports-intl.com/mens/product/shopbycategory/new/8296/new'},
+	{src:'/theme/orange/images/index/201401/zl-slider-3.jpg',target:'blank',href:'http://www.ports-intl.com/mens/product/shopbycategory/new/7863/new'}
+	];
+	cur = pid;
+/*	$(".show").attr("rel",pid);
+	if(pid==0){
+		$(".show a").addClass('defaultcur');
+	}else{
+		$(".show a").removeClass('defaultcur');
+	}
+*/	//
+//	$(".show img").attr("src",data[pid].src);
+/*	if(cur == 0){
+		$(".show a").bind('click',function(){turnright();return false;});
+	}else{
+		$(".show a").unbind('click');
+	}*/
+	$(".show img").animate({opacity:'toggle'},"10",null,function(){
+		$(".show img").attr("src",data[pid].src);
+		$(".show a").attr("href",data[pid].href);
+		$(".show img").animate({opacity:'toggle'},"200");
+	});
+
+}
+
+
+</script>
+<style type="text/css">
+.defaultcur { cursor:default; }
+.gray { display:none; }
+#multistyle { position:relative; z-index:99; width:980px; height:596px; overflow:hidden; margin:16px 0 0; }
+#multistyle .tleft { display:none; position:absolute; z-index:100; left:10px; top:50%; width:18px; height:36px; margin:-18px 0 0 0; background:url("/theme/orange/images/multistyle/bgr-sprites.png") no-repeat -26px -124px; cursor:pointer;  }
+#multistyle .tleft2 { cursor:pointer; }
+#multistyle .tright { display:none; position:absolute; z-index:100; right:10px; top:50%; width:18px; height:36px; margin:-18px 0 0 0; background:url("/theme/orange/images/multistyle/bgr-sprites.png") no-repeat -54px -124px; cursor:pointer; }
+#multistyle .tright2 { cursor:pointer; }
+#multistyle .content { position:relative; z-index:98; width:980px; height:596px; overflow:hidden; }
+#multistyle .content .one { display:none; position:absolute; z-index:98px; left:0; top:0; width:980px; height:596px; overflow:hidden; background:#ccc; }
+#multistyle .content .first { display: block; }
+#screenshot { position:absolute; display:none; background:none !important; border:0 !important; padding:0 !important; }
+area.screenshot { outline:none;blr:expression(this.onFocus=this.blur()); }
+</style>
+<script type="text/javascript">
+var data = [
+//   {src:'/theme/orange/images/index/201409/ml_ss2015_wrm_cn.jpg',target:'',href:'/feature/vdo201409_ml_mrw'},
+//	{src:'/theme/orange/images/index/201409/womensss15_evite-ch.jpg',target:'',href:'#'},
+//	{src:'/theme/orange/images/index/201402/w.jpg',target:'',href:'/womens/shopbycategory/new'},
+//    {src:'/theme/orange/images/index/201406/fathersday.jpg?v=214603',target:'',href:'/feature/201406fathersday'},
+//	{src:'/theme/orange/images/index/201405/angela-ch.jpg',target:'',href:'/feature/vdo201405_angela'},
+//	{src:'/theme/orange/images/feature/201412/xmas-ban.jpg',target:'',href:'/feature/2014giftcard'},
+
+//	{src:'/theme/orange/images/index/201505/201505mothersday_b.jpg',target:'',href:'/feature/201505mothersday1'},
+//    {src:'/theme/orange/images/index/201506/fashion-show.jpg',target:'',href:'/feature/201506_v_ss2016_m_rw'},
+//	{src:'/theme/orange/images/index/201507/f-roll.jpg',target:'',href:'/feature/201507shopevent'},
+	
+	{src:'/theme/orange/images/season/homeslide/homeslide_w.jpg?v=201501',target:'',href:'/womens/shopbycategory/new'},
+	{src:'/theme/orange/images/season/homeslide/homeslide_m.jpg?v=201501',target:'',href:'/mens/shopbycategory/new'},
+	{src:'/theme/orange/images/season/homeslide/homeslide_a.jpg?v=201501',target:'',href:'/accessories/shopbycategory/wnew'},
+  {src:'/theme/orange/images/season/homeslide/homeslide_i.jpg?v=201411',target:'',href:'/Isabella/shopbycategory/new'}
+
+
+];
+
+$(document).ready(function(){
+
+	setTimeout(function(){
+		$('#imagesChange').d_imagechange({
+			data:data,
+			animateStyle:'o',
+			title:false,
+			desc:false,
+			bg:false,
+			width:980,
+			height:616,
+			btnColor:'#3F2734',
+			btnFontColor:'#FFF',
+			btnMargin:10,
+			btnMarginRight:24,
+			animateTime:1000,
+			btnTop:0, 
+			playTime:5000
+		});
+		$('#imagesChange a').each(function(){
+			if($(this).html()!=''){
+				$(this).bind('mouseover' , function(){$(this).click();});
+			}
+			if($(this).attr('href')=='#'){
+				$(this).bind('click' , function(){
+				});
+			}
+		});
+		//$('#imagesChange div').first().hide();
+		
+		//位置
+		$($('#imagesChange').children()[1]).css({marginTop:'580px'});
+		//位置
+	},10);
+});
+</script><script type="text/javascript" src="http://www.ports-intl.com/theme/orange/js/jwplayer/jwplayer.js"></script>
+<script>jwplayer.key="cR5hajMPVWNvMQhxigT1F5t2nc7Xguxg27lFOQ=="</script>
+<script type="text/javascript">
+function media(){
+	jwplayer("mediaplay").setup({
+		flashplayer: "http://www.ports-intl.com/theme/orange/js/jwplayer/jwplayer.flash.swf",
+		file: "http://img.ports-intl.com/video/ports1961_fw2014_men.mp3",
+		skin: "http://www.ports-intl.com/theme/orange/js/jwplayer/glow.xml",
+		width: 370, 
+		height:25, 
+		controlbar: "bottom",
+		autostart: "true"
+	});
+}
+</script>
+</head>
+
+<body>
+<div id="Container"> 
+  
+      <div id="Header">
+       <div class="Info_Version">
+        <a href="http://en.ports-intl.com">English</a> | <a href="/?cn/">中文</a>
+        </div>
+        <div class="Info_Zone">
+        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="42%"><a href="/"><img src="/theme/orange/images/common/header/logo.jpg"></a></td>
+                <td width="58%" align="right" valign="bottom">
+                	<div style="position:relative; display:; height:35px; width:100%; overflow:hidden;">
+                    <div id="scrollpanelxxx">
+                    	<ul>
+							<li><img src="/theme/orange/images/header/2015_c_scroll_1.jpg"/></li>
+							<!--<li><img src="/theme/orange/images/header/201503_c_scroll_2.jpg"/></li>-->
+						</ul>
+                    </div>
+                    </div>
+               </td>
+              </tr>
+            </table>
+        </div>
+        <div class="Info_Account">
+          
+                    <span><a href="/account/login">登录</a></span>|
+          <span><a href="/account/register">注册</a></span>|
+                    <span><a href="/account/index/">我的账户</a></span>|
+<!--       <span><a href="/account/invitefriends" style=" font-weight:bold; color:#000">邀请朋友</a></span>|-->
+          <span><a href="/account/orderlist">我的订单</a></span>|
+          
+          <span id="Toptote">
+            	<a href="/shopping/totelist">我的购物袋 (<span id="ShoppingCount">0</span>)</a>
+            	
+                <div class="ToptoteContent" id="ToptoteContent">
+                	<div id="ToptoteContentList" class="ToptoteContentList"></div>
+                </div>
+          </span>|
+          <img src="/theme/orange/images/header/chatol.jpg"  align="absmiddle"/><span id='live41906'></span> 
+          
+        </div>
+        <div class="Nav">
+			<span class="NavLogo"><a href="/"><img src="/theme/orange/images/common/header/logoFloat.jpg" height="30"></a></span>
+            <span><a href="/newarrival/index/womens/">首页</a></span>
+        	<span><a href="/womens/shopbycategory/">任务</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>选择分类</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/womens/shopbycategory/11">待办</a></li>
+                                                        	<li><a href="/womens/shopbycategory/9">全部</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span> 
+        	<span><a href="/accessories/shopbycategory/">店铺</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>人员</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/34">入司</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/155">调转</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/32">更新</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/31">离职</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/33">查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="subNavLeft">
+                    	<label>加班</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">加班申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">加班查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div> 
+                    <div class="subNavLeft">
+                    	<label>考勤</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">考勤申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">考勤查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="subNavLeft">
+                    	<label>分单</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">分单申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">分单查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="subNavLeft">
+                    	<label>薪资</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">特殊薪资申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">特殊薪资查询</a></li> 
+                                                        	<li><a href="/accessories/shopbycategory/37">薪资条</a></li>
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span>
+            
+        	<span><a href="/isabella/shopbycategory/" style="word-spacing:3px; letter-spacing:0.5px;">权限</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>选择分类</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/isabella/shopbycategory/140">加班配置</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/145">绩效配置A</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/146">绩效配置B</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/147">店员配置</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/148">基础数据维护</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span>  
+        	<span><a href="/ports/profile">帮助</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>选择分类</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul> 
+                             <li><a href="/storelocations">流程图</a></li>
+                            <li><a href="/ports/celebrity">操作文档</a></li> 
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span> 
+			<span>. . .</span>
+            <span class="NavSearchSpan" style=" float:right; padding-right:0px; padding-left:0px; cursor:pointer" onClick="$('#Searchbar').toggle();$('#Searchbar').focus();"><img src="/theme/orange/images/common/icon/search25.jpg" id="NavSearchImg" /></span>
+            <form action="/search/key/" method="post">
+            <label class="Searchbar" id="Searchbar" style="display:none; position:absolute; right:0px; border:1px solid #000000; background-color:#fff; height:26px;">
+            	<input name="key" class="keyword" type="text" style="border:0px; width:148px;height: 22px;" id="key" value="查找关键词" onclick="if(this.value=='查找关键词')this.value='';" onBlur="setTimeout(function(){$('#Searchbar').toggle();},200);" />
+                <input type="image" style="margin-top:0px;" align="absmiddle" src="/theme/orange/images/common/icon/jiantou.jpg" id="Submit" name="Submit"/>
+            </label>
+            </form>
+        </div>
+       
+    </div>
+    
+		       	<!--顶部小条幅图片，点击可展开-->
+<!--		<div>
+           <a href="#" onclick="javascript:$('#indexdetail').slideToggle(500);" style="display:block; height:32px;"><img src="/theme/orange/images/index/201502/red_bn.jpg" /></a>
+           <div id="indexdetail" style=" display:none;"><img src="/theme/orange/images/index/201502/red_det.jpg" /></div>
+        </div>-->
+        		<style type="text/css">
+		#Header .FLoatNav{ position: fixed; top:0px;  width:980px; margin:0 auto; left:50%; margin-left:-490px; height:30px;}
+		#Header .FLoatNav Span{ height:30px; line-height:30px;}
+		#Header .Nav Span.NavLogo{ display: none;padding-left:0px; padding-right:0px;}
+		#Header .FLoatNav Span.NavLogo{ display: block;}
+		#Header #Searchbar{ top:25px;}
+		#Header .FLoatNav #Searchbar{ top:30px;}
+		#Header .FLoatNav span div.subNav{ top:30px;}
+		#Header .NavSearchSpan img{ height:25px;}
+		#Header .FLoatNav .NavSearchSpan img{height:30px; }
+		</style>
+        <script type="text/javascript" src="/theme/orange/js/jquery.cookie.js"></script>
+        <script type="text/javascript">
+        
+		//var ss = $.cookie('PHPSESSID');
+		// if($.cookie('showed') != '1'){
+		// 	$('#indexdetail').show();
+		 	//setTimeout("$('#indexdetail').slideToggle(500);" , 5000);
+		// }
+		// $.cookie('showed' , '1' , {path: '/'});
+		 
+		$(window).scroll(function(){
+			if($(document).scrollTop() > 110 ){
+				$('#Header .Nav').addClass("FLoatNav");
+				$('#NavSearchImg').attr("src","/theme/orange/images/common/icon/search.jpg");
+			}else{
+				$('#Header .Nav').removeClass("FLoatNav");
+				$('#NavSearchImg').attr("src","/theme/orange/images/common/icon/search25.jpg");
+			}
+			//console.log();	 
+		});
+		 
+		 function setTopFloat(){
+			 
+		 }
+        </script>  
+  <div id="Main"> 
+    
+    <!-- ------------------------------------------------------- -->
+    
+    <div class="Page_Home">
+      	<div class="Feature">
+		
+        <!-- 时间放久点的补丁 --><div id="imagesChange" style="width:980px; height:616px; overflow:hidden;"><!--<a href="/feature/201505mothersday1"><img src="/theme/orange/images/index/201505/201505mothersday_b.jpg" /></a>--></div>
+	
+	
+ 		 <!-- 滚动下面的图片 -->
+		 <!--<div style="padding-top:8px; "><img src="/theme/orange/images/index/201411/gongli-02.jpg" /></div> -->
+     
+		
+        
+        <!-- 小横幅 --> 
+        <!--<div id="popa" style="width:980px; text-align:center; margin-top:-0px; height:88px; z-index:9999; margin-bottom:0px; position:relative;"><a href="/feature/201402valentine" onclick="//openwindow('/help/help_promotionaloffers');return false;"><img  style="margin-left: 0px;" src="/theme/orange/images/index/201401/valentine/valentine-heitiao-ch.jpg" /></a></div>--> 
+      
+	   <!-- 张亮渐变滚动单链接 -->  
+      <!-- <div id="profile" rel="4" style="margin-top:16px;margin-bottom:16px; height:550px;">
+            	<div class="show" rel="1">
+                	<a href="http://www.ports-intl.com/mens/product/shopbycategory/new/7703/new" target="_blank" class="defaultcur"><img src="/theme/orange/images/index/201401/zl-slider-1.jpg" title="" border="0"></a>
+                </div>
+            	<div class="left gray" style="opacity:0.6"></div>
+                <div class="right" style="opacity:0.6"></div>
+            </div>-->
+        
+		<!-- 图片滑动多链接 -->  
+		<div style="margin-top:16px; display:none;">
+		<table width="980" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><a href="/feature/201503shopon#b2"><img src="/theme/orange/images/index/201503/shopon_bn_2.jpg" /></a>
+</td>
+	</tr>
+</table>
+		</div>
+		<!--<div > 
+		<script type="text/javascript" src="/theme/orange/js/multistyle.js"></script>
+		<div id="multistyle2" style="margin-top:16px;">
+			<div class="content">
+				<div>
+                	<table id="__01" width="980" height="346" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td rowspan="2"><a href="#" rel="/theme/orange/images/index/201503/follow-03.png" class="screenshot"><img src="/theme/orange/images/index/201503/followme-02_01.jpg" width="345" height="346" alt=""></a></td>
+		<td rowspan="2">
+			<img src="/theme/orange/images/index/201503/followme-02_02.jpg" alt="" width="370" height="346" usemap="#Map4" border="0"></td>
+		<td><a href="#"  rel="/theme/orange/images/index/201503/follow-07.png" class="screenshot"><img src="/theme/orange/images/index/201503/followme-02_03.jpg" width="265" height="250" alt=""></a></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="/theme/orange/images/index/201503/followme-02_04.gif" width="265" height="96" alt=""></td>
+	</tr>
+</table>
+<map name="Map4" id="Map4">
+	<area shape="rect" coords="9,6,162,153" href="#" rel="/theme/orange/images/index/201503/follow-04.png" class="screenshot" />
+	<area shape="rect" coords="12,160,160,338" href="#" rel="/theme/orange/images/index/201503/follow-05.png" class="screenshot" />
+	<area shape="rect" coords="171,8,353,338" href="#" rel="/theme/orange/images/index/201503/follow-06.png" class="screenshot" />
+</map>
+				</div>
+			</div>
+		</div>
+		<div id="multistyle">
+			<div class="content">
+				<div class="one first current" style="position:relative">
+                	<img src="/theme/orange/images/index/201503/main2.jpg" width="980" height="596" usemap="#Map1" border="0" />
+					<img class="tleft2" src="/theme/orange/images/index/201503/but2.png" width="118" height="62"  border="0"  style="position:absolute; top:380px; left:0px"/>
+					<img class="tright2" src="/theme/orange/images/index/201503/but1.png" width="118" height="62"  border="0"  style="position:absolute; top:380px; right:0px; "/>
+					    <map name="Map1" id="Map1">
+                        <area shape="rect" coords="494,275,684,544"  rel="/theme/orange/images/index/201503/natasacagalj-13.png" target="_blank" class="screenshot">
+						<area shape="rect" coords="690,214,881,542"  rel="/theme/orange/images/index/201503/sign_5.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="136,222,293,520"  rel="/theme/orange/images/index/201503/sign_6.png" target="_blank" class="screenshot">
+	                </map>
+				</div>
+                <div class="one">
+                	<img src="/theme/orange/images/index/201503/right.png" width="980" height="596" usemap="#Map2" border="0" />
+                	<map name="Map2" id="Map2">
+                        <area shape="rect" coords="694,229,840,564"  rel="/theme/orange/images/index/201503/sign_3.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="61,259,314,568" rel="/theme/orange/images/index/201503/sign_4.png" target="_blank" class="screenshot">
+	                </map>
+                </div>
+				<div class="one">
+                	<img src="/theme/orange/images/index/201503/left.png" width="980" height="596" usemap="#Map3" border="0" />
+					<map name="Map3" id="Map3">
+                        <area shape="rect" coords="665,214,849,537"  rel="/theme/orange/images/index/201503/sign_1.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="256,256,493,554"  rel="/theme/orange/images/index/201503/sign_2.png" target="_blank" class="screenshot">
+					</map>
+				</div>
+                <div class="tleft"></div>
+                <div class="tright"></div>
+			</div>
+		</div>
+		</div>-->
+		<!--<div > 
+		<script type="text/javascript" src="/theme/orange/js/multistyle.js"></script>
+		<div id="multistyle" style="padding-bottom:10px;">
+			<div class="content">
+				<div class="one first current">
+                	<img src="/theme/orange/images/feature/201412/holidayshop-1.jpg" width="980" height="612" usemap="#Map1" border="0" />
+                	<map name="Map1" id="Map1">
+                    	<area shape="rect" coords="127,485,299,591" href="/accessories/product/shopbycategory/126/8955" target="_blank"  class="screenshot" rel="/theme/orange/images/feature/201412/show/01/xmas-h-2.png">
+	                    <area shape="rect" coords="9,18,457,348" href="/accessories/product/shopbycategory/83/10283/83" target="_blank" class="screenshot" rel="/theme/orange/images/feature/201412/show/01/xmas-h-1.png">
+    	                <area shape="rect" coords="303,382,577,583" href="/accessories/product/shopbycategory/52/10159" target="_blank"  class="screenshot" rel="/theme/orange/images/feature/201412/show/01/xmas-h-3.png">
+        	            <area shape="rect" coords="665,468,792,498" class="tright" href="javascript:void(0);" >
+            	    </map>
+				</div>
+                <div class="one">
+                	<img src="/theme/orange/images/feature/201412/holidayshop-2.jpg" width="980" height="612" usemap="#Map2" border="0" />
+                	<map name="Map2" id="Map2">
+                        <area shape="rect" coords="807,228,942,555" href="/womens/product/shopbycategory/11/10407/11" rel="/theme/orange/images/feature/201412/show/02/xmas-p-5.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="599,179,795,558" href="/womens/product/shopbycategory/11/10402/11" rel="/theme/orange/images/feature/201412/show/02/xmas-p-4.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="451,226,586,553" href="/womens/product/shopbycategory/11/10300/11" rel="/theme/orange/images/feature/201412/show/02/xmas-p-3.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="67,443,239,549" href="/accessories/product/shopbycategory/51/10256/34" rel="/theme/orange/images/feature/201412/show/02/xmas-p-1.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="246,437,402,551" href="/accessories/product/shopbycategory/62/2611/62" rel="/theme/orange/images/feature/201412/show/02/xmas-p-2.png" target="_blank" class="screenshot">
+	                </map>
+                </div>
+				<div class="one">
+                	<img src="/theme/orange/images/feature/201412/holidayshop-3.jpg" width="980" height="612" usemap="#Map3" border="0" />
+					<map name="Map3" id="Map3">
+						<area shape="rect" coords="796,387,959,513" href="/accessories/product/shopbycategory/52/9776/34" rel="/theme/orange/images/feature/201412/show/03/xmas-e-3.png" target="_blank" class="screenshot">
+						<area shape="rect" coords="689,480,796,583" href="/accessories/product/shopbycategory/126/8960" rel="/theme/orange/images/feature/201412/show/03/xmas-e-4.png" target="_blank" class="screenshot">
+						<area shape="rect" coords="79,261,427,609" href="/womens/product/shopbycategory/11/10454/11" rel="/theme/orange/images/feature/201412/show/03/xmas-e-1.png" target="_blank" class="screenshot">
+						<area shape="rect" coords="740,59,917,384" href="/womens/product/shopbycategory/115/10488/115" rel="/theme/orange/images/feature/201412/show/03/xmas-e-2.png" target="_blank" class="screenshot">
+					</map>
+				</div>
+                <div class="one">
+                    <img src="/theme/orange/images/feature/201412/holidayshop-4.jpg" width="980" height="612" usemap="#Map4" border="0" />
+                    <map name="Map4" id="Map4">
+                        <area shape="rect" coords="190,221,395,388" href="/isabella/product/shopbycategory/149/10348/149" rel="/theme/orange/images/feature/201412/show/04/xmas-s-4.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="209,69,369,200" href="/isabella/product/shopbycategory/147/10075/147" rel="/theme/orange/images/feature/201412/show/04/xmas-s-1.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="64,145,172,388" href="/isabella/product/shopbycategory/new/10418/new" rel="/theme/orange/images/feature/201412/show/04/xmas-s-3.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="199,402,356,576" href="/accessories/product/shopbycategory/52/9768/wnew" rel="/theme/orange/images/feature/201412/show/04/xmas-s-6.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="52,395,181,572" href="/isabella/product/shopbycategory/146/10110/146" rel="/theme/orange/images/feature/201412/show/04/xmas-s-7.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="64,63,191,134" href="/accessories/product/shopbycategory/117/8962/33" rel="/theme/orange/images/feature/201412/show/04/xmas-s-2.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="689,135,949,598" href="/isabella/product/shopbycategory/new/10340/new" rel="/theme/orange/images/feature/201412/show/04/xmas-s-5.png" target="_blank" class="screenshot">
+                    </map>
+                </div>
+                <div class="one"> 
+                    <img src="/theme/orange/images/feature/201412/holidayshop-5.jpg" width="980" height="612" usemap="#Map5" border="0" />
+                    <map name="Map5" id="Map5">
+                        <area shape="rect" coords="830,435,933,547" href="/accessories/product/shopbycategory/62/7826/62" rel="/theme/orange/images/feature/201412/show/05/xmas-m-5.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="670,425,814,554" href="/accessories/product/shopbycategory/53/9775/34" rel="/theme/orange/images/feature/201412/show/05/xmas-m-4.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="305,127,455,531" href="/womens/product/shopbycategory/4/9980/4" rel="/theme/orange/images/feature/201412/show/05/xmas-m-1.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="115,152,288,548" href="/womens/product/shopbycategory/11/10048/11" rel="/theme/orange/images/feature/201412/show/05/xmas-m-2.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="560,473,668,558" href="/accessories/product/shopbycategory/126/8959/33" rel="/theme/orange/images/feature/201412/show/05/xmas-m-3.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="458,312,551,472" href="/accessories/product/shopbycategory/53/10063/wnew" rel="/theme/orange/images/feature/201412/show/05/xmas-m-6.png" target="_blank" class="screenshot">
+                    </map>
+                </div>
+                <div class="one"> 
+                    <img src="/theme/orange/images/feature/201412/holidayshop-6.jpg" width="980" height="612" usemap="#Map6" border="0" />
+                    <map name="Map6" id="Map6">
+                        <area shape="rect" coords="636,113,911,525" href="/mens/product/shopbycategory/new/10438/new" rel="/theme/orange/images/feature/201412/show/06/xmas-c-4.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="291,394,403,515" href="/accessories/product/shopbycategory/72/10394/72" rel="/theme/orange/images/feature/201412/show/06/xmas-c-2.png" target="_blank" class="screenshot">
+                        <area shape="rect" coords="185,374,287,546" href="/accessories/product/shopbycategory/71/10392" class="screenshot" rel="/theme/orange/images/feature/201412/show/06/xmas-c-1.png">
+                        <area shape="rect" coords="56,409,180,524" href="/accessories/product/shopbycategory/78/10393/mnew" rel="/theme/orange/images/feature/201412/show/06/xmas-c-3.png" target="_blank" class="screenshot">
+                    </map>
+                </div>
+                <div class="tleft"></div>
+                <div class="tright"></div>
+			</div>
+		</div>
+        <!-- <div><table width="980" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="387" height="358"><div class="Home_Mis_cn"><div style="padding-top:255px; padding-left:12px"><div id="mediaplay"></div></div>
+
+<script type="text/javascript">media();</script></div>
+</td>
+    <td width="16">&nbsp;</td>
+    <td><img src="/theme/orange/images/index/201401/olivia_cn.jpg" width="576" height="358" /></td>
+  </tr>
+</table>
+</div>
+-->
+        
+
+	   <!--<img src="/theme/orange/images/index/201404/20140409-spring.jpg" width="980" height="480" usemap="#Map2" border="0" />
+          <map name="Map2" id="Map2"><area shape="rect" tabindex="-1" coords="24,272,187,380" href="http://www.ports-intl.com/accessories/product/shopbycategory/126/8955/33" />
+            <area shape="rect" tabindex="-1" coords="33,81,176,240" href="http://www.ports-intl.com/womens/product/shopbycategory/10/8312/10" />
+            <area shape="rect"  tabindex="-1" coords="191,150,322,450" href="http://www.ports-intl.com/womens/product/shopbycategory/89/8883" />
+            <area shape="rect" tabindex="-1"  coords="341,74,464,367" href="http://www.ports-intl.com/womens/product/shopbycategory/119/8920" />
+            <area shape="rect" tabindex="-1"  coords="474,335,621,448" href="http://www.ports-intl.com/accessories/product/shopbycategory/59/8842/31" />
+            <area shape="rect"  tabindex="-1" coords="479,172,584,285" href="http://www.ports-intl.com/accessories/product/shopbycategory/126/8959/33" />
+            <area shape="rect"  tabindex="-1" coords="642,265,782,447" href="http://www.ports-intl.com/womens/product/shopbycategory/12/8925" />
+            <area shape="rect"  tabindex="-1" coords="627,102,791,252" href="http://www.ports-intl.com/accessories/product/shopbycategory/53/8833/34" />
+            <area shape="rect"  tabindex="-1" coords="804,125,955,388" href="http://www.ports-intl.com/womens/product/shopbycategory/5/8696/5" />
+          </map>
+        </div>-->
+        
+        
+        <!-- # New Event Add--> 
+        <!--#2013.12.11_lastfix<div><img src="/theme/orange/images/index/201311/shopforhim_cn.jpg" width="980" height="304" usemap="#Map" border="0" />
+          <map name="Map" id="Map"><area shape="rect" coords="839,114,954,276" href="/mens/product/shopbycategory/120/7873/15" target="_blank"  tabindex="-1"  /><area shape="rect" coords="688,153,819,279" href="/accessories/product/shopbycategory/129/3207/84" target="_blank"  tabindex="-1"  /><area shape="rect" coords="510,150,669,281" href="/accessories/product/shopbycategory/67/6643/mnew" target="_blank"  tabindex="-1"  /><area shape="rect" coords="185,117,300,279" href="/accessories/product/shopbycategory/66/7835/66" target="_blank"  tabindex="-1"  /><area shape="rect" coords="341,117,456,279" href="/mens/product/shopbycategory/25/7891/118" target="_blank"  tabindex="-1"  />
+            <area shape="rect" coords="25,113,140,275" href="/mens/product/shopbycategory/121/7893/15" target="_blank"  tabindex="-1"  />
+        </map></div>--> 
+		
+		 <div style="padding-top:8px; display:none"><table width="980" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="818"><a href="/feature/201404_shanghaistore"><img src="/theme/orange/images/index/201404/shanghai-left.jpg" width="420" height="340" /></a></td>
+		<td><a href="/feature/vdo201404_qinlan"><img src="/theme/orange/images/index/201404/qinlan-right.gif" width="544" height="340" /></a></td>
+	</tr>
+</table>
+
+</div>
+
+<div style="width:980px; height:480px; margin:16px 0;">
+	<img src="/theme/orange/images/index/201507/10-h-pink-w.jpg" usemap="#thegiftshop"/>
+    <map name="thegiftshop"><area shape="rect" coords="653,101,786,297" href="/womens/product/shopbycategory/10/11262/10"/ tabindex="-1" /><area shape="rect" coords="717,404,826,452" href="accessories/product/shopbycategory/126/11382/33"/ tabindex="-1" /><area shape="rect" coords="650,363,736,405" href="/accessories/product/shopbycategory/59/11433/31"/ tabindex="-1" />
+      <area shape="rect" coords="31,123,256,443" href="/womens/product/shopbycategory/new/11322/new"/ tabindex="-1">
+	 
+      <area shape="poly" coords="729,303,754,303,789,302,815,307,829,314,820,356,825,394,753,385,737,355,699,351,711,308" href="/accessories/product/shopbycategory/53/11158/34" tabindex="-1"/>
+      <area shape="rect" coords="832,22,950,449" href="/womens/product/shopbycategory/new/11322/new" tabindex="-1" />
+    </map>
+</div>
+
+      
+        <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom:14px; margin-top:16px">
+          <tr>
+            <td valign="top"><table width="480" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="480"><a href="/womens/product/shopbycategory/108/11207"><img src="/theme/orange/images/index/201507/ql-2015-6-w1.jpg" width="482" height="560" /></a></td>
+                </tr>
+                <tr>
+                  <td><img src="/theme/orange/images/index/c/t_01_r4_c1.jpg" width="480" height="16" /></td>
+                </tr>
+                <tr>
+                  <td><a href="/account/register"><img src="/theme/orange/images/index/common/home_regi_cn.jpg" /></a></td>
+                </tr>
+            </table></td>
+            <td valign="top"><table width="499" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="16" rowspan="3"><img src="/theme/orange/images/index/c/t_01_r1_c2.jpg" width="16" height="735" /></td>
+                  <td height="300"><img src="/theme/orange/images/index/201507/0722-sj-w.jpg"  border="0" /></td>
+                </tr>
+                <tr>
+                  <td height="16"><img src="/theme/orange/images/index/c/t_01_r2_c3.jpg" width="483" height="16" /></td>
+                </tr>
+                <tr>
+                  <td valign="top"><img src="/theme/orange/images/index/201506/qx-2015-6-w.jpg" width="482" height="360" /></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+    </div>
+    <!-- ------------------------------------------------------- --> 
+    
+  </div>
+  <div class="clear"></div>
+  
+  
+<div id="Footer" class="clear">
+  <div class="FNav">
+    <table width="980" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="160" valign="top" class="sline"><span class="FNavTitle">联系我们</span><br />
+          <a href="#" onclick="openwindow('/help/help_customercare');return false;">客户服务</a><br />
+          <a id="live800iconlink" target="_blank" href="javascript:void(0)" onclick="return live800.navigateToUrl('http://chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=114746&amp;configID=41906&amp;jid=2326992637&amp;enterurl=http%3A%2F%2Fwww%2Eports%2Dintl%2Ecom%2F&amp;pagetitle=%E5%AE%9D%E5%A7%BF%E7%BD%91%E4%B8%8A%E5%95%86%E5%BA%97%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99&amp;pagereferrer=', 'chatbox114746', globalWindowAttribute,this);">在线客服</a><br />
+          <a href="mailto:customercare@ports-intl.com">电子邮件</a><br />
+          (+86) 400.886.1961 </a></td>
+        <td width="160" valign="top"  class="sline"><span class="FNavTitle">运输及退换货服务</span><br />
+          <a href="#" onclick="openwindow('/help/help_shipping');return false;">美国(50州）</a><br />
+          <a href="#" onclick="openwindow('/help/help_shipping');return false;">中国大陆</a><br />
+          <a href="#" onclick="openwindow('/help/help_shipping');return false;">港澳台地区</a><br />
+          <a href="#" onclick="openwindow('/help/help_shipping');return false;">其他国家运输</a></td>
+        <td width="160" valign="top" class="sline"><span class="FNavTitle">关于我们</span><br />
+          <a href="/ports/profile">发展历程</a><br />
+          <a href="/ports/newsevent">品牌动态</a><br />
+          <a href="/storelocations">店铺分布</a><br /></td>
+        <td width="160" valign="top"  class="sline"><span class="FNavTitle">时尚资讯</span><br />
+          <a href="/ports/media_focus">媒体焦点</a><br />
+          <a href="/ports/celebrity">名人秀</a><br />
+          <a href="/ports/model">PORTS名模</a><br />
+          <a href="/ports/catalog">PORTS画册 </a><br /></td>
+        <td width="82" valign="top"  class="sline"><a href="/vip/" class="a_title" style="font-size:12px; font-weight:bold">VIP计划</a></br> <a href="/account/invitefriends">邀请朋友</a></td>
+        <td width="258" align="left" valign="top"  ><div class="F_Link" style="text-align:right">
+            <form action="/home/subscribe/frame" target="noneiframe" method="post">
+              <input type="hidden" value="go" name="do"  />
+              <input type="text" class="sInput" style="width:165px;" value="订阅邮件" id="footemailinput" name="subscribemail" onclick="if(this.value=='订阅邮件')this.value='';" />
+              &nbsp;
+              <input name="submit" type="submit" class="BtnStyle04" value="订阅" id="submit" style="width:50px"/>
+              &nbsp;
+            </form>
+          </div>
+          <iframe frameborder="0" id="noneiframe" name="noneiframe" style="display:none;"></iframe></td>
+      </tr>
+    </table>
+    <div class="F_B_Link"> <span> <a href="#" onclick="openwindow('/help/help_ordering');return false;">帮助</a> </span> <span>|</span> <span><a href="#" onclick="openwindow('/help/help_privacypolicy');return false;">隐私政策</a></span> <span>|</span><span>Copyright &copy; 2015 CPAX Limited</span>
+     <span><a href="http://www.facebook.com/pages/Ports-1961/113781938702" target="_blank"><img src="/theme/orange/images/common/icon/facebook.jpg" align="absmiddle"></a></span> <span><a href="https://twitter.com/Ports1961" target="_blank"><img src="/theme/orange/images/common/icon/twitter.jpg" align="absmiddle"></a></span> <span><a href="http://www.pinterest.com/ports1961/" target="_blank"><img src="/theme/orange/images/common/icon/pinterest.jpg" align="absmiddle"></a></span> <span><a href="http://www.ports-intl.com/eblast/weibo.html" target="_blank"><img src="/theme/orange/images/common/icon/weibo.jpg" align="absmiddle"></a></span> <span><a href="http://www.ports-intl.com/signature/v2/wx.html" target="_blank"><img src="/theme/orange/images/common/icon/wx.jpg" align="absmiddle"></a></span> <span><a href="http://www.miibeian.gov.cn" target="_blank">闽ICP备09004573号-1</a></span> <br>
+     <!--世纪宝姿<span lang="EN-US">??</span>上海市静安区南京西路<span lang="EN-US">1168</span>号中信泰富广场<span lang="EN-US">1412</span>室<span lang="EN-US">? 200041??</span><span lang="EN-US">400.886.1961</span> -->   </div>
+    <br />
+  </div>
+</div>
+<script type='text/javascript'> 
+//var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+//document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script> 
+<script type='text/javascript'>
+//try {
+//var pageTracker = _gat._getTracker('UA-553980-3');
+//pageTracker._trackPageview();
+//} catch(err) {}
+</script>
+<div style="display:none;"> <script src="http://s19.cnzz.com/stat.php?id=4873885&web_id=4873885" language="JavaScript"></script>
+  <script language="javascript" src="http://chat16.live800.com/live800/chatClient/textButton.js?jid=2326992637&companyID=114746&configID=41906&codeType=custom"></script><script id='write' language="javascript">function writehtml(){var temptext=text_generate();document.getElementById('live41906').innerHTML=temptext;setTimeout('write.src',9000);}writehtml();</script> 
+</div>
+ 
+   
+  
+</div>
+<style type="text/css">
+
+#popwindow{ position: absolute; top:100px; left:50%; height:100%; padding-top:25px; display:none; margin-left:0; text-align:center; z-index:9999;}
+
+#bgpop{ filter: alpha(opacity=70);opacity:0.7; z-index:9999; background-color:#000000; position: absolute; top:0px; left:0px; height:100%; width:100%; display:none;  }
+
+</style>
+<script type="text/javascript">
+
+	function Popiframe(obj , width , height ){
+		$('#popwindow #content #PopF').attr('src','').css({'width':width,'height':height}).attr('src' , $(obj).attr('href'));
+		$('#popwindow').css({'margin-left':-width/2,"width":width});
+		$('#popwindow,#bgpop').show();
+		$('#bgpop').height($('#Container').height()+100);	
+		$('#close').width(width);
+		$(document).scrollTop(0);
+		return false;
+	}
+
+</script>
+<div id="bgpop"></div>
+<div id="popwindow">
+  <div id="close" style="background:#FFFFFF; width:768px; height:25px; text-align:right; margin:0 auto;"><img onclick="javascript:$('#popwindow,#bgpop').fadeOut(200);" src="/theme/orange/images/common/icon/fileclose.png" height="25" /></div>
+  <div id="content">
+    <iframe frameborder="0" style="overflow:hidden;" scrolling="no" id="PopF" src=""></iframe>
+  </div>
+</div>
+<map name="Map" id="Map">
+  <area shape="rect" coords="337,117,641,598" href="/mens/product/shopbycategory/new/7703/new" target="_blank"  tabindex="-1" />
+  <area shape="rect" coords="659,118,963,599" href="/mens/product/shopbycategory/new/7863/new" target="_blank"  tabindex="-1" />
+  <area shape="rect" coords="19,115,323,596" href="/mens/product/shopbycategory/new/8397/new" target="_blank"  tabindex="-1" />
+</map>
+
+
+
+</body>
+</html>

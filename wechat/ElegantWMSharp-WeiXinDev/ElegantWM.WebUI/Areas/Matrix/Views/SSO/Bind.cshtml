@@ -1,0 +1,275 @@
+﻿@{
+    ViewBag.Title = "系统绑定";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/IT/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript">
+        function stringFormat() {
+            if (arguments.length == 0)
+                return null;
+            var str = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+                str = str.replace(re, arguments[i]);
+            }
+            return str;
+        }
+
+        $(function () {
+            /**********校验表单信息***********/
+            $("#signupForm").validate({
+                rules: {
+                    "txtPhone": {
+                        required: true,
+                        isMobile: true,
+                        rangelength: [11, 11]
+                    },
+                    "txtAuthenticode": {
+                        required: true,
+                        rangelength: [4, 4]
+                    },
+                    "txtPwd": {
+                        required: true,
+                        rangelength: [6, 16]
+                    },
+                    "txtConfirmPwd": {
+                        required: true,
+                        equalTo: "#txtPwd"
+                    },
+                    "txtamId": {
+                        required: true,
+                        minlength: 3
+                    },
+                    "txtamPwd": {
+                        required: true,
+                        minlength: 3
+                    },
+                    "txtHRName": {
+                        required: true,
+                        minlength: 2
+                    },
+                    "txtHRCardID": {
+                        required: true,
+                        isIdCardNo: true,
+                        rangelength: [15, 18]
+                    }
+                },
+                messages: {
+                    "txtPhone": {
+                        required: "请输入电话号码",
+                        rangelength: "请输入11位电话号码"
+                    },
+                    "txtAuthenticode": {
+                        required: "请输入短信验证码",
+                        rangelength: "请输入4位短信验证码"
+                    },
+                    "txtPwd": {
+                        required: "请输入密码",
+                        rangelength: "请输入6-16位密码"
+                    },
+                    "txtConfirmPwd": {
+                        required: "请再次输入密码",
+                        equalTo: "两次输入密码不一致",
+                    },
+                    "txtamId": {
+                        required: "请输入小翅膀账号",
+                        minlength: "输入的账号信息不是短了点?"
+                    },
+                    "txtamPwd": {
+                        required: "请输入小翅膀密码",
+                        minlength: "密码统统交出来..."
+
+                    },
+                    "txtHRName": {
+                        required: "请输入真实姓名",
+                        minlength: "亲,貌似姓名短了点"
+                    },
+                    "txtHRCardID": {
+                        required: "请输入身份证号",
+                        minlength: "请输入15位或18位身份证号"
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent().next());
+                }
+            });
+
+            // 手机号码验证       
+            jQuery.validator.addMethod("isMobile", function (value, element) {
+                var length = value.length;
+                var mobile = /^1[34587]\d{9}$/;
+                return this.optional(element) || (length == 11 && mobile.test(value));
+            }, "请填写正确的手机号码");
+
+
+          
+
+            //申请绑定
+            $("#btnSubmit").click(function () {
+
+                if (!$("#signupForm").valid()) {
+                    Msg.show("请按要求填写信息", 1);
+                    return;
+                }
+
+                var LoginUser = $("#txtPhone").val();
+                var AuthCode = $("#txtAuthenticode").val();
+                var PassWord = $("#txtPwd").val();
+
+                var AccreditationType = $("#aAMAuth").css("display") == "block" ? "AM" : "EHRCard";
+                var BindUser = "";
+                var BindPassWord = "";
+                if (AccreditationType == "AM") {
+                    BindUser = $("#txtamId").val();
+                    BindPassWord = $("#txtamPwd").val();
+                }
+                else {
+                    BindUser = $("#txtHRName").val();
+                    BindPassWord = $("#txtHRCardID").val();
+                }
+
+                //执行WSRR
+                var xml = "<Interface WSID=\"711bb78a-4190-4568-809b-45c94dc54fb3\" App=\"HZYSSO\" SessionID=\"\">"
+                + "<XML><ROOT><OPTYPE>SignUp</OPTYPE><LIST>"
+                + "<ROW>"
+                + "	<LoginUser>{0}</LoginUser>"
+                + "	<AuthCode>{1}</AuthCode>"
+                + "	<PassWord>{2}</PassWord>"
+                + "	<AccreditationType>{3}</AccreditationType>"
+                + "	<BindUser>{4}</BindUser>"
+                + "	<BindPassWord>{5}</BindPassWord>"
+                + "</ROW>"
+                + "</LIST></ROOT></XML></Interface>"
+
+                xml = stringFormat(xml, LoginUser, AuthCode, PassWord, AccreditationType, BindUser, BindPassWord)
+
+                Msg.show("请稍候...", 3);
+                var url = "/Matrix/SSO/ExecuteWSRR?sid=" + Url.get("sid") + "&oid=" + Url.get("oid") + "&key=" + escape(xml);
+                $.post(url, function (rst) {
+                    Msg.hide();
+                    var rst = eval("(" + rst + ")");
+                    if (rst[0].Result == "True") {
+                        $("#optArea").hide();
+                        $("#btnSubmit").hide();
+                        $("#rstMsg p").attr("style", "text-align: center;color:#66CC33");
+                        $("#rstMsg p").html("<i class='icon-info-sign icon-4x'></i><br />SSO账号注册成功");
+                        $("#rstMsg").fadeIn(500);
+                    }
+                    else {
+                        $("#rstMsg p").attr("style", "text-align: center;color:red");
+                        $("#rstMsg p").html("<i class='icon-info-sign icon-4x'></i><br />SSO注册失败:" + rst[0].Message);
+                        $("#rstMsg").fadeIn(500);
+                    }
+                });
+
+            });
+
+
+            $("#getAuthCode").attr("disabled", false);
+
+            //设置认证切换事件
+            $(".btn-group button[name=btnAMAuth]").click(function () {
+                $(".btn-group button[name=btnAMAuth]").removeClass("btn-default");
+                $(".btn-group button[name=btnAMAuth]").addClass("btn-warning");
+                $(".btn-group button[name=btnAMAuth]").attr("disabled", true);
+
+                $(".btn-group button[name=btnHRAuth]").removeClass("btn-warning");
+                $(".btn-group button[name=btnHRAuth]").addClass("btn-default");
+                $(".btn-group button[name=btnHRAuth]").attr("disabled", false);
+
+                $("#aHRAuth").hide();
+                $("#aAMAuth").fadeIn(500);
+                $("#txtamId").rules("add", "required");
+                $("#txtamPwd").rules("add", "required");
+                $("#txtHRName").rules("remove", "required");
+                $("#txtHRCardID").rules("remove", "required");
+                $("#opt").show();
+            });
+            $(".btn-group button[name=btnHRAuth]").click(function () {
+                $(".btn-group button[name=btnHRAuth]").removeClass("btn-default");
+                $(".btn-group button[name=btnHRAuth]").addClass("btn-warning");
+                $(".btn-group button[name=btnHRAuth]").attr("disabled", true);
+
+                $(".btn-group button[name=btnAMAuth]").removeClass("btn-warning");
+                $(".btn-group button[name=btnAMAuth]").addClass("btn-default");
+                $(".btn-group button[name=btnAMAuth]").attr("disabled", false);
+
+                $("#aAMAuth").hide();
+                $("#aHRAuth").fadeIn(500);
+
+                $("#txtamId").rules("remove", "required");
+                $("#txtamPwd").rules("remove", "required");
+                $("#txtHRName").rules("add", "required");
+                $("#txtHRCardID").rules("add", "required");
+
+                $("#opt").show();
+            });
+
+        });
+
+    </script>
+}
+
+<div id="optArea" class="mainArea">
+    <form id="signupForm">
+        <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;通行证账号</span></h4>
+        <div class="input-group" style="margin-bottom: 10px;">
+            <span class="input-group-addon">手机号码</span>
+            <input id="txtPhone" name="txtPhone" type="text" class="form-control" style="ime-mode: disabled" autocomplete="off" maxlength="11" placeholder="请填写手机号码。">
+        </div>
+        <div style="color: red;"></div>
+
+        <div class="input-group" style="margin-bottom: 10px;">
+            <span class="input-group-addon">密&emsp;&emsp;码</span>
+            <input id="txtPwd" name="txtPwd" type="password" class="form-control" maxlength="16" placeholder="6~16个字符，包含字母和数字。">
+        </div>
+        <div style="color: red;"></div>
+
+        <h4><span><i class="glyphicon glyphicon-info-sign"></i>&nbsp;&nbsp;请认证绑定方式</span></h4>
+        <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+            <button type="button" name="btnAMAuth" class="btn btn-default" style="width: 50%;">小翅膀</button>
+            <button type="button" name="btnHRAuth" class="btn btn-default" style="width: 50%;">eHR</button>
+        </div>
+
+
+        <div id="aAMAuth" style="display: none;">
+            <div class="input-group " style="margin-bottom: 10px;">
+                <span class="input-group-addon">AM账号</span>
+                <input id="txtamId" name="txtamId" type="text" class="form-control" maxlength="8">
+            </div>
+            <div style="color: red;"></div>
+            <div class="input-group " style="margin-bottom: 10px;">
+                <span class="input-group-addon">AM密码</span>
+                <input id="txtamPwd" name="txtamPwd" type="password" class="form-control" maxlength="16">
+            </div>
+            <div style="color: red;"></div>
+        </div>
+
+
+        <div id="aHRAuth" style="display: none">
+            <div class="input-group " style="margin-bottom: 10px;">
+                <span class="input-group-addon">姓&emsp;&emsp;名</span>
+                <input id="txtHRName" name="txtHRName" type="text" class="form-control" maxlength="8">
+            </div>
+            <div style="color: red;"></div>
+
+            <div class="input-group " style="margin-bottom: 10px;">
+                <span class="input-group-addon">身份证号</span>
+                <input id="txtHRCardID" name="txtHRCardID" type="text" class="form-control" maxlength="18">
+            </div>
+            <div style="color: red;"></div>
+        </div>
+
+        <div id="opt">
+            <input id="btnSubmit" type="button" value="申请绑定" class="btn btn-success" style="width: 100%; margin-top: 20px;" />
+            @*<button id="btnSubmit" type="button" class="btn btn-success" style="width: 100%; margin-top: 20px;" data-loading-text="请稍候...">申请绑定</button>*@
+        </div>
+    </form>
+</div>
+
+<div id="rstMsg" class="mainArea" style="min-height: 0px; display: none;">
+    <p style="text-align: center; color: #66CC33;"><i class="icon-info-sign icon-4x"></i></p>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "会员信息";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var data1 = [];
+        $(function () {
+            $("#Integral").click(function () {
+                Msg.show("未开发...", 3); Msg.hide();
+            });
+            $("#Ticket").click(function () {
+                Msg.show("未开发...", 3); Msg.hide();
+            });
+            $("#PersonInfo").click(function () {
+                Msg.show("未开发...", 3); Msg.hide();
+            });
+            $("#Notice").click(function () {
+                Msg.show("未开发...", 3); Msg.hide();
+            });
+            $("#Shop").click(function () {
+                Msg.show("未开发...", 3); Msg.hide();
+            });
+        })
+
+    </script>
+    <style type="text/css">
+      
+    </style>
+}
+<div id="VIPCard" style="padding:20px;margin-top:-15px">
+    <img src="~/Areas/DLWXSite/Resources/images/VIP/VIPCard.jpg" alt="head" width='100%' >
+</div>
+
+@*<div style="margin-top:-15px">
+   <p style="text-align:center;background-color:#e9e5e4">使用时候向服务员出示持卡</p> 
+</div>*@
+
+<div id="VIPInfo" style="padding:50px; margin-top:-65px">
+    <img src="~/Areas/DLWXSite/Resources/images/VIP/zi.png" alt="head" style=" width:60%;margin-top:0px;margin-left:50px" >
+    <img id="Integral" src="~/Areas/DLWXSite/Resources/images/VIP/Integral.png" alt="head" style=" width:100%;margin-top:15px" >
+    <img id="Ticket" src="~/Areas/DLWXSite/Resources/images/VIP/Ticket.jpg" alt="head" style=" width:100%;margin-top:16px" >
+    <img id="PersonInfo" src="~/Areas/DLWXSite/Resources/images/VIP/PersonInfo.jpg" alt="head" style=" width:100%;margin-top:16px" >
+    <img id="Notice" src="~/Areas/DLWXSite/Resources/images/VIP/Notice.jpg" alt="head"style=" width:100%;margin-top:30px" >
+    <img id="Shop" src="~/Areas/DLWXSite/Resources/images/VIP/Shop.jpg" alt="head" style=" width:100%;margin-top:16px" >
+</div>
+

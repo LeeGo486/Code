@@ -1,0 +1,76 @@
+﻿@model IEnumerable<object>
+@{
+    ViewBag.Title = "选课记录";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/HR/Resources/Mobile.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function cancelCourse(id,name) {
+            bootbox.confirm("您确定要取消选择“"+name+"”吗？", function (result) {
+                if (result) {
+                    Msg.show("取消中...", 3);
+                    $.post("/HR/Course/CancelChoose/" + id, function (rst) {
+                        Msg.hide();
+                        Msg.show(rst.msg, rst.result);
+                        if (rst.result == 0) {
+                            $("#CR_" + id).remove();
+                        }
+                    });
+                }
+            });
+        }
+        //评价
+        function Survey(id) {
+            Msg.show("请稍后...", 3);
+            $.post("/HR/Course/CheckSurvey/" + id, function (rst) {
+                Msg.hide();
+                if (rst.result == 0) {
+                    window.location.href = "/HR/Course/Survey/" + id;
+                } else {
+                    Msg.show(rst.msg, rst.result);
+                }
+            });
+        }
+        //考勤记录
+        function SignHistory(id) {
+            Msg.show("获取中...", 3);
+            $.post("/HR/Course/SignList/" + id, function (data) {
+                Msg.hide();
+                if (data == "") {
+                    Msg.show("无数据！", 1);
+                    return;
+                }
+                bootbox.alert(data);
+            });
+        }
+    </script>
+}
+
+@foreach(ElegantWM.EntityModel.HR_Course course in Model){
+    <div id="CR_@course.Id" class="courseHis clearfix">
+        @if(course.StartDate>DateTime.Now.Date){
+            <span class="badge pull-right bm">报名中</span>
+        }
+        else if (course.StartDate <= DateTime.Now.Date && course.EndDate >= DateTime.Now.Date)
+        {
+             <span class="badge pull-right kkz">已开课</span>
+        }
+        else if (course.EndDate < DateTime.Now.Date)
+        {
+             <span class="badge pull-right">已结束</span>
+        }
+        <h3><a href="/HR/Course/LenDetail/@course.Id"><i class="glyphicon glyphicon-book"></i> @course.CourseName</a></h3>
+        @*讲师：@course.Teacher&nbsp;&nbsp;
+        积分：@course.Integration&nbsp;&nbsp;*@
+        已报名：@course.IsShow/@course.TrainingNum<br />
+        地点：@course.Venue<br />
+        日期：@course.StartDate.ToString("yyyy-MM-dd") ~ @course.EndDate.ToString("yyyy-MM-dd")
+        <div class="operate">
+            @*<div class="btnOpt" onclick="Survey('@course.Id');"><i class="glyphicon glyphicon-star-empty"></i> 评价</div>*@
+            <div class="btnOpt" style="border-right:1px solid #ccc;" onclick="SignHistory('@course.Id');"><i class="glyphicon glyphicon-registration-mark"></i> 考勤</div>
+            <div class="btnOpt" style="border-right:1px solid #ccc;" onclick="cancelCourse('@course.Id','@course.CourseName');" ><i class="glyphicon glyphicon-trash"></i> 取消选课</div>
+        </div>
+    </div>
+}

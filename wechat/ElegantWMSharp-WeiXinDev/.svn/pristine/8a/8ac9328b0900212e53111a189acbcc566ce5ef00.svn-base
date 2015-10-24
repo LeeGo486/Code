@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "GetPersonInfo";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+    });
+</script>
+<style>
+    #personinfo {
+        padding: 40px;
+        margin-bottom: 52px;
+        margin-top: -30px;
+    }
+
+        #personinfo table {
+            text-align: left;
+            width: 100%;
+        }
+
+            #personinfo table tr {
+                height: 60px;
+            }
+
+                #personinfo table tr td {
+                    border-bottom: 1px solid #808080;
+                }
+</style>
+
+
+<ul style="padding: 0px;" id="imggg">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/kqbg.jpg" />
+    </li>
+</ul>
+
+<div id="personinfo">
+    <table>
+        <tr>
+            <td>
+                <span>卡号：888888</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>VIP状态：白金卡</span><span class="pull-right">></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>移动电话：8888888888</span><span class="pull-right">></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>出生年月：1988年8月8号</span><span class="pull-right">></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>职业：企业白领</span><span class="pull-right">></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>地址：浙江省嘉兴市秀洲区昌盛中路2029号</span><span class="pull-right">></span>
+            </td>
+        </tr>
+    </table>
+</div>

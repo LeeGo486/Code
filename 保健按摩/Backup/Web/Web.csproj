@@ -1,0 +1,1437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5B535162-10C2-4238-BC56-193B968E1834}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EPReper.Web</RootNamespace>
+    <AssemblyName>EPReper.Web</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.20820.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNetPager, Version=7.2.0.0, Culture=neutral, PublicKeyToken=fb0a0fe055d40fd4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\AspNetPager.dll</HintPath>
+    </Reference>
+    <Reference Include="DropDownCheckList, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\DropDownCheckList.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\LitJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="LTP.Accounts, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\LTP.Accounts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.UI.WebControls">
+      <HintPath>..\Lib\Microsoft.Web.UI.WebControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LtpPageControl">
+      <HintPath>..\Lib\LtpPageControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\System.Web.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Tools.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\BlueTheme\Default.css" />
+    <Content Include="App_Themes\Green2Theme\Default.css" />
+    <Content Include="App_Themes\GreenTheme\Default.css" />
+    <Content Include="App_Themes\PurpleTheme\Default.css" />
+    <Content Include="App_Themes\RedTheme\Default.css" />
+    <Content Include="Bin\AjaxControlToolkit.dll" />
+    <Content Include="Bin\AspNetAjaxPager.dll" />
+    <Content Include="Bin\AspNetPager.dll" />
+    <Content Include="Bin\COM.Excel.dll" />
+    <Content Include="Bin\DAO.dll" />
+    <Content Include="Bin\DAO.pdb" />
+    <Content Include="Bin\DropDownCheckList.dll" />
+    <Content Include="Bin\EPReper.BLL.dll" />
+    <Content Include="Bin\EPReper.BLL.pdb" />
+    <Content Include="Bin\EPReper.Common.dll" />
+    <Content Include="Bin\EPReper.Common.pdb" />
+    <Content Include="Bin\EPReper.Config.dll" />
+    <Content Include="Bin\EPReper.Config.pdb" />
+    <Content Include="Bin\EPReper.DALFactory.dll" />
+    <Content Include="Bin\EPReper.DALFactory.pdb" />
+    <Content Include="Bin\EPReper.DBUtility.dll" />
+    <Content Include="Bin\EPReper.DBUtility.pdb" />
+    <Content Include="Bin\EPReper.IDAL.dll" />
+    <Content Include="Bin\EPReper.IDAL.pdb" />
+    <Content Include="Bin\EPReper.Model.dll" />
+    <Content Include="Bin\EPReper.Model.pdb" />
+    <Content Include="Bin\EPReper.SQLServerDAL.dll" />
+    <Content Include="Bin\EPReper.SQLServerDAL.pdb" />
+    <Content Include="Bin\EPReper.Web.dll" />
+    <Content Include="Bin\EPReper.Web.pdb" />
+    <Content Include="Bin\LitJSON.dll" />
+    <Content Include="Bin\LTP.Accounts.dll" />
+    <Content Include="Bin\LtpPageControl.dll" />
+    <Content Include="Bin\Microsoft.Web.UI.WebControls.dll" />
+    <Content Include="Bin\OpenSmtp.dll" />
+    <Content Include="Bin\OWC10Chart.dll" />
+    <Content Include="Bin\System.Web.DataVisualization.dll" />
+    <Content Include="Bin\Tools.dll" />
+    <Content Include="Controls\checkright.ascx" />
+    <Content Include="Controls\copyright.ascx" />
+    <Content Include="Controls\PageNavigator.ascx" />
+    <Content Include="divtest.aspx" />
+    <Content Include="EPSafe\BookAdd.aspx" />
+    <Content Include="EPSafe\BookDetails.aspx" />
+    <Content Include="EPSafe\calendar\css\calendar.css" />
+    <Content Include="EPSafe\calendar\css\setup.css" />
+    <Content Include="EPSafe\calendar\css\text.css" />
+    <Content Include="EPSafe\calendar\img\bg_bullet_arrow.gif" />
+    <Content Include="EPSafe\calendar\img\bg_bullet_full_1.gif" />
+    <Content Include="EPSafe\calendar\img\bg_bullet_full_2.gif" />
+    <Content Include="EPSafe\calendar\img\bg_bullet_half_1.gif" />
+    <Content Include="EPSafe\calendar\img\bg_bullet_half_2.gif" />
+    <Content Include="EPSafe\calendar\img\bg_corner_bottomleft.gif" />
+    <Content Include="EPSafe\calendar\img\bg_corner_bottomright.gif" />
+    <Content Include="EPSafe\calendar\img\bg_corner_topleft.gif" />
+    <Content Include="EPSafe\calendar\img\bg_corner_topright.gif" />
+    <Content Include="EPSafe\calendar\img\bg_foot.jpg" />
+    <Content Include="EPSafe\calendar\img\bg_head_bottom_nav.jpg" />
+    <Content Include="EPSafe\calendar\img\bg_head_bottom_nav_hover.gif" />
+    <Content Include="EPSafe\calendar\img\bg_head_top.jpg" />
+    <Content Include="EPSafe\calendar\img\bg_head_top_logo.jpg" />
+    <Content Include="EPSafe\calendar\img\bg_main_withnav.jpg" />
+    <Content Include="EPSafe\calendar\img\bg_main_withnav_reverse.jpg" />
+    <Content Include="EPSafe\calendar\img\bg_main_withoutnav.jpg" />
+    <Content Include="EPSafe\calendar\img\skin\stripe\background_hover.gif" />
+    <Content Include="EPSafe\calendar\img\skin\stripe\background_normal.gif" />
+    <Content Include="EPSafe\calendar\img\skin\stripe\background_rowhover.gif" />
+    <Content Include="EPSafe\calendar\img\skin\stripe\background_select.gif" />
+    <Content Include="EPSafe\calendar\img\skin\stripe\background_weekhead.gif" />
+    <Content Include="EPSafe\calendar\js\calendar.min.js" />
+    <Content Include="EPSafe\calendar\js\config.js" />
+    <Content Include="EPSafe\calendar\js\resources.js" />
+    <Content Include="EPSafe\defaulttest.aspx" />
+    <Content Include="EPSafe\images\123.png" />
+    <Content Include="EPSafe\images\pj.png" />
+    <Content Include="EPSafe\images\safehead.png" />
+    <Content Include="EPSafe\images\详细.png" />
+    <Content Include="EPSafe\SafeChart1.aspx" />
+    <Content Include="EPSafe\Default.aspx" />
+    <Content Include="EPSafe\Details.aspx" />
+    <Content Include="EPSafe\DuAdd.aspx" />
+    <Content Include="EPSafe\Flash\pixviewer.swf" />
+    <Content Include="EPSafe\images\0.jpg" />
+    <Content Include="EPSafe\images\1.jpg" />
+    <Content Include="EPSafe\images\2.jpg" />
+    <Content Include="EPSafe\images\3.jpg" />
+    <Content Include="EPSafe\images\4.jpg" />
+    <Content Include="EPSafe\images\5.jpg" />
+    <Content Include="EPSafe\images\bg2.gif" />
+    <Content Include="EPSafe\images\calender.gif" />
+    <Content Include="EPSafe\images\search.png" />
+    <Content Include="EPSafe\images\skin_1.2.0.png" />
+    <Content Include="EPSafe\LiTest.aspx" />
+    <Content Include="EPSafe\NewsAdd.aspx" />
+    <Content Include="EPSafe\ResAdd.aspx" />
+    <Content Include="EPSafe\RewAdd.aspx" />
+    <Content Include="EPSafe\SafeAdmin.aspx" />
+    <Content Include="EPSafe\SafeBookAdd.aspx" />
+    <Content Include="EPSafe\SafeChartEP.aspx" />
+    <Content Include="EPSafe\SafeChartEP1.aspx" />
+    <Content Include="EPSafe\SafeDu.aspx" />
+    <Content Include="EPSafe\SafeDuAdd.aspx" />
+    <Content Include="EPSafe\SafeMoney.aspx" />
+    <Content Include="EPSafe\SafeNew.aspx" />
+    <Content Include="EPSafe\SafePublic.aspx" />
+    <Content Include="EPSafe\SafeRes.aspx" />
+    <Content Include="EPSafe\SafeResAdd.aspx" />
+    <Content Include="EPSafe\SafeResMon.aspx" />
+    <Content Include="EPSafe\SafeRew.aspx" />
+    <Content Include="EPSafe\SafeRewAdd.aspx" />
+    <Content Include="EPSafe\SafeRewRes.aspx" />
+    <Content Include="EPSafe\SafeSugList.aspx" />
+    <Content Include="EPSafe\SafeWork.aspx" />
+    <Content Include="EPSafe\SafeZhuan.aspx" />
+    <Content Include="EPSafe\StyleSheet1.css" />
+    <Content Include="EPSafe\style\abc.css" />
+    <Content Include="EPSafe\style\Css\332.min.css" />
+    <Content Include="EPSafe\style\Css\base.min.css" />
+    <Content Include="EPSafe\style\Images\bg01.png" />
+    <Content Include="EPSafe\style\Images\blue1.gif" />
+    <Content Include="EPSafe\style\Images\Blue1_next.gif" />
+    <Content Include="EPSafe\style\Images\Blue1_next.png" />
+    <Content Include="EPSafe\style\Images\Blue1_prev.gif" />
+    <Content Include="EPSafe\style\Images\Blue1_prev.png" />
+    <Content Include="EPSafe\style\Images\buy.png" />
+    <Content Include="EPSafe\style\Images\buyB.png" />
+    <Content Include="EPSafe\style\Images\filter.gif" />
+    <Content Include="EPSafe\style\Images\floata_Blue1.png" />
+    <Content Include="EPSafe\style\Images\float_default.png" />
+    <Content Include="EPSafe\style\Images\fold.png" />
+    <Content Include="EPSafe\style\Images\footer.jpg" />
+    <Content Include="EPSafe\style\Images\g_topFlag1.gif" />
+    <Content Include="EPSafe\style\Images\g_topFlag2.gif" />
+    <Content Include="EPSafe\style\Images\g_topFlag3.gif" />
+    <Content Include="EPSafe\style\Images\logo.jpg" />
+    <Content Include="EPSafe\style\Images\mBg.png" />
+    <Content Include="EPSafe\style\Images\nav.gif" />
+    <Content Include="EPSafe\style\Images\navleft.gif" />
+    <Content Include="EPSafe\style\Images\navleft2.gif" />
+    <Content Include="EPSafe\style\Images\navright.gif" />
+    <Content Include="EPSafe\style\Images\navright2.gif" />
+    <Content Include="EPSafe\style\Images\next.gif" />
+    <Content Include="EPSafe\style\Images\next.png" />
+    <Content Include="EPSafe\style\Images\photo_back.png" />
+    <Content Include="EPSafe\style\Images\prev.gif" />
+    <Content Include="EPSafe\style\Images\prev.png" />
+    <Content Include="EPSafe\style\Images\sBg.png" />
+    <Content Include="EPSafe\style\Images\shareIcon.png" />
+    <Content Include="EPSafe\style\Images\skin_1_2_0.png" />
+    <Content Include="EPSafe\style\Images\slide.gif" />
+    <Content Include="EPSafe\style\Images\slide_topBg.jpg" />
+    <Content Include="EPSafe\style\img\bg.png" />
+    <Content Include="EPSafe\style\img\dot.gif" />
+    <Content Include="EPSafe\style\Script\2052.js" />
+    <Content Include="EPSafe\style\Script\fai.min.js" />
+    <Content Include="EPSafe\style\Script\jquery-1.6.4.min.js" />
+    <Content Include="EPSafe\style\Script\jquery.imageSwitch.js" />
+    <Content Include="EPSafe\style\Script\jquery.marquee.js" />
+    <Content Include="EPSafe\WebForm1.aspx" />
+    <Content Include="EPSafe\ZhuanTiList.aspx" />
+    <Content Include="Images\Allbg.png" />
+    <Content Include="Images\health.jpg" />
+    <Content Include="Images\health1.png" />
+    <Content Include="Images\healthbar.png" />
+    <Content Include="Images\menu-1.gif" />
+    <Content Include="Images\menu-old.gif" />
+    <Content Include="Images\新建文件夹\menu.gif" />
+    <Content Include="Images\新建文件夹\menu1’.gif" />
+    <Content Include="Images\新建文件夹\menu‘1.gif" />
+    <Content Include="Images\Safe_240.jpg" />
+    <Content Include="Images\Safe_360.jpg" />
+    <Content Include="Images\Safe.jpg" />
+    <Content Include="kindediter\asp.net\bin\LitJSON.dll" />
+    <Content Include="kindediter\asp.net\demo.aspx" />
+    <Content Include="kindediter\asp.net\README.txt" />
+    <Content Include="kindediter\kindeditor-min.js" />
+    <Content Include="kindediter\kindeditor.js" />
+    <Content Include="kindediter\lang\en.js" />
+    <Content Include="kindediter\lang\zh_CN.js" />
+    <Content Include="kindediter\lang\zh_TW.js" />
+    <Content Include="kindediter\license.txt" />
+    <Content Include="kindediter\plugins\anchor\anchor.js" />
+    <Content Include="kindediter\plugins\clearhtml\clearhtml.js" />
+    <Content Include="kindediter\plugins\code\code.js" />
+    <Content Include="kindediter\plugins\code\prettify.css" />
+    <Content Include="kindediter\plugins\code\prettify.js" />
+    <Content Include="kindediter\plugins\emoticons\emoticons.js" />
+    <Content Include="kindediter\plugins\emoticons\images\0.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\1.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\10.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\100.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\101.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\102.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\103.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\104.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\105.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\106.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\107.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\108.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\109.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\11.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\110.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\111.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\112.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\113.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\114.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\115.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\116.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\117.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\118.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\119.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\12.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\120.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\121.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\122.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\123.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\124.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\125.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\126.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\127.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\128.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\129.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\13.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\130.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\131.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\132.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\133.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\134.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\14.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\15.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\16.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\17.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\18.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\19.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\2.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\20.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\21.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\22.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\23.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\24.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\25.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\26.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\27.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\28.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\29.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\3.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\30.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\31.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\32.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\33.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\34.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\35.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\36.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\37.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\38.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\39.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\4.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\40.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\41.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\42.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\43.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\44.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\45.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\46.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\47.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\48.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\49.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\5.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\50.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\51.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\52.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\53.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\54.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\55.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\56.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\57.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\58.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\59.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\6.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\60.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\61.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\62.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\63.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\64.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\65.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\66.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\67.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\68.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\69.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\7.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\70.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\71.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\72.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\73.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\74.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\75.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\76.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\77.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\78.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\79.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\8.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\80.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\81.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\82.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\83.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\84.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\85.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\86.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\87.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\88.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\89.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\9.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\90.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\91.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\92.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\93.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\94.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\95.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\96.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\97.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\98.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\99.gif" />
+    <Content Include="kindediter\plugins\emoticons\images\static.gif" />
+    <Content Include="kindediter\plugins\filemanager\filemanager.js" />
+    <Content Include="kindediter\plugins\filemanager\images\file-16.gif" />
+    <Content Include="kindediter\plugins\filemanager\images\file-64.gif" />
+    <Content Include="kindediter\plugins\filemanager\images\folder-16.gif" />
+    <Content Include="kindediter\plugins\filemanager\images\folder-64.gif" />
+    <Content Include="kindediter\plugins\filemanager\images\go-up.gif" />
+    <Content Include="kindediter\plugins\flash\flash.js" />
+    <Content Include="kindediter\plugins\image\image.js" />
+    <Content Include="kindediter\plugins\image\images\align_left.gif" />
+    <Content Include="kindediter\plugins\image\images\align_right.gif" />
+    <Content Include="kindediter\plugins\image\images\align_top.gif" />
+    <Content Include="kindediter\plugins\insertfile\insertfile.js" />
+    <Content Include="kindediter\plugins\lineheight\lineheight.js" />
+    <Content Include="kindediter\plugins\link\link.js" />
+    <Content Include="kindediter\plugins\map\map.html" />
+    <Content Include="kindediter\plugins\map\map.js" />
+    <Content Include="kindediter\plugins\media\media.js" />
+    <Content Include="kindediter\plugins\pagebreak\pagebreak.js" />
+    <Content Include="kindediter\plugins\plainpaste\plainpaste.js" />
+    <Content Include="kindediter\plugins\preview\preview.js" />
+    <Content Include="kindediter\plugins\quickformat\quickformat.js" />
+    <Content Include="kindediter\plugins\table\table.js" />
+    <Content Include="kindediter\plugins\template\html\1.html" />
+    <Content Include="kindediter\plugins\template\html\2.html" />
+    <Content Include="kindediter\plugins\template\html\3.html" />
+    <Content Include="kindediter\plugins\template\template.js" />
+    <Content Include="kindediter\plugins\wordpaste\wordpaste.js" />
+    <Content Include="kindediter\themes\common\anchor.gif" />
+    <Content Include="kindediter\themes\common\blank.gif" />
+    <Content Include="kindediter\themes\common\flash.gif" />
+    <Content Include="kindediter\themes\common\loading.gif" />
+    <Content Include="kindediter\themes\common\media.gif" />
+    <Content Include="kindediter\themes\common\rm.gif" />
+    <Content Include="kindediter\themes\default\default.css" />
+    <Content Include="kindediter\themes\default\default.png" />
+    <Content Include="kindediter\themes\simple\simple.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\abouthealth.png" />
+    <Content Include="Images\b.gif" />
+    <Content Include="Images\content-bg.gif" />
+    <Content Include="Images\expand.gif" />
+    <Content Include="Images\health.png" />
+    <Content Include="Images\healthhead.png" />
+    <Content Include="Images\heathtitle.png" />
+    <Content Include="Images\ico\下水道堵塞.png" />
+    <Content Include="Images\ico\主机.png" />
+    <Content Include="Images\ico\传真机.png" />
+    <Content Include="Images\ico\信息.png" />
+    <Content Include="Images\ico\光驱.png" />
+    <Content Include="Images\ico\号码.png" />
+    <Content Include="Images\ico\号码2.png" />
+    <Content Include="Images\ico\喇叭.png" />
+    <Content Include="Images\ico\安全.png" />
+    <Content Include="Images\ico\安全2.png" />
+    <Content Include="Images\ico\安全3.png" />
+    <Content Include="Images\ico\弱电.png" />
+    <Content Include="Images\ico\强电.png" />
+    <Content Include="Images\ico\强电2.png" />
+    <Content Include="Images\ico\打印机.png" />
+    <Content Include="Images\ico\扫描仪.png" />
+    <Content Include="Images\ico\插座.png" />
+    <Content Include="Images\ico\数据.png" />
+    <Content Include="Images\ico\方向.png" />
+    <Content Include="Images\ico\无声音.png" />
+    <Content Include="Images\ico\无法上网.png" />
+    <Content Include="Images\ico\无法拨打.png" />
+    <Content Include="Images\ico\水.png" />
+    <Content Include="Images\ico\没水.png" />
+    <Content Include="Images\ico\灯.png" />
+    <Content Include="Images\ico\玻璃.png" />
+    <Content Include="Images\ico\玻璃碎.png" />
+    <Content Include="Images\ico\电器类.png" />
+    <Content Include="Images\ico\电话.png" />
+    <Content Include="Images\ico\程序.png" />
+    <Content Include="Images\ico\空调.png" />
+    <Content Include="Images\ico\管道漏水.png" />
+    <Content Include="Images\ico\线路.png" />
+    <Content Include="Images\ico\网络.png" />
+    <Content Include="Images\ico\蒸汽.png" />
+    <Content Include="Images\ico\话筒.png" />
+    <Content Include="Images\ico\调整压力.png" />
+    <Content Include="Images\ico\跳闸.png" />
+    <Content Include="Images\ico\键盘.png" />
+    <Content Include="Images\ico\门窗.png" />
+    <Content Include="Images\ico\阀门漏水.png" />
+    <Content Include="Images\ico\风.png" />
+    <Content Include="Images\ico\风向.png" />
+    <Content Include="Images\ico\风机不转.png" />
+    <Content Include="Images\ico\鼠标.png" />
+    <Content Include="Images\lib.jpg" />
+    <Content Include="Images\login.jpg" />
+    <Content Include="Images\menu.gif" />
+    <Content Include="Images\menu1.gif" />
+    <Content Include="Images\menu2.gif" />
+    <Content Include="Images\menu3.gif" />
+    <Content Include="Images\menu_bg.gif" />
+    <Content Include="Images\repair.png" />
+    <Content Include="Images\reset.gif" />
+    <Content Include="Images\s.gif" />
+    <Content Include="Images\signin.gif" />
+    <Content Include="Images\signin.jpg" />
+    <Content Include="Images\totalbg.png" />
+    <Content Include="index.aspx" />
+    <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="main.aspx" />
+    <Content Include="manager\manager\usermod.aspx" />
+    <Content Include="manager\manager\user_add.aspx" />
+    <Content Include="manager\manager\user_list.aspx" />
+    <Content Include="manager\ReperClass\ReperClass_add.aspx" />
+    <Content Include="manager\ReperClass\ReperClass_del.aspx" />
+    <Content Include="manager\ReperClass\ReperClass_List.aspx" />
+    <Content Include="manager\ReperClass\ReperClass_up.aspx" />
+    <Content Include="manager\ReperClass\ReperManager.aspx" />
+    <Content Include="manager\ReperInfo\index.aspx" />
+    <Content Include="manager\ReperInfo\Repair.aspx" />
+    <Content Include="manager\ReperInfo\ReperInfo.aspx" />
+    <Content Include="manager\ReperInfo\Reper_add.aspx" />
+    <Content Include="manager\ReperInfo\RI_Show_Dal.aspx" />
+    <Content Include="manager\ReperInfo\RI_Show_End.aspx" />
+    <Content Include="manager\ReperInfo\SelectRI.aspx" />
+    <Content Include="manager\ReperInfo\SelectShow.aspx" />
+    <Content Include="manager\ReperInfo\ShowRI.aspx" />
+    <Content Include="manager\ReperInfo\ShowRI_List.aspx" />
+    <Content Include="obj\Debug\EPReper.Web.dll" />
+    <Content Include="obj\Debug\EPReper.Web.pdb" />
+    <Content Include="obj\Debug\Web.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\EPReper.Web.dll" />
+    <Content Include="obj\Release\EPReper.Web.pdb" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\BlueTheme\Default.css" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\Green2Theme\Default.css" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\GreenTheme\Default.css" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\PurpleTheme\Default.css" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\RedTheme\Default.css" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\DropDownCheckList.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.BLL.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.Common.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.Config.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.Config.pdb" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.DALFactory.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.DBUtility.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.IDAL.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.Model.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.SQLServerDAL.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.Web.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\EPReper.Web.pdb" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\LTP.Accounts.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\LtpPageControl.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Web.UI.WebControls.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\OpenSmtp.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Tools.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\Controls\checkright.ascx" />
+    <Content Include="obj\Release\Package\PackageTmp\Controls\copyright.ascx" />
+    <Content Include="obj\Release\Package\PackageTmp\Controls\PageNavigator.ascx" />
+    <Content Include="obj\Release\Package\PackageTmp\Default.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Global.asax" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\b.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\content-bg.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\expand.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\下水道堵塞.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\主机.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\传真机.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\信息.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\光驱.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\号码.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\号码2.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\喇叭.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\安全.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\安全2.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\安全3.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\弱电.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\强电.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\强电2.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\打印机.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\扫描仪.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\插座.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\数据.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\方向.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\无声音.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\无法上网.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\无法拨打.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\水.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\没水.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\灯.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\玻璃.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\玻璃碎.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\电器类.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\电话.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\程序.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\空调.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\管道漏水.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\线路.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\网络.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\蒸汽.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\话筒.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\调整压力.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\跳闸.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\键盘.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\门窗.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\阀门漏水.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\风.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\风向.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\风机不转.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\ico\鼠标.png" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\lib.jpg" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\login.jpg" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\menu.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\menu1.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\menu2.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\menu3.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\menu_bg.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\reset.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\s.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\signin.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\Images\signin.jpg" />
+    <Content Include="obj\Release\Package\PackageTmp\index.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\login.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\logout.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\main.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\manager\usermod.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\manager\user_add.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\manager\user_list.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperClass\ReperClass_add.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperClass\ReperClass_del.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperClass\ReperClass_List.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperClass\ReperClass_up.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperClass\ReperManager.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\index.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\Repair.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\ReperInfo.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\Reper_add.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\RI_Show_Dal.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\RI_Show_End.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\ShowRI.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\manager\ReperInfo\ShowRI_List.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\DropDownCheckList.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-1.4.1.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\jquery-1.4.1.min.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\public.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Scripts\setdaytime.js" />
+    <Content Include="obj\Release\Package\PackageTmp\Style.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Styles\css.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Styles\style.css" />
+    <Content Include="obj\Release\Package\PackageTmp\Styles\table.css" />
+    <Content Include="obj\Release\Package\PackageTmp\ValidateCode.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\Images\folder.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\Images\folderopen.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\Images\html.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\Images\root.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\MultiPage.htc" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TabStrip.htc" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\toolbar.htc" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\f.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\fminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\fplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\i.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\L.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\Lminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\Lplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\minus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\plus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\r.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\Rminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\Rplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\F.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Fminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Fplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\I.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\L.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Lminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Lplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\minus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\plus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\r.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Rminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Rplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\T.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Tminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\Tplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\rtl\white.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\T.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\Tminus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\Tplus.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\TreeImages\white.gif" />
+    <Content Include="obj\Release\Package\PackageTmp\webctrl_client\1_0\treeview.htc" />
+    <Content Include="obj\Release\Web.csproj.FileListAbsolute.txt" />
+    <Content Include="Scripts\2052.js" />
+    <Content Include="Scripts\fai.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.19.custom.min.js" />
+    <Content Include="Scripts\jquery.imageSwitch.js" />
+    <Content Include="Scripts\jquery.marquee.js" />
+    <Content Include="Scripts\JScriptZh-CN.js" />
+    <Content Include="Scripts\newsimge.js" />
+    <Content Include="Scripts\Zoomer.js" />
+    <Content Include="Scripts\DropDownCheckList.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\public.js" />
+    <Content Include="Scripts\setdaytime.js" />
+    <Content Include="Scripts\setdaytime1.js" />
+    <Content Include="Style.css" />
+    <Content Include="Styles\css.css" />
+    <Content Include="Styles\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Styles\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Styles\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Styles\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Styles\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Styles\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Styles\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Styles\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Styles\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Styles\images\ui-icons_222222_256x240.png" />
+    <Content Include="Styles\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Styles\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Styles\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Styles\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Styles\jquery-ui-1.8.19.custom.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Styles\style.css" />
+    <Content Include="Styles\table.css" />
+    <Content Include="Styles\Total.css" />
+    <Content Include="teset.aspx" />
+    <Content Include="ValidateCode.aspx" />
+    <Content Include="View\Default.aspx" />
+    <Content Include="View\OrderDoctor.aspx" />
+    <Content Include="View\OrderHistory.aspx" />
+    <Content Include="View\PinHistory.aspx" />
+    <Content Include="View\SetOrder.aspx" />
+    <Content Include="View\SetOrderScore.aspx" />
+    <Content Include="View\SetSchedule.aspx" />
+    <Content Include="View\UserOrder.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="webctrl_client\1_0\Images\folder.gif" />
+    <Content Include="webctrl_client\1_0\Images\folderopen.gif" />
+    <Content Include="webctrl_client\1_0\Images\html.gif" />
+    <Content Include="webctrl_client\1_0\Images\root.gif" />
+    <Content Include="webctrl_client\1_0\MultiPage.htc" />
+    <Content Include="webctrl_client\1_0\TabStrip.htc" />
+    <Content Include="webctrl_client\1_0\toolbar.htc" />
+    <Content Include="webctrl_client\1_0\TreeImages\f.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\fminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\fplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\i.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\L.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\Lminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\Lplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\minus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\plus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\r.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\Rminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\Rplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\F.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Fminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Fplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\I.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\L.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Lminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Lplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\minus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\plus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\r.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Rminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Rplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\T.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Tminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\Tplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\rtl\white.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\T.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\Tminus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\Tplus.gif" />
+    <Content Include="webctrl_client\1_0\TreeImages\white.gif" />
+    <Content Include="webctrl_client\1_0\treeview.htc" />
+    <Content Include="RepairHealth.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ajax\ClassChuange.ashx.cs">
+      <DependentUpon>ClassChuange.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckRight.ascx.cs">
+      <DependentUpon>checkright.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\CheckRight.ascx.designer.cs">
+      <DependentUpon>checkright.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CopyRight.ascx.cs">
+      <DependentUpon>copyright.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\CopyRight.ascx.designer.cs">
+      <DependentUpon>copyright.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PageNavigator.ascx.cs">
+      <DependentUpon>PageNavigator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\PageNavigator.ascx.designer.cs">
+      <DependentUpon>PageNavigator.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="divtest.aspx.cs">
+      <DependentUpon>divtest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="divtest.aspx.designer.cs">
+      <DependentUpon>divtest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\BookAdd.aspx.cs">
+      <DependentUpon>BookAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\BookAdd.aspx.designer.cs">
+      <DependentUpon>BookAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\BookDetails.aspx.cs">
+      <DependentUpon>BookDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\BookDetails.aspx.designer.cs">
+      <DependentUpon>BookDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\defaulttest.aspx.cs">
+      <DependentUpon>defaulttest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\defaulttest.aspx.designer.cs">
+      <DependentUpon>defaulttest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeChart1.aspx.cs">
+      <DependentUpon>SafeChart1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeChart1.aspx.designer.cs">
+      <DependentUpon>SafeChart1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\DuAdd.aspx.cs">
+      <DependentUpon>DuAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\DuAdd.aspx.designer.cs">
+      <DependentUpon>DuAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\EPSafe.Master.cs">
+      <DependentUpon>EPSafe.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\EPSafe.Master.designer.cs">
+      <DependentUpon>EPSafe.Master</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\GetSafeRes.ashx.cs">
+      <DependentUpon>GetSafeRes.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\LiTest.aspx.cs">
+      <DependentUpon>LiTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\LiTest.aspx.designer.cs">
+      <DependentUpon>LiTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\NewsAdd.aspx.cs">
+      <DependentUpon>NewsAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\NewsAdd.aspx.designer.cs">
+      <DependentUpon>NewsAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\ResAdd.aspx.cs">
+      <DependentUpon>ResAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\ResAdd.aspx.designer.cs">
+      <DependentUpon>ResAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\RewAdd.aspx.cs">
+      <DependentUpon>RewAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\RewAdd.aspx.designer.cs">
+      <DependentUpon>RewAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeAdmin.aspx.cs">
+      <DependentUpon>SafeAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeAdmin.aspx.designer.cs">
+      <DependentUpon>SafeAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeBookAdd.aspx.cs">
+      <DependentUpon>SafeBookAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeBookAdd.aspx.designer.cs">
+      <DependentUpon>SafeBookAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeChartEP.aspx.cs">
+      <DependentUpon>SafeChartEP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeChartEP.aspx.designer.cs">
+      <DependentUpon>SafeChartEP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeChartEP1.aspx.cs">
+      <DependentUpon>SafeChartEP1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeChartEP1.aspx.designer.cs">
+      <DependentUpon>SafeChartEP1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeDu.aspx.cs">
+      <DependentUpon>SafeDu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeDu.aspx.designer.cs">
+      <DependentUpon>SafeDu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeDuAdd.aspx.cs">
+      <DependentUpon>SafeDuAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeDuAdd.aspx.designer.cs">
+      <DependentUpon>SafeDuAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeMoney.aspx.cs">
+      <DependentUpon>SafeMoney.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeMoney.aspx.designer.cs">
+      <DependentUpon>SafeMoney.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeNew.aspx.cs">
+      <DependentUpon>SafeNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeNew.aspx.designer.cs">
+      <DependentUpon>SafeNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafePublic.aspx.cs">
+      <DependentUpon>SafePublic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafePublic.aspx.designer.cs">
+      <DependentUpon>SafePublic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeRes.aspx.cs">
+      <DependentUpon>SafeRes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeRes.aspx.designer.cs">
+      <DependentUpon>SafeRes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeResAdd.aspx.cs">
+      <DependentUpon>SafeResAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeResAdd.aspx.designer.cs">
+      <DependentUpon>SafeResAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeResMon.aspx.cs">
+      <DependentUpon>SafeResMon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeResMon.aspx.designer.cs">
+      <DependentUpon>SafeResMon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeRew.aspx.cs">
+      <DependentUpon>SafeRew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeRew.aspx.designer.cs">
+      <DependentUpon>SafeRew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeRewAdd.aspx.cs">
+      <DependentUpon>SafeRewAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeRewAdd.aspx.designer.cs">
+      <DependentUpon>SafeRewAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeRewRes.aspx.cs">
+      <DependentUpon>SafeRewRes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeRewRes.aspx.designer.cs">
+      <DependentUpon>SafeRewRes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeSugList.aspx.cs">
+      <DependentUpon>SafeSugList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeSugList.aspx.designer.cs">
+      <DependentUpon>SafeSugList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeWork.aspx.cs">
+      <DependentUpon>SafeWork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeWork.aspx.designer.cs">
+      <DependentUpon>SafeWork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\SafeZhuan.aspx.cs">
+      <DependentUpon>SafeZhuan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\SafeZhuan.aspx.designer.cs">
+      <DependentUpon>SafeZhuan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EPSafe\ZhuanTiList.aspx.cs">
+      <DependentUpon>ZhuanTiList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EPSafe\ZhuanTiList.aspx.designer.cs">
+      <DependentUpon>ZhuanTiList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\manager\usermod.aspx.cs">
+      <DependentUpon>usermod.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\manager\usermod.aspx.designer.cs">
+      <DependentUpon>usermod.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\manager\user_add.aspx.cs">
+      <DependentUpon>user_add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\manager\user_add.aspx.designer.cs">
+      <DependentUpon>user_add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\manager\user_list.aspx.cs">
+      <DependentUpon>user_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\manager\user_list.aspx.designer.cs">
+      <DependentUpon>user_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_add.aspx.cs">
+      <DependentUpon>ReperClass_add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_add.aspx.designer.cs">
+      <DependentUpon>ReperClass_add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_del.aspx.cs">
+      <DependentUpon>ReperClass_del.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_del.aspx.designer.cs">
+      <DependentUpon>ReperClass_del.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_List.aspx.cs">
+      <DependentUpon>ReperClass_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_List.aspx.designer.cs">
+      <DependentUpon>ReperClass_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_up.aspx.cs">
+      <DependentUpon>ReperClass_up.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperClass_up.aspx.designer.cs">
+      <DependentUpon>ReperClass_up.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperManager.aspx.cs">
+      <DependentUpon>ReperManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperClass\ReperManager.aspx.designer.cs">
+      <DependentUpon>ReperManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\Repair.aspx.cs">
+      <DependentUpon>Repair.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\Repair.aspx.designer.cs">
+      <DependentUpon>Repair.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\ReperInfo.aspx.cs">
+      <DependentUpon>ReperInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\ReperInfo.aspx.designer.cs">
+      <DependentUpon>ReperInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\Reper_add.aspx.cs">
+      <DependentUpon>Reper_add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\Reper_add.aspx.designer.cs">
+      <DependentUpon>Reper_add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\RI_Show_Dal.aspx.cs">
+      <DependentUpon>RI_Show_Dal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\RI_Show_Dal.aspx.designer.cs">
+      <DependentUpon>RI_Show_Dal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\RI_Show_End.aspx.cs">
+      <DependentUpon>RI_Show_End.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\RI_Show_End.aspx.designer.cs">
+      <DependentUpon>RI_Show_End.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\SelectRI.aspx.cs">
+      <DependentUpon>SelectRI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\SelectRI.aspx.designer.cs">
+      <DependentUpon>SelectRI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\SelectShow.aspx.cs">
+      <DependentUpon>SelectShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\SelectShow.aspx.designer.cs">
+      <DependentUpon>SelectShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\ShowRI.aspx.cs">
+      <DependentUpon>ShowRI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\ShowRI.aspx.designer.cs">
+      <DependentUpon>ShowRI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\ReperInfo\ShowRI_List.aspx.cs">
+      <DependentUpon>ShowRI_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\ReperInfo\ShowRI_List.aspx.designer.cs">
+      <DependentUpon>ShowRI_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.master.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="teset.aspx.cs">
+      <DependentUpon>teset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="teset.aspx.designer.cs">
+      <DependentUpon>teset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ValidateCode.aspx.cs">
+      <DependentUpon>ValidateCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ValidateCode.aspx.designer.cs">
+      <DependentUpon>ValidateCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Health.Master.cs">
+      <DependentUpon>Health.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Health.Master.designer.cs">
+      <DependentUpon>Health.Master</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrderDoctor.aspx.cs">
+      <DependentUpon>OrderDoctor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\OrderDoctor.aspx.designer.cs">
+      <DependentUpon>OrderDoctor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrderHistory.aspx.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\OrderHistory.aspx.designer.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\PinHistory.aspx.cs">
+      <DependentUpon>PinHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\PinHistory.aspx.designer.cs">
+      <DependentUpon>PinHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\SetOrder.aspx.cs">
+      <DependentUpon>SetOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\SetOrder.aspx.designer.cs">
+      <DependentUpon>SetOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\SetOrderScore.aspx.cs">
+      <DependentUpon>SetOrderScore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\SetOrderScore.aspx.designer.cs">
+      <DependentUpon>SetOrderScore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\SetSchedule.aspx.cs">
+      <DependentUpon>SetSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\SetSchedule.aspx.designer.cs">
+      <DependentUpon>SetSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserOrder.aspx.cs">
+      <DependentUpon>UserOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\UserOrder.aspx.designer.cs">
+      <DependentUpon>UserOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RepairHealth.aspx.cs">
+      <DependentUpon>RepairHealth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RepairHealth.aspx.designer.cs">
+      <DependentUpon>RepairHealth.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\BlueTheme\Control.skin" />
+    <Content Include="App_Themes\Green2Theme\Control.skin" />
+    <Content Include="App_Themes\GreenTheme\Control.skin" />
+    <Content Include="App_Themes\PurpleTheme\Control.skin" />
+    <Content Include="App_Themes\RedTheme\Control.skin" />
+    <Content Include="Default.aspx" />
+    <Content Include="MasterPage.master" />
+    <Content Include="Ajax\ClassChuange.ashx" />
+    <Content Include="View\Health.Master" />
+    <Content Include="EPSafe\EPSafe.Master" />
+    <Content Include="kindediter\asp.net\file_manager_json.ashx" />
+    <Content Include="kindediter\asp.net\upload_json.ashx" />
+    <Content Include="EPSafe\GetSafeRes.ashx" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\GenerateResource-ResGen.read.1.tlog" />
+    <None Include="obj\Debug\GenerateResource-ResGen.write.1.tlog" />
+    <None Include="obj\Debug\GenerateResource.read.1.tlog" />
+    <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\GenerateResource-ResGen.read.1.tlog" />
+    <None Include="obj\Release\GenerateResource-ResGen.write.1.tlog" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\BlueTheme\Control.skin" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\Green2Theme\Control.skin" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\GreenTheme\Control.skin" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\PurpleTheme\Control.skin" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Themes\RedTheme\Control.skin" />
+    <Content Include="obj\Release\Package\PackageTmp\MasterPage.master" />
+    <Content Include="obj\Release\Package\PackageTmp\Web.config" />
+    <None Include="obj\Release\ResolveAssemblyReference.cache" />
+    <None Include="webctrl_client\1_0\Images\vssver2.scc" />
+    <None Include="webctrl_client\1_0\TreeImages\rtl\vssver2.scc" />
+    <None Include="webctrl_client\1_0\TreeImages\vssver2.scc" />
+    <None Include="webctrl_client\1_0\vssver2.scc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\CheckRight.ascx.resx">
+      <DependentUpon>CheckRight.ascx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CopyRight.ascx.resx">
+      <DependentUpon>CopyRight.ascx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Global.asax.resx">
+      <DependentUpon>Global.asax.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\EPReper.Web.Controls.CheckRight.resources" />
+    <EmbeddedResource Include="obj\Debug\EPReper.Web.Controls.CopyRight1.resources" />
+    <EmbeddedResource Include="obj\Debug\EPReper.Web.Global.resources" />
+    <EmbeddedResource Include="obj\Release\EPReper.Web.Controls.CheckRight.resources" />
+    <EmbeddedResource Include="obj\Release\EPReper.Web.Controls.CopyRight1.resources" />
+    <EmbeddedResource Include="obj\Release\EPReper.Web.Global.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{38D7AA58-C95B-449B-86C6-A8073A56E11F}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{E3D8759A-C5EB-402D-9F10-F5C6029A8D1A}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Config\Config.csproj">
+      <Project>{9B4818D3-9B70-4E47-872E-1603FF3CD6CB}</Project>
+      <Name>Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALFactory\DALFactory.csproj">
+      <Project>{96401C5E-D166-4E4E-98C2-3ECA91B6C7EB}</Project>
+      <Name>DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{D8487ED5-5414-4DBF-97C2-EE4A8FC03819}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{53995DBB-9836-4647-AD22-865884FDEB9E}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLServerDAL\SQLServerDAL.csproj">
+      <Project>{AB835BA2-FFD6-49CD-87B0-E216255BB32E}</Project>
+      <Name>SQLServerDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="kindediter\asp.net\attached\file\" />
+    <Folder Include="kindediter\asp.net\attached\image\" />
+    <Folder Include="kindediter\attached\file\" />
+    <Folder Include="kindediter\attached\image\" />
+    <Folder Include="obj\Debug\Package\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\TempPE\" />
+    <Folder Include="obj\Release\TransformWebConfig\original\" />
+    <Folder Include="obj\Release\TransformWebConfig\transformed\" />
+    <Folder Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5214</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,135 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
+
+using ElegantWM.WeiXin.MsgEntity;
+using ElegantWM.Factory;
+using ElegantWM.Common;
+using ElegantWM.DTO;
+using System.Data;
+using ElegantWM.Tools;
+using ElegantWM.WebUI.Areas.Matrix;
+using ElegantWM.EntityModel;
+
+
+
+namespace ElegantWM.WebUI.Areas.Game.Controllers
+{
+    public class LittleModelController : Controller
+    {
+        //
+        // GET: /Game/LittleModel/
+
+        public ActionResult Index(string wxid)
+        {
+            ViewBag.Oid = wxid;
+            return View();
+        }
+
+        [Action]
+        [Description("小模特列表")]
+        private DataTable GetLittleModelInfo(string strWhere,int iPage,int iGroup) {
+
+            DataTable dt = WMFactory.Game_LittleModel.GetLittleModelInfo(strWhere,iPage,iGroup);
+
+            return dt;
+        }
+
+        [Action]
+        [Description("获取行数")]
+        private int GetCount(int iGroup)
+        {
+            DataTable dtCount = WMFactory.Game_LittleModel.GetLittleModelCount(iGroup);
+            int iCount = Int32.Parse(dtCount.Rows[0][0].ToString());
+            return iCount;
+        }
+
+        [Action]
+        [Description("小模特照片")]
+        public PartialViewResult LittleModelPic(string strWhere,int iBeginPage, int iPage,int iGroup,string oid) {
+            ViewBag.Oid = oid;
+            if (strWhere == null) {
+                strWhere = "";
+            }
+            ViewBag.ModelList = GetLittleModelInfo(strWhere,iPage,iGroup);
+            ViewBag.Group = iGroup;
+            ViewBag.Oid = oid;
+            PageList(iBeginPage, iGroup);//页码
+            return PartialView();
+        }
+
+        [Action]
+        [Description("页码")]
+        public PartialViewResult PageList(int iBeginPage, int iGroup) { 
+
+            ViewBag.Count = GetCount(iGroup);
+
+            ViewBag.Group = iGroup;
+
+            ViewBag.BeginPage = iBeginPage;
+
+            return PartialView();
+        }
+
+        [Action]
+        [Description("小模特个人页面")]
+        public ActionResult LittleModelInfo(string LId,int iResult,string Oid) {
+            string strWhere = " L_Id = " + LId;
+
+            DataTable dt = GetLittleModelInfo(strWhere, 0, 0);
+            ViewBag.Info = dt;
+            ViewBag.Oid = Oid;
+            ViewBag.resultCode = iResult;
+            if (iResult == 1) {
+                ViewBag.VoteResult = "已为该小模特投过票，无法重复投票。";
+            }
+            else if (iResult == 2) {
+                ViewBag.VoteResult = "投票已经超过三票，无法继续投票。";
+            }
+            else if (iResult == 3) {
+                ViewBag.VoteResult = "";
+            }
+            else if (iResult == 0) {
+                ViewBag.VoteResult = "投票成功。";
+            };
+            
+            return View();
+        }
+
+        [Action]
+        [Description("验证&投票")]
+        public ActionResult Vote(string sid, string oid, string Lid)
+        {
+            WxFans wf = ElegantWM.WeiXin.Common.GetFanInfo(sid.ToString(), oid);
+            if (wf == null)
+            {
+                return Redirect("/Game/LittleModel/Follow");
+            }
+            else
+            {
+                DataTable dtCheck = WMFactory.Game_LittleModel.CheckVote(oid, Lid);
+                int iResult = Int32.Parse(dtCheck.Rows[0][0].ToString());
+
+                //if (iResult == 0) {
+                //    return Redirect("http://mp.weixin.qq.com/s?__biz=MzA5MTk5ODgzOA==&mid=206553735&idx=2&sn=e03062011fa2e186c2f9a0da2eceef45#rd");
+                //}
+                //else{
+                    return Redirect("/Game/LittleModel/LittleModelInfo?LId=" + Lid + "&iResult=" + iResult + "&oid=" + oid);
+                //};                
+            };
+            
+        }
+
+        [Action]
+        [Description("关注")]
+        public ActionResult Follow()
+        {
+            return View();
+        }
+
+    }
+}

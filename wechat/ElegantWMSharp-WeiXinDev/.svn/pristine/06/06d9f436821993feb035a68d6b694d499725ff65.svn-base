@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8" />
+    @*<title>@(ViewBag.Title + " - " + System.Configuration.ConfigurationManager.AppSettings["SysName"])</title>*@
+    <title>@(ViewBag.Title + " - " + System.Configuration.ConfigurationManager.AppSettings["SysNameEhr"])</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link href="~/Content/Plugin/Bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="~/Content/Plugin/Bootstrap/bootbox.min.js"></script>
+    <!--IOS Masker-->
+    <link href="~/Scripts/IosOverlay/css/iosOverlay.css" rel="stylesheet" />
+    <script src="~/Scripts/IosOverlay/js/spin.min.js"></script>
+    <script src="~/Scripts/IosOverlay/js/iosOverlay.js"></script>
+    <script src="~/Scripts/WeixinApi/WeixinApi.js"></script>
+    <script src="~/Scripts/AlowMatrixGlobal.js"></script>
+    <script src="~/Scripts/cookieHelper.js"></script>
+    <script src="~/Scripts/DateTimePicker/bootstrap-datepicker.js"></script>
+    <link href="~/Scripts/DateTimePicker/datepicker.css" rel="stylesheet" />
+    <link href="~/Areas/Matrix/Resources/Mobile.css" rel="stylesheet" />
+    @RenderSection("script", false)
+</head>
+<body>
+    <div class="navs">
+        <div>
+            <img id="navBack" src="~/Areas/HR/Resources/images/back.png" />
+        </div>
+       @* <div>
+            <img id="navHome" src="~/Areas/HR/Resources/images/home.png" />
+        </div>*@
+        <div>
+            <img id="navOut" src="~/Areas/HR/Resources/images/out.png" />
+        </div>
+    </div>
+
+
+    <div class="main" style="margin-top: 50px;">
+        @RenderBody()
+    </div>
+
+    <div style="margin-top: 60px;">
+    </div>
+
+    <div class="navsBo">
+          <div id="dhome">
+            <img id="home" src="~/Areas/HR/Resources/images/homeback.png" style="height: 35px; margin-top: 4px" />
+        </div>
+
+        <div id="dav">
+            <img id="av" src="~/Areas/HR/Resources/images/av.png" style="height: 35px; margin-top: 4px" />
+        </div>
+
+        <div id="dpay">
+            <img id="pay" src="~/Areas/HR/Resources/images/pay.png" style="height: 35px; margin-top: 4px" />
+        </div>
+
+         <div id="dcn">
+            <img id="cn" src="~/Areas/HR/Resources/images/cn.png" style="height: 35px; margin-top: 4px" />
+        </div>
+      
+    </div>
+
+    <script type="text/javascript">
+
+        //if (Cookies.get("c_idcard") == null) window.location.href = "/HR/EHRManagement/Index";
+        var sfz = @ElegantWM.Tools.CookieHelper.GetCookie("sfz") +"";
+        if (sfz == null || sfz == undefined || sfz == "" || sfz == "0") { window.location.href = "/HR/EHRManagement/Index" };
+
+        $("#navBack").click(function () {
+            window.history.go(-1);
+        })
+
+        $("#dhome").click(function () {
+            window.location.href = "/HR/EHRManagement/Main";
+        })
+
+        $("#navOut").click(function () {
+            $(this).button('loading');
+            bootbox.confirm("您确定要退出么?", function (result) {
+                if (result) {
+                    Msg.show("退出...", 3);
+                    $.post("/HR/EHRManagement/LogOut", function (rst) {
+                        Msg.hide();
+                        $("#navOut").button('reset');
+                        if (rst.result == 0)
+                            Cookies.clear("c_idcard");
+                        window.location.href = "/HR/EHRManagement/Index";
+                    });
+                }
+            });
+        });
+
+        $("#av").click(function () {
+            window.location.href = "/HR/EHRManagement/AvInfo";
+            //$("#dav").css("background-color", "#000");
+            //$("#dpay").css("background-color", "#2c3e50");
+        })
+        $("#pay").click(function () {
+            window.location.href = "/HR/EHRManagement/PayInfoCheack";
+            //$("#dav").css("background-color", "#2c3e50");
+            //$("#dpay").css("background-color", "#000");
+        })
+
+        $("#cn").click(function () {
+            window.location.href = "/HR/EHRManagement/Promiseindex";
+            //$("#dav").css("background-color", "#2c3e50");
+            //$("#dpay").css("background-color", "#000");
+        })
+    </script>
+</body>
+</html>
+
+
+

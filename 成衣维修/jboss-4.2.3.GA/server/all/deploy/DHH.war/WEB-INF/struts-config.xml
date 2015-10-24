@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >
+    <form-bean name="rfidForm" type="com.dhh.struts.form.RfidForm" />
+    <form-bean name="loginForm" type="com.dhh.struts.form.LoginForm" />
+    <form-bean name="orderingForm" type="com.dhh.struts.form.OrderingForm" />
+    <form-bean name="welcomeForm" type="com.dhh.struts.form.WelcomeForm" />
+    <form-bean name="rankingForm" type="com.dhh.struts.form.RankingForm" />
+    <form-bean name="modifyForm" type="com.dhh.struts.form.ModifyForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      attribute="rfidForm"
+      input="/form/rfid.jsp"
+      name="rfidForm"
+      path="/rfid"
+      scope="request"
+      type="com.dhh.struts.action.RfidAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="Login" path="/form/login.jsp"></forward>
+    </action>
+    <action
+      attribute="loginForm"
+      input="/form/login.jsp"
+      name="loginForm"
+      path="/login"
+      scope="request"
+      type="com.dhh.struts.action.LoginAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="Ordering" path="/form/ordering.jsp"></forward>
+    </action>
+    <action
+      attribute="orderingForm"
+      input="/form/ordering.jsp"
+      name="orderingForm"
+      path="/ordering"
+      scope="request"
+      type="com.dhh.struts.action.OrderingAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="Ranking" path="/form/ranking.jsp" />
+      <forward name="Modify" path="/form/modify.jsp" />
+    </action>
+    <action
+      attribute="welcomeForm"
+      input="/form/welcome.jsp"
+      name="welcomeForm"
+      path="/welcome"
+      scope="request"
+      type="com.dhh.struts.action.WelcomeAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="Ordering" path="/form/ordering.jsp" />
+    </action>
+    <action
+      attribute="rankingForm"
+      input="/form/ranking.jsp"
+      name="rankingForm"
+      path="/ranking"
+      scope="request"
+      type="com.dhh.struts.action.RankingAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="Ordering" path="/form/ordering.jsp" />
+    </action>
+    <action
+      attribute="modifyForm"
+      input="/form/modify.jsp"
+      name="modifyForm"
+      path="/modify"
+      scope="request"
+      type="com.dhh.struts.action.ModifyAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="Ordering" path="/form/ordering.jsp" />
+    </action>
+  </action-mappings>
+
+  <message-resources parameter="com.dhh.struts.ApplicationResources" />
+</struts-config>
+

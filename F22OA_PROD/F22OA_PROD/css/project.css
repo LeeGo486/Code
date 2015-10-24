@@ -1,0 +1,546 @@
+body
+{ font-size:12px;  
+   background-color:#fff;margin:0px;
+}
+/*background-color:#ECF3F6;margin:0px;*/
+A:link{color: #000000; TEXT-DECORATION: none; font-size:12px}
+A:visited {COLOR: #000000; TEXT-DECORATION: none;font-size:12px}
+A:active {COLOR: #3333ff; TEXT-DECORATION: none;font-size:12px}
+A:hover {COLOR: #993300; TEXT-DECORATION: none;font-size:12px}
+.themenu /*抬头*/
+ {  
+	width:100%;
+	padding:5px 0px 5px 3px;
+	font-size:14px;
+	font-weight:bold;
+	color: #005a5a; /* #0E2E4A;*/
+	background-color: #ECF3F6;
+	height:23px;
+	border-bottom: #ccccff 1px solid;
+	 border-collapse: collapse;
+} 
+.menu /*抬头*/
+ {  
+	width:98%;
+	padding:5px 2px 5px 2px; 
+	font-size:14px;
+	font-weight:bold; 
+	color: #000000; /* #0E2E4A;*/
+	 border-collapse: collapse;
+}    
+.NormalBtn
+{
+	BORDER-RIGHT: #2c59aa 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #2c59aa 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); BORDER-LEFT: #2c59aa 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #2c59aa 1px solid; 
+	height:23px
+} 
+.BContent
+{
+	width:98%;
+	margin-top:5px;
+	padding:5px 2px 5px 2px; height:500px;
+    background:#fff; border:#000 1px solid; 
+}
+.tbBluebd
+{
+	margin-top:5px;
+	  padding:5px 2px 5px 2px; 
+    background:#f2f9ff; border:#9FD6FF 1px solid; 
+	
+}
+TABLE.tbBlock
+{
+	width: 100%;
+	background-color: #f2f9ff;
+	border-color:#9FD6FF;
+	 border-width:1px
+}
+THEAD,TFOOT,TD,p,div,a,th
+{
+	font-size:12PX
+}
+
+/*
+//New style by jackie
+Start
+*/
+.FrameTable{border:solid 1px #1b9bbf; margin:0 0 5px 0;}
+.Frameheader{
+line-height:28px;
+background:url(../icon/title1.jpg) repeat-x;
+}
+.FrameTable div{
+border-bottom:solid 1px #f4f0e6;
+}
+.FrameTable table{
+margin:10px 0;
+}
+.FrameTable table table{
+margin:0;
+}
+.Frameheader{background:url(../icon/title1.jpg) repeat-x;color:#FFF; text-indent:10px;font-weight:bold; text-align:left; line-height:25px;}
+.Frameheader A:link{color:#FFF;font-weight:normal;}
+.Frameheader A:hover{color:#FF0;}
+/*
+	//New style by jackie
+End
+*/
+.btn
+{
+	background-color: aliceblue;
+	background-image:url(../images/bg_btn2.gif);
+	border: #8496CE 0px solid;
+	color: #5A6DA5;	
+	height: 23px;
+	width: 100px;
+	cursor: hand;	
+	text-align:center;
+}
+TABLE.tbTitle
+{
+	width: 100%;
+}
+TABLE.tbGrid
+{
+	  border-color:#9FD6FF;
+	  border-width:1px;
+	  border-style:solid;
+	  border-collapse:collapse;
+	  background-image: url(../images/title_04.gif);
+}
+TABLE.tbsh
+{
+	width: 98%;
+    margin-top:5px;
+	  padding:5px 2px 5px 2px; height:50px;
+	  font-size:14px;
+	font-weight:bold; 
+	color: #000000; /* #0E2E4A;*/
+    background:#f2f9ff; border:#9FD6FF 1px solid; 
+}
+TD.tdTitle1
+{  
+	width: 50%;	
+	height: 26px;
+	background-attachment: scroll;
+	background-image: url(../images/title_01.gif);
+	background-repeat: repeat;
+	background-position: left center;	
+	text-align:left;
+	color: #014F8A;
+}
+
+TD.tdTitle2
+{  
+	height: 26px;
+	background-attachment: scroll;
+	background-image: url(../images/title_02.gif);
+	background-repeat: repeat;
+	background-position: center;
+}
+
+TD.tdTitle3
+{
+	width: 40%;	
+	height: 26px;
+	background-attachment: scroll;
+	background-image: url(../images/title_03.gif);
+	background-repeat: repeat;
+	background-position: right center;
+	text-align:right;
+	color: #C60001;
+}
+
+TD.tdLeftH30
+{
+	height: 30px;
+	text-align: left;
+	background-color: #f2f9ff;	
+}
+.ActivityList{
+font-size:12px;
+}
+.ActivityList td{
+background:url(../images/Activity_detail_07.jpg) repeat-x;
+height:26px;line-height:26px;
+}
+.ActivityList a{
+background:url(../images/jian_a.gif) no-repeat left;
+padding-left:20px; 
+text-decoration:none;color:#000000;
+}
+.ActivityList a:hover{
+color:#FF3300;
+}
+.ActivityList a:active{
+color:#FF6699;
+}
+.ActivityList a:visited{
+color:#666666;
+}
+.ActivityList span{
+background:url(../images/new_a.gif) no-repeat center;padding-left:27px;
+}
+.ProTitle{ font-size:14px; color:#F40; font-weight:bold; background:url(../images/point.jpg) bottom repeat-x; line-height:30px;}
+.tbox /*带最下面一横的文本框*/
+{	BORDER: 1px solid #69a;          
+    background-color:#fff;
+	height:20px;
+ }
+ .tbsearch /*带边线的文本框*/
+{		border:solid 1px #666;          
+        background-color:#eff;
+	  	
+      }
+.tbNoBorder /*不带边线的文本框*/
+{
+	BORDER-TOP-STYLE: none; BORDER-BOTTOM: none;
+          BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none;
+          border-bottom-color:#000000;
+         
+          HEIGHT:20px; 
+}
+         
+.tbox1 /*不可输入的文本框*/
+{    border:solid 1px #666;      
+	background-color:#eee;
+          HEIGHT:22px;
+          color:#333 
+                   	
+         }
+         
+.button		/*按钮*/
+{ border:solid 1px #99999;
+          HEIGHT:22px;
+          background:#eff;
+          
+         }
+.buttonss
+{
+	font-size: 12px;
+	font-family: MS Sans Serif, Tahoma, Arial;
+	color: #006790;
+	height: 20px;
+	border: 1px solid #006790;
+	border-left: 4px solid #10639A;
+	background-color: #ECF4F6;
+}
+.dropd
+{
+	border:solid 1px #1c4779;
+color:black;
+}
+.header /*抬头*/
+ {  
+	width:100%;
+	padding:5px 0px 5px 3px;
+	font-size:14px;
+	font-weight:bold;
+	color: #005a5a; /* #0E2E4A;*/
+	background-color:#d1eaf2;
+	/*background: url("../icon/project/pjt_header.gif")   repeat 0 100%;*/
+	height:28px;
+	 border-color:#9FD6FF;
+	  border-width:1px;
+	  border-style:solid;
+	  border-collapse:collapse;
+	  
+}         
+.dgHeader
+{
+	background-image:url(../images/title_04.gif);
+	background-color: #F2F9FF;
+	color:#014F8A;
+}         
+.header1
+ {
+ 	border:solid 1px #1b9bbf;
+	
+}
+	.header1 th{background:url(../icon/title1.jpg) repeat-x;color:#FFF; text-indent:10px;font-weight:bold; text-align:left; line-height:21px;}
+	.header1 th A:link{color:#FFF;font-weight:normal;}
+	.header1 th A:hover{color:#FF0;}
+.title  /*首行*/
+ {
+	BACKGROUND-IMAGE: url("../icon/book/book_top.jpg"); 
+	 color:#333333;	
+	  font-size:14px;
+   PADDING-LEFT: 10px;
+   height:26px; 
+	font-weight:bold;
+ }
+.book_header
+ {
+	BACKGROUND-IMAGE: url("../icon/book/book_header.jpg"); 
+	 BACKGROUND-REPEAT: repeat-x;
+	 color:#fff;
+	 height:26px; 
+	 font-weight:bold;
+	 text-align:center;
+ }
+.book_tb
+{ border:solid 1px #999;      
+	          HEIGHT:18px;
+          width:120px; 
+	}
+.tdright  /*在单元格中居右*/
+ {
+	text-align:right;
+	 padding-right:4px;	
+	 height:24px;
+	 background:#F5F8FE; /*#EDF3F3;*/
+	 color:#363636;
+	 
+ }
+.tdrightw  /*在单元格中居右,白色底*/
+ {
+	text-align:right;
+	 padding-right:4px;	
+	 height:24px;	 
+	 vertical-align:middle;
+ }
+ 
+ 
+.tdHighlight  /*高亮显示*/
+ {
+	text-align:right;
+	 padding-right:4px;	
+	 height:24px;
+	 background:#fff;
+	 color:blue;
+ }
+.tdWhite /*白色单元格*/
+ {
+	 padding-left:4px;	
+	 height:24px;
+	 background:#ffffff;	 
+ }
+ .tdleft /*居左单元格，背景白，深灰*/
+ {
+	 padding-left:5px;	
+	 height:24px;
+	 background:#fff;
+	 color:#333;
+ }
+.tdCenter /*居中单元格，背景色浅色，高亮*/
+ {
+	 padding-left:2px;	
+	 height:24px;
+	 background:#eef3f3;
+	 text-align:center;
+	 color:#969696;	 
+ }
+ .FrameContent{
+padding:10px;
+text-align:left;
+}
+#GlobLeft{
+width:254px;
+margin:0 0 0 4px;
+clear:right;float:left;
+}
+#GlobCenter{
+width:330px;
+margin-left:8px;
+clear:right;float:left;
+}
+#GlobRight{
+width:158px;
+clear:right;float:left;
+margin-left:8px;
+}
+ .Normalul{
+margin:5px;
+padding:0px;
+list-style:none;
+}
+.Normalul li{
+line-height:20px;
+border-bottom:dashed 1px #CCCCCC;
+background:url(../images/grayicon.gif) no-repeat left;
+padding-left:10px;
+overflow:hidden;height:20px;
+}
+.DDL /*下拉列表*/
+ {  border: 1px #333333; 
+	 border-color:Aqua;
+	background:#ffffee;
+	color:Navy;
+	
+}
+.footer /*页脚*/
+ {
+ background-color:#eeeeff;
+   PADDING-LEFT: 10px;
+	height:26px; 
+ }
+ 
+ .TDcalendar
+ {
+ height:40px;
+ line-height:16px;
+ text-align:right;
+	}
+	
+	.tdcell  /*单元格居中*/
+	{
+		background:#ffffaa;
+		text-align:center;
+		height:20px;
+	}
+	.tdTitle /*首行单元格、加粗*/
+	{
+	  background:#eeffee;
+		text-align:center;
+		font-weight:bold;
+		height:22px;
+	}
+.select  /*下拉列表*/
+{
+	border:solid 1px #369;
+	background:#eff;
+	color:#369;
+}
+.line /*行定义，带下划虚线*/
+{
+	BORDER-BOTTOM: #CCC 1px dotted;
+	line-height:20px;
+
+}
+
+
+.pjt_bt
+{   width:100px;
+	font-size:12px;
+	color:#0e2e4a;
+	height:22px;
+	border:solid 1px #369;
+	background-color:#eee;
+}
+.OL_Title
+{
+	border:solid 1 #eee;
+	display:none;
+	 margin:1 1 1 1;	 
+}
+ul{
+	list-style-type:none;
+	list-style-position : outside;
+	margin:0 0 0 0;
+	padding:0 0 0 0;
+	word-break:break-all;
+}
+
+.tip /*提示栏*/
+{
+	font-size:12px;
+	color:#036;
+	 padding:5 0 5 0;
+	background:#ffe;
+	line-height:18px;	
+}
+
+/*--------------Content  文本框-----------*/
+
+.matter {padding: 5px 0px; margin: 10px 10px 10px 10px;font-weight: normal;}
+#container { float: left; width: 100%; clear:both; padding: 20px 0px; margin: 0px; }
+
+content { float: left; width: 600px; padding: 0; margin: 0px; }
+.content h1, h2, h3 { font-family: '宋体'; color: #005a5a; font-weight:normal; }
+.content h2 { text-transform: uppercase; font-size: 18px; letter-spacing: -1px; padding: 5px 0px; margin: 0px 0px 15px 0px; border-bottom: solid 1px #fff; font-weight: normal; }
+.content h3 { font-size: 20px; letter-spacing: -1px; padding: 5px 0px 0px 0px; margin: 0px; font-weight: normal;  }
+.content p { font-size: 11px; padding: 5px 0px; margin: 0px; }
+
+.content input.on { color : #999966; border: solid 1px #f4fbdc; background: #f4fbdc; padding: 3px 0px;}
+.content input.on:hover { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content input.on:focus { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content input.onIE { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+
+.content textarea.on { color : #999966; border: solid 1px #f4fbdc; background: #f4fbdc; padding: 3px 0px;}
+.content textarea.on:hover { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content textarea.on:focus { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content textarea.onIE { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+
+/*-------------CSS布局------------*/
+#header {margin:0px 0 15px 0px;color: #005a5a;float: left; width:100%;font-size: 16px; line-height:20px; padding:0; border-bottom: solid 1px #fff; font-weight:bold;}
+#pagebody {margin:0 auto;height:400px;background:#CCFF00}
+#footer {margin: 10px 0px 0px 0px;height:30px; float:left; width:100%; border-top: solid 1px #fff; padding:15px;}
+#pageleft{ width:160px; /*设定宽度*/
+ text-align:left; /*文字左对齐*/
+ float:left; /*浮动居左*/
+ clear:left; /*不允许左侧存在浮动*/
+ overflow:hidden; /*超出宽度部分隐藏*/}
+#mainbody{ width:570px;
+ text-align:left;
+ float:right; /*浮动居右*/
+ clear:right; /*不允许右侧存在浮动*/
+ overflow:hidden}
+.BtnFont {
+	filter:dropshadow(color=#F7F8F7,offX=1,offY=1,Positive=1);
+	height:1;
+}
+.BtnCenter 
+{
+	
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#F7F7F7,endColorStr=#AEB0AE);
+	background: #FFFFFF;
+}
+#container li{ line-height:20px;list-style : disc inside ; list-style-type : circle;}
+
+
+/*- Menu Tabs 4--------------------------- */
+
+    #tabs4 {
+      float:left;
+      width:100%;
+      font-size:93%;
+    
+      }
+    #tabs4 ul {
+	  margin:0;
+	  padding:0px 0px 0 0px;
+	  list-style:none;
+      }
+    #tabs4 li {
+      display:inline;
+      margin:0;
+      padding:0;
+          line-height:normal;
+	  border-bottom:1px solid #000;
+      }
+    #tabs4 a {
+      float:left;
+      background:url("../icon//tableft4.gif") no-repeat left top;
+      margin:0;
+      padding:0 0 0 4px;
+      text-decoration:none;
+       cursor:pointer;
+      }
+      
+    #tabs4 a span {
+      float:left;
+      display:block;
+      background:url("../icon/tabright4.gif") no-repeat right top;
+      padding:5px 10px 5px 6px;
+      color:#6B78A9;
+    
+      }
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+    #tabs4 a span {float:none;}
+/* End IE5-Mac hack */
+    #tabs4 a:hover span {
+      color:#6B78A9;
+      }
+    #tabs4 a:hover {
+      background-position:0% -42px;
+      }
+    #tabs4 a:hover span {
+      background-position:100% -42px;
+      }  
+	
+.hidden { display:none;}
+
+/* table border */
+.tbborder
+{
+	border:solid 1px #007dcd;
+}

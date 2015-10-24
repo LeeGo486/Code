@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="description" content="HR首页">
+        <title>HR首页</title>  
+        <link href="../css/common.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+        <link href="../css/layout.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+        <link href="../css/cn.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+        <link href="../css/worldofhwa.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../../../../jquery-easyui-1.3.4/jquery.min.js?v=201209051438307833"></script> 
+        <script type="text/javascript" src="../../../../JS/EHRAS/Common/jquery.d.imagechange.min.js"></script> 
+        <script type="text/javascript"> 
+            //发展历程的JS代码
+            $(function () {
+                $(".right").click(function () {
+                    turnright();
+                });
+
+                $(".left").click(function () {
+                    turnleft();
+                }); 
+            });
+            var total = 6;
+            var cur = 0;
+            function turnleft() {
+                pid = parseInt(cur) - 1;
+                if (pid < total && pid >= 0) {
+                    getn(pid);
+                } 
+            }
+
+            function turnright() { 
+                pid = parseInt(cur) + 1;
+                if (pid < total && pid > 0) {
+                    getn(pid);
+                }
+            }
+
+            function getn(pid) { 
+                if (pid == total-1) {
+                    $(".right").addClass("gray");
+                } else {
+                    $(".right").removeClass("gray");
+                }
+                if (pid == 0) {
+                    $(".left").addClass("gray");
+                } else {
+                    $(".left").removeClass("gray");
+                }
+
+                var data = [
+                { src: '../images/company/company.jpg', target: 'blank', href: 'http://www.elegant-prosper.com/' },
+                { src: '../images/company/company24.jpg', target: 'blank', href: 'http://www.elegant-prosper.com/' },
+                { src: '../images/company/company29.jpg', target: 'blank', href: 'http://www.elegant-prosper.com/' },
+                { src: '../images/company/company28.jpg', target: 'blank', href: 'http://www.elegant-prosper.com/' },
+                { src: '../images/company/company23.jpg', target: 'blank', href: 'http://www.elegant-prosper.com/' },
+                { src: '../images/company/company20.jpg?t=0002', target: 'blank', href: 'http://www.elegant-prosper.com/' }
+                ];
+                cur = pid; 
+                $(".show img").animate({ opacity: 'toggle' }, "10", null, function () {
+                    $(".show img").attr("src", data[pid].src);
+                    $(".show a").attr("href", data[pid].href);
+                    $(".show img").animate({ opacity: 'toggle' }, "200");
+                });
+
+            }
+        </script> 
+    </head>
+  
+<body style="margin:0px; width:100%; font-family: Arial, Helvetica;"  id="mybody">    
+    <div id="Container">  
+        <div id="Main"> 
+            <!-- ------------------------------------------------------- -->
+            <div class="pTop">
+                <label><a href="home.html">首页</a></label> / <label>关于HWA</label> / <label></label>
+            </div>
+             <div id="profile" rel="16">
+            	<div class="show" rel="1" style="text-align:center; font-family: Arial Verdana, '微软雅黑';">
+                	<a><img src="../images/company/company.jpg" style="width:100%; height:470px; border:none;"/></a>
+                    <h5>
+                        走进华之毅时尚集团：探寻精致管理奥秘
+                    </h5> 
+                </div>
+            	<div class="left gray"></div>
+                <div class="right"></div>
+            </div> 
+            <!-- ------------------------------------------------------- --> 
+        </div>
+    </div> 
+</body>
+ 
+</html>

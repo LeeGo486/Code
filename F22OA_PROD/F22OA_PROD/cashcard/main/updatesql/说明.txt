@@ -1,0 +1,1 @@
+dbo.d_consume 中dtype 1为消费，2为收取年费

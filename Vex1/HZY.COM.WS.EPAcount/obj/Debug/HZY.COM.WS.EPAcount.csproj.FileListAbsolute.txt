@@ -1,0 +1,11 @@
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\HZY.COM.WS.EPAcount.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\HZY.COM.WS.EPAcount.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\HZY.COM.Common.Base.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\HZY.COM.Common.DBAccess.DBConn.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\HZY.COM.Common.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\HZY.COM.WS.DataSets.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\Interop.MSXML2.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\bin\Debug\HZY.COM.WS.DataSets.pdb
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\obj\Debug\HZY.COM.WS.EPAcount.csprojResolveAssemblyReference.cache
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\obj\Debug\HZY.COM.WS.EPAcount.dll
+D:\Document\Work\Code\Vex\HZY.COM.WS.EPAcount\obj\Debug\HZY.COM.WS.EPAcount.pdb

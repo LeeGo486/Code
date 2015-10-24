@@ -1,0 +1,1 @@
+﻿<%@ page language="C#" autoeventwireup="true" inherits="AJAX_report_bankcardreport, App_Web_bankcardreport.aspx.c3019a6c" enableviewstatemac="false" enableEventValidation="false" %>

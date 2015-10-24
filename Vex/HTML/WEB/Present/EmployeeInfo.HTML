@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>人员管理</title>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/gray/easyui.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.ajaxupload.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js.extend.datetime.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.numberformatter.js" type="text/javascript"></script>
+    <script src="../../JS/Present/EmployeeInfo.js?Date=20131225" type="text/javascript"></script>
+    <style>
+        body {
+            font-family:                   Verdana,Geneva,Arial,sans-serif;
+            font-size:                       small;
+        }
+        span {
+            margin-right:                5px;
+        }
+        .bottom {
+            margin-bottom:           5px;
+        }
+        #winTab {
+            margin-left:                   40px;
+            margin-right:                40px;
+            padding:                        8px;
+            border-collapse:         collapse;
+            width:                            360px;
+        }
+            #winTab th {
+                text-align:                 right;
+                vertical-align:           top;
+                padding-top:           2px;
+                padding-right:         10px;
+            }
+            #winTab td {
+                vertical-align:           top;
+                padding-bottom:    15px;
+            }
+            #winTab input {
+                border:                      1px solid; 
+                border-color:           #CCC #EEE #EEE #CCC;
+                background:             #F5F5F5;
+            }
+                #winTab input:focus {
+                    background:         #FFCCCC;
+                }
+        h4 {
+            font-style:                      italic;
+            font-size:                        1.2em;
+            border-bottom:           thin dotted #7e7e7e;
+            padding-bottom:        2px;
+            margin-top:                  5px;
+            margin-bottom:           15px;
+            color:                              #257dd0;
+        }
+        #sumbit {
+            margin-left:                60px;
+        }
+    </style>
+</head>
+<body>
+   <div id="main">
+       <form id="mainForm" class="bottom">
+           <span>年份</span><input  type="text" id="year" name="txtyear" />
+           <span>月份</span><input  type="text" id="month" name="txtmonth" />
+           <span>员工号</span><input type="text" name="txtempCode" />
+           <a id="search" href="#" title="search button">查询</a>
+           <a id="reset"  href="#" title="reset button">清空</a>
+       </form>
+
+       <div class="bottom">
+           <a id="upload" href="#" title="upload button">Excel导入</a>
+           <a id="new"  href="#" title="new button">新增人员</a>
+           <a id="delete" href="#" title="delete button">删除人员</a>
+       </div>
+
+       <table id="tab_list"></table>
+   </div>
+   <div id="window">
+        <h4>人员信息表单</h4>
+        <form id="winForm">
+            <table id="winTab">
+                <tr>
+                    <th>员工姓名:</th>
+                    <td><input type="text" name="txtEmployeeName" /></td>
+                </tr>
+                <tr>
+                    <th>员工编号:</th>
+                    <td><input type="text" name="txtEmployeeNo" /></td>
+                </tr>
+                <tr>
+                    <th>身份证号:</th>
+                    <td><input type="text" name="txtEmployeeID" /></td>
+                </tr>
+                <tr>
+                    <th>员工生日:</th>
+                    <td><input type="text" name="txtBirthday" /><em>格式:19840815</em></td>
+                </tr>
+                <tr>
+                    <th>任务年份:</th>
+                    <td><input id="winYear" name="txtYear" /></td>
+                </tr>
+                <tr>
+                    <th>任务月份:</th>
+                    <td><input id="winMonth" name="txtMonth" /></td>
+                </tr>
+                <tr>
+                    <th>员工积分:</th>
+                    <td><input type="number" name="txtCredits" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a id="sumbit" href="#" title="sumbit buttom">提交</a>
+                        <a id="resetWin" href="#" title="reset buttom">清空</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

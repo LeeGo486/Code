@@ -1,0 +1,244 @@
+﻿@model IEnumerable<ElegantWM.EntityModel.ITSM_Event>
+@helper GetStar(decimal pdValue)
+{
+    string str = "";
+    int index = 0;
+
+    while (index < 5)
+    {
+        if (index <= pdValue)
+        {
+            str += "★";
+        }
+        else
+        {
+            str += "☆";
+        }
+        index++;
+    }
+    @(str); 
+}
+<script>
+
+    $(function () {
+        $(".rating-input").addClass("input-group-addon").attr("style", "border-left:1px solid #ccc;width:100%;");
+        $(".icon-star").attr("style", "color:#aaa");
+        $(".icon-star-empty").attr("style", "color:#aaa");
+        $(".rating-input").unbind();
+
+    });
+
+    var m_LastID = undefined;
+    function GetHisList(url, id) {
+
+        if (m_LastID == id) {
+            return;
+        }
+
+        Msg.show("请稍候...", 3);
+        $.post(url, function (data) {
+            Msg.hide();
+            $("#divHisList" + id).html(data);
+            $("#divHisList" + m_LastID).html("");
+            m_LastID = id;
+            $("#icon" + m_LastID).removeClass("icon-double-angle-down");
+            $("#icon" + m_LastID).addClass("icon-double-angle-up");
+            $('html, body').animate({ scrollTop: $("#E_" + id).offset().top }, 300, false);
+        });
+        return false;
+    }
+
+
+    function hideHisList() {
+        if (m_LastID != undefined) {
+            $("#divHisList" + m_LastID).html("");
+            $("#icon" + m_LastID).removeClass("icon-double-angle-up");
+            $("#icon" + m_LastID).addClass("icon-double-angle-down");
+            m_LastID = undefined;
+        }
+    }
+
+    function changeState(state) {
+        Msg.show("请稍候...", 3);
+        var url = "?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        if (state == "ALL") {
+            url = url + "&state=ALL"
+        }
+        window.location.href = url;
+    }
+</script>
+
+<div class="ht">
+    <i class="icon-wrench"></i>&nbsp;&nbsp;我的报修 
+   @if (Request["State"] == null || Request["State"].ToString().ToUpper() != "ALL")
+   {
+       <a href="#" onclick="changeState('ALL'); return false;"><span class="badge  pull-right">全部 @(ViewBag.AllEventCount)</span></a>  
+       
+       <span class="badge  pull-right hs" style="margin-left: 10px">未结束 @(ViewBag.EventCount)</span>
+   }
+   else
+   {
+       <span class="badge  pull-right hs">全部 @(ViewBag.AllEventCount)</span> 
+       <a href="#" onclick="changeState('');return false;"><span class="badge  pull-right" style="margin-left: 10px">未结束 @(ViewBag.EventCount)</span></a>
+   }
+</div>
+
+@if (ViewBag.EventCount == 0 && (Request["State"] == null || Request["State"].ToString().ToUpper() != "ALL"))
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，您目前没有“未结束”的“故障报修”信息。<br />
+        您可以通过菜单<a href="/IT/DC/NeedHelp?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->请求服务”</a>提交新的“故障报修”信息。<br />
+    </div>
+}
+
+
+@if (ViewBag.AllEventCount == 0 && (Request["State"] != null && Request["State"].ToString().ToUpper() == "ALL"))
+{
+    <div id="noEventMsg" class="mainArea" style="min-height: 0px;">
+        <i class="icon-info-sign"></i>
+        亲，截止目前您没有提交过“故障报修”信息。<br />
+        您可以通过菜单<a href="/IT/DC/NeedHelp?sid=@Request["sid"]&oid=@Request["oid"]">“客户自助->请求服务”</a>提交新的“故障报修”信息。<br />
+    </div>
+}
+
+<div style="display: none;" id="detailHisList"></div>
+
+@foreach (ElegantWM.EntityModel.ITSM_Event e in Model)
+{
+    <div class="eventSch clearfix" id="E_@e.Id" onclick="hideHisList()">
+        <ul class="list-group">
+            <li class="list-group-item"><span style="color: #969696">事件编号：</span><i class="icon-double-angle-down" id="icon@(e.Id)"></i>
+                <a href="#" onclick="return GetHisList('/IT/SM/DetailHisList/@e.Id?sid=@Request["sid"]&oid=@Request["oid"]','@(e.Id)');return false;" style="color:@((e.ProcessStatus == 5 || e.ProcessStatus == 9) ? "#969696" : "#39ac00")">
+                    @(e.Code)
+                </a>
+
+                @if (e.Engineer != null)
+                {
+                    <span class="badge ls"><a href="tel:@(e.EngineerPhone)" style="text-decoration:none"><span style="color: #FFF"><i class="icon-phone"></i>&nbsp;&nbsp;@(e.Engineer)</span></a></span>
+                }
+                else
+                {
+                    <span class="badge ls"><a href="tel:057383685660"><span style="color: #FFF"><i class="icon-phone"></i>&nbsp;&nbsp;信息管理中心</span></a></span>
+                }
+
+            </li>
+            <li class="list-group-item"><span style="color: #969696">请求内容：</span>
+                @(e.EventDesc)
+            </li>
+        </ul>
+
+        <ol class="ui-step ui-step-5">
+            <li class="ui-step-start @if (e.ProcessStatus == 9)
+                                     {@("ui-step-undone")}
+                                     else if (e.ProcessStatus != 9 && e.ProcessStatus >= 0)
+                                     {@("ui-step-done")}
+                                     else
+                                     {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">1</i>
+                    <span class="ui-step-text">提报</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 0)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 0)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">2</i>
+                    <span class="ui-step-text">派工</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 1)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 1)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">3</i>
+                    <span class="ui-step-text">接收</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 3 || e.ProcessStatus == 2)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 3)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")}">
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">4</i>
+                    <span class="ui-step-text">完成</span>
+                </div>
+            </li>
+            <li class="@if (e.ProcessStatus == 4)
+                       {@("ui-step-active")}
+                       else if (e.ProcessStatus == 9)
+                       {@("ui-step-undone")}
+                       else if (e.ProcessStatus != 9 && e.ProcessStatus > 4)
+                       {@("ui-step-done")}
+                       else
+                       {@("ui-step-undone")} ui-step-end ">
+
+                <div class="ui-step-line">-</div>
+                <div class="ui-step-icon">
+                    <i class="iconfont"></i>
+                    <i class="ui-step-number">5</i>
+                    <span class="ui-step-text">评价</span>
+                </div>
+            </li>
+        </ol>
+
+        <div id='divHisList@(e.Id)' style="min-height:0px"></div>
+
+        @if (e.ProcessStatus == 0 || e.ProcessStatus == 4)
+        {
+            <div class="operate">
+                @if (e.ProcessStatus == 0)
+                {
+                    <div class="btnOpt" onclick="CancelEvent('@e.Id');" style="color:#d9534f;"><i class="glyphicon glyphicon-trash"></i>&nbsp;取消</div>
+                }
+                @if (e.ProcessStatus == 4)
+                {
+                    <div class="btnOpt" onclick="EvlEvent('@e.Id');" style="color:#66CC33;"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;评价</div>
+                }
+            </div>
+        }
+        else if (e.ProcessStatus == 5)
+        {
+            <div style="margin: 10px"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;评价信息</div>
+            <ul class="list-group">
+
+                <li class="list-group-item"><span style="color: #969696">响应时间：</span>
+                    @GetStar(e.ElvTime - 6)
+                </li>
+                <li class="list-group-item"><span style="color: #969696">服务态度：</span>
+                    @GetStar(e.ElvAtude - 6)
+                </li>
+                <li class="list-group-item"><span style="color: #969696">服务结果：</span>
+                    @GetStar(e.ElvRst - 6)
+                </li>
+                <li class="list-group-item"><span style="color: #969696">其它反馈：</span>
+                    @(e.ElvDesc)
+                </li>
+            </ul> 
+        }
+
+    </div>
+}

@@ -1,0 +1,92 @@
+﻿@foreach (System.Data.DataRow dr in ViewBag.ShopPayInfo.Rows)
+{
+    <table class="salaryTable">
+        <tr>
+            <th>岗位津贴</th>
+            <td>@dr["岗位津贴"]</td>
+            <th>地区津贴</th>
+            <td>@dr["地区津贴"]</td>
+        </tr>
+        <tr>
+            <th>固定加班</th>
+            <td>@dr["固定加班"]</td>
+            <th>学历补贴</th>
+            <td>@dr["学历补贴"]</td>
+        </tr>
+        <tr>
+            <th style="font-weight: bold;">年度绩效工资</th>
+            <td colspan="3">@dr["年度绩效工资"]</td>
+        </tr>
+        @*<tr style="border-top:2px solid #CC3333">
+            <td colspan="4"></td>
+        </tr>*@
+        <tr style="border-top:1px solid #CC3333">
+            <th>实际完成</th>
+            <td>@dr["实际完成"]</td>
+            <th>个人销售提成</th>
+            <td>@dr["个人销售提成"]</td>
+        </tr>
+        <tr>
+            <th>月度绩效工资</th>
+            <td>@dr["月度绩效工资"]</td>
+            <th>超时加班</th>
+            <td>@dr["超时加班"]</td>
+        </tr>
+        <tr>
+            <th>节日加班</th>
+            <td>@dr["节日加班"]</td>
+            <th>高单奖</th>
+            <td>@dr["高单奖"]</td>
+        </tr>
+        <tr>
+            <th>其他项目</th>
+            <td colspan="3">@dr["其他项目"]</td>
+        </tr>
+
+        <tr>
+            <th style="font-weight: bold;">应发合计</th>
+            <td colspan="3">@dr["应发合计"]</td>
+        </tr>
+       @* <tr style="">
+            <td colspan="4"></td>
+        </tr>*@
+        <tr style="border-top:1px solid #CC3333">
+            <th>代扣养老金</th>
+            <td>@dr["代扣养老金"]</td>
+            <th>代扣失业金</th>
+            <td>@dr["代扣失业金"]</td>
+        </tr>
+        <tr>
+            <th>代扣医疗</th>
+            <td>@dr["代扣医疗"]</td>
+            <th>代扣公积金</th>
+            <td>@dr["代扣公积金"]</td>
+        </tr>
+
+
+        <tr>
+            <th>个人所得税</th>
+            <td>@dr["个人所得税"]</td>
+            <th>互助金</th>
+            <td>@dr["互助金"]</td>
+        </tr>
+
+        <tr>
+            <th>社保补扣</th>
+            <td>@dr["社保补扣"]</td>
+            <th>餐贴账扣</th>
+            <td>@dr["餐贴账扣"]</td>
+        </tr>
+       @* <tr>
+            <td colspan="4"></td>
+        </tr>*@
+        <tr style="border-top:1px solid #CC3333">
+            <th>其他扣款</th>
+            <td colspan="3">@dr["其他扣款"]</td>
+        </tr>
+        <tr>
+            <th style="font-weight: bold;">实发金额</th>
+            <td colspan="3">@dr["实发金额"]</td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,9 @@
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\bin\Debug\ElegantWM.IDAL.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\bin\Debug\ElegantWM.IDAL.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\bin\Debug\ElegantWM.EntityModel.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\bin\Debug\ElegantWM.AutoMapper.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\bin\Debug\ElegantWM.EntityModel.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\bin\Debug\ElegantWM.AutoMapper.pdb
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\obj\Debug\ElegantWM.IDAL.csprojResolveAssemblyReference.cache
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\obj\Debug\ElegantWM.IDAL.dll
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\ElegantWM.IDAL\obj\Debug\ElegantWM.IDAL.pdb

@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ServiceProcess;
+using System.Text;
+using System.Threading;
+
+namespace LYMessageService
+{
+    static class Program
+    {
+        /// <summary>
+        /// 应用程序的主入口点。
+        /// </summary>
+        static void Main()
+        {
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[] 
+            { 
+                new Service1() 
+            };
+            ServiceBase.Run(ServicesToRun);
+
+            AppDomain.CurrentDomain.UnhandledException
+                += new UnhandledExceptionEventHandler(UnhandledExceptionEventHandler);
+        }
+
+        static void UnhandledExceptionEventHandler(object sender, UnhandledExceptionEventArgs args)
+        {
+
+
+            if (!(args.ExceptionObject is ThreadAbortException))
+            {
+
+                Exception ex = args.ExceptionObject as Exception;
+
+                using (System.IO.StreamWriter sw
+                   = new System.IO.StreamWriter(Service1.strPath + "logError.txt", true))
+                {
+                    sw.WriteLine("DBconn在 "
+                        + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ")
+                        + "Insert操作时发生错误，" + ex.Message);
+                }
+
+            };
+
+        }
+    }
+}

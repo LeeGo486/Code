@@ -1,0 +1,18 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "Pics";
+    Layout = null;
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <ul>
+        @foreach (var t in Model)
+        {
+            <img src="@Url.Content(t)" />
+        }
+    </ul>
+}
+else
+{
+    <div class="alert alert-info">No Pics</div>
+}

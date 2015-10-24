@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "众筹";
+    Layout = "~/Views/Shared/_WeiXinBaseLayout.cshtml";
+}
+@section script{
+    @*<link rel="stylesheet" href="~/Areas/Game/Resources/css/GLAllTheChips.css?v3" />*@
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".button").click(function () {
+                window.location.href = "/Game/GLAllTheChips/GameInfo?lid=" + Url.get("wxid") + "&sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid");
+            })
+        });
+    </script>
+    <style type="text/css">
+        .button {
+            position: absolute;
+            bottom: 10px;
+            z-index: 2;
+        }
+    </style>
+}
+
+<div id="bg">
+    <img class="bg1" src="~/Areas/Game/Resources/images/GLAllTheChips/index1.jpg" alt="head" style="width: 100%" />
+    <img class="button" src="~/Areas/Game/Resources/images/GLAllTheChips/indexbutton.png" alt="head" style="width: 100%" />
+</div>
+
+<div id="bg1">
+    <img class="bg1" src="~/Areas/Game/Resources/images/GLAllTheChips/index2.jpg" alt="head" style="width: 100%" />
+</div>

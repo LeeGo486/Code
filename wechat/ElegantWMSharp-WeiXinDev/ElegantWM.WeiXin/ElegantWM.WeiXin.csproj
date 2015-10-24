@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD704CEE-56B9-4B2F-B0DC-87492AEA1560}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElegantWM.WeiXin</RootNamespace>
+    <AssemblyName>ElegantWM.WeiXin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LitJSON">
+      <HintPath>..\packages\LitJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="MessageRouter.cs" />
+    <Compile Include="MsgEntity\WxEvent.cs" />
+    <Compile Include="MsgEntity\WxFans.cs" />
+    <Compile Include="MsgEntity\WxItem.cs" />
+    <Compile Include="MsgEntity\WxItemContent.cs" />
+    <Compile Include="MsgEntity\WxMsg.cs" />
+    <Compile Include="MsgEntity\WxNews.cs" />
+    <Compile Include="MsgEntity\WxNewsItem.cs" />
+    <Compile Include="MsgEntity\WxNewsMsg.cs" />
+    <Compile Include="MsgEntity\WxOpenIds.cs" />
+    <Compile Include="MsgEntity\WxServiceNotice.cs" />
+    <Compile Include="MsgEntity\WxSnsapiBase.cs" />
+    <Compile Include="MsgEntity\WxTextMsg.cs" />
+    <Compile Include="MsgEntity\WxTicket.cs" />
+    <Compile Include="MsgEntity\WxToken.cs" />
+    <Compile Include="MsgEntity\XmlEntityExchange.cs" />
+    <Compile Include="MsgEntity\WxSnsapiUserinfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Simulator.cs" />
+    <Compile Include="SimulatorEntity\WxCookie.cs" />
+    <Compile Include="SimulatorEntity\WXResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElegantWM.EntityModel\ElegantWM.EntityModel.csproj">
+      <Project>{c403bce8-d507-4a38-bf7c-2f76efaf0db4}</Project>
+      <Name>ElegantWM.EntityModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.Factory\ElegantWM.Factory.csproj">
+      <Project>{2eb83682-4660-433a-9ecc-c3605b14ca12}</Project>
+      <Name>ElegantWM.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.IBLL\ElegantWM.IBLL.csproj">
+      <Project>{77a6f903-31aa-4986-a567-7788666328b3}</Project>
+      <Name>ElegantWM.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElegantWM.Tools\ElegantWM.Tools.csproj">
+      <Project>{b3722cd5-c75b-4080-a3da-67611b07286e}</Project>
+      <Name>ElegantWM.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

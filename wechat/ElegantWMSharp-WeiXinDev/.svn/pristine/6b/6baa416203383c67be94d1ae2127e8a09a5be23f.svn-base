@@ -1,0 +1,64 @@
+﻿<div class="ht" id="sdepotplandetail">
+    <i class="icon-file-alt"></i>&nbsp;&nbsp;我的行动计划
+    <span onclick="$('#sdetailarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="mainArea">    
+    <div class="input-group date form_date">
+        <span class="input-group-addon">日期</span>
+        <input class="form-control hzyDp seDate" type="text" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+    <br />
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div>
+                <span class="badge pull-left ys">B</span>
+                <span>&nbsp;谢莹</span>
+                <span style="position:absolute;left:100px;">&nbsp;看新款</span>
+                <span class="badge pull-right ls">达成</span>
+            </div>
+            <div>
+                <span>时间：10:11:12</span>
+                <span style="float:right;">客户经理：李菲菲</span>
+            </div>
+            <div>
+                <span>零售单号：PS1721-2014-07-13-0003</span>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div>
+                <span class="badge pull-left ys">C</span>
+                <span>&nbsp;孙红</span>
+                <span style="position:absolute;left:100px;">&nbsp;微信维护</span>
+                <span class="badge pull-right hs">未达成</span>
+            </div>
+            <div>
+                <span>时间：10:21:12</span>
+                <span style="float:right;">客户经理：李菲菲</span>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div>
+                <span class="badge pull-left ys">C</span>
+                <span>&nbsp;欧阳雪梅</span>
+                <span style="position:absolute;left:100px;">&nbsp;微信维护</span>
+                <span class="badge pull-right ys">未汇报</span>
+            </div>
+            <div>
+                <span>时间：10:35:12</span>
+                <span style="float:right;">客户经理：李菲菲</span>
+            </div>
+        </li>
+    </ul>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="doEmployeePlan();"><i class="icon-pencil"></i>汇报行动</span>
+    </div>
+</div>

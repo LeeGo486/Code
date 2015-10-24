@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "EP雅莹“为爱积分”";
+    Layout = "~/Areas/Game/Views/Shared/_Layout.cshtml";
+}
+@section script{
+    <link href="~/Areas/Game/Resources/css/qz.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="~/Content/Plugin/Bootstrap/bootbox.min.js"></script>
+    <style type="text/css">
+        .input-group {
+            margin-bottom: 6px;
+        }
+    </style>
+    <script type="text/javascript">
+        function submitData() {
+            var name = $("#txtName").val();
+            var phone = $("#txtPhone").val();
+            var address = $("#txtAddress").val();
+            var reason = $("#txtReason").val();
+
+            if (!/^1[34587]\d{9}$/.test(phone)) {
+                $("#VipTel").focus();
+                Msg.show('手机号码无效', 1);
+                return;
+            }
+
+            if (name == "" || phone == "" || address == "") {
+                Msg.show("姓名,手机,地址不能为空", 1);
+                return;
+            }
+            var data = {
+                VtName: name,
+                VtPhone: phone,
+                VtAddress: address,
+                VtReason: reason,
+                Oid: Url.get("oid")
+            };
+            Msg.show("提交中...", 3);
+            $.post("/Game/Quiz/SubmitUser", data, function (rst) {
+                Msg.hide();
+                Msg.show(rst.msg, rst.result);
+
+                //setTimeout(
+                    if (rst.result == 0) {
+                        window.location.href = "/Game/Quiz/Index?oid=" + Url.get("oid");
+                    }
+                //}, 100)
+
+            });
+        }
+    </script>
+}
+<div style="padding: 10px 26px; font-size: 16px; text-align: left; line-height: 180%;">
+    如果你也想成为天使之音沙龙志愿者，快动手填写信息吧~幸运者还能获得1月21日有EP雅莹和周大福联合赞助的的关爱自闭症儿童巡回慈善音乐会门票~（暂限上海地区报名）
+    <br />
+    <br />
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">&nbsp;&nbsp;*姓&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;</span>
+        <input class="form-control" id="txtName" value="" />
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">*手机号码</span>
+        <input class="form-control" id="txtPhone" value="" />
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">&nbsp;&nbsp;*地&nbsp;&nbsp;&nbsp;址&nbsp;&nbsp;</span>
+        <input class="form-control" id="txtAddress" value="" />
+    </div>
+    <div class="input-group requestQuery">
+        <span class="input-group-addon">&nbsp;申请理由</span>
+        <textarea id="txtReason" maxlength="200" placeholder="" class="form-control"></textarea>
+    </div>
+    <p align="right">
+        <img onclick="submitData();" src="/Areas/Game/Resources/images/qz/tj.png" width="100px" />
+    </p>
+</div>

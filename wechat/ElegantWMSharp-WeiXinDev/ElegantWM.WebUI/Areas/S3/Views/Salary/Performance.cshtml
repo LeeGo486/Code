@@ -1,0 +1,130 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //显示全店绩效工资图标
+        $('#depotPer').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 300,
+                backgroundColor: null
+            },
+            title: {
+                text: '佣金比比看',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['徐艳琼', '陈慧珊', '黄秋娜', '陈小芳'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '1月份佣金',
+                color: '#B22222',
+                data: [370, 360 , 300, 290]
+            }]
+        });
+    });
+
+    //加载金额分配
+    function loadPerformanceList() {
+        Msg.show("人员加载中...", 3);
+        $.post("/S3/Salary/PerformanceList", function (htmldata) {
+            Msg.hide();
+            showPerformanceList(htmldata);
+        });
+    }
+
+    //显示金额分配
+    function showPerformanceList(data) {
+        $("#sperformancelistarea").html(data);
+        scrollTo("#sperformancelistarea");
+    }
+
+    //关闭金额分配
+    function doPerformance(data) {
+        Msg.show('提交成功', 0);
+    }
+</script>
+
+<div class="ht" id="sperformance">
+    <i class="icon-bar-chart"></i>&nbsp;&nbsp;我的佣金
+    <span onclick="$('#sperformancearea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+
+<div class="dataDetail">
+    我的佣金：300元
+    <br />
+    <table class="dataTable performance">
+        <tr>
+            <td>奖励单号</td>
+            <td>奖励金额</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PS1138-2014-05-27-001</td>
+            <td>30</td>
+            <td><a href="javascript:void(0);" onclick="loadPerformanceList();">奖金分配</a></td>
+        </tr>
+        <tr>
+            <td>PS1138-2014-05-27-002</td>
+            <td>40</td>
+            <td><a href="javascript:void(0);" onclick="loadPerformanceList();">奖金分配</a></td>
+        </tr>
+        <tr>
+            <td>PS1138-2014-05-27-003</td>
+            <td>30</td>
+            <td><a href="javascript:void(0);" onclick="loadPerformanceList();">奖金分配</a></td>
+        </tr>
+        <tr>
+            <td>PS1138-2014-05-27-004</td>
+            <td>50</td>
+            <td><a href="javascript:void(0);" onclick="loadPerformanceList();">奖金分配</a></td>
+        </tr>
+    </table>
+    全店绩效工资:1460元
+    <div id="depotPer"></div>
+    全国冠军：李华&nbsp;&nbsp;680元<br />
+    个人佣金：300元<br />
+    排名：23位，加油！
+    <div id="sperformancelistarea">
+    </div>
+</div>

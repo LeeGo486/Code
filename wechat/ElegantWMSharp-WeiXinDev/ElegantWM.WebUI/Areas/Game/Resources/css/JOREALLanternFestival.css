@@ -1,0 +1,82 @@
+﻿#Bg img {
+    width: 100%;
+}
+
+#note {
+    position: absolute;
+    z-index: 1;
+}
+
+#logo {
+    position: absolute;
+    z-index: 1;
+}
+
+#btn {
+    position: absolute;
+    z-index: 2;
+}
+
+#fish {
+    position: absolute;
+    z-index: 1;
+}
+#fishindex {
+    position: absolute;
+    z-index: 12;
+}
+#quanbg {
+    position: absolute;
+    z-index: 1;
+}
+
+.deng {
+    position: absolute;
+    z-index: 9999;
+    top: 0px;
+    float: right;
+}
+
+.question {
+    position: absolute;
+    /*z-index:1;
+    writing-mode: tb-rl;*/
+}
+
+    .question img {
+        width: 140px;
+    }
+
+.answers {
+    position: absolute;
+    margin: 0 auto;
+    color: #6a0000;
+    position: absolute;
+    width: 100%;
+}
+
+    .answers table {
+    }
+
+    .answers th {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .answers tr td {
+        font-size: 22px;
+        text-align: center;
+    }
+
+.quan {
+    position: absolute;
+    z-index: 2;
+    font-size: 15px;
+    text-align: center;
+    color: #6a0000;
+    width: 100%;
+    left: 0%;
+    top: 51%;
+    height: 20px;
+    /*background-color:#f00;*/
+}

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logs>
+  <log>
+    <tempretailid>G0001005-3101-20150421201456</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=482400", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-21 21:18:01:2175 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150421201456</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=482400", "", "", "", "120400010000")</instr>
+    <recodes>F5读联机PIN失败                                                                                       </recodes>
+    <info>刷卡失败，错误信息为：读联机PIN失败                                                                                       </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-21 21:18:25:9570 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150421201456</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=383500", "", "", "", "120400010000")</instr>
+    <recodes>
+    </recodes>
+    <info>
+    </info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-21 21:18:54:5976 </crdate>
+  </log>
+  <log>
+    <tempretailid>G0001005-3101-20150421201456</tempretailid>
+    <depotid>G0001005</depotid>
+    <depotname>GRACELAND雅斓嘉兴名店</depotname>
+    <instr>document.ocx.DoICBCZJMisTranSTD_Multi("1001", "AMT1=383500", "", "", "", "120400010000")</instr>
+    <recodes>005149068020511166   2015042121193000001100000015042110037933190800000038350012045691094210265600100S他行卡                                 银联商户号(UNION PAY MERCHANT CODE):102335056911002
+总计(TOTAL):RMB 3835.00
+</recodes>
+    <info>交易成功(00)</info>
+    <crname>嘉兴雅斓名店</crname>
+    <crdate>2015-04-21 21:19:15:5888 </crdate>
+  </log>
+</logs>

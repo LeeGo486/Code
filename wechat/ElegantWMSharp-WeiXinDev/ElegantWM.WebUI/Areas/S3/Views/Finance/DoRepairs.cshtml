@@ -1,0 +1,60 @@
+﻿<script type="text/javascript">
+    $(function () {
+        var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+            hydp.hide();
+        }).data('datepicker');
+    });
+</script>
+
+<div class="ht" id="sdorepairs">
+    <i class="icon-wrench"></i>&nbsp;&nbsp;固定资产报修
+    <span onclick="$('#sdorepairsarea div').fadeOut(1000);">
+        <i class="icon-remove icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="mainArea">
+    <div class="input-group">
+        <span class="input-group-addon">维修类别</span>
+        <select class="form-control">
+            <option>电子设备</option>
+            <option>办公设备</option>
+            <option>运输设备</option>
+            <option>生产设备</option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">维修原因</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">维修人</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">联系电话</span>
+        <input type="text" class="form-control" value="" >
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">问题描述</span>
+        <textarea class="form-control" placeholder="请输入问题描述"></textarea>
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">要求日期</span>
+        <input class="form-control hzyDp" type="text" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+    <br />
+
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 10px;" data-loading-text="loading..." onclick="doRepairs();">提交</button>
+</div>

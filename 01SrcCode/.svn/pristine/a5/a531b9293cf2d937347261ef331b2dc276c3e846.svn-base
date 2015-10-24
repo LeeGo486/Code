@@ -1,0 +1,145 @@
+﻿	
+
+
+--调拨单主表
+	INSERT into  d_move ( moveid ,--流水号
+						  move ,--发货单号
+						  indentid ,
+						  set_depotid ,--发货仓编号
+						  get_depotid ,--收货仓编号
+						  set_sure ,--发货登帐
+						  get_sure ,--收货登帐
+						  setchk_sure ,--发货审核
+						  getchk_sure ,--收货审核
+						  setdate ,--发货日期
+						  getcr_name ,--收货人
+						  getcr_date ,--收货日期
+						  setchk_name ,--发货审核人
+						  setcr_date ,--发货制单日期
+						  setsure_name ,--发货登帐人
+						  getdate ,--收货日期
+						  getchk_name ,--收货审核人
+						  setcr_name ,--发货制单人
+						  getchk_date ,--收货审核人
+						  getsure_name ,--收货登帐人
+						  setsure_date ,--发货登帐日期
+						  getsure_date ,--收货登帐日期
+						  setchk_date ,--发货审核人
+						  set_comment ,--发货备注
+						  get_comment ,--收货备注
+						  crdate ,--发货日期
+						  cwchk ,
+						  cwgetchk ,
+						  cwpz ,
+						  cwgetpz ,
+						  backdate ,--换货日期
+						  backrate ,--换货率
+						  selltype ,--销售类型
+						  AutoCrId ,
+						  znums ,
+						  zjsums ,
+						  zxsums ,
+						  zssums ,
+						  loadplanid ,--品牌
+						  loadbox ,
+						  ifcancelbox ,
+						  ifquota ,
+						  shjjquotaid ,
+						  cancelbox ,
+						  sel_sure ,
+						  loadplanjhid ,
+						  shjjdepotid ,
+						  loaddate ,
+						  ifjhsure ,
+						  ESB_ID ,
+						  ESB_src_App
+						)
+			   VALUES	( moveid ,
+						  move ,
+						  indentid ,
+						  set_depotid ,
+						  get_depotid ,
+						  0 ,
+						  0 ,
+						  0 ,
+						  0 ,
+						  setdate ,
+						  getcr_name ,
+						  getcr_date ,
+						  setchk_name ,
+						  setcr_date ,
+						  setsure_name ,
+						  getdate ,
+						  getchk_name ,
+						  setcr_name ,
+						  getchk_date ,
+						  getsure_name ,
+						  setsure_date ,
+						  getsure_date ,
+						  setchk_date ,
+						  set_comment ,
+						  get_comment ,
+						  crdate ,
+						  cwchk ,
+						  cwgetchk ,
+						  cwpz ,
+						  cwgetpz ,
+						  backdate ,
+						  backrate ,
+						  selltype ,
+						  AutoCrId ,
+						  znums ,
+						  zjsums ,
+						  zxsums ,
+						  zssums ,
+						  loadplanid ,
+						  loadbox ,
+						  ifcancelbox ,
+						  ifquota ,
+						  shjjquotaid ,
+						  cancelbox ,
+						  sel_sure ,
+						  loadplanjhid ,
+						  shjjdepotid ,
+						  loaddate ,
+						  ifjhsure ,
+						  'F5FA6C55-CAE9-4AFA-9EC0-A1044A6C5977' ,
+						  ESB_src_App
+						) ;
+ --调拨单子表
+ INSERT	INTO F22JL.dbo.d_MoveSub
+		( moveid ,--流水号
+		  boxid ,
+		  clothingid ,--款号
+		  styleid ,--款式编号
+		  colorid ,--颜色编号
+		  sizeid ,--尺码编号
+		  j_cost ,--成本
+		  j_price ,--原价
+		  x_price ,--现价
+		  discount ,--折扣
+		  s_price ,--结算价
+		  set_nums ,--发货数量
+		  get_nums ,--收货数量
+		  crdate ,
+		  comment ,
+		  chknums
+		)
+		SELECT	moveid ,
+				boxid ,
+				clothingid ,
+				styleid ,
+				colorid ,
+				sizeid ,
+				j_cost ,
+				j_price ,
+				x_price ,
+				discount ,
+				s_price ,
+				set_nums ,
+				get_nums ,
+				crdate ,
+				comment ,
+				chknums
+		FROM	Request_d_MoveSub_GOVERN
+		WHERE	RequestID = 408

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <link id="Link1" href="../../jquery-easyui-1.4.3/themes/bootstrap/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.4.3/themes/icon.css" rel="stylesheet" type="text/css" />
+    
+    <script src="../../jquery-easyui-1.4.3/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/changeEasyuiTheme.js" type="text/javascript"></script>
+    <script src="../../resource/SoundManager/soundmanager2-jsmin.js" type="text/javascript"></script>
+    
+    <script src="../../jquery-easyui-1.4.3/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/SPWX/SPWX_ExpChk.js?Date=20150905" type="text/javascript"></script>
+</head>
+<body>
+	<div style="margin:60;">
+		<input style="line-height:30px;font-size:30px;" id ="scan" />
+	</div>
+	<div style="margin:60;">
+		<span id = "result" style="font-size:30px;color:#FF3366"></span>
+	<div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿<div class="left">
+    <img src="@Url.Content("~/Images/Logo.png")" alt="EP Logo" />
+</div>
+<div class="right">
+    @HttpContext.Current.Items["RealName"] @Html.ActionLink("退出", "logout", "Home")
+    <img src="@Url.Content("~/Images/Edit.png")" />
+</div>
+<div class="center">
+    <div class="quickSearch">
+        <div class="title">样板编号/大货编号</div>
+        <div class="quickSearchBox">
+            <form action="/Statistic/Index" method="get">
+                <input type="text" id="txtSearchNO" name="NO" value="@Request.QueryString["No"]" />
+                <input type="image" id="imgSearch" height="35" src="@Url.Content("~/Images/submit.png")" />
+            </form>
+        </div>
+    </div>
+    <div class="nav">
+        <ul class="nav nav-pills">
+            @foreach (var t in ViewBag.ClothesTypes as List<EPManageWeb.Entities.Models.ClothesType>)
+            {
+                
+                <li><span>@Html.ActionLink(@t.Name, "Index", "Main", new { id = t.Id }, null)</span>
+                    @if (t.Children != null && t.Children.Count > 0)
+                    {
+                        t.Children = t.Children.OrderBy(d => d.Id).ToList();
+                        <ul class="nav nav-pills">
+                            @foreach (var t1 in t.Children)
+                            {
+                                <li class="width50percent">@Html.ActionLink(t1.Name, "Index", "Main", new { id = t1.Id }, null)</li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+            <li><span><a href="#myModal" id="lnkAddClothes">添加款式</a></span></li>
+            <li><span>@Html.ActionLink("修改密码", "ChangePassword", "User", null, null)</span></li>
+            @if ((EPManageWeb.Entities.Models.UserType)HttpContext.Current.Items["UserType"] == EPManageWeb.Entities.Models.UserType.Admin)
+            {
+                <li><span>@Html.ActionLink("用户管理", "List", "User")</span></li>
+                <li><span  class="active">@Html.ActionLink("使用统计", "Index", "Statistic")</span></li>
+                <li><span>@Html.ActionLink("日志记录", "Index", "Log")</span></li>
+                <li><span><a href="#">界面编辑</a></span></li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="clearfix"></div>

@@ -1,0 +1,110 @@
+2014-08-07 00:00:08,527 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - second pass <星期四, 7 八月 2014 00:00:08>
+2014-08-07 00:00:08,620 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] AtomicActionRecoveryModule: Second pass 
+2014-08-07 00:00:08,620 DEBUG [com.arjuna.ats.txoj.logging.txojLoggerI18N] [com.arjuna.ats.internal.txoj.recovery.TORecoveryModule_6] - TORecoveryModule - second pass
+2014-08-07 00:00:08,620 DEBUG [com.arjuna.ats.jta.logging.loggerI18N] [com.arjuna.ats.internal.jta.recovery.info.secondpass] Local XARecoveryModule - second pass
+2014-08-07 00:00:32,261 DEBUG [org.jboss.resource.connectionmanager.IdleRemover] run: IdleRemover notifying pools, interval: 150000
+2014-08-07 13:00:10,058 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - second pass <星期四, 7 八月 2014 13:00:10>
+2014-08-07 13:00:10,058 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] AtomicActionRecoveryModule: Second pass 
+2014-08-07 13:00:10,058 DEBUG [com.arjuna.ats.txoj.logging.txojLoggerI18N] [com.arjuna.ats.internal.txoj.recovery.TORecoveryModule_6] - TORecoveryModule - second pass
+2014-08-07 13:00:10,058 DEBUG [com.arjuna.ats.jta.logging.loggerI18N] [com.arjuna.ats.internal.jta.recovery.info.secondpass] Local XARecoveryModule - second pass
+2014-08-07 13:00:18,105 INFO  [STDOUT] ------单号=008811
+2014-08-07 13:00:18,105 INFO  [STDOUT] ------单号=008811
+2014-08-07 13:00:18,105 INFO  [STDOUT] 保存SQL:update cywxdjb set ms=?,dpbm=?,dpmc=?,dplx=?,dzxm=?,dzlxdh=?,wxcbm=?,wxcmc=?,sldg=?,dglxdh=?,sffgkwx=?,SFTYFFWX=?,VIPKH=?,GKXM=?,GKLXDH=?,SCSJ=?,JJCD=?,KH=?,THRQ=?,WTMS=?,YSGS='圆通',YDH=?,FHDZ=?,SHDZ=?,SHR=?,SHRLXDH=?,BZXX=?,Djr=?,Djsj=?,DPDQ=?,pp=?,ys=? where zt='0' and guid='F28A291CB29844398BB361EEB8281F2C'
+2014-08-07 13:00:18,105 INFO  [STDOUT] -----保存状态:true
+2014-08-07 13:00:18,120 INFO  [STDOUT] -----业务保存成功标志:1
+2014-08-07 13:00:18,120 INFO  [STDOUT] -----日志保存成功标志:1
+2014-08-07 13:00:33,230 DEBUG [org.jboss.resource.connectionmanager.IdleRemover] run: IdleRemover notifying pools, interval: 150000
+2014-08-07 13:01:01,574 INFO  [STDOUT] ------单号=008811
+2014-08-07 13:01:01,574 INFO  [STDOUT] ------单号=008811
+2014-08-07 13:01:01,574 INFO  [STDOUT] 保存SQL:update cywxdjb set ms=?,dpbm=?,dpmc=?,dplx=?,dzxm=?,dzlxdh=?,wxcbm=?,wxcmc=?,sldg=?,dglxdh=?,sffgkwx=?,SFTYFFWX=?,VIPKH=?,GKXM=?,GKLXDH=?,SCSJ=?,JJCD=?,KH=?,THRQ=?,WTMS=?,YSGS='圆通',YDH=?,FHDZ=?,SHDZ=?,SHR=?,SHRLXDH=?,BZXX=?,Djr=?,Djsj=?,DPDQ=?,pp=?,ys=? where zt='0' and guid='F28A291CB29844398BB361EEB8281F2C'
+2014-08-07 13:01:01,574 INFO  [STDOUT] -----保存状态:true
+2014-08-07 13:01:01,589 INFO  [STDOUT] -----业务保存成功标志:1
+2014-08-07 13:01:01,589 INFO  [STDOUT] -----日志保存成功标志:1
+2014-08-07 13:01:03,902 INFO  [STDOUT] 1073
+2014-08-07 13:01:03,902 INFO  [STDOUT] E0009291
+2014-08-07 13:01:05,542 INFO  [STDOUT] /epqukcargotrans
+2014-08-07 13:01:10,105 INFO  [STDOUT] shopList.get(0):11
+2014-08-07 13:01:24,839 INFO  [STDOUT] shopList.get(0):11
+2014-08-07 13:02:10,058 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - first pass <星期四, 7 八月 2014 13:02:10>
+2014-08-07 13:02:10,058 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] StatusModule: first pass 
+2014-08-07 13:02:10,058 DEBUG [com.arjuna.ats.txoj.logging.txojLoggerI18N] [com.arjuna.ats.internal.txoj.recovery.TORecoveryModule_3] - TORecoveryModule - first pass
+2014-08-07 13:02:10,058 DEBUG [com.arjuna.ats.jta.logging.loggerI18N] [com.arjuna.ats.internal.jta.recovery.info.firstpass] Local XARecoveryModule - first pass
+2014-08-07 13:02:11,527 INFO  [STDOUT] /epqukcargotrans
+2014-08-07 13:02:14,824 INFO  [STDOUT] 5023
+2014-08-07 13:02:14,824 INFO  [STDOUT] E0009162
+2014-08-07 13:02:21,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - second pass <星期四, 7 八月 2014 13:02:21>
+2014-08-07 13:02:21,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] AtomicActionRecoveryModule: Second pass 
+2014-08-07 13:03:51,855 INFO  [STDOUT] /epqukcargotrans
+2014-08-07 13:04:53,027 INFO  [STDOUT] 5023
+2014-08-07 13:05:10,370 INFO  [STDOUT] 1073
+2014-08-07 13:05:10,370 INFO  [STDOUT] E0009291
+2014-08-07 13:05:33,245 DEBUG [org.jboss.resource.connectionmanager.IdleRemover] run: IdleRemover notifying pools, interval: 150000
+2014-08-07 13:06:05,464 INFO  [STDOUT] ------单号=
+2014-08-07 13:06:05,511 INFO  [STDOUT] ------单号=008813
+2014-08-07 13:06:05,511 INFO  [STDOUT] 保存SQL:insert into cywxdjb(ms,dpbm,dpmc,dplx,dzxm,dzlxdh,wxcbm,wxcmc,sldg,dglxdh,sffgkwx,SFTYFFWX,VIPKH,GKXM,GKLXDH,SCSJ,JJCD,KH,THRQ,WTMS,YSGS,YDH,FHDZ,SHDZ,SHR,SHRLXDH,BZXX,Djr,Djsj,DPDQ,pp,zt,ys,dh,guid,DJZT,branch)  values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,convert(datetime,?),?,?,convert(datetime,?),?, '中通',?,?,?,?,?,?,?,convert(datetime,?),?,?,'0',?,?,?,'0','雅莹')
+2014-08-07 13:06:05,511 INFO  [STDOUT] -----保存状态:false
+2014-08-07 13:06:05,527 INFO  [STDOUT] -----业务保存成功标志:1
+2014-08-07 13:06:05,558 INFO  [STDOUT] -----日志保存成功标志:1
+2014-08-07 13:06:07,995 INFO  [STDOUT] 5217
+2014-08-07 13:06:07,995 INFO  [STDOUT] E0009473
+2014-08-07 13:06:31,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - first pass <星期四, 7 八月 2014 13:06:31>
+2014-08-07 13:06:31,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] StatusModule: first pass 
+2014-08-07 13:06:31,245 DEBUG [com.arjuna.ats.txoj.logging.txojLoggerI18N] [com.arjuna.ats.internal.txoj.recovery.TORecoveryModule_3] - TORecoveryModule - first pass
+2014-08-07 13:06:31,245 DEBUG [com.arjuna.ats.jta.logging.loggerI18N] [com.arjuna.ats.internal.jta.recovery.info.firstpass] Local XARecoveryModule - first pass
+2014-08-07 13:06:41,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - second pass <星期四, 7 八月 2014 13:06:41>
+2014-08-07 13:06:41,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] AtomicActionRecoveryModule: Second pass 
+2014-08-07 13:06:41,245 DEBUG [com.arjuna.ats.txoj.logging.txojLoggerI18N] [com.arjuna.ats.internal.txoj.recovery.TORecoveryModule_6] - TORecoveryModule - second pass
+2014-08-07 13:06:41,245 DEBUG [com.arjuna.ats.jta.logging.loggerI18N] [com.arjuna.ats.internal.jta.recovery.info.secondpass] Local XARecoveryModule - second pass
+2014-08-07 13:06:41,558 INFO  [STDOUT] ------单号=
+2014-08-07 13:06:41,589 INFO  [STDOUT] ------单号=008814
+2014-08-07 13:06:41,605 INFO  [STDOUT] 保存SQL:insert into cywxdjb(ms,dpbm,dpmc,dplx,dzxm,dzlxdh,wxcbm,wxcmc,sldg,dglxdh,sffgkwx,SFTYFFWX,VIPKH,GKXM,GKLXDH,SCSJ,JJCD,KH,THRQ,WTMS,YSGS,YDH,FHDZ,SHDZ,SHR,SHRLXDH,BZXX,Djr,Djsj,DPDQ,pp,zt,ys,dh,guid,DJZT,branch)  values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,convert(datetime,?),?,?,convert(datetime,?),?, '中通',?,?,?,?,?,?,?,convert(datetime,?),?,?,'0',?,?,?,'0','雅莹')
+2014-08-07 13:06:41,605 INFO  [STDOUT] -----保存状态:false
+2014-08-07 13:06:41,605 INFO  [STDOUT] -----业务保存成功标志:1
+2014-08-07 13:06:41,605 INFO  [STDOUT] -----日志保存成功标志:1
+2014-08-07 13:08:03,245 DEBUG [org.jboss.resource.connectionmanager.IdleRemover] run: IdleRemover notifying pools, interval: 150000
+2014-08-07 13:08:30,027 INFO  [STDOUT] 5388
+2014-08-07 13:08:30,027 INFO  [STDOUT] E0009675
+2014-08-07 13:08:34,933 INFO  [STDOUT] shopList.get(0):11
+2014-08-07 13:08:41,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - first pass <星期四, 7 八月 2014 13:08:41>
+2014-08-07 13:08:41,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] StatusModule: first pass 
+2014-08-07 13:08:41,245 DEBUG [com.arjuna.ats.txoj.logging.txojLoggerI18N] [com.arjuna.ats.internal.txoj.recovery.TORecoveryModule_3] - TORecoveryModule - first pass
+2014-08-07 13:08:41,245 DEBUG [com.arjuna.ats.jta.logging.loggerI18N] [com.arjuna.ats.internal.jta.recovery.info.firstpass] Local XARecoveryModule - first pass
+2014-08-07 13:08:51,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - second pass <星期四, 7 八月 2014 13:08:51>
+2014-08-07 13:08:51,245 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] AtomicActionRecoveryModule: Second pass 
+2014-08-07 13:09:28,730 INFO  [STDOUT] 1317
+2014-08-07 13:09:28,730 INFO  [STDOUT] E0009566
+2014-08-07 14:00:10,495 INFO  [STDOUT] /epqukcargotrans
+2014-08-07 14:00:23,558 INFO  [STDOUT] /epqukcargotrans
+2014-08-07 14:00:33,324 DEBUG [org.jboss.resource.connectionmanager.IdleRemover] run: IdleRemover notifying pools, interval: 150000
+2014-08-07 14:00:37,870 INFO  [STDOUT] 8040
+2014-08-07 14:00:37,870 INFO  [STDOUT] D0003116
+2014-08-07 14:00:41,292 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] Periodic recovery - first pass <星期四, 7 八月 2014 14:00:41>
+2014-08-07 14:00:41,292 DEBUG [com.arjuna.ats.arjuna.logging.arjLogger] StatusModule: first pass 
+2014-08-07 14:00:41,292 DEBUG [com.arjuna.ats.txoj.logging.txojLoggerI18N] [com.arjuna.ats.internal.txoj.recovery.TORecoveryModule_3] - TORecoveryModule - first pass
+2014-08-07 14:00:41,292 DEBUG [com.arjuna.ats.jta.logging.loggerI18N] [com.arjuna.ats.internal.jta.recovery.info.firstpass] Local XARecoveryModule - first pass
+2014-08-07 14:00:50,042 ERROR [STDERR] java.lang.NoSuchMethodException: ep.org.servletservice.AjaxService.getEmployeeList(javax.servlet.http.HttpServletRequest)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at java.lang.Class.getMethod(Class.java:1605)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at ep.org.servlet.AjaxServlet.doGet(AjaxServlet.java:58)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at ep.org.servlet.AjaxServlet.doPost(AjaxServlet.java:94)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:710)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.ecside.filter.ECSideFilter.doFilter(ECSideFilter.java:188)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.jboss.web.tomcat.filters.ReplyHeaderFilter.doFilter(ReplyHeaderFilter.java:96)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:230)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.jboss.web.tomcat.security.SecurityAssociationValve.invoke(SecurityAssociationValve.java:182)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.jboss.web.tomcat.security.JaccContextValve.invoke(JaccContextValve.java:84)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.jboss.web.tomcat.service.jca.CachedConnectionValve.invoke(CachedConnectionValve.java:157)
+2014-08-07 14:00:50,042 ERROR [STDERR] 	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+2014-08-07 14:00:50,058 ERROR [STDERR] 	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:262)
+2014-08-07 14:00:50,058 ERROR [STDERR] 	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+2014-08-07 14:00:50,058 ERROR [STDERR] 	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:583)
+2014-08-07 14:00:50,058 ERROR [STDERR] 	at java.lang.Thread.run(Thread.java:662)

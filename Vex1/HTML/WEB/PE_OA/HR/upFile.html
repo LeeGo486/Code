@@ -1,0 +1,42 @@
+<html>
+    <head> 
+    <meta http-equiv="content-type" content="text/html">  
+    <meta charset="UTF-8">    
+    <title> 照片 </title> 
+    <script> 
+        function uploadfile() { 
+            document.getElementById("uploadfiles_on_file_selected").style.display = "none";
+            document.getElementById("uploadfiles_is_not_pic").style.display = "none";
+
+            if (document.getElementById('filepath').value.length == 0) {
+                document.getElementById("uploadfiles_on_file_selected").style.display = ''; 
+                return false;
+            } 
+
+            var theFilePath = document.getElementById('filepath').value;
+            var fileType = theFilePath.substr(theFilePath.lastIndexOf(".") + 1);
+            fileType = fileType.toUpperCase(); 
+
+            window.opener.document.getElementById('c_photo').value = document.getElementById('filepath').value; 
+            //window.close();
+            return true;
+        } 
+        function checkfilesize() { 
+        }
+    </script>
+    </head>
+    <body onload="resizeWin(600, 200);">
+        <div id="tbPageTopShell">
+	        <div id="tbPageTop"><br /></div>
+	        <div id="tbTips" >
+		        <em>单击“浏览”选择一个需附加的文件，然后单击“确定”以将文件上传。</em>
+	        </div>
+        </div> 
+        <form name="uploadForm">  
+            <input type="file" style="height:20px;width:450px;" name="filepath" 
+                value="" id="filepath" onkeypress="return false;" onpaste="return false;" contentEditable="false"/>
+            <input type="button" name="upload" style="height:20px" value="确定" onclick="javascript: uploadfile();"/>
+            <span id="uploadfiles_on_file_selected" style="display:none; ">请选择文件</span> 
+        </form>  
+    </body>
+</html>

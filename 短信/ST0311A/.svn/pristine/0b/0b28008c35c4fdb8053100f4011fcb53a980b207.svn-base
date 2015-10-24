@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="http://ws.app.com.cn" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="http://ws.app.com.cn" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.app.com.cn">
+      <xsd:element name="Sms">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="spId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginName" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="password" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="content" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="mobiles" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="subPort" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="reserve" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="reserve1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="reserve2" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SmsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Report">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="spId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginName" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="password" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReportResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReplyRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="spId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginName" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="password" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="reserve" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Reply">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="callMdn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="mdn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="content" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="reply_time" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ReplyResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="result" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="confirm_time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="replys" nillable="true" type="tns:Reply" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReplyConfirmRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="spId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginName" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="password" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="confir_time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReplyConfirmResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="result" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SmsResponse">
+    <wsdl:part name="parameters" element="tns:SmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReplyRequest">
+    <wsdl:part name="parameters" element="tns:ReplyRequest" />
+  </wsdl:message>
+  <wsdl:message name="SmsRequest">
+    <wsdl:part name="parameters" element="tns:Sms" />
+  </wsdl:message>
+  <wsdl:message name="ReplyConfirmResponse">
+    <wsdl:part name="parameters" element="tns:ReplyConfirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchSmsNumResponse">
+    <wsdl:part name="parameters" element="tns:SearchSmsNumResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReplyResponse">
+    <wsdl:part name="parameters" element="tns:ReplyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportRequest">
+    <wsdl:part name="parameters" element="tns:Report" />
+  </wsdl:message>
+  <wsdl:message name="ReplyConfirmRequest">
+    <wsdl:part name="parameters" element="tns:ReplyConfirmRequest" />
+  </wsdl:message>
+  <wsdl:message name="SearchSmsNumRequest">
+    <wsdl:part name="parameters" element="tns:SearchSmsNumRequest" />
+  </wsdl:message>
+  <wsdl:message name="ReportResponse">
+    <wsdl:part name="parameters" element="tns:ReportResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SmsPortType">
+    <wsdl:operation name="Sms">
+      <wsdl:input name="SmsRequest" message="tns:SmsRequest" />
+      <wsdl:output name="SmsResponse" message="tns:SmsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="Report">
+      <wsdl:input name="ReportRequest" message="tns:ReportRequest" />
+      <wsdl:output name="ReportResponse" message="tns:ReportResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="Reply">
+      <wsdl:input name="ReplyRequest" message="tns:ReplyRequest" />
+      <wsdl:output name="ReplyResponse" message="tns:ReplyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ReplyConfirm">
+      <wsdl:input name="ReplyConfirmRequest" message="tns:ReplyConfirmRequest" />
+      <wsdl:output name="ReplyConfirmResponse" message="tns:ReplyConfirmResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SmsHttpBinding" type="tns:SmsPortType">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Sms">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="SmsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SmsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Report">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="ReportRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ReportResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reply">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="ReplyRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ReplyResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReplyConfirm">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="ReplyConfirmRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ReplyConfirmResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Sms">
+    <wsdl:port name="SmsHttpPort" binding="tns:SmsHttpBinding">
+      <wsdlsoap:address location="http://114.215.196.181:8080/sms/services/Sms/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

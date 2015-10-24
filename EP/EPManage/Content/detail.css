@@ -1,0 +1,115 @@
+﻿.carousel {
+    width: 300px;
+    margin:5px auto 5px auto;
+    min-height:200px;
+    height:auto;
+}
+
+.center {
+    padding-top:10px;
+}
+
+#myCarousel .carousel-control, #myCarousel2 .carousel-control {
+    width: 20px;
+    height: 20px;
+    font-size: 30px;
+    line-height: 15px;
+    margin-top: 0px;
+}
+
+#myCarousel3 .carousel-control{
+    width: 20px;
+    height: 20px;
+    font-size: 30px;
+    line-height: 15px;
+    margin-top: 0px;
+}
+
+#myCarousel3 {
+    width:500px;
+    min-height:300px;
+    height:auto;
+    margin:2px auto 2px auto;
+}
+#myCarousel img
+{
+	min-width:200px;
+	width:auto;
+	margin: 0 auto 0 auto;
+}
+#myCarousel2 img
+{
+	text-align:center;
+	min-width:200px;
+	width:auto;
+	margin: 0 auto 0 auto;
+}
+#myCarousel3 img
+{
+	min-width:250px;
+	width:auto;
+	margin: 0 auto 0 auto;
+}
+
+.bottomline {
+    border-bottom:2px solid #000;
+    padding-bottom:2px;
+    vertical-align:bottom;
+    vertical-align:text-bottom;
+}
+
+.dvleft {
+    width:300px;
+    float:left;
+    border-right:1px solid #ccc;
+}
+    .dvleft .title {
+        font-size:16px;
+        text-align:center;
+        background-color:#ccc;
+    }
+
+    .dvleft .picture {
+        text-align:center;
+    }
+
+    .dvleft table th {
+        background-color:#ccc;
+        color:white;
+        width:100px;
+    }
+.dvright {
+    margin-left:301px;
+}
+#sampleTable {
+    width:1000px;
+}
+#sampleTable th {
+    width:20px;
+    background-color:#f2f2f2;
+}
+#clothSizeTable th {
+    background-color:#ccc;
+    color:white;
+}
+table.comments {
+    width:900px;
+    margin:10px auto 0px auto;
+}
+    table.comments th {
+        text-align:center;
+        background-color:#f2f2f2;
+        font-size:16px;
+    }
+.clothSizeTd {
+    vertical-align: top;
+    padding:5px 5px 5px 5px;
+}
+.clothesSizeTable {
+    width:250px;
+}
+
+.pictures {
+    min-height:200px;
+    height:auto;
+}

@@ -1,0 +1,4 @@
+.bg{
+	background-image:	url(../../Resources/images/LittleModel/head.jpg);
+	background-repeat:	no-repeat;
+}

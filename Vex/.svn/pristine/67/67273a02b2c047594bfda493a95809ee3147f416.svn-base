@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MDM组织人员</title>
+    <script src="../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../jquery-easyui-1.3.4/themes/default/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/MDM2/Organization.js?Date=20131204" type="text/javascript"></script>
+
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div region="west" split="true" title="MDM组织机构" style="width: 400px; padding: 0px;">
+        <ul id="treeOrganization">
+            加载中请稍后。。
+        </ul>
+    </div>
+    <div data-options="region:'center',border:false">
+        <table id="tab_list" style="width: 100%; height: 98%">
+        </table>
+    </div>
+
+    <div id="Menu_Tree" class="easyui-menu" style="width: 120px;">
+        <div onclick="searchPersonl()" data-options="iconCls:'icon-search'">加载人员</div>
+        <div onclick="editCostCenter()" data-options="iconCls:'icon-edit'">维护部门成本中心</div>
+        <!--<div class="menu-sep"></div>-->
+        <!--<div onclick="del()" data-options="iconCls:'icon-remove'">删除</div>-->
+    </div>
+
+
+     <div id="mm" class="easyui-menu" style="width: 120px;">
+        <div onclick="editPersonlCostCenter()" data-options="iconCls:'icon-edit'">维护人成本中心</div>
+    </div>
+
+    <div iconcls="icon-save" title="组织成本中心维护" id="divEditOrganizationCostCenert" style="width: 850px; height: 500px;">
+        <form id="form_EditOrganizationCostCenert" name="form_EditOrganizationCostCenert" method="post">
+            <table style="font-size: 9pt;" cellpadding="5px;">
+                <tr>
+                    <td>组织架构编号：
+                    </td>
+                    <td>
+                        <input id="txt组织单元系统编号" name="txt组织单元系统编号" style="width: 250px" disabled="disabled" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>组织架构名称：
+                    </td>
+                    <td>
+                        <input id="txt组织单元系统名称" name="txt组织单元系统名称" style="width: 250px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td>成本中心：
+                    </td>
+                    <td>
+                        <input id="txt成本中心" name="txt成本中心" style="width: 100px" >&nbsp;&nbsp; &nbsp;&nbsp; <a href="#" id="A3" iconcls="icon-add" onclick="loadFrame()" class="easyui-linkbutton"
+                            data-options="plain:true">维护成本中心</a>
+                        <input id="txt成本中心ID" name="txt成本中心ID" style="width: 200px"type="hidden" >
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="btn_Submit" iconcls="icon-ok" onclick="组织_Submit()" class="easyui-linkbutton"
+                            data-options="plain:true">保存</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="#" id="btn_Cancel" iconcls="icon-cancel" onclick="cancel('组织成本中心取消')"
+                                class="easyui-linkbutton" data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
+     <div iconcls="icon-save" title="人员成本中心维护" id="divEditPersonlCostCenert" style="width: 850px; height: 500px;">
+        <form id="form_EditPersonlCostCenert" name="form_EditPersonlCostCenert" method="post">
+            <table style="font-size: 9pt;" cellpadding="5px;">
+                <tr>
+                    <td>姓名：
+                    </td>
+                    <td>
+                        <input id="txt姓名" name="txt姓名" style="width: 250px" disabled="disabled" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>现所在组织单元名称：
+                    </td>
+                    <td>
+                        <input id="txt现所在组织单元名称" name="txt现所在组织单元名称" style="width: 250px" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td>人成本中心：
+                    </td>
+                    <td>
+                        <input id="txt人成本中心" name="txt人成本中心" style="width: 100px" >&nbsp;&nbsp; &nbsp;&nbsp; <a href="#" id="A4"  iconcls="icon-add"onclick="loadFrame()" class="easyui-linkbutton"
+                            data-options="plain:true">维护成本中心</a>
+                        <input id="txt人成本中心ID" name="txt人成本中心ID" style="width: 200px"type="hidden" >
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a href="#" id="A1" iconcls="icon-ok" onclick="人员_Submit()" class="easyui-linkbutton"
+                            data-options="plain:true">保存</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="#" id="A2" iconcls="icon-cancel" onclick="cancel('人成本中心取消')"
+                                class="easyui-linkbutton" data-options="plain:true">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
+
+
+</body>
+</html>

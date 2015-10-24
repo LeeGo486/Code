@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Health.master.cs" Inherits="EPReper.Web.View.Health" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>保健预约</title>
+</head>
+<body style="margin: auto; width: 960px;">
+    <div class="head">
+        <div style="padding: 10px 20px 0px 10px; margin: auto; width: 960px; height: 20px;">
+            <div style="float: left;display:none">
+                <a href="../RepairHealth.aspx">用户自助首页</a>
+            </div>
+            <div style="float: right; padding: 0px 10px 0px 10px;">
+                <%=Tools.CookieHelper.GetCookie("username") %>
+                <a href="../logout.aspx">注销</a>
+            </div>
+        </div>
+        <div style="margin: auto; width: 960px;">
+            <img alt="" src="../Images/healthhead.png" />
+        </div>
+    </div>
+    <div style="margin: auto; width: 960px;">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+</body>
+</html>

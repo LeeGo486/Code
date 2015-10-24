@@ -1,0 +1,17 @@
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Talent.DAL.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Talent.DAL.pdb
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Innovate.DBUtility.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\MySql.Data.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Talent.Common.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Talent.Model.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Excel.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\COM.Excel.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\OpenSmtp.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\IBatisNet.DataMapper.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\IBatisNet.Common.dll
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Talent.Common.pdb
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Innovate.DBUtility.pdb
+C:\Users\luobin\Desktop\Talent\DAL\bin\Debug\Talent.Model.pdb
+C:\Users\luobin\Desktop\Talent\DAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\luobin\Desktop\Talent\DAL\obj\Debug\Talent.DAL.dll
+C:\Users\luobin\Desktop\Talent\DAL\obj\Debug\Talent.DAL.pdb

@@ -1,0 +1,899 @@
+﻿
+var m_divi = $.cookie("compName"); //登录环境
+
+$(function () {
+    //btnSearch('定金管理');
+    //var url = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetDeposit') + "&Where=PO1_DIVI='" + m_divi + "'";
+    var url = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetDeposit') + "&Where=1=10000";
+    InitGrid_Deposit_Head(url);
+    var url1 = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetDepositDetail') + "&Where=1=1000"
+    InitGrid_Deposit_Detail(url1);
+});
+
+//加载定金主表数据
+function InitGrid_Deposit_Head(url) {
+    $('#tabDepositHead').datagrid({
+        url: url,
+        striped: true,
+        pagination: true, //是否开启分页
+        pageSize: 20, //默认一页数据条数 
+        rownumbers: true,
+        fit: true,
+        singleSelect: true,
+        onSelect: onSelect,
+        columns: [[
+            { field: 'po1_pocode', title: '采购单号' },
+            { field: 'br1_name', title: '品牌名称' },
+            { field: 'po1_pc1_contractcode', title: '合同编号' },
+            { field: 'po1_sppocode', title: '供应商采购单号' },
+            { field: 'po1_suppliercode', title: '供应商编号' },
+            { field: 'SP1_name', title: '供应商名称' },
+            //{ field: '', title: '采购单状态' },
+            { field: 'po1_pznumber', title: '采购总数' },
+            { field: 'po1_currency', title: '结算币种' },
+            { field: 'po1_ocurrencysums', title: '采购金额' },
+            { field: 'po1_paymenttypename', title: '付款方式' },
+            { field: 'po1_paymentchannelname', title: '结算方式' },
+            { field: 'pr1_requestcode', title: '付款申请单号' },
+            { field: 'pr1_requestamount', title: '申请金额' },
+            { field: 'pr1_payamount', title: '支付金额' },
+            { field: 'pr1_poolamount', title: '使用资金池金额' },
+            { field: 'pr1_paymentratio', title: '定金比例' },
+            { field: 'pr1_state', title: '状态' },
+            { field: 'po1_rguser', title: '采购人' }
+        ]],
+        toolbar: [
+            {
+                text: '新增定金申请单',
+                iconCls: 'icon-add',
+                handler: function () {
+                    EditPaymentHead('add');
+                }
+            },
+            '-',
+            {
+                text: '维护定金申请单',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    EditPaymentHead('edit');
+                }
+            }
+        ],
+        onLoadSuccess: function (data) {
+            if (data.rows.length == 1 && data.rows[0].po1_pocode == '') {
+                ClearGrid('#tabDepositHead');
+            }
+        }
+    });
+}
+
+//定金子表数据加载
+function InitGrid_Deposit_Detail(url) {
+    $('#tabDepositDetail').datagrid({
+        url: url,
+        striped: true,
+        pagination: true, //是否开启分页
+        pageSize: 20, //默认一页数据条数 
+        rownumbers: true,
+        fit: true,
+        singleSelect: true,
+        columns: [[
+            { field: 'ck', checkbox: true },
+            { field: 'pr2_requestcode', title: '付款申请单号' },
+            { field: 'pr2_po2_liseq', title: '采购项次号' },
+            { field: 'pr2_po2_lsseq', title: '采购子项次号' },
+            { field: 'pr2_po2_productcode', title: 'SKU' },
+            { field: 'po2_pd1_supperierstyle', title: '供应商款号' },
+            { field: 'po2_pd1_supperiercolor', title: '供应商颜色' },
+            { field: 'po2_pd1_supperiersize', title: '供应商尺码' },
+            { field: 'po2_ocurrencyamount', title: '采购金额' },
+            { field: 'po2_number', title: '采购数量' },
+            { field: 'pr2_shareamount', title: '分摊金额' },
+            { field: 'pr2_paymoney', title: '支付金额' },
+            { field: 'pr2_poolmoney', title: '使用资金池金额' },
+            //{ field: 'pr2_depositmoney', title: '使用定金金额' },
+            { field: 'pr2_state', title: '状态' },
+            { field: 'pr2_rgdt', title: '建立日期' },
+            { field: 'pr2_rguser', title: '建立人' },
+            { field: 'pr2_lmdt', title: '修改日期' },
+            { field: 'pr2_lmuser', title: '修改人' }
+        ]],
+        toolbar: [
+            {
+                text: '定金取消',
+                iconCls: 'icon-cancel',
+                handler: function () {
+                    $.messager.confirm('提示框', '该SKU的定金取消，则总申请金额减去相应值，是否确定', function (r) {
+                        if (r) {
+                            EditPaymentDetail('cancel');
+                        }
+                    });
+                }
+            },
+            '-',
+            {
+                text: '定金退款',
+                iconCls: 'icon-back',
+                handler: function () {
+                    //该SKU的定金取消，则总申请金额减去相应值，是否确定
+                    EditPaymentDetail('refund');
+                }
+            },
+            '-',
+            {
+                text: '定金付款',
+                iconCls: 'icon-ok',
+                handler: function () {
+                    EditPaymentDetail('paid');
+                }
+            },
+            '-',
+            {
+                text: '定金转预付款',
+                iconCls: 'icon-redo',
+                handler: function () {
+                    EditPaymentDetail('transfer');
+                }
+            }
+        ]
+    });
+}
+
+//定金主表选中行事件-显示付款申请单子表
+function onSelect(rowIndex, rowData) {
+    var payCode = rowData.pr1_requestcode;
+    var divi = rowData.po1_divi;
+    var url1 = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetDepositDetail') +
+        "&Where=pr2_requestcode='" + payCode + "' AND PR2_DIVI='" + divi + "'";
+    InitGrid_Deposit_Detail(url1);
+}
+
+//定金取消、付款、退款
+//type:(cancel:取消,paid:付款,refund:退款,transfer:定金转预付款)
+function EditPaymentDetail(type) {
+    var getRows = $('#tabDepositDetail').datagrid('getChecked');
+    var getPOCode = $('#tabDepositHead').datagrid('getSelected').po1_pocode; //采购单号
+    var suppliercode = $('#tabDepositHead').datagrid('getSelected').po1_suppliercode; //供应商编号
+    var currency = $('#tabDepositHead').datagrid('getSelected').po1_currency; //结算币种
+    if (getRows.length > 0) {
+        var state = getRows[0].pr2_state;
+        if (type == 'cancel') {
+            if (state != '15') {
+                alert('请先退款或者付款');
+                return;
+            }
+        }
+        else if (type == 'paid') {
+            if (state != '15') {
+                alert('不允许付款');
+                return;
+            }
+        }
+        else if (type == 'refund') {
+            if (state != '85') {
+                alert('不能退款');
+                return;
+            }
+        }
+        else if (type == 'transfer') {
+            for (var i = 0; i < getRows.length; i++) {
+                if (getRows[i].pr2_state != '85') {
+                    alert(getRows[i].pr2_po2_productcode + '还未支付定金,不允许做定金转预付款');
+                    return;
+                }
+            }
+        }
+        getRows[getRows.length] = { "Type": type, "pocode": getPOCode, "suppliercode": suppliercode, "currency": currency, "comment": "定金" };
+
+        var XMLData = GetEditJsonbyType(getRows, 'EditPaymentDetail');
+        $.messager.progress({ title: '请稍后', msg: '处理中' });
+        $.ajax({
+            url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+            type: 'post',
+            async: true, //异步,
+            data: { "XML": XMLData },
+            success: function (result) {
+                try {
+                    var result = eval("[" + result + "]");
+                    if (result[0].Error) {
+                        $.messager.progress('close');
+                        $.messager.alert("系统错误", result[0].Error, 'error');
+                    } else if (result[0].rows[0].result == "False") {
+                        $.messager.progress('close');
+                        $.messager.alert("提示", result[0].rows[0].message, 'error');
+                    }
+                    else {
+                        $.messager.progress('close');
+                    }
+                } catch (ex) {
+                    $.messager.progress('close');
+                    $.messager.alert("提示", ex, 'error');
+                }
+            },
+            error: function () {
+                $.messager.alert("提示", "提交错误了！", 'error');
+            }
+        });
+    }
+    else {
+        alert('请先选择需要取消定金的商品');
+    }
+}
+
+//定金付款申请单主表维护
+function EditPaymentHead(type) {
+    var getRow = $('#tabDepositHead').datagrid('getSelected');
+    if (getRow.po1_pocode != '') {
+        $('#divDepositEdit').window({ modal: true });
+        $('#divDepositEdit').window('open');
+        $('#Deposit_pocode').val(getRow.po1_pocode);
+        $('#Deposit_poamount').numberbox('setValue', getRow.po1_ocurrencysums);
+        $('#Deposit_supper').val(getRow.sp1_name);
+        $('#Deposit_supper_id').val(getRow.po1_sppocode);
+
+        //获取供应商资金池
+        var data = [];
+        data[data.length] = { "name": "txtDIVI", "value": getRow.po1_divi };
+        data[data.length] = { "name": "txtSupplierCode", "value": getRow.po1_suppliercode };
+        data[data.length] = { "name": "txtpo1_currency", "value": getRow.po1_currency };
+        var xmlData = GetFormJson(data, 'GetSupplierPool');
+        var url = GetWSRRURL('597aac46-2fc7-43e7-81a6-cddf9ba869b8') //+ "&XML=" + GetFormJson([], 'GetSupplierPool')
+        //+ "&Where=SP2_DIVI='LX' and SP2_SP1_SupplierCode='LSCM010'"; //getRow.suppliercode getRow.divi
+        var htmlobj = $.ajax({
+            url: url,
+            data: { "XML": xmlData },
+            type: 'post',
+            async: false
+        });
+        var result = $.parseJSON(htmlobj.responseText);
+        if (result.rows.length > 0 && result.rows[0].sp2_currency != '' && result.rows[0].sp2_poolamount != '') {
+            $('#lblsp2_currency').text(result.rows[0].sp2_currency);
+            $('#lblsp2_poolamount').text(result.rows[0].sp2_poolamount);
+            $('#txtUseMoney').numberbox('enable');
+        }
+        else {
+            $('#lblsp2_currency').text('');
+            $('#lblsp2_poolamount').text('');
+            $('#txtUseMoney').numberbox('setValue', 0);
+            $('#txtUseMoney').numberbox('disable');
+            //$('#txtapplyMoney').numberbox('setValue',0);
+        }
+
+        //填写完定金支付比例事件
+        $('#Deposit_ratio').blur(function () {
+            if ($('#Deposit_ratio').numberbox('getValue') != '') {
+                $('#Deposit_payamount').numberbox('setValue', ($('#Deposit_ratio').numberbox('getValue') / 100 * $('#Deposit_poamount').numberbox('getValue')));
+                $('#txtapplyMoney').numberbox('setValue', $('#Deposit_payamount').numberbox('getValue'));
+            }
+        });
+        $('#txtUseMoney').blur(function () {
+            var useMoney = $('#txtUseMoney').numberbox('getValue');
+            var orderMoney = $('#Deposit_payamount').numberbox('getValue');
+            var moneyPool = $('#lblsp2_poolamount').text();
+            if (useMoney != '') {
+                if (parseFloat(useMoney) > parseFloat(orderMoney)) {
+                    alert('本次使用金额超过定金支付总额');
+                    $('#txtUseMoney').foucs();
+                    return;
+                }
+                if (parseFloat(moneyPool) < parseFloat(useMoney)) {
+                    alert('本次使用金额超过资金池总额');
+                    $('#txtUseMoney').foucs();
+                    return;
+                }
+                $('#txtapplyMoney').numberbox('setValue', orderMoney - useMoney);
+            }
+        });
+
+        //if (type == 'add') {
+        //    $('#Deposit_RequestCode').val('');
+        //    $('#Deposit_ratio').numberbox('setValue', '');
+        //    $('#Deposit_payamount').numberbox('setValue', '');
+        //    $('#txtUseMoney').numberbox('setValue', '');
+        //    $('#txtapplyMoney').numberbox('setValue', '');
+        //}
+        //if (type == 'edit') {
+        //    $('#Deposit_RequestCode').val(getRow.pr1_requestcode);
+        //    $('#Deposit_ratio').numberbox('setValue', getRow.pr1_paymentratio * 100);
+        //    $('#Deposit_payamount').numberbox('setValue', getRow.pr1_requestamount);
+        //    $('#txtUseMoney').numberbox('setValue', getRow.pr1_poolamount);
+        //    $('#txtapplyMoney').numberbox('setValue', getRow.pr1_payamount);
+        //}
+    }
+    else {
+        alert('请选择需要行');
+    }
+}
+
+//付款申请单 保存
+function SavePayment() {
+    $('#txtUseMoney').numberbox('enable');
+    if (!$('#formEditAdd').form('validate')) {
+        $('#txtUseMoney').numberbox('disable');
+        alert('请将未填写的数据填写完整');
+        return;
+    }
+    $('#txtUseMoney').numberbox('disable');
+    var rowSave = $('#tabDepositHead').datagrid('getSelected');
+    rowSave.pr1_requestamount = $('#Deposit_payamount').numberbox('getValue');
+    rowSave.pr1_payamount = $('#txtapplyMoney').numberbox('getValue');
+    rowSave.pr1_poolamount = $('#txtUseMoney').numberbox('getValue');
+    var data = [];
+    data[0] = rowSave;
+    var xmls = GetEditJsonbyType(data, 'EditPaymentRequest');
+    $.messager.progress({ title: '请稍后', msg: '处理中' });
+    $.ajax({
+        url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+        type: 'post',
+        async: true, //异步,
+        data: { "XML": xmls },
+        success: function (result) {
+            try {
+                var result = eval("[" + result + "]");
+
+                if (result[0].Error) {
+                    $.messager.progress('close');
+                    $.messager.alert("系统错误", result[0].Error, 'error');
+                } else if (result[0].rows[0].result == "False") {
+                    $.messager.progress('close');
+                    $.messager.alert("提示", result[0].rows[0].message, 'error');
+                }
+                else {
+                    $.messager.progress('close');
+                    $('#divDepositEdit').window('close');
+                    $('#tabDepositHead').datagrid('reload');
+                }
+            } catch (ex) {
+                $.messager.progress('close');
+                $.messager.alert("提示", ex, 'error');
+
+            }
+        },
+        error: function () {
+            $.messager.alert("提示", "提交错误了！", 'error');
+        }
+    });
+    return false;
+}
+
+//查询按钮事件
+function btnSearch() {
+    var pocode = $('#txtPOCode_Deposit').val();
+    if (pocode != "") {
+        var url = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetDeposit') + "&Where=PO1_POCode='" + pocode + "' AND PO1_DIVI='" + m_divi + "'";
+    }
+    else {
+        var url = GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be') + "&XML=" + GetFormJson('', 'GetDeposit') + "&Where=PO1_DIVI='" + m_divi + "'";
+    }
+    InitGrid_Deposit_Head(url);
+}
+
+//定金转预付款
+function transfer() {
+    var getRow = $('#').datagrid('getChecked');
+    if (getRow.length > 0) {
+        for (var i = 0; i < getRow.length; i++) {
+            if (getRow[i].pr2_state != '90') {
+                alert(getRow[i].pr2_po2_productcode + '还未支付定金,不允许做定金转预付款');
+                return;
+            }
+        }
+
+    }
+    else {
+        alert('请选择行');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------------------------------------------*/
+
+
+
+
+//加载定金管理表数据
+function Init_Deposit_List(url) {
+    $('#tabDeposit').datagrid({
+        //title:'定金表',
+        url: url,
+        striped: true,
+        pagination: true, //是否开启分页
+        pageSize: 20, //默认一页数据条数 
+        rownumbers: true,
+        fit: true,
+        showFooter: true,
+        columns: [[
+            { field: 'ck', checkbox: true },
+            { field: 'pocode', title: '采购单号' },
+            { field: 'brandname', title: '品牌名称' },
+            { field: 'contractcode', title: '合同编号' },
+            { field: 'sppocode', title: '供应商采购单号' },
+            { field: 'suppliercode', title: '供应商编号' },
+            { field: 'suppliername', title: '供应商名称' },
+            { field: 'po2_liseq', title: '项次号' },
+            { field: 'po2_lsseq', title: '子项次号' },
+            { field: 'po2_state', title: '采购单状态' },
+            { field: 'po2_pd1_productcode', title: 'SKU' },
+            { field: 'po2_pd1_supperierstyle', title: '供应商款号' },
+            { field: 'po2_pd1_supperiercolor', title: '供应商颜色' },
+            { field: 'po2_pd1_supperiersize', title: '供应商尺码' },
+            { field: 'po2_number', title: '采购数量' },
+            { field: 'po2_unit', title: '单位' },
+            { field: 'po2_ocurrencyprice', title: '采购单价' },
+            { field: 'po2_ocurrencyamount', title: '采购金额' },
+            { field: 'po2_purchasecurrency', title: '币种' },
+            { field: 'po1_paymenttypename', title: '付款方式' },
+            { field: 'pr2_shareamount', title: '定金分摊金额' },
+            { field: 'pr2_poolmoney', title: '定金扣减资金池金额' },
+            { field: 'pr2_paymoney', title: '定金剩余支付金额' },
+            { field: 'pr2_state', title: '付款状态' },
+            { field: 'po1_rguser', title: '采购人' }
+        ]],
+        toolbar: [
+            {
+                id: 'Deposit_add',
+                text: '新增申请',
+                iconCls: 'icon-add',
+                handler: function () {
+                    editWindow('Add');
+                }
+            },
+            '-',
+            {
+                id: 'Deposit_edit',
+                text: '申请维护',
+                iconCls: 'icon-add',
+                handler: function () {
+                    editWindow('Edit');
+                }
+            },
+            '-',
+            {
+                id: 'Deposit_cancel',
+                text: '定金取消',
+                iconCls: 'icon-cancel',
+                handler: function () {
+                    CancelPayment();
+                }
+            },
+            '-',
+            {
+                id: 'Deposit_back',
+                text: '定金退款',
+                iconCls: 'icon-back',
+                handler: function () {
+                    refund();
+                }
+            },
+            '-',
+            {
+                id: 'Deposit_transfer',
+                text: '定金转预付款',
+                iconCls: 'icon-redo',
+                handler: function () {
+                }
+            },
+            '-',
+            {
+                id: 'Deposit_pay',
+                text: '定金付款',
+                iconCls: 'icon-ok',
+                handler: function () {
+                    payment();
+                }
+            }
+        ]
+    });
+}
+
+//查询按钮事件 title=查询表
+//function btnSearch(title) {
+
+//    if (title == '定金管理') {
+//        var pocode = $('#txtPOCode_Deposit').val();
+//        var data = [];
+//        data[data.length] = { "name": "txt模块", "value": "POPaymentTrackReport" };
+//        data[data.length] = { "name": "txt操作类型", "value": "GETDEPOSIT" };
+//        data[data.length] = { "name": "txtDIVI", "value": m_divi };
+//        data[data.length] = { "name": "txtCONO", "value": "HYFG" };
+//        data[data.length] = { "name": "txt采购编号", "value": '2200002' };
+//        data[data.length] = { "name": "txt合同编号", "value": '' };
+//        data[data.length] = { "name": "txt供应商采购合同", "value": '' };
+//        data[data.length] = { "name": "txt供应商编号", "value": '' };
+//        data[data.length] = { "name": "txt供应商名称", "value": '' };
+//        data[data.length] = { "name": "txt是否分页", "value": "1" };
+//        data[data.length] = { "name": "txt每页数量", "value": "20" };
+//        data[data.length] = { "name": "txt返回页码", "value": "1" };
+//        data[data.length] = { "name": "txt排序字段", "value": "PO1_POCode" };
+//        var xmlData = GetDBFrameAML(data);//组成调用APIxml
+//        var url = GetWSRRURL('d4fe08ef-9fc8-46f8-96cb-1ac4ef260b05') + xmlData;
+
+//        Init_Deposit_List(url);
+//    }
+
+//    else if (title == '') {
+
+//    }
+//}
+
+//定金付款申请单 type:Add为新增  Edit为编辑
+function editWindow(type) {
+    var getRow = $('#tabDeposit').datagrid('getSelections');
+    if (getRow.length > 0) {
+
+        if (type == "Add") {
+            $('#divDepositEdit').window({
+                width: 700,
+                height: 400,
+                top: 20,
+                minimizable: false,
+                maximizable: false,
+                modal: true
+            });
+            $('#Deposit_RequestCode').val(); //付款申请单号
+            $('#Deposit_pocode').val(getRow[0].pocode); //采购单号
+            $('#Deposit_poamount').numberbox('setValue', getRow[0].po1_ocurrencysums); //采购金额
+            $('#Deposit_supplier').val(getRow[0].suppliername); //供应商名称
+            $('#Deposit_supper_id').val(getRow[0].suppliercode); //供应商编号
+            //$('#Deposit_ratio').val(); //定金支付比例
+            //$('#Deposit_payamount').val(); //定金支付总额           
+        }
+            //编辑付款单(定金)
+        else {
+            if (getRow[0].pr2_state == "已申请") {
+                $('#divDepositEdit').window({
+                    width: 700,
+                    height: 400,
+                    top: 20,
+                    minimizable: false,
+                    maximizable: false,
+                    modal: true
+                });
+                var dataEdit = [];
+                dataEdit[dataEdit.length] = { "name": "txtDIVI", "value": "LX" };
+                dataEdit[dataEdit.length] = { "name": "txtpocode", "value": getRow[0].pocode };
+                var paymentOBJ = $.ajax({
+                    url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+                    data: { "XML": GetFormJson(dataEdit, 'GetPR1_PaymentRequisit') },
+                    type: 'post',
+                    async: false
+                });
+                var paymentData = $.parseJSON(paymentOBJ.responseText);
+                if (paymentData.rows.length > 0 && paymentData.rows[0].pr1_id != "") {
+                    $('#Deposit_ratio').numberbox('setValue', paymentData.rows[0].pr1_paymentratio);
+                    $('#Deposit_payamount').numberbox('setValue', paymentData.rows[0].pr1_payamount);
+                    $('#txtUseMoney').numberbox('setValue', paymentData.rows[0].pr1_poolamount);
+                    $('#txtapplyMoney').numberbox('setValue', paymentData.rows[0].pr1_requestamount);
+                }
+            }
+            else {
+                alert('已付款,不能修改！');
+            }
+        }
+
+        //查询供应商资金池
+        var data = [];
+        data[data.length] = { "name": "txtDIVI", "value": "LX" };
+        data[data.length] = { "name": "txtSupplierCode", "value": "LSCM010" };
+        var xmlData = GetFormJson(data, 'GetSupplierPool');
+        var url = GetWSRRURL('597aac46-2fc7-43e7-81a6-cddf9ba869b8') //+ "&XML=" + GetFormJson([], 'GetSupplierPool')
+        //+ "&Where=SP2_DIVI='LX' and SP2_SP1_SupplierCode='LSCM010'"; //getRow.suppliercode getRow.divi
+        var htmlobj = $.ajax({
+            url: url,
+            data: { "XML": xmlData },
+            type: 'post',
+            async: false
+        });
+        var result = $.parseJSON(htmlobj.responseText);
+        if (result.rows.length > 0) {
+            $('#lblsp2_currency').text(result.rows[0].sp2_currency);
+            $('#lblsp2_poolamount').text(result.rows[0].sp2_poolamount);
+        }
+    }
+    else {
+        alert('请选中行');
+        return;
+    }
+
+
+
+
+    //填写玩定金支付比例事件
+    $('#Deposit_ratio').blur(function () {
+        if ($('#Deposit_ratio').numberbox('getValue') != '') {
+            $('#Deposit_payamount').numberbox('setValue', ($('#Deposit_ratio').numberbox('getValue') / 100 * $('#Deposit_poamount').numberbox('getValue')));
+        }
+    });
+    $('#txtUseMoney').blur(function () {
+        var useMoney = $('#txtUseMoney').numberbox('getValue');
+        var orderMoney = $('#Deposit_payamount').numberbox('getValue');
+        var moneyPool = $('#lblsp2_poolamount').text();
+        if (useMoney != '') {
+            if (useMoney > orderMoney) {
+                alert('本次使用金额超过定金支付总额');
+                $('#txtUseMoney').foucs();
+                return;
+            }
+            if (moneyPool < useMoney) {
+                alert('本次使用金额超过资金池总额');
+                $('#txtUseMoney').foucs();
+                return;
+            }
+            $('#txtapplyMoney').numberbox('setValue', orderMoney - useMoney);
+        }
+    });
+
+
+}
+
+//定金付款申请单 type:Add为新增  Edit为编辑
+function editWindow(type) {
+    var getRow = $('#tabDeposit').datagrid('getSelections');
+    if (getRow.length > 0) {
+
+        if (type == "Add") {
+            $('#divDepositEdit').window({
+                width: 700,
+                height: 400,
+                top: 20,
+                minimizable: false,
+                maximizable: false,
+                modal: true
+            });
+            $('#Deposit_RequestCode').val(); //付款申请单号
+            $('#Deposit_pocode').val(getRow[0].pocode); //采购单号
+            $('#Deposit_poamount').numberbox('setValue', getRow[0].po1_ocurrencysums); //采购金额
+            $('#Deposit_supplier').val(getRow[0].suppliername); //供应商名称
+            $('#Deposit_supper_id').val(getRow[0].suppliercode); //供应商编号
+            //$('#Deposit_ratio').val(); //定金支付比例
+            //$('#Deposit_payamount').val(); //定金支付总额           
+        }
+            //编辑付款单(定金)
+        else {
+            if (getRow[0].pr2_state == "已申请") {
+                $('#divDepositEdit').window({
+                    width: 700,
+                    height: 400,
+                    top: 20,
+                    minimizable: false,
+                    maximizable: false,
+                    modal: true
+                });
+                var dataEdit = [];
+                dataEdit[dataEdit.length] = { "name": "txtDIVI", "value": "LX" };
+                dataEdit[dataEdit.length] = { "name": "txtpocode", "value": getRow[0].pocode };
+                var paymentOBJ = $.ajax({
+                    url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+                    data: { "XML": GetFormJson(dataEdit, 'GetPR1_PaymentRequisit') },
+                    type: 'post',
+                    async: false
+                });
+                var paymentData = $.parseJSON(paymentOBJ.responseText);
+                if (paymentData.rows.length > 0 && paymentData.rows[0].pr1_id != "") {
+                    $('#Deposit_ratio').numberbox('setValue', paymentData.rows[0].pr1_paymentratio);
+                    $('#Deposit_payamount').numberbox('setValue', paymentData.rows[0].pr1_payamount);
+                    $('#txtUseMoney').numberbox('setValue', paymentData.rows[0].pr1_poolamount);
+                    $('#txtapplyMoney').numberbox('setValue', paymentData.rows[0].pr1_requestamount);
+                }
+            }
+            else {
+                alert('已付款,不能修改！');
+            }
+        }
+
+        //查询供应商资金池
+        var data = [];
+        data[data.length] = { "name": "txtDIVI", "value": "LX" };
+        data[data.length] = { "name": "txtSupplierCode", "value": "LSCM010" };
+        var xmlData = GetFormJson(data, 'GetSupplierPool');
+        var url = GetWSRRURL('597aac46-2fc7-43e7-81a6-cddf9ba869b8') //+ "&XML=" + GetFormJson([], 'GetSupplierPool')
+        //+ "&Where=SP2_DIVI='LX' and SP2_SP1_SupplierCode='LSCM010'"; //getRow.suppliercode getRow.divi
+        var htmlobj = $.ajax({
+            url: url,
+            data: { "XML": xmlData },
+            type: 'post',
+            async: false
+        });
+        var result = $.parseJSON(htmlobj.responseText);
+        if (result.rows.length > 0) {
+            $('#lblsp2_currency').text(result.rows[0].sp2_currency);
+            $('#lblsp2_poolamount').text(result.rows[0].sp2_poolamount);
+        }
+    }
+    else {
+        alert('请选中行');
+        return;
+    }
+
+
+
+
+    //填写玩定金支付比例事件
+    $('#Deposit_ratio').blur(function () {
+        if ($('#Deposit_ratio').numberbox('getValue') != '') {
+            $('#Deposit_payamount').numberbox('setValue', ($('#Deposit_ratio').numberbox('getValue') / 100 * $('#Deposit_poamount').numberbox('getValue')));
+        }
+    });
+    $('#txtUseMoney').blur(function () {
+        var useMoney = $('#txtUseMoney').numberbox('getValue');
+        var orderMoney = $('#Deposit_payamount').numberbox('getValue');
+        var moneyPool = $('#lblsp2_poolamount').text();
+        if (useMoney != '') {
+            if (useMoney > orderMoney) {
+                alert('本次使用金额超过定金支付总额');
+                $('#txtUseMoney').foucs();
+                return;
+            }
+            if (moneyPool < useMoney) {
+                alert('本次使用金额超过资金池总额');
+                $('#txtUseMoney').foucs();
+                return;
+            }
+            $('#txtapplyMoney').numberbox('setValue', orderMoney - useMoney);
+        }
+    });
+
+
+}
+
+//付款申请单保存
+function SavePayApply(type) {
+
+    //var ratio = $('#Deposit_payamount').numberbox / $('#Deposit_poamount').numberbox('getValue');
+    var xmls = "<Root><OPTYPE>EditPaymentRequisit</OPTYPE><List>";
+    //获取付款申请单子表
+    var getRow = $('#tabDeposit').datagrid('getSelections');
+    //var XMLData = GetEditJsonbyType(getRow, "EditPaymentRequisit");
+    if (getRow.length > 0) {
+        xmls = xmls + "<Rows><PR1_DIVI>" + getRow[0].divi + "</PR1_DIVI>" +
+            "<PR1_PO1_POCode>" + getRow[0].pocode + "</PR1_PO1_POCode>" +
+            "<PR1_PO1_SPPOCode>" + getRow[0].sppocode + "</PR1_PO1_SPPOCode>" +
+            "<PR1_AP1_APOCode></PR1_AP1_APOCode>" +
+            "<PR1_RequestAmount>" + $('#Deposit_payamount').numberbox('getValue') + "</PR1_RequestAmount>" +
+            "<PR1_PayAmount>" + $('#txtapplyMoney').numberbox('getValue') + "</PR1_PayAmount>" +
+            "<PR1_PoolAmount>" + $('#txtUseMoney').numberbox('getValue') + "</PR1_PoolAmount>" +
+            "<PR1_PO1_Currency>" + getRow[0].po2_purchasecurrency + "</PR1_PO1_Currency>" +
+            "<POMoney>" + $('#Deposit_poamount').numberbox('getValue') + "</POMoney>" +
+            "<PayMoney>" + $('#Deposit_payamount').numberbox('getValue') + "</PayMoney>" +
+            "</Rows>";
+        if (type == "Add") {
+            for (var i = 0; i < getRow.length; i++) {
+                var xmlRow = "<Rows><PR2_DIVI>" + getRow[i].divi + "</PR2_DIVI>" +
+                    "<PR2_PO2_LISeq>" + getRow[i].pr2_po2_liseq + "</PR2_PO2_LISeq>" +
+                    "<PR2_PO2_LSSeq>" + getRow[i].pr2_po2_lsseq + "</PR2_PO2_LSSeq>" +
+                    "<PR2_PO2_ProductCode>" + getRow[i].po2_pd1_productcode + "</PR2_PO2_ProductCode>" +
+                    "<PO2_OCurrencyAMount>" + getRow[i].po2_ocurrencyamount + "</PO2_OCurrencyAMount>" +
+                    "</Rows>";
+                xmls += xmlRow;
+            }
+        }
+        xmls += "</List></Root>";
+    }
+    $.messager.progress({ title: '请稍后', msg: '处理中' });
+    $.ajax({
+        url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+        type: 'post',
+        async: true, //异步,
+        data: { "XML": xmls },
+        success: function (result) {
+            try {
+                var result = eval("[" + result + "]");
+
+                if (result[0].Error) {
+                    $.messager.progress('close');
+                    $.messager.alert("系统错误", result[0].Error, 'error');
+                } else if (result[0].rows[0].result == "False") {
+                    $.messager.progress('close');
+                    $.messager.alert("提示", result[0].rows[0].message, 'error');
+                }
+                else {
+                    $.messager.progress('close');
+                }
+            } catch (ex) {
+                $.messager.progress('close');
+                $.messager.alert("提示", ex, 'error');
+            }
+        },
+        error: function () {
+            $.messager.alert("提示", "提交错误了！", 'error');
+        }
+    });
+    return false;
+}
+
+
+
+//定金付款
+function payment() {
+    var getRows = $('#tabDeposit').datagrid('getChecked');
+    if (getRows.length > 0) {
+        var XMLData = GetEditJsonbyType(getRows, 'PayPayment');
+        $.messager.progress({ title: '请稍后', msg: '处理中' });
+        $.ajax({
+            url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+            type: 'post',
+            async: true, //异步,
+            data: { "XML": XMLData },
+            success: function (result) {
+                try {
+                    var result = eval("[" + result + "]");
+                    if (result[0].Error) {
+                        $.messager.progress('close');
+                        $.messager.alert("系统错误", result[0].Error, 'error');
+                    } else if (result[0].rows[0].result == "False") {
+                        $.messager.progress('close');
+                        $.messager.alert("提示", result[0].rows[0].message, 'error');
+                    }
+                    else {
+                        $.messager.progress('close');
+                    }
+                } catch (ex) {
+                    $.messager.progress('close');
+                    $.messager.alert("提示", ex, 'error');
+                }
+            },
+            error: function () {
+                $.messager.alert("提示", "提交错误了！", 'error');
+            }
+        });
+    }
+    else {
+        alert('请先选择需要取消定金的商品');
+    }
+}
+
+//定金退款
+function refund() {
+    var getBackRows = $('#tabDeposit').datagrid('getChecked');
+    if (getRows.length > 0) {
+        var XMLData = GetEditJsonbyType(getRows, '');
+        $.messager.progress({ title: '请稍后', msg: '处理中' });
+        $.ajax({
+            url: GetWSRRURL('e0dbebb3-df55-486a-9316-9b1ca5f309be'),
+            type: 'post',
+            async: true, //异步,
+            data: { "XML": XMLData },
+            success: function (result) {
+                try {
+                    var result = eval("[" + result + "]");
+                    if (result[0].Error) {
+                        $.messager.progress('close');
+                        $.messager.alert("系统错误", result[0].Error, 'error');
+                    } else if (result[0].rows[0].result == "False") {
+                        $.messager.progress('close');
+                        $.messager.alert("提示", result[0].rows[0].message, 'error');
+                    }
+                    else {
+                        $.messager.progress('close');
+                    }
+                } catch (ex) {
+                    $.messager.progress('close');
+                    $.messager.alert("提示", ex, 'error');
+                }
+            },
+            error: function () {
+                $.messager.alert("提示", "提交错误了！", 'error');
+            }
+        });
+    }
+    else {
+        alert('请先选择需要退款的商品');
+    }
+}

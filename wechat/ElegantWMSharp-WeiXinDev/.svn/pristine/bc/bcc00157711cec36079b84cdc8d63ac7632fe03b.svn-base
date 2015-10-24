@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "雅斓名店GraceLand 2015A/W New Arrival";
+    Layout = "~/Areas/Game/Views/Shared/_GLPosterLayout.cshtml";
+}
+
+
+@section script{
+    <script src="~/Areas/Game/Resources/GLPosterRec/media/js/offline.js"></script>
+    <script type="text/javascript" src="~/Scripts/jweixin-1.0.0.js"></script>
+    <script>
+    //<![CDATA[
+		if(/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+			var version = parseFloat(RegExp.$1);
+			if(version > 2.3) {
+				var phoneScale = parseInt(window.screen.width)/640;
+				document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+			} else {
+				document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+			}
+		} else {
+			document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+		}
+		
+		if(navigator.userAgent.indexOf('MicroMessenger') >= 0) {
+			document.addEventListener('WeixinJSBridgeReady', function() {
+				WeixinJSBridge.call('hideToolbar');
+			});
+		}
+        //]]>
+    </script>
+    <link href="~/Areas/Game/Resources/GLPosterRec/media/style.mini.css" rel="stylesheet" />
+    <link href="~/Areas/Game/Resources/GLPosterRec/media/self.css" rel="stylesheet" />
+    <script>
+        var appId, ticket, timestamp, nonceStr, signature;
+
+        $(function () {
+            //获取appid
+            $.post("/Game/GLPoster/GetAppId?sid=" + Url.get("sid"), function (rst) {
+                if (rst.result == 0) {
+                    appId = rst.msg;
+                    //获取ticket
+                    $.post("/Game/GLPoster/GetTicket?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid"), function (rst) {
+                        if (rst.result == 0) {
+                            ticket = rst.msg;
+                            timestamp = parseInt(new Date().getTime() / 1000) + '';
+                            nonceStr = Math.random().toString(36).substr(2, 15);
+
+                            //获取signature
+                            $.post("/Game/GLPoster/GetSignature?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid") + "&ticket=" + ticket + "&nonceStr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + window.location.href.replace(/&/g, '%26'), function (rst) {
+                                if (rst.result == 0) {
+                                    signature = rst.msg;
+                                    wx.config({
+                                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                        appId: appId, // 必填，公众号的唯一标识
+                                        timestamp: timestamp, // 必填，生成签名的时间戳
+                                        nonceStr: nonceStr, // 必填，生成签名的随机串
+                                        signature: signature,// 必填，签名，见附录1
+                                        jsApiList: [
+                                            'onMenuShareTimeline',
+                                            'onMenuShareAppMessage'
+                                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                    });
+                                } else {
+                                    //alert("获取signature失败")
+                                }
+                            });
+                        } else {
+                            //alert("获取GetTicket失败")
+                        }
+                    });
+                } else {
+                    //alert("获取appid失败")
+                }
+            });
+
+        });
+
+        wx.ready(function () {
+
+            var url = "http://it.hwafashion.com/Game/GLPoster/Index?sid=" + Url.get("sid") + "&wxid=" + Url.get("wxid");
+            var imgUrl = '';
+            wx.onMenuShareTimeline({
+                title: '雅斓名店GraceLand 2015A/W New Arrival', // 分享标题
+                link: url,// 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: '雅斓名店GraceLand 2015A/W New Arrival', // 分享标题
+                desc: '雅斓名店GraceLand 2015A/W New Arrival', // 分享描述
+                link: url, // 分享链接
+                imgUrl: imgUrl, // 分享图标
+                success: function () {
+                },
+                cancel: function () {
+                }
+            });
+        });
+
+    </script>
+    }
+
+<div id="app-loading" class="app-loading">
+		<div class="cycleWrap">
+			<span class="cycle cycle-1"></span>
+			<span class="cycle cycle-2"></span>
+			<span class="cycle cycle-3"></span>
+			<span class="cycle cycle-4"></span>
+		</div>
+		<div class="lineWrap">
+			<span class="line line-1"></span>
+			<span class="line line-2"></span>
+			<span class="line line-3"></span>
+		</div>
+	</div>
+	<!-- Wapps Loading End -->
+	
+	<header class="app-header">
+		<a href="javascript:void(0);" class="u-globalAudio">
+            <audio autoplay="autoplay" loop="loop" src="~/Areas/Game/Resources/GLPosterRec/media/song/SowintoYou.mp3"></audio>
+		</a>
+	</header>
+	<!-- Loading Header End -->
+	
+	<section class="app-content">
+		<section style="" class="page page-index z-current" data-plugin-type="info_front">
+			<section class="page-content">
+				<div class="m-animationBox m-meteorShower"></div>
+                @*<img class="m-foregroundImg" style="width:100%;height:100%" src="~/Areas/Game/Resources/GLPosterRec/media/single/00bg.jpg" />*@
+                <img class="m-foregroundImg" style="width:100%;height:100%" src="~/Areas/Game/Resources/GLPosterRec/media/single/0.jpg" />
+			</section>
+			
+		</section>
+
+		<!-- Page End -->
+		<section class="page page-link" data-plugin-type="info_link" style="background-image:url(/Areas/Game/Resources/GLPosterRec/media/single/00bg.jpg);">
+		<img class="m-foregroundImg" style="width:100%;height:100%" src="~/Areas/Game/Resources/GLPosterRec/media/single/1.jpg" />
+
+		</section><!-- Phone Text End -->
+		
+		<!-- 创作过程 -->
+		<section class="page page-teletext" data-plugin-type="info_list" style="background:url(/Areas/Game/Resources/GLPosterRec/media/single/00bg.jpg);background-size:cover;">
+			<section class="page-content">
+				<ul class="m-cascadingTeletext">
+					<li><img class="img-margin" src="~/Areas/Game/Resources/GLPosterRec/media/single/4.png" />
+                        </li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/4-1.png" />
+					    </li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/4-2.png" />
+					    </li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/4-3.png" />
+					    </li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/4-4.png" />
+					    </li>
+				</ul>
+				<a href="javascript:void(0);" class="u-guidePrev z-move">prev</a>
+				<a href="javascript:void(0);" class="u-guideNext z-move">next</a>
+			</section>
+		</section>
+
+		<!-- 模特展示 -->
+		<section class="page page-teletext " data-plugin-type="info_list" style="background:url(/Areas/Game/Resources/GLPosterRec/media/single/00bg.jpg);background-size:cover;">
+			<section class="page-content">
+				<ul class="m-cascadingTeletext">
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/2.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-1.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-2.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-3.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-4.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-5.png" />
+					</li>
+					<li>
+                        <img src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-6.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-7.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-8.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/2-9.png" />
+					</li>
+				</ul>
+				<a href="javascript:void(0);" class="u-guidePrev z-move">prev</a>
+				<a href="javascript:void(0);" class="u-guideNext z-move">next</a>
+			</section>
+		</section>
+
+		<!-- 细节亮点 -->
+		<section class="page page-teletext m-foregroundImg-pic" data-plugin-type="info_list" style="background:url(/Areas/Game/Resources/GLPosterRec/media/single/00bg.jpg);background-size:cover;">
+			<section class="page-content">
+				<ul class="m-cascadingTeletext clear">
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/3.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/3-1.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/3-2.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/3-3.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/3-4.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/3-5.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/3-6.png" />
+					</li>
+					<li>
+                        <img class="img-margin"  src="~/Areas/Game/Resources/GLPosterRec/media/single/Inspiration/3-7.png" />
+					</li>
+				</ul>
+				<a href="javascript:void(0);" class="u-guidePrev z-move">prev</a>
+				<a href="javascript:void(0);" class="u-guideNext z-move">next</a>
+			</section>
+		</section>
+	<section class="page page-link" data-plugin-type="info_link" style="background-image:url(/Areas/Game/Resources/GLPosterRec/media/single/00bg.jpg);background-size:cover;">
+	    <img class="m-foregroundImg" style="width:100%;height:100%" src="~/Areas/Game/Resources/GLPosterRec/media/single/5.jpg" />
+    </section><!-- Phone Text End -->
+	<footer class="app-footer"></footer>
+	<input value="media/single/wechat-share.png" type="hidden" data-share-pic="">
+	
+	
+	<!-- Loading Js -->
+    <script src="~/Areas/Game/Resources/GLPosterRec/media/js/init.min.js"></script>
+	
+	<script type="text/javascript">
+	//<![CDATA[
+		window.onload = function() {
+			$audio = $("audio");
+			if ($audio.length>0) {
+				$audio.attr("src", $audio.data("src"));
+				$audio.parent("a").prepend('<i class="icon-music"></i>');
+			}
+		};
+	//]]>
+	</script>
+

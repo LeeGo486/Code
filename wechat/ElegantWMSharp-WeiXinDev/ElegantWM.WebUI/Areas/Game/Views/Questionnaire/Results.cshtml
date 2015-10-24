@@ -1,0 +1,33 @@
+﻿@model ElegantWM.EntityModel.Game_Qrst
+@{
+    ViewBag.Title = "成绩";
+    Layout = "~/Views/Shared/_WeiXinLayout.cshtml";
+}
+@section script{
+    <link rel="stylesheet" href="~/Areas/Game/Resources/css/Questionnaire.css?v3" />
+}
+
+@*<div class="ht">*@
+@*<i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;成绩明细：*@
+<h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;成绩明细</span></h4>
+@*</div>*@
+
+<div>
+    <table class="resultsTable">
+        <thead>
+            <tr>
+                <th style="width: 20%">姓名</th>
+                <th style="width: 50%">总分</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ElegantWM.EntityModel.Game_Qrst total in ViewBag.Game_Qrst)
+            {
+                <tr>
+                    <td>@total.UseName</td>
+                    <td>@total.total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

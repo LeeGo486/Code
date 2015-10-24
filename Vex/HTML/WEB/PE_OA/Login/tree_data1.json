@@ -1,0 +1,61 @@
+[{
+	"id":1,
+	"text":"我的任务",
+	"attributes":"../expenseFlowInfo/TaskCenter.html"
+ },
+ {	"id":2,
+	"text":"费用管理",
+	"children":[{
+		"id":21,
+		"text":"现金申请单",
+		"attributes":"../cashApp/CashApp.html"
+	},{
+		"id":22,
+		"text":"付款申请单",
+		"attributes":"../billPaymentApp/BillPaymentApp.html"
+	},{
+		"id":23,
+		"text":"特殊付款申请单",
+		"attributes":"tast.html"
+	},{
+		"id":24,
+		"text":"差旅费报销单",
+		"attributes":"../TBillTravel/TBillTravel.html"
+	},{
+		"id":25,
+		"text":"工资付款申请单",
+		"attributes":"tast.html"
+	},{
+		"id":26,
+		"text":"商场扣费确认单",
+		"attributes":"tast.html"
+	},{
+		"id":27,
+		"text":"工程预付申请单",
+		"attributes":"tast.html"
+	},{
+		"id":28,
+		"text":"工程结算付款申请单",
+		"attributes":"tast.html"
+	}]
+},
+{
+	"id":3,
+	"text":"费用查询",
+	"children":[{
+		"id":31,
+		"text":"查询",
+		"attributes":"tast.html"
+	}]
+ }
+ ,
+{
+	"id":4,
+	"text":"基础数据维护",
+	"children":[{
+		"id":41,
+		"text":"基础数据维护",
+		"attributes":"tast.html"
+	}]
+ }
+]

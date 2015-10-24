@@ -1,0 +1,230 @@
+﻿@{
+    ViewBag.Title = "出差申请";
+    Layout = "~/Views/Shared/_HRWeiXinLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/HR/Resources/css/HR.css?v6" rel="stylesheet" />
+    <script type="text/javascript">
+        var data1 = [];
+        $(function () {
+            //$("#dav").css("background-color", "#000").css("border-bottom", "2px solid red");
+            //$("#dpay").css("background-color", "#2c3e50").css("border-bottom", "");
+            var hydp = $('.hzyDp').datepicker().on('changeDate', function (ev) {
+                hydp.hide();
+            }).data('datepicker');
+
+            $.post("/HR/EHRManagement/ApplyInfo", function (rst) {
+                if (rst.result == 0) {
+                    data1 = eval(rst.msg);
+                } else {
+                    Msg.show(rst.msg, rst.result);
+                }
+            });
+        });
+
+        //变更审批人
+        function changeAP(approve, name) {
+            var $st1 = $("#" + approve);
+            var $st1add = $("#" + name);
+
+            var text1 = $st1.find("option:selected").val();   //获取Select选中项的Text一级审批人
+            $st1add.empty();
+
+            if (text1 == "0") {
+                return;
+            } else if (text1 == "1") {
+                for (var i = 0; i < data1.length; i++) {
+                    if (data1[i].type == text1) {
+                        $st1add.append("<option value='" + data1[i].sjC_OID + "'>" + data1[i].sjC_NAME + "</option>");
+                    }
+                }
+            } else if (text1 == "2") {
+                for (var i = 0; i < data1.length; i++) {
+                    if (data1[i].type == text1) {
+                        $st1add.append("<option value='" + data1[i].sjC_OID + "'>" + data1[i].sjC_NAME + "</option>");
+                    }
+                }
+            }
+        }
+        //确定提交
+        function btnSubmit() {
+
+            var OutApplyType = $("#OutApplyType").val();//出差类型
+            var addchangeAP1 = $("#addapprove1").val();//一级审批
+            var addchangeAP2 = $("#addapprove2").val();//二级审批
+            if (addchangeAP1 == null) { addchangeAP1 = ""; }
+            if (addchangeAP2 == null) { addchangeAP2 = ""; }
+            var OutApplyBeginDate = $("#OutApplyBeginDate").val();//开始日期
+            var OutApplyEndDate = $("#OutApplyEndDate").val();//结束日期
+            var OutApplyBeginTime = $("#OutApplyBeginTime").val();//开始时间
+            var OutApplyEndTime = $("#OutApplyEndTime").val();//结束时间
+            var OutApplyBeginDateTime = OutApplyBeginDate + " " + OutApplyBeginTime;//开始日期时间
+            var OutApplyEndDateTime = OutApplyEndDate + " " + OutApplyEndTime;//结束日期时间
+            var OutApplyHours = $("#OutApplyHours").val();//出差时长
+            var OutApplyAddress = $("#OutApplyAddress").val();//出差地点
+            var OutApplyReason = $("#OutApplyReason").val();//出差事由
+            var OutApplyDestname = $("#OutApplyDestname").val();//单位名称
+            var OutApplyDestaddress = $("#OutApplyDestaddress").val();//单位地址
+            var OutApplyContactPerson = $("#OutApplyContactPerson").val();//联系人
+            var OutApplyContactPhone = $("#OutApplyContactPhone").val();//联系电话
+            var OutApplyVehicle = $("#OutApplyVehicle").val();//交通工具
+            var OutApplyContactPhone = $("#OutApplyContactPhone").val();//联系电话
+            var OutApplyRemark = $("#OutApplyRemark").val();//备注
+
+            if ($.trim($("#OutApplyType").val()).length <= 0) { $("#OutApplyType").focus(); Msg.show('请选择休假类型!', 1); return; }
+            if ($.trim($("#OutApplyBeginDate").val()).length <= 0) { $("#OutApplyBeginDate").focus(); Msg.show('请选择开始日期!', 1); return; }
+            if ($.trim($("#OutApplyEndDate").val()).length <= 0) { $("#OutApplyEndDate").focus(); Msg.show('请选择结束日期!', 1); return; }
+            if ($.trim($("#OutApplyBeginTime").val()).length <= 0) { $("#OutApplyBeginTime").focus(); Msg.show('请选择开始时间!', 1); return; }
+            if ($.trim($("#OutApplyEndTime").val()).length <= 0) { $("#OutApplyEndTime").focus(); Msg.show('请选择结束时间!', 1); return; }
+            if ($.trim($("#OutApplyHours").val()).length <= 0) { $("#OutApplyHours").focus(); Msg.show('请填写出差时长!', 1); return; }
+            if (addchangeAP2 == "" && addchangeAP1 == "") { Msg.show("请选择审批人!", 1); return; }
+
+
+            var dataCheckOut = {
+                c_begintime: OutApplyBeginDateTime,
+                c_endtime: OutApplyEndDateTime
+            };
+            var dataOut = {
+                sp1: addchangeAP1,
+                sp2: addchangeAP2,
+                c_remark: OutApplyType,
+                begindate: OutApplyBeginDateTime,
+                enddate: OutApplyEndDateTime,
+                c_value: OutApplyHours,
+                c_attitemid: OutApplyType,
+                c_vehicle: OutApplyVehicle,
+                c_reason: OutApplyReason,
+                c_destname: OutApplyDestname,
+                c_destaddress: OutApplyDestaddress,
+                c_destination: OutApplyAddress,
+                c_contactperson: OutApplyContactPerson,
+                c_contactphone: OutApplyContactPhone,
+            };
+
+            Msg.show("提交中请稍后...", 3);
+            $.post("/HR/EHRManagement/CheckOut", dataCheckOut, function (rst) {
+                Msg.hide();
+                if (rst.result == 0) {
+                    data2 = eval(rst.msg);
+                    if (data2[0].count != "0") {
+                        Msg.show('已经存在该时间段休假!', 1);
+                        return;
+                    }
+                    else {
+                        $.post("/HR/EHRManagement/OutApplySubmit", dataOut, function (rst) {
+                            if (rst.result == 0) {
+                                Msg.show(rst.msg, rst.result);
+                                window.location.href = '/HR/EHRManagement/AvInfo'
+                            } else {
+                                Msg.show(rst.msg, rst.result);
+                            }
+                        });
+                    }
+                }
+                $("#btnSubmit").button("reset");
+            });
+
+        }
+
+    </script>
+}
+<div class="mainArea">
+    <h4><span><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;出差申请</span></h4>
+
+    <div class="input-group">
+        <span class="input-group-addon">出差类型</span>
+        <select id="OutApplyType" class="form-control">
+            <option value="">------</option>
+            <option value="3179482">出差</option>
+        </select>
+    </div>
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">审批人(1)</span>
+        <select id="changeAP1" class="form-control" onchange="changeAP('changeAP1','addapprove1')">
+            <option value="">- - - -</option>
+            <option value="1">一级审批人</option>
+            <option value="2">二级审批人</option>
+        </select>
+        <select id="addapprove1" class="form-control">
+        </select>
+    </div>
+    <h4><span><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;不需要2个审批人不用填写</span></h4>
+    <div class="input-group">
+        <span class="input-group-addon">审批人(2)</span>
+        <select id="changeAP2" class="form-control" onchange="changeAP('changeAP2','addapprove2')">
+            <option value="">- - - -</option>
+            <option value="1">一级审批人</option>
+            <option value="2">二级审批人</option>
+        </select>
+        <select id="addapprove2" class="form-control">
+        </select>
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">开始时间</span>
+        <input class="form-control hzyDp" id="OutApplyBeginDate" name="OutApplyBeginDate" type="text" style="width: 105px" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"></span>
+        <input type="time" id="OutApplyBeginTime" name="OutApplyBeginTime" class="form-control" placeholder="08:00:00">
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">结束时间</span>
+        <input class="form-control hzyDp" id="OutApplyEndDate" name="OutApplyEndDate" type="text" style="width: 105px" data-date-format="yyyy-mm-dd" readonly="">
+        <span class="input-group-addon"></span>
+        <input type="time" id="OutApplyEndTime" name="OutApplyEndTime" class="form-control" placeholder="08:00:00">
+    </div>
+
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">公出时长</span>
+        <input type="number" id="OutApplyHours" name="OutApplyHours" class="form-control" placeholder="公出时长">
+    </div>
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">出差地点</span>
+        <input type="text" id="OutApplyAddress" name="OutApplyAddress" class="form-control" placeholder="出差地点">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">出差事由</span>
+        <input type="text" id="OutApplyReason" name="OutApplyReason" class="form-control" placeholder="出差事由">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">单位名称</span>
+        <input type="text" id="OutApplyDestname" name="OutApplyDestname" class="form-control" placeholder="单位名称">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">单位地址</span>
+        <input type="text" id="OutApplyDestaddress" name="OutApplyDestaddress" class="form-control" placeholder="单位地址">
+    </div>
+    <br />
+
+    <div class="input-group">
+        <span class="input-group-addon">联&nbsp;&nbsp;系&nbsp;人</span>
+        <input type="text" id="OutApplyContactPerson" name="OutApplyContactPerson" class="form-control" placeholder="联系人">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">联系电话</span>
+        <input type="number" id="OutApplyContactPhone" name="OutApplyContactPhone" class="form-control" placeholder="联系电话">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">交通工具</span>
+        <input type="text" id="OutApplyVehicle" name="OutApplyVehicle" class="form-control" placeholder="交通工具">
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+        <input type="text" id="OutApplyRemark" name="OutApplyRemark" class="form-control" placeholder="备注">
+    </div>
+    <br />
+
+    <input id="btnSubmit" type="button" value="申请确定" class="btn btn-success" style="width: 100%; margin-top: 30px;" onclick="btnSubmit()" />
+</div>

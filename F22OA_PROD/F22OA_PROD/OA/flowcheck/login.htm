@@ -1,0 +1,37 @@
+<HTML>
+	<HEAD>
+		<title>流程审核</title>
+		<LINK href="../css/project.css" type="text/css" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312"></HEAD>
+	<script>
+	function check(theform){
+	if(theform.tbuser.value==''){alert('请输入帐号！');theform.tbuser.focus();return false;}
+	if(theform.tbpwd.value==''){alert('请输入密码！');theform.tbpwd.focus();return false;}	
+	}
+	</script>
+	<body leftmargin="0" rightmargin="0">
+		<form id="Form1" method="post" action="logincheck.asp" onsubmit="return check(this)">
+			<TABLE width="100%" border="0" cellpadding="1" cellspacing="1">
+				<TR>
+					<TD align="center">
+                        <img border="0" src="img/logo0.jpg" ></TD>
+				</TR>
+				<TR>
+					<td align="center"><table border="0" >
+							<tr>
+								<TD style="WIDTH: 23px"><img src="img/USER_32.PNG" border="0"></TD>
+								<TD>
+									<input type="text" name="tbuser" id="tbuser" Class="bt" Width="120px" Height="20px"></TD>
+								<TD style="WIDTH: 18px"><img src="img/admin_32.png" border="0"></TD>
+								<TD>
+									<input id="tbpwd" name="tbpwd" Class="bt" Width="120px" type="Password" Height="20px"></TD>
+								<TD>
+									<input type="submit" value="登 录" Width="86px" Class="bt"></TD>
+							</tr>
+						</table>
+					</td>
+				</TR>
+			</TABLE>
+		</form>
+	</body>
+</HTML>

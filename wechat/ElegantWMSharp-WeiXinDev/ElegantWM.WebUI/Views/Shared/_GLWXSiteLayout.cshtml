@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>@(ViewBag.Title)</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link href="~/Content/Plugin/Bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="~/Content/Plugin/Bootstrap/bootbox.min.js"></script>
+    <!--IOS Masker-->
+    <link href="~/Scripts/IosOverlay/css/iosOverlay.css" rel="stylesheet" />
+    <script src="~/Scripts/IosOverlay/js/spin.min.js"></script>
+    <script src="~/Scripts/IosOverlay/js/iosOverlay.js"></script>
+    <script src="~/Scripts/WeixinApi/WeixinApi.js"></script>
+    <script src="~/Scripts/MatrixGlobal.js"></script>
+    <script src="~/Scripts/SimplerSidebar/jquery-1.11.3.min.js"></script>
+    @*<script src="~/Scripts/SimplerSidebar/simpler-sidebar.js"></script>*@
+    <script src="~/Scripts/SimplerSidebar/simpler-sidebar.min.js"></script>
+    <link href="~/Areas/Matrix/Resources/Mobile.css" rel="stylesheet" />
+    @RenderSection("script", false)
+</head>
+<body>
+    <div class="navsHead">
+        <div>
+            <img id="navNavigationButton" src="~/Areas/GLWXSite/Resources/images/Goods/NavigationButton.png" />
+            <img id="navShoppingCartButton" src="~/Areas/GLWXSite/Resources/images/Goods/ShoppingCartButton.png" />
+            <img id="navBrandLog" src="~/Areas/GLWXSite/Resources/images/Goods/BrandLog.png" />
+        </div>
+
+    </div>
+
+
+    <div class="main" style="margin: 50px 0 0 0 ;">
+        @RenderBody()
+    </div>
+
+    <div class="sidebar" id="dowebok">
+        <div class="sidebar-wrapper" id="sidebar-wrapper">
+            <ul class="nav">
+                <li><a href="#">主页</a></li>
+                <li><a href="#">新品速递</a></li>
+                <li><a href="#">A-Z品牌</a></li>
+                <li><a href="#">包装</a></li>
+                <li><a href="#">鞋履</a></li>
+                <li><a href="#">配饰</a></li>
+            </ul>
+            <hr  />
+             <ul class="nav">
+                <li><a href="#">账户</a></li>
+                <li><a href="#">购物车</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer" style="margin: 0; z-index: 99;">
+        <a href="http://mp.weixin.qq.com/s?__biz=MzA5MDM3NjUxNA==&mid=200423812&idx=1&sn=668eb5a784c0ae5fcc53612687808642#rd">Powered by <span style="text-decoration: underline;">C3 Matrix 微信孵化平台</span><br />
+            © 2014 华之毅 信息服务中心</a>
+        <div>投诉电话:<a href="tel:4008881273"> 4008881273</a></div>
+    </div>
+
+    <script type="text/javascript">
+
+
+        $('#dowebok').simplerSidebar({
+            opener: '#navNavigationButton',
+            sidebar: {
+                align: 'left',
+                width: 800
+            }
+        });
+
+        $("#navShoppingCartButton").click(function () {
+            alert("购物车");
+        })
+        //window.history.go(-1);
+    </script>
+</body>
+</html>
+
+
+

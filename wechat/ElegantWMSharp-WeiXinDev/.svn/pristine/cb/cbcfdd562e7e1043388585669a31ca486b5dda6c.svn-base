@@ -1,0 +1,24 @@
+﻿<div id="wdcl_theme" class="ht">
+    <i class="icon-comments-alt"></i>&nbsp;&nbsp;[陈列详细] 演绎东方精致生活
+</div>
+<div class="dataDetail">
+    <h4><span><i class="icon-film"></i>&nbsp;&nbsp;效果图</span></h4>
+    <img id="wdcl_img" src="/Areas/S3/Resources/images/Exhibit/2.jpg" width="100%" />
+    <br /><br />
+    <div id="dn_cl">
+        <h4><span><i class="icon-reorder"></i>&nbsp;&nbsp;区域</span></h4>
+        二楼，饰品区，2014-07-11 14:35:22
+    </div>
+    <br />
+    <h4><span><i class="icon-tasks"></i>&nbsp;&nbsp;要点说明</span></h4>
+    相关陈列道具将于6月20日发放到各个店铺，陈列完成时间：2014年6月26日
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" style="border-right:1px solid #ccc;"><a href="tel:13888888888" style="color:#CC3333;"><i class="glyphicon glyphicon-earphone"></i> 张婕</a></span>
+        <span class="btnarea" style="border-right:1px solid #ccc;"><i class="icon-comment-alt"></i>建议(1)</span>
+        <span class="btnarea" onclick="Msg.show('分享成功',0);"><i class="icon-random"></i>分享</span>
+    </div>
+    <div id="jy">
+        <h4><span><i class="icon-comment"></i> 建议信息</span></h4>
+        <div style="border-bottom:1px dashed #ccc;margin-bottom:4px;padding:4px 0px;">[2014-07-03，武汉东湖万达] 具有垂感的亚麻材质，穿着舒适且具有时髦看点，绝对是时尚主妇的必要搭配</div>
+    </div>
+</div>

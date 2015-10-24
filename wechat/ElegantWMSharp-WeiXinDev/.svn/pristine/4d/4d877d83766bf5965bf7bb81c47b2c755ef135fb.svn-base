@@ -1,0 +1,137 @@
+﻿using ElegantWM.DTO;
+using ElegantWM.EntityModel;
+using ElegantWM.Factory;
+using ElegantWM.Tools;
+using ElegantWM.WeiXin.MsgEntity;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+
+namespace ElegantWM.WebUI.Areas.DLWXSite.Controllers
+{
+    public class DLGoodsController : Controller
+    {
+        //
+        // GET: /DL/Goods/
+
+        [Page]
+        [Description("首页")]
+        [Open]
+        public ActionResult Index(Guid sid)
+        {
+            ViewBag.Sid = sid;
+            string mediaJson = "{\"type\":\"news\",\"offset\":0,\"count\":10}";
+            WxNews news = ElegantWM.WeiXin.Common.GetMediaList(sid.ToString(), mediaJson);
+
+            int count = 0;
+            List<WxItem> rst = new List<WxItem>();
+            foreach (WxItem item in news.item)
+            {
+                if (count >= 3)
+                {
+                    break;
+                }
+                else if (item.content.news_item.First().title.Contains("#"))
+                {
+                    continue;
+                }
+                else
+                {
+                    rst.Add(item);
+                    count++;
+                    string s = item.content.news_item.First().thumb_media_id;
+                    mediaJson = "{\"media_id\":\"" + s + "\"}";
+
+                    string destFilePath = "~/Content/MaterialImage/" + sid.ToString() + "/";
+                    string mapPath = Server.MapPath(destFilePath);
+                    string filePath = mapPath + s + ".jpg";
+                    if (!Directory.Exists(mapPath))
+                    {
+                        Directory.CreateDirectory(mapPath);//不存在就创建目录 
+                    }
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        ElegantWM.WeiXin.Common.DownloadImage(sid.ToString(), mediaJson, filePath);
+                    }
+                }
+            }
+            ViewBag.ImgList = rst;
+            return View();
+        }
+
+        //商品展示页
+        [Page]
+        [Description("品类")]
+        [Open]
+        public ActionResult SKUList(string styl_type, string name, string category)
+        {
+            string where = "";
+
+            if (!string.IsNullOrEmpty(category))
+            {
+                ViewBag.name = category;
+                if (category == "所有")
+                {
+                    where = " (STYL_State = '20' OR STYL_State = '15') ";
+                }
+                else
+                {
+                    where = " STYL_State = '20' AND STYL_Class = '" + category + "' ";
+                }
+            }
+            else
+            {
+                ViewBag.name = name;
+                where = "STYL_State = '20' AND STYL_Type = '" + styl_type + "'";
+            }
+
+            DataTable dt = WMFactory.Wsrr.DLGetStyleInfo(where);
+            DataView dataView = dt.DefaultView;
+            dataView.Sort = "STYL_Rgdt DESC";
+            DataTable dt2 = dataView.ToTable();
+            ViewBag.StyleInfo = dt2;
+            return View();
+        }
+
+        [Page]
+        [Description("品类")]
+        [Open]
+        public ActionResult SKUDetail(string sku)
+        {
+            string where = " STYL_Code = '" + sku + "'";
+            DataTable dt1 = WMFactory.Wsrr.DLGetStyleInfo(where);
+            ViewBag.StyleInfo = dt1;
+            string id = dt1.Rows[0]["STYL_ID"].ToString();
+            ViewBag.Img = dt1.Rows[0]["STYL_PicturePath"].ToString().Split(new string[] { @"," }, StringSplitOptions.RemoveEmptyEntries);
+            ViewBag.BigImg = dt1.Rows[0]["STYL_BigPicturePath"].ToString().Split(new string[] { @"," }, StringSplitOptions.RemoveEmptyEntries);
+
+            int g = dt1.Rows[0]["STYL_PicturePath"].ToString().Split(new string[] { @"," }, StringSplitOptions.RemoveEmptyEntries).Count();
+            ViewBag.g = g;
+            ViewBag.g1 = g - 1; ViewBag.id = id;
+
+
+            where = " STL2_STYL_ID = '" + id + "'";
+            DataTable dt2 = WMFactory.Wsrr.DLGetStyleSKU(where);
+
+            DataView dataView = dt2.DefaultView;
+            dataView.Sort = "STL2_Color,STL2_Size ASC";
+            ViewBag.SKU = dt2;
+            int i = dataView.ToTable(true, "STL2_Color").Rows.Count;
+
+            ViewBag.Color = dataView.ToTable(true, "STL2_Color");
+            ViewBag.Size = dataView.ToTable(true, "STL2_Size");
+
+            return View();
+        }
+    }
+}

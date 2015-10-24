@@ -1,0 +1,100 @@
+﻿<script type="text/javascript">
+    nCount = @ViewBag.nCount
+</script>
+@if (ViewBag.type == "1" || ViewBag.type == "3")//精美获取搜索
+{
+    for (int i = 0; i < ViewBag.FineImg.Count; i++)
+    {
+    <div style="background-color: rgba(204, 200, 200, 0.59); padding: 2px">
+        <div>
+            <table style="text-align: center; width: 100%">
+                <tr>
+                    <td>
+                        <a href="/Game/HZYTourismActivities/ImgInfo?oid=@Request["oid"]&sid=@Request["sid"]&SerialNumber=@ViewBag.FineImg[i].SerialNumber">
+                            <img style="width:100%" src="/Content/Uploads/HZYTourismActivities/Thumbnail/@ViewBag.FineImg[i].Img" alt="Img"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="height: 40px; margin-top: -41.5px; width: 96%; background-color: rgba(252, 250, 250, 0.4); color: #fff; z-index: 20; position: absolute;">
+            <table style="text-align: center;">
+                <tr>
+                    <td style="color: #000; padding-left: 5px; width: 10px">NO.@ViewBag.FineImg[i].SerialNumber
+                    </td>
+                    <td rowspan="3" style="font-size: 25px; color: #000; font-weight: bold">@ViewBag.FineImg[i].Address</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="color: #000; position: absolute; z-index: 20; right: 5px; margin-top: 0px">
+                    点亮星星：@ViewBag.FineImg[i].Num
+                </tr>
+            </table>
+        </div>
+    </div>
+    }
+}
+else//最新
+{
+    <div class="pull-left" style="width: 49%;">
+        @for (int i = 0; i < ViewBag.FineImg.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+            <div style="background-color: #fefbfb; margin: 2px; margin-top: 15px">
+                <div style="padding: 2px">
+                    <table style="text-align: center">
+                        <tr>
+                            <td colspan="2">
+                                <a href="/Game/HZYTourismActivities/ImgInfo?oid=@Request["oid"]&sid=@Request["sid"]&SerialNumber=@ViewBag.FineImg[i].SerialNumber">
+                                    <img style="width:100%" src="/Content/Uploads/HZYTourismActivities/Thumbnail/@ViewBag.FineImg[i].Img" alt="Img"></a>
+                            </td>
+                        </tr>
+                        <tr style="color: #2196d1">
+                            <td>NO.@ViewBag.FineImg[i].SerialNumber
+                            </td>
+                            <td>点亮星星：@ViewBag.FineImg[i].Num
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            }
+        }
+    </div>
+    <div class="pull-right" style="width: 49%;">
+        @for (int i = 0; i < ViewBag.FineImg.Count; i++)
+        {
+            if (i % 2 != 0)
+            {
+            <div style="background-color: #fefbfb; margin: 2px; margin-top: 15px">
+                <div style="padding: 2px">
+                    <table style="text-align: center">
+                        <tr>
+                            <td colspan="2">
+                                <a href="/Game/HZYTourismActivities/ImgInfo?oid=@Request["oid"]&sid=@Request["sid"]&SerialNumber=@ViewBag.FineImg[i].SerialNumber">
+                                    <img style="width:100%" src="/Content/Uploads/HZYTourismActivities/Thumbnail/@ViewBag.FineImg[i].Img" alt="Img"></a>
+                            </td>
+                        </tr>
+                        <tr style="color: #2196d1">
+                            <td>NO.@ViewBag.FineImg[i].SerialNumber
+                            </td>
+                            <td>点亮星星：@ViewBag.FineImg[i].Num
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            }
+        }
+    </div>  
+}
+
+

@@ -1,0 +1,106 @@
+.ig_Control
+{
+	background-color:White;
+	font-size:xx-small;
+	font-family: verdana;
+	border:solid 1px #ABC1DE;
+	cursor:default;
+	color:Black;
+}
+
+
+.ig_Item
+{
+	background-color:White;
+	font-size:10px;
+	font-family: verdana;
+	padding-left:1px;
+}
+
+
+.ig_Button
+{
+	cursor:hand;
+}
+
+
+.ig_ButtonHover
+{
+}
+
+
+.ig_ButtonPressed
+{
+}
+
+
+.ig_ButtonDisabled
+{
+}
+
+
+.ig_Hover
+{
+}
+
+
+.ig_Selected
+{
+}
+
+
+.ig_Disabled
+{
+}
+
+
+.ig_Header
+{
+}
+
+
+.ig_Footer
+{
+}
+
+
+.ig_EditWithButtons
+{
+}
+
+
+.ig_Edit
+{
+}
+
+
+.ig_EditInContainer
+{
+}
+
+
+.ig_Alt
+{
+	border-top:solid 1px #E3EFFF;
+	border-right:solid 0px #FFFFFF;
+	border-bottom:solid 1px #E3EFFF;
+	border-left:solid 0px #FFFFFF;
+}
+
+
+.ig_DropDown
+{
+}
+
+
+.ig_EditSelected
+{
+}
+
+
+Body
+{
+	cursor:default;
+}
+
+

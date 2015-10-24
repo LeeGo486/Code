@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ===================================================================== --><!--                                                                       --><!--  JBoss Server Configuration                                           --><!--                                                                       --><!-- ===================================================================== --><!-- $Id: mssql-ds.xml 23720 2004-09-15 14:37:40Z loubyansky $ --><!-- ======================================================================--><!-- New ConnectionManager setup for Microsoft SQL Server 2000  driver     --><!-- You may download the latest Microsoft JDBC driver from *Microsoft*    --><!-- http://msdn.microsoft.com/downloads/default.asp?url=/downloads/sample.asp?url=/MSDN-FILES/027/001/779/msdncompositedoc.xml&frame=true --><!-- ===================================================================== --><datasources>
+    
+
+
+
+	<local-tx-datasource>
+    <jndi-name>EPAPPDBTEST1</jndi-name>
+    <connection-url>jdbc:sqlserver://172.16.205.107:1433;DatabaseName=EPApp</connection-url>
+    <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+    <user-name>001</user-name>
+    <password>0IYPGWNY</password>
+      
+			<min-pool-size>15</min-pool-size>
+			<max-pool-size> 50</max-pool-size>
+			<blocking-timeout-millis>5000</blocking-timeout-millis> 
+			<idle-timeout-minutes>5</idle-timeout-minutes>
+	    
+    
+      <metadata>
+         <type-mapping>MS SQLSERVER2008</type-mapping>
+      </metadata>
+  </local-tx-datasource> 
+
+  <local-tx-datasource>
+    <jndi-name>EPAPPDB</jndi-name>
+    <connection-url>jdbc:sqlserver://192.168.0.157:1433;DatabaseName=EPApp</connection-url>
+    <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+    <user-name>OAID</user-name>
+    <password>4wdDTHF0</password>
+       
+			<min-pool-size>15</min-pool-size>
+			<max-pool-size> 50</max-pool-size>
+			<blocking-timeout-millis>5000</blocking-timeout-millis> 
+			<idle-timeout-minutes>5</idle-timeout-minutes>
+	    
+     
+      <metadata>
+         <type-mapping>MS SQLSERVER2008</type-mapping>
+      </metadata>
+  </local-tx-datasource>
+
+
+  <local-tx-datasource>
+    <jndi-name>CRMREPORTDB</jndi-name>
+    <connection-url>jdbc:sqlserver://192.168.0.141:1433;DatabaseName=turboCRM60</connection-url>
+    <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+    <user-name>003</user-name>
+    <password>79TYBA21</password>
+        <!-- sql to call when connection is created
+        <new-connection-sql>some arbitrary sql</new-connection-sql>
+        -->
+
+        <!-- sql to call on an existing pooled connection when it is obtained from pool 
+        <check-valid-connection-sql>some arbitrary sql</check-valid-connection-sql>
+        -->
+			<min-pool-size>15</min-pool-size>
+			<max-pool-size> 50</max-pool-size>
+			<blocking-timeout-millis>5000</blocking-timeout-millis> 
+			<idle-timeout-minutes>5</idle-timeout-minutes>
+      <!-- corresponding type-mapping in the standardjbosscmp-jdbc.xml (optional) -->
+      <metadata>
+         <type-mapping>MS SQLSERVER2008</type-mapping>
+      </metadata>
+  </local-tx-datasource>
+
+  
+  <!--
+
+  <local-tx-datasource>
+    <jndi-name>CRMREPORTDB</jndi-name>
+    <connection-url>jdbc:sqlserver://192.168.0.140:1433;DatabaseName=turbocrm70_test</connection-url>
+    <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+    <user-name>sa</user-name>
+    <password>elegant.admin</password>
+       
+			<min-pool-size>15</min-pool-size>
+			<max-pool-size> 50</max-pool-size>
+			<blocking-timeout-millis>5000</blocking-timeout-millis> 
+			<idle-timeout-minutes>5</idle-timeout-minutes>
+      
+      <metadata>
+         <type-mapping>MS SQLSERVER2008</type-mapping>
+      </metadata>
+  </local-tx-datasource>
+  
+  -->
+  
+  <local-tx-datasource>
+    <jndi-name>EPPARTY</jndi-name>
+    <connection-url>jdbc:sqlserver://192.168.0.83:1433;DatabaseName=epparty</connection-url>
+    <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+    <user-name>sa</user-name>
+    <password>yuxiaodong1983</password>
+        <!-- sql to call when connection is created
+        <new-connection-sql>some arbitrary sql</new-connection-sql>
+        -->
+
+        <!-- sql to call on an existing pooled connection when it is obtained from pool 
+        <check-valid-connection-sql>some arbitrary sql</check-valid-connection-sql>
+        -->
+			<min-pool-size>15</min-pool-size>
+			<max-pool-size> 50</max-pool-size>
+			<blocking-timeout-millis>5000</blocking-timeout-millis> 
+			<idle-timeout-minutes>5</idle-timeout-minutes>
+      <!-- corresponding type-mapping in the standardjbosscmp-jdbc.xml (optional) -->
+      <metadata>
+         <type-mapping>MS SQLSERVER2008</type-mapping>
+      </metadata>
+  </local-tx-datasource>
+
+  
+ </datasources>

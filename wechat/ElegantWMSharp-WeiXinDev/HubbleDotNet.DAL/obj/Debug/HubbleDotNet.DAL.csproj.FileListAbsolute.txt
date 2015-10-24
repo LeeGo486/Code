@@ -1,0 +1,1 @@
+E:\Work\Code\wechat\ElegantWMSharp-WeiXinDev\HubbleDotNet.DAL\obj\Debug\HubbleDotNet.DAL.csprojResolveAssemblyReference.cache

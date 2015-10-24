@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>党员测评系统</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery/jquery-1.4.2.js"></script>
+
+  </head>
+  <script type="text/javascript">
+  function login(){
+  	if(document.getElementById("username").value==null || document.getElementById("username").value==''){
+  		alert("请输入用户名！");
+  		return;
+  	}
+  	if(document.getElementById("password").value==null || document.getElementById("password").value==''){
+  		alert("请输入密码！");
+  		return;
+  	}
+  	window.location.href="dypxl.html"
+  }
+ function changeTag(obj){
+ 	$(obj).hide();
+ }
+  </script>
+  <body style="background-image: url(img/红船1.jpg);background-repeat: no-repeat;background-position:center;background-color: red">
+ 
+ <!--   <img alt="" src="img/红船1.jpg" width="100%" height="100%">--> 
+ <!--   <div  style=" position:absolute;left: 310px; top: 200px;">--> 
+  <div align="center" style="position: relative;top:230px">
+   <p  align="center"  style="font-size:50px;"><b> 浙江雅莹服装有限公司党支部
+       </b> </p>
+       
+        <p align="center" style="font-size:50px;"> <b> 党员测评系统
+       </b> </p>
+       
+       <table align="center">
+       	<tr>
+       		<td align="right">用户名：</td>
+       		<td align="left"><input id="username" type="text"  style="width: 150"> </td>
+       	</tr>
+       		
+       	<tr>
+       		<td align="right">密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
+       		<td align="left"><input id="password" type="password"  style="width: 150"> </td>
+       	</tr>
+       	
+       	<tr>
+       		<td colspan="2" align="center"><input type="button" value="登录" width="80" onclick="changeTag(this)">  </td>
+       		
+       	</tr>
+       	
+       </table>
+    </div>
+  </body>
+</html>

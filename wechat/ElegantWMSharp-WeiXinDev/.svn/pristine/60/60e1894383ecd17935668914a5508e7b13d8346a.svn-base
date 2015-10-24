@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "微首页";
+    Layout = "~/Views/Shared/_GLWXSiteLayout.cshtml";
+}
+@section script{
+    <link href="~/Areas/GLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            //&sid=" + Url.get("sid") + "&oid=" + Url.get("oid")
+            $("#1").click(function () {
+                window.location.href = "/GLWXSite/GLGoods/SKUList?styl_type=T2015001&name=GranceLand";
+            })
+            $("#2").click(function () {
+                window.location.href = "/GLWXSite/GLGoods/SKUList?styl_type=T2015001&name=GranceLand";
+            })
+            $("#3").click(function () {
+                window.location.href = "/GLWXSite/GLGoods/SKUList?styl_type=T2015001&name=GranceLand";
+            })
+            $("#4").click(function () {
+                window.location.href = "/GLWXSite/GLGoods/SKUList?brand=gqqbrand";
+            })
+        });
+    </script>
+}
+
+
+<ul style="padding: 0;">
+    <li>
+        <img id="1" src="~/Areas/GLWXSite/Resources/images/Goods/1.jpg" /></li>
+    <li class="split"></li>
+    <li>
+        <img id="2" src="~/Areas/GLWXSite/Resources/images/Goods/2.jpg" /></li>
+    <li class="split"></li>
+    <li>
+        <img id="3" src="~/Areas/GLWXSite/Resources/images/Goods/3.jpg" /></li>
+    <li class="split"></li>
+    <li>
+        <img id="4" src="~/Areas/GLWXSite/Resources/images/Goods/4.jpg" /></li>
+    <li class="split"></li>
+</ul>
+
+

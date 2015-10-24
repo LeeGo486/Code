@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+
+  <data-sources />
+  <form-beans >
+    <form-bean name="cashExpenseForm" type="ep.org.branch.expense.form.CashExpenseForm" />
+    <form-bean name="loginForm" type="ep.org.branch.expense.form.LoginForm" />
+    <form-bean name="expenseMainFlowForm" type="ep.org.branch.expense.form.ExpenseMainFlowForm" />
+    <form-bean name="tripExpenseApplyForm" type="ep.org.branch.expense.form.TripExpenseApplyForm" />
+    <form-bean name="wagePaymentApplyForm" type="ep.org.branch.expense.form.WagePaymentApplyForm" />
+    <form-bean name="specialPaymentApplyForm" type="ep.org.branch.expense.form.SpecialPaymentApplyForm" />
+    <form-bean name="basicQueryForm" type="ep.org.branch.expense.form.BasicQueryForm" />
+    <form-bean name="paymentApplyForm" type="ep.org.branch.expense.form.PaymentApplyForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings>
+    <action
+      attribute="cashExpenseForm"
+      name="cashExpenseForm"
+      parameter="action"
+      path="/cashExpenseApply"
+      scope="request"
+      type="ep.org.branch.expense.action.CashExpenseApplyAction">
+      <forward name="toCashExpenseApply" path="/expense/cashExpenseApply.jsp" />
+      <forward name="toCashExpenseApplyRead" path="/expense/cashExpenseApplyRead.jsp"></forward>
+      <forward name="toCashExpenseApplyPrint" path="/expense/cashExpensePrint.jsp"></forward>
+    </action>
+    
+    <action
+      attribute="loginForm"
+      name="loginForm"
+      parameter="action"
+      path="/login"
+      scope="request"
+      type="ep.org.branch.expense.action.LoginAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toLogin" path="/index.jsp" />
+      <forward name="LoginSucess" path="/mainframe.jsp" />
+      
+    </action>
+    
+    <action
+      attribute="expenseMainFlowForm"
+      name="expenseMainFlowForm"
+      parameter="action"
+      path="/expenseMainFlow"
+      scope="request"
+      type="ep.org.branch.expense.action.ExpenseMainFlowAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toExpenseMainFlow" path="/expense/expenseMainFlowInfo.jsp" />
+    </action>
+    <action
+      attribute="tripExpenseApplyForm"
+      name="tripExpenseApplyForm"
+      parameter="action"
+      path="/tripExpenseApply"
+      scope="request"
+      type="ep.org.branch.expense.action.TripExpenseApplyAction"
+      validate="false">
+      <set-property property="cancellable" value="false" />
+      <forward name="toTripExpenseApply" path="/expense/tripExpenseApply.jsp" />
+      <forward name="toTripExpenseApplyRead" path="/expense/tripExpenseApplyRead.jsp" />
+      <forward name="toTripExpenseApplyPrint" path="/expense/tripExpenseApplyPrint.jsp" />
+    </action>
+    <action
+      attribute="specialPaymentApplyForm"
+      name="specialPaymentApplyForm"
+      parameter="action"
+      path="/specialPaymentApply"
+      scope="request"
+      type="ep.org.branch.expense.action.SpecialPaymentApplyAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toSpecialPaymentApply" path="/expense/specialPaymentApply.jsp" />
+       <forward name="toSpecialPaymentApplyRead" path="/expense/specialPaymentApplyRead.jsp" />	
+       <forward name="toSpecialPaymentApplyPrint" path="/expense/specialPaymentApplyPrint.jsp" />	
+    </action>
+    <action
+      attribute="wagePaymentApplyForm"
+      name="wagePaymentApplyForm"
+      parameter="action"
+      path="/wagePaymentApply"
+      scope="request"
+      type="ep.org.branch.expense.action.WagePaymentApplyAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toWagePaymentApply" path="/expense/wagePaymentApply.jsp" />
+      <forward name="toWagePaymentApplyRead" path="/expense/wagePaymentApplyRead.jsp" />
+      <forward name="toWagePaymentApplyPrint" path="/expense/wagePaymentApplyPrint.jsp" />
+    
+    </action>
+    <action
+      attribute="basicQueryForm"
+      name="basicQueryForm"
+      parameter="action"
+      path="/purposeCostMergeQuery"
+      scope="request"
+      type="ep.org.branch.expense.action.PurposeCostMergeQueryAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toPurposeCostMergeQuery" path="/expense/purposeCostMergeQuery.jsp" />
+    </action>
+    
+    
+    <action
+      attribute="basicQueryForm"
+      name="basicQueryForm"
+      parameter="action"
+      path="/shopExpenseApportion"
+      scope="request"
+      type="ep.org.branch.expense.action.ShopExpenseApportionAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toShopExpenseApportion" path="/expense/shopExpenseApportion.jsp" />
+    </action>
+    
+      <action
+      attribute="basicQueryForm"
+      name="basicQueryForm"
+      parameter="action"
+      path="/refuseRecordQuery"
+      scope="request"
+      type="ep.org.branch.expense.action.RefuseRecordQueryAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="toRefuseRecord" path="/expense/refuseRecordInfo.jsp" />
+    </action>
+    
+      <action
+      parameter="action"
+      path="/budgetQuery"
+      scope="request"
+      type="ep.org.branch.expense.action.BudgetQueryAction">
+      <forward name="toBudgetQuery" path="/expense/budgetQuery.jsp" />
+    </action>
+    <action
+      attribute="basicQueryForm"
+      name="basicQueryForm"
+      parameter="action"
+      path="/subjectMergeQuery"
+      scope="request"
+      type="ep.org.branch.expense.action.SubjectMergeQueryAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toSubjectMergeQuery" path="/expense/subjectMergeQuery.jsp" />
+    </action>
+    <action
+      attribute="paymentApplyForm"
+      name="paymentApplyForm"
+      parameter="action"
+      path="/paymentApply"
+      scope="request"
+      type="ep.org.branch.expense.action.PaymentApplyAction"
+      validate="false">
+      <set-property property="cancellable" value="true" />
+      <forward name="toPaymentApply" path="/expense/paymentApply.jsp" />
+      <forward name="toPaymentApplyRead" path="/expense/paymentApplyRead.jsp" />
+      <forward name="toPaymentApplyPrint" path="/expense/paymentApplyPrint.jsp" />
+    </action>
+
+  </action-mappings>
+	
+  <controller locale="false"></controller>		
+  <message-resources parameter="ApplicationResources" />
+  
+</struts-config>
+

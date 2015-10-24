@@ -1,0 +1,103 @@
+﻿
+<script type="text/javascript">
+    function TellCustomerRepairStatus() {
+        Msg.show("已通知客户", 0);
+    }
+</script>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <span class="badge pull-right ls">维修中</span>
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/E14PU6011aZ3.jpg" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-barcode"></i>&nbsp;&nbsp;E14PU6011aZ3</span><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('欧阳雪梅');">欧阳雪梅</a> <a href="tel:15988381281">15*******81</a></span><br />
+            <span><i class="icon-time"></i> 可以维修</span><br />
+        </div>
+    </div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="TellCustomerRepairStatus();"><i class="icon-bullhorn"></i> 通知客户</span>
+    </div>
+</div>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <span class="badge pull-right ys">已完成</span>
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/E14PU6012aZ3.jpg" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-barcode"></i>&nbsp;&nbsp;E14PU6012aZ3</span><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('王永兰');">王永兰</a> <a href="tel:15988381281">15*******81</a></span><br />
+            <span><i class="icon-time"></i> 可以维修<br />总部发货2014-07-06</span><br />
+        </div>
+    </div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="TellCustomerRepairStatus();"><i class="icon-bullhorn"></i> 通知客户</span>
+    </div>
+</div>
+
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <span class="badge pull-right ys">已完成</span>
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/E14PU6017aZ3.jpg" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-barcode"></i>&nbsp;&nbsp;E14PU6012aZ3</span><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('高明');">高明</a> <a href="tel:15988381281">15*******81</a></span><br />
+            <span><i class="icon-time"></i> 可以维修<br />总部发货2014-07-11</span><br />
+        </div>
+    </div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="TellCustomerRepairStatus();"><i class="icon-bullhorn"></i> 通知客户</span>
+    </div>
+</div>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <span class="badge pull-right hs">已退回</span>
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/E14PU6012aZ3.jpg" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-barcode"></i>&nbsp;&nbsp;E14PU6012aZ3</span><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('施美玲');">施美玲</a> <a href="tel:15988381281">15*******81</a></span><br />
+            <span><i class="icon-time"></i> 退回店铺</span><br />
+        </div>
+    </div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="TellCustomerRepairStatus();"><i class="icon-bullhorn"></i> 通知客户</span>
+    </div>
+</div>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <span class="badge pull-right ls">维修中</span>
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/E14PU6011aZ3.jpg" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-barcode"></i>&nbsp;&nbsp;E14PU6012aZ3</span><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('谢莉莉');">谢莉莉</a> <a href="tel:15988381281">15*******81</a></span><br />
+            <span><i class="icon-time"></i> 可以维修<br />总部发货2014-07-11</span><br />
+        </div>
+    </div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="TellCustomerRepairStatus();"><i class="icon-bullhorn"></i> 通知客户</span>
+    </div>
+</div>
+<div class="infoArea clearfix">
+    <div class="clearfix">
+        <span class="badge pull-right ls">维修中</span>
+        <div class="headimg">
+            <img src="/Areas/S3/Resources/images/E14PU6017aZ3.jpg" />
+        </div>
+        <div class="cusinfo">
+            <span><i class="icon-barcode"></i>&nbsp;&nbsp;E14PU6012aZ3</span><br />
+            <span><i class="icon-user"></i>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="SearchCustomer('张金霞');">张金霞</a> <a href="tel:15988381281">15*******81</a></span><br />
+            <span><i class="icon-time"></i> 可以维修<br />总部发货2014-07-14</span><br />
+        </div>
+    </div>
+    <div class="optarea" style="margin-top:4px;">
+        <span class="btnarea" onclick="TellCustomerRepairStatus();"><i class="icon-bullhorn"></i> 通知客户</span>
+    </div>
+</div>

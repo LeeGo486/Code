@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate" media="handheld" href="#" />
+<title>EHRAS</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<meta name="keywords" content="EHRAS主页" />
+<meta name="description" content="EHR辅助功能" />
+<link href="common.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+<link href="layout.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+<link href="cn.css?v=201209051438307887" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jquery.min.js?v=201209051438307887"></script>
+<script type="text/javascript" src="common.js?v=201209051438307887"></script>
+<script type="text/javascript" src="jquery.d.imagechange.min.js"></script>
+<script type="text/javascript" src="screenshot_map.js"></script>
+
+<script type="text/javascript">
+//发展历程的JS代码
+$(function(){
+	$(".right").click(function(){
+		turnright();
+	});
+	
+	$(".left").click(function(){
+		turnleft();
+	}); 
+});
+var total = 5;
+var cur = 0;
+function turnleft(){
+	pid = parseInt(cur)-1;
+	if(pid<=total && pid>=0){
+		getn(pid);
+	}
+/*	if(pid<total){
+		$(".right").removeClass("gray");
+	}
+	if(pid==1){
+		$(".left").addClass("gray");
+	}
+*/}
+
+function turnright(){ 
+	pid = parseInt(cur)+1;
+	if(pid<=total && pid>0){
+		getn(pid);
+	}
+}
+
+function getn(pid){
+
+	if(pid==total){
+		$(".right").addClass("gray");
+	}else{
+		$(".right").removeClass("gray");
+	}
+	if(pid==0){
+		$(".left").addClass("gray");
+	}else{
+		$(".left").removeClass("gray");
+	}	
+
+	var data = [
+	{src:'/theme/orange/images/index/201401/zl-slider-1.jpg',target:'blank',href:'http://www.ports-intl.com/mens/product/shopbycategory/new/7703/new'},
+	{src:'/theme/orange/images/index/201401/zl-slider-2.jpg',target:'blank',href:'http://www.ports-intl.com/mens/product/shopbycategory/new/8296/new'},
+	{src:'/theme/orange/images/index/201401/zl-slider-3.jpg',target:'blank',href:'http://www.ports-intl.com/mens/product/shopbycategory/new/7863/new'}
+	];
+	cur = pid;
+/*	$(".show").attr("rel",pid);
+	if(pid==0){
+		$(".show a").addClass('defaultcur');
+	}else{
+		$(".show a").removeClass('defaultcur');
+	}
+*/	//
+//	$(".show img").attr("src",data[pid].src);
+/*	if(cur == 0){
+		$(".show a").bind('click',function(){turnright();return false;});
+	}else{
+		$(".show a").unbind('click');
+	}*/
+	$(".show img").animate({opacity:'toggle'},"10",null,function(){
+		$(".show img").attr("src",data[pid].src);
+		$(".show a").attr("href",data[pid].href);
+		$(".show img").animate({opacity:'toggle'},"200");
+	});
+
+}
+
+
+</script>
+<style type="text/css">
+.defaultcur { cursor:default; }
+.gray { display:none; }
+#multistyle { position:relative; z-index:99; width:980px; height:596px; overflow:hidden; margin:16px 0 0; }
+#multistyle .tleft { display:none; position:absolute; z-index:100; left:10px; top:50%; width:18px; height:36px; margin:-18px 0 0 0; background:url("/theme/orange/images/multistyle/bgr-sprites.png") no-repeat -26px -124px; cursor:pointer;  }
+#multistyle .tleft2 { cursor:pointer; }
+#multistyle .tright { display:none; position:absolute; z-index:100; right:10px; top:50%; width:18px; height:36px; margin:-18px 0 0 0; background:url("/theme/orange/images/multistyle/bgr-sprites.png") no-repeat -54px -124px; cursor:pointer; }
+#multistyle .tright2 { cursor:pointer; }
+#multistyle .content { position:relative; z-index:98; width:980px; height:596px; overflow:hidden; }
+#multistyle .content .one { display:none; position:absolute; z-index:98px; left:0; top:0; width:980px; height:596px; overflow:hidden; background:#ccc; }
+#multistyle .content .first { display: block; }
+#screenshot { position:absolute; display:none; background:none !important; border:0 !important; padding:0 !important; }
+area.screenshot { outline:none;blr:expression(this.onFocus=this.blur()); }
+</style>
+<script type="text/javascript">
+var data = [  
+	{src:'/theme/orange/images/season/homeslide/homeslide_w.jpg?v=201501',target:'',href:'/womens/shopbycategory/new'},
+	{src:'/theme/orange/images/season/homeslide/homeslide_m.jpg?v=201501',target:'',href:'/mens/shopbycategory/new'},
+	{src:'/theme/orange/images/season/homeslide/homeslide_a.jpg?v=201501',target:'',href:'/accessories/shopbycategory/wnew'},
+  {src:'/theme/orange/images/season/homeslide/homeslide_i.jpg?v=201411',target:'',href:'/Isabella/shopbycategory/new'}
+
+
+];
+
+$(document).ready(function(){
+
+	setTimeout(function(){
+		$('#imagesChange').d_imagechange({
+			data:data,
+			animateStyle:'o',
+			title:false,
+			desc:false,
+			bg:false,
+			width:980,
+			height:616,
+			btnColor:'#3F2734',
+			btnFontColor:'#FFF',
+			btnMargin:10,
+			btnMarginRight:24,
+			animateTime:1000,
+			btnTop:0, 
+			playTime:5000
+		});
+		$('#imagesChange a').each(function(){
+			if($(this).html()!=''){
+				$(this).bind('mouseover' , function(){$(this).click();});
+			}
+			if($(this).attr('href')=='#'){
+				$(this).bind('click' , function(){
+				});
+			}
+		});
+		//$('#imagesChange div').first().hide();
+		
+		//位置
+		$($('#imagesChange').children()[1]).css({marginTop:'580px'});
+		//位置
+	},10);
+});
+</script><script type="text/javascript" src="http://www.ports-intl.com/theme/orange/js/jwplayer/jwplayer.js"></script>
+<script>jwplayer.key="cR5hajMPVWNvMQhxigT1F5t2nc7Xguxg27lFOQ=="</script>
+<script type="text/javascript">
+function media(){
+	jwplayer("mediaplay").setup({
+		flashplayer: "http://www.ports-intl.com/theme/orange/js/jwplayer/jwplayer.flash.swf",
+		file: "http://img.ports-intl.com/video/ports1961_fw2014_men.mp3",
+		skin: "http://www.ports-intl.com/theme/orange/js/jwplayer/glow.xml",
+		width: 370, 
+		height:25, 
+		controlbar: "bottom",
+		autostart: "true"
+	});
+}
+</script>
+</head>
+
+<body>
+<div id="Container"> 
+  
+      <div id="Header">
+       <div class="Info_Version">
+        <a href="http://en.ports-intl.com">English</a> | <a href="/?cn/">中文</a>
+        </div>
+        <div class="Info_Zone">
+        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="42%"><a href="/"><img src="/theme/orange/images/common/header/logo.jpg"></a></td>
+                <td width="58%" align="right" valign="bottom">
+                	<div style="position:relative; display:; height:35px; width:100%; overflow:hidden;">
+                    <div id="scrollpanelxxx">
+                    	<ul>
+							<li><img src="/theme/orange/images/header/2015_c_scroll_1.jpg"/></li>
+							<!--<li><img src="/theme/orange/images/header/201503_c_scroll_2.jpg"/></li>-->
+						</ul>
+                    </div>
+                    </div>
+               </td>
+              </tr>
+            </table>
+        </div>
+        <div class="Info_Account">
+          
+                    <span><a href="/account/login">登录</a></span>|
+          <span><a href="/account/register">注册</a></span>|
+                    <span><a href="/account/index/">我的账户</a></span>|
+<!--       <span><a href="/account/invitefriends" style=" font-weight:bold; color:#000">邀请朋友</a></span>|-->
+          <span><a href="/account/orderlist">我的订单</a></span>|
+          
+          <span id="Toptote">
+            	<a href="/shopping/totelist">我的购物袋 (<span id="ShoppingCount">0</span>)</a>
+            	
+                <div class="ToptoteContent" id="ToptoteContent">
+                	<div id="ToptoteContentList" class="ToptoteContentList"></div>
+                </div>
+          </span>|
+          <img src="/theme/orange/images/header/chatol.jpg"  align="absmiddle"/><span id='live41906'></span> 
+          
+        </div>
+        <div class="Nav">
+			<span class="NavLogo"><a href="/"><img src="/theme/orange/images/common/header/logoFloat.jpg" height="30"></a></span>
+            <span><a href="/newarrival/index/womens/">首页</a></span>
+        	<span><a href="/womens/shopbycategory/">任务</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>选择分类</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/womens/shopbycategory/11">待办</a></li>
+                                                        	<li><a href="/womens/shopbycategory/9">全部</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span> 
+        	<span><a href="/accessories/shopbycategory/">店铺</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>人员</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/34">入司</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/155">调转</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/32">更新</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/31">离职</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/33">查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="subNavLeft">
+                    	<label>加班</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">加班申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">加班查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div> 
+                    <div class="subNavLeft">
+                    	<label>考勤</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">考勤申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">考勤查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="subNavLeft">
+                    	<label>分单</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">分单申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">分单查询</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="subNavLeft">
+                    	<label>薪资</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/accessories/shopbycategory/84">特殊薪资申请</a></li>
+                                                        	<li><a href="/accessories/shopbycategory/37">特殊薪资查询</a></li> 
+                                                        	<li><a href="/accessories/shopbycategory/37">薪资条</a></li>
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span>
+            
+        	<span><a href="/isabella/shopbycategory/" style="word-spacing:3px; letter-spacing:0.5px;">权限</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>选择分类</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul>
+                        	                                                        	<li><a href="/isabella/shopbycategory/140">加班配置</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/145">绩效配置A</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/146">绩效配置B</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/147">店员配置</a></li>
+                                                        	<li><a href="/isabella/shopbycategory/148">基础数据维护</a></li> 
+                                                                                </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span>  
+        	<span><a href="/ports/profile">帮助</a>
+            	<div class="subNav">
+                	<div class="subNavLeft">
+                    	<label>选择分类</label>
+                    </div>
+                    <div class="subNavRight">
+                        <ul> 
+                             <li><a href="/storelocations">流程图</a></li>
+                            <li><a href="/ports/celebrity">操作文档</a></li> 
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="bottom"> 
+                    </div>
+                </div>
+            </span> 
+			<span>. . .</span>
+            <span class="NavSearchSpan" style=" float:right; padding-right:0px; padding-left:0px; cursor:pointer" onClick="$('#Searchbar').toggle();$('#Searchbar').focus();"><img src="/theme/orange/images/common/icon/search25.jpg" id="NavSearchImg" /></span>
+            <form action="/search/key/" method="post">
+            <label class="Searchbar" id="Searchbar" style="display:none; position:absolute; right:0px; border:1px solid #000000; background-color:#fff; height:26px;">
+            	<input name="key" class="keyword" type="text" style="border:0px; width:148px;height: 22px;" id="key" value="查找关键词" onclick="if(this.value=='查找关键词')this.value='';" onBlur="setTimeout(function(){$('#Searchbar').toggle();},200);" />
+                <input type="image" style="margin-top:0px;" align="absmiddle" src="/theme/orange/images/common/icon/jiantou.jpg" id="Submit" name="Submit"/>
+            </label>
+            </form>
+        </div>
+       
+    </div>
+    
+		       	<!--顶部小条幅图片，点击可展开-->
+<!--		<div>
+           <a href="#" onclick="javascript:$('#indexdetail').slideToggle(500);" style="display:block; height:32px;"><img src="/theme/orange/images/index/201502/red_bn.jpg" /></a>
+           <div id="indexdetail" style=" display:none;"><img src="/theme/orange/images/index/201502/red_det.jpg" /></div>
+        </div>-->
+        		<style type="text/css">
+		#Header .FLoatNav{ position: fixed; top:0px;  width:980px; margin:0 auto; left:50%; margin-left:-490px; height:30px;}
+		#Header .FLoatNav Span{ height:30px; line-height:30px;}
+		#Header .Nav Span.NavLogo{ display: none;padding-left:0px; padding-right:0px;}
+		#Header .FLoatNav Span.NavLogo{ display: block;}
+		#Header #Searchbar{ top:25px;}
+		#Header .FLoatNav #Searchbar{ top:30px;}
+		#Header .FLoatNav span div.subNav{ top:30px;}
+		#Header .NavSearchSpan img{ height:25px;}
+		#Header .FLoatNav .NavSearchSpan img{height:30px; }
+		</style>
+        <script type="text/javascript" src="/theme/orange/js/jquery.cookie.js"></script>
+        <script type="text/javascript">
+        
+		//var ss = $.cookie('PHPSESSID');
+		// if($.cookie('showed') != '1'){
+		// 	$('#indexdetail').show();
+		 	//setTimeout("$('#indexdetail').slideToggle(500);" , 5000);
+		// }
+		// $.cookie('showed' , '1' , {path: '/'});
+		 
+		$(window).scroll(function(){
+			if($(document).scrollTop() > 110 ){
+				$('#Header .Nav').addClass("FLoatNav");
+				$('#NavSearchImg').attr("src","/theme/orange/images/common/icon/search.jpg");
+			}else{
+				$('#Header .Nav').removeClass("FLoatNav");
+				$('#NavSearchImg').attr("src","/theme/orange/images/common/icon/search25.jpg");
+			}
+			//console.log();	 
+		});
+		 
+		 function setTopFloat(){
+			 
+		 }
+        </script>  
+  <div id="Main"> 
+    <!-- ------------------------------------------------------- -->
+    <div class="Page_Home">
+      	<div class="Feature">   
+        
+		
+		</div>
+        
+    </div>
+    <!-- ------------------------------------------------------- --> 
+  </div>
+  <div class="clear"></div>
+  
+  
+<div id="Footer" class="clear">
+  <div class="FNav">
+    <table width="980" border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+      </tr>
+    </table>
+    <div class="F_B_Link"> <span> <a href="#" onclick="openwindow('/help/help_ordering');return false;">帮助</a> </span> <span>|</span> <span><a href="#" onclick="openwindow('/help/help_privacypolicy');return false;">隐私政策</a></span> <span>|</span><span>Copyright &copy; 2015 HWA</span>
+      <span><a href="http://www.miibeian.gov.cn" target="_blank">信息管理中心</a></span> <br>    </div>
+    <br />
+  </div>
+</div>
+<script type='text/javascript'> 
+//var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+//document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script> 
+<script type='text/javascript'>
+//try {
+//var pageTracker = _gat._getTracker('UA-553980-3');
+//pageTracker._trackPageview();
+//} catch(err) {}
+</script>
+<div style="display:none;"> <script src="http://s19.cnzz.com/stat.php?id=4873885&web_id=4873885" language="JavaScript"></script>
+  <script language="javascript" src="http://chat16.live800.com/live800/chatClient/textButton.js?jid=2326992637&companyID=114746&configID=41906&codeType=custom"></script><script id='write' language="javascript">function writehtml(){var temptext=text_generate();document.getElementById('live41906').innerHTML=temptext;setTimeout('write.src',9000);}writehtml();</script> 
+</div>
+ 
+   
+  
+</div>
+<style type="text/css">
+
+#popwindow{ position: absolute; top:100px; left:50%; height:100%; padding-top:25px; display:none; margin-left:0; text-align:center; z-index:9999;}
+
+#bgpop{ filter: alpha(opacity=70);opacity:0.7; z-index:9999; background-color:#000000; position: absolute; top:0px; left:0px; height:100%; width:100%; display:none;  }
+
+</style>
+<script type="text/javascript">
+
+	function Popiframe(obj , width , height ){
+		$('#popwindow #content #PopF').attr('src','').css({'width':width,'height':height}).attr('src' , $(obj).attr('href'));
+		$('#popwindow').css({'margin-left':-width/2,"width":width});
+		$('#popwindow,#bgpop').show();
+		$('#bgpop').height($('#Container').height()+100);	
+		$('#close').width(width);
+		$(document).scrollTop(0);
+		return false;
+	}
+
+</script>
+<div id="bgpop"></div>
+<div id="popwindow">
+  <div id="close" style="background:#FFFFFF; width:768px; height:25px; text-align:right; margin:0 auto;"><img onclick="javascript:$('#popwindow,#bgpop').fadeOut(200);" src="/theme/orange/images/common/icon/fileclose.png" height="25" /></div>
+  <div id="content">
+    <iframe frameborder="0" style="overflow:hidden;" scrolling="no" id="PopF" src=""></iframe>
+  </div>
+</div>
+<map name="Map" id="Map">
+  <area shape="rect" coords="337,117,641,598" href="/mens/product/shopbycategory/new/7703/new" target="_blank"  tabindex="-1" />
+  <area shape="rect" coords="659,118,963,599" href="/mens/product/shopbycategory/new/7863/new" target="_blank"  tabindex="-1" />
+  <area shape="rect" coords="19,115,323,596" href="/mens/product/shopbycategory/new/8397/new" target="_blank"  tabindex="-1" />
+</map>
+
+
+
+</body>
+</html>

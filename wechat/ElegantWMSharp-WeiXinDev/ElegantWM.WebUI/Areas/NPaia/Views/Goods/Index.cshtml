@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>N.Paia在线商城</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link href="~/Content/Plugin/Bootstrap/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="~/Content/Plugin/Bootstrap/bootbox.min.js"></script>
+    <!--IOS Masker-->
+    <link href="~/Scripts/IosOverlay/css/iosOverlay.css" rel="stylesheet" />
+    <script src="~/Scripts/IosOverlay/js/spin.min.js"></script>
+    <script src="~/Scripts/IosOverlay/js/iosOverlay.js"></script>
+    <script src="~/Scripts/WeixinApi/WeixinApi.js"></script>
+    <script src="~/Scripts/MatrixGlobal.js"></script>
+    <link href="~/Areas/Matrix/Resources/Mobile.css" rel="stylesheet" />
+    <link href="~/Areas/NPaia/Resources/Mobile.css" rel="stylesheet" />
+    <script src="~/Scripts/IosSlider/jquery.iosslider.min.js"></script>
+    <style type="text/css">
+        .iosSlider {
+			width: 100%;
+            height: 200px;
+            min-height: 150px;
+            position: relative;
+	        overflow: hidden;
+            background: #ccc;
+		}
+		.iosSlider .slider {
+            min-height: 150px;
+			width: 100%;
+			height: 100%;
+		}
+		.iosSlider .slider .item {
+			height: auto;
+            width: 100%;
+		}
+        .iosSlider .slider .item img{
+			width: 100%;
+		}
+		.iosSliderButtons {
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			width: 200px;
+			height: 10px;
+		}
+		.iosSliderButtons .button {
+			float: left;
+			width: 9px;
+			height: 9px;
+			background: #666;
+			margin: 0 10px 0 0;
+			opacity: 0.25;
+			filter: alpha(opacity:25);
+			border: 1px solid #000;
+            border-radius:10px;
+		}
+		.iosSliderButtons .selected {
+			background: #fff;
+			opacity: 1;
+			filter: alpha(opacity:100);
+		}
+
+        table {
+            width: 100%;
+        }
+
+        table td {
+            width: 50%;
+            padding: 1px;
+        }
+
+        table td img{
+            width: 100%;
+        }
+</style>
+    <script type="text/javascript">
+        $(function () {
+            $(".iosSlider").iosSlider({
+                desktopClickDrag: true,
+                snapToChildren: true,
+                snapSlideCenter: true,
+                infiniteSlider: true,
+                onSlideChange: slideContentChange,
+                onSliderLoaded: slideContentLoaded,
+                autoSlide: true,
+                autoSlideTimer: 3000,
+                autoSlideTransTimer: 750
+            });
+
+            var winWidth = 0;
+            var winHeight = 0;
+            if (window.innerWidth)
+                winWidth = window.innerWidth;
+            else if ((document.body) && (document.body.clientWidth))
+                winWidth = document.body.clientWidth;
+            //获取窗口高度
+            if (window.innerHeight)
+                winHeight = window.innerHeight;
+            else if ((document.body) && (document.body.clientHeight))
+                winHeight = document.body.clientHeight;
+            //通过深入Document内部对body进行检测，获取窗口大小
+            if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+                winHeight = document.documentElement.clientHeight;
+                winWidth = document.documentElement.clientWidth;
+            }
+
+            $(".iosSlider").height(winHeight / 3);
+
+            function slideContentChange(args) {
+                $(args.sliderObject).parent().find(".iosSliderButtons .button").removeClass("selected");
+                $(args.sliderObject).parent().find(".iosSliderButtons .button:eq(" + (args.currentSlideNumber - 1) + ")").addClass("selected");
+
+            }
+            function slideContentLoaded(args) {
+                $(args.sliderObject).parent().find(".iosSliderButtons .button").removeClass("selected");
+                $(args.sliderObject).parent().find(".iosSliderButtons .button:eq(" + (args.currentSlideNumber - 1) + ")").addClass("selected");
+            }
+
+            var width = 0;
+            $(".iosSliderButtons .button").each(function () {
+                width = width + $(this).outerWidth(true);
+            })
+            $(".iosSliderButtons").width(width);
+            $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+
+            var evt = "onorientationchange" in window ? "orientationchange" : "resize";
+
+            window.addEventListener(evt, function () {
+                switch (window.orientation) {
+                    case 0:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                    case -90:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                    case 90:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                    case 180:
+                        $(".iosSliderButtons").css("left", (winWidth - width) / 2);
+                        break;
+                }
+            }, false);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div class="iosSlider" style="background:url('/Areas/NPaia/Resources/images/Goods/NP-bg.jpg') no-repeat 50% 10%">
+	        <div class="slider">
+                @foreach (ElegantWM.WeiXin.MsgEntity.WxItem item in ViewBag.ImgList)
+                {
+                    <div class="item">
+                        <img src="~/Content/MaterialImage/@ViewBag.Sid/@{@item.content.news_item.First().thumb_media_id}.jpg" onclick="window.location.href='@item.content.news_item.First().url'">
+		            </div>
+                }
+	        </div>
+	        <div class="iosSliderButtons">
+                @foreach (ElegantWM.WeiXin.MsgEntity.WxItem item in ViewBag.ImgList)
+                {
+                    <div class="button"></div>
+                }
+	        </div>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <img src="~/Areas/NPaia/Resources/images/Goods/s1.jpg" id="s1">
+                </td>
+                <td>
+                    <img src="~/Areas/NPaia/Resources/images/Goods/s2.jpg" id="s2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="~/Areas/NPaia/Resources/images/Goods/s3.jpg" id="s3">
+                </td>
+                <td>
+                    <img src="~/Areas/NPaia/Resources/images/Goods/s4.jpg" id="s4">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="  position: fixed;bottom: 0;width: 100%;height:45px;">
+        <img id="navShoppingcart" src="~/Areas/NPaia/Resources/images/Goods/shopping-cart.png" style="float: left;height:100%;"/>
+        <img id="navPersonal" src="~/Areas/NPaia/Resources/images/Goods/user.png"  style="float: right;height:100%;"/>
+    </div>
+    <div class="footer" style="margin: 0; z-index: 99;">
+        <a href="http://mp.weixin.qq.com/s?__biz=MzA5MDM3NjUxNA==&mid=200423812&idx=1&sn=668eb5a784c0ae5fcc53612687808642#rd">Powered by <span style="text-decoration: underline;">C3 Matrix 微信孵化平台</span><br />
+            © 2014 华之毅 信息服务中心</a>
+        <div>投诉电话:<a href="tel:4008881273"> 4008881273</a></div>
+    </div>
+    <script type="text/javascript">
+        //$(".iosSlider img").click(function () {
+        //    window.location.href = "/NPaia/Goods/News?media_id=" + $(this).attr("id") + "&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        //})
+        $("#navPersonal").click(function () {
+            window.location.href = "/NPaia/Goods/Personal?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+
+        $("#navShoppingcart").click(function () {
+            window.location.href = "/NPaia/Goods/ShoppingCart?sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+
+        $("#s1").click(function () {
+            window.location.href = "/NPaia/Goods/Theme?name=写意廓形&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+
+        $("#s2").click(function () {
+            window.location.href = "/NPaia/Goods/Theme?name=印花异想&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+
+        $("#s3").click(function () {
+            window.location.href = "/NPaia/Goods/Theme?name=纯澈新姿&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+
+        $("#s4").click(function () {
+            window.location.href = "/NPaia/Goods/Theme?name=织线新姿&sid=" + Url.get("sid") + "&oid=" + Url.get("oid");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+﻿@{
+    ViewBag.Title = "明细";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+    <link href="~/Scripts/fullPage/jquery.fullPage.css" rel="stylesheet" />
+    <script src="~/Scripts/fullPage/jquery.fullPage.js"></script>
+    <script src="~/Scripts/fullPage/fullPage.min.js"></script>
+    <style type="text/css">
+       
+    </style>
+
+    <script>
+        $(function () {
+            $('#fullpage').fullpage({
+                'verticalCentered': false,
+                //'css3': true,
+                //'sectionsColor': ['#254875', '#00FF00', '#254587', '#695684'],
+                //anchors: ['page1', 'page2', 'page3', 'page4'],
+                'navigation': true,
+                'navigationPosition': 'right',
+                //'slidesNavigation':true,
+                //'slidesNavPosition': 'bottom',
+                //'navigationTooltips': ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
+                'continuousVertical': true
+            })
+
+            $('#SKUDetail').hide();
+            $('#MaterialDeatil').hide();
+
+
+            $("#add").click(function () {
+                alert("添加购物车！");
+            });
+            $("#Cancel").click(function () {
+                $('#SKUDetail').hide();
+            });
+            $("#order").click(function () {
+                $('#SKUDetail').show();
+            });
+
+            $("#Material").click(function () {
+                $('#SKUDetail').hide();
+                $('#MaterialDeatil').show();
+            });
+
+            $("#guanbi").click(function () {
+                $('#MaterialDeatil').hide();
+            });
+
+        })
+
+    </script>
+}
+
+<div id="fullpage">
+
+    @foreach (string s in ViewBag.Img)
+    {
+        <div class="section">
+            <img src="http://122.225.19.188:8090@{@s}" style="width:100%">
+        </div>
+    }
+</div>
+
+<div style="position: fixed; z-index: 999; top: 10%; left: 10%">
+    <span id="order" style="border: 1px solid #28282a; padding: 15px; letter-spacing: 10px">试穿</span>
+</div>
+
+<div id="SKUDetail" style="position: absolute; bottom: 45px; margin: 0px 0px 0px 0px; background-color: #fff; width: 100%; height: 80%; z-index: 9999">
+    <div style="border: 1px solid #28282a; width: 90%; height: 90%; margin: 5% 5% 5% 5%">
+        <button id="Cancel" type="button" style="position: absolute; float: right; border-radius: 4px; z-index: 99999; top:5%; right: 8%">关闭</button>
+        <div style="margin: 10px; line-height: 15px">
+            <p>品名：@ViewBag.StyleInfo.Rows[0]["STYL_name"] </p>
+            <p>编号：@ViewBag.StyleInfo.Rows[0]["STYL_Code"] </p>
+            <p>价格：@float.Parse(ViewBag.StyleInfo.Rows[0]["STYL_sellprice"]).ToString("0.00") </p>
+            <a style="list-style-type: none" id="Material">材料及保养 >></a>
+            <hr style="border: 1px solid #28282a; margin: 10px 0px 10px 0px" />
+            <p>
+                预约店铺：<select><option>嘉兴TBF旗舰店</option>
+                </select>
+            </p>
+            <div id="sel">
+                <table style="text-align: left;">
+                    <tr>
+                        <td style="width: 50px;">颜色:</td>
+                        <td id="color">
+                            @foreach (System.Data.DataRow dr in ViewBag.Color.Rows)
+                            {
+                                if (@dr["STL2_Color"] != "")
+                                {
+                                <button name="@dr["STL2_Color"]" type="button" class="btn" data-toggle="button">@dr["STL2_Color"]</button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>尺码:</td>
+                        <td id="size">
+                            @foreach (System.Data.DataRow dr in ViewBag.Size.Rows)
+                            {
+                                if (@dr["STL2_Size"] != "")
+                                {
+                                <button name="@dr["STL2_Size"]" type="button" class="btn" data-toggle="button" >@dr["STL2_Size"]</button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>数量:</td>
+                        <td id="number">
+                            <div class="input-group" style="width: 170px;">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" id="oMin">-</button>
+                                </span>
+                                <input style="text-align: center;" type="text" pattern="[0-9]*" class="form-control" value="1">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" id="oPlus">+</button>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="oper">
+                <table>
+                    <tr>
+                        <td style="text-align: center">
+                            <button id="add" type="button" style="margin: 10px 4%; border-radius: 4px">提交预约</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="MaterialDeatil" style="position: absolute; bottom: 45px; margin: 30px 30px 30px 30px; background-color: rgba(254, 254, 254, 0.9); width: 84%; height: 80%; z-index: 9999;">
+    <div style="margin: 25px; line-height: 15px; background-color: rgba(254, 254, 254, 0); position: absolute; width: 60%;">
+        水洗的哈udqiuwdqwd22222222222222222222<br />
+        权威的<br />
+        权威的<br />
+        非我非额我f我俄方<br />
+        我俄方我俄方<br />
+        莪无法绯闻<br />
+        莪无法我俄方<br />
+        范围非我非<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+        我俄方问非我非莪无法<br />
+    </div>
+    <div id="guanbi" style="height: 40px; background-color: rgba(224, 182, 183, 1); text-align: center; width: 100%; font-size: 24px; padding: 5px; position: absolute; bottom: 0px;">
+        关闭
+    </div>
+</div>
+
+

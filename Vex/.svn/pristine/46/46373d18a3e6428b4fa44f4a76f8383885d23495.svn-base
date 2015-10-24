@@ -1,0 +1,45 @@
+
+$(doucment).ready(function(){
+	initSearch();
+});
+
+
+
+function initSearch(){
+	$("#search").textbox({
+		width:200,
+		prompt:'请输入维修单号',
+		type:'text',
+		buttonIcon:'icon-search',
+		buttonText:'搜索',
+		onClickButton:function(){ serach()}
+	})
+	.bind('keydown', function(e){// when press ENTER key, accept the inputed value.
+		if (e.keyCode == 13){ 
+			serach(); 
+		};
+	});
+}
+
+function search(){
+	
+	var wxno 
+		= $("#search").textbox('getValue');
+
+	if(wxno.length == 0){
+		$.messager.alert("警告","请输入维修单号","warning");
+		return;
+	};
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson([{"name":"txtWxno","value":wxno}], 'getWXList');
+
+    $.post(url,function(data){
+
+    });
+}
+
+function initDataGrid(){
+	$("#tab_list").datagrid({});
+
+}

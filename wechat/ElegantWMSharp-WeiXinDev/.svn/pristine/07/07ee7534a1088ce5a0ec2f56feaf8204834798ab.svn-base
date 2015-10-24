@@ -1,0 +1,37 @@
+﻿
+<div class="ht">
+    <i class="icon-desktop"></i>&nbsp;&nbsp;编辑设备报修申请单
+</div>
+<div class="mainArea">
+    <div class="input-group">
+        <span class="input-group-addon">报修说明</span>
+        <textarea class="form-control" placeholder="请输入简短描述"></textarea>
+    </div>
+    <br />
+    <div class="input-group date form_date">
+        <span class="input-group-addon">报修时间</span>
+        <input class="form-control hzyDp" type="text" value="2014-07-04" data-date-format="yyyy-mm-dd" readonly="">
+    </div><br />
+    <div class="input-group ">
+        <span class="input-group-addon">报修人员</span>
+        <input type="text" class="form-control" value="王莉" >
+    </div><br />
+    <div class="input-group ">
+        <span class="input-group-addon">联系电话</span>
+        <input type="text" class="form-control" value="15988381281" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">联系地址</span>
+        <input type="text" class="form-control" value="浙江嘉兴禾兴南路" >
+    </div>
+    <br />
+    <div class="input-group ">
+        <span class="input-group-addon">快递单号</span>
+        <input type="text" class="form-control" value="E1000987265123" >
+    </div>
+    <br />
+    <span class="label label-success">当前进度：总部已受理【2014-07-04】</span>
+    <br />
+    <button type="button" class="btn btn-success" style="width: 100%; margin-top: 30px;" data-loading-text="请稍后..." onclick="Msg.show('提报成功！',0)">提交申请</button>
+</div>

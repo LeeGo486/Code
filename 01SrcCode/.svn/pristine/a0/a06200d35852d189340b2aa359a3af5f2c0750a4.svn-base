@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<HTML> 
+<HEAD> 
+<TITLE> 确认登帐  </TITLE> 
+</HEAD> 
+<BODY> 
+	父窗口传递来的值:<input id="txt0" type="text"><br> 
+	输入要设置父窗口的值:<input id="txt1" type="text"><input type ="button" value="设置父窗口的值" onclick="setFather()"><br>
+ 	输入返回的值:<input id="txt2" type="text"><input type ="button" value="关闭切返回值" onclick="retrunValue()">
+ 	<input type ="button" value="关闭刷新父窗口" onclick=""> 
+</BODY>
+
+<script language="javascript"> 
+var k=window.dialogArguments; 
+//获得父窗口传递来的值 
+if(k!=null) 
+{ 
+document.getElementById("txt0").value = k.document.getElementById("txt9").value;
+ } 
+//设置父窗口的值 
+function setFather() 
+{ 
+k.document.getElementById("txt10").value = document.getElementById("txt1").value
+ } 
+//设置返回到父窗口的值 
+function retrunValue() 
+{ 
+var s = document.getElementById("txt2").value; 
+window.returnValue=s; 
+window.close(); 
+} 
+</script> 
+</HTML> 

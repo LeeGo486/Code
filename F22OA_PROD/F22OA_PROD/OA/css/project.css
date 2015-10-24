@@ -1,0 +1,443 @@
+html{
+overflow-y:scroll;
+overflow-x:hidden;
+}
+body
+{ font-size:12px; scrollbar-arrow-color:#666; scrollbar-base-color:#ffffff; scrollbar-darkshadow-color:#ffffff; scrollbar-face-color:#ECF3F6; 
+    background-color:#ECF3F6;
+}
+A:link{color: #000000; TEXT-DECORATION: none; font-size:12px}
+A:visited {COLOR: #000000; TEXT-DECORATION: none;font-size:12px}
+A:active {COLOR: #3333ff; TEXT-DECORATION: none;font-size:12px}
+A:hover {COLOR: #993300; TEXT-DECORATION: none;font-size:12px}
+
+THEAD,TFOOT,TD 
+{
+	font-size:12PX
+}
+/*
+	//New style by jackie
+Start
+*/
+.FrameTable{border:solid 1px #1b9bbf; margin:0 0 5px 0;}
+.Frameheader{line-height:28px;background:url(../icon/title1.jpg) repeat-x;}
+.FrameTable div{border-bottom:solid 1px #f4f0e6;}
+.FrameTable table{margin:10px 0;}
+.FrameTable table table{margin:0;}
+.Frameheader{background:url(../icon/title1.jpg) repeat-x;color:#FFF; text-indent:10px;font-weight:bold; text-align:left; line-height:25px;}
+.Frameheader A:link{color:#FFF;font-weight:normal;}
+.Frameheader A:hover{color:#FF0;}
+
+.conText{ padding:20px 20px 40px 40px; line-height:20px; text-align:left}
+
+/* a style which makes mainWrapper touch the bottom of sidebar and content */
+.clear{
+	border-top:1px solid transparent !important;
+	margin-top:-1px !important;
+	border-top:0;
+	margin-top:0;
+	clear:both;
+	visibility:hidden;
+}
+
+/*--------new repay-------*/
+.reForm{ position:relative; border:solid 1px #8db2e3; text-align:left; margin:10px; background:#dfe8f6;}
+	.reForm a:link, .reForm a:visited{ color:#0066CC; }
+	.reForm a:hover{ color:#f30; }
+	.reWest{ width:150px;; position:absolute; left:1px; top:1px; border:solid 1px #FFF;border-bottom:none;}
+
+		.reTime{ clear:both; padding:5px 10px; font-family:arial;}
+		.reTime div{border-top: solid 1px #FFF; clear:both;height:1px; margin-top:4px; overflow:hidden; background:#8db2e3; display:block; clear:both;}
+		.reIcon{ clear:both; padding:10px;}
+		.reIcon p{ line-height:22px; margin:0; padding:5px; color:#333;}
+		
+	.reEast{ margin: 0 0 0 153px; clear:both; display:block; border:none; border-left:solid 1px #98c0f4; }
+		.reText{ clear:both;padding:50px 25px 25px 25px;  text-align:left; background:#FFF; font-size:14px; font-family:tahoma;}
+		.reLine{ clear:both; padding:20px 10px 20px 10px ; background:#FFF;}
+		.reLineText{text-align:right; border-top:dotted 1px #ccc; color:#999; margin:10px; padding:10px;}
+
+/*
+	//New style by jackie
+End
+*/
+
+
+/* dpipi start */
+.gridheader{
+background:url(../icon/title1.jpg) repeat-x;
+}
+.gridfoot{
+background:url(../icon/title11.jpg) repeat-x;
+}
+TABLE.tbGrid
+{
+	  border-color:#9FD6FF;
+	  border-width:1px;
+	  border-style:solid;
+	  border-collapse:collapse;
+	  background-image: url(../icon/title_04.gif);
+}
+TABLE.news
+{
+	  border-color:#9FD6FF;
+	  border-width:1px;
+	  border-style:solid;
+	  border-collapse:collapse;
+	  background-image: url(../icon/title_04.gif);
+}
+.dgHeader
+{
+	background-image:url(../icon/title_04.gif);
+	background-color: #F2F9FF;
+	color:#014F8A;
+}
+.dgFoot
+{
+	background-image:url(../icon/title_04.gif);
+	background-color: #F2F9FF;
+	color:#014F8A;
+} 
+TABLE.tbTitle
+{
+	width: 100%;
+}            
+TD.tdTitle1
+{  
+	width: 50%;	
+	height: 26px;
+	background-attachment: scroll;
+	background-image: url(../icon/title_01.gif);
+	background-repeat: repeat;
+	background-position: left center;	
+	text-align:left;
+	color: #014F8A;
+}
+
+TD.tdTitle2
+{  
+	height: 26px;
+	background-attachment: scroll;
+	background-image: url(../icon/title_02.gif);
+	background-repeat: repeat;
+	background-position: center;
+}
+
+TD.tdTitle3
+{
+	width: 40%;	
+	height: 26px;
+	background-attachment: scroll;
+	background-image: url(../icon/title_03.gif);
+	background-repeat: repeat;
+	background-position: right center;
+	text-align:right;
+	color: #C60001;
+}
+.btn
+{
+	background-color: aliceblue;
+	background-image:url(../icon/bg_btn2.gif);
+	border: #8496CE 0px solid;
+	color: #5A6DA5;	
+	height: 23px;
+	width: 100px;
+	cursor: hand;	
+	text-align:center;
+}
+.NormalBtn
+{
+	border: 1px solid #2c59aa;
+	PADDING-RIGHT: 2px; 	PADDING-LEFT: 2px; 	FONT-SIZE: 12px; 
+		FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); 
+		CURSOR: hand; 	COLOR: black; 	PADDING-TOP: 2px;
+}
+.btn2 {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 4px; PADDING-LEFT: 4px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 1px; PADDING-BOTTOM: 0px; PADDING-TOP: 2px; HEIGHT: 23px; BACKGROUND-COLOR: #ece9d8; BORDER-RIGHT-WIDTH: 1px
+}
+
+.btr
+{
+	background-color: aliceblue;
+	background-image:url(../icon/bg_btn3.gif);
+	border: #8496CE 0px solid;
+	color: #5A6DA5;	
+	height: 23px;
+	width: 160px;
+	cursor: hand;	
+	text-align:center;
+}
+/* dpipi end */
+.tbox
+{	BORDER: 1px solid #69a;          
+    background-color:#fff;
+	height:20px;
+      }
+ .tbsearch
+{		border:solid 1px #666;          
+        background-color:#eff;
+	  	
+      }
+.tbNoBorder
+{
+	BORDER-TOP-STYLE: none; BORDER-BOTTOM: none;
+          BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none;
+          border-bottom-color:#000000;
+          HEIGHT:20px; 
+}
+.tbox1 
+{    border:solid 1px #666;      
+	background-color:#eee;
+          HEIGHT:22px;
+          color:#333 
+                   	
+         }
+         
+.button	
+{ border:solid 1px #99999;
+          HEIGHT:22px;
+          background:#eff;
+          
+         }
+
+ .header
+ {  
+	width:100%;
+	padding:5px 0px 5px 3px;
+	font-size:14px;
+	font-weight:bold;
+	color: #005a5a;
+	 background-color:#d1eaf2;
+	/*background: url("../icon/project/pjt_header.gif")   repeat 0 100%;*/
+	height:28px;
+}         
+.limenu
+{
+	clear:both;
+	}    
+.limenu ul
+{
+	margin:0;padding:0;
+	list-style:none;
+	clear:both;
+	}    
+.limenu li
+{
+	clear:right;float:left;
+	margin:0;padding:0 10px;
+	}    
+.limenu li a
+{
+	text-decoration:none;
+	display:block;
+}    
+ .header1
+ {
+	 background-image:url(../icon/title1.jpg); 
+	 BACKGROUND-REPEAT: repeat-x;
+	color:#333333;	
+	 font-size:14px;
+   PADDING-LEFT:10px;
+	height:28px;
+	 font-weight:bold;
+}
+	.header1 A:link
+	{
+		color:#AA9D8D;
+		
+	}
+	.header1 A:hover
+	{
+		color:#E58712;
+	}
+	.header1 a:active
+	{
+		color:#B5B2AA;
+	}
+ .title
+ {
+	BACKGROUND-IMAGE: url("../icon/book/book_top.jpg"); 
+	 color:#333333;	
+	  font-size:14px;
+   PADDING-LEFT: 10px;
+   height:26px; 
+	font-weight:bold;
+ }
+ .book_header
+ {
+	BACKGROUND-IMAGE: url("../icon/book/book_header.jpg"); 
+	 BACKGROUND-REPEAT: repeat-x;
+	 color:#fff;
+	 height:26px; 
+	 font-weight:bold;
+	 text-align:center;
+ }
+ .book_tb
+{ border:solid 1px #999;      
+	          HEIGHT:18px;
+          width:120px; 
+	}
+ .tdright 
+ {
+	text-align:right;
+	 padding-right:4px;	
+	 height:24px;
+	 background:#F5F8FE;
+	 color:#363636;
+	 
+ }
+  .tdrightw 
+ {
+	text-align:right;
+	 padding-right:4px;	
+	 height:24px;	 
+	 vertical-align:middle;
+ }
+ 
+ 
+  .tdHighlight
+ {
+	text-align:right;
+	 padding-right:4px;	
+	 height:24px;
+	 background:#fff;
+	 color:blue;
+ }
+   .tdwhite 
+ {
+	 padding-left:4px;	
+	 height:24px;
+	 background:#ffffff;	 
+ }
+ .tdleft
+ {
+	 padding-left:5px;	
+	 height:24px;
+	 background:#fff;
+	 color:#333;
+ }
+    .tdCenter 
+ {
+	 padding-left:2px;	
+	 height:24px;
+	 background:#eef3f3;
+	 text-align:center;
+	 color:#969696;	 
+ }
+ 
+ .DDL 
+ {  border: 1px #333333; 
+	 border-color:Aqua;
+	background:#ffffee;
+	color:Navy;
+	
+}
+  .footer
+ {
+ background-color:#eeeeff;
+   PADDING-LEFT: 10px;
+	height:26px; 
+ }
+ 
+ .TDcalendar
+ {
+ height:40px;
+ line-height:16px;
+ text-align:right;
+	}
+	
+	.tdcell
+	{
+		background:#ffffaa;
+		text-align:center;
+		height:20px;
+	}
+	.tdTitle
+	{
+	  background:#eeffee;
+		text-align:center;
+		font-weight:bold;
+		height:22px;
+	}
+.select
+{
+	border:solid 1px #369;
+	background:#eff;
+	color:#369;
+}
+.line
+{
+	BORDER-BOTTOM: #CCC 1px dotted;
+	line-height:20px;
+
+}
+
+
+.pjt_bt
+{   width:100px;
+	font-size:12px;
+	color:#0e2e4a;
+	height:22px;
+	border:solid 1px #369;
+	background-color:#eee;
+}
+.OL_Title
+{
+	border:solid 1 #eee;
+	display:none;
+	 margin:1 1 1 1;	 
+}
+ul{
+	list-style-type:none;
+	list-style-position : outside;
+	margin:0 0 0 0;
+	padding:0 0 0 0;
+	word-break:break-all;
+}
+
+.tip
+{
+	font-size:12px;
+	color:#036;
+	 padding:5 0 5 0;
+	background:#ffe;
+	line-height:18px;	
+}
+
+/*--------------Content  -----------*/
+
+.matter {padding: 5px 0px; margin: 10px 10px 10px 10px;font-weight: normal;}
+#container { float: left; width: 100%; clear:both; padding: 20px 0px; margin: 0px; }
+
+.content { float: left; width: 600px; padding: 0; margin: 0px; }
+.content h1, h2, h3 { font-family: tahoma; color: #005a5a; font-weight:normal; }
+.content h2 { text-transform: uppercase; font-size: 18px; letter-spacing: -1px; padding: 5px 0px; margin: 0px 0px 15px 0px; border-bottom: solid 1px #fff; font-weight: normal; }
+.content h3 { font-size: 20px; letter-spacing: -1px; padding: 5px 0px 0px 0px; margin: 0px; font-weight: normal;  }
+.content p { font-size: 11px; padding: 5px 0px; margin: 0px; }
+
+.content input.on { color : #999966; border: solid 1px #f4fbdc; background: #f4fbdc; padding: 3px 0px;}
+.content input.on:hover { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content input.on:focus { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content input.onIE { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+
+.content textarea.on { color : #999966; border: solid 1px #f4fbdc; background: #f4fbdc; padding: 3px 0px;}
+.content textarea.on:hover { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content textarea.on:focus { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+.content textarea.onIE { color : #006666; border: solid 1px #e0f4ff; background: #e0f4ff; padding: 3px 0px;}
+
+/*-------------CSS layout------------*/
+#header {margin:0px 0 15px 0px;color: #005a5a;float: left; width:100%;font-size: 16px; line-height:20px; padding:0; border-bottom: solid 1px #fff; font-weight:bold;}
+#pagebody {margin:0 auto;height:400px;background:#CCFF00}
+#footer {margin: 10px 0px 0px 0px;height:30px; float:left; width:100%; border-top: solid 1px #fff; padding:15px;}
+#pageleft{ width:160px; 
+ text-align:left; 
+ float:left; 
+ clear:left;
+ overflow:hidden;}
+#mainbody{ width:570px;
+ text-align:left;
+ float:right;
+ clear:right;
+ overflow:hidden}
+
+#container li{ line-height:20px;list-style : disc inside ; list-style-type : circle;}
+

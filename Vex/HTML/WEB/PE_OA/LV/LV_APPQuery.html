@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>低值易耗品申购单</title>  	 
+    <meta http-equiv="description" content="低值易耗品申购单">
+    <meta http-equiv="content-type" content="text/html">  
+    <meta charset="UTF-8"> 
+    <script src="../../../jquery-easyui-1.3.4/jquery-1.8.0.min.js" type="text/javascript"></script> 
+    <script src="../../../jquery-easyui-1.3.4/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/jquery.cookie.js" type="text/javascript"></script>
+    <link id="easyuiTheme" href="../../../jquery-easyui-1.3.4/themes/peoa/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/changeEasyuiTheme.js" type="text/javascript"></script>
+    <link href="../../../jquery-easyui-1.3.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../../jquery-easyui-1.3.4/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../../jquery-easyui-1.3.4/js_hzyCommon.js" type="text/javascript"></script>
+    <style type="text/css">   
+
+  /*<![CDATA[*/ 
+
+ body {font:19px "微软雅黑";margin:0; padding:0 10px 0 10px; border:0; height:100%; overflow:auto;}   
+
+  #header {left:0; top:0; width:100%; position:fixed; padding:5px; text-align:center; 
+           font-weight:bold; background:#fafafa; z-index:99999}  
+
+ * html #header {position:absolute; right:16px; top:0;}/*only for ie*/ 
+
+  html {overflow:auto !important; overflow:hidden;}  
+
+  /*]]>*/ 
+
+  </style>  
+
+
+
+</head>  
+<body class="app-info"  style="overflow:auto;">    
+  <div id="header" style="height: 25px;" >
+		<table id='tbztoolbar' >
+			<tr>
+				<td style="width: 5px;"></td> 
+				<td>
+					<a href="javascript:void(0)" class="easyui-linkbutton"  plain="true" data-options="iconCls:'icon-print'"
+                         onclick="print()">打印</a>
+				</td> 
+				<td><a href="javascript:void(0)" id="btnlookRI"
+					data-options="iconCls:'icon-tip'" class="easyui-linkbutton" plain="true" style="display: none"
+					onclick="javascript: $('#rejectInfo').dialog('open');">驳回理由</a>
+				</td>  
+			</tr>
+		</table>
+	</div>
+	
+	<form id="FA-AppForm" name="FA-AppForm" action="">   
+		<table  style="width:880px;  font-size:14px;" border="0"  cellpadding="0" cellspacing="0" > 
+			<tr style="height: 50px;">
+		      	<td> </td>   
+		 	</tr>
+			<tr style="height: 30px;">  
+		 	    <td style="width:100px"><font color="red">*&nbsp;</font>所属公司：</td> 
+			 	<td style="width:220px">
+                    <input id="ID" name="ID" type="hidden"  />
+			      	<input id="CONO" name ="CONO"  type="hidden" /> 
+			      	<input id="DIVI" name ="DIVI"  type="hidden" /> 
+			 	  	<input id="GenusCompanyName"  name ="GenusCompanyName" type="text" style="width:180px" disabled="disabled"/>  
+			 	</td> 	
+			 	<td style="width:110px"><label id="labelxmdm">&nbsp;&nbsp;&nbsp;项目代码：</label></td>
+			    <td style="width: 180px"><input id="ProjectCode" name ="ProjectCode" type="text"  style="width:150px" disabled="disabled"/></td>	   
+			 	<td style="width:110px"><label id="labelgxdm">&nbsp;&nbsp;&nbsp;高新代码：</label></td> 
+			 	<td style="width: 130px"><input id="AdvancedCode" name ="AdvancedCode" type="text" style="width:120px" disabled="disabled"/></td> 
+		 	 </tr>  
+			 <tr style="height: 30px;">	
+				 <td>&nbsp;&nbsp;&nbsp;单据状态：</td>
+				 <td><input id="State" name="State" type="text"  disabled="disabled" style="width:180px;"/></td>			 
+				 <td>&nbsp;&nbsp;&nbsp;申购单号：</td>
+				 <td><input id="POApplyCode" name="POApplyCode" type="text" style="width:150px;" disabled="disabled" /></td>
+                 <td><font color="red">*&nbsp;</font>申请日期：</td>
+				 <td><input id="ApplyDt" name="ApplyDt"  type="text" style="width:120px" disabled="disabled" /></td>
+			 </tr> 
+			 <tr style="height: 30px;" > 
+				 <td><font color="red">*&nbsp;</font>申请人：</td>
+				 <td><input id="ApplyUser" name="ApplyUser" style="width:180px;" disabled="disabled" type="text" /> </td>
+				 <td><font color="red">*&nbsp;</font>部门名称：</td>
+				 <td>
+					 <input id="DeptName" name="DeptName"  type="text"  disabled="disabled" style="width:150px;"/>  
+				 </td> 				 
+                 <td><font color="red">*&nbsp;</font>资产类别：</td>
+				 <td><input id="AssetsType" name="AssetsType"   type="text"  disabled="disabled"  style="width:120px" /></td>			 
+             </tr>     
+		     <tr style="height: 30px;">				 
+				 <td>&nbsp;&nbsp;员工代码：</td>
+				 <td>
+				 	<input id="EmployeeId" name="EmployeeId"  type="text"  style="width:180px" disabled="disabled"/>  
+				 </td>
+				 <td><font color="red">*&nbsp;</font>成本中心：</td>
+				 <td>
+					 <input id="CenterCode" name="CenterCode"  type="text"  style="width:150px;"  disabled="disabled"/>  
+				 </td>
+				 <td></td> 
+				 <td>
+				 	 
+				 </td>  
+			 </tr>     
+	    </table>   
+	    <hr style="width: 900px" align="left"> 	 
+ 	    <div id='sgmxdiv' title="申购明细列表" >  
+     	    <table style="width:880px; font-size:13px; ">
+     		    <tr>
+     			    <td style="width: 350px">
+     				    <font color="red" style="width: 200px">申购总金额：</font>
+     				    <input type="text" id = "ApplyAmount" name="ApplyAmount" style="width: 100px" 
+							disabled="disabled" style="width:180px" />
+     			    </td>
+     			    <td >
+     				    <font color="red" style="width: 200px">确认总金额：</font>
+     				    <input type="text" id = "ConfirmAmount" name="ConfirmAmount" style="width: 100px" 
+							disabled="disabled" style="width:180px"/>
+     			    </td>
+     		    </tr>
+     	    </table> 
+            <table id="sgmxlb"></table>	        	
+        </div> 
+	    <hr style="width: 900px" align="left"> 	
+	    <br> 	  	 
+	    <div id='zczyytdiv' title="资产主要用途" cache="false" >    
+  	        <table style="width:880px; font-size:14px; ">
+     		    <tr>
+     			    <td style="width: 680px">
+     				     资产主要用途（原因）：
+     			    </td> 
+     		    </tr> 
+     		    <tr>
+     			    <td colspan="2">
+     				     <textarea id="Comment" name="Comment" style="width: 98%; height:60px"  disabled="disabled"></textarea>
+     			    </td> 
+     		    </tr>
+     	     </table>    
+	    </div>             
+	</form>    			
+	<hr style="width: 900px" align="left"> 	
+	<br> 
+    <div id='spxxdiv' title="审批信息" cache="false" >    
+  	    <table style="width:820px; font-size:13px;">
+     		<tr>
+     			<td style="width:110px; text-align:right;">
+     				 部门长(总监)：
+     			</td>
+                <td style="width:160px; ">
+     				 <span id="DepartmentDirector"></span>
+     			</td>
+     			<td style="width:150px; text-align:right;">
+     				事业部/子公司总经理：
+     			</td>
+                <td style="width:160px;">
+     				 <span id="DivisionManager"></span>
+     			</td>
+                <td style="width:100px; text-align:right;">
+     				信息总监：
+     			</td>
+                <td style="width:160px; ">
+     				 <span id="ITDirector"></span>
+     			</td>        
+     		</tr> 
+     		<tr >
+     			<td style="text-align:right;">
+     				 采购经理：
+     			</td>
+                <td >
+     				 <span id="PurchaseManager"></span>
+     			</td>
+     			<td style="text-align:right;">
+     				 行政管理部总监：
+     			</td>
+                <td >
+     				 <span id="ShareServiceCenterDirector"></span>
+     			</td>
+                 <td style="text-align:right;">
+     				 
+     			</td>
+                <td >
+     				 <span id="FinanceDirector" style="display:none"></span>
+     			</td>    
+     		</tr>
+            <tr>
+     			<td colspan="7" > 
+     			</td>
+     		</tr>  
+     	 </table>    
+	</div>  	
+	<!--查看驳回理由窗体 -->
+	<div id="rejectInfo" title="驳回理由" class="easyui-dialog" closed="true"><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;<span id="rejectInfoSpan" ></span></font></div> 
+	 
+          
+</body> 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/dateUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/jsonUtil.js"></script>	 
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/dataUtil.js"></script>
+	<script type="text/javascript" src="../../../JS/PE_OA/Util/peoa.js"></script>
+ 	<script type="text/javascript" src="../../../JS/PE_OA/Common/basedata.js"></script> 
+ 	<script type="text/javascript" src="../../../JS/PE_OA/LV/LV_APPQuery.js"></script>   
+	<script type="text/javascript">
+	    //处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+	    function forbidBackSpace(e) {
+	        var ev = e || window.event; //获取event对象 
+	        var obj = ev.target || ev.srcElement; //获取事件源 
+	        var t = obj.type || obj.getAttribute('type'); //获取事件源类型 
+	        var vReadOnly = obj.readOnly;
+	        var vDisabled = obj.disabled;
+	        vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+	        vDisabled = (vDisabled == undefined) ? true : vDisabled;
+	        var flag1 = ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vDisabled == true);
+	        var flag2 = ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea";
+	        if (flag2 || flag1) return false;
+	    }
+	    document.onkeypress = forbidBackSpace;
+	    document.onkeydown = forbidBackSpace;
+	 </script> 
+</html>

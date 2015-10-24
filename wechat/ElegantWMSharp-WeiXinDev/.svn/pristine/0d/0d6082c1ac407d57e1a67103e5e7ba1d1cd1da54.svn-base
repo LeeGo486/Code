@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "卡券中心";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        //$("#ticketinfobg").load(function () {
+        //    var bgHeight = $("#ticketinfobg").height();
+        //    alert("-" + bgHeight * 0.5);
+        //    //$("#Tckname").css("top", "-" + bgHeight * 0.5);
+        //})
+
+
+    });
+
+
+</script>
+
+<style>
+    .noticList {
+        border: 1px solid #e5e5e5;
+        background-color: #fff;
+        padding: 10px 10px 14px 10px;
+        margin-bottom: 12px;
+        border-radius: 3px;
+    }
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/kqbg.jpg" />
+    </li>
+</ul>
+
+<div style="padding: 14px; margin-bottom: 53px; font-size: 10px">
+    @if (ViewBag.flag == "1")
+    {
+        <div style="border: 1px solid #d9d5d5; margin-top: 5px">
+            <table>
+                <tr>
+                    <td style="width: 60%"><span>无相关优惠券</span><br />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    else
+    {
+        foreach (System.Data.DataRow dr in ViewBag.MyTicketInfo)
+        {
+        <div style="border: 1px solid #d9d5d5; margin-top: 5px">
+            <table>
+                <tr>
+                    <td rowspan="3">
+                        <img id="ticketinfobg" src="~/Areas/DLWXSite/Resources/images/VIP/ticketinfobg.jpg" style="width: 100%" />
+                        <div id="Tckname" style="position: relative; z-index: 9999; text-align: center; height: 0px; top: -60px; font-size: 14px; font-weight: bold">
+                            <table>
+                                <tr>
+                                    <td>-@dr["TtypeName"]-<br />
+                                        ¥@float.Parse(dr["Sums"].ToString())
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 60%">
+                        <span>券名称：@dr["Tckname"]</span><br />
+                        <span>券号：@dr["Ticketid"]</span><br />
+                        <span>状态：@dr["GetStatus"]</span><br />
+                        <span>开始时间：@dr["Beg_date"]</span><br />
+                        <span>结束时间：@dr["Close_date"]</span><br />
+                        <span>备注：羊T插画T外全场通用</span>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        }
+    }
+</div>

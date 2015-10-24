@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "GetMyTicket";
+    Layout = "~/Views/Shared/_DLWXSiteLayout.cshtml";
+}
+
+@section script{
+    <link href="~/Areas/DLWXSite/Resources/Mobile.css?v3" rel="stylesheet" />
+}
+
+<script type="text/javascript">
+    $(function () {
+
+    });
+
+
+</script>
+
+<style>
+    .noticList {
+        border: 1px solid #e5e5e5;
+        background-color: #fff;
+        padding: 10px 10px 14px 10px;
+        margin-bottom: 12px;
+        border-radius: 3px;
+    }
+</style>
+
+<ul style="padding: 0px;">
+    <li>
+        <img src="~/Areas/DLWXSite/Resources/images/VIP/kqbg.jpg" />
+    </li>
+</ul>
+
+
+<div style="padding: 15px;">
+    <table style="border: 1px solid #d9d5d5;margin-top:-10px">
+        <tr>
+            <td rowspan="2">
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/birthday.jpg" style="width: 100%" />
+            </td>
+            <td style="width: 50%">
+                <span>券号：DL1234567890987</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>有效期：2015-06-30</span>
+            </td>
+        </tr>
+    </table>
+    <table style="border: 1px solid #d9d5d5; margin-top: 10px">
+        <tr>
+            <td rowspan="2">
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/birthday.jpg" style="width: 100%" />
+            </td>
+            <td style="width: 50%">
+                <span>券号：DL1234567890987</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>有效期：2015-06-30</span>
+            </td>
+        </tr>
+    </table>
+    <table style="border: 1px solid #d9d5d5; margin-top: 10px">
+        <tr>
+            <td rowspan="2">
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/birthday.jpg" style="width: 100%" />
+            </td>
+            <td style="width: 50%">
+                <span>券号：DL1234567890987</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>有效期：2015-06-30</span>
+            </td>
+        </tr>
+    </table>
+        <table style="border: 1px solid #d9d5d5; margin-top: 10px">
+        <tr>
+            <td rowspan="2">
+                <img src="~/Areas/DLWXSite/Resources/images/VIP/birthday.jpg" style="width: 100%" />
+            </td>
+            <td style="width: 50%">
+                <span>券号：DL1234567890987</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>有效期：2015-06-30</span>
+            </td>
+        </tr>
+    </table>
+</div>

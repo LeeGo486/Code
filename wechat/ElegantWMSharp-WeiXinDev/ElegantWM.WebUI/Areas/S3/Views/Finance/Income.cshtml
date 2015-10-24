@@ -1,0 +1,1335 @@
+﻿<script type="text/javascript">
+    $(function () {
+        //销售达成率及增长率
+        $('#sale1').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '销售达成率及增长率',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            subtitle: {
+                text: '点击柱状图显示相应每月数据'
+            },
+            xAxis: [{
+                categories: ['12年', '13年', '14年']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    enableMouseTracking: false
+                },
+                column: {
+                    events: {
+                        click: function (e) {
+                            showIncomesub();
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '销售',
+                color: '#4F94CD',
+                type: 'column',
+                yAxis: 0,
+                data: [1308, 1533, 879],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: '达成率',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [103, 102, 103],
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}%'
+                },
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }, {
+                name: '增长率',
+                color: '#9BCD9B',
+                type: 'line',
+                yAxis: 1,
+                data: [12, 17, 10],
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}%',
+                    color: "#fff"
+                },
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        //月销售排名
+        $('#sale2').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '月销售排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海五角场百联又一城', '上海东方商厦淮海店', '上海汇金百货', '上海新世界', '上海百联中环东方商厦', '上海久光百货', '上海黄金广场 ', '上海青浦东方大厦', '上海虹桥友谊商城'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '月销售',
+                color: '#4F94CD',
+                data: [151, 100, 72, {
+                    y: 51,
+                    color: '#B22222'
+                }, 48, 48, 39, 34, 26]
+            }]
+        });
+
+        //月增长率排名
+        $('#sale3').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '月增长率排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海久光百货', '上海黄金广场 ', '上海青浦东方大厦', '上海虹桥友谊商城', '上海新世界', '上海百联中环东方商厦', '上海五角场百联又一城', '上海汇金百货', '上海东方商厦淮海店'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        format: '{point.y}%',
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '月增长率',
+                color: '#4F94CD',
+                data: [12, 10, 7, 5, {
+                    y: 5,
+                    color: '#B22222'
+                }, 2, -2, -2, -7]
+            }]
+        });
+
+        //年累计销售排名
+        $('#sale4').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '年累计销售排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海五角场百联又一城', '上海东方商厦淮海店', '上海汇金百货', '上海新世界', '上海百联中环东方商厦', '上海久光百货', '上海黄金广场 ', '上海青浦东方大厦', '上海虹桥友谊商城'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '年累计销售',
+                color: '#4F94CD',
+                data: [905, 600, 430, {
+                    y: 304,
+                    color: '#B22222'
+                }, 289, 285, 234, 201, 105]
+            }]
+        });
+
+        /*//月均坪效同店对比
+        $('#effect1').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '月均坪效同店对比'
+            },
+            xAxis: {
+                categories: [
+                    '本店',
+                    '北京华贸EP雅莹之家'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: ' ',
+                color: '#4F94CD',
+                data: [733,892],
+                dataLabels: {
+                    enabled: true
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        //月均人效同店对比
+        $('#effect2').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '月均人效同店对比'
+            },
+            xAxis: {
+                categories: [
+                    '本店',
+                    '北京华贸EP雅莹之家'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: ' ',
+                color: '#4F94CD',
+                data: [18313, 19822],
+                dataLabels: {
+                    enabled: true
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        //月均坪效租金比
+        $('#effect3').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '月均坪效租金比'
+            },
+            xAxis: {
+                categories: [
+                    '本店',
+                    '北京华贸EP雅莹之家'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: ' ',
+                color: '#4F94CD',
+                data: [3.5, 4.1],
+                dataLabels: {
+                    enabled: true
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });*/
+
+        //月均坪效排名
+        $('#effect1').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '月均坪效排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海东方商厦淮海店', '上海五角场百联又一城', '上海久光百货 ', '上海汇金百货', '上海虹桥友谊商城', '上海百联中环东方商厦', '上海新世界', '上海黄金广场', '上海青浦东方大厦'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '月均坪效',
+                color: '#4F94CD',
+                data: [1132, 1122, 1049, 1021, 1018, 872, {
+                    y: 812,
+                    color: '#B22222'
+                }, 755, 652]
+            }]
+        });
+
+        //月均人效排名
+        $('#effect2').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '月均人效排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海青浦东方大厦', '上海黄金广场', '上海虹桥友谊商城', '上海久光百货 ', '上海新世界', '上海汇金百货', '上海东方商厦淮海店', '上海五角场百联又一城', '上海百联中环东方商厦'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '月均人效',
+                color: '#4F94CD',
+                data: [59908, 52752, 52527, 45515, {
+                    y: 32722,
+                    color: '#B22222'
+                }, 30624, 26308, 25764, 23063]
+            }]
+        });
+
+        //月坪效租金比排名
+        $('#effect3').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '月坪效租金比排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海青浦东方大厦', '上海百联中环东方商厦', '上海虹桥友谊商城', '上海久光百货 ', '上海东方商厦淮海店', '上海汇金百货', '上海黄金广场', '上海新世界', '上海五角场百联又一城'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '月坪效租金比',
+                color: '#4F94CD',
+                data: [5.8, 5.3, 5.0, 4.9, 4.4, 3.9, 3.8, {
+                    y: 3.8,
+                    color: '#B22222'
+                }, 3.5]
+            }]
+        });
+
+        //消费占比
+        $('#perCost1').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '消费占比',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: [
+                    '13年',
+                    '14年'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                },
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name} {point.y}%'
+            },
+            series: [{
+                name: '非会员',
+                color: '#B22222',
+                data: [19, 15],
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}%',
+                    color: "#fff"
+                }
+            },
+            {
+                name: '会员',
+                color: '#4F94CD',
+                data: [81, 85],
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}%',
+                    color: "#fff"
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        /*//会员数同店对比
+        $('#perCost2').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '会员数同店对比'
+            },
+            xAxis: {
+                categories: [
+                    '13年',
+                    '14年'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: '会员',
+                color: '#4F94CD',
+                data: [2321, 2688],
+                dataLabels: {
+                    enabled: true,
+                }
+            }, {
+                name: '非会员',
+                color: '#B22222',
+                data: [2545, 2788],
+                dataLabels: {
+                    enabled: true,
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        //人均消费同店对比
+        $('#perCost3').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '人均消费同店对比'
+            },
+            xAxis: {
+                categories: [
+                    '13年',
+                    '14年'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: '会员',
+                color: '#4F94CD',
+                data: [5687, 6898],
+                dataLabels: {
+                    enabled: true,
+                }
+            }, {
+                name: '非会员',
+                color: '#B22222',
+                data: [6700, 6899],
+                dataLabels: {
+                    enabled: true,
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });*/
+
+        //会员数排名
+        $('#perCost2').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '会员数排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海东方商厦淮海店', '上海五角场百联又一城', '上海久光百货 ', '上海汇金百货', '上海虹桥友谊商城', '上海百联中环东方商厦', '上海新世界', '上海黄金广场', '上海青浦东方大厦'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '会员数',
+                color: '#4F94CD',
+                data: [1132, 1122, 1049, 1021, 1018, 872, {
+                    y: 812,
+                    color: '#B22222'
+                }, 755, 652]
+            }]
+        });
+
+        //会员消费占比排名
+        $('#perCost3').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '会员消费占比排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海东方商厦淮海店', '上海久光百货 ', '上海新世界', '上海汇金百货', '上海五角场百联又一城', '上海黄金广场', '上海虹桥友谊商城', '上海青浦东方大厦', '上海百联中环东方商厦'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false,
+                    format: '{value}%'
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '会员消费占比',
+                color: '#4F94CD',
+                data: [85, 83, {
+                    y: 80,
+                    color: '#B22222'
+                }, 77, 77, 75, 66, 63, 62],
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}%'
+                }
+            }]
+        });
+
+        //会员人均消费排名
+        $('#perCost4').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '会员人均消费排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海东方商厦淮海店', '上海黄金广场', '上海新世界', '上海百联中环东方商厦', '上海青浦东方大厦', '上海久光百货 ', '上海汇金百货', '上海虹桥友谊商城', '上海五角场百联又一城'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '会员人均消费',
+                color: '#4F94CD',
+                data: [8565, 7959, {
+                    y: 7711,
+                    color: '#B22222'
+                }, 6983, 6404, 6388, 6308, 5274, 5016]
+            }]
+        });
+
+        //本店月折扣走势图
+        $('#discount1').highcharts({
+            chart: {
+                type: 'line',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '本店月折扣走势图',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: [
+                    '1月',
+                    '2月',
+                    '3月',
+                    '4月',
+                    '5月',
+                    '6月',
+                    '累计'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name} {point.y}%'
+            },
+            series: [{
+                name: '13年',
+                color: '#4F94CD',
+                data: [80, 86, 82, 79, 80, 90, 83],
+                dataLabels: {
+                    enabled: false,
+                    format: '{point.y}%'
+                }
+            }, {
+                name: '14年',
+                color: '#B22222',
+                data: [80, 81, 86, 82, 87, 89, 84],
+                dataLabels: {
+                    enabled: false,
+                    format: '{point.y}%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        /*//XX店铺--月折扣走势图
+        $('#discount2').highcharts({
+            chart: {
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '同店月折扣走势图'
+            },
+            subtitle: {
+                text: '北京华贸EP雅莹之家'
+            },
+            xAxis: {
+                categories: [
+                    '1月',
+                    '2月',
+                    '3月',
+                    '4月',
+                    '5月',
+                    '6月',
+                    '累计'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name} {point.y}%'
+            },
+            series: [{
+                name: '13年',
+                color: '#9BCD9B',
+                data: [80, 86, 82, 79, 80, 90, 83],
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}%'
+                }
+            }, {
+                name: '14年',
+                color: '#9F79EE',
+                data: [80, 81, 86, 82, 87, 89, 84],
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });*/
+
+        //本月折扣排名
+        $('#discount2').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '本月折扣排名',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海东方商厦淮海店', '上海五角场百联又一城', '上海新世界', '上海久光百货 ', '上海黄金广场', '上海汇金百货', '上海青浦东方大厦', '上海虹桥友谊商城', '上海百联中环东方商厦'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '本月折扣',
+                color: '#4F94CD',
+                data: [0.83, 0.82, {
+                    y: 0.82,
+                    color: '#B22222'
+                }, 0.80, 0.80, 0.80, 0.78, 0.78, 0.78]
+            }]
+        });
+
+        //存货周转率
+        $('#turnover').highcharts({
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 350,
+                backgroundColor: null
+            },
+            title: {
+                text: '存货周转率',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: {
+                categories: ['上海汇金百货', '上海青浦东方大厦', '上海百联中环东方商厦', '上海久光百货 ', '上海东方商厦淮海店', '上海新世界', '上海五角场百联又一城', '上海黄金广场', '上海虹桥友谊商城'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null,
+                    align: 'high'
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineColor: "#fff"
+            },
+            tooltip: {
+                valueSuffix: null
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true,
+                        color: "#fff"
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: '存货周转率',
+                color: '#4F94CD',
+                data: [4.5, 4.5, 4.5, 4.3, 4.2, {
+                    y: 4.1,
+                    color: '#B22222'
+                }, 3.7, 3.5, 3.5]
+            }]
+        });
+    });
+
+    function showIncomesub() {
+        //月销售增长率
+        $('#sale5').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '月销售增长率',
+                style: {
+                    "fontSize": "14px"
+                }
+            },
+            xAxis: [{
+                categories: ['1月', '2月', '3月', '4月', '5月', '6月']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: [{
+                name: '14年销售',
+                color: '#9BCD9B',
+                type: 'column',
+                yAxis: 0,
+                data: [140, 151, 141, 157, 158, 141],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: '增长率',
+                color: '#9F79EE',
+                type: 'line',
+                yAxis: 1,
+                data: [9, 14, 4, 15, 28, 10],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+
+        //XX店铺--月销售增长率
+        /*$('#sale3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                height: 250,
+                backgroundColor: null
+            },
+            title: {
+                text: '同店月销售增长率'
+            },
+            subtitle: {
+                text: '北京华贸EP雅莹之家'
+            },
+            xAxis: [{
+                categories: ['1月', '2月', '3月', '4月', '5月', '6月']
+            }],
+            yAxis: [{
+                labels: {
+                    format: null
+                },
+                title: {
+                    text: null
+                }
+            }, {
+                title: {
+                    text: null
+                },
+                labels: {
+                    format: '{value}%'
+                },
+                opposite: true
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}%'
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: [{
+                name: '14年销售',
+                color: '#9F79EE',
+                type: 'column',
+                yAxis: 0,
+                data: [172, 176, 172, 186, 170, 173],
+                tooltip: {
+                    valueSuffix: null
+                }
+
+            }, {
+                name: '增长率',
+                color: '#6495ED',
+                type: 'line',
+                yAxis: 1,
+                data: [13, 15, 5, 22, 15, 4],
+                tooltip: {
+                    valueSuffix: '%'
+                }
+            }],
+            credits: {
+                enabled: false
+            }
+        });*/
+    }
+</script>
+<div class="ht" id="sincome">
+    <i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;收入分析
+    <span onclick="Msg.show('分享到社区',0);">
+        <i class="icon-random icon-large"></i>
+    </span>
+    <span onclick="Msg.show('分享给店长',0);">
+        <i class="icon-signin icon-large"></i>
+    </span>
+</div>
+<div class="dataDetail">
+    <h4><span><i class="icon-bar-chart"></i> 销售分析 </span></h4>
+    <div id="sale1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="sale5" style="margin:30px 0px 0px 0px;"></div>
+    <div id="sale2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="sale3" style="margin:30px 0px 0px 0px;"></div>
+    <div id="sale4" style="margin:30px 0px 0px 0px;"></div>
+    <h4><span><i class="icon-bar-chart"></i> 坪效,人效,坪效租金比 </span></h4>
+    <div id="effect1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="effect2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="effect3" style="margin:30px 0px 0px 0px;"></div>
+    <h4><span><i class="icon-bar-chart"></i> 人均消费 </span></h4>
+    <div id="perCost1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="perCost2" style="margin:30px 0px 0px 0px;"></div>
+    <div id="perCost3" style="margin:30px 0px 0px 0px;"></div>
+    <div id="perCost4" style="margin:30px 0px 0px 0px;"></div>
+    <h4><span><i class="icon-bar-chart"></i> 折扣率 </span></h4>
+    <div id="discount1" style="margin:30px 0px 0px 0px;"></div>
+    <div id="discount2" style="margin:30px 0px 0px 0px;"></div>
+    <h4><span><i class="icon-bar-chart"></i> 存货周转率 </span></h4>
+    <div id="turnover" style="margin:30px 0px 0px 0px;"></div>
+</div>

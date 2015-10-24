@@ -1,0 +1,25 @@
+﻿        .ui-step{padding:0 40px;margin:0 auto;font-size:12px;list-style:none;zoom:1;position:relative;color:#b7b7b7;overflow:hidden}
+        .ui-step:after{clear:both;content:" ";display:block;font-size:0;height:0;visibility:hidden}
+        .ui-step li{float:left;height:54px;margin:0;width:50%;position:relative}
+        .ui-step li .ui-step-icon{height:50px;position:absolute;top:0;width:150px;text-align:center;left:-25px;font-family:tahoma}
+        .ui-step-icon .ui-step-number{line-height:14px;font-style:normal;position:absolute;top:8px;left:23px;color:#fff}
+        .ui-step .ui-step-active i.ui-step-number{color:#FFF}
+        .ui-step-end .ui-step-number{background:transparent;font-size:12px;font-style:normal;left:23px;line-height:12px;padding:0;text-shadow:none;top:9px}
+        .ui-step-icon .ui-step-text{position:relative;top:30px;left:-47px;color:#000000;}
+        .ui-step li .ui-step-line{height:3px;background:#b9b9b9;display:block;margin-top:14px;line-height:1;overflow:hidden}
+        .ui-step li.ui-step-end{position:absolute;top:0;right:-110px;width:150px;zoom:1;_clear:both}
+        .ui-step li.ui-step-end .ui-step-line{display:none}
+        .ui-step-2 li{width:100%}
+        .ui-step-3 li{width:50%}
+        .ui-step-4 li{width:33%}
+        .ui-step-5 li{width:25%}
+        .ui-step .ui-step-active{color:#f16f20;}
+
+        .ui-step .ui-step-active .iconfont{color:#ff7001;background:#ff9a00}
+
+        .ui-step .ui-step-done .iconfont{color:#ff9a00;background:#66CC33}
+        .ui-step .ui-step-undone .iconfont{background:#ccc}
+        .ui-step .ui-step-done .ui-step-line{background:#66CC44}
+
+
+        .ui-step-icon .iconfont{font-size:12px;background:#66CC33;padding:8px;border-radius:30px;position:absolute;top:2px;left:14px;border:5px solid #fff;}

@@ -1,0 +1,1489 @@
+@CHARSET "UTF-8";
+
+body
+	{
+	text-align:center;
+	font-family: 微软雅黑 !important;
+    font-size: 1.2em;
+    margin: 0;
+    height: 600px;
+    overflow: hidden;
+	}
+
+.page
+	{
+	width:100%;
+	}
+	
+.left
+	{
+	float: left;
+	}
+	
+.right
+	{
+	float: right;
+	}
+	
+/*welcome.jsp*/
+div#bg
+	{
+	background: url("../image/grey_bg.png") repeat scroll 0 0 transparent;
+	height: 100%;
+	width: 100%;
+	}
+
+div#welcome
+	{
+	background: url("../image/welcome_bg.png") repeat scroll 0 0 transparent;
+	height: 600px;
+	width: 1024px;
+	}
+
+div#img
+	{
+	padding: 120px 170px 0 170px;;
+	}
+	
+div#img div.img
+	{
+	background-repeat: no-repeat;
+	background-position: center center; 
+	width: 150px;
+	height: 150px;
+	border: 1px solid grey;
+	margin: 100px;
+	}
+	
+div#greyRFID
+	{
+	background-image: url("../image/greyRFID.png");
+	float: left;
+	}
+	
+div#blueRFID
+	{
+	background-image: url("../image/blueRFID.png");
+	float: right;
+	}
+
+div#txt,
+div#exit
+	{
+	color: yellow;
+	font-weight: bold;
+	display: none;
+	}
+/*close.jsp*/
+.close
+	{
+	text-align:right;
+	}
+
+.text
+	{
+	margin-right:10px;
+	}
+	
+/*rfid.jsp*/
+.check
+	{
+	margin: 0 auto;
+    width: 600px;
+	}
+	
+.rfid
+	{
+	float:left;
+	margin:20px;
+	}
+	
+.reader
+	{
+	width:250px;
+	height:250px;
+	}
+	
+.clear
+	{
+	clear: both;
+	}
+	
+.rfid .text
+	{
+	float:left;
+	margin:10px 50px;
+	}
+	
+.info
+	{
+	color: red;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    margin: 10px 20px;
+	}
+	
+/*login.jsp*/
+.login
+	{
+	width:750px;
+	background: url("../image/login.png") no-repeat scroll 0 0 transparent;
+    margin: 80px auto;
+    height: 400px;
+	}
+
+#RFIDReader
+	{
+	width:150px;
+	height:25px;
+	margin-right: 34px;
+	position: absolute;
+	top: -25px;
+	left: -150px;
+	}
+	
+.input
+	{
+	float: right;
+    margin-right: 35px;
+    margin-top: 170px;
+	}
+	
+input
+	{
+	margin: 12px;
+	height: 25px;
+	width: 150px;
+	border: 1px solid grey;
+	}
+	
+.button
+	{
+	width: 85px;
+	height: 35px;
+    font-weight: bold;
+    font-size: 0.8em;
+    margin: 2px;
+	}
+	
+/*ordering.jsp*/
+#ordering
+	{
+	color: #f0f0f0;
+	width: 1024px;
+	height: 600px;
+	}
+	
+#clothingInfo #image,
+#clothingInfo #text
+	{
+	font-family: 华文细黑;
+	width: 230px;
+	height: 300px;
+	}
+
+#clothingInfo #text
+	{
+	width: 220px;
+	}
+	
+#image .text
+	{
+	font-size: 0.9em;
+	margin-top: 8px;
+	margin-right: 0;
+	}
+	
+#image #rfid
+	{
+	display: block;
+	float: left;
+	margin: 5px 0 5px 5px;
+	}
+
+#image #rfid input
+	{
+	margin-left: 0;
+	}
+	
+.pic
+	{
+	width: 200px;
+	height: 230px;
+	margin: 10px 0;
+	border: 1px solid grey;
+	}
+	
+.pic img
+	{
+	display: none;
+	}
+	
+#clothingInfo #text div
+	{
+	text-align: left;
+	margin: 10px 5px;
+	font-size: 0.9em;
+	font-weight: bold;
+	}
+	
+#clothingInfo #text div#title
+	{
+	font-size: 1em;
+	color: #fecc02;
+	}
+
+#clothingInfo #text div.prompt
+	{
+	font-size: 0.8em;
+	color: #fe031b;
+	}
+	
+table
+	{
+	border: solid #f0f0f0;
+	border-width: 1px 0px 0px 1px;
+	margin: 5px 0;
+	}
+
+table tr.head
+	{
+	background-color: #45A0D0;
+	color: #ffffff;
+	}
+
+table tr.odd
+	{
+	background-color: #ffffff;
+	color: #444444;
+	}
+
+table tr.even
+	{
+	background-color: #f0f0f0;
+	color: #444444;
+	}
+	
+table th,
+table td
+	{
+	border: solid #f0f0f0;
+	border-width: 0px 1px 1px 0px;
+	}
+
+#orderingInfo
+	{
+	float: left;
+	padding: 5px;
+	}
+
+#orderingInfo #count
+	{
+	padding: 0 5px;
+	}
+	
+#orderingInfo table th,
+#orderingInfo table td
+	{
+	height: 25px;
+	text-align: right;
+	}
+	
+table .mb,
+table .cyl,
+table .spl
+	{
+	display:none;
+	}
+	
+table .type
+	{
+	width: 200px;
+	}
+	
+table .cy,
+table .sp,
+table .hj,
+table .bd
+	{
+	width: 100px;
+	}
+	
+#orderingInfo .prompt
+	{
+	font-size: 0.8em;
+	color: red;
+	text-align: right;
+	font-weight: bold;
+	}
+
+#orderingInfo #btn
+	{
+	padding: 30px 0;
+	}
+
+#orderingInfo #btn #pm
+	{
+	background-image: url("../image/pm_before.png");
+	}
+
+#orderingInfo #btn #dd
+	{
+	background-image: url("../image/dd_before.png");
+	}
+	
+#orderingInfo #btn #bb
+	{
+	background-image: url("../image/bb_before.png");
+	}
+
+#orderingInfo #btn #close
+	{
+	background-image: url("../image/close_before.png");
+	}
+
+#orderingInfo #btn #pm.active
+	{
+	background-image: url("../image/pm_after.png");
+	}
+
+#orderingInfo #btn #dd.active
+	{
+	background-image: url("../image/dd_after.png");
+	}
+	
+#orderingInfo #btn #bb.active
+	{
+	background-image: url("../image/bb_after.png");
+	}
+
+#orderingInfo #btn #close.active
+	{
+	background-image: url("../image/close_after.png");
+	}
+	
+#orderingInfo #btn div#pm,
+#orderingInfo #btn div#dd,
+#orderingInfo #btn div#bb,
+#orderingInfo #btn div#close
+	{
+	background-position: center center;
+	float: left;
+	width: 140px;
+	height: 50px;
+	}
+
+#orderingInfo #btn div a:active
+	{
+	background-position: center center;
+	}
+	
+div#split
+	{
+	width: 100%;
+	height: 30px;
+	background: url("../image/split.png") no-repeat scroll 0 -10px transparent;
+	}	
+
+div#edit
+	{
+	padding: 5px;
+	width: 100%;
+	}
+	
+div#edit div.title,
+div#edit div input
+	{
+	float: left;
+	margin: 0 2px;
+	font-size: 1em;
+	}
+
+div#edit div.title.hidden
+	{
+	display:none;
+	}
+	
+div#edit div.order
+	{
+	color: #fdad00;
+	}
+	
+#orderingArea
+	{
+	padding: 5px;
+	height: 100%;
+	}
+	
+#orderingArea th,
+#orderingArea td
+	{
+	height: 50px;
+	width: 80px;
+	text-align: center;
+	}
+	
+#orderingArea input
+	{
+	margin: 0;
+	height: 50px;
+	width: 80px;
+	font-size: 1.2em;
+	text-align: center;
+	line-height: 40px;
+	}
+
+#orderingArea input.sel
+	{
+	background: #45A0D0;
+	}
+	
+#orderingArea #save
+	{
+	margin: 0 15px 0 0; 
+	height: 80px;
+	width: 100px;
+	background-position: center center;
+	float: right;
+	background-image: url("../image/save_before.png");
+	}
+	
+#orderingArea #save.active
+	{
+	background-image: url("../image/save_after.png");
+	}
+
+#orderingArea #saveText
+	{
+	float: right;
+	font-size: 0.8em;
+	margin: -30px 10px 0 10px;
+	color: yellow;
+	}
+
+#orderingArea form
+	{
+	float: left;
+	}
+
+#orderingArea #numBtn
+	{
+	padding: 5px 10px;
+	}
+	
+#orderingArea #numBtn div
+	{
+	margin: 1px;
+	width: 80px;
+	height: 80px;
+	background-position: center center;
+	float: left;
+	}
+
+#orderingArea #numBtn #num1
+	{
+	background-image: url("../image/1_before.png");
+	}
+	
+#orderingArea #numBtn #num1.active
+	{
+	background-image: url("../image/1_after.png");
+	}
+	
+#orderingArea #numBtn #num2
+	{
+	background-image: url("../image/2_before.png");
+	}
+	
+#orderingArea #numBtn #num2.active
+	{
+	background-image: url("../image/2_after.png");
+	}
+	
+#orderingArea #numBtn #num3
+	{
+	background-image: url("../image/3_before.png");
+	}
+	
+#orderingArea #numBtn #num3.active
+	{
+	background-image: url("../image/3_after.png");
+	}
+	
+#orderingArea #numBtn #num4
+	{
+	background-image: url("../image/4_before.png");
+	}
+	
+#orderingArea #numBtn #num4.active
+	{
+	background-image: url("../image/4_after.png");
+	}
+	
+#orderingArea #numBtn #num5
+	{
+	background-image: url("../image/5_before.png");
+	}
+	
+#orderingArea #numBtn #num5.active
+	{
+	background-image: url("../image/5_after.png");
+	}
+	
+#orderingArea #numBtn #num6
+	{
+	background-image: url("../image/6_before.png");
+	}
+	
+#orderingArea #numBtn #num6.active
+	{
+	background-image: url("../image/6_after.png");
+	}
+	
+#orderingArea #numBtn #num7
+	{
+	background-image: url("../image/7_before.png");
+	}
+	
+#orderingArea #numBtn #num7.active
+	{
+	background-image: url("../image/7_after.png");
+	}
+	
+#orderingArea #numBtn #num8
+	{
+	background-image: url("../image/8_before.png");
+	}
+	
+#orderingArea #numBtn #num8.active
+	{
+	background-image: url("../image/8_after.png");
+	}
+	
+#orderingArea #numBtn #num9
+	{
+	background-image: url("../image/9_before.png");
+	}
+	
+#orderingArea #numBtn #num9.active
+	{
+	background-image: url("../image/9_after.png");
+	}
+	
+#orderingArea #numBtn #num0
+	{
+	background-image: url("../image/0_before.png");
+	}
+	
+#orderingArea #numBtn #num0.active
+	{
+	background-image: url("../image/0_after.png");
+	}
+	
+#orderingArea #numBtn #clear
+	{
+	background-image: url("../image/clear_before.png");
+	}
+	
+#orderingArea #numBtn #clear.active
+	{
+	background-image: url("../image/clear_after.png");
+	}
+	
+#orderingArea #numBtn #back
+	{
+	background-image: url("../image/back_before.png");
+	}
+	
+#orderingArea #numBtn #back.active
+	{
+	background-image: url("../image/back_after.png");
+	}
+	
+/*ranking.jsp*/
+#ranking
+	{
+	height: 600px;
+	width: 1024px;
+	}
+	
+#ranking #title
+	{
+	height: 60px;
+	width: 100%;
+	padding: 5px 50px 0;
+	}
+	
+#ranking #title #selector,
+#ranking #title #refresh,
+#ranking #title #back
+	{
+	background-position: center center;
+	float: right;
+	width: 140px;
+	height: 50px;
+	}
+
+#ranking #title #selector
+	{
+	background-image: url("../image/selector.png");
+	}
+
+#ranking #title #refresh
+	{
+	background-image: url("../image/refresh.png");
+	}
+
+#ranking #title #back
+	{
+	background-image: url("../image/back.png");
+	}
+
+#ranking #title #pmTitle
+	{
+	color: #fdad00;
+	float: left;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 10px 0 0;
+	}
+	
+#ranking #container
+	{
+	width: 1000px;
+	}
+	
+#ranking #pm
+	{
+	font-size: 0.7em;
+	}
+
+#ranking #pm tr.select_row td
+	{
+	background-color: #45A0D0
+	}
+	
+#ranking #pm tr
+	{
+	height: 40px;
+	}
+	
+#ranking .index
+	{
+	width: 40px;
+	}
+	
+#ranking .skc
+	{
+	width: 90px;
+	}
+	
+#ranking .img
+	{
+	width: 40px;
+	}
+	
+#ranking .band
+	{
+	width: 90px;
+	}
+	
+#ranking .series
+	{
+	width: 60px;
+	}
+	
+#ranking .style
+	{
+	width: 80px;
+	}
+	
+#ranking .color
+	{
+	width: 40px;
+	}
+	
+#ranking .price
+	{
+	width: 70px;
+	}
+	
+#ranking .totalNum
+	{
+	width: 60px;
+	}
+	
+#ranking .depotNum
+	{
+	width: 60px;
+	}
+	
+#ranking .avgNum
+	{
+	width: 60px;
+	}
+	
+#ranking .num
+	{
+	width: 60px;
+	}
+	
+#ranking .operator
+	{
+	width: 80px;
+	}
+	
+#ranking td.operator
+	{
+	background-image: url("../image/sure.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: inherit;
+	}
+	
+.load
+	{
+	position: absolute;
+	left: 490px;
+	top: 275px;
+	display: none;
+	}	
+	
+.load img
+	{
+	width: 50px;
+	height: 50px;
+	}
+
+#category
+	{
+	display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+	}
+
+#category #greyBg
+	{
+	background-color: #AAAAAA;
+    opacity: 0.6;
+    filter: alpha(opacity=50);
+    height: 100%;
+    width: 100%;
+	}
+	
+#category #panel
+	{
+    height: 500px;
+    left: 110px;
+    position: absolute;
+    top: 50px;
+    width: 780px;
+    color: #fdad00;
+    padding: 0 12px;
+    background: url("../image/panel.png") repeat scroll 0 0 transparent;
+	}
+
+#category #categoryTitle
+	{
+	padding: 40px 0 0 20px;
+	text-align: left;
+	font-size: 1.2em;
+	font-weight: bold;
+	}
+
+#category img.split
+	{
+	height: 25px;
+    margin: -10px 0 -25px;
+	}
+
+#category img.split2
+	{
+	height: 150px;
+	float: left;
+    margin: -10px 0 -25px;
+	}
+	
+#category #cy,
+#category #sp
+	{
+	height: 150px;
+	margin-left: 20px;
+	}
+	
+#category #cyTitle,
+#category #spTitle
+	{
+	float: left;
+	width: 20px;
+	margin-top: 50px;
+	margin-left: 20px;
+	font-weight: bold;
+	}
+	
+#category #cyBtn,
+#category #spBtn
+	{
+	float: left;
+	margin: 0 26px 0 30px;
+	}
+
+#category div.btn
+	{
+	float: left;
+	width: 120px;
+	height: 50px;
+	background-position: center center;
+	}
+	
+#category div#close
+	{
+	float: right;
+	width: 140px;
+	height: 50px;
+	background-position: center center;
+	}
+	
+#category #1
+	{
+	background-image: url("../image/btn1.png");
+	}
+	
+#category #1.enable
+	{
+	background-image: url("../image/btn1_enable.png");
+	}
+	
+#category #2
+	{
+	background-image: url("../image/btn2.png");
+	}
+	
+#category #2.enable
+	{
+	background-image: url("../image/btn2_enable.png");
+	}
+	
+#category #3
+	{
+	background-image: url("../image/btn3.png");
+	}
+	
+#category #3.enable
+	{
+	background-image: url("../image/btn3_enable.png");
+	}
+	
+#category #4
+	{
+	background-image: url("../image/btn4.png");
+	}
+	
+#category #4.enable
+	{
+	background-image: url("../image/btn4_enable.png");
+	}
+	
+#category #5
+	{
+	background-image: url("../image/btn5.png");
+	}
+	
+#category #5.enable
+	{
+	background-image: url("../image/btn5_enable.png");
+	}
+	
+#category #6
+	{
+	background-image: url("../image/btn6.png");
+	}
+	
+#category #6.enable
+	{
+	background-image: url("../image/btn6_enable.png");
+	}
+	
+#category #7
+	{
+	background-image: url("../image/btn7.png");
+	}
+	
+#category #7.enable
+	{
+	background-image: url("../image/btn7_enable.png");
+	}
+	
+#category #8
+	{
+	background-image: url("../image/btn8.png");
+	}
+	
+#category #8.enable
+	{
+	background-image: url("../image/btn8_enable.png");
+	}
+	
+#category #9
+	{
+	background-image: url("../image/btn9.png");
+	}
+	
+#category #9.enable
+	{
+	background-image: url("../image/btn9_enable.png");
+	}
+	
+#category #G
+	{
+	background-image: url("../image/btnG.png");
+	}
+	
+#category #G.enable
+	{
+	background-image: url("../image/btnG_enable.png");
+	}
+
+#category #M
+	{
+	background-image: url("../image/btnM.png");
+	}
+	
+#category #M.enable
+	{
+	background-image: url("../image/btnM_enable.png");
+	}
+
+#category #N
+	{
+	background-image: url("../image/btnN.png");
+	}
+	
+#category #N.enable
+	{
+	background-image: url("../image/btnN_enable.png");
+	}
+
+#category #P
+	{
+	background-image: url("../image/btnP.png");
+	}
+	
+#category #P.enable
+	{
+	background-image: url("../image/btnP_enable.png");
+	}
+	
+#category #Q
+	{
+	background-image: url("../image/btnQ.png");
+	}
+	
+#category #Q.enable
+	{
+	background-image: url("../image/btnQ_enable.png");
+	}
+
+#category #Y
+	{
+	background-image: url("../image/btnY.png");
+	}
+	
+#category #Y.enable
+	{
+	background-image: url("../image/btnY_enable.png");
+	}
+	
+#category #B
+	{
+	background-image: url("../image/btnB.png");
+	}
+	
+#category #B.enable
+	{
+	background-image: url("../image/btnB_enable.png");
+	}
+	
+#category #D
+	{
+	background-image: url("../image/btnD.png");
+	}
+	
+#category #D.enable
+	{
+	background-image: url("../image/btnD_enable.png");
+	}
+	
+#category #F
+	{
+	background-image: url("../image/btnF.png");
+	}
+	
+#category #F.enable
+	{
+	background-image: url("../image/btnF_enable.png");
+	}
+	
+#category #H
+	{
+	background-image: url("../image/btnH.png");
+	}
+	
+#category #H.enable
+	{
+	background-image: url("../image/btnH_enable.png");
+	}
+	
+#category #I
+	{
+	background-image: url("../image/btnI.png");
+	}
+	
+#category #I.enable
+	{
+	background-image: url("../image/btnI_enable.png");
+	}
+	
+#category #J
+	{
+	background-image: url("../image/btnJ.png");
+	}
+	
+#category #J.enable
+	{
+	background-image: url("../image/btnJ_enable.png");
+	}
+	
+#category #O
+	{
+	background-image: url("../image/btnO.png");
+	}
+	
+#category #O.enable
+	{
+	background-image: url("../image/btnO_enable.png");
+	}
+	
+#category #R
+	{
+	background-image: url("../image/btnR.png");
+	}
+	
+#category #R.enable
+	{
+	background-image: url("../image/btnR_enable.png");
+	}
+	
+#category #S
+	{
+	background-image: url("../image/btnS.png");
+	}
+	
+#category #S.enable
+	{
+	background-image: url("../image/btnS_enable.png");
+	}
+	
+#category #U
+	{
+	background-image: url("../image/btnU.png");
+	}
+	
+#category #U.enable
+	{
+	background-image: url("../image/btnU_enable.png");
+	}
+
+#category #W
+	{
+	background-image: url("../image/btnW.png");
+	}
+	
+#category #W.enable
+	{
+	background-image: url("../image/btnW_enable.png");
+	}
+
+#category #X
+	{
+	background-image: url("../image/btnX.png");
+	}
+	
+#category #X.enable
+	{
+	background-image: url("../image/btnX_enable.png");
+	}
+
+#category #Z
+	{
+	background-image: url("../image/btnZ.png");
+	}
+	
+#category #Z.enable
+	{
+	background-image: url("../image/btnZ_enable.png");
+	}
+	
+#category #close
+	{
+	background-image: url("../image/close.png");
+	}
+	
+/*modify.jsp*/
+#modify
+	{
+	height: 600px;
+	width: 1024px;
+	}
+	
+#modify #title
+	{
+	height: 60px;
+	width: 100%;
+	color: #f0f0f0;
+	margin: 10px 10px -15px;
+	}	
+
+#modify div.title,
+#modify div input
+	{
+	float: left;
+	margin: 5px 2px 0;
+	font-size: 15px;
+	font-weight: bold;
+	}
+
+#modify div input
+	{
+	height: 20px;
+	width: 100px;
+	}
+
+#modify #title #ddTitle
+	{
+	color: #fdad00;
+	float: left;
+	font-weight: bold;
+	margin: 5px 5px;
+	}
+	
+#modify #title #refresh,
+#modify #title #back
+	{
+	background-position: center center;
+	float: left;
+	width: 140px;
+	height: 50px;
+	}
+
+#modify #title #refresh,
+#modify #title #back
+	{
+	background-position: center center;
+	float: right;
+	width: 100px;
+	height: 50px;
+	margin-top: -5px;
+	}
+	
+#modify #title #refresh
+	{
+	background-image: url("../image/refresh_small.png");
+	}
+
+#modify #title #back
+	{
+	background-image: url("../image/back_small.png");
+	}
+	
+#modify #container
+	{
+	width: 1000px;
+	}
+	
+#modify #dd
+	{
+	font-size: 0.6em;
+	}
+	
+#modify #dd tr
+	{
+	height: 40px;
+	}
+
+#modify #dd td.select_td
+	{
+	background-color: #45A0D0
+	}
+	
+#modify .index
+	{
+	width: 40px;
+	}
+	
+#modify .skc
+	{
+	width: 90px;
+	}
+	
+#modify .img
+	{
+	width: 40px;
+	}
+	
+#modify .band
+	{
+	width: 90px;
+	}
+	
+#modify .series
+	{
+	width: 60px;
+	}
+	
+#modify .style
+	{
+	width: 80px;
+	}
+	
+#modify .color
+	{
+	width: 40px;
+	}
+	
+#modify .price
+	{
+	width: 70px;
+	}
+	
+#modify .num01
+	{
+	width: 20px;
+	}
+	
+#modify .num02
+	{
+	width: 20px;
+	}
+	
+#modify .num03
+	{
+	width: 20px;
+	}
+	
+#modify .num04
+	{
+	width: 20px;
+	}
+	
+#modify .num05
+	{
+	width: 20px;
+	}
+	
+#modify .num06
+	{
+	width: 20px;
+	}
+	
+#modify .num07
+	{
+	width: 20px;
+	}
+	
+#modify .num08
+	{
+	width: 20px;
+	}
+	
+#modify .num09
+	{
+	width: 20px;
+	}
+	
+#modify .numf
+	{
+	width: 20px;
+	}
+	
+#modify .sure
+	{
+	width: 50px;
+	}
+	
+#modify .delete
+	{
+	width: 50px;
+	}	
+	
+#modify td.sure
+	{
+	background-image: url("../image/sure.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: inherit;
+	}
+	
+#modify td.delete
+	{
+	background-image: url("../image/delete.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: inherit;
+	}	
+	
+#modifyNum
+	{
+	left: 100px;
+	top: 100px;
+	display: none;
+    z-index: 999;
+    height: 250px;
+    position: absolute;
+    width: 350px;
+    color: #fdad00;
+    padding: 0 12px;
+    background: url("../image/panel.png") repeat scroll center center transparent;
+	}
+	
+#modifyNum .btn
+	{
+    margin: 1px;
+	width: 80px;
+	height: 80px;
+	background-position: center center;
+	float: left;
+	}
+	
+#modifyNum #num1
+	{
+    background-image: url("../image/1_before.png");
+	}
+	
+#modifyNum #num1.active
+	{
+    background-image: url("../image/1_after.png");
+	}
+	
+#modifyNum #num2
+	{
+    background-image: url("../image/2_before.png");
+	}
+	
+#modifyNum #num2.active
+	{
+    background-image: url("../image/2_after.png");
+	}
+	
+#modifyNum #num3
+	{
+    background-image: url("../image/3_before.png");
+	}
+	
+#modifyNum #num3.active
+	{
+    background-image: url("../image/3_after.png");
+	}
+	
+#modifyNum #num4
+	{
+    background-image: url("../image/4_before.png");
+	}
+	
+#modifyNum #num4.active
+	{
+    background-image: url("../image/4_after.png");
+	}
+	
+#modifyNum #num5
+	{
+    background-image: url("../image/5_before.png");
+	}
+	
+#modifyNum #num5.active
+	{
+    background-image: url("../image/5_after.png");
+	}
+	
+#modifyNum #num6
+	{
+    background-image: url("../image/6_before.png");
+	}
+	
+#modifyNum #num6.active
+	{
+    background-image: url("../image/6_after.png");
+	}
+	
+#modifyNum #num7
+	{
+    background-image: url("../image/7_before.png");
+	}
+	
+#modifyNum #num7.active
+	{
+    background-image: url("../image/7_after.png");
+	}
+	
+#modifyNum #num8
+	{
+    background-image: url("../image/8_before.png");
+	}
+	
+#modifyNum #num8.active
+	{
+    background-image: url("../image/8_after.png");
+	}
+	
+#modifyNum #num9
+	{
+    background-image: url("../image/9_before.png");
+	}
+	
+#modifyNum #num9.active
+	{
+    background-image: url("../image/9_after.png");
+	}
+	
+#modifyNum #num0
+	{
+    background-image: url("../image/0_before.png");
+	}
+	
+#modifyNum #num0.active
+	{
+    background-image: url("../image/0_after.png");
+	}
+	
+#modifyNum #clear
+	{
+    background-image: url("../image/clear_before.png");
+	}
+	
+#modifyNum #clear.active
+	{
+    background-image: url("../image/clear_after.png");
+	}
+	
+#modifyNum #sure
+	{
+    background-image: url("../image/sure_before.png");
+	}
+	
+#modifyNum #sure.active
+	{
+    background-image: url("../image/sure_after.png");
+	}
+	
+#modifyNum #text
+	{
+    font-size: 0.7em;
+    font-weight: bold;
+    color: red;
+    height: 20px;
+    text-align: right;
+	}
