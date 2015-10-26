@@ -257,7 +257,7 @@ function loadFrame(node) {
         return;
     }
     url = url + "&rd=" + Math.random();
-    var content = '<iframe scrolling="no" frameborder="0"  src="' + url + '" style="width:100%;height:100%;padding:0px"></iframe>';
+    var content = '<iframe scrolling="yes" frameborder="0"  src="' + url + '" style="overflow-x:hidden; overflow-y:auto;width:100%;height:100%;padding:0px"></iframe>';
     $('#mainTabs').tabs('add', {
         title: title,
         content: content,
