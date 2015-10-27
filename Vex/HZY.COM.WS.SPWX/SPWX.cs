@@ -503,10 +503,11 @@ namespace HZY.COM.WS.SPWX
 
             DataTable dtCp = this.dtList.Copy();
 
-
-            dtCp.Rows[0]["ExpressNo"]
-                = dtCp.Rows[0]["ExpressNo"].ToString().ToUpper();
-
+            if (dtCp.Rows[0]["ExpressNo"].ToString().Length > 0)
+            {
+                dtCp.Rows[0]["ExpressNo"]
+                    = dtCp.Rows[0]["ExpressNo"].ToString().ToUpper();
+            };
 
             DataTable dtHist = dbh.GetData(
                 "SELECT TOP 0 * FROM [dbo].[SPWX_Hist] WITH(NOLOCK)", 
@@ -536,7 +537,22 @@ namespace HZY.COM.WS.SPWX
                 }
                 else
                 {
-                    dtCp.Rows[0]["WxStatus"] = "unsell";
+                    if (dtCp.Columns.Contains("VIPName"))
+                    {
+                        if (dtCp.Rows[0]["VIPName"].ToString().Length > 0)
+                        {
+                            dtCp.Rows[0]["WxStatus"] = "client";
+                        }
+                        else
+                        {
+                            dtCp.Rows[0]["WxStatus"] = "unsell";
+                        };
+                    }
+                    else 
+                    {
+                        dtCp.Rows[0]["WxStatus"] = "unsell";
+                    };
+                    
                 };
 
                 //历史记录
@@ -684,10 +700,22 @@ namespace HZY.COM.WS.SPWX
 
         private void CheckExpNo()
         {
-            string ExpNo 
-                = this.dtList.Rows[0]["ExpNo"].ToString();
-            ExpNo = FilterSpecial(ExpNo);
-            ExpNo = ExpNo.ToUpper();
+            DataTable dtChk = this.dtList.Copy();
+            DataTable dtRst = new DataTable();
+            string ExpNo = "";
+            string WxNo = "";
+
+            if (dtChk.Columns.Contains("ExpNo"))
+            {
+                ExpNo = dtChk.Rows[0]["ExpNo"].ToString();
+                ExpNo = FilterSpecial(ExpNo);
+                ExpNo = ExpNo.ToUpper();
+            }
+            else if (dtChk.Columns.Contains("WxNo"))
+            {
+                WxNo = dtChk.Rows[0]["WxNo"].ToString();
+                WxNo = FilterSpecial(WxNo);
+            };
 
             string DepotId
                 = base.m_hzyMessage.User_Name_CN.Split('_')[0];
@@ -695,9 +723,11 @@ namespace HZY.COM.WS.SPWX
 
             bool b = Convert.ToChar(DepotId.Substring(0, 1)) <= 'Z';
 
-            if (b)
+            if (b)//店铺
             {
-                select = @"SELECT T1.[ID]
+                if (ExpNo.Length > 0)
+                {
+                    select = @"SELECT T1.[ID]
                             ,T1.[WXNo]
                             ,T1.[Status]
                             ,T1.[ModifyTime]
@@ -705,12 +735,28 @@ namespace HZY.COM.WS.SPWX
                         FROM [dbo].[SPWX_Main] T1
                         LEFT JOIN [dbo].[SPWX_Headquarters] T2
                         ON T1.[WXNo] = T2.[WXNo]
-                        WHERE T1.[Status] = 45 AND T1.[DepotId] = '" 
-                        + DepotId + "' AND T2.[ExpNo] = @Param0";
+                        WHERE T1.[Status] = 45 AND T1.[DepotId] = '"
+                            + DepotId + "' AND T2.[ExpNo] = @Param0";
+                }
+                else if (WxNo.Length > 0)
+                {
+                    select = @"SELECT T1.[ID]
+                            ,T1.[WXNo]
+                            ,T1.[Status]
+                            ,T1.[ModifyTime]
+                            ,T1.[ModifyUser]
+                        FROM [dbo].[SPWX_Main] T1
+                        LEFT JOIN [dbo].[SPWX_Headquarters] T2
+                        ON T1.[WXNo] = T2.[WXNo]
+                        WHERE T1.[Status] = 45 AND T1.[DepotId] = '"
+                                + DepotId + "' AND T1.[WxNo] = @Param0";
+                };
             }
             else
             {
-                 select = @"SELECT [ID]
+                if (ExpNo.Length > 0)
+                {
+                    select = @"SELECT [ID]
                             ,[WXNo]
                             ,[Status]
                             ,[ModifyTime]
@@ -718,27 +764,46 @@ namespace HZY.COM.WS.SPWX
                         FROM [dbo].[SPWX_Main]
                         WHERE [Status] = '16' 
                         AND [ExpressNo] = @Param0";
+                }
+                else if(WxNo.Length >0)
+                {
+                    select = @"SELECT [ID]
+                            ,[WXNo]
+                            ,[Status]
+                            ,[ModifyTime]
+                            ,[ModifyUser]
+                        FROM [dbo].[SPWX_Main]
+                        WHERE [Status] = '16' 
+                        AND [WXNo] = @Param0";
+                };
+                 
             };
 
             DBHandle dbh = new DBHandle("SPWX");
+            if (ExpNo.Length > 0)
+            {
+                dtRst = dbh.GetData(select, new object[1] { ExpNo });
+            }
+            else if (WxNo.Length > 0)
+            {
+                dtRst = dbh.GetData(select, new object[1] { WxNo });
+            };
 
-            DataTable dt = dbh.GetData(select, new object[] { ExpNo });
-
-            if (dt.Rows.Count > 0)
+            if (dtRst.Rows.Count > 0)
             {
                 DataTable dtHist 
                     = dbh.GetTabHead("[dbo].[SPWX_Hist]");
-                
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+
+                for (int i = 0; i < dtRst.Rows.Count; i++)
                 {
                     //交易表
                     DataRow drHist = dtHist.NewRow();
 
-                    drHist["WXNo"] 
-                        = dt.Rows[i]["WXNo"].ToString();
-                    drHist["BeforeStatus"] 
-                        = dt.Rows[i]["Status"].ToString();
+                    drHist["WXNo"]
+                        = dtRst.Rows[i]["WXNo"].ToString();
+                    drHist["BeforeStatus"]
+                        = dtRst.Rows[i]["Status"].ToString();
                     if (b)
                     {
                         drHist["AfterStatus"] = "50";
@@ -759,22 +824,22 @@ namespace HZY.COM.WS.SPWX
                     //主表
                     if (b)
                     {
-                        dt.Rows[i]["Status"] = "50";
+                        dtRst.Rows[i]["Status"] = "50";
                     }
                     else
                     {
-                        dt.Rows[i]["Status"] = "20";
+                        dtRst.Rows[i]["Status"] = "20";
                     };
-                    
-                    dt.Rows[i]["ModifyTime"] = this.timeNow;
-                    dt.Rows[i]["ModifyUser"] 
+
+                    dtRst.Rows[i]["ModifyTime"] = this.timeNow;
+                    dtRst.Rows[i]["ModifyUser"] 
                         = base.m_hzyMessage.User_Name;
                 };
-                dt.TableName = "[dbo].[SPWX_Main]";
+                dtRst.TableName = "[dbo].[SPWX_Main]";
                 dtHist.TableName = "[dbo].[SPWX_Hist]";
 
                 DataSet ds = new DataSet();
-                ds.Tables.Add(dt);
+                ds.Tables.Add(dtRst);
                 ds.Tables.Add(dtHist);
 
                 this.bRst = dbh.UpdateDB("ID", ds);
@@ -906,6 +971,7 @@ namespace HZY.COM.WS.SPWX
                         ,[CreateUser]
                         ,[SKU]
                         ,[Status]
+                        ,[WarehouseNo]
                         ,[ModifyTime]
                         ,[ModifyUser]
                     FROM [dbo].[SPWX_Main] WITH(NOLOCK)
@@ -966,6 +1032,7 @@ namespace HZY.COM.WS.SPWX
                     string CreateUser = dtMain.Rows[0]["CreateUser"].ToString();
                     string sku = dtMain.Rows[0]["SKU"].ToString();
                     string sendUser = base.m_hzyMessage.User_Name;
+                    string WarehouseNo = dtMain.Rows[0]["WarehouseNo"].ToString();
 
                     DBHandle dbhGP = new DBHandle("F22GP");
 
@@ -987,7 +1054,7 @@ namespace HZY.COM.WS.SPWX
                         【条件内容,《N》发货店铺ID,《N》收货店铺ID,《N》装箱号,《N》款号,《N》款式编号,
                             《N》颜色,《N》尺码,《N》退货数量,《N》成本,《N》原价,《N》现价,《N》结算价,《N》折扣,
                             《N》登记人,《N》发货操作员,《N》收货操作员 】
-                        【《N》维修单号," + wxno + "】【《N》发货店铺ID," + DepotId + "】【《N》收货店铺ID," + DepotId + @"】
+                        【《N》维修单号," + wxno + "】【《N》发货店铺ID," + DepotId + "】【《N》收货店铺ID," + WarehouseNo + @"】
                         【《N》装箱号," + sendUser + "】【《N》款号," + sku + @"】【《N》款式编号,】【《N》颜色,】
                         【《N》尺码,】【《N》退货数量,1】【《N》成本,0】【《N》原价,0】【《N》现价,0】【《N》结算价,0】
                         【《N》折扣,0】【《N》登记人," + sendUser + "】【《N》发货操作员," + sendUser + "】【《N》收货操作员,】";
@@ -1012,7 +1079,7 @@ namespace HZY.COM.WS.SPWX
                                     【条件内容,《N》退货单号,《N》发货店铺ID,《N》收货店铺ID,《N》装箱号,《N》款号,《N》款式编号,
                                         《N》颜色,《N》尺码,《N》退货数量,《N》成本,《N》原价,《N》现价,《N》结算价,《N》折扣,《N》登记人,
                                         《N》发货操作员,《N》收货操作员 】【《N》退货单号," + returnNo + "】【《N》发货店铺ID," + DepotId + @"】
-                                        【《N》收货店铺ID," + DepotId + "】【《N》装箱号," + sendUser + "】【《N》款号," + sku + @"】【《N》款式编号,】
+                                        【《N》收货店铺ID," + WarehouseNo + "】【《N》装箱号," + sendUser + "】【《N》款号," + sku + @"】【《N》款式编号,】
                                         【《N》颜色,】【《N》尺码,】【《N》退货数量,1】【《N》成本,0】【《N》原价,0】【《N》现价,0】
                                         【《N》结算价,0】【《N》折扣,0】【《N》登记人," + CreateUser + "】【《N》发货操作员,】【《N》收货操作员," + sendUser + "】";
                                 DataTable dtClt

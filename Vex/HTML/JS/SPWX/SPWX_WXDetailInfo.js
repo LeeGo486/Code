@@ -101,9 +101,9 @@ $(document).ready(function(){
                 $("#firstdecide").empty()
                 	.append(rst.rows[0].firstdecide);
                 $("#dayarea").empty()
-                	.append(rst.rows[0].fixneedtime);
+                	.append(rst.rows[0].fixneedtime + "天");
                 $("#moneyarea").empty()
-                	.append(rst.rows[0].fixneedmoney);
+                	.append(rst.rows[0].fixneedmoney + "元");
                 	
                 //再判描述
                 if(rst.rows[0].seconddecide.length ==0){

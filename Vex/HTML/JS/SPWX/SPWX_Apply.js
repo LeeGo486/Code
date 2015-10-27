@@ -1,5 +1,6 @@
 ﻿
-$(document).ready(function(){
+var depotInfo = null
+$(document).ready(function () {
 
     //隐藏客户信息
     $("#clientInfo").hide();
@@ -15,10 +16,17 @@ $(document).ready(function(){
     });
 
     $("#SellDate").datebox({
+        panelHeight:'250',
         formatter:function(date){
             var y = date.getFullYear();
             var m = date.getMonth()+1;
+            if(m < 10){
+                m = "0"+m;
+            }
             var d = date.getDate();
+            if(d < 10){
+                d = "0"+d;
+            }
             return y+'-'+m+'-'+d;
         },
         parser:function(s){
@@ -35,23 +43,19 @@ $(document).ready(function(){
 
 function initPlugin() {
 
+    initTextBox();
+
     //店铺信息
     getDepotInfo();
 
-    //导购信息
+    ////导购信息
     getSalesman();
 
-    //客户信息开关
+    ////客户信息开关
     switchClient();
 
     //获取紧急程度
     getUrgentLeve();
-
-    //VipId
-    initVipId();
-
-    //SKU检查
-    initSKU();
 
     //快递公司
     getExpressInfo();
@@ -64,11 +68,12 @@ function initPlugin() {
 
     //初始化必填项
     initValidate();
+    
 }
 
 function getDepotInfo() {
 
-    var depotInfo = null;
+    depotInfo = null;
     var data = $.cookie('depotInfo');
     var mydate = new Date();
     var now = mydate.getFullYear()
@@ -221,17 +226,6 @@ function switchClient(){
     });
 }
 
-function initVipId(){
-
-     $("#VipId").textbox({
-        width:200,
-        height:32,
-        required: false,
-        disabled:true
-     });
-   
-}
-
 function initVipEvent(){
     $("#VipId").textbox('textbox')
          .unbind('keydown',function(e){
@@ -298,21 +292,31 @@ function getExpressInfo(){
                 data:json.rows,
                 onLoadSuccess:function(){
                     $("#express").combobox('setValue',json.rows[0].value);
+                },
+                onSelect:function(record){
+                    if (record.value == 'self') {
+                        $("#expressNo").textbox({ required: false }).textbox('reset');
+                        $("#depotaddress").textbox({ required: false }).textbox('reset');
+                        $("#wxaddress").textbox({ required: false }).textbox('reset');
+                        $("#wxadmin").textbox({ required: false }).textbox('reset');
+                        $("#wxshoptel").textbox({ required: false }).textbox('reset');
+                    }else{
+                        $("#expressNo").textbox({ required: true }).textbox('reset');
+                        $("#depotaddress").textbox({ required: true }).textbox('reset');
+                        $("#wxaddress").textbox({ required: true }).textbox('reset');
+                        $("#wxadmin").textbox({ required: true }).textbox('reset');
+                        $("#wxshoptel").textbox({ required: true }).textbox('reset');
+
+                        $("#depotaddress").textbox('setValue', depotInfo.rows[0].g_address);
+                        $("#wxaddress").textbox('setValue', depotInfo.rows[0].j_wxaddress);
+                        $("#wxadmin").textbox('setValue', depotInfo.rows[0].j_wxadmin);
+                        $("#wxshoptel").textbox('setValue', depotInfo.rows[0].m_wxshoptel);
+                    }
+
                 }
             })
         };
     })
-}
-
-function initSKU() {
-    $("#sku").textbox('setValue', "");
-
-    //$("#sku").textbox('textbox').bind('keydown', function (e) {
-    //    if (e.keyCode == 13) {
-    //        verifySKU();
-    //    }
-    //});
-
 }
 
 function verifySKU() {
@@ -375,7 +379,6 @@ function initButton(){
             submit();
         }
     });
-
 }
 
 function screenBackspace(){
@@ -523,24 +526,64 @@ function eachJson(data, jsonObj) {
     return data;
 }
 
+function initTextBox(){
+    $("#shopadmin").textbox({
+        width:'200',
+        height:'32',
+        required:true
+    });
+    $("#shopadminmob").textbox({
+        width:'200',
+        height:'32',
+        required:true
+    });
 
-//日期格式化
-function myformatter(date){
-    var y = date.getFullYear();
-    var m = date.getMonth()+1;
-    var d = date.getDate();
-    return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
-}
+    $("#supervisormob").textbox({
+        width:'200',
+        height:'32',
+        required:true
+    });
 
-function myparser(s){
-    if (!s) return new Date();
-    var ss = (s.split('-'));
-    var y = parseInt(ss[0],10);
-    var m = parseInt(ss[1],10);
-    var d = parseInt(ss[2],10);
-    if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
-        return new Date(y,m-1,d);
-    } else {
-        return new Date();
-    }
+    $("#depotaddress").textbox({
+        width:'250',
+        height:'32',
+        required:true
+    });
+
+    $("#wxaddress").textbox({
+        width:'250',
+        height:'32',
+        required:true
+    });
+
+    $("#wxadmin").textbox({
+        width:'200',
+        height:'32',
+        required:true
+    });
+
+    $("#wxshoptel").textbox({
+        width:'200',
+        height:'32',
+        required:true
+    });
+
+    $("#expressNo").textbox({
+        width:'200',
+        height:'32',
+        required:true
+    });
+
+    $("#sku").textbox({
+        width: '200',
+        height: '32',
+        required: true
+    }).textbox('clear');
+
+    $("#VipId").textbox({
+        width:200,
+        height:32,
+        required: false,
+        disabled:true
+     });
 }

@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link id="Link1" href="../../jquery-easyui-1.4.3/themes/bootstrap/easyui.css"
+        rel="stylesheet" type="text/css" />
+    <link href="../../jquery-easyui-1.4.3/themes/icon.css" rel="stylesheet" type="text/css" />
+	<link href="../../jquery-easyui-1.4.3/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.4.3/jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/changeEasyuiTheme.js" type="text/javascript"></script>
+    
+    <link href="../../css/SPWX_Apply.css" rel="stylesheet" type="text/css" />
+    <script src="../../jquery-easyui-1.4.3/js_hzycfg.js" type="text/javascript"></script>
+    <script src="../../jquery-easyui-1.4.3/js_hzyCommon.js" type="text/javascript"></script>
+    <script src="../../JS/SPWX/SPWX_Apply.js?Date=20150905" type="text/javascript"></script>
+</head>
+<body>
+    <div class="main">
+	    <!-- 基本信息 -->
+	    <div class="part">
+	    	<div class="tip">
+	    		<span class="icon-pencil">
+	    		<span class="title">基本信息</span></span>
+	    	</div>
+		    <div class="basicInfo">
+		    	<table>
+		    		<tbody>
+		    			<tr>
+		    				<th>店铺编码:</th>
+		    				<td><span id="DepotId"></span></td>
+		    				<th>店铺名称:</th>
+		    				<td><span id="DepotName"></span></td>
+		    				<th>店铺电话:</th>
+		    				<td><span id="DepotPhone"></span></td>
+		    			</tr>
+		    			<tr>
+		    				<th>维修仓编码:</th>
+		    				<td><span id="wxID"></span></td>
+		    				<th>维修仓名称:</th>
+		    				<td><span id="wxName"></span></td>
+		    			</tr>
+		    			<tr>
+		    				<th>登记日期:</th>
+		    				<td><span id="Date"></span></td>
+		    				<th>登记人:</th>
+		    				<td><span id="admin"></span></td>
+		    			</tr>
+		    		</tbody>
+		    	</table>
+		    </div>
+	    </div>
+	    <!-- 店铺信息 -->
+	    <div id="depotInfo" class="part">
+	    	<div class="tip">
+	    		<span class="icon-pencil">
+	    		<span class="title">店铺信息</span></span>
+	    	</div>
+	    	<div class="detailPart">
+	    	<form id = "formDepot">
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>店长姓名:</th>
+		    			<td><input id="shopadmin" type="text" style="width:200px;height:32px;"  />
+		    			</td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    		<table>
+		    			<tr>
+			    			<th>店长联系电话:</th>
+			    			<td><input id="shopadminmob" name="txtRespPhone" type="text" />
+			    			</td>
+		    			</tr>
+		    		</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>受理导购:</th>
+		    			<td><input id="supervisor" name="txtStaffNo" type="text" />
+		    			</td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+				<table>
+		    		<tr>
+		    			<th>导购联系电话:</th>
+		    			<td><input id="supervisormob" name="txtStaffPhone" type="text" />
+		    			</td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	</form>
+	    	</div>
+	    </div>
+	    <!-- 维修类型 -->
+	    <div class="part">
+	    	<div class="tip">
+		    	<span class="icon-pencil">
+		    	<span class="title">维修类型</span></span>
+	    	</div>
+	    	<div class="detailPart">
+		    	<div class="detail">
+					<input id="switch" style="margin-left:2px;" />
+					&nbsp;&nbsp;&nbsp;
+					<input id="switch2" style="padding-left:8px;" />
+				</div>
+			</div>
+	    </div>
+	    <!-- 顾客信息 -->
+	    <div id="clientInfo" class="part">
+	    	<div class="tip">
+		    	<span class="icon-pencil">
+		    	<span class="title">顾客信息</span></span>
+	    	</div>
+	    	<div class="detailPart">
+	    	<form id="formClient">
+	        	<div class="detail">
+			    <table>
+		    		<tr>
+		    			<th>VIP卡号:</th>
+		    			<td><input id="VipId" name="txtVIPID" type="text" class="easyui-textbox"
+		    			data-options="required:true" style="width:200px;height:32px;" />
+		    			<span id="tishi" class="tishi"></span></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>VIP姓名:</th>
+		    			<td><input id="VipName" name="txtVIPName" class="easyui-textbox"
+		    			data-options="required:true,readonly:true" style="width:200px;height:32px;" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>顾客联系电话 :</th>
+		    			<td><input id="VipPhone" name="txtVIPPhone" class="easyui-textbox" 
+		    			data-options="required:true" style="width:200px;height:32px;" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>同意付费维修 :</th>
+		    			<td><input type="radio" name="txtCollect" 
+		    			value="yes" checked="checked" />愿意
+		    			<input type="radio" name="txtCollect" value="no" />不愿意
+		    			<span style="color:red">*</span></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	</form>
+	    	</div>
+	    </div>
+	    <!-- 待修产品信息  -->
+	    <div class="part">
+	    	<div class="tip">
+	    	<span class="icon-pencil">
+	    	<span class="title">待修产品信息</span></span>
+	    	</div>
+	    	<div class="detailPart">
+	    	<form id="formWXInfo">
+	    		<div class="detail">
+	    		<table>
+		    		<tr>
+		    			<th>款号:</th>
+		    			<td><input id="sku" name="txtSKU" class="easyui-textbox"
+		    			data-options="required:true" style="width:200px;height:32px;"  type="text" />
+		    			<span id="wait" class="tishi"></span>
+		    			</td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr id="selldatetr">
+		    			<th>售出时间:</th>
+		    			<td><input id="SellDate" style="width:200px;height:32px;" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>紧急程度:</th>
+		    			<td><input id="UrgentLeve" name="txtUrgentLevel" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>问题描述:</th>
+		    			<td><input id="Question" name="txtQuestion"
+		    			style="width:300px;height:82px" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	</form>
+	    	</div>
+	    </div>
+	    <!-- 物流信息  -->
+	    <div class="part">
+	    	<div class="tip">
+	    	<span class="icon-pencil">
+	    	<span class="title">物流信息</span></span>
+	    	</div>
+	    	<div class="detailPart">
+	    	<form id="formExpress">
+	    		<div class="detail">
+	    		<table>
+		    		<tr>
+		    			<th>快递公司:</th>
+		    			<td><input id="express" name="txtExpress" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>快递单号:</th>
+		    			<td><input id="expressNo" name="txtExpressNo" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>发货地址:</th>
+		    			<td><input id="depotaddress" name="txtSendAddress" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>收货地址:</th>
+		    			<td><input id="wxaddress" name="txtTakeAddress" class="easyui-textbox"
+		    			data-options="required:true,readonly:true" style="width:300px;height:32px;" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>收货人:</th>
+		    			<td><input id="wxadmin" name="txtTakeMan" class="easyui-textbox"
+		    			data-options="required:true,readonly:true" style="width:200px;height:32px;" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	<div class="detail">
+		    	<table>
+		    		<tr>
+		    			<th>收货人电话:</th>
+		    			<td><input id="wxshoptel" name="txtTakeManPhone" class="easyui-textbox"
+		    			data-options="required:true,readonly:true" style="width:200px;height:32px;" type="text" /></td>
+		    		</tr>
+		    	</table>
+		    	</div>
+		    	</form>
+	    	</div>
+	    </div>
+	    <!-- 备注信息 -->
+	    <div class="part">
+	    	<div class="tip">
+	    		<span class="icon-pencil">
+	    		<span class="title">备注信息</span></span>
+	    	</div>
+	    	<div class="detailPart">
+	    		<div class="detail">
+			    	<table>
+			    		<tr>
+			    			<th>备注信息:</th>
+			    			<td><input id="Remark" class="easyui-textbox" data-options="multiline:true" style="width:300px;height:82px" type="text" /></td>
+			    		</tr>
+				    </table>
+		    	</div>
+	    	</div>
+	    </div>
+	    <div class="coupon">
+	    	<a id = "submit">提交申请</a>
+	    </div>
+    </div>
+</body>
+</html>
