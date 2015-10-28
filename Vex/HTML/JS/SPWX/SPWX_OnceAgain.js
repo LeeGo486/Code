@@ -1,5 +1,6 @@
 
 var m_finJson = null;
+var m_pageNumber = 1;
 
 $(document).ready(function(){
 	//初始化插件
@@ -19,7 +20,7 @@ function initPlugins(){
 	//快递单
 	initTextBox();
 	//列表
-	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750') + "&MultiTable=true"
 		+ "&XML=" + GetGetJson([], 'getWXList');
 	initDataGrid(url);
 }
@@ -81,51 +82,56 @@ function initWin(){
 	});
 }
 
-function initDataGrid(url){
-	$("#tab_list").datagrid({
-		url:url,
-        singleSelect: true,
-        selectOnCheck: false,
-        checkOnSelect: true,
-        height:700,
-        fit:false,
-        striped:true,
-        columns: [[
-        	{ field: 'ck',checkbox:true},
-            { field: 'wxno', title: '维修单号', width: 100 },
-            { field: 'wxstname', title: '维修单类型', width: 70 },
-            { field: 'sku', title: '维修款号', width: 100 },
-            { field: 'statusname', title: '维修单状态', width: 75 },
-			{ field: 'drname', title: '处理结果', width: 70 },
-			{ field: 'question', title: '问题描述', width: 300 },
-            { field: 'backdate', title: '退回日期', width: 100 },
-            { field: 'respname', title: '店长姓名', width: 70 },
-            { field: 'respphone', title: '店长电话', width: 100 },
-            { field: 'staffname', title: '受理导购', width: 70 },
-            { field: 'staffphone', title: '导购电话', width: 100 },
-        ]],
-        onClickRow:function(index,row){
-        	//control button is enable or disable.
-        	var rowStatus = row.status;
-        	var rowRst = row.deciderst;
-        	checkStatusAndRst(rowStatus,rowRst,index);
+function initDataGrid(url) {
+    $.post(url, function (data) {
+        var rst = eval("(" + data + ")");
 
-        },
-        onDblClickRow:function(index,row){
-        	// open tabs to fix detail info.
-        	var wxno = row.wxno;
-        	linkNewPage(wxno,"info");
-        },
-        onCheck:function(index,row){
-        	//check row result and status.
-        	var rowStatus = row.status;
-        	var rowRst = row.deciderst;
-        	checkStatusAndRst(rowStatus,rowRst,index);
-        },
-        pagination: true, //是否开启分页
-        pageNumber: 1, //默认索引页
-        pageSize: 20, //默认一页数据条数
-	});
+        $("#tab_list").datagrid({
+            data: rst[0].rows,
+            singleSelect: true,
+            selectOnCheck: false,
+            checkOnSelect: true,
+            height: 700,
+            fit: false,
+            striped: true,
+            columns: [[
+                { field: 'ck', checkbox: true },
+                { field: 'wxno', title: '维修单号', width: 100 },
+                { field: 'wxstname', title: '维修单类型', width: 70 },
+                { field: 'sku', title: '维修款号', width: 100 },
+                { field: 'statusname', title: '维修单状态', width: 75 },
+                { field: 'drname', title: '处理结果', width: 70 },
+                { field: 'question', title: '问题描述', width: 300 },
+                { field: 'backdate', title: '退回日期', width: 100 },
+                { field: 'respname', title: '店长姓名', width: 70 },
+                { field: 'respphone', title: '店长电话', width: 100 },
+                { field: 'staffname', title: '受理导购', width: 70 },
+                { field: 'staffphone', title: '导购电话', width: 100 },
+            ]],
+            onClickRow: function (index, row) {
+                //control button is enable or disable.
+                var rowStatus = row.status;
+                var rowRst = row.deciderst;
+                checkStatusAndRst(rowStatus, rowRst, index);
+
+            },
+            onDblClickRow: function (index, row) {
+                // open tabs to fix detail info.
+                var wxno = row.wxno;
+                linkNewPage(wxno, "info");
+            },
+            onCheck: function (index, row) {
+                //check row result and status.
+                var rowStatus = row.status;
+                var rowRst = row.deciderst;
+                checkStatusAndRst(rowStatus, rowRst, index);
+            },
+            pagination: true//是否开启分页
+        });
+
+        initDataGridPage(rst[1].rows[0].rownumber, m_pageNumber);
+    });
+	
 }
 
 function initLinkBtn(){
@@ -549,4 +555,25 @@ function closeExp(){
 	$("#expName").combobox('setValue','');
 	$("#expNo").textbox('setValue','');
 	$("#expressWin").window('close');
+}
+
+function initDataGridPage(total, pageNumber) {
+    var p = $("#tab_list").datagrid('getPager');
+
+    $(p).pagination({
+        total: total,
+        pageNumber: pageNumber,
+        pageSize: 20,
+        pageList: [20],
+        beforePageText: '第',//页数文本框前显示的汉字 
+        afterPageText: '页    共 {pages} 页',
+        displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
+        onSelectPage: function (pageNumber, pageSize) {
+            var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750') + "&MultiTable=true"
+    			+ "&page=" + pageNumber + "&pagerows=" + pageSize
+                + "&XML=" + GetFormJson([], 'getDataGrid');
+            initDataGrid(url);
+            m_pageNumber = pageNumber;
+        }
+    });
 }

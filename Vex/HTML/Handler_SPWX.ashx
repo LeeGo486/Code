@@ -115,6 +115,8 @@ public class Handler : IHttpHandler, IRequiresSessionState
                 }
 
                 strResult = strResult.Replace("&", "&amp;");
+
+                string abc = WebHandler.GetJSONFromXML(strResult, context, m_HzyCfg);
              
                 context.Response.Write(WebHandler.GetJSONFromXML(strResult, context, m_HzyCfg));
 

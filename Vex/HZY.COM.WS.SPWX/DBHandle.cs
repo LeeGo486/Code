@@ -40,8 +40,9 @@ namespace HZY.COM.WS.SPWX
                     cmd.Parameters.Add(
                         new SqlParameter("@Param" + i.ToString(), objParam[i]));
                 };
-
-                object oRst = cmd.ExecuteScalar();
+                cn.sqlCon.Open();
+                    object oRst = cmd.ExecuteScalar();
+                cn.sqlCon.Close();
 
                 if (oRst != null)
                 {

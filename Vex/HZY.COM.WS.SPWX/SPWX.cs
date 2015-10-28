@@ -7,7 +7,6 @@ using System.Text;
 using System.Web.Services;
 using System.Collections;
 
-
 using HZY.COM;
 using HZY.COM.Common;
 using HZY.COM.Common.Base;
@@ -314,13 +313,17 @@ namespace HZY.COM.WS.SPWX
         #region 获取DataGrid信息
         private void GetDataGrid(string Screen)
         {
-            DataTable dt = new DataTable();
-
+            DataTable dtData = new DataTable();
+            DataTable dtCount = new DataTable();
+           
+            dtData.TableName = "dtData";
+            dtCount.TableName = "dtCount";
+           
             string DepotId 
                 = base.m_hzyMessage.User_Name_CN.Split('_')[0];
             string where = "";
-
-            //bool b = Convert.ToChar(DepotId.Substring(0, 1)) <= 'Z';
+            string queryPage = "";
+            string queryData = "";
 
             if (Screen.Length == 0)
             {
@@ -330,12 +333,11 @@ namespace HZY.COM.WS.SPWX
             {
                 where = "WHERE T1.[DepotId] = @Param0 ";
                 where += " AND (T1.[WXNo] = @Param1 OR T1.[SKU] = @Param2) ";
-            }
-            
-            
+            };
 
-            string select = @"SELECT T1.[ID]
-                              ,[WXNo],[DepotId]
+            string select = @"SELECT ROW_NUMBER() OVER (ORDER BY T1.[ModifyTime] DESC) AS RowNumber
+                              ,T1.[ID]
+                              ,[WXNo],[WxPath],[DepotId]
                               ,[DepotName],[DepotPhone]
                               ,[DepotTye],[DepotArea]
                               ,[RespName],[RespPhone]
@@ -368,20 +370,37 @@ namespace HZY.COM.WS.SPWX
                          AND T1.[Express] = T3.[Value] AND T3.[Type] = 'Express' AND T3.[Status] = 0
                          AND T1.[UrgentLevel] = T4.[Value] AND T4.[Type] = 'Level' AND T4.[Status] = 0
                          AND T1.[WxStatus] = T5.[Value] AND T5.[Type] = 'WXType' AND T5.[Status] = 0
-                         ORDER BY T1.[WXNo] Desc";
+                         ";
             DBHandle dbh = new DBHandle("SPWX");
+           
+            queryPage = @"SELECT Count(1) AS page FROM  [dbo].[SPWX_Main] T1 WITH(NOLOCK)
+                                ,[dbo].[SPWX_Dict] T2 WITH(NOLOCK)
+                                ,[dbo].[SPWX_Dict] T3 WITH(NOLOCK)  
+                                ,[dbo].[SPWX_Dict] T4 WITH(NOLOCK) 
+                                ,[dbo].[SPWX_Dict] T5 WITH(NOLOCK) " + where;
+            queryPage += @" AND T1.[Status] = T2.[Value] AND T2.[Type] = 'Status' AND T2.[Status] = 0 
+                         AND T1.[Express] = T3.[Value] AND T3.[Type] = 'Express' AND T3.[Status] = 0
+                         AND T1.[UrgentLevel] = T4.[Value] AND T4.[Type] = 'Level' AND T4.[Status] = 0
+                         AND T1.[WxStatus] = T5.[Value] AND T5.[Type] = 'WXType' AND T5.[Status] = 0";
 
+            queryData = @"SELECT TOP " + m_hzyPageInfo.PageRowCount + @" * FROM ( ";
+            queryData += select;
+            queryData += @" ) A WHERE RowNumber > " + m_hzyPageInfo.PageRowCount * (m_hzyPageInfo.Page - 1);
+            queryData += " ORDER BY A.[WXNo] Desc";
+            
             if (Screen.Length == 0)//店铺无条件查询
             {
-                dt = dbh.GetData(select, new object[] { DepotId });
+                dtCount = dbh.GetData(queryPage, new object[1] { DepotId });
+                dtData = dbh.GetData(queryData, new object[1] { DepotId });
             }
             else if (Screen.Length > 0)//店铺有条件查询
             {
-                dt = dbh.GetData(select, new object[] { DepotId, Screen, Screen });
+                dtCount = dbh.GetData(queryPage, new object[3] { DepotId, Screen, Screen });
+                dtData = dbh.GetData(queryData, new object[3] { DepotId, Screen, Screen });
             };
-            
 
-            this.ds_Return.Tables.Add(dt);
+            this.ds_Return.Tables.Add(dtData);
+            this.ds_Return.Tables.Add(dtCount);
         }
         #endregion
 
@@ -692,8 +711,7 @@ namespace HZY.COM.WS.SPWX
         }
 
         #endregion
-
-
+        
         //HWA
 
         #region 检查快递单号
@@ -1344,8 +1362,61 @@ namespace HZY.COM.WS.SPWX
         #region 获取维修单DataGrid
         private void GetWXListDg(string where,object[] o)
         {
-            string select = @"SELECT T1.[Id]
+            DataTable dtData = new DataTable();
+            DataTable dtCount = new DataTable();
+
+            dtData.TableName = "dtData";
+            dtCount.TableName = "dtCount";
+
+            
+            string queryTable = @" FROM [dbo].[SPWX_Main] T2 WITH(NOLOCK)
+                      LEFT JOIN [dbo].[SPWX_Headquarters] T1 WITH(NOLOCK) 
+                      ON T1.WXNo = T2.WXno
+                      LEFT JOIN [dbo].[SPWX_WXDict] T3 WITH(NOLOCK)
+                      ON T1.FirstPhen = T3.Value AND T3.[Type] = 'nature'
+                      LEFT JOIN [dbo].[SPWX_WXDict] T4 WITH(NOLOCK)
+                      ON T1.FirstQust = T4.Value AND T4.[Type] = 'origin'
+                      LEFT JOIN [dbo].[SPWX_WXDict] T5 WITH(NOLOCK)
+                      ON T1.FirstPhen = T5.Value AND T5.[Type] = 'phenomenon'
+                      LEFT JOIN [dbo].[SPWX_WXDict] T6 WITH(NOLOCK)
+                      ON T1.SecondOrigin = T6.Value AND T6.[Type] = 'nature'
+                      LEFT JOIN [dbo].[SPWX_WXDict] T7 WITH(NOLOCK)
+                      ON T1.SecondQust = T7.Value AND T7.[Type] = 'origin'
+                      LEFT JOIN [dbo].[SPWX_WXDict] T8 WITH(NOLOCK)
+                      ON T1.SecondPhen = T8.Value AND T8.[Type] = 'phenomenon'
+                      LEFT JOIN [dbo].[SPWX_Dict] T9 WITH(NOLOCK)
+                      ON T1.DecideRst = T9.Value AND T9.[Type] = 'result'
+                      LEFT JOIN [dbo].[SPWX_Dict] T10 WITH(NOLOCK)
+                      ON T1.Department = T10.Value AND T10.[Type] = 'blame'
+                      LEFT JOIN [dbo].[SPWX_Dict] T11 WITH(NOLOCK)
+                      ON T1.Warehouse = T10.Value AND T11.[Type] = 'degrade'
+                      LEFT JOIN [dbo].[SPWX_Dict] T12 WITH(NOLOCK)
+                      ON T1.FixType = T12.Value AND T12.[Type] = 'maintainway'
+                      LEFT JOIN [dbo].[SPWX_Dict] T13 WITH(NOLOCK)
+                      ON T1.Cost = T13.Value AND T13.[Type] = 'charge'
+                      LEFT JOIN [dbo].[SPWX_Dict] T14 WITH(NOLOCK)
+                      ON T2.WXStatus = T14.Value AND T14.[Type] = 'WXType'
+                      LEFT JOIN [dbo].[SPWX_Dict] T15 WITH(NOLOCK)
+                      ON T2.[Status] = T15.Value AND T15.[Type] = 'Status'
+                      LEFT JOIN [dbo].[SPWX_WXDict] T16 WITH(NOLOCK)
+                      ON T1.FirstOrigin = T16.Value AND T16.[Type] = 'nature' 
+                      LEFT JOIN [dbo].[SPWX_Dict] T17 WITH(NOLOCK)
+                      ON T2.[Express] = T17.Value AND T17.[Type] = 'Express'
+                      LEFT JOIN [dbo].[SPWX_Dict] T18 WITH(NOLOCK)
+                      ON T1.[FinishMan] = T18.Value AND T18.[Type] = 'FinMan'
+                      LEFT JOIN [dbo].[SPWX_WXDict] T19 WITH(NOLOCK)
+                      ON T1.[FinishPoint] = T19.Value AND T19.[Type] = 'finish'
+                      LEFT JOIN [dbo].[SPWX_Dict] T20 WITH(NOLOCK)
+                      ON T2.[UrgentLevel] = T20.Value AND T20.[Type] = 'Level' 
+                      LEFT JOIN [dbo].[SPWX_Dict] T21 WITH(NOLOCK)
+                      ON T1.[ExpName] = T21.Value AND T21.[Type] = 'Express' ";
+
+            string select = @" 
+                          SELECT 
+                           ROW_NUMBER() OVER (ORDER BY T2.[ModifyTime]) AS RowNumber
+                          ,T1.[Id]
                           ,T2.[WXNo]
+                          ,T2.[WxPath]
                           ,T2.[SKU]
                           ,T2.[Status]
                           ,T15.[Name] AS [StatusName]
@@ -1424,56 +1495,21 @@ namespace HZY.COM.WS.SPWX
                           ,T1.[FinishPoint]
                           ,T19.[Name] AS [FinPntName]
                           ,T1.[FinishMoney]
-                      FROM [dbo].[SPWX_Main] T2 WITH(NOLOCK)
-                      LEFT JOIN [dbo].[SPWX_Headquarters] T1 WITH(NOLOCK) 
-                      ON T1.WXNo = T2.WXno
-                      LEFT JOIN [dbo].[SPWX_WXDict] T3 WITH(NOLOCK)
-                      ON T1.FirstPhen = T3.Value AND T3.[Type] = 'nature'
-                      LEFT JOIN [dbo].[SPWX_WXDict] T4 WITH(NOLOCK)
-                      ON T1.FirstQust = T4.Value AND T4.[Type] = 'origin'
-                      LEFT JOIN [dbo].[SPWX_WXDict] T5 WITH(NOLOCK)
-                      ON T1.FirstPhen = T5.Value AND T5.[Type] = 'phenomenon'
-                      LEFT JOIN [dbo].[SPWX_WXDict] T6 WITH(NOLOCK)
-                      ON T1.SecondOrigin = T6.Value AND T6.[Type] = 'nature'
-                      LEFT JOIN [dbo].[SPWX_WXDict] T7 WITH(NOLOCK)
-                      ON T1.SecondQust = T7.Value AND T7.[Type] = 'origin'
-                      LEFT JOIN [dbo].[SPWX_WXDict] T8 WITH(NOLOCK)
-                      ON T1.SecondPhen = T8.Value AND T8.[Type] = 'phenomenon'
-                      LEFT JOIN [dbo].[SPWX_Dict] T9 WITH(NOLOCK)
-                      ON T1.DecideRst = T9.Value AND T9.[Type] = 'result'
-                      LEFT JOIN [dbo].[SPWX_Dict] T10 WITH(NOLOCK)
-                      ON T1.Department = T10.Value AND T10.[Type] = 'blame'
-                      LEFT JOIN [dbo].[SPWX_Dict] T11 WITH(NOLOCK)
-                      ON T1.Warehouse = T10.Value AND T11.[Type] = 'degrade'
-                      LEFT JOIN [dbo].[SPWX_Dict] T12 WITH(NOLOCK)
-                      ON T1.FixType = T12.Value AND T12.[Type] = 'maintainway'
-                      LEFT JOIN [dbo].[SPWX_Dict] T13 WITH(NOLOCK)
-                      ON T1.Cost = T13.Value AND T13.[Type] = 'charge'
-                      LEFT JOIN [dbo].[SPWX_Dict] T14 WITH(NOLOCK)
-                      ON T2.WXStatus = T14.Value AND T14.[Type] = 'WXType'
-                      LEFT JOIN [dbo].[SPWX_Dict] T15 WITH(NOLOCK)
-                      ON T2.[Status] = T15.Value AND T15.[Type] = 'Status'
-                      LEFT JOIN [dbo].[SPWX_WXDict] T16 WITH(NOLOCK)
-                      ON T1.FirstOrigin = T16.Value AND T16.[Type] = 'nature' 
-                      LEFT JOIN [dbo].[SPWX_Dict] T17 WITH(NOLOCK)
-                      ON T2.[Express] = T17.Value AND T17.[Type] = 'Express'
-                      LEFT JOIN [dbo].[SPWX_Dict] T18 WITH(NOLOCK)
-                      ON T1.[FinishMan] = T18.Value AND T18.[Type] = 'FinMan'
-                      LEFT JOIN [dbo].[SPWX_WXDict] T19 WITH(NOLOCK)
-                      ON T1.[FinishPoint] = T19.Value AND T19.[Type] = 'finish'
-                      LEFT JOIN [dbo].[SPWX_Dict] T20 WITH(NOLOCK)
-                      ON T2.[UrgentLevel] = T20.Value AND T20.[Type] = 'Level' 
-                      LEFT JOIN [dbo].[SPWX_Dict] T21 WITH(NOLOCK)
-                      ON T1.[ExpName] = T21.Value AND T21.[Type] = 'Express' ";
+                          ,T1.[ModifyTime] " + queryTable + where;
+            
+            string queryData = "SELECT TOP " + m_hzyPageInfo.PageRowCount + " * FROM ( ";
+            string queryCount = "SELECT Count(1) AS RowNumber " + queryTable;
 
-            select += where;
-            select += " ORDER BY T1.[ModifyTime] DESC";
-
+            queryCount += where;
+            queryData += select;
+            queryData += " ) A WHERE RowNumber > " + m_hzyPageInfo.PageRowCount * (m_hzyPageInfo.Page - 1);
+            //获取行数
             DBHandle dbh = new DBHandle("SPWX");
+            dtCount = dbh.GetData(queryCount, o);
+            dtData = dbh.GetData(queryData, o);
 
-            DataTable dt = dbh.GetData(select, o);
-
-            this.ds_Return.Tables.Add(dt);
+            this.ds_Return.Tables.Add(dtData);
+            this.ds_Return.Tables.Add(dtCount);
 
         }
         #endregion
@@ -1483,7 +1519,7 @@ namespace HZY.COM.WS.SPWX
         { 
             int rows = this.dtList.Rows.Count;
 
-            string where = " WHERE 1=1 AND T2.[Status] > 20 ";
+            string where = " WHERE 1=1 AND T2.[WxPath] = '总部' AND T2.[Status] > 20 ";
 
             if (rows > 0)
             {
@@ -2061,7 +2097,6 @@ namespace HZY.COM.WS.SPWX
 
         }
         #endregion
-        
 
         #endregion
     }

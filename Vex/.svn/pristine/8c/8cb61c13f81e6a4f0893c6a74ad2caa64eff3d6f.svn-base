@@ -417,7 +417,7 @@ function submit(){
     var cookie = $.cookie("depotInfo");
     cookie = eval("(" + cookie + ")");
 
-    data.push({ "name": "txtWxPath", "value": "总部" })
+    data.push({ "name": "txtWxPath", "value": "总部维修" })
     data.push({"name":"txtDepotId","value":cookie.rows[0].j_depotid});
     data.push({"name":"txtDepotName","value":cookie.rows[0].j_name});
     data.push({"name":"txtDepotPhone","value":cookie.rows[0].m_shoptel});

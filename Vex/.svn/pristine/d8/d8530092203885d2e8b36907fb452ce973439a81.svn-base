@@ -1,4 +1,4 @@
-var m_pageNumber = 0;
+
 $(document).ready(function(){
 
 	//插件初始化
@@ -43,19 +43,19 @@ function initPlugin()
 		}
 	})
 
-	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')+"&MultiTable=true"
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
                 + "&XML=" + GetFormJson([], 'getDataGrid');
 	//dataGrid
 	initDataGrid(url);
 }
 
-function initDataGrid(url){
-	$.post(url,function(data){
-
-    var rst = eval("(" + data + ")");
+function initDataGrid(url)
+{
 
 	$("#tab_list").datagrid({
-		data: rst[0].rows,
+	    // url:GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750'),
+	    // queryParams: { "XML": GetGetJson([], 'getDataGrid') },
+	    url:url,
         singleSelect: true,
         fit:false,
         columns: [[
@@ -72,13 +72,15 @@ function initDataGrid(url){
             { field: 'question', title: '问题描述', width: 200 }
         ]],
         pagination: true, //是否开启分页
+        pageNumber: 1, //默认索引页
+        pageSize: 20, //默认一页数据条数
         onClickRow:function(index,row){
         	if(row.wxstname == "未售维修"){
         		$("#printClient").linkbutton('disable')
         	}
         	else if (row.wxstname == "客户维修"){
         		$("#printClient").linkbutton('enable')
-        	};
+        	}
         },
         onDblClickRow: function(index,row){
             var wxno = row.wxno;
@@ -113,14 +115,10 @@ function initDataGrid(url){
 		//获取生成的搜索框
 		var a=$("#testa");
 		$(".datagrid-toolbar").append(a);
-
-		//分页
-		initDataGridPage(rst[1].rows[0].page,m_pageNumber);
-	});
-	
 }
 
-function addComTabs(){
+function addComTabs()
+{
 	var url = "../../WEB/SPWX/SPWX_Apply.html";
 
 	var content = "<iframe id=\"newWx\" scrolling=\"auto\" frameborder=\"0\" src=\""+url+"\"";
@@ -282,7 +280,7 @@ function DPPrint(data) {
     LODOP.PREVIEW();    //浏览模式
     //LODOP.PRINT_DESIGN();//设计模式
     //-----------------Print End--------------------
-}
+};
 
 function ClientPrint(data){
  
@@ -341,25 +339,5 @@ function ClientPrint(data){
     LODOP.PREVIEW();    //浏览模式
    	//LODOP.PRINT_DESIGN();//设计模式
     //-----------------Print End--------------------
-}
 
-function initDataGridPage(total,pageNumber){
-	var p = $("#tab_list").datagrid('getPager');
-
-	$(p).pagination({ 
-	    total:total,
-	    pageNumber:pageNumber,
-	    pageSize: 20,
-    	pageList: [20], 
-    	beforePageText: '第',//页数文本框前显示的汉字 
-    	afterPageText: '页    共 {pages} 页', 
-    	displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录', 
-    	onSelectPage:function(pageNumber, pageSize){
-    		var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')+"&MultiTable=true"
-    			+ "&page="+pageNumber + "&pagerows="+ pageSize
-                + "&XML=" + GetFormJson([], 'getDataGrid');
-            initDataGrid(url);
-            m_pageNumber = pageNumber;
-    	}
-	});
 }
