@@ -25,11 +25,35 @@
         		padding: 0;
         		overflow-x:"hidden";
     		}
+    		table{
+    			line-height: 30px;
+    		}
+    		hr{
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #eceef1;
+            margin: 1em 0;
+            padding: 0; 
+            width:100%;
+        	}
     		.prompt{
     			font-size:1.1em;
     			color:#0081c2;
     			margin-left:5px;
     		}
+    		.reason{
+    			color:#5A5A5A;
+	            background-color:#F3F3F3;
+	            padding:5px;
+	            margin-right: 10px;
+	            text-decoration: none;
+    		}
+    		.reason:hover{
+	            background-color:#0fae6f;
+	            color:#fff;
+	            padding:5px;
+        	}
 		</style>
 	</head>
 	<body>
@@ -60,11 +84,9 @@
 							<td><input id="vipcode">
 								<span id="clientPrompt" class="prompt"></span>
 							</td>
-						</tr>
-						<tr><th>顾客姓名:</th>
+							<th>顾客姓名:</th>
 							<td><input id="vipname"></td>
-						</tr>
-						<tr><th>联系电话:</th>
+							<th>联系电话:</th>
 							<td><input id="vipphone"></td>
 						</tr>
 						<tr><th>同意付费:</th>
@@ -84,17 +106,69 @@
 				<form id="SKUForm">
 					<table>
 						<tr><th>款号：</th>
-							<td><input id="SKU" >
+							<td>
+								<input id="SKU" >
 								<span id="SKUPrompt" class="prompt"></span>
-						</td></tr>
-						<tr><th>售出时间：</th>
-							<td><input id="cellDate" ></td></tr>
-						<tr><th>紧急程度：</th>
-							<td><input id="urgent" ></td></tr>
+							</td>
+							<th>紧急程度：</th>
+								<td><input id="urgent" ></td>
+							<th>售出时间：</th>
+							<td><input id="cellDate" ></td>
+							</tr>
 						<tr><th>问题描述：</th>
-							<td><input id="question" ></td></tr>
+							<td colspan="5"><input id="question" ></td></tr>
 					</table>
 				</form>
+				<hr >
+			</div>
+			<!-- judge Info -->
+			<div style="margin-left:20px;">
+				<div>
+					<span style="font-size:1.3em;color:#0081c2">维修判定</span>
+				</div>
+				<div>
+					<span>主要原因</span>
+				</div>
+				<table>
+					<tbody>
+						<tr>
+							<td>原因</td>
+								<td colspan=3>
+									<a class="reason">顾客原因</a>
+									<a class="reason">外部原因</a>
+									<a class="reason">内部原因</a>
+								</td>
+						</tr>
+						<tr>
+							<td>问题</td><td><input id="mainQst" ></td>
+							<td>现象</td><td><input id="mainPhe" ></td>
+						</tr>
+						<tr>
+							<td>判定结果</td>
+							<td colspan="3"><input id="mainDec" ></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- <div>
+					<span>次要原因</span>
+				</div>
+				<table>
+					<tbody>
+						<tr>
+							<td>原因</td>
+								<td colspan=3>
+									<a class="reason">顾客原因</a>
+									<a class="reason">外部原因</a>
+									<a class="reason">内部原因</a>
+								</td>
+						</tr>
+						<tr>
+							<td>问题</td>
+							<td><input ></td>
+							<td>现象</td><td><input ></td>
+						</tr>
+					</tbody>
+				</table> -->
 			</div>
 			<!-- result -->
 			<div></div>

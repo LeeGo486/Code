@@ -14,6 +14,7 @@ function initPlugins(){
 	initDateBox();
 	//combobox
 	initCombobox();
+	
 };
 
 function initSwitchBtn(){
@@ -55,7 +56,9 @@ function initSwitchBtn(){
 					.append('输入顾客卡号后按回车查询');
 				$("#SKUPrompt")
 					.empty()
-					.append('输入款号按回车进行检验')
+					.append('输入款号按回车进行检验');
+				//enter
+				initKeyDownEvent();
 			}
 			else{
 				$("#vipcode")
@@ -101,10 +104,14 @@ function initTextBox(){
 		missingMessage:'必填项',
 		multiline:true
 	});
-}
 
-function initEvent(){
-
+	$("#mainDec").textbox({
+		width:'270',
+		height:'100',
+		required:true,
+		missingMessage:'必填项',
+		multiline:true
+	});
 }
 
 function initHide(){
@@ -141,6 +148,7 @@ function initDateBox(){
 function initCombobox(){
 	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
         + "&XML=" + GetFormJson([], 'getUrgentLeve');
+
     $.post(url,function(data){
     	var json = eval("("+data+")");
     	
@@ -152,9 +160,122 @@ function initCombobox(){
 			valueField:'value',
 			textField:'name',
 			required:true,
-			missingMessage:'必填项'
+			missingMessage:'必选项'
 		});
     });
-	
 
+    $("#mainQst").combobox({
+    	width:'200',
+		height:'32',
+		missingMessage:'必选项',
+		required:true});
+    
+    $("#mainPhe").combobox({    	
+    	width:'200',
+		height:'32',
+		missingMessage:'必选项',
+		required:true});
+}
+
+function initKeyDownEvent(){
+
+	$("#vipcode").textbox('textbox')
+		.bind('keydown', function(e){
+			if(e.keyCode == 13){
+				getVipInfo();
+			};
+		});
+	$("#SKU").textbox('textbox')
+		.bind('keydown', function(e){
+			if(e.keyCode == 13){
+				verifySKU();
+			};
+		});
+}
+
+function getVipInfo(){
+
+	var vipcode = $("#vipcode").textbox('getValue');
+
+	if(vipcode.length == 0){
+		alert('请输入顾客卡号');
+		return;
+	};
+
+
+	var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson(
+            [{"name":"txtVipId","value":vipcode}], 'getVipInfo');
+    $.messager.progress({ title: '请稍后', msg: '处理中' });
+    $.post(url,function(data){
+        $.messager.progress('close');
+        var json = eval("(" + data + ")");
+
+        if (json.rows.length > 0) {
+
+            //判断是否为空
+            if (json.rows[0].mobtel.length == 0) {
+                $.messager.alert("无会员信息，请核对顾客卡号！");
+                return;
+            };
+
+            $("#vipname").textbox('setValue',"")
+                .textbox("setValue",json.rows[0].vipname);
+            $("#vipphone").textbox('setValue',"")
+                .textbox("setValue",json.rows[0].mobtel);
+        };
+    });
+}
+
+function verifySKU(){
+
+	var sku = $("#SKU").textbox("getValue");
+	if (sku.length == 0) {
+       	alert('请输入款号');
+        return;
+   };
+
+   
+   var vipId = $("#vipcode").textbox("getValue");
+
+   //Vip卡号为空，则代表不是顾客维修。
+   if (vipId.length == 0) {
+       $.messager.alert("提示", "请输入顾客卡号", "warning");
+       return;
+   }else{
+       var url = GetWSRRURL('3a9cf88e-fc42-485d-9dff-96c35a8a1750')
+        + "&XML=" + GetFormJson(
+            [{"name":"txtVipId","value":vipId},
+            {"name":"txtSKU","value":sku}], 'getSKUCheck');
+
+        $.messager.progress({title:"提示",msg:"正在验证"});
+        $.post(url,function(data){
+
+            $.messager.progress('close');
+
+            var json = eval("("+data+")");
+
+            if(json.rows[0].result == "True"){
+                //售出日期
+                $("#cellDate").datebox({
+                        editable:false,
+                        disabled:false
+                    }).datebox('enable')
+                    .datebox('setValue',json.rows[0].date);
+                    
+                $("#submit").linkbutton('enable');
+                $("#SKUPrompt").empty().append(json.rows[0].msg);
+            }
+            else if(json.rows[0].result == "False"){
+                
+                $("#cellDate").datebox({
+                    editable:false,
+                    disabled:true}).datebox('setValue','');
+
+                $("#submit").linkbutton('disable');
+                $("#SKUPrompt").empty().append(json.rows[0].msg);
+            };
+
+        });
+   };
 }

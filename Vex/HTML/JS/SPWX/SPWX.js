@@ -117,7 +117,6 @@ function initDataGrid(url){
 		//分页
 		initDataGridPage(rst[1].rows[0].page,m_pageNumber);
 	});
-	
 }
 
 function addComTabs(){

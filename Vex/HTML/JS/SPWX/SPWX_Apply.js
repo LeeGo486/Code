@@ -340,7 +340,9 @@ function verifySKU() {
         + "&XML=" + GetFormJson(
             [{"name":"txtVipId","value":vipId},
             {"name":"txtSKU","value":sku}], 'getSKUCheck');
+        
         $.messager.progress({title:"提示",msg:"正在验证"});
+        
         $.post(url,function(data){
             $.messager.progress('close');
             var json = eval("("+data+")");

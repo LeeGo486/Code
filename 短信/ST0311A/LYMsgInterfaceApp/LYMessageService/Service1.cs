@@ -175,6 +175,7 @@ namespace LYMessageService
                                         {
                                             sw.WriteLine(strRst);
                                         };
+                                        log.Info(strRst);
 
                                         string[] strArray = strRst.Split('&');
 
@@ -221,13 +222,22 @@ namespace LYMessageService
                                                 if (bRstIst)
                                                 {
                                                     //dbH.Insert2("[dbo].[MobileSend_MT_Bak]", field, obj);
+
                                                     string strInsertBak = "Insert into [dbo].[MobileSend_MT_Bak](Spid,Mobile,Content,SendTime,CreateTime,Result,Description,Smsid,Aattribute)values(@Spid,@Mobile,@Content,@SendTime,@CreateTime,@Result,@Description,@Smsid,@Aattribute)";
-                                                    SqlParameter[] sqlPI = new SqlParameter[] { new SqlParameter("@Spid", strSpid), new SqlParameter("@Mobile", SendMobile), new SqlParameter("@Content", SendContent), new SqlParameter("@SendTime", SendTime), new SqlParameter("@CreateTime", CreateTime), new SqlParameter("@Result", arrRst00[1]), new SqlParameter("@Description", arrRst01[1]), new SqlParameter("@Smsid", arrRst02[1]), new SqlParameter("@Aattribute", Aattribute) };
-                                                    SqlHelper.ExcuteNoQuery(strInsertBak, sqlPI);
-
-
-
-
+                                                    if (SendMobile.IndexOf(',') > -1)
+                                                    {
+                                                        string[] strMobiles = SendMobile.Split(',');
+                                                        for (int z = 0; z < strMobiles.Length; z++)
+                                                        {
+                                                            SqlParameter[] sqlPI = new SqlParameter[] { new SqlParameter("@Spid", strSpid), new SqlParameter("@Mobile", strMobiles[z]), new SqlParameter("@Content", SendContent), new SqlParameter("@SendTime", SendTime), new SqlParameter("@CreateTime", CreateTime), new SqlParameter("@Result", arrRst00[1]), new SqlParameter("@Description", arrRst01[1]), new SqlParameter("@Smsid", arrRst02[1]), new SqlParameter("@Aattribute", Aattribute) };
+                                                            SqlHelper.ExcuteNoQuery(strInsertBak, sqlPI);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        SqlParameter[] sqlPI = new SqlParameter[] { new SqlParameter("@Spid", strSpid), new SqlParameter("@Mobile", SendMobile), new SqlParameter("@Content", SendContent), new SqlParameter("@SendTime", SendTime), new SqlParameter("@CreateTime", CreateTime), new SqlParameter("@Result", arrRst00[1]), new SqlParameter("@Description", arrRst01[1]), new SqlParameter("@Smsid", arrRst02[1]), new SqlParameter("@Aattribute", Aattribute) };
+                                                        SqlHelper.ExcuteNoQuery(strInsertBak, sqlPI);
+                                                    }
 
                                                 }
                                                 else
@@ -235,8 +245,6 @@ namespace LYMessageService
                                                     string strUpdateMT = "update [dbo].[MobileSend_MT] set Flag=@Flag,Result=@Result,Description=@Description,HandleTime=getdate() where ID=@ID";
                                                     SqlParameter[] sqlPU = new SqlParameter[] { new SqlParameter("@Flag", "2"), new SqlParameter("@Result", arrRst00[1]), new SqlParameter("@Description", arrRst01[1]), new SqlParameter("@ID", strID) };
                                                     SqlHelper.ExcuteNoQuery(strUpdateMT, sqlPU);
-
-
 
                                                     field.Add("Flag");
                                                     field.Add("Result");
@@ -259,7 +267,7 @@ namespace LYMessageService
                                             {
 
                                                 string strUpdateMT1 = "update [dbo].[MobileSend_MT] set Flag=@Flag,Result=@Result,Description=@Description,HandleTime=getdate() where ID=@ID";
-                                                SqlParameter[] sqlPU1 = new SqlParameter[] { new SqlParameter("@Flag", "2"), new SqlParameter("@Result", arrRst00[1]), new SqlParameter("@Description", arrRst01[1]), new SqlParameter("@ID", strID) };
+                                                SqlParameter[] sqlPU1 = new SqlParameter[] { new SqlParameter("@Flag", "2"), new SqlParameter("@Result", arrRst00[1]), new SqlParameter("@Description", strArray[1].Substring(12, strArray[1].Length-12)), new SqlParameter("@ID", strID) };
                                                 SqlHelper.ExcuteNoQuery(strUpdateMT1, sqlPU1);
 
                                                 field.Add("Flag");
@@ -316,6 +324,23 @@ namespace LYMessageService
             field.Add("Status");
             field.Add("Statdesc");
             field.Add("Arrive_time");
+
+            //定义表结构 用来处理合并单条记录多次发送的发送报告
+            DataTable dt = new DataTable("msReport");
+            DataColumn dc1 = new DataColumn("Spid", Type.GetType("System.String"));
+            DataColumn dc2 = new DataColumn("Smsid", Type.GetType("System.String"));
+            DataColumn dc3 = new DataColumn("mobile", Type.GetType("System.String"));
+            DataColumn dc4 = new DataColumn("Status", Type.GetType("System.String"));
+            DataColumn dc5 = new DataColumn("Statdesc", Type.GetType("System.String"));
+            DataColumn dc6 = new DataColumn("Arrive_time", Type.GetType("System.String"));
+
+            dt.Columns.Add(dc1);
+            dt.Columns.Add(dc2);
+            dt.Columns.Add(dc3);
+            dt.Columns.Add(dc4);
+            dt.Columns.Add(dc5);
+            dt.Columns.Add(dc6);
+
             
             while (true)
             {
@@ -323,6 +348,7 @@ namespace LYMessageService
                 {
                     try //增加错误捕获
                     {
+                        dt.Clear();
                         //DbHandle dbH = new DbHandle();
 
                         DataTable dtAcc
@@ -353,6 +379,7 @@ namespace LYMessageService
                                 }
                                 catch (Exception ex)
                                 {
+                                    log.Error(ex);
                                     using (System.IO.StreamWriter sw = new System.IO.StreamWriter(strPath + "RequetError.txt", true))
                                     {
                                         sw.WriteLine("日期：" + DateTime.Now.ToString("G") + " GetReport请求WebServices错误:" + ex.StackTrace.ToString());
@@ -375,6 +402,8 @@ namespace LYMessageService
 
                                                 if (temp.Length > 0)
                                                 {
+                                                    log.Info("接收信息报告："+strRst);
+
                                                     for (int j = 0; j < temp.Length; j++)
                                                     {
                                                         if (temp[j].Length > 0)
@@ -389,12 +418,48 @@ namespace LYMessageService
                                                                    = new object[] { Spid, msgid, mobile, 
                                                     status, statdesc, arrTime };
 
-                                                            string strSQLInsertReport = "Insert into [dbo].[MobileSend_Report](Spid,Smsid,mobile,Status,Statdesc,Arrive_time)values(@Spid,@Smsid,@mobile,@Status,@Statdesc,@Arrive_time) ";
-                                                            SqlParameter[] sqlPIReport = new SqlParameter[] { new SqlParameter("@Spid", Spid), new SqlParameter("@Smsid", msgid), new SqlParameter("@mobile", mobile), new SqlParameter("@Status", status), new SqlParameter("@Statdesc", statdesc), new SqlParameter("@Arrive_time", arrTime) };
-                                                            SqlHelper.ExcuteNoQuery(strSQLInsertReport, sqlPIReport);
+                                                            //把每行都加进去
+                                                            DataRow dr = dt.NewRow();
+                                                            dr["Spid"] = Spid;
+                                                            dr["Smsid"] = msgid;
+                                                            dr["mobile"] = mobile;
+                                                            dr["Status"] = status;
+                                                            dr["Statdesc"] = statdesc;
+                                                            dr["Arrive_time"] = arrTime;
+                                                            dt.Rows.Add(dr);
+
+
+                                                            //string strSQLInsertReport = "Insert into [dbo].[MobileSend_Report](Spid,Smsid,mobile,Status,Statdesc,Arrive_time)values(@Spid,@Smsid,@mobile,@Status,@Statdesc,@Arrive_time) ";
+                                                            //SqlParameter[] sqlPIReport = new SqlParameter[] { new SqlParameter("@Spid", Spid), new SqlParameter("@Smsid", msgid), new SqlParameter("@mobile", mobile), new SqlParameter("@Status", status), new SqlParameter("@Statdesc", statdesc), new SqlParameter("@Arrive_time", arrTime) };
+                                                            //SqlHelper.ExcuteNoQuery(strSQLInsertReport, sqlPIReport);
                                                             //dbH.Insert2("[dbo].[MobileSend_Report]", field, obj);
                                                         };
                                                     };
+
+                                                    //中间表临时表
+                                                    DataView dv = dt.DefaultView;
+                                                    dv.Sort = "Smsid";
+                                                    DataTable dtTemp = dv.ToTable();
+
+                                                    for (int z = 0; z < dtTemp.Rows.Count; z++)
+                                                    {
+                                                        string strSelect = "Spid='" + dtTemp.Rows[z]["Spid"].ToString() + "' and Smsid='" + dtTemp.Rows[z]["Smsid"].ToString() + "' and mobile='" + dtTemp.Rows[z]["mobile"].ToString() + "'";
+                                                        DataRow[] drs = dtTemp.Select(strSelect, "Status desc");
+                                                        //dtResult.Rows.Add(drs[0].ItemArray);
+
+                                                        log.Info("drs.Length=" + drs.Length.ToString() + "z=" + z.ToString());
+
+                                                        string strSQLInsertReport = "Insert into [dbo].[MobileSend_Report](Spid,Smsid,mobile,Status,Statdesc,Arrive_time)values(@Spid,@Smsid,@mobile,@Status,@Statdesc,@Arrive_time) ";
+                                                        SqlParameter[] sqlPIReport = new SqlParameter[] { new SqlParameter("@Spid", drs[0]["Spid"]), new SqlParameter("@Smsid", drs[0]["Smsid"]), new SqlParameter("@mobile", drs[0]["mobile"]), new SqlParameter("@Status", drs[0]["Status"]), new SqlParameter("@Statdesc", drs[0]["Statdesc"]), new SqlParameter("@Arrive_time", drs[0]["Arrive_time"]) };
+                                                        SqlHelper.ExcuteNoQuery(strSQLInsertReport, sqlPIReport);
+                                                        
+
+                                                        z += drs.Length;
+                                                    }
+
+                                                    
+
+
                                                 };
                                             };
 
